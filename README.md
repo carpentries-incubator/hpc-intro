@@ -1,11 +1,12 @@
-lesson-template
-===============
+lesson-example
+==============
 
-This repository is the template for creating
-[Software Carpentry](http://software-carpentry.org) lessons.  Do *not*
-fork this repository directly on GitHub.  Instead, follow the
-instructions below to create a lesson repository, and
-[the layout instructions](LAYOUT.md) to create a lesson.
+This repository is an example of a [Software Carpentry](http://software-carpentry.org) lesson
+created using the [lesson template](https://github.com/swcarpentry/lesson-template).
+Do *not* fork this repository directly on GitHub.
+Instead, follow the instructions below to create a lesson repository
+from the [lesson template](https://github.com/swcarpentry/lesson-template),
+then go through [the layout instructions](LAYOUT.md) to create a lesson.
 
 ## Manual Setup
 
