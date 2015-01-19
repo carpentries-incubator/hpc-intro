@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
+  <title>Lesson Title</title>
+
+
+  <script src="js/deckjs-custom.js"></script>
+  <script>
+      // TODO: finer filter on what is needed (vs profile-5)
+      includedeck("css/swc-slides.css", {
+         BEFOREINIT: function() {
+            $(".slide.auto li:not(li li):not(.notslide)").addClass("slide");
+         }
+      });
+  </script>
+</head>
+<body>
+  <div class="deck-container">
+
+    <div class="slide title-slide" data-container-class="no-status">
+        <h1 class="var-title"></h1>
+        <img class="logo" src="img/software-carpentry-banner.png" alt="Software Carpentry"/>
+    </div>
+
+    <!-- Begin slides. Just make elements with a class of slide. -->
+<section id="our-mission" class="slide level2">
+<h1>Our Mission</h1>
+<p>We make scientists and engineering more productive by teaching them basic computing skills.</p>
+</section>
+<section id="the-problem" class="slide level2">
+<h1>The Problem</h1>
+<ul>
+<li>Surveyed 1972 scientists in 2008.</li>
+<li>“How do you use computers?”</li>
+<li>“How did you learn what you know?”</li>
+</ul>
+</section>
+<section id="the-problem-1" class="slide level2">
+<h1>The Problem</h1>
+<ul>
+<li>Scientists spend 40% of their time building or using software.</li>
+<li>55% say this figure is rising.</li>
+<li><em>96% are mostly self-taught</em>.</li>
+</ul>
+</section>
+<section id="the-problem-2" class="slide level2">
+<h1>The Problem</h1>
+<ul>
+<li>No hard data on how <em>well</em> they do things.</li>
+<li>But anecdotal evidence suggests “not very”.</li>
+</ul>
+</section>
+<section id="our-solution" class="slide level2">
+<h1>Our Solution</h1>
+<ul>
+<li>Intensive hands-on training.</li>
+<li>Two full days of instruction.</li>
+</ul>
+<div class="left center darker c5 slide">
+the Unix shell<br/> Git and GitHub<br/> Python or R<br/> SQL
+</div>
+<div class="left center c1 slide anim-continue">
+⇒<br/>⇒<br/>⇒<br/>⇒
+</div>
+<div class="left center darker c6 slide">
+automate repetitive tasks<br/> track and share work<br/> build modular code<br/> manage data
+</div>
+</section>
+<section id="outcomes" class="slide level2">
+<h1>Outcomes</h1>
+<ul>
+<li>20% improvement in productivity is common.</li>
+<li>10X isn't rare.</li>
+</ul>
+</section>
+<section id="outcomes-1" class="slide level2">
+<h1>Outcomes</h1>
+<ul>
+<li>Empowers people.</li>
+<li>HPC, the cloud, web services, big data, ...</li>
+<li>Reproducible research, open science, ...</li>
+</ul>
+</section>
+<section id="the-details" class="slide level2">
+<h1>The Details</h1>
+<ul>
+<li>Materials are all open access.</li>
+<li>Instructors are volunteers.</li>
+<li>Only cost is travel and accommodation</li>
+<li>(but contributions to central costs are welcome).</li>
+</ul>
+</section>
+<section id="scope" class="slide level2">
+<h1>Scope</h1>
+<div class="left C11">
+<figure>
+<img src="http://swcarpentry.github.io/bc/img/slides/workshops.png" alt="Workshops" /><figcaption>Workshops</figcaption>
+</figure>
+</div>
+<div class="right C11">
+<figure>
+<img src="http://swcarpentry.github.io/bc/img/slides/enrolment.png" alt="Enrollment" /><figcaption>Enrollment</figcaption>
+</figure>
+</div>
+<p class="clearboth center slide" >
+ 
+Increase both numbers 50% in 2014.
+</p>
+
+</section>
+<section id="how-to-help" class="slide level2">
+<h1>How To Help</h1>
+<ul>
+<li>Come and learn.</li>
+<li>Join the discussion.</li>
+<li>Host a workshop.</li>
+<li>Become an instructor.</li>
+<li>Create new teaching materials.</li>
+</ul>
+</section>
+<section id="learn-more" class="slide level2">
+<h1>Learn More</h1>
+<ul>
+<li><a href="http://software-carpentry.org">http://software-carpentry.org</a></li>
+<li><script type="text/javascript">
+<!--
+h='&#x73;&#x6f;&#102;&#116;&#x77;&#x61;&#114;&#x65;&#x2d;&#x63;&#x61;&#114;&#112;&#x65;&#110;&#116;&#114;&#x79;&#46;&#x6f;&#114;&#x67;';a='&#64;';n='&#x61;&#100;&#x6d;&#x69;&#110;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x61;&#100;&#x6d;&#x69;&#110;&#32;&#x61;&#116;&#32;&#x73;&#x6f;&#102;&#116;&#x77;&#x61;&#114;&#x65;&#x2d;&#x63;&#x61;&#114;&#112;&#x65;&#110;&#116;&#114;&#x79;&#32;&#100;&#x6f;&#116;&#32;&#x6f;&#114;&#x67;</noscript></li>
+</ul>
+</section>
+<section id="some-template-slides" class="slide level2">
+<h1>SOME TEMPLATE SLIDES</h1>
+</section>
+<section id="with-some-paragraph" class="slide level2">
+<h1>With some paragraph</h1>
+<p>Pandoc is nice.</p>
+</section>
+<section id="bullet-points" class="slide level2">
+<h1>Bullet points</h1>
+<ul>
+<li>With bullet points</li>
+<li>And
+<ul>
+<li>even</li>
+<li>nested ones</li>
+<li>NB: pandoc requires a 4-space indentation</li>
+</ul></li>
+<li>Indeed</li>
+</ul>
+</section>
+<section id="a-plain-slide-with-a-title" class="slide level2">
+<h1>A plain slide with a title</h1>
+<ul>
+<li>And</li>
+<li>Some</li>
+<li>Bullet points</li>
+<li><p>And <a href="/">a test link</a></p></li>
+<li>A slide without a title.</li>
+<li>To test the stability of the layout.</li>
+<li><p>To check the title space is blank.</p></li>
+</ul>
+</section>
+<section id="and-a-long-title-that-might-go-on-two-lines" class="slide level2">
+<h1>And a long title that might go on two lines</h1>
+<ul>
+<li>Is it?</li>
+</ul>
+</section>
+<section id="an-image-in-the-slide" class="slide level2">
+<h1>An image in the slide</h1>
+<figure>
+<img src="img/software-carpentry-banner.png" />
+</figure>
+<p>Anything can follow the image, like this paragraph.</p>
+<ul>
+<li>Or</li>
+<li>Anything else</li>
+</ul>
+</section>
+<section id="an-image-on-the-left" class="slide level2 media-left">
+<h1>An image on the left</h1>
+<figure>
+<img src="http://swcarpentry.github.io/bc/img/slides/enrolment.png" alt="Evolution of Enrollment" /><figcaption>Evolution of Enrollment</figcaption>
+</figure>
+<ul>
+<li>With bullet points
+<ul>
+<li>even</li>
+<li>nested ones</li>
+</ul></li>
+<li>Indeed</li>
+</ul>
+<p>And a paragraph that extends beyond the bottom of the image that is positioned on the left.</p>
+</section>
+<section id="some-code-on-the-left" class="slide level2 media-left">
+<h1>Some code on the left</h1>
+<pre class="sourceCode python"><code class="sourceCode python">a = <span class="dv">2</span>
+b = <span class="dv">3</span>
+c = a**b
+<span class="dt">print</span>(c)
+
+a = <span class="dv">4</span>
+<span class="dt">print</span>(c)</code></pre>
+<ul>
+<li>With bullet points
+<ul>
+<li>even</li>
+<li>nested ones</li>
+</ul></li>
+<li>Indeed</li>
+</ul>
+<p>And a paragraph that extends beyond the bottom of the image that is positioned on the left.</p>
+</section>
+<section id="and-some-blockquote" class="slide level2 media-left">
+<h1>And some blockquote</h1>
+<blockquote>
+<p>Your awesomeness is amazing, indeed.</p>
+</blockquote>
+<ul>
+<li>With bullet points
+<ul>
+<li>even</li>
+<li>nested ones</li>
+</ul></li>
+<li>Indeed</li>
+</ul>
+<p>And a paragraph that extends beyond the bottom of the image that is positioned on the left.</p>
+</section>
+<section id="and-some-custom-things" class="slide level2 media-left">
+<h1>And some custom things</h1>
+<figure>
+<blockquote>
+<p>Your awesomeness is amazing, indeed.</p>
+</blockquote>
+<ul>
+<li>good</li>
+<li>well done
+</figure>
+</li>
+<li>With bullet points
+<ul>
+<li>even</li>
+<li>nested ones</li>
+</ul></li>
+<li>Indeed</li>
+</ul>
+<p>And a paragraph that extends beyond the bottom of the image that is positioned on the left.</p>
+</section>
+<section id="an-image-on-the-right" class="slide level2 media-right">
+<h1>An image on the right</h1>
+<figure>
+<img src="http://swcarpentry.github.io/bc/img/slides/enrolment.png" alt="Evolution of Enrollment" /><figcaption>Evolution of Enrollment</figcaption>
+</figure>
+<ul>
+<li>With bullet points
+<ul>
+<li>even</li>
+<li>nested ones</li>
+</ul></li>
+<li>Indeed</li>
+</ul>
+<p>And a paragraph that extends beyond the bottom of the image that is positioned on the left.</p>
+</section>
+<section id="some-code-on-the-right" class="slide level2 media-right">
+<h1>Some code on the right</h1>
+<pre><code>a = 2
+b = 3
+c = a**b
+print(c)
+
+a = 4
+print(c)</code></pre>
+<ul>
+<li>With bullet points
+<ul>
+<li>even</li>
+<li>nested ones</li>
+</ul></li>
+<li>Indeed</li>
+</ul>
+<p>And a paragraph that extends beyond the bottom of the image that is positioned on the left.</p>
+</section>
+<section id="and-some-blockquote-1" class="slide level2 media-right">
+<h1>And some blockquote</h1>
+<blockquote>
+<p>Your awesomeness is amazing, indeed.</p>
+</blockquote>
+<ul>
+<li>With bullet points
+<ul>
+<li>even</li>
+<li>nested ones</li>
+</ul></li>
+<li>Indeed</li>
+</ul>
+<p>And a paragraph that extends beyond the bottom of the image that is positioned on the left.</p>
+</section>
+<section id="and-some-custom-things-1" class="slide level2 media-right">
+<h1>And some custom things</h1>
+<figure>
+<blockquote>
+<p>Your awesomeness is amazing, indeed.</p>
+</blockquote>
+<ul>
+<li>right</li>
+<li>well done
+</figure>
+</li>
+<li>With bullet points
+<ul>
+<li>even</li>
+<li>nested ones</li>
+</ul></li>
+<li>Indeed</li>
+</ul>
+<p>And a paragraph that extends beyond the bottom of the image that is positioned on the left.</p>
+</section>
+<section id="custom-columns-in-112th" class="slide level2">
+<h1>Custom columns, in 1/12<sup>th</sup></h1>
+<div class="left c4">
+A paragraph that takes 4 columns, and that's it.
+</div>
+<div class="left c6">
+<blockquote>
+<p>A blockquote that takes 6 columns, and that's it.</p>
+</blockquote>
+</div>
+<div class="left c2">
+A paragraph that takes 2 columns, and that's it.
+</div>
+</section>
+<section id="custom-image-stripes" class="slide level2 image-stripes">
+<h1>Custom image stripes</h1>
+<div class="left c3">
+<img src="https://farm7.staticflickr.com/6033/6236448218_85624c06df_z.jpg" />
+</div>
+<div class="left c5">
+<img src="https://farm3.staticflickr.com/2043/1574622672_9a917b5524_z.jpg" />
+</div>
+<div class="left c4">
+<img src="https://farm9.staticflickr.com/8184/8434574613_efd5c0b7d7.jpg" />
+</div>
+</section>
+<section id="custom-columns-in-124th" class="slide level2 image-stripes">
+<h1>Custom columns, in 1/24<sup>th</sup></h1>
+<div class="left C3">
+<img src="https://farm7.staticflickr.com/6033/6236448218_85624c06df_z.jpg" />
+</div>
+<div class="left C1">
+a b c d e
+</div>
+<div class="left C11">
+<img src="https://farm3.staticflickr.com/2043/1574622672_9a917b5524_z.jpg" />
+</div>
+<div class="left C2">
+a b c d e
+</div>
+<div class="left C7">
+<img src="https://farm9.staticflickr.com/8184/8434574613_efd5c0b7d7.jpg" />
+</div>
+</section>
+<section id="the-end-for-now" class="slide level2">
+<h1>The End (for now)</h1>
+</section>
+    <!-- End slides. -->
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet -->
+    <div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div>
+
+    <!-- footer -->
+    <p class="deck-status deck-progress-10"> <span class="deck-status-current"></span> / <span class="deck-status-total"></span> − <span class="var-title">will be replaced by the title</span></p>
+    <!-- progress bar -->
+    <div class="progress-bar" data-progress-size=":spe.bottom(0, 1) ; left: slide.left+'px' ; height: designRatio+'px'" data-progress="width: detail.p * slide.width" style="position: absolute;"> </div>
+
+    <!-- End extension snippets. -->
+  </div>
+
+</body>
+</html>
