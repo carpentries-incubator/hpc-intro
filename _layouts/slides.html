@@ -3,34 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=1024, user-scalable=no">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 
-  <title>Software Carpentry</title>
+$for(author-meta)$
+  <meta name="author" content="$author-meta$">
+$endfor$
+$if(date-meta)$
+  <meta name="date" content="$date-meta$">
+$endif$
+  <title>$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$</title>
 
-  <!-- Required stylesheet -->
-  <link rel="stylesheet" media="screen" href="deck.js/core/deck.core.css">
+$for(css)$
+  <link rel="stylesheet" href="$css$" $if(html5)$$else$type="text/css" $endif$/>
+$endfor$
 
-  <!-- Extension CSS files go here. Remove or add as needed. -->
-  <link rel="stylesheet" media="screen" href="deck.js/extensions/goto/deck.goto.css">
-  <link rel="stylesheet" media="screen" href="deck.js/extensions/menu/deck.menu.css">
-  <link rel="stylesheet" media="screen" href="deck.js/extensions/navigation/deck.navigation.css">
-  <link rel="stylesheet" media="screen" href="deck.js/extensions/status/deck.status.css">
-  <link rel="stylesheet" media="screen" href="deck.js/extensions/scale/deck.scale.css">
-
-  <!-- Style theme. More available in /themes/style/ or create your own. -->
-  <link rel="stylesheet" media="screen" href="deck.js/themes/style/web-2.0.css">
-
-  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
-  <link rel="stylesheet" media="screen" href="deck.js/themes/transition/horizontal-slide.css">
-
-  <!-- Basic black and white print styles -->
-  <link rel="stylesheet" media="print" href="deck.js/core/print.css">
-
-  <!-- Required Modernizr file -->
-  <script src="js/modernizr.custom.js"></script>
+  <script src="js/deckjs-custom.js"></script>
+  <script>
+      // TODO: finer filter on what is needed (vs profile-5)
+      includedeck("css/swc-slides.css", {
+         BEFOREINIT: function() {
+            $$(".slide.auto li:not(li li):not(.notslide)").addClass("slide");
+         }
+      });
+  </script>
 </head>
 <body>
   <div class="deck-container">
+
+$if(omit-title)$
+$else$
+    <div class="slide title-slide" data-container-class="no-status">
+        <h1 class="var-title"></h1>
+        <img class="logo" src="img/software-carpentry-banner.png" alt="Software Carpentry"/>
+    </div>
+$endif$
 
     <!-- Begin slides. Just make elements with a class of slide. -->
 $body$
@@ -44,40 +50,13 @@ $body$
       <a href="#" class="deck-next-link" title="Next">&#8594;</a>
     </div>
 
-    <!-- deck.status snippet -->
-    <p class="deck-status" aria-role="status">
-      <span class="deck-status-current"></span>
-      /
-      <span class="deck-status-total"></span>
-    </p>
-
-    <!-- deck.goto snippet -->
-    <form action="." method="get" class="goto-form">
-      <label for="goto-slide">Go to slide:</label>
-      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
-      <datalist id="goto-datalist"></datalist>
-      <input type="submit" value="Go">
-    </form>
+    <!-- footer -->
+    <p class="deck-status deck-progress-10"> <span class="deck-status-current"></span> / <span class="deck-status-total"></span> − <span class="var-title">will be replaced by the title</span></p>
+    <!-- progress bar -->
+    <div class="progress-bar" data-progress-size=":spe.bottom(0, 1) ; left: slide.left+'px' ; height: designRatio+'px'" data-progress="width: detail.p * slide.width" style="position: absolute;"> </div>
 
     <!-- End extension snippets. -->
   </div>
 
-<!-- Required JS files. -->
-<script src="js/jquery.min.js"></script>
-<script src="deck.js/core/deck.core.js"></script>
-
-<!-- Extension JS files. Add or remove as needed. -->
-<script src="deck.js/extensions/menu/deck.menu.js"></script>
-<script src="deck.js/extensions/goto/deck.goto.js"></script>
-<script src="deck.js/extensions/status/deck.status.js"></script>
-<script src="deck.js/extensions/navigation/deck.navigation.js"></script>
-<script src="deck.js/extensions/scale/deck.scale.js"></script>
-
-<!-- Initialize the deck.  Note that we have to use double dollar signs to escape for Pandoc. -->
-<script>
-  $$(function() {
-    $$.deck('.slide');
-  });
-</script>
 </body>
 </html>
