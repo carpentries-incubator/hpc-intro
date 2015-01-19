@@ -437,7 +437,7 @@ a:hover, a:focus {
   font-family: 'Helvetica', 'Arial', 'sans';
 }
 
-.deck-container .slide {
+.deck-container > .slide {
   margin: 0;
   padding: 160px 50px;
   /*        text-align: justify;*/
