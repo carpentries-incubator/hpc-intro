@@ -31,8 +31,8 @@ all : commands
 preview : $(DST_ALL)
 
 # Pattern for slides (different parameters and template).
-motivation.html : motivation.md _layouts/slides.html
-	pandoc -s -t html \
+motivation.html : motivation.md _layouts/slides.revealjs Makefile
+	pandoc -s -t revealjs --slide-level 2 \
 	--template=_layouts/slides \
 	-o $@ $<
 
