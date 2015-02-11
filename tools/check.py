@@ -362,9 +362,10 @@ class MarkdownValidator(object):
             # Validate local html links have matching md file
             return self._validate_one_html_link(link_node,
                                                 check_text=check_text)
-        elif not re.match(r"^((https?|ftp)://.+)", dest, re.IGNORECASE)\
+        elif not re.match(r"^((https?|ftp)://.+)|mailto:",
+                          dest, re.IGNORECASE)\
                 and not re.match(r"^#.*", dest):
-            # If not web URL, and not anchor on same page, then
+            # If not web or email URL, and not anchor on same page, then
             #  verify that local file exists
             dest_path = os.path.join(self.lesson_dir, dest)
             dest_path = dest_path.split("#")[0]  # Split anchor from filename
@@ -505,6 +506,8 @@ class TopicPageValidator(MarkdownValidator):
 
 class MotivationPageValidator(MarkdownValidator):
     """Validate motivation.md"""
+    WARN_ON_EXTRA_HEADINGS = False
+
     DOC_HEADERS = {"layout": vh.is_str,
                    "title": vh.is_str,
                    "subtitle": vh.is_str}
@@ -536,7 +539,8 @@ class ReferencePageValidator(MarkdownValidator):
         ```definition_lists``` extension.
 
         That syntax isn't supported by the CommonMark parser, so we identify
-         terms manually."""
+        terms manually."""
+        glossary_keyword = glossary_entry[0]
         if len(glossary_entry) < 2:
             logging.error(
                 "In {0}: "
