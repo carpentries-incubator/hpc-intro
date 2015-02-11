@@ -10,18 +10,16 @@ behind its running example).
 
 ## Overall
 
-*   FIXME
+*   Something insightful.
 
-*   FIXME
+*   Some hard-won experience.
 
 ## [Topic Title One](01-one.html)
 
-* Point
+*   A specific tip or trick about the first topic.
 
-* Point
-
-* Be sure to describe what learners are expected to do during the
-  topic (watch, type along, pair program, etc.)
+*   Be sure to describe what learners are expected to do during the topic
+    (watch, type along, pair program, etc.)
 
 1.  Discussion of first challenge.
 
@@ -29,10 +27,4 @@ behind its running example).
 
 ## [Topic Title Two](02-two.html)
 
-* Point
-
-* Point
-
-1.  Discussion of first challenge.
-
-2.  Discussion of second challenge.
+*   Et cetera.
