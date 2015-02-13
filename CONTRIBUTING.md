@@ -39,7 +39,7 @@ you are agreeing that Software Carpentry may redistribute your work under
     Feel free to contact them if you have any questions or languishing pull requests.
 
 [lesson-template-issues]: https://github.com/swcarpentry/lesson-template/issues
-[license]: LICENSE.html
+[license]: LICENSE.md
 [pro-git]: http://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project
 [swc-lessons]: http://software-carpentry.org/lessons.html
 [swc-maintainers]: http://software-carpentry.org/lessons.html#maintainers
