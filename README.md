@@ -33,7 +33,10 @@ lesson is `data-cleanup`.
     $ git remote add origin https://github.com/mcurie/data-cleanup
     ~~~
 
-5.  Create and edit files (explained below).
+5.  Create and edit files as explained in
+    [Lesson Layout](LAYOUT.md),
+    [Background and Design](DESIGN.md),
+    and the [FAQ](FAQ.md).
 
 6.  Build the HTML pages for your lesson:
 

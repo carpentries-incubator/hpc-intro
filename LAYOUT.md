@@ -113,11 +113,15 @@ The root directory holds the content of the lesson, and must contain:
 7.  `instructors.md`: the instructor's guide for the lesson. See
     "Instructor's Guide" below.
 
-Note that the lesson's title is repeated in several files.  We could
+8.  `CONTRIBUTING.md`: instructions for people who want to contribute.
+    This file should be edited to replace references to `lesson-template`
+    with references to your lesson's repository.
+
+Note: the lesson's title is repeated in several files.  We could
 put this in the Makefile, and insert it into pages when compiling, but
 then authors would have to edit the Makefile (which we want to avoid).
-We could also put it in some sort of configuration file, but again,
-we're trying to avoid those.
+We could also put it in some sort of configuration file, but they're
+not a standard part of Pandoc, so we're avoiding them as well.
 
 ## Home Page
 
@@ -328,6 +332,11 @@ The discussion page
         This may span several paragraphs.
 
     *   Second point of general discussion.
+
+Note: the discussion page is not meant to be more lesson material, so
+it should not contain challenges and the like.  Instead, it should
+give pointers to other lessons and tools that learners might find
+useful, etc.
 
 ## Instructor's Guide
 
