@@ -259,6 +259,81 @@ Each topic page must be structured as follows:
         some code
         ~~~
 
+## Writing Lessons with R Markdown
+
+Lessons can be written in R Markdown and converted to Markdown. The
+main advantages of maintaining lessons in an executable format is 1)
+not having to copy-paste the output and 2) it is easier to test if
+new changes break code in other parts of the lesson. The main
+disadvantage is that there will be more noise when merging the
+generated content (e.g. different R versions have slightly different
+wording of error messages).
+
+After writing or editing a lesson written in R Markdown, automatically
+generate the Markdown and html versions by running the command `make
+preview`. This first runs the `knit` command from the [knitr][]
+package to convert to Markdown, and then pandoc to convert to html.
+
+[knitr]: http://yihui.name/knitr/
+
+To ensure that the generated Markdown files follow the lesson template
+guidelines, `source` the R file
+[tools/chunk-options.R](tools/chunk-options.R). This file contains
+settings that format the input and output code chunks, send all
+generated figures to `fig/` instead of `figure/`, and specify a few
+other knitr options. Thus a lesson should look like the following:
+
+    ---
+    layout: page
+    title: Lesson Title
+    subtitle: Topic Title
+    minutes: 10
+    ---
+
+    ```{r, include=FALSE}
+    source("tools/chunk-options.R")
+    opts_chunk$set(fig.path = "fig/topic-title-")
+    ```
+
+    > ## Learning Objectives {.objectives}
+    >
+    > * Learning objective 1
+    > * Learning objective 2
+
+    Paragraphs of text
+    --- possibly including [definitions](reference.html#definitions) ---
+    mixed with:
+
+    ```{r chunk-name}
+    # code to be exectued
+    ```
+
+    More text.
+
+When using [tools/chunk-options.R](tools/chunk-options.R), figures are
+automatically sent to `fig/`. However it is easier to manage all the
+figures in a lesson if their names are more descriptive. This can be
+acheived by setting a more informative `fig.path` like the example
+above, which will prepend "topic-title-" to all generated figure
+names. Furthermore, it is recommended to name the code chunks. Thus if
+a plot was generated in the example code chunk above, it would be
+saved as `fig/topic-title-chunk-name.png`.
+
+To avoid unecessary merge conflicts in the generated content, do not
+randomly generate data. Instead use `set.seed` so that any randomly
+generated data is always consistent. If introducing the concept of
+random number generation is outside the scope of the lesson,
+`set.seed` can be hidden from the learners in a separate code chunk.
+
+    ```{r set-seed, echo=FALSE}
+    set.seed(12345)
+    ```
+
+    ```{r normal-distribution}
+    ex_dat <- rnorm(100)
+    summary(ex_dat)
+    ```
+
 ## Motivational Slides
 
 Every lesson must include a short slide deck suitable for a short
