@@ -72,11 +72,12 @@ this template is organized the way it is:
     our generated files in a different directory, the paths won't work
     there).
 
-7.  In order to display properly, our generated HTML pages need
-    artwork, CSS style files, and a few bits of Javascript.  We could
-    load these from the web, but that would make offline authoring
-    difficult.  Instead, each lesson's repository has a copy of these
-    files, and a way of updating them (and only them) on demand.
+7.  In order to display properly, our generated HTML pages need artwork,
+    CSS style files, and a few bits of Javascript.  We could load these
+    from the web e.g. from a content delivery network (CDN), but that
+    would make offline authoring difficult.  Instead, each lesson's
+    repository is self-contained and has a copy of all these third party
+    resources, and a way of updating them (and only them) on demand.
 
 One final note: we try not to put HTML inside Markdown because it's
 ugly to read and write, and error-prone to process. Instead, we put
