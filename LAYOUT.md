@@ -10,9 +10,9 @@ submodules or clever tricks with symbolic links).
     instructions:
 
     ~~~
-    Please see [https://github.com/swcarpentry/lesson-template](https://github.com/swcarpentry/lesson-template)
-    for instructions on formatting, building, and submitting lessons,
-    or run `make` in this directory for a list of helpful commands.
+    > Please see [https://github.com/swcarpentry/lesson-template](https://github.com/swcarpentry/lesson-template)
+    > for instructions on formatting, building, and submitting lessons,
+    > or run `make` in this directory for a list of helpful commands.
     ~~~
 
 2.  Other files in the root directory: the source of the lesson's web
