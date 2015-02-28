@@ -4,7 +4,7 @@ Each lesson is stored in a directory laid out as described below. That
 directory is a self-contained Git repository (i.e., there are no
 submodules or clever tricks with symbolic links).
 
-1.  `README.md`: initially a copy of this file.  It should be
+1.  `README.md`: initially a copy of this repository's README file.  It should be
     overwritten with short description of the lesson, but should
     include the following blockquote to help people find these
     instructions:
