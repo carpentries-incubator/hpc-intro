@@ -7,6 +7,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
     <link rel="stylesheet" type="text/css" href="css/swc.css" />
     <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
     <meta charset="UTF-8" />
@@ -16,7 +17,7 @@
     <![endif]-->
   </head>
   <body class="lesson">
-    <div class="container">
+    <div class="container card">
       <div class="banner">
         <a href="http://software-carpentry.org" title="Software Carpentry">
           <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
@@ -26,12 +27,16 @@
         <div class="col-md-10 col-md-offset-1">
           <h1 class="title">Lesson Title</h1>
           <h2 class="subtitle">Topic Title One</h2>
-<div id="learning-objectives" class="objectives">
-<h2>Learning Objectives</h2>
+<div id="learning-objectives" class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
 <ul>
 <li>Learning objective 1</li>
 <li>Learning objective 2</li>
 </ul>
+</div>
 </div>
 <p>Paragraphs of text --- possibly including <a href="reference.html#key-word-1">key word 1</a> --- mixed with:</p>
 <pre class="sourceCode python"><code class="sourceCode python">some code:
@@ -41,17 +46,25 @@ from
 program</code></pre>
 <pre class="error"><code>error reports from program (if any)</code></pre>
 <p>and possibly including:</p>
-<div id="callout-box" class="callout">
-<h2>Callout Box</h2>
+<div id="callout-box" class="callout panel panel-info">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pushpin"></span>Callout Box</h2>
+</div>
+<div class="panel-body">
 <p>An aside of some kind.</p>
+</div>
 </div>
 <p>or an image from the <code>figs</code> directory:</p>
 <div class="figure">
 <img src="fig/example.svg" title="this is the image&#39;s alt text" alt="this is the image&#39;s title" /><p class="caption">this is the image's title</p>
 </div>
-<div id="challenge-title" class="challenge">
-<h2>Challenge Title</h2>
+<div id="challenge-title" class="challenge panel panel-success">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pencil"></span>Challenge Title</h2>
+</div>
+<div class="panel-body">
 <p>Description of a single challenge. There may be several challenges.</p>
+</div>
 </div>
         </div>
       </div>
