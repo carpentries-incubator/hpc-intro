@@ -10,7 +10,7 @@ submodules or clever tricks with symbolic links).
     instructions:
 
     ~~~
-    > Please see [https://github.com/swcarpentry/lesson-template](https://github.com/swcarpentry/lesson-template)
+    > Please see [https://github.com/swcarpentry/lesson-example][swc-lesson-example]
     > for instructions on formatting, building, and submitting lessons,
     > or run `make` in this directory for a list of helpful commands.
     ~~~
@@ -411,7 +411,10 @@ The discussion page
 Note: the discussion page is not meant to be more lesson material, so
 it should not contain challenges and the like.  Instead, it should
 give pointers to other lessons and tools that learners might find
-useful, etc.
+useful, etc.  Its format is deliberately vague for now: once we have
+more experience with our lesson template, we will provide more
+guidance on how to lay out this file.  Until then, please do whatever
+feels best.
 
 ## Instructor's Guide
 
@@ -471,3 +474,5 @@ interleaved in the lesson itself.  Its structure is:
     mention how long it typically takes to do.  (Those estimates do
     not go in the challenge itself, since they can increase learners'
     stress levels.)
+
+[swc-lesson-example]: https://github.com/swcarpentry/lesson-example
