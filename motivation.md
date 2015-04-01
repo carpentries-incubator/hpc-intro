@@ -11,8 +11,8 @@ We make scientists and engineering more productive by teaching them basic comput
 ## The Problem
 
 - Surveyed 1972 scientists in 2008.
-- “How do you use computers?”
-- “How did you learn what you know?”
+- "How do you use computers?"
+- "How did you learn what you know?"
 
 
 ## The Problem
@@ -25,7 +25,7 @@ We make scientists and engineering more productive by teaching them basic comput
 ## The Problem
 
 - No hard data on how *well* they do things.
-- But anecdotal evidence suggests “not very”.
+- But anecdotal evidence suggests "not very".
 
 
 ## Our Solution

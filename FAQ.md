@@ -12,7 +12,7 @@
     [file an issue](https://github.com/swcarpentry/lesson-template/issues?q=is%3Aopen+is%3Aissue)
     or [mail us](mailto:admin@software-carpentry.org).
 
-*   *Why does the lesson repository have to be created using import? Why not fork `lesson-template` on GitHub?*
+*   *Why does the new lesson's repository have to be created using import? Why not fork `lesson-template` on GitHub?*
 
     Because any particular user can only have one fork of a repository,
     but instructors frequently need to work on several workshops at once.
