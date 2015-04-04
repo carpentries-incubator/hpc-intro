@@ -1,45 +1,85 @@
 lesson-example
 ==============
 
-This repository is an example of a [Software Carpentry](http://software-carpentry.org) lesson
-created using the [lesson template](https://github.com/swcarpentry/lesson-template).
-Do *not* fork this repository directly on GitHub.
-Instead, follow the instructions below to create a lesson repository
-from the [lesson template](https://github.com/swcarpentry/lesson-template),
-then go through [the layout instructions](LAYOUT.md) to create a lesson.
+This repository shows how to create a lesson using
+the [Software Carpentry][swc] [lesson template][swc-lesson-template],
+and is itself an example of the use of that template.
 
-## Manual Setup
+1.  Do *not* fork this repository directly on GitHub.
+    Instead, please follow the instructions below
+    to create a repository for your lesson from
+    the [lesson template][swc-lesson-template].
 
-We will assume that your user ID is `mcurie` and the name of your
+2.  Once you have created the repository,
+    please go through [the layout instructions](LAYOUT.md) to format your lesson.
+
+3.  Please keep the master copy of your lesson in your repository's `gh-pages` branch,
+    since that is what is
+    [automatically published as a website by GitHub](https://help.github.com/articles/creating-project-pages-manually/).
+    To simplify reviewing,
+    please make changes in feature branches
+    and then submit pull requests against the `gh-pages` branch of your lesson's repository.
+
+## Creating Your Lesson's Repository
+
+We will assume that your user ID is `gvwilson` and the name of your
 lesson is `data-cleanup`.
 
-1.  Create an empty repository on GitHub called `data-cleanup`.
+1.  Go to [GitHub's importer][import].
 
-2.  Clone the template repository to your computer in a directory with
-    the same name as your lesson identifier:
+2.  Click on "Check the URL".  (GitHub won't import until you've done this.)
+
+3.  Select the owner for your new repository.
+    In our example this is `gvwilson`,
+    but it may instead be an organization you belong to.
+
+4.  Choose a name for your lesson repository.
+    In our example, this is `data-cleanup`.
+
+5.  Make sure the repository is public.
+
+6.  At this point, you should have a page like this:
+
+    ![](img/using-github-import.png)
+
+    You can now click "Begin Import".
+    When the process is done,
+    you can click "Continue to repository" to visit your newly-created repository.
+
+7.  Clone your newly-created repository to your desktop:
 
     ~~~
-    $ git clone -b gh-pages -o upstream https://github.com/swcarpentry/lesson-template.git data-cleanup
+    $ git clone -b gh-pages https://github.com/gvwilson/data-cleanup.git
     ~~~
 
-3.  Go into that directory using
+    Note that the URL for your lesson will be different than the one above.
+
+8.  Go into that directory using:
 
     ~~~
     $ cd data-cleanup
     ~~~
 
-4.  Add your GitHub repository as a remote called `origin` using
+    Note that the name of your directory will be different,
+    since your lesson probably won't be called `data-cleanup`.
+
+9.  Manually add the lesson template repository as a remote called `template`:
 
     ~~~
-    $ git remote add origin https://github.com/mcurie/data-cleanup
+    $ git remote add template https://github.com/swcarpentry/lesson-template.git
     ~~~
 
-5.  Create and edit files as explained in
+    This will allow you to pull in changes made to the template,
+    such as improvements to our CSS style files.
+    (Note that the user name above is `swcarpentry`, *not* `gvwilson`,
+    since you are adding the master copy of the template as a remote.)
+
+10. Create and edit files as explained in
     [Lesson Layout](LAYOUT.md),
     [Background and Design](DESIGN.md),
     and the [FAQ](FAQ.md).
 
-6.  Build the HTML pages for your lesson:
+11. Build the HTML pages for your lesson:
 
     ~~~
     $ make preview
@@ -50,21 +90,36 @@ lesson is `data-cleanup`.
     lesson yourself and push them to GitHub, rather than relying on
     GitHub to build them for you.
 
-7.  Commit your changes *and the HTML pages in the root directory of
+12. Commit your changes *and the HTML pages in the root directory of
     your lesson repository* and push to the `gh-pages` branch of your
     repository:
 
     ~~~
     $ cd data-cleanup
-    $ git add changed-files.md *.html
+    $ git add changed-file.md changed-file.html
     $ git commit -m "Explanatory message"
     $ git push origin gh-pages
     ~~~
 
-8.  Tell us where your lesson is so that we can use it and help you improve it.
+13. [Tell us](#getting-and-giving-help) where your lesson is so that we can add it to
+    [the Software Carpentry lessons page][swc-lessons-page].
 
-Note that SSH cloning (as opposed to the HTTPS cloning used above)
+**Note:** SSH cloning (rather than the HTTPS cloning used above)
 will also work for those who have set up SSH keys with GitHub.
+
+**Note:** Once a lesson has been created, please submit changes
+for review as pull requests that contain *only the modified Markdown files*,
+and *not* the re-generated HTML.  This simplifies review considerably,
+since each change appears only once.  Once the change has been approved,
+the lesson maintainer(s) will merge the pull request, re-generate the HTML
+locally, and pus that to GitHub.
+
+**Note:**
+some people have had intermittent errors during the import process,
+possibly because of the network timing out.
+If you experience a problem, please re-try;
+if the problem persists,
+please [get in touch](#getting-and-giving-help).
 
 ## Dependencies
 
@@ -111,6 +166,26 @@ We organize our lessons in a standard way so that:
     modifying lessons.
 
 5.  Content can be checked mechanically.
+
+## Why Is This Example and Documentation Separate from the Template?
+
+We want it to be easy for authors to merge changes
+made to the [lesson template][swc-lesson-template]
+into their lesson.
+If the lesson template contained all of the documentation in this example,
+then every time a merge was done,
+authors would have to re-delete those files,
+undo merges into their lesson's `README.md`,
+etc.
+We hope that putting the core files in a repository of their own
+will avoid this problem.
+
+(Note that from Fall 2014 to Spring 2015 we tried using two branches in a single repository,
+one for the core files and one for the example.
+Many contributors [found it confusing](https://github.com/swcarpentry/lesson-template/issues/118);
+we hope that separate repositories will be easier to keep straight.)
+
+## Lesson Structure
 
 Instead of putting the whole lesson in one page, authors should create
 one short page per topic.  Each topic should take 10-15 minutes to
@@ -159,16 +234,19 @@ Please see the following for more information on:
 *   [background and design](DESIGN.md)
 *   [FAQ](FAQ.md)
 
-## Getting Help
+## Getting and Giving Help
 
-Mail us at [admin@software-carpentry.org](mailto:admin@software-carpentry.org),
-or join our [discussion list](http://lists.software-carpentry.org/mailman/listinfo/discuss_lists.software-carpentry.org)
-and ask for help there.
+If you find bugs in our instructions,
+or would like to suggest improvements,
+please [file an issue in this repository](https://github.com/swcarpentry/lesson-example/issues);
+if you find bugs in the template files themselves,
+please [file an issue in the `lesson-template` repository](https://github.com/swcarpentry/lesson-template/issues).
+You can also [mail us](mailto:admin@software-carpentry.org) with questions or problems.
 
-## Giving Help
+Please also [mail us](mailto:admin@software-carpentry.org)
+whenever you create a new lesson and would like to advertise it on our web site.
 
-We are committed to offering a pleasant setup experience for our
-learners and organizers.  If you find bugs in our instructions, or
-would like to suggest improvements, please
-[file an issue](https://github.com/swcarpentry/lesson-template/issues?q=is%3Aopen+is%3Aissue)
-or [mail us](mailto:admin@software-carpentry.org).
+[swc]: http://software-carpentry.org
+[swc-lesson-template]: https://github.com/swcarpentry/lesson-template
+[swc-lessons-page]: http://software-carpentry.org/lessons.html
+[import]: http://import.github.com/new?import_url=https://github.com/swcarpentry/lesson-template

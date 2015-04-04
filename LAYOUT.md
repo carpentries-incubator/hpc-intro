@@ -10,7 +10,7 @@ submodules or clever tricks with symbolic links).
     instructions:
 
     ~~~
-    > Please see [https://github.com/swcarpentry/lesson-template](https://github.com/swcarpentry/lesson-template)
+    > Please see [https://github.com/swcarpentry/lesson-example][swc-lesson-example]
     > for instructions on formatting, building, and submitting lessons,
     > or run `make` in this directory for a list of helpful commands.
     ~~~
@@ -336,41 +336,40 @@ random number generation is outside the scope of the lesson,
 
 ## Motivational Slides
 
-Every lesson must include a short slide deck suitable for a short
+Every lesson must include a short slide deck in `motivation.md` suitable for a short
 presentation (3 minutes or less) that the instructor can use to explain
 to learners how knowing the subject will help them.  The slides must
-be laid out like this:
+use level-2 headings as slide titles, but may use anything within the slide:
 
     ---
     layout: slides
     title: Lesson Title
     subtitle: Motivation
     ---
-    <section class="slide">
-    ## Why This Topic?
-    </section>
+    ## Our Mission
 
-    <section class="slide">
-    ## Some Other Point
-    </section>
+    We make scientists and engineering more productive
+    by teaching them basic computing skills.
 
+
+    ## The Problem
+
+    - Surveyed 1972 scientists in 2008.
+    - "How do you use computers?"
+    - "How did you learn what you know?"
 
 **Notes:**
 
-1.  This is the one place where we *must* use HTML tags in our Markdown
-    (to delimit slides).  Everything inside the section markers should
-    be Markdown if possible.
-
-2.  We use [deck.js](http://imakewebthings.com/deck.js/) for our slides
+1.  We use [deck.js](http://imakewebthings.com/deck.js/) for our slides
     as it is simpler and prettier than alternatives like
     [reveal.js](http://lab.hakim.se/reveal-js/).
 
-3.  For examples of slideshows, please see the
+2.  For examples of slideshows, please see the
     [slideshow repository](https://github.com/swcarpentry/slideshows).
 
 ## Reference Guide
 
-The reference guide is a cheat sheet for learners to print, doodle on,
+The reference guide in `reference.md` is a cheat sheet for learners to print, doodle on,
 and take away.  Its format is deliberately unconstrained for now,
 since we'll need to see a few before we can decide how they ought to
 be laid out (or whether they need to be laid out the same way at all).
@@ -395,29 +394,36 @@ a definition list:
 
 ## Discussion Page
 
-The discussion page
+The discussion page in `discussion.md` is meant to contain links to
+further reading, supplementary material that classes usually won't
+get to, and so on.  Sections must use level-2 headings, but the
+content is otherwise unconstrained:
 
     ---
     layout: page
     title: Lesson Title
     subtitle: Discussion
     ---
-    *   First point of general discussion.
+    ## Something That May Be Useful
 
-        This may span several paragraphs.
+    Paragraphs of general discussion
 
-    *   Second point of general discussion.
+    ## Something Else
 
-Note: the discussion page is not meant to be more lesson material, so
-it should not contain challenges and the like.  Instead, it should
-give pointers to other lessons and tools that learners might find
-useful, etc.
+    More general discussion, with links.
+
+Note: the discussion page is not lesson material, so it should not
+contain challenges and the like.  Its format is deliberately vague for
+now: once we have more experience with our lesson template, we will
+provide more guidance on how to lay out this file.  Until then, please
+do whatever feels best.
 
 ## Instructor's Guide
 
 Learners may go through lessons outside of class, so it seems best to
-keep material for instructors in a separate document, rather than
-interleaved in the lesson itself.  Its structure is:
+keep material for instructors in a separate document called
+`instructors.md`, rather than interleaved in the lesson itself.  Its
+structure is:
 
     ---
     layout: page
@@ -471,3 +477,5 @@ interleaved in the lesson itself.  Its structure is:
     mention how long it typically takes to do.  (Those estimates do
     not go in the challenge itself, since they can increase learners'
     stress levels.)
+
+[swc-lesson-example]: https://github.com/swcarpentry/lesson-example
