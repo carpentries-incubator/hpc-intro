@@ -167,7 +167,7 @@ We organize our lessons in a standard way so that:
 
 5.  Content can be checked mechanically.
 
-## Why Is This Example (and Documentation) Separate from the Template?
+## Why Is This Example and Documentation Separate from the Template?
 
 We want it to be easy for authors to merge changes
 made to the [lesson template][swc-lesson-template]
@@ -233,12 +233,6 @@ Please see the following for more information on:
 *   [lay out your lesson](LAYOUT.md)
 *   [background and design](DESIGN.md)
 *   [FAQ](FAQ.md)
-
-## Getting Help
-
-Mail us at [admin@software-carpentry.org](mailto:admin@software-carpentry.org),
-or join our [discussion list](http://lists.software-carpentry.org/mailman/listinfo/discuss_lists.software-carpentry.org)
-and ask for help there.
 
 ## Getting and Giving Help
 
