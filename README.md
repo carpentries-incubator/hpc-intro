@@ -246,6 +246,12 @@ You can also [mail us](mailto:admin@software-carpentry.org) with questions or pr
 Please also [mail us](mailto:admin@software-carpentry.org)
 whenever you create a new lesson and would like to advertise it on our web site.
 
+## Maintainers
+
+*   Andy Boughton (@abought)
+*   Rémi Emonet (@twitwi)
+*   Raniere Silva (@r-gaia-cs)
+
 [swc]: http://software-carpentry.org
 [swc-lesson-template]: https://github.com/swcarpentry/lesson-template
 [swc-lessons-page]: http://software-carpentry.org/lessons.html
