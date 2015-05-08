@@ -9,6 +9,11 @@ Paragraph of introductory material.
 > A short paragraph describing what learners need to know
 > before tackling this lesson.
 
+> ## Getting ready {.getready}
+>
+> A short paragraph describing
+> what learners need to do before tackling this lesson.
+
 ## Topics
 
 1.  [Topic Title One](01-one.html)
