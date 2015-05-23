@@ -17,11 +17,18 @@
     Because any particular user can only have one fork of a repository,
     but instructors frequently need to work on several workshops at once.
 
-*   *Why use Pandoc?  Why not some other markup language and some other converter?*
+*   *Why use Markdown?*
+
+    1.  It is simpler, and easier to write, than HTML or LaTeX.
+    2.  It is a lowest common denominator: anything that can be expressed in Markdown can easily be translated into richer formats.
+    3.  It is used by a much wider variety of people than other text markup formats like reStructured Text (reST).
+
+*   *Why use Pandoc?  Why not some other converter?*
 
     Because it supports a richer dialect of Markdown than Jekyll
     (the converter that GitHub uses by default).
-    In particular, Pandoc can do tables and allows us to add styles to headings.
+    In particular, Pandoc allows us to add styles to headings
+    and lets us specify languages for code blocks without having to wrap them in `div` tags.
 
 *   *What do the [labels](https://github.com/swcarpentry/lesson-template/issues?q=is%3Aopen+is%3Aissue) mean?*
 
