@@ -89,3 +89,8 @@ Please add notes about problems and solutions below.
 
     Note that after changing this setting you will need to either re-clone
     or re-checkout the files in the repository.
+
+*   If a lesson generates Markdown from an IPython Notebook,
+    then whenever a figure is moved, added, or removed,
+    the auto-generated names of the image files produced by `.ipynb`-to-`.md` conversion will change.
+    This confuses version control.
