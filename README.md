@@ -2,7 +2,7 @@ lesson-example
 ==============
 
 This repository shows how to create a lesson using
-the [Software Carpentry][swc] [lesson template][swc-lesson-template],
+the [Software Carpentry lesson template][swc-lesson-template],
 and is itself an example of the use of that template.
 
 1.  Do *not* fork this repository directly on GitHub.
@@ -252,7 +252,6 @@ whenever you create a new lesson and would like to advertise it on our web site.
 *   Rémi Emonet (@twitwi)
 *   Raniere Silva (@r-gaia-cs)
 
-[swc]: http://software-carpentry.org
 [swc-lesson-template]: https://github.com/swcarpentry/lesson-template
 [swc-lessons-page]: http://software-carpentry.org/lessons.html
 [import]: http://import.github.com/new?import_url=https://github.com/swcarpentry/lesson-template
