@@ -205,12 +205,15 @@ Each topic page must be structured as follows:
     >
     > An aside of some kind.
 
-    and one or more of these:
+    and one or more of these at the end:
 
     > ## Challenge Title {.challenge}
     >
-    > Description of a single challenge.
-    > There may be several challenges.
+    > Description of a single challenge,
+    > separated from the title by a blank line.
+    > There may be several challenges;
+    > they should all come at the end of the file,
+    > and each should have a short, meaningful title.
 
 **Notes:**
 
@@ -221,8 +224,8 @@ Each topic page must be structured as follows:
     shown.  (If a topic needs sub-headings, it should be broken into
     two or more topics.)
 
-3.  Every challenge should relate explicitly back to a learning
-    objective.
+3.  Every challenge should relate back to a learning objective.
+    It should have a brief title and the class `challenge`.
 
 4.  Definitions are links with fragment identifier to `reference.html`
     (like `[definitions](reference.html#definitions)`).
