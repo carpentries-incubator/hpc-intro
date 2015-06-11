@@ -200,9 +200,6 @@ cover, and that coverage to include:
 
 Along with the lesson materials themselves, each lesson must contain:
 
-*   *Introductory slides* to give learners a sense of where the next
-    two or three hours are going to take them.
-
 *   A *reference guide* that learners can use during the lesson and take
     away afterward.  This must include a glossary of terms, not only to
     help learners, but also to help lesson authors summarize what the

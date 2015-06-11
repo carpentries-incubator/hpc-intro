@@ -63,8 +63,7 @@ plots, and diagrams used in the lessons must go in a `fig/` directory.
 
 Files used to display the lesson, such as artwork, CSS, and
 Javascript, are stored in `img/`, `css/`, and `js/` directories of
-their own, while the `deck.js/` directory contains files used to make
-HTML slideshows.  We keep website artwork in the `img/` directory
+their own.  We keep website artwork in the `img/` directory
 separate from figures used in the lesson (which are stored in `fig/`)
 to make it simple to update the former automatically.  Most authors
 should not need to modify any of the support files themselves.
@@ -98,22 +97,18 @@ The root directory holds the content of the lesson, and must contain:
     this lesson, and is about the filesystem. (Note that we use hyphens
     rather than underscores in filenames.) See "Topics" below.
 
-4.  `motivation.md`: slides for a short introductory presentation (three
-    minutes or less) explaining what the lesson is about and why people
-    would want to learn it. See "Introductory Slides" below.
-
-5.  `reference.md`: a cheat sheet summarizing key terms and commands,
+4.  `reference.md`: a cheat sheet summarizing key terms and commands,
     syntax, etc., that can be printed and given to learners. See
     "Reference Guide" below.
 
-6.  `discussion.md`: notes about more advanced ideas that would
+5.  `discussion.md`: notes about more advanced ideas that would
     distract from the main lesson, and pointers to where to go next.
     See "Discussion Page" below.
 
-7.  `instructors.md`: the instructor's guide for the lesson. See
+6.  `instructors.md`: the instructor's guide for the lesson. See
     "Instructor's Guide" below.
 
-8.  `CONTRIBUTING.md`: instructions for people who want to contribute.
+7.  `CONTRIBUTING.md`: instructions for people who want to contribute.
     This file should be edited to replace references to `lesson-template`
     with references to your lesson's repository.
 
@@ -336,39 +331,6 @@ random number generation is outside the scope of the lesson,
     ex_dat <- rnorm(100)
     summary(ex_dat)
     ```
-
-## Motivational Slides
-
-Every lesson must include a short slide deck in `motivation.md` suitable for a short
-presentation (3 minutes or less) that the instructor can use to explain
-to learners how knowing the subject will help them.  The slides must
-use level-2 headings as slide titles, but may use anything within the slide:
-
-    ---
-    layout: slides
-    title: Lesson Title
-    subtitle: Motivation
-    ---
-    ## Our Mission
-
-    We make scientists and engineering more productive
-    by teaching them basic computing skills.
-
-
-    ## The Problem
-
-    - Surveyed 1972 scientists in 2008.
-    - "How do you use computers?"
-    - "How did you learn what you know?"
-
-**Notes:**
-
-1.  We use [deck.js](http://imakewebthings.com/deck.js/) for our slides
-    as it is simpler and prettier than alternatives like
-    [reveal.js](http://lab.hakim.se/reveal-js/).
-
-2.  For examples of slideshows, please see the
-    [slideshow repository](https://github.com/swcarpentry/slideshows).
 
 ## Reference Guide
 
