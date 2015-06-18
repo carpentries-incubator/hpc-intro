@@ -63,8 +63,7 @@ plots, and diagrams used in the lessons must go in a `fig/` directory.
 
 Files used to display the lesson, such as artwork, CSS, and
 Javascript, are stored in `img/`, `css/`, and `js/` directories of
-their own, while the `deck.js/` directory contains files used to make
-HTML slideshows.  We keep website artwork in the `img/` directory
+their own.  We keep website artwork in the `img/` directory
 separate from figures used in the lesson (which are stored in `fig/`)
 to make it simple to update the former automatically.  Most authors
 should not need to modify any of the support files themselves.
@@ -332,39 +331,6 @@ random number generation is outside the scope of the lesson,
     ex_dat <- rnorm(100)
     summary(ex_dat)
     ```
-
-## Motivational Slides
-
-Every lesson must include a short slide deck in `motivation.md` suitable for a short
-presentation (3 minutes or less) that the instructor can use to explain
-to learners how knowing the subject will help them.  The slides must
-use level-2 headings as slide titles, but may use anything within the slide:
-
-    ---
-    layout: slides
-    title: Lesson Title
-    subtitle: Motivation
-    ---
-    ## Our Mission
-
-    We make scientists and engineering more productive
-    by teaching them basic computing skills.
-
-
-    ## The Problem
-
-    - Surveyed 1972 scientists in 2008.
-    - "How do you use computers?"
-    - "How did you learn what you know?"
-
-**Notes:**
-
-1.  We use [deck.js](http://imakewebthings.com/deck.js/) for our slides
-    as it is simpler and prettier than alternatives like
-    [reveal.js](http://lab.hakim.se/reveal-js/).
-
-2.  For examples of slideshows, please see the
-    [slideshow repository](https://github.com/swcarpentry/slideshows).
 
 ## Reference Guide
 
