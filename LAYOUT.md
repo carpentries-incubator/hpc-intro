@@ -139,7 +139,6 @@ not a standard part of Pandoc, so we're avoiding them as well.
 
     ## Other Resources
 
-    *   [Motivation](motivation.html)
     *   [Reference](reference.html)
     *   [Discussion](discussion.html)
     *   [Instructor's Guide](instructors.html)
