@@ -211,8 +211,8 @@ Along with the lesson materials themselves, each lesson must contain:
 *   A *discussion page* that mentions more advanced ideas and tells
     learners where to go next.
 
-*   An *instructor's guide* that presents the lesson's legend (or back
-    story), summarizes our experiences with the lesson, and discusses
+*   An *instructor's guide* that presents the lesson's back
+    story, summarizes our experiences with the lesson, and discusses
     solutions to the challenge exercises.  We ask everyone who teaches
     for us to review and update the instructor's guide for each lesson
     they taught after each workshop.
