@@ -132,13 +132,13 @@ the `gh-pages` branch of their lesson website.  To do this:
 
 1. [Install Pandoc](http://www.pandoc.org/installing)
 
-2. All Python packages required for lesson creation and validation can 
+2. All Python packages required for lesson creation and validation can
    be installed using:
-   
+
     ~~~
     $ pip install -r requirements.txt
     ~~~
-        
+
 3. To convert Markdown files into HTML pages in the root directory, go
    into the root directory of your lesson and run:
 
