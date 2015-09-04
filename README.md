@@ -112,7 +112,7 @@ for review as pull requests that contain *only the modified Markdown files*,
 and *not* the re-generated HTML.  This simplifies review considerably,
 since each change appears only once.  Once the change has been approved,
 the lesson maintainer(s) will merge the pull request, re-generate the HTML
-locally, and pus that to GitHub.
+locally, and push that to GitHub.
 
 **Note:**
 some people have had intermittent errors during the import process,
@@ -132,13 +132,13 @@ the `gh-pages` branch of their lesson website.  To do this:
 
 1. [Install Pandoc](http://www.pandoc.org/installing)
 
-2. All Python packages required for lesson creation and validation can 
+2. All Python packages required for lesson creation and validation can
    be installed using:
-   
+
     ~~~
     $ pip install -r requirements.txt
     ~~~
-        
+
 3. To convert Markdown files into HTML pages in the root directory, go
    into the root directory of your lesson and run:
 
