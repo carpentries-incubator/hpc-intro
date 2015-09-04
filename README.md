@@ -112,7 +112,7 @@ for review as pull requests that contain *only the modified Markdown files*,
 and *not* the re-generated HTML.  This simplifies review considerably,
 since each change appears only once.  Once the change has been approved,
 the lesson maintainer(s) will merge the pull request, re-generate the HTML
-locally, and pus that to GitHub.
+locally, and push that to GitHub.
 
 **Note:**
 some people have had intermittent errors during the import process,
