@@ -65,14 +65,18 @@ Files used to display the lesson, such as artwork, CSS, and
 Javascript, are stored in `img/`, `css/`, and `js/` directories of
 their own.  We keep website artwork in the `img/` directory
 separate from figures used in the lesson (which are stored in `fig/`)
-to make it simple to update the former automatically.  Most authors
-should not need to modify any of the support files themselves.
+to make it simple to update the former automatically.
 
 The `_layouts/` directory holds the page templates used to translate
 Markdown to HTML, while the `_includes/` directory holds snippets of
 HTML that are used in several page layouts.  These directories have
 underscores at the start of their names to be consistent with Jekyll's
 naming conventions, but the files they contain are for Pandoc.
+
+Most authors should not need to modify any of the support files themselves.
+The only exception is the `_includes/footer.html` file linking the "Source"
+button to [lesson-template][swc-lesson-template]. That URL should be 
+replaced by the URL of the repository of the actual lesson.
 
 # Tools
 
@@ -438,3 +442,4 @@ structure is:
     stress levels.)
 
 [swc-lesson-example]: https://github.com/swcarpentry/lesson-example
+[swc-lesson-template]: https://github.com/swcarpentry/lesson-template
