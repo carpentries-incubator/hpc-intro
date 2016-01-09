@@ -4,10 +4,8 @@ Each lesson is stored in a directory laid out as described below. That
 directory is a self-contained Git repository (i.e., there are no
 submodules or clever tricks with symbolic links).
 
-1.  `README.md`: initially a copy of this repository's README file.  It should be
-    overwritten with short description of the lesson, but should
-    include the following blockquote to help people find these
-    instructions:
+1.   `README.md`: A short description of the lesson.  Please include the
+    following blockquote to help people find these instructions:
 
     ~~~
     > Please see [https://github.com/swcarpentry/lesson-example][swc-lesson-example]
@@ -75,7 +73,7 @@ naming conventions, but the files they contain are for Pandoc.
 
 Most authors should not need to modify any of the support files themselves.
 The only exception is the `_includes/footer.html` file linking the "Source"
-button to [lesson-template][swc-lesson-template]. That URL should be 
+button to [lesson-template][swc-lesson-template]. That URL should be
 replaced by the URL of the repository of the actual lesson.
 
 # Tools
