@@ -91,7 +91,7 @@ Values from the header are referred to in the page as `page.variable`.
 
 ## Configuration
 
-Jekyll also reads values from a configuration file called `_config.yml`,
+[Jekyll][jekyll] also reads values from a configuration file called `_config.yml`,
 which are referred to in the page as `site.variable`.
 The [lesson template]({{ site.template_repo }}) does *not* include `_config.yml`,
 since each lesson will change some of its value,
@@ -106,8 +106,16 @@ which overrides some settings for use during desktop development.
 The Makefile that comes with the [template]({{ site.template_repo }})
 adds these values to those in `_config.yml` when running a local server.
 
+## Collections
+
+If several Markdown files are stored in a directory whose name begins with an underscore,
+[Jekyll][jekyll] creates a [collection][jeyll-collection] for them.
+We rely on this for both lesson episodes (stored in `_episodes`)
+and extra files (stored in `_extras`).
+
 [github-importer]: https://import.github.com/
 [jekyll]: http://jekyllrb.com/
+[jekyll-collection]: https://jekyllrb.com/docs/collections/
 [jupyter]: https://jupyter.org/
 [r-markdown]: http://rmarkdown.rstudio.com/
 [rstudio]: https://www.rstudio.com/
