@@ -8,7 +8,12 @@ objectives:
 - "Explain how GitHub Pages produce web sites from Git repositories."
 - "Explain Jekyll's formatting rules."
 keypoints:
-- "FIXME"
+- "Lessons are stored in Git repositories on GitHub."
+- "Lessons are written in Markdown."
+- "Jekyll translates the files in the gh-pages branch into HTML for viewing."
+- "The site's configuration is stored in _config.yml."
+- "Each page's configuration is stored at the top of that page."
+- "Groups of files are stored in collection directories whose names begin with an underscore."
 ---
 This episode describes tools we use to manage lessons,
 which simplify many tasks but make other things more complicated.
@@ -37,27 +42,31 @@ to update the lesson when the template changes.
 
 If a repository has a branch called `gh-pages` (short for "GitHub Pages"),
 GitHub publishes its content to create a website for the repository.
+Websites can be static HTML pages,
+which are published as-is,
+or can use [Jekyll][jekyll] as described below.
 If the repository's URL is `https://github.com/USERNAME/REPOSITORY`,
 the website is `https://USERNAME.github.io/REPOSITORY`.
 
-Websites can be static HTML pages,
-which are published as-is,
-or can use the [Jekyll][jekyll] templating system described below.
+> ## Why Doesn't My Site Appear?
+>
+> If the root directory of a repository contains a file called `.nojekyll`,
+> GitHub will *not* generate a website for that repository's `gh-pages` branch.
 
 ## Markdown
 
-We use Markdown for lesson content because it's simple to learn
-and isn't tied to any specific language
-(the ReStructured Text format popular in the Python world,
+We write lessons in Markdown because it's simple to learn
+and isn't tied to any specific language.
+(The ReStructured Text format popular in the Python world,
 for example,
-is a complete unknown to R programmers).
-If authors want to use something else to author their lessons,
+is a complete unknown to R programmers.)
+If authors want to write lessons in something else,
 such as [R Markdown][r-markdown],
-they must generate Markdown that [Jekyll][jekyll] can process,
-or static HTML,
+they must generate HTML or Markdown that [Jekyll][jekyll] can process
 and commit that to the repository.
+The [next episode]({{ site.root }}/02-formatting/) describes the Markdown we use.
 
-> ## Tooling
+> ## Teaching Tools
 >
 > We do *not* prescribe what tools instructors should use when actually teaching:
 > the [Jupyter Notebook][jupyter],
@@ -85,14 +94,23 @@ and inserts the values of those variables into the page when formatting this.
 The three dashes that start the header *must* be the first three characters in the file:
 even a single space before them will make [Jekyll][jekyll] ignore the file.
 
-Jekyll requires the header to be formatted as [YAML][yaml],
-which provides Booleans, numbers, character strings, lists, and dictionaries of name/value pairs.
+The header must be formatted as [YAML][yaml],
+and may contain Booleans, numbers, character strings, lists, and dictionaries of name/value pairs.
 Values from the header are referred to in the page as `page.variable`.
+
+> ## Back in the Day...
+>
+> The previous version of our template did not rely on Jekyll,
+> but instead required authors to build HTML on their desktops
+> and commit that to the lesson repository's `gh-pages` branch.
+> This allowed us to use whatever mix of tools we wanted for creating HTML (e.g., [Pandoc][pandoc]),
+> but complicated the common case for the sake of uncommon cases,
+> and didn't model the workflow we want learners to use.
 
 ## Configuration
 
 [Jekyll][jekyll] also reads values from a configuration file called `_config.yml`,
-which are referred to in the page as `site.variable`.
+which are referred to in pages as `site.variable`.
 The [lesson template]({{ site.template_repo }}) does *not* include `_config.yml`,
 since each lesson will change some of its value,
 which would result in merge collisions each time the lesson was updated from the template.
@@ -104,7 +122,8 @@ and then edit values in the top half.
 The [template]({{ site.template_repo }}) also contains `_config_dev.yml`,
 which overrides some settings for use during desktop development.
 The Makefile that comes with the [template]({{ site.template_repo }})
-adds these values to those in `_config.yml` when running a local server.
+adds these values to those in `_config.yml` when running a local server,
+so that `make serve` previews the generated site at <http://127.0.0.1:4000/>.
 
 ## Collections
 
@@ -112,11 +131,18 @@ If several Markdown files are stored in a directory whose name begins with an un
 [Jekyll][jekyll] creates a [collection][jeyll-collection] for them.
 We rely on this for both lesson episodes (stored in `_episodes`)
 and extra files (stored in `_extras`).
+For example,
+putting the extra files in `_extras` allows us to populate the "Extras" menu pulldown automatically.
+To make this clear,
+we store files that appear directly in the navigation bar
+(rather than under a pulldown menu)
+in the root directory of the lesson.
 
 [github-importer]: https://import.github.com/
 [jekyll]: http://jekyllrb.com/
 [jekyll-collection]: https://jekyllrb.com/docs/collections/
 [jupyter]: https://jupyter.org/
+[pandoc]: https://pandoc.org/
 [r-markdown]: http://rmarkdown.rstudio.com/
 [rstudio]: https://www.rstudio.com/
 [yaml]: http://yaml.org/
