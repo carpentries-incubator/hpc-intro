@@ -7,7 +7,11 @@ questions:
 objectives:
 - "Explain overall organization of lesson files."
 keypoints:
-- "FIXME"
+- "Auxiliary files are stored in the _layouts, _includes, and assets directories."
+- "The code of conduct, license, Makefile, and contribution guidelines should not be modified."
+- "The README, authors' list, and citation instructions must be updated for each lesson."
+- "The home page, reference guide, setup instructions, discussion page, and instructors' guide must be updated for each lesson."
+- "The Makefile stores commonly-used commands."
 ---
 Our lessons need artwork,
 CSS style files,
@@ -133,6 +137,11 @@ The instructors' guide for the lesson.
 4.  It may include whatever content the author thinks appropriate.
 
 This page records tips and warnings from people who have taught the lesson.
+
+## Makefile Targets
+
+Commonly-used commands are stored in `Makefile`.
+Run `make` on its own to get a list of commands.
 
 [jekyll]: http://jekyllrb.com/
 [jekyll-collection]: https://jekyllrb.com/docs/collections/
