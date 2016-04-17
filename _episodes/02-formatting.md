@@ -10,7 +10,12 @@ objectives:
 - "Explain why blockquotes are used to format parts of episodes."
 - "Explain the use of code blocks in episodes."
 keypoints:
-- "FIXME"
+- "Lesson episodes are stored in _episodes/dd-subject.md."
+- "Each episode's title must include a title, time estimates, motivating questions, lesson objectives, and key points."
+- "Episodes should not use sub-headings or HTML layout."
+- "Code blocks can be have the source, regular output, or error class."
+- "Special sections are formatted as blockquotes that open with a level-2 header and close with a class identifier."
+- "Special sections may be callouts or challenges; other styles are used by the template itself."
 ---
 A lesson consists of one or more episodes,
 each of which has:
@@ -129,6 +134,8 @@ We use blockquotes to group headings and text
 rather than wrapping them in `div` elements.
 in order to avoid confusing [Jekyll][jekyll]'s parser
 (which sometimes has trouble with Markdown inside HTML).
+Each special blockquote must started with a level-2 header,
+but may contain anything after that.
 For example,
 a callout is formatted like this:
 
