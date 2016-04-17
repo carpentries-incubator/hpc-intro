@@ -52,6 +52,7 @@ the website is `https://USERNAME.github.io/REPOSITORY`.
 >
 > If the root directory of a repository contains a file called `.nojekyll`,
 > GitHub will *not* generate a website for that repository's `gh-pages` branch.
+{: .callout}
 
 ## Markdown
 
@@ -106,6 +107,7 @@ Values from the header are referred to in the page as `page.variable`.
 > This allowed us to use whatever mix of tools we wanted for creating HTML (e.g., [Pandoc][pandoc]),
 > but complicated the common case for the sake of uncommon cases,
 > and didn't model the workflow we want learners to use.
+{: .callout}
 
 ## Configuration
 
