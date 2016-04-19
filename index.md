@@ -19,5 +19,3 @@ and a line including `syllabus.html`
 >
 > Use the `.prereq` style to specify prerequisites.
 {: .prereq}
-
-{% include syllabus.html %}
