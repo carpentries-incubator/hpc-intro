@@ -17,6 +17,9 @@ title: "Lesson Example"
 # Contact email address.
 email: gvwilson@software-carpentry.org
 
+# Is this a workshop site (if not, interpreted as a lesson site)?
+is_workshop: false
+
 #------------------------------------------------------------
 # Generic settings (should not need to change).
 #------------------------------------------------------------

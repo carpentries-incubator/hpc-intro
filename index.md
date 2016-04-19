@@ -1,5 +1,5 @@
 ---
-layout: index
+layout: lesson_homepage
 ---
 This lesson shows how to use
 [Software Carpentry]({{ site.swc_site }})'s lesson template.
