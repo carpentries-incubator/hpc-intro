@@ -3,6 +3,8 @@ lesson-example
 
 Documentation on the lesson template formatted according to the template's own rules.
 
+## Contributing
+
 [Software Carpentry][swc-site] is an open source project,
 and we welcome contributions of all kinds:
 new lessons,
