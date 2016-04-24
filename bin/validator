@@ -19,10 +19,15 @@ from lxml import etree
 DEFAULT_CONFIG = '''\
 patterns:
   '*.html':
-    - 'has_title_in_head'
-    - 'has_navbar'
-    - 'has_title_in_body'
-    - 'has_footer'
+    - has_title_in_head
+    - has_navbar
+    - has_title_in_body
+    - has_footer
+  index.html:
+    - has_prereq
+    - has_syllabus
+  '*-*/index.html':
+    - has_objectives
 '''
 
 
@@ -39,7 +44,7 @@ def main():
     args = parse_args()
     read_config(args)
     docs = read_all_docs(args.source_dir)
-    require(docs, 'No source files found in {0}'.format(args.source_dir))
+    _require(docs, 'No source files found in {0}'.format(args.source_dir))
     all_filenames = docs.keys()
     for filename in all_filenames:
         if args.verbose > 0:
@@ -73,7 +78,7 @@ def parse_args():
 
     args, extras = parser.parse_args()
 
-    require(not extras, 'Unexpected trailing command-line arguments "{0}"'.format(extras))
+    _require(not extras, 'Unexpected trailing command-line arguments "{0}"'.format(extras))
 
     return args
 
@@ -116,33 +121,56 @@ def read_all_docs(source_dir):
 
 @rule
 def has_footer(filename, doc):
-    '''Check that document has footer element.'''
+    '''Document has footer element.'''
 
-    check_1(filename, doc, 'footers', '//footer')
+    _check_1(filename, doc, 'footers', '//footer')
 
 
 @rule
 def has_navbar(filename, doc):
-    '''Check that document has header element.'''
+    '''Document has header element.'''
 
-    check_1(filename, doc, 'div navbar', '//div[@class="navbar-header"]')
+    _check_1(filename, doc, 'div navbar', '//div[@class="navbar-header"]')
+
+
+@rule
+def has_objectives(filename, doc):
+    '''Episode has objectives.'''
+
+    _check_1(filename, doc, 'objectives div', '//blockquote[@class="objectives"]')
+
+
+@rule
+def has_prereq(filename, doc):
+    '''Index page has prerequisites block.'''
+
+    _check_1(filename, doc, 'prerequisites blockquote', '//blockquote[@class="prereq"]')
+
+
+@rule
+def has_syllabus(filename, doc):
+    '''Index page has syllabus.'''
+
+    _check_1(filename, doc, 'syllabus', '//div[@class="syllabus"]')
+    _check_1(filename, doc, 'syllabus title', '//div[@class="syllabus"]/h2')
+    _check_1(filename, doc, 'syllabus table', '//div[@class="syllabus"]/table')
 
 
 @rule
 def has_title_in_head(filename, doc):
-    '''Check that document has a title in the head.'''
+    '''Document has a title in the head.'''
 
-    check_1(filename, doc, 'title in head', '//head//title')
+    _check_1(filename, doc, 'title in head', '//head//title')
 
 
 @rule
 def has_title_in_body(filename, doc):
-    '''Check that document has a title in the body.'''
+    '''Document has a title in the body.'''
 
-    check_1(filename, doc, 'title in body', '//body//h1[@class="maintitle"]')
+    _check_1(filename, doc, 'title in body', '//body//h1[@class="maintitle"]')
 
 
-def check_1(filename, doc, rulename, xpath):
+def _check_1(filename, doc, rulename, xpath):
     '''Check that an equality holds.'''
 
     actual = doc.xpath(xpath)
@@ -150,7 +178,7 @@ def check_1(filename, doc, rulename, xpath):
         print('In {0}, checking {1}: expected 1 match, got {2}'.format(filename, rulename, len(actual)))
 
 
-def require(condition, message):
+def _require(condition, message):
     '''Fail if condition not met.'''
 
     if not condition:
