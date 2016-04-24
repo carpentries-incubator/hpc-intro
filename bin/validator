@@ -19,8 +19,10 @@ from lxml import etree
 DEFAULT_CONFIG = '''\
 patterns:
   '*.html':
-    - 'has_footer'
+    - 'has_title_in_head'
     - 'has_navbar'
+    - 'has_title_in_body'
+    - 'has_footer'
 '''
 
 
@@ -116,23 +118,36 @@ def read_all_docs(source_dir):
 def has_footer(filename, doc):
     '''Check that document has footer element.'''
 
-    matches = doc.xpath('//footer')
-    check_1(filename, 'footers', matches)
+    check_1(filename, doc, 'footers', '//footer')
 
 
 @rule
 def has_navbar(filename, doc):
     '''Check that document has header element.'''
 
-    matches = doc.xpath('//div[@class="navbar-header"]')
-    check_1(filename, 'div navbar', matches)
+    check_1(filename, doc, 'div navbar', '//div[@class="navbar-header"]')
 
 
-def check_1(filename, rulename, actual):
+@rule
+def has_title_in_head(filename, doc):
+    '''Check that document has a title in the head.'''
+
+    check_1(filename, doc, 'title in head', '//head//title')
+
+
+@rule
+def has_title_in_body(filename, doc):
+    '''Check that document has a title in the body.'''
+
+    check_1(filename, doc, 'title in body', '//body//h1[@class="maintitle"]')
+
+
+def check_1(filename, doc, rulename, xpath):
     '''Check that an equality holds.'''
 
-    if (type(actual) is not list) or (len(actual) != 1):
-        print('In {0}, checking {1}: expected 1 match, got {2}'.format(filename, rulename, actual))
+    actual = doc.xpath(xpath)
+    if len(actual) != 1:
+        print('In {0}, checking {1}: expected 1 match, got {2}'.format(filename, rulename, len(actual)))
 
 
 def require(condition, message):
