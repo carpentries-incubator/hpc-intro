@@ -25,8 +25,7 @@ Git uses the term *clone* to mean "a copy of a repository",
 while GitHub uses the term *fork* to mean "a copy of a GitHub-hosted repo that is also hosted on GitHub"
 and the term *clone* to mean "a copy of a GitHub-hosted repo that's located on someone else's machine".
 In both cases,
-the duplicate has a remote called `origin` that points to the original repo;
-other remotes can be added manually.
+the duplicate has a reference that points to the original repo.
 
 A user on GitHub can only have one fork of a particular repo.
 This is a problem for us because an author may be involved in writing several lessons,
@@ -130,7 +129,7 @@ so that `make serve` previews the generated site at <http://127.0.0.1:4000/>.
 ## Collections
 
 If several Markdown files are stored in a directory whose name begins with an underscore,
-[Jekyll][jekyll] creates a [collection][jeyll-collection] for them.
+[Jekyll][jekyll] creates a [collection][jekyll-collection] for them.
 We rely on this for both lesson episodes (stored in `_episodes`)
 and extra files (stored in `_extras`).
 For example,

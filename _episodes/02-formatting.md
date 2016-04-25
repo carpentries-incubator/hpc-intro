@@ -124,7 +124,7 @@ The [template]({{ site.template_repo }}) provides three styles for code blocks:
 > ## Why No Syntax Highlighting?
 >
 > We do not use syntax highlighting for code blocks
-> because some learners's systems won't do it,
+> because some learners' systems won't do it,
 > or will do it differently than what they see on screen.
 {: .callout}
 
