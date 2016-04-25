@@ -130,7 +130,7 @@ so that `make serve` previews the generated site at <http://127.0.0.1:4000/>.
 ## Collections
 
 If several Markdown files are stored in a directory whose name begins with an underscore,
-[Jekyll][jekyll] creates a [collection][jeyll-collection] for them.
+[Jekyll][jekyll] creates a [collection][jekyll-collection] for them.
 We rely on this for both lesson episodes (stored in `_episodes`)
 and extra files (stored in `_extras`).
 For example,
