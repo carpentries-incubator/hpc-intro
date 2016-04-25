@@ -51,7 +51,6 @@ which should *not* be modified:
 *   `CONDUCT.md`: the code of conduct.
 *   `LICENSE.md`: the lesson license.
 *   `Makefile`: commands for previewing the site, cleaning up junk, etc.
-*   `_extras/contributing.md`: contribution guidelines.
 
 ## Common Files
 
