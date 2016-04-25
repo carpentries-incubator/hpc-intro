@@ -9,7 +9,7 @@ The episodes of this lesson explain the tools we use to create lessons
 and the formatting rules those lessons must follow.
 
 Every lesson's home page is contained in `index.md`,
-and opens with a few pages
+and opens with a few pages.
 After that come
 a block stating prerequisites
 and a line including `syllabus.html`
