@@ -5,7 +5,8 @@ Documentation on the lesson template formatted according to the template's own r
 
 ## Layout
 
-The layout of this repository is explained in [these episodes][rendered].
+The layout of this repository is explained in [this site's episodes][rendered].
+In brief:
 
 1.  The source for pages that appear as direct items in the navigation bar
     are stored in the root directory.
@@ -24,8 +25,9 @@ Copy `_config_template.yml` to create `_config.yml` and then edit the
 settings in the top half.
 
 For a list of helpful commands run `make` in this directory.
+If you are looking for things to work on,
+please see [the list of issues for this repository][issues].
 
 [collections]: https://jekyllrb.com/docs/collections/
-[dc-lessons]: http://datacarpentry.org/lessons/
 [issues]: https://github.com/gvwilson/new-lesson-example/issues/
 [rendered]: https://gvwilson.github.io/new-lesson-example/

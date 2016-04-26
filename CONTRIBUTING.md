@@ -35,7 +35,9 @@ or the other [Data Carpentry][dc-lessons]
 and [Software Carpentry][swc-lessons] lessons.
 Comments on issues and reviews of pull requests are equally welcome.
 
+[dc-lessons]: http://datacarpentry.org/lessons/
 [github-flow]: https://guides.github.com/introduction/flow/
+[issues]: https://github.com/gvwilson/new-lesson-example/issues/
 [repo]: https://github.com/gvwilson/new-lesson-example/
 [swc-lessons]: http://software-carpentry.org/lessons/
 [swc-site]: http://software-carpentry.org/
