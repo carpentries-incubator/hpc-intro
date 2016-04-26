@@ -66,7 +66,7 @@ and is *not* included in the generated website.
 ### `AUTHORS`
 
 The names and email addresses of authors, one per line.
-This file is used to map Git contributions to real identities when the lesson is published.
+This file provides a more convenient way to view contributors than walking the Git history.
 
 ### `CITATION`
 
