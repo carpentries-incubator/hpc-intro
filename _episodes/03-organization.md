@@ -20,6 +20,8 @@ We could load these from the web,
 but that would make offline authoring difficult.
 Instead, each lesson's repository is self-contained.
 
+![Source and Destination Files]({{ site.root }}/fig/file-mapping.svg)
+
 > ## Collections
 >
 > As described [earlier]({{ site.root }}/01-tooling/#collections),
