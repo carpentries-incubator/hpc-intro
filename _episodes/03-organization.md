@@ -22,6 +22,8 @@ Instead, each lesson's repository is self-contained.
 
 ![Source and Destination Files]({{ site.root }}/fig/file-mapping.svg)
 
+![Formatting Rules]({{ site.root }}/fig/episode-format.png)
+
 > ## Collections
 >
 > As described [earlier]({{ site.root }}/01-tooling/#collections),
