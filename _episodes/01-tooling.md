@@ -116,15 +116,15 @@ The [lesson template]({{ site.template_repo }}) does *not* include `_config.yml`
 since each lesson will change some of its value,
 which would result in merge collisions each time the lesson was updated from the template.
 Instead,
-the [template]({{ site.template_repo }}) contains `_config_template.yml`;
+the [template]({{ site.template_repo }}) contains `_templates/_config_template.yml`;
 authors should copy this file to create `_config.yml`
 and then edit values in the top half.
 
 The [template]({{ site.template_repo }}) also contains `_config_dev.yml`,
 which overrides some settings for use during desktop development.
 The Makefile that comes with the [template]({{ site.template_repo }})
-adds these values to those in `_config.yml` when running a local server,
-so that `make serve` previews the generated site at <http://127.0.0.1:4000/>.
+adds these values to those in `_config.yml` when running a local server
+(see [below](#previewing)).
 
 ## Collections
 
@@ -138,6 +138,22 @@ To make this clear,
 we store files that appear directly in the navigation bar
 (rather than under a pulldown menu)
 in the root directory of the lesson.
+
+## Previewing
+
+[Jekyll][jekyll] can be used in two ways:
+to compile source files into HTML pages in the `_site` directory,
+or to do that and also run a small web server at <http://127.0.0.1:4000/>
+so that the pages can be previewed.
+We strongly recommend using the latter,
+since it ensures that inter-page links will work
+and extra resources (such as glyph icons) will load properly.
+
+The Makefile in the root directory of the project has commands for doing both:
+`make site` builds files but does not run a server,
+while `make serve` builds the files and runs a server.
+(It also re-builds the site whenever it notices changes in the source files.)
+Run `make` on its own to get a list of commands.
 
 [github-importer]: https://import.github.com/
 [jekyll]: http://jekyllrb.com/

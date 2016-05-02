@@ -54,6 +54,19 @@ which should *not* be modified:
 *   `LICENSE.md`: the lesson license.
 *   `Makefile`: commands for previewing the site, cleaning up junk, etc.
 
+## Template Files
+
+The `_templates` directory contains files that need to be customized for each lesson:
+
+*   `CONTRIBUTING.md`: contribution guidelines.
+    This file should be copied into the root directory,
+    and the `issues` and `repo` links at the bottom of the file must be changed
+    to match the URLs of the lesson.
+*   `_config.yml`: [Jekyll][jekyll] configuration file.
+    As explained [earlier]({{ site.root }}/01-tooling/#configuration),
+    `_templates/_config.yml` must be copied into the root directory
+    and edited so that its links and other settings are correct for this lesson.
+
 ## Common Files
 
 Most lessons will contain the files listed below.
