@@ -20,9 +20,10 @@ We could load these from the web,
 but that would make offline authoring difficult.
 Instead, each lesson's repository is self-contained.
 
-![Source and Destination Files]({{ site.root }}/fig/file-mapping.svg)
+The diagram below shows how source files and directories are laid out,
+and how they are mapped to destination files and directories:
 
-![Formatting Rules]({{ site.root }}/fig/episode-format.png)
+![Source and Destination Files]({{ site.root }}/fig/file-mapping.svg)
 
 > ## Collections
 >

@@ -24,6 +24,11 @@ each of which has:
 *   some teachable content
 *   some exercises
 
+The diagram below shows the internal structure of a single episode file
+(click on the image to see a larger version):
+
+<a href="{{ site.root }}/fig/episode-format.png"><img src="{{ site.root }}/fig/episode-format-small.png" alt="Formatting Rules" /></a>
+
 ## Locations and Names
 
 Episode files are stored in `_episodes` so that [Jekyll][jekyll] will create a [collection][jekyll-collection] for them.
