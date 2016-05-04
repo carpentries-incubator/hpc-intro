@@ -18,7 +18,7 @@ keypoints:
 This episode describes tools we use to manage lessons,
 which simplify many tasks but make other things more complicated.
 
-## Repositores on GitHub
+## Repositories on GitHub
 
 All of our lessons are stored in Git repositories on GitHub.
 Git uses the term *clone* to mean "a copy of a repository",
