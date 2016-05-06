@@ -139,6 +139,21 @@ we store files that appear directly in the navigation bar
 (rather than under a pulldown menu)
 in the root directory of the lesson.
 
+## Installing
+
+You can preview changes by pushing to the `gh-pages` branch of your own repository,
+but it's often easier to view them locally first.
+To do that,
+you will need to install [Jekyll][jekyll] and a few other packages used by GitHub Pages.
+The easiest way to do that is:
+
+1.  Install Ruby if you don't already have it.
+2.  Install Ruby Gems (Ruby's package manager).
+3.  `gem install github-pages` (which will give you Jekyll and things it depends on).
+
+See [the Jekyll installation documentation][jekyll-install]
+for full instructions.
+
 ## Previewing
 
 [Jekyll][jekyll] can be used in two ways:
@@ -158,6 +173,7 @@ Run `make` on its own to get a list of commands.
 [github-importer]: https://import.github.com/
 [jekyll]: http://jekyllrb.com/
 [jekyll-collection]: https://jekyllrb.com/docs/collections/
+[jekyll-install]: https://jekyllrb.com/docs/installation/
 [jupyter]: https://jupyter.org/
 [pandoc]: https://pandoc.org/
 [r-markdown]: http://rmarkdown.rstudio.com/
