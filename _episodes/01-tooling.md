@@ -49,21 +49,20 @@ to update the lesson when the template changes.
 
 If a repository has a branch called `gh-pages` (short for "GitHub Pages"),
 GitHub publishes its content to create a website for the repository.
-Websites can be static HTML pages,
-which are published as-is,
-or can use [Jekyll][jekyll] as described below
-to compile HTML and/or Markdown pages with embedded directives
-to create the pages for display.
 If the repository's URL is `https://github.com/USERNAME/REPOSITORY`,
 the website is `https://USERNAME.github.io/REPOSITORY`.
+
+GitHub Pages sites can include static HTML pages,
+which are published as-is,
+or they can use [Jekyll][jekyll] as described below
+to compile HTML and/or Markdown pages with embedded directives
+to create the pages for display.
 
 > ## Why Doesn't My Site Appear?
 >
 > If the root directory of a repository contains a file called `.nojekyll`,
 > GitHub will *not* generate a website for that repository's `gh-pages` branch.
 {: .callout}
-
-## Markdown
 
 We write lessons in Markdown because it's simple to learn
 and isn't tied to any specific language.
@@ -88,8 +87,7 @@ The [next episode]({{ site.root }}/02-formatting/) describes the Markdown we use
 ## Jekyll
 
 GitHub uses [Jekyll][jekyll] to turn Markdown into HTML.
-By default,
-it looks for text files that begin with a header formatted like this:
+It looks for text files that begin with a header formatted like this:
 
 ~~~
 ---
@@ -100,13 +98,32 @@ other_variable: other_value
 ~~~
 {: .source}
 
-and inserts the values of those variables into the page when formatting this.
+and inserts the values of those variables into the page when formatting it.
 The three dashes that start the header *must* be the first three characters in the file:
 even a single space before them will make [Jekyll][jekyll] ignore the file.
 
-The header must be formatted as [YAML][yaml],
+The header's content must be formatted as [YAML][yaml],
 and may contain Booleans, numbers, character strings, lists, and dictionaries of name/value pairs.
 Values from the header are referred to in the page as `page.variable`.
+For example,
+this page:
+
+~~~
+---
+name: Science
+---
+Today we are going to study {{page.name}}.
+~~~
+
+is translated into:
+
+~~~
+<html>
+<body>
+<p>Today we are going to study Science.</p>
+</body>
+</html>
+~~~
 
 > ## Back in the Day...
 >
@@ -126,9 +143,9 @@ The [lesson template]({{ site.template_repo }}) does *not* include `_config.yml`
 since each lesson will change some of its value,
 which would result in merge collisions each time the lesson was updated from the template.
 Instead,
-the [template]({{ site.template_repo }}) contains `_templates/_config_template.yml`;
-authors should copy this file to create `_config.yml`
-and then edit values in the top half.
+the [template]({{ site.template_repo }}) contains a script called `bin/initialize`
+which should be run *once* to create an initial `_config.yml` file.
+The author should then edit the values in the top half of the file.
 
 The [template]({{ site.template_repo }}) also contains `_config_dev.yml`,
 which overrides some settings for use during desktop development.
@@ -144,10 +161,10 @@ We rely on this for both lesson episodes (stored in `_episodes`)
 and extra files (stored in `_extras`).
 For example,
 putting the extra files in `_extras` allows us to populate the "Extras" menu pulldown automatically.
-To make this clear,
+To clarify what will appear where,
 we store files that appear directly in the navigation bar
-(rather than under a pulldown menu)
 in the root directory of the lesson.
+[The last episode]({{ site.root }}/03-organization/) describes these files.
 
 ## Installing
 
@@ -170,15 +187,14 @@ for full instructions.
 to compile source files into HTML pages in the `_site` directory,
 or to do that and also run a small web server at <http://127.0.0.1:4000/>
 so that the pages can be previewed.
-We strongly recommend using the latter,
-since it ensures that inter-page links will work
-and extra resources (such as glyph icons) will load properly.
+We recommend using the latter,
+since it gives a more accurate impression of what your lesson will actually look like.
 
-The Makefile in the root directory of the project has commands for doing both:
+The Makefile in the root directory of the project contains commands for building the site.
 `make site` builds files but does not run a server,
 while `make serve` builds the files and runs a server.
 (It also re-builds the site whenever it notices changes in the source files.)
-Run `make` on its own to get a list of commands.
+Run `make` on its own to get a full list of commands.
 
 [github-importer]: https://import.github.com/
 [jekyll]: http://jekyllrb.com/

@@ -40,15 +40,15 @@ the episodes of this example lesson are
 `_episodes/01-tooling.md`
 `_episodes/02-formatting.md`,
 and `_episodes/03-organization.md`.
-These become `/01-tooling/`, `/02-formatting/`, and `/03-organization/` respectively in the published site
-(the episode file `dd-subject.md` is turned into `dd-subject/index.html`).
+These become `/01-tooling/index.html`, `/02-formatting/index.html`, and `/03-organization/index.html` in the published site.
 When referring to other episodes, use:
 
 {% raw %}
     [link text]({{ site.root }}/dd-subject/)
 {% endraw %}
 
-i.e., use the episode's directory path below the site root.
+i.e., use the episode's directory path below the site root
+*without* the `index.html` (which the web server fills in automatically).
 This will ensure that the link is valid both when previewing during desktop development
 and when the site is published on GitHub.
 

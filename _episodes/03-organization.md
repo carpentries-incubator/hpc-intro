@@ -50,6 +50,10 @@ Authors should not modify these.
 
 ## Standard Files
 
+When the lesson repository is first created,
+the initial author should create a `README.md` file containing
+a one-line explanation of the lesson's purpose.
+
 The [lesson template]({{ site.template_repo }}) provides the following files
 which should *not* be modified:
 
@@ -57,38 +61,30 @@ which should *not* be modified:
 *   `LICENSE.md`: the lesson license.
 *   `Makefile`: commands for previewing the site, cleaning up junk, etc.
 
-## Template Files
+## Starter Files
 
-The `_templates` directory contains files that need to be customized for each lesson:
+The `bin/initialize` script creates files that need to be customized for each lesson.
 
-*   `CONTRIBUTING.md`: contribution guidelines.
-    This file should be copied into the root directory,
-    and the `issues` and `repo` links at the bottom of the file must be changed
-    to match the URLs of the lesson.
-*   `_config.yml`: [Jekyll][jekyll] configuration file.
-    As explained [earlier]({{ site.root }}/01-tooling/#configuration),
-    `_templates/_config.yml` must be copied into the root directory
-    and edited so that its links and other settings are correct for this lesson.
+### `CONTRIBUTING.md`
 
-## Common Files
+Contribution guidelines.
+The `issues` and `repo` links at the bottom of the file must be changed
+to match the URLs of the lesson:
+look for uses of `{LESSON-NAME}`.
 
-Most lessons will contain the files listed below.
-These are *not* included in the template in order to avoid repeated merge conflicts.
+### `_config.yml`
 
-### `README.md`
-
-A brief description of the lesson that is displayed by GitHub.
-This file does *not* include a [YAML][yaml] header,
-and is *not* included in the generated website.
-
-### `AUTHORS`
-
-The names and email addresses of authors, one per line.
-This file provides a more convenient way to view contributors than walking the Git history.
+The [Jekyll][jekyll] configuration file.
+This must be edited so that its links and other settings are correct for this lesson:
+look for uses of `{USERNAME}`, `{LESSON-NAME}`, `{LESSON-TITLE}`, and `{SITE-NAME}`.
 
 ### `CITATION`
 
-This explains how the lesson should be cited in publications.
+A plain text file explaining how to cite this lesson.
+
+### `AUTHORS`
+
+A plain text file listing the names and email addresses of the lesson's authors.
 
 ### `index.md`
 
@@ -154,11 +150,6 @@ The instructors' guide for the lesson.
 4.  It may include whatever content the author thinks appropriate.
 
 This page records tips and warnings from people who have taught the lesson.
-
-## Makefile Targets
-
-Commonly-used commands are stored in `Makefile`.
-Run `make` on its own to get a list of commands.
 
 [jekyll]: http://jekyllrb.com/
 [jekyll-collection]: https://jekyllrb.com/docs/collections/
