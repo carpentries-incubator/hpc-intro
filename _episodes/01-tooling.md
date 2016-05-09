@@ -15,27 +15,35 @@ keypoints:
 - "Each page's configuration is stored at the top of that page."
 - "Groups of files are stored in collection directories whose names begin with an underscore."
 ---
-This episode describes tools we use to manage lessons,
-which simplify many tasks but make other things more complicated.
+This episode describes the tools we use to build and manage lessons.
+These simplify many tasks, but make other things more complicated.
 
 ## Repositories on GitHub
 
-All of our lessons are stored in Git repositories on GitHub.
-Git uses the term *clone* to mean "a copy of a repository",
-while GitHub uses the term *fork* to mean "a copy of a GitHub-hosted repo that is also hosted on GitHub"
+Our lessons are stored in Git repositories (or "repos") on GitHub.
+We use the term *fork* to mean "a copy of a GitHub-hosted repo that is also hosted on GitHub"
 and the term *clone* to mean "a copy of a GitHub-hosted repo that's located on someone else's machine".
 In both cases,
 the duplicate has a reference that points to the original repo.
 
-A user on GitHub can only have one fork of a particular repo.
-This is a problem for us because an author may be involved in writing several lessons,
-each of which has its own website repo.
-Those website repositories ought to be forks of the [template repository]({{ site.template_repo }}),
-but since GitHub doesn't allow that,
-we use [GitHub Importer][github-importer] when creating new lessons.
+In an ideal world,
+we would put all of the common files used by our lessons
+(such as the CSS style files and the image files with project logos)
+in a template repo.
+The master copy of each lesson would be a fork of that repo,
+and each author's working copy would be a fork of that master:
+
+![Forking Repositories]({{ site.root }}/fig/forking.svg)
+
+However, GitHub only allows a user to have one fork of any particular repo.
+This creates a problem for us because an author may be involved in writing several lessons,
+each with its own repo.
+We therefore use [GitHub Importer][github-importer] to create new lessons.
 After the lesson has been created,
 we manually add the [template repository]({{ site.template_repo }}) as a remote called `template`
 to update the lesson when the template changes.
+
+![Repository Links]({{ site.root }}/fig/repository-links.svg)
 
 ## GitHub Pages
 
@@ -43,7 +51,9 @@ If a repository has a branch called `gh-pages` (short for "GitHub Pages"),
 GitHub publishes its content to create a website for the repository.
 Websites can be static HTML pages,
 which are published as-is,
-or can use [Jekyll][jekyll] as described below.
+or can use [Jekyll][jekyll] as described below
+to compile HTML and/or Markdown pages with embedded directives
+to create the pages for display.
 If the repository's URL is `https://github.com/USERNAME/REPOSITORY`,
 the website is `https://USERNAME.github.io/REPOSITORY`.
 
