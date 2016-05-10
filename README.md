@@ -247,7 +247,7 @@ whenever you create a new lesson and would like to advertise it on our web site.
 
 *   Andy Boughton (@abought)
 *   Rémi Emonet (@twitwi)
-*   Raniere Silva (@r-gaia-cs)
+*   Raniere Silva (@rgaiacs)
 
 [swc-lesson-template]: https://github.com/swcarpentry/lesson-template
 [swc-lessons-page]: http://software-carpentry.org/lessons.html
