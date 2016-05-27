@@ -8,6 +8,15 @@ Each lesson is made up of *episodes* that are 10-30 minutes long
 The episodes of this lesson explain the tools we use to create lessons
 and the formatting rules those lessons must follow.
 
+> ## Why "Episodes"?
+>
+> We call the parts of lessons "episodes" because
+> every other term (like "topic") already has multiple meanings,
+> and because it encourages us to think of breaking up our lessons
+> into chunks that are about as long as a typical movie scene,
+> which is better for learning than long blocks without interruption.
+{: .callout}
+
 Every lesson's home page is contained in `index.md`,
 and opens with a few pages.
 After that come
