@@ -210,6 +210,11 @@ for the following special blockquotes:
 > Prerequisites.
 {: .prereq}
 
+> ## `.solution`
+>
+> Exercise solution.
+{: .solution}
+
 > ## `.testimonial`
 >
 > A laudatory quote from a user.
