@@ -36,7 +36,7 @@ The process for selecting and onboarding a new maintainer is:
 *   To onboard the new maintainer:
     *    Add new maintainer to the maintainers' list.
     *    Email the maintainers to announce the change. 
-    *    Request push/merge access for new maintainer from the Software Carpentry executive director.  
+    *    Request push/merge access for new maintainer from the Software or Data Carpentry executive director.  
     *    Write a blog post introducing new maintainer.  
     *    Optional: call between outgoing/incoming maintainer to discuss state of the repository, transition strategy, etc. 
 

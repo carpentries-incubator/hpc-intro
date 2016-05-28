@@ -1,8 +1,9 @@
 ---
 layout: lesson_homepage
 ---
-This lesson shows how to use
-[Software Carpentry]({{ site.swc_site }})'s lesson template.
+This lesson shows how to use the
+[Software Carpentry]({{ site.swc_site }}) and
+[Data Carpentry]({{ site.dc_site }}) lesson template.
 Each lesson is made up of *episodes* that are 10-30 minutes long
 (including time for both teaching and exercises).
 The episodes of this lesson explain the tools we use to create lessons

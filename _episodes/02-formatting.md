@@ -3,7 +3,7 @@ title: "Formatting"
 teaching: 10
 exercises: 0
 questions:
-- "How are Software Carpentry lessons formatted?"
+- "How are Software and Data Carpentry lessons formatted?"
 objectives:
 - "Explain the header of each episode."
 - "Explain the overall structure of each episode."

@@ -12,8 +12,8 @@ In exchange,
 we will address your issues,
 assess your change proposal,
 and help you become a member of our community.
-Everyone involved in [Software Carpentry][swc-site] agrees to abide by
-our [code of conduct](CONDUCT.md).
+Everyone involved in [Software Carpentry][swc-site] and [Data Carpentry][dc-site]
+agrees to abide by our [code of conduct](CONDUCT.md).
 
 ## What We're Looking For
 
@@ -93,8 +93,8 @@ and have final say over what gets merged into the lesson.
 
 ## Other Resources
 
-General discussion of [Software Carpentry][swc-site] happens on
-the [discussion mailing list][discuss-list],
+General discussion of [Software Carpentry][swc-site] and [Data Carpentry][dc-site]
+happens on the [discussion mailing list][discuss-list],
 which everyone is welcome to join.
 You can also [reach us by email][contact].
 
