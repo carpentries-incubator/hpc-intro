@@ -28,7 +28,7 @@ This is a good way to introduce yourself
 and to meet some of our community members.
 
 1.  If you do not have a [GitHub][github] account,
-    you can [send us comments by email](mailto:{{ site.email }}).
+    you can [send us comments by email](mailto:admin@software-carpentry.org).
     However,
     we will be able to respond more quickly if you use one of the other methods described below.
 
@@ -118,7 +118,7 @@ and have final say over what gets merged into the lesson.
 General discussion of [Software Carpentry][swc-site] and [Data Carpentry][dc-site]
 happens on the [discussion mailing list][discuss-list],
 which everyone is welcome to join.
-You can also [reach us by email][mailto:{{ site.email }}].
+You can also [reach us by email][mailto:admin@software-carpentry.org].
 
 [dc-issues]: https://github.com/issues?q=user%3Adatacarpentry
 [dc-lessons]: http://datacarpentry.org/lessons/
