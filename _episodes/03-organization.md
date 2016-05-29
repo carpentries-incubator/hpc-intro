@@ -13,6 +13,20 @@ keypoints:
 - "The home page, reference guide, setup instructions, discussion page, and instructors' guide must be updated for each lesson."
 - "The Makefile stores commonly-used commands."
 ---
+Each lesson is made up of *episodes* that are 10-30 minutes long
+(including time for both teaching and exercises).
+The episodes of this lesson explain the tools we use to create lessons
+and the formatting rules those lessons must follow.
+
+> ## Why "Episodes"?
+>
+> We call the parts of lessons "episodes" because
+> every other term (like "topic") already has multiple meanings,
+> and because it encourages us to think of breaking up our lessons
+> into chunks that are about as long as a typical movie scene,
+> which is better for learning than long blocks without interruption.
+{: .callout}
+
 Our lessons need artwork,
 CSS style files,
 and a few bits of Javascript.
@@ -48,7 +62,7 @@ The `assets` directory contains the CSS, Javascript, fonts, and image files
 used in the generated website.
 Authors should not modify these.
 
-## Standard Files
+# Standard Files
 
 When the lesson repository is first created,
 the initial author should create a `README.md` file containing
