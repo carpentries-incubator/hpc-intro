@@ -10,4 +10,25 @@ permalink: /setup/
 2. Other lessons' `setup.md` include full installation instructions organized by OS
    (following the model of the workshop template home page).
 
+--------
+
+If you want to set up Jekyll
+so that you can preview changes on your own machine before pushing them to GitHub,
+you must do the following:
+
+1.  Install Ruby.
+    This is included with Linux and Mac OS X;
+    the simplest option on Windows is to use [RubyInstaller](http://rubyinstaller.org/).
+    You can test your installation by running `ruby --version`.
+    For more information,
+    see [the Ruby installation guidelines](https://www.ruby-lang.org/en/downloads/).
+
+2.  Install [RubyGems](https://rubygems.org/pages/download)
+    (the package manager for Ruby).
+    You can test your installation by running `gem --version`.
+
+3.  Install [Jekyll](https://jekyllrb.com/) by running `gem install jekyll`.
+
+Julian Thilo has written instructions for [installing Jekyll on Windows](http://jekyll-windows.juthilo.com/).
+
 [template]: {{ site.workshop_repo }}
