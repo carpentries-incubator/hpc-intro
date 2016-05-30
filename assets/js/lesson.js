@@ -3,7 +3,11 @@ $("table").addClass("table table-striped");
 
 // Handle foldable challenges (on click and at start)
 $(".challenge").click(function(event) {
-    $(">*:not(h2)", this).toggle(400);
+    var trigger = $(event.target).has(".fold-unfold").size() > 0
+               || $(event.target).filter(".fold-unfold").size() > 0;
+    if (trigger) {
+        $(">*:not(h2)", this).toggle(400);
+    }
 });
 $(".challenge").each(function() {
     $(">*:not(h2)", this).toggle();
