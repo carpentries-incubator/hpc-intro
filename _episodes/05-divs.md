@@ -9,11 +9,12 @@ objectives:
 keypoints:
 - "The CSS changes are surprisingly small."
 ---
-This is a challenge formatted using a `div`:
+This is a challenge formatted using a `div`,
+with one solution inside the `div:
 
 <div class="challenge" markdown="1">
 
-## Challenge Title as H2
+## Div Challenge Title as H2
 
 This is the text explaining the challenge.
 
@@ -37,7 +38,10 @@ the challenge
 
 </div>
 
-> ## Challenge Title as H2
+This is a challenge formatted as a `blockquote`,
+with a single solution as a nested `blockquote`:
+
+> ## Blockquote Challenge Title as H2
 >
 > For comparison, this is a challenge done the old way (as a blockquote).
 >
@@ -58,3 +62,28 @@ the challenge
 > > {: .output}
 > {: .solution}
 {: .challenge}
+
+This is a challenge formatted as a `blockquote`,
+with the solution as a peer (not nested) `blockquote`:
+
+> ## Blockquote Challenge Title as H2
+>
+> And this is the challenge with the solutions outside.
+>
+> ~~~
+> this code
+> is part of
+> the challenge
+> ~~~
+> {: .source}
+{: .challenge}
+
+> ## Solution
+>
+> And here is the body of the solution.
+>
+> ~~~
+> code in solution
+> ~~~
+> {: .output}
+{: .solution}
