@@ -9,6 +9,7 @@ $(".challenge,.solution").click(function(event) {
     if (trigger) {
         $(">*:not(h2)", this).toggle(400);
         $(">h2>span.fold-unfold", this).toggleClass("glyphicon-collapse-down glyphicon-collapse-up");
+        event.stopPropagation();
     }
 });
 $(".challenge,.solution").each(function() {
