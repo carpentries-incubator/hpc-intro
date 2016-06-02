@@ -1,0 +1,117 @@
+#!/usr/bin/env python
+
+'''
+Validate lesson files and their contents.
+'''
+
+import sys
+import os
+import glob
+import json
+from subprocess import Popen, PIPE
+from optparse import OptionParser
+
+
+# Where to look for source Markdown files.
+SOURCE_DIRS = ['', '_episodes', '_extras']
+
+
+class Reporter(object):
+    '''Collect and report errors.'''
+
+    def __init__(self, args):
+        '''Constructor.'''
+
+        super(Reporter, self).__init__()
+        self.messages = []
+
+    def add(self, m):
+        '''Append error.'''
+
+        self.messages.append(m)
+
+
+    def report(self):
+        '''Report all messages.'''
+
+        for m in self.messages:
+            print(m)
+
+
+def main():
+    '''Main driver.'''
+
+    args = parse_args()
+    args.reporter = Reporter(args)
+    docs = read_all_markdown(args, args.source_dir)
+    check_fileset_correct(args, docs)
+    for filename in docs.keys():
+        val = create_validator(args, filename)
+        val.check(args, filename)
+    reporter.report()
+
+
+def parse_args():
+    '''Parse command-line arguments.'''
+
+    parser = OptionParser()
+    parser.add_option('-p', '--parser',
+                      default=None,
+                      dest='parser',
+                      help='path to Markdown parser')
+    parser.add_option('-s', '--source',
+                      default=os.curdir,
+                      dest='source_dir',
+                      help='source directory')
+
+    args, extras = parser.parse_args()
+    require(args.parser is not None,
+            'Path to Markdown parser not provided')
+    require(not extras,
+            'Unexpected trailing command-line arguments "{0}"'.format(extras))
+
+    return args
+
+
+def read_all_markdown(args, source_dir):
+    '''Read source files, returning {path : parsetree}.'''
+
+    all_dirs = [os.path.join(source_dir, d) for d in SOURCE_DIRS]
+    all_patterns = [os.path.join(d, '*.md') for d in all_dirs]
+    result = {}
+    for pat in all_patterns:
+        for filename in glob.glob(pat):
+            result[filename] = read_markdown(args, filename)
+    return result
+
+
+def read_markdown(args, path):
+    '''Get AST for Markdown file.'''
+
+    cmd = 'ruby {0} {1}'.format(args.parser, path)
+    p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, close_fds=True)
+    doc = json.loads(str(p.stdout.read(), encoding='utf-8'))
+    return doc
+
+
+def check_fileset_correct(args, docs):
+    '''Are all required files present? Are extraneous files present?'''
+
+    pass # FIXME
+
+
+def create_validator(args, filename):
+    '''Create appropriate validator for file.'''
+
+    return None # FIXME
+
+
+def require(condition, message):
+    '''Fail if condition not met.'''
+
+    if not condition:
+        print(message, file=sys.stderr)
+        sys.exit(1)
+
+if __name__ == '__main__':
+    main()
