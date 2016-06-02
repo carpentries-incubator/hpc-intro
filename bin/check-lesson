@@ -9,8 +9,11 @@ import os
 import glob
 import json
 import yaml
+import re
 from subprocess import Popen, PIPE
 from optparse import OptionParser
+
+from util import Reporter
 
 
 # Where to look for source Markdown files.
@@ -32,34 +35,8 @@ REQUIRED_FILES = [
     (True, '%/setup.md')
 ]
 
-
-class Reporter(object):
-    '''Collect and report errors.'''
-
-    def __init__(self, args):
-        '''Constructor.'''
-
-        super(Reporter, self).__init__()
-        self.messages = []
-
-    def check(self, condition, message):
-        '''Append error if condition not met.'''
-
-        if not condition:
-            self.add(message)
-
-
-    def add(self, message):
-        '''Append error unilaterally.'''
-
-        self.messages.append(message)
-
-
-    def report(self, stream=sys.stdout):
-        '''Report all messages.'''
-
-        for m in self.messages:
-            print(m, file=stream)
+# Episode filename pattern.
+P_EPISODE_FILENAME = re.compile(r'/_episodes/(\d\d)-[-\w]+.md$')
 
 
 def main():
@@ -72,7 +49,7 @@ def main():
     for filename in docs.keys():
         val = create_validator(args, filename)
         val.check(args, filename)
-    reporter.report()
+    args.reporter.report()
 
 
 def parse_args():
@@ -137,11 +114,31 @@ def read_markdown(args, path):
 def check_fileset(args, docs):
     '''Are all required files present? Are extraneous files present?'''
 
+    # Check files with predictable names.
     actual = docs.keys()
     required = [p[1].replace('%', args.source_dir) for p in REQUIRED_FILES]
     missing = set(required) - set(actual)
     for m in missing:
         args.reporter.add('Missing required file {0}'.format(m))
+
+    # Check episode files' names.
+    seen = []
+    for filename in actual:
+        if '_episodes' not in filename:
+            continue
+        m = P_EPISODE_FILENAME.search(filename)
+        if m and m.group(1):
+            seen.append(m.group(1))
+        else:
+            args.reporter.add('Episode {0} has badly-formatted filename'.format(e))
+
+    # Check episode filename numbering.
+    args.reporter.check(len(seen) == len(set(seen)),
+                        'Duplicate episode numbers {0} vs {1}'.format(sorted(seen), sorted(set(seen))))
+    seen = [int(s) for s in seen]
+    seen.sort()
+    args.reporter.check(all([i+1 == n for (i, n) in enumerate(seen)]),
+                        'Missing or non-consecutive episode numbers {0}'.format(seen))
 
 
 def create_validator(args, filename):
