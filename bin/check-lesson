@@ -16,6 +16,22 @@ from optparse import OptionParser
 # Where to look for source Markdown files.
 SOURCE_DIRS = ['', '_episodes', '_extras']
 
+# Required files (YAML_required, path).
+# The '%' is replaced with the source directory path for checking.
+# Episodes are handled specially, and extra files in '_extras' are also handled specially.
+# This list must include all the Markdown files listed in the 'bin/initialize' script.
+REQUIRED_FILES = [
+    (True, '%/CONDUCT.md'),
+    (False, '%/CONTRIBUTING.md'),
+    (True, '%/LICENSE.md'),
+    (False, '%/README.md'),
+    (True, '%/_extras/discuss.md'),
+    (True, '%/_extras/guide.md'),
+    (True, '%/index.md'),
+    (True, '%/reference.md'),
+    (True, '%/setup.md')
+]
+
 
 class Reporter(object):
     '''Collect and report errors.'''
@@ -39,11 +55,11 @@ class Reporter(object):
         self.messages.append(message)
 
 
-    def report(self):
+    def report(self, stream=sys.stdout):
         '''Report all messages.'''
 
         for m in self.messages:
-            print(m)
+            print(m, file=stream)
 
 
 def main():
@@ -52,7 +68,7 @@ def main():
     args = parse_args()
     args.reporter = Reporter(args)
     docs = read_all_markdown(args, args.source_dir)
-    check_fileset_correct(args, docs)
+    check_fileset(args, docs)
     for filename in docs.keys():
         val = create_validator(args, filename)
         val.check(args, filename)
@@ -96,20 +112,20 @@ def read_all_markdown(args, source_dir):
 
 
 def read_markdown(args, path):
-    '''Get YAML and AST for Markdown file, returning pair or None.'''
+    '''Get YAML and AST for Markdown file, returning pair (yaml | None, json).'''
 
-    # Full text.
+    # Initialize.
+    header = None
     with open(path, 'r') as reader:
-        text = reader.read()
+        body = reader.read()
 
-    # Check and split.
-    pieces = text.split('---', 2)
-    if len(pieces) != 3:
-        args.reporter.add('Malformed YAML header in {0}'.format(path))
-        return None
-    header = yaml.load(pieces[1])
+    # Split and extract YAML (if present).
+    pieces = body.split('---', 2)
+    if len(pieces) == 3:
+        header = yaml.load(pieces[1])
+        body = pieces[2]
 
-    body = pieces[2]
+    # Parse Markdown.
     cmd = 'ruby {0}'.format(args.parser)
     p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, close_fds=True, universal_newlines=True)
     stdout_data, stderr_data = p.communicate(body)
@@ -118,10 +134,14 @@ def read_markdown(args, path):
     return (header, doc)
 
 
-def check_fileset_correct(args, docs):
+def check_fileset(args, docs):
     '''Are all required files present? Are extraneous files present?'''
 
-    pass # FIXME
+    actual = docs.keys()
+    required = [p[1].replace('%', args.source_dir) for p in REQUIRED_FILES]
+    missing = set(required) - set(actual)
+    for m in missing:
+        args.reporter.add('Missing required file {0}'.format(m))
 
 
 def create_validator(args, filename):
