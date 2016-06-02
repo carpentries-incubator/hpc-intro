@@ -1,0 +1,2652 @@
+{
+  "type": "root",
+  "options": {
+    "encoding": "UTF-8",
+    "location": 1,
+    "options": {
+    },
+    "abbrev_defs": {
+    },
+    "abbrev_attr": {
+    }
+  },
+  "children": [
+    {
+      "type": "hr",
+      "options": {
+        "location": 1
+      }
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 2
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "title: ",
+          "options": {
+            "location": 2
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 2
+          }
+        },
+        {
+          "type": "text",
+          "value": "GitHub, Markdown, and Jekyll",
+          "options": {
+            "location": 2
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 2
+          }
+        },
+        {
+          "type": "text",
+          "value": "\nteaching: 10\nexercises: 0\nquestions:\n- ",
+          "options": {
+            "location": 2
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 6
+          }
+        },
+        {
+          "type": "text",
+          "value": "How are pages published?",
+          "options": {
+            "location": 6
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 6
+          }
+        },
+        {
+          "type": "text",
+          "value": "\nobjectives:\n- ",
+          "options": {
+            "location": 6
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 8
+          }
+        },
+        {
+          "type": "text",
+          "value": "Explain how GitHub Pages produce web sites from Git repositories.",
+          "options": {
+            "location": 8
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 8
+          }
+        },
+        {
+          "type": "text",
+          "value": "\n- ",
+          "options": {
+            "location": 8
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 9
+          }
+        },
+        {
+          "type": "text",
+          "value": "Explain Jekyll",
+          "options": {
+            "location": 9
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rsquo",
+          "options": {
+            "location": 9
+          }
+        },
+        {
+          "type": "text",
+          "value": "s formatting rules.",
+          "options": {
+            "location": 9
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 9
+          }
+        },
+        {
+          "type": "text",
+          "value": "\nkeypoints:\n- ",
+          "options": {
+            "location": 9
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 11
+          }
+        },
+        {
+          "type": "text",
+          "value": "Lessons are stored in Git repositories on GitHub.",
+          "options": {
+            "location": 11
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 11
+          }
+        },
+        {
+          "type": "text",
+          "value": "\n- ",
+          "options": {
+            "location": 11
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 12
+          }
+        },
+        {
+          "type": "text",
+          "value": "Lessons are written in Markdown.",
+          "options": {
+            "location": 12
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 12
+          }
+        },
+        {
+          "type": "text",
+          "value": "\n- ",
+          "options": {
+            "location": 12
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 13
+          }
+        },
+        {
+          "type": "text",
+          "value": "Jekyll translates the files in the gh-pages branch into HTML for viewing.",
+          "options": {
+            "location": 13
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 13
+          }
+        },
+        {
+          "type": "text",
+          "value": "\n- ",
+          "options": {
+            "location": 13
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 14
+          }
+        },
+        {
+          "type": "text",
+          "value": "The site",
+          "options": {
+            "location": 14
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rsquo",
+          "options": {
+            "location": 14
+          }
+        },
+        {
+          "type": "text",
+          "value": "s configuration is stored in _config.yml.",
+          "options": {
+            "location": 14
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 14
+          }
+        },
+        {
+          "type": "text",
+          "value": "\n- ",
+          "options": {
+            "location": 14
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 15
+          }
+        },
+        {
+          "type": "text",
+          "value": "Each page",
+          "options": {
+            "location": 15
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rsquo",
+          "options": {
+            "location": 15
+          }
+        },
+        {
+          "type": "text",
+          "value": "s configuration is stored at the top of that page.",
+          "options": {
+            "location": 15
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 15
+          }
+        },
+        {
+          "type": "text",
+          "value": "\n- ",
+          "options": {
+            "location": 15
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 16
+          }
+        },
+        {
+          "type": "text",
+          "value": "Groups of files are stored in collection directories whose names begin with an underscore.",
+          "options": {
+            "location": 16
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 16
+          }
+        },
+        {
+          "type": "text",
+          "value": "\n",
+          "options": {
+            "location": 16
+          }
+        },
+        {
+          "type": "typographic_sym",
+          "value": "mdash",
+          "options": {
+            "location": 17
+          }
+        },
+        {
+          "type": "text",
+          "value": "\nThis episode describes the tools we use to build and manage lessons.\nThese simplify many tasks, but make other things more complicated.",
+          "options": {
+            "location": 17
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "header",
+      "options": {
+        "level": 2,
+        "raw_text": "Repositories on GitHub",
+        "location": 21
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "Repositories on GitHub",
+          "options": {
+            "location": 21
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 23
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "Our lessons are stored in Git repositories (or ",
+          "options": {
+            "location": 23
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 23
+          }
+        },
+        {
+          "type": "text",
+          "value": "repos",
+          "options": {
+            "location": 23
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 23
+          }
+        },
+        {
+          "type": "text",
+          "value": ") on GitHub.\nWe use the term ",
+          "options": {
+            "location": 23
+          }
+        },
+        {
+          "type": "em",
+          "options": {
+            "location": 24
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "fork",
+              "options": {
+                "location": 24
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " to mean ",
+          "options": {
+            "location": 24
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 24
+          }
+        },
+        {
+          "type": "text",
+          "value": "a copy of a GitHub-hosted repo that is also hosted on GitHub",
+          "options": {
+            "location": 24
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 24
+          }
+        },
+        {
+          "type": "text",
+          "value": "\nand the term ",
+          "options": {
+            "location": 24
+          }
+        },
+        {
+          "type": "em",
+          "options": {
+            "location": 25
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "clone",
+              "options": {
+                "location": 25
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " to mean ",
+          "options": {
+            "location": 25
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 25
+          }
+        },
+        {
+          "type": "text",
+          "value": "a copy of a GitHub-hosted repo that",
+          "options": {
+            "location": 25
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rsquo",
+          "options": {
+            "location": 25
+          }
+        },
+        {
+          "type": "text",
+          "value": "s located on someone else",
+          "options": {
+            "location": 25
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rsquo",
+          "options": {
+            "location": 25
+          }
+        },
+        {
+          "type": "text",
+          "value": "s machine",
+          "options": {
+            "location": 25
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 25
+          }
+        },
+        {
+          "type": "text",
+          "value": ".\nIn both cases,\nthe duplicate has a reference that points to the original repo.",
+          "options": {
+            "location": 25
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 29
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "In an ideal world,\nwe would put all of the common files used by our lessons\n(such as the CSS style files and the image files with project logos)\nin a template repo.\nThe master copy of each lesson would be a fork of that repo,\nand each author",
+          "options": {
+            "location": 29
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rsquo",
+          "options": {
+            "location": 34
+          }
+        },
+        {
+          "type": "text",
+          "value": "s working copy would be a fork of that master:",
+          "options": {
+            "location": 34
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 36
+      },
+      "children": [
+        {
+          "type": "img",
+          "attr": {
+            "src": "{{ site.root }}/fig/forking.svg",
+            "alt": "Forking Repositories"
+          },
+          "options": {
+            "location": 36,
+            "ial": null
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 38
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "However, GitHub only allows a user to have one fork of any particular repo.\nThis creates a problem for us because an author may be involved in writing several lessons,\neach with its own repo.\nWe therefore use ",
+          "options": {
+            "location": 38
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "https://import.github.com/"
+          },
+          "options": {
+            "location": 41,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "GitHub Importer",
+              "options": {
+                "location": 41
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " to create new lessons.\nAfter the lesson has been created,\nwe manually add the ",
+          "options": {
+            "location": 41
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "{{ site.template_repo }}"
+          },
+          "options": {
+            "location": 43,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "template repository",
+              "options": {
+                "location": 43
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " as a remote called ",
+          "options": {
+            "location": 43
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "template",
+          "options": {
+            "location": 43
+          }
+        },
+        {
+          "type": "text",
+          "value": "\nto update the lesson when the template changes.",
+          "options": {
+            "location": 43
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 46
+      },
+      "children": [
+        {
+          "type": "img",
+          "attr": {
+            "src": "{{ site.root }}/fig/repository-links.svg",
+            "alt": "Repository Links"
+          },
+          "options": {
+            "location": 46,
+            "ial": null
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "header",
+      "options": {
+        "level": 2,
+        "raw_text": "GitHub Pages",
+        "location": 48
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "GitHub Pages",
+          "options": {
+            "location": 48
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 50
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "If a repository has a branch called ",
+          "options": {
+            "location": 50
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "gh-pages",
+          "options": {
+            "location": 50
+          }
+        },
+        {
+          "type": "text",
+          "value": " (short for ",
+          "options": {
+            "location": 50
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 50
+          }
+        },
+        {
+          "type": "text",
+          "value": "GitHub Pages",
+          "options": {
+            "location": 50
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 50
+          }
+        },
+        {
+          "type": "text",
+          "value": "),\nGitHub publishes its content to create a website for the repository.\nIf the repository",
+          "options": {
+            "location": 50
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rsquo",
+          "options": {
+            "location": 52
+          }
+        },
+        {
+          "type": "text",
+          "value": "s URL is ",
+          "options": {
+            "location": 52
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "https://github.com/USERNAME/REPOSITORY",
+          "options": {
+            "location": 52
+          }
+        },
+        {
+          "type": "text",
+          "value": ",\nthe website is ",
+          "options": {
+            "location": 52
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "https://USERNAME.github.io/REPOSITORY",
+          "options": {
+            "location": 53
+          }
+        },
+        {
+          "type": "text",
+          "value": ".",
+          "options": {
+            "location": 53
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 55
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "GitHub Pages sites can include static HTML pages,\nwhich are published as-is,\nor they can use ",
+          "options": {
+            "location": 55
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "http://jekyllrb.com/"
+          },
+          "options": {
+            "location": 57,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "Jekyll",
+              "options": {
+                "location": 57
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " as described below\nto compile HTML and/or Markdown pages with embedded directives\nto create the pages for display.",
+          "options": {
+            "location": 57
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "blockquote",
+      "attr": {
+        "class": "callout"
+      },
+      "options": {
+        "location": 61,
+        "ial": {
+          "class": "callout"
+        }
+      },
+      "children": [
+        {
+          "type": "header",
+          "options": {
+            "level": 2,
+            "raw_text": "Why Doesn't My Site Appear?",
+            "location": 61
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "Why Doesn",
+              "options": {
+                "location": 61
+              }
+            },
+            {
+              "type": "smart_quote",
+              "value": "rsquo",
+              "options": {
+                "location": 61
+              }
+            },
+            {
+              "type": "text",
+              "value": "t My Site Appear?",
+              "options": {
+                "location": 61
+              }
+            }
+          ]
+        },
+        {
+          "type": "blank",
+          "value": "\n"
+        },
+        {
+          "type": "p",
+          "options": {
+            "location": 63
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "If the root directory of a repository contains a file called ",
+              "options": {
+                "location": 63
+              }
+            },
+            {
+              "type": "codespan",
+              "value": ".nojekyll",
+              "options": {
+                "location": 63
+              }
+            },
+            {
+              "type": "text",
+              "value": ",\nGitHub will ",
+              "options": {
+                "location": 63
+              }
+            },
+            {
+              "type": "em",
+              "options": {
+                "location": 64
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "value": "not",
+                  "options": {
+                    "location": 64
+                  }
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "value": " generate a website for that repository",
+              "options": {
+                "location": 64
+              }
+            },
+            {
+              "type": "smart_quote",
+              "value": "rsquo",
+              "options": {
+                "location": 64
+              }
+            },
+            {
+              "type": "text",
+              "value": "s ",
+              "options": {
+                "location": 64
+              }
+            },
+            {
+              "type": "codespan",
+              "value": "gh-pages",
+              "options": {
+                "location": 64
+              }
+            },
+            {
+              "type": "text",
+              "value": " branch.",
+              "options": {
+                "location": 64
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 67
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "We write lessons in Markdown because it",
+          "options": {
+            "location": 67
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rsquo",
+          "options": {
+            "location": 67
+          }
+        },
+        {
+          "type": "text",
+          "value": "s simple to learn\nand isn",
+          "options": {
+            "location": 67
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rsquo",
+          "options": {
+            "location": 68
+          }
+        },
+        {
+          "type": "text",
+          "value": "t tied to any specific language.\n(The ReStructured Text format popular in the Python world,\nfor example,\nis a complete unknown to R programmers.)\nIf authors want to write lessons in something else,\nsuch as ",
+          "options": {
+            "location": 68
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "http://rmarkdown.rstudio.com/"
+          },
+          "options": {
+            "location": 73,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "R Markdown",
+              "options": {
+                "location": 73
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": ",\nthey must generate HTML or Markdown that ",
+          "options": {
+            "location": 73
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "http://jekyllrb.com/"
+          },
+          "options": {
+            "location": 74,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "Jekyll",
+              "options": {
+                "location": 74
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " can process\nand commit that to the repository.\nThe ",
+          "options": {
+            "location": 74
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "{{ site.root }}/02-formatting/"
+          },
+          "options": {
+            "location": 76,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "next episode",
+              "options": {
+                "location": 76
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " describes the Markdown we use.",
+          "options": {
+            "location": 76
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "blockquote",
+      "attr": {
+        "class": "callout"
+      },
+      "options": {
+        "location": 78,
+        "ial": {
+          "class": "callout"
+        }
+      },
+      "children": [
+        {
+          "type": "header",
+          "options": {
+            "level": 2,
+            "raw_text": "Teaching Tools",
+            "location": 78
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "Teaching Tools",
+              "options": {
+                "location": 78
+              }
+            }
+          ]
+        },
+        {
+          "type": "blank",
+          "value": "\n"
+        },
+        {
+          "type": "p",
+          "options": {
+            "location": 80
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "We do ",
+              "options": {
+                "location": 80
+              }
+            },
+            {
+              "type": "em",
+              "options": {
+                "location": 80
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "value": "not",
+                  "options": {
+                    "location": 80
+                  }
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "value": " prescribe what tools instructors should use when actually teaching:\nthe ",
+              "options": {
+                "location": 80
+              }
+            },
+            {
+              "type": "a",
+              "attr": {
+                "href": "https://jupyter.org/"
+              },
+              "options": {
+                "location": 81,
+                "ial": null
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Jupyter Notebook",
+                  "options": {
+                    "location": 81
+                  }
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "value": ",\n",
+              "options": {
+                "location": 81
+              }
+            },
+            {
+              "type": "a",
+              "attr": {
+                "href": "https://www.rstudio.com/"
+              },
+              "options": {
+                "location": 82,
+                "ial": null
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "value": "RStudio",
+                  "options": {
+                    "location": 82
+                  }
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "value": ",\nand the good ol",
+              "options": {
+                "location": 82
+              }
+            },
+            {
+              "type": "smart_quote",
+              "value": "rsquo",
+              "options": {
+                "location": 83
+              }
+            },
+            {
+              "type": "text",
+              "value": " command line are equally welcome up on stage.\nAll we specify is the format of the lesson notes.",
+              "options": {
+                "location": 83
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "header",
+      "options": {
+        "level": 2,
+        "raw_text": "Jekyll",
+        "location": 87
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "Jekyll",
+          "options": {
+            "location": 87
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 89
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "GitHub uses ",
+          "options": {
+            "location": 89
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "http://jekyllrb.com/"
+          },
+          "options": {
+            "location": 89,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "Jekyll",
+              "options": {
+                "location": 89
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " to turn Markdown into HTML.\nIt looks for text files that begin with a header formatted like this:",
+          "options": {
+            "location": 89
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "codeblock",
+      "attr": {
+        "class": "source"
+      },
+      "value": "---\nvariable: value\nother_variable: other_value\n---\n...stuff in the page...\n",
+      "options": {
+        "location": 92,
+        "ial": {
+          "class": "source"
+        }
+      }
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 101
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "and inserts the values of those variables into the page when formatting it.\nThe three dashes that start the header ",
+          "options": {
+            "location": 101
+          }
+        },
+        {
+          "type": "em",
+          "options": {
+            "location": 102
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "must",
+              "options": {
+                "location": 102
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " be the first three characters in the file:\neven a single space before them will make ",
+          "options": {
+            "location": 102
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "http://jekyllrb.com/"
+          },
+          "options": {
+            "location": 103,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "Jekyll",
+              "options": {
+                "location": 103
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " ignore the file.",
+          "options": {
+            "location": 103
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 105
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "The header",
+          "options": {
+            "location": 105
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rsquo",
+          "options": {
+            "location": 105
+          }
+        },
+        {
+          "type": "text",
+          "value": "s content must be formatted as ",
+          "options": {
+            "location": 105
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "http://yaml.org/"
+          },
+          "options": {
+            "location": 105,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "YAML",
+              "options": {
+                "location": 105
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": ",\nand may contain Booleans, numbers, character strings, lists, and dictionaries of name/value pairs.\nValues from the header are referred to in the page as ",
+          "options": {
+            "location": 105
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "page.variable",
+          "options": {
+            "location": 107
+          }
+        },
+        {
+          "type": "text",
+          "value": ".\nFor example,\nthis page:",
+          "options": {
+            "location": 107
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "codeblock",
+      "value": "---\nname: Science\n---\nToday we are going to study {{page.name}}.\n",
+      "options": {
+        "location": 111
+      }
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 118
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "is translated into:",
+          "options": {
+            "location": 118
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "codeblock",
+      "value": "<html>\n<body>\n<p>Today we are going to study Science.</p>\n</body>\n</html>\n",
+      "options": {
+        "location": 120
+      }
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "blockquote",
+      "attr": {
+        "class": "callout"
+      },
+      "options": {
+        "location": 128,
+        "ial": {
+          "class": "callout"
+        }
+      },
+      "children": [
+        {
+          "type": "header",
+          "options": {
+            "level": 2,
+            "raw_text": "Back in the Day...",
+            "location": 128
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "Back in the Day",
+              "options": {
+                "location": 128
+              }
+            },
+            {
+              "type": "typographic_sym",
+              "value": "hellip",
+              "options": {
+                "location": 128
+              }
+            }
+          ]
+        },
+        {
+          "type": "blank",
+          "value": "\n"
+        },
+        {
+          "type": "p",
+          "options": {
+            "location": 130
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "The previous version of our template did not rely on Jekyll,\nbut instead required authors to build HTML on their desktops\nand commit that to the lesson repository",
+              "options": {
+                "location": 130
+              }
+            },
+            {
+              "type": "smart_quote",
+              "value": "rsquo",
+              "options": {
+                "location": 132
+              }
+            },
+            {
+              "type": "text",
+              "value": "s ",
+              "options": {
+                "location": 132
+              }
+            },
+            {
+              "type": "codespan",
+              "value": "gh-pages",
+              "options": {
+                "location": 132
+              }
+            },
+            {
+              "type": "text",
+              "value": " branch.\nThis allowed us to use whatever mix of tools we wanted for creating HTML (e.g., ",
+              "options": {
+                "location": 132
+              }
+            },
+            {
+              "type": "a",
+              "attr": {
+                "href": "https://pandoc.org/"
+              },
+              "options": {
+                "location": 133,
+                "ial": null
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Pandoc",
+                  "options": {
+                    "location": 133
+                  }
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "value": "),\nbut complicated the common case for the sake of uncommon cases,\nand didn",
+              "options": {
+                "location": 133
+              }
+            },
+            {
+              "type": "smart_quote",
+              "value": "rsquo",
+              "options": {
+                "location": 135
+              }
+            },
+            {
+              "type": "text",
+              "value": "t model the workflow we want learners to use.",
+              "options": {
+                "location": 135
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "header",
+      "options": {
+        "level": 2,
+        "raw_text": "Configuration",
+        "location": 138
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "Configuration",
+          "options": {
+            "location": 138
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 140
+      },
+      "children": [
+        {
+          "type": "a",
+          "attr": {
+            "href": "http://jekyllrb.com/"
+          },
+          "options": {
+            "location": 140,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "Jekyll",
+              "options": {
+                "location": 140
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " also reads values from a configuration file called ",
+          "options": {
+            "location": 140
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "_config.yml",
+          "options": {
+            "location": 140
+          }
+        },
+        {
+          "type": "text",
+          "value": ",\nwhich are referred to in pages as ",
+          "options": {
+            "location": 140
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "site.variable",
+          "options": {
+            "location": 141
+          }
+        },
+        {
+          "type": "text",
+          "value": ".\nThe ",
+          "options": {
+            "location": 141
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "{{ site.template_repo }}"
+          },
+          "options": {
+            "location": 142,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "lesson template",
+              "options": {
+                "location": 142
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " does ",
+          "options": {
+            "location": 142
+          }
+        },
+        {
+          "type": "em",
+          "options": {
+            "location": 142
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "not",
+              "options": {
+                "location": 142
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " include ",
+          "options": {
+            "location": 142
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "_config.yml",
+          "options": {
+            "location": 142
+          }
+        },
+        {
+          "type": "text",
+          "value": ",\nsince each lesson will change some of its value,\nwhich would result in merge collisions each time the lesson was updated from the template.\nInstead,\nthe ",
+          "options": {
+            "location": 142
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "{{ site.template_repo }}"
+          },
+          "options": {
+            "location": 146,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "template",
+              "options": {
+                "location": 146
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " contains a script called ",
+          "options": {
+            "location": 146
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "bin/initialize",
+          "options": {
+            "location": 146
+          }
+        },
+        {
+          "type": "text",
+          "value": "\nwhich should be run ",
+          "options": {
+            "location": 146
+          }
+        },
+        {
+          "type": "em",
+          "options": {
+            "location": 147
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "once",
+              "options": {
+                "location": 147
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " to create an initial ",
+          "options": {
+            "location": 147
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "_config.yml",
+          "options": {
+            "location": 147
+          }
+        },
+        {
+          "type": "text",
+          "value": " file.\nThe author should then edit the values in the top half of the file.",
+          "options": {
+            "location": 147
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 150
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "The ",
+          "options": {
+            "location": 150
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "{{ site.template_repo }}"
+          },
+          "options": {
+            "location": 150,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "template",
+              "options": {
+                "location": 150
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " also contains ",
+          "options": {
+            "location": 150
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "_config_dev.yml",
+          "options": {
+            "location": 150
+          }
+        },
+        {
+          "type": "text",
+          "value": ",\nwhich overrides some settings for use during desktop development.\nThe Makefile that comes with the ",
+          "options": {
+            "location": 150
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "{{ site.template_repo }}"
+          },
+          "options": {
+            "location": 152,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "template",
+              "options": {
+                "location": 152
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": "\nadds these values to those in ",
+          "options": {
+            "location": 152
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "_config.yml",
+          "options": {
+            "location": 153
+          }
+        },
+        {
+          "type": "text",
+          "value": " when running a local server\n(see ",
+          "options": {
+            "location": 153
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "#previewing"
+          },
+          "options": {
+            "location": 154,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "below",
+              "options": {
+                "location": 154
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": ").",
+          "options": {
+            "location": 154
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "header",
+      "options": {
+        "level": 2,
+        "raw_text": "Collections",
+        "location": 156
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "Collections",
+          "options": {
+            "location": 156
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 158
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "If several Markdown files are stored in a directory whose name begins with an underscore,\n",
+          "options": {
+            "location": 158
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "http://jekyllrb.com/"
+          },
+          "options": {
+            "location": 159,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "Jekyll",
+              "options": {
+                "location": 159
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " creates a ",
+          "options": {
+            "location": 159
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "https://jekyllrb.com/docs/collections/"
+          },
+          "options": {
+            "location": 159,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "collection",
+              "options": {
+                "location": 159
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " for them.\nWe rely on this for both lesson episodes (stored in ",
+          "options": {
+            "location": 159
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "_episodes",
+          "options": {
+            "location": 160
+          }
+        },
+        {
+          "type": "text",
+          "value": ")\nand extra files (stored in ",
+          "options": {
+            "location": 160
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "_extras",
+          "options": {
+            "location": 161
+          }
+        },
+        {
+          "type": "text",
+          "value": ").\nFor example,\nputting the extra files in ",
+          "options": {
+            "location": 161
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "_extras",
+          "options": {
+            "location": 163
+          }
+        },
+        {
+          "type": "text",
+          "value": " allows us to populate the ",
+          "options": {
+            "location": 163
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "ldquo",
+          "options": {
+            "location": 163
+          }
+        },
+        {
+          "type": "text",
+          "value": "Extras",
+          "options": {
+            "location": 163
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rdquo",
+          "options": {
+            "location": 163
+          }
+        },
+        {
+          "type": "text",
+          "value": " menu pulldown automatically.\nTo clarify what will appear where,\nwe store files that appear directly in the navigation bar\nin the root directory of the lesson.\n",
+          "options": {
+            "location": 163
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "{{ site.root }}/03-organization/"
+          },
+          "options": {
+            "location": 167,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "The last episode",
+              "options": {
+                "location": 167
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " describes these files.",
+          "options": {
+            "location": 167
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "header",
+      "options": {
+        "level": 2,
+        "raw_text": "Installing",
+        "location": 169
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "Installing",
+          "options": {
+            "location": 169
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 171
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "You can preview changes by pushing to the ",
+          "options": {
+            "location": 171
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "gh-pages",
+          "options": {
+            "location": 171
+          }
+        },
+        {
+          "type": "text",
+          "value": " branch of your own repository,\nbut it",
+          "options": {
+            "location": 171
+          }
+        },
+        {
+          "type": "smart_quote",
+          "value": "rsquo",
+          "options": {
+            "location": 172
+          }
+        },
+        {
+          "type": "text",
+          "value": "s often easier to view them locally first.\nTo do that,\nyou will need to install ",
+          "options": {
+            "location": 172
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "http://jekyllrb.com/"
+          },
+          "options": {
+            "location": 174,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "Jekyll",
+              "options": {
+                "location": 174
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " and a few other packages used by GitHub Pages.\nThe easiest way to do that is:",
+          "options": {
+            "location": 174
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "ol",
+      "options": {
+        "location": 177
+      },
+      "children": [
+        {
+          "type": "li",
+          "options": {
+            "location": 177
+          },
+          "children": [
+            {
+              "type": "p",
+              "options": {
+                "location": 177,
+                "transparent": true
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Install Ruby if you don",
+                  "options": {
+                    "location": 177
+                  }
+                },
+                {
+                  "type": "smart_quote",
+                  "value": "rsquo",
+                  "options": {
+                    "location": 177
+                  }
+                },
+                {
+                  "type": "text",
+                  "value": "t already have it.",
+                  "options": {
+                    "location": 177
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "options": {
+            "location": 178
+          },
+          "children": [
+            {
+              "type": "p",
+              "options": {
+                "location": 178,
+                "transparent": true
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Install Ruby Gems (Ruby",
+                  "options": {
+                    "location": 178
+                  }
+                },
+                {
+                  "type": "smart_quote",
+                  "value": "rsquo",
+                  "options": {
+                    "location": 178
+                  }
+                },
+                {
+                  "type": "text",
+                  "value": "s package manager).",
+                  "options": {
+                    "location": 178
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "options": {
+            "location": 179
+          },
+          "children": [
+            {
+              "type": "p",
+              "options": {
+                "location": 179,
+                "transparent": true
+              },
+              "children": [
+                {
+                  "type": "codespan",
+                  "value": "gem install github-pages",
+                  "options": {
+                    "location": 179
+                  }
+                },
+                {
+                  "type": "text",
+                  "value": " (which will give you Jekyll and things it depends on).",
+                  "options": {
+                    "location": 179
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 181
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "See ",
+          "options": {
+            "location": 181
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "https://jekyllrb.com/docs/installation/"
+          },
+          "options": {
+            "location": 181,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "the Jekyll installation documentation",
+              "options": {
+                "location": 181
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": "\nfor full instructions.",
+          "options": {
+            "location": 181
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "header",
+      "options": {
+        "level": 2,
+        "raw_text": "Previewing",
+        "location": 184
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "Previewing",
+          "options": {
+            "location": 184
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 186
+      },
+      "children": [
+        {
+          "type": "a",
+          "attr": {
+            "href": "http://jekyllrb.com/"
+          },
+          "options": {
+            "location": 186,
+            "ial": null
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "Jekyll",
+              "options": {
+                "location": 186
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": " can be used in two ways:\nto compile source files into HTML pages in the ",
+          "options": {
+            "location": 186
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "_site",
+          "options": {
+            "location": 187
+          }
+        },
+        {
+          "type": "text",
+          "value": " directory,\nor to do that and also run a small web server at ",
+          "options": {
+            "location": 187
+          }
+        },
+        {
+          "type": "a",
+          "attr": {
+            "href": "http://127.0.0.1:4000/"
+          },
+          "options": {
+            "location": 188
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "http://127.0.0.1:4000/",
+              "options": {
+                "location": 188
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": "\nso that the pages can be previewed.\nWe recommend using the latter,\nsince it gives a more accurate impression of what your lesson will actually look like.",
+          "options": {
+            "location": 188
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    },
+    {
+      "type": "p",
+      "options": {
+        "location": 193
+      },
+      "children": [
+        {
+          "type": "text",
+          "value": "The Makefile in the root directory of the project contains commands for building the site.\n",
+          "options": {
+            "location": 193
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "make site",
+          "options": {
+            "location": 194
+          }
+        },
+        {
+          "type": "text",
+          "value": " builds files but does not run a server,\nwhile ",
+          "options": {
+            "location": 194
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "make serve",
+          "options": {
+            "location": 195
+          }
+        },
+        {
+          "type": "text",
+          "value": " builds the files and runs a server.\n(It also re-builds the site whenever it notices changes in the source files.)\nRun ",
+          "options": {
+            "location": 195
+          }
+        },
+        {
+          "type": "codespan",
+          "value": "make",
+          "options": {
+            "location": 197
+          }
+        },
+        {
+          "type": "text",
+          "value": " on its own to get a full list of commands.",
+          "options": {
+            "location": 197
+          }
+        }
+      ]
+    },
+    {
+      "type": "blank",
+      "value": "\n"
+    }
+  ]
+}

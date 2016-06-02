@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 '''
-Validate lesson files and their contents.
+Check lesson files and their contents.
 '''
 
 import sys
@@ -47,8 +47,8 @@ def main():
     docs = read_all_markdown(args, args.source_dir)
     check_fileset(args, docs)
     for filename in docs.keys():
-        val = create_validator(args, filename)
-        val.check(args, filename)
+        checker = create_checker(args, filename, docs[filename][0], docs[filename][1])
+        checker.check()
     args.reporter.report()
 
 
@@ -141,10 +141,12 @@ def check_fileset(args, docs):
                         'Missing or non-consecutive episode numbers {0}'.format(seen))
 
 
-def create_validator(args, filename):
-    '''Create appropriate validator for file.'''
+def create_checker(args, filename, metadata, doc):
+    '''Create appropriate checker for file.'''
 
-    return None # FIXME
+    for (pat, cls) in CHECKERS:
+        if pat.match(filename):
+            return cls(args, filename, metadata, doc)
 
 
 def require(condition, message):
@@ -153,6 +155,57 @@ def require(condition, message):
     if not condition:
         print(message, file=sys.stderr)
         sys.exit(1)
+
+
+class ValidateGeneric(object):
+    '''Generic Markdown file checker.'''
+
+    def __init__(self, args, filename, metadata, doc):
+        '''Cache arguments for checking.'''
+
+        super(ValidateGeneric, self).__init__()
+        self.args = args
+        self.filename = filename
+        self.metadata = metadata
+        self.doc = doc
+
+    def check(self):
+        '''Run tests on metadata.'''
+
+        self.check_metadata()
+        self.check_body()
+
+    def check_metadata(self):
+        '''Check the YAML metadata.'''
+
+        if self.metadata is None:
+            return
+
+        pass # FIXME
+
+    def check_body(self):
+        '''Run generic tests on body of document.'''
+
+        for node in self.findall(self.doc, 'blockquote'):
+            print(node)
+
+
+    def findall(self, node, node_type, accum=None):
+        '''Find matches.'''
+
+        if accum is None:
+            accum = []
+        if node.get('type', None) == node_type:
+            accum.append(node)
+        for child in node.get('children', []):
+            self.findall(child, node_type, accum)
+        return accum
+
+
+CHECKERS = [
+    (re.compile(r''), ValidateGeneric)
+]
+
 
 if __name__ == '__main__':
     main()
