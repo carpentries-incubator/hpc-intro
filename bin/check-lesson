@@ -38,6 +38,18 @@ REQUIRED_FILES = [
 # Episode filename pattern.
 P_EPISODE_FILENAME = re.compile(r'/_episodes/(\d\d)-[-\w]+.md$')
 
+# What kinds of blockquotes are allowed?
+KNOWN_BLOCKQUOTES = {
+    'callout',
+    'challenge',
+    'checklist',
+    'keypoints',
+    'objectives',
+    'prereq',
+    'solution',
+    'testimonial'
+}
+
 
 def main():
     '''Main driver.'''
@@ -165,6 +177,7 @@ class ValidateGeneric(object):
 
         super(ValidateGeneric, self).__init__()
         self.args = args
+        self.reporter = self.args.reporter # for convenience
         self.filename = filename
         self.metadata = metadata
         self.doc = doc
@@ -186,20 +199,37 @@ class ValidateGeneric(object):
     def check_body(self):
         '''Run generic tests on body of document.'''
 
-        for node in self.findall(self.doc, 'blockquote'):
-            print(node)
+        for node in self.findall(self.doc, {'type' : 'blockquote'}):
+            cls = node['attr']['class']
+            self.reporter.check(cls in KNOWN_BLOCKQUOTES,
+                                'Unknown blockquote type {0} in {1}'.format(cls, self.filename))
 
-
-    def findall(self, node, node_type, accum=None):
+    def findall(self, node, pattern, accum=None):
         '''Find matches.'''
 
+        assert type(pattern) == dict, 'Patterns must be dictionaries'
         if accum is None:
             accum = []
-        if node.get('type', None) == node_type:
+        if self.match(node, pattern):
             accum.append(node)
         for child in node.get('children', []):
-            self.findall(child, node_type, accum)
+            self.findall(child, pattern, accum)
         return accum
+
+    def match(self, node, pattern):
+        '''Does this node match the given pattern?'''
+
+        for key in pattern:
+            if key not in node:
+                return False
+            val = pattern[key]
+            if type(val) == str:
+                if node[key] != val:
+                    return False
+            elif type(val) == dict:
+                if not self.match(node[key], val):
+                    return False
+        return True
 
 
 CHECKERS = [
