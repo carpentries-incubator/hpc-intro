@@ -8,6 +8,7 @@ import sys
 import os
 import glob
 import json
+import yaml
 from subprocess import Popen, PIPE
 from optparse import OptionParser
 
@@ -25,10 +26,17 @@ class Reporter(object):
         super(Reporter, self).__init__()
         self.messages = []
 
-    def add(self, m):
-        '''Append error.'''
+    def check(self, condition, message):
+        '''Append error if condition not met.'''
 
-        self.messages.append(m)
+        if not condition:
+            self.add(message)
+
+
+    def add(self, message):
+        '''Append error unilaterally.'''
+
+        self.messages.append(message)
 
 
     def report(self):
@@ -74,24 +82,40 @@ def parse_args():
 
 
 def read_all_markdown(args, source_dir):
-    '''Read source files, returning {path : parsetree}.'''
+    '''Read source files, returning {path : (yaml, parsetree)}.'''
 
     all_dirs = [os.path.join(source_dir, d) for d in SOURCE_DIRS]
     all_patterns = [os.path.join(d, '*.md') for d in all_dirs]
     result = {}
     for pat in all_patterns:
         for filename in glob.glob(pat):
-            result[filename] = read_markdown(args, filename)
+            data = read_markdown(args, filename)
+            if data:
+                result[filename] = data
     return result
 
 
 def read_markdown(args, path):
-    '''Get AST for Markdown file.'''
+    '''Get YAML and AST for Markdown file, returning pair or None.'''
 
-    cmd = 'ruby {0} {1}'.format(args.parser, path)
-    p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, close_fds=True)
-    doc = json.loads(str(p.stdout.read(), encoding='utf-8'))
-    return doc
+    # Full text.
+    with open(path, 'r') as reader:
+        text = reader.read()
+
+    # Check and split.
+    pieces = text.split('---', 2)
+    if len(pieces) != 3:
+        args.reporter.add('Malformed YAML header in {0}'.format(path))
+        return None
+    header = yaml.load(pieces[1])
+
+    body = pieces[2]
+    cmd = 'ruby {0}'.format(args.parser)
+    p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, close_fds=True, universal_newlines=True)
+    stdout_data, stderr_data = p.communicate(body)
+    doc = json.loads(stdout_data)
+
+    return (header, doc)
 
 
 def check_fileset_correct(args, docs):
