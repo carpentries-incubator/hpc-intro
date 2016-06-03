@@ -170,7 +170,7 @@ def create_checker(args, filename, info):
     '''Create appropriate checker for file.'''
 
     for (pat, cls) in CHECKERS:
-        if pat.match(filename):
+        if pat.search(filename):
             return cls(args, filename, **info)
 
 
@@ -182,19 +182,22 @@ def require(condition, message):
         sys.exit(1)
 
 
-class ValidateGeneric(object):
-    '''Generic Markdown file checker.'''
+class CheckBase(object):
+    '''Base class for checking Markdown files.'''
 
     def __init__(self, args, filename, metadata, metadata_len, doc):
         '''Cache arguments for checking.'''
 
-        super(ValidateGeneric, self).__init__()
+        super(CheckBase, self).__init__()
         self.args = args
         self.reporter = self.args.reporter # for convenience
         self.filename = filename
         self.metadata = metadata
         self.metadata_len = metadata_len
         self.doc = doc
+
+        self.layout = None
+
 
     def check(self):
         '''Run tests on metadata.'''
@@ -203,13 +206,17 @@ class ValidateGeneric(object):
         self.check_blockquote_classes()
         self.check_codeblock_classes()
 
+
     def check_metadata(self):
         '''Check the YAML metadata.'''
 
-        if self.metadata is None:
-            return
+        self.reporter.check(self.metadata is not None,
+                            'Missing metadata entirely in {0}',
+                            self.filename)
 
-        pass # FIXME
+        if self.layout is not None:
+            self.reporter.check_field(self.filename, 'metadata', self.metadata, 'layout', self.layout)
+
 
     def check_blockquote_classes(self):
         '''Check that all blockquotes have known classes.'''
@@ -220,6 +227,7 @@ class ValidateGeneric(object):
                                 'Unknown or missing blockquote type {0} in {1}:{2}',
                                 cls, self.filename, self.get_loc(node))
 
+
     def check_codeblock_classes(self):
         '''Check that all code blocks have known classes.'''
 
@@ -228,6 +236,7 @@ class ValidateGeneric(object):
             self.reporter.check(cls in KNOWN_CODEBLOCKS,
                                 'Unknown or missing code block type {0} in {1}:{2}',
                                 cls, self.filename, self.get_loc(node))
+
 
     def find_all(self, node, pattern, accum=None):
         '''Find all matches for a pattern.'''
@@ -240,6 +249,7 @@ class ValidateGeneric(object):
         for child in node.get('children', []):
             self.find_all(child, pattern, accum)
         return accum
+
 
     def match(self, node, pattern):
         '''Does this node match the given pattern?'''
@@ -256,6 +266,7 @@ class ValidateGeneric(object):
                     return False
         return True
 
+
     def get_val(self, node, *chain):
         '''Get value one or more levels down.'''
 
@@ -266,14 +277,64 @@ class ValidateGeneric(object):
                 break
         return curr
 
+
     def get_loc(self, node):
         '''Convenience method to get node's line number.'''
 
         return self.get_val(node, 'options', 'location') + self.metadata_len
 
 
+class CheckNonJekyll(CheckBase):
+    '''Check a file that isn't translated by Jekyll.'''
+
+    def __init__(self, args, filename, metadata, metadata_len, doc):
+        super(CheckNonJekyll, self).__init__(args, filename, metadata, metadata_len, doc)
+
+
+    def check_metadata(self):
+        self.reporter.check(self.metadata is None,
+                            'Unexpected metadata in {0}',
+                            self.filename)
+
+
+class CheckIndex(CheckBase):
+    '''Check the main index page.'''
+
+    def __init__(self, args, filename, metadata, metadata_len, doc):
+        super(CheckIndex, self).__init__(args, filename, metadata, metadata_len, doc)
+        self.layout = 'lesson_homepage'
+
+
+class CheckEpisode(CheckBase):
+    '''Check an episode page.'''
+
+    def __init__(self, args, filename, metadata, metadata_len, doc):
+        super(CheckEpisode, self).__init__(args, filename, metadata, metadata_len, doc)
+
+
+class CheckReference(CheckBase):
+    '''Check the reference page.'''
+
+    def __init__(self, args, filename, metadata, metadata_len, doc):
+        super(CheckReference, self).__init__(args, filename, metadata, metadata_len, doc)
+        self.layout = 'reference'
+
+
+class CheckGeneric(CheckBase):
+    '''Check a generic page.'''
+
+    def __init__(self, args, filename, metadata, metadata_len, doc):
+        super(CheckGeneric, self).__init__(args, filename, metadata, metadata_len, doc)
+        self.layout = 'page'
+
+
 CHECKERS = [
-    (re.compile(r'.*\.md'), ValidateGeneric)
+    (re.compile(r'CONTRIBUTING\.md'), CheckNonJekyll),
+    (re.compile(r'README\.md'), CheckNonJekyll),
+    (re.compile(r'index\.md'), CheckIndex),
+    (re.compile(r'reference\.md'), CheckReference),
+    (re.compile(r'_episodes/.*\.md'), CheckEpisode),
+    (re.compile(r'.*\.md'), CheckGeneric)
 ]
 
 
