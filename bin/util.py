@@ -9,17 +9,17 @@ class Reporter(object):
         super(Reporter, self).__init__()
         self.messages = []
 
-    def check(self, condition, message):
+    def check(self, condition, fmt, *args):
         '''Append error if condition not met.'''
 
         if not condition:
-            self.add(message)
+            self.add(fmt, *args)
 
 
-    def add(self, message):
+    def add(self, fmt, *args):
         '''Append error unilaterally.'''
 
-        self.messages.append(message)
+        self.messages.append(fmt.format(*args))
 
 
     def report(self, stream=sys.stdout):
@@ -27,6 +27,5 @@ class Reporter(object):
 
         if not self.messages:
             return
-        print('***', file=stream)
         for m in self.messages:
             print(m, file=stream)

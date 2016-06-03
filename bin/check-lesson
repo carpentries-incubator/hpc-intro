@@ -50,6 +50,13 @@ KNOWN_BLOCKQUOTES = {
     'testimonial'
 }
 
+# What kinds of code fragments are allowed?
+KNOWN_CODEBLOCKS = {
+    'error',
+    'output',
+    'source'
+}
+
 
 def main():
     '''Main driver.'''
@@ -59,7 +66,7 @@ def main():
     docs = read_all_markdown(args, args.source_dir)
     check_fileset(args, docs)
     for filename in docs.keys():
-        checker = create_checker(args, filename, docs[filename][0], docs[filename][1])
+        checker = create_checker(args, filename, docs[filename])
         checker.check()
     args.reporter.report()
 
@@ -87,7 +94,7 @@ def parse_args():
 
 
 def read_all_markdown(args, source_dir):
-    '''Read source files, returning {path : (yaml, parsetree)}.'''
+    '''Read source files, returning {path : {'metadta':yaml, 'doc':doc}}.'''
 
     all_dirs = [os.path.join(source_dir, d) for d in SOURCE_DIRS]
     all_patterns = [os.path.join(d, '*.md') for d in all_dirs]
@@ -101,17 +108,17 @@ def read_all_markdown(args, source_dir):
 
 
 def read_markdown(args, path):
-    '''Get YAML and AST for Markdown file, returning pair (yaml | None, json).'''
-
-    # Initialize.
-    header = None
-    with open(path, 'r') as reader:
-        body = reader.read()
+    '''Get YAML and AST for Markdown file, returning {'metadata':yaml, 'doc':doc}.'''
 
     # Split and extract YAML (if present).
+    metadata = None
+    metadata_len = None
+    with open(path, 'r') as reader:
+        body = reader.read()
     pieces = body.split('---', 2)
     if len(pieces) == 3:
-        header = yaml.load(pieces[1])
+        metadata = yaml.load(pieces[1])
+        metadata_len = pieces[1].count('\n')
         body = pieces[2]
 
     # Parse Markdown.
@@ -120,7 +127,11 @@ def read_markdown(args, path):
     stdout_data, stderr_data = p.communicate(body)
     doc = json.loads(stdout_data)
 
-    return (header, doc)
+    return {
+        'metadata': metadata,
+        'metadata_len': metadata_len,
+        'doc': doc
+    }
 
 
 def check_fileset(args, docs):
@@ -131,7 +142,7 @@ def check_fileset(args, docs):
     required = [p[1].replace('%', args.source_dir) for p in REQUIRED_FILES]
     missing = set(required) - set(actual)
     for m in missing:
-        args.reporter.add('Missing required file {0}'.format(m))
+        args.reporter.add('Missing required file {0}', m)
 
     # Check episode files' names.
     seen = []
@@ -142,23 +153,25 @@ def check_fileset(args, docs):
         if m and m.group(1):
             seen.append(m.group(1))
         else:
-            args.reporter.add('Episode {0} has badly-formatted filename'.format(e))
+            args.reporter.add('Episode {0} has badly-formatted filename', e)
 
     # Check episode filename numbering.
     args.reporter.check(len(seen) == len(set(seen)),
-                        'Duplicate episode numbers {0} vs {1}'.format(sorted(seen), sorted(set(seen))))
+                        'Duplicate episode numbers {0} vs {1}',
+                        sorted(seen), sorted(set(seen)))
     seen = [int(s) for s in seen]
     seen.sort()
     args.reporter.check(all([i+1 == n for (i, n) in enumerate(seen)]),
-                        'Missing or non-consecutive episode numbers {0}'.format(seen))
+                        'Missing or non-consecutive episode numbers {0}',
+                        seen)
 
 
-def create_checker(args, filename, metadata, doc):
+def create_checker(args, filename, info):
     '''Create appropriate checker for file.'''
 
     for (pat, cls) in CHECKERS:
         if pat.match(filename):
-            return cls(args, filename, metadata, doc)
+            return cls(args, filename, **info)
 
 
 def require(condition, message):
@@ -172,7 +185,7 @@ def require(condition, message):
 class ValidateGeneric(object):
     '''Generic Markdown file checker.'''
 
-    def __init__(self, args, filename, metadata, doc):
+    def __init__(self, args, filename, metadata, metadata_len, doc):
         '''Cache arguments for checking.'''
 
         super(ValidateGeneric, self).__init__()
@@ -180,13 +193,15 @@ class ValidateGeneric(object):
         self.reporter = self.args.reporter # for convenience
         self.filename = filename
         self.metadata = metadata
+        self.metadata_len = metadata_len
         self.doc = doc
 
     def check(self):
         '''Run tests on metadata.'''
 
         self.check_metadata()
-        self.check_body()
+        self.check_blockquote_classes()
+        self.check_codeblock_classes()
 
     def check_metadata(self):
         '''Check the YAML metadata.'''
@@ -196,16 +211,26 @@ class ValidateGeneric(object):
 
         pass # FIXME
 
-    def check_body(self):
-        '''Run generic tests on body of document.'''
+    def check_blockquote_classes(self):
+        '''Check that all blockquotes have known classes.'''
 
-        for node in self.findall(self.doc, {'type' : 'blockquote'}):
-            cls = node['attr']['class']
+        for node in self.find_all(self.doc, {'type' : 'blockquote'}):
+            cls = self.get_val(node, 'attr', 'class')
             self.reporter.check(cls in KNOWN_BLOCKQUOTES,
-                                'Unknown blockquote type {0} in {1}'.format(cls, self.filename))
+                                'Unknown or missing blockquote type {0} in {1}:{2}',
+                                cls, self.filename, self.get_loc(node))
 
-    def findall(self, node, pattern, accum=None):
-        '''Find matches.'''
+    def check_codeblock_classes(self):
+        '''Check that all code blocks have known classes.'''
+
+        for node in self.find_all(self.doc, {'type' : 'codeblock'}):
+            cls = self.get_val(node, 'attr', 'class')
+            self.reporter.check(cls in KNOWN_CODEBLOCKS,
+                                'Unknown or missing code block type {0} in {1}:{2}',
+                                cls, self.filename, self.get_loc(node))
+
+    def find_all(self, node, pattern, accum=None):
+        '''Find all matches for a pattern.'''
 
         assert type(pattern) == dict, 'Patterns must be dictionaries'
         if accum is None:
@@ -213,7 +238,7 @@ class ValidateGeneric(object):
         if self.match(node, pattern):
             accum.append(node)
         for child in node.get('children', []):
-            self.findall(child, pattern, accum)
+            self.find_all(child, pattern, accum)
         return accum
 
     def match(self, node, pattern):
@@ -231,9 +256,24 @@ class ValidateGeneric(object):
                     return False
         return True
 
+    def get_val(self, node, *chain):
+        '''Get value one or more levels down.'''
+
+        curr = node
+        for selector in chain:
+            curr = curr.get(selector, None)
+            if curr is None:
+                break
+        return curr
+
+    def get_loc(self, node):
+        '''Convenience method to get node's line number.'''
+
+        return self.get_val(node, 'options', 'location') + self.metadata_len
+
 
 CHECKERS = [
-    (re.compile(r''), ValidateGeneric)
+    (re.compile(r'.*\.md'), ValidateGeneric)
 ]
 
 

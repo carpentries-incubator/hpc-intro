@@ -114,6 +114,7 @@ name: Science
 ---
 Today we are going to study {{page.name}}.
 ~~~
+{: .source}
 
 is translated into:
 
@@ -124,6 +125,7 @@ is translated into:
 </body>
 </html>
 ~~~
+{: .source}
 
 > ## Back in the Day...
 >
