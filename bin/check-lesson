@@ -15,6 +15,7 @@ from optparse import OptionParser
 
 from util import Reporter
 
+__version__ = '0.2'
 
 # Where to look for source Markdown files.
 SOURCE_DIRS = ['', '_episodes', '_extras']
@@ -142,7 +143,7 @@ def check_fileset(args, docs):
     required = [p[1].replace('%', args.source_dir) for p in REQUIRED_FILES]
     missing = set(required) - set(actual)
     for m in missing:
-        args.reporter.add('Missing required file {0}', m)
+        args.reporter.add(None, 'Missing required file {0}', m)
 
     # Check episode files' names.
     seen = []
@@ -153,15 +154,17 @@ def check_fileset(args, docs):
         if m and m.group(1):
             seen.append(m.group(1))
         else:
-            args.reporter.add('Episode {0} has badly-formatted filename', e)
+            args.reporter.add(None, 'Episode {0} has badly-formatted filename', e)
 
     # Check episode filename numbering.
     args.reporter.check(len(seen) == len(set(seen)),
+                        None,
                         'Duplicate episode numbers {0} vs {1}',
                         sorted(seen), sorted(set(seen)))
     seen = [int(s) for s in seen]
     seen.sort()
     args.reporter.check(all([i+1 == n for (i, n) in enumerate(seen)]),
+                        None,
                         'Missing or non-consecutive episode numbers {0}',
                         seen)
 
@@ -211,8 +214,8 @@ class CheckBase(object):
         '''Check the YAML metadata.'''
 
         self.reporter.check(self.metadata is not None,
-                            'Missing metadata entirely in {0}',
-                            self.filename)
+                            self.filename,
+                            'Missing metadata entirely in {0}')
 
         if self.layout is not None:
             self.reporter.check_field(self.filename, 'metadata', self.metadata, 'layout', self.layout)
@@ -224,8 +227,9 @@ class CheckBase(object):
         for node in self.find_all(self.doc, {'type' : 'blockquote'}):
             cls = self.get_val(node, 'attr', 'class')
             self.reporter.check(cls in KNOWN_BLOCKQUOTES,
+                                (self.filename, self.get_loc(node)),
                                 'Unknown or missing blockquote type {0} in {1}:{2}',
-                                cls, self.filename, self.get_loc(node))
+                                cls)
 
 
     def check_codeblock_classes(self):
@@ -234,8 +238,9 @@ class CheckBase(object):
         for node in self.find_all(self.doc, {'type' : 'codeblock'}):
             cls = self.get_val(node, 'attr', 'class')
             self.reporter.check(cls in KNOWN_CODEBLOCKS,
+                                (self.filename, self.get_loc(node)),
                                 'Unknown or missing code block type {0} in {1}:{2}',
-                                cls, self.filename, self.get_loc(node))
+                                cls)
 
 
     def find_all(self, node, pattern, accum=None):
@@ -293,8 +298,8 @@ class CheckNonJekyll(CheckBase):
 
     def check_metadata(self):
         self.reporter.check(self.metadata is None,
-                            'Unexpected metadata in {0}',
-                            self.filename)
+                            self.filename,
+                            'Unexpected metadata in {0}')
 
 
 class CheckIndex(CheckBase):
