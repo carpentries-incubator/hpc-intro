@@ -111,6 +111,8 @@ and have final say over what gets merged into the lesson.
 
 [This documentation][example-site] explains how we format our lessons
 (and is itself an example of that formatting).
+The episode on tooling explains
+[how to check and preview changes]({{ site.root }}/01-tooling/#checking-and-previewing).
 
 ## Other Resources
 

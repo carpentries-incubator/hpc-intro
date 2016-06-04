@@ -168,26 +168,17 @@ we store files that appear directly in the navigation bar
 in the root directory of the lesson.
 [The last episode]({{ site.root }}/03-organization/) describes these files.
 
-## Installing
+## Checking and Previewing
 
-You can preview changes by pushing to the `gh-pages` branch of your own repository,
-but it's often easier to view them locally first.
-To do that,
-you will need to install [Jekyll][jekyll] and a few other packages used by GitHub Pages.
-The easiest way to do that is:
-
-1.  Install Ruby if you don't already have it.
-2.  Install Ruby Gems (Ruby's package manager).
-3.  `gem install github-pages` (which will give you Jekyll and things it depends on).
-
-See [the Jekyll installation documentation][jekyll-install]
-for full instructions.
-
-## Previewing
+The lesson template includes a Python program to check
+whether lesson files conform to our template.
+You can run this using `make lesson-check`.
+It relies on a small Ruby script that uses Jekyll's own Markdown parser (called Kramdown)
+so that we are guaranteed to be checking the same dialect of Markdown that Jekyll uses on GitHub.
 
 [Jekyll][jekyll] can be used in two ways:
 to compile source files into HTML pages in the `_site` directory,
-or to do that and also run a small web server at <http://127.0.0.1:4000/>
+or to do that and also run a small web server at <http://0.0.0.0:4000/>
 so that the pages can be previewed.
 We recommend using the latter,
 since it gives a more accurate impression of what your lesson will actually look like.
@@ -197,6 +188,10 @@ The Makefile in the root directory of the project contains commands for building
 while `make serve` builds the files and runs a server.
 (It also re-builds the site whenever it notices changes in the source files.)
 Run `make` on its own to get a full list of commands.
+
+In order to use Jekyll and/or the checking script,
+you may need to install it and some other software.
+The [setup instructions]({{ site.root }}/setup/) explain what you need and how to get it.
 
 [github-importer]: https://import.github.com/
 [jekyll]: http://jekyllrb.com/
