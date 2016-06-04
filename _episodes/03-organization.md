@@ -92,6 +92,27 @@ The [Jekyll][jekyll] configuration file.
 This must be edited so that its links and other settings are correct for this lesson:
 look for uses of `{USERNAME}`, `{LESSON-NAME}`, `{LESSON-TITLE}`, and `{SITE-NAME}`.
 
+*   `domain` is the GitHub Pages domain for your lesson.
+    If your repository is at `https://github.com/username/subject`,
+    its GitHub Pages website is at `http://username.github.io/subject`.
+
+*   `repo` is the URL for your repository on GitHub.
+
+*   `root` is the portion of `domain` below the domain name.
+    If the GitHub Pages URL for your website is `http://username.github.io/subject`,
+    then `root` should be `subject`.
+
+*   `title` is the title of your lesson,
+    e.g.,
+    "Defense Against the Dark Arts".
+
+*   `email` is the contact email address for the lesson.
+
+*   `kind` should be "lesson".
+    (The other legal value, "workshop", is used for workshop repositories.)
+
+*   `carpentry` should be either "dc" (for Data Carpentry) or "swc" (for Software Carpentry).
+
 ### `CITATION`
 
 A plain text file explaining how to cite this lesson.

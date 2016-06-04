@@ -21,12 +21,12 @@ In brief:
 
 ## Getting Started
 
-Copy `_config_template.yml` to create `_config.yml` and then edit the
-settings in the top half.
+1.  Run `bin/initialize` to create files that can't be stored in the template repository,
+    then edit `_config.yml` as described in the episode on organization.
 
-For a list of helpful commands run `make` in this directory.
-If you are looking for things to work on,
-please see [the list of issues for this repository][issues].
+2.  For a list of helpful commands run `make` in this directory.
+    If you are looking for things to work on,
+    please see [the list of issues for this repository][issues].
 
 [collections]: https://jekyllrb.com/docs/collections/
 [issues]: https://github.com/gvwilson/new-lesson-example/issues/
