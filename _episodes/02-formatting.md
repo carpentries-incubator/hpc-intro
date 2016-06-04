@@ -154,8 +154,10 @@ a callout is formatted like this:
 > ~~~
 > code
 > ~~~
+> {: .source}
 {: .callout}
 ~~~
+{: .source}
 
 (Note the empty lines within the blockquote after the title and before the code block.)
 This is rendered as:
@@ -169,6 +171,7 @@ This is rendered as:
 > ~~~
 > code
 > ~~~
+> {: .source}
 {: .callout}
 
 The [lesson template]({{ site.template_repo }}) defines styles
