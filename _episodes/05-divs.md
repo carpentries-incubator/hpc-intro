@@ -29,7 +29,7 @@ the challenge
 >
 > We can put the solution(s) in blockquotes inside the `div`.
 > (Or we could define yet another `div` type.)
-> 
+>
 > ~~~
 > code in solution
 > ~~~

@@ -31,14 +31,14 @@ The process for selecting and onboarding a new maintainer is:
     *    Deadline for applications, projected timeline for selection.
     *    Name/email of contact for application process (typically outgoing maintainer).
 *   Applications accumulate over a week or two.
-*   Outgoing maintainer and their co-maintainer review applications and choose new maintainer. 
-*   The new maintainer is informed, and other applicants are thanked via email. 
+*   Outgoing maintainer and their co-maintainer review applications and choose new maintainer.
+*   The new maintainer is informed, and other applicants are thanked via email.
 *   To onboard the new maintainer:
     *    Add new maintainer to the maintainers' list.
-    *    Email the maintainers to announce the change. 
-    *    Request push/merge access for new maintainer from the Software or Data Carpentry executive director.  
-    *    Write a blog post introducing new maintainer.  
-    *    Optional: call between outgoing/incoming maintainer to discuss state of the repository, transition strategy, etc. 
+    *    Email the maintainers to announce the change.
+    *    Request push/merge access for new maintainer from the Software or Data Carpentry executive director.
+    *    Write a blog post introducing new maintainer.
+    *    Optional: call between outgoing/incoming maintainer to discuss state of the repository, transition strategy, etc.
 
 ## Release Process and Schedule
 
