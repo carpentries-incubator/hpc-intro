@@ -1,5 +1,5 @@
 ---
-layout: lesson_homepage
+layout: lesson
 ---
 This lesson shows how to use the
 [Software Carpentry]({{ site.swc_site }}) and

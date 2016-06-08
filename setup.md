@@ -34,6 +34,6 @@ you must install the software described below.
 3.  **[Jekyll](https://jekyllrb.com/)**.
     You can install this by running `gem install jekyll`.
 
-If you want to run `bin/check-lesson` (which is invoked by `make lesson-check`)
+If you want to run `bin/lesson-check` (which is invoked by `make lesson-check`)
 you will need Jekyll (so that you have its Markdown parser, which is called Kramdown)
 and the [PyYAML](https://pypi.python.org/pypi/PyYAML) module for Python 3.
