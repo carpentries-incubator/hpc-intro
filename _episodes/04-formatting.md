@@ -237,6 +237,43 @@ Note that `.prereq` is meant for describing things that learners should know bef
 setup instructions do not have a particular style,
 but are instead put on the `setup.md` page.
 
+Note also that solutions are nested inside exercises as shown below:
+
+~~~
+> ## Challenge Title
+>
+> This is the body of the challenge.
+>
+> ~~~
+> it may include some code
+> ~~~
+> {: .source}
+>
+> > ## Solution
+> >
+> > This is the body of the solution.
+> >
+> > ~~~
+> > it may also include some code
+> > ~~~
+> > {: .output}
+> {: .solution}
+{: .challenge}
+~~~
+{: .source}
+
+The double indentation is annoying to edit,
+but the alternatives we considered and discarded are worse:
+
+1.  Use HTML `<div>` elements for the challenges.
+    Most people dislike mixing HTML and Markdown,
+    and experience shows that it's all too easy to confuse Jekyll's Markdown parser.
+
+2.  Put solutions immediately after challenges rather than inside them.
+    This is simpler to edit,
+    but clutters up the page
+    and makes it harder for tools to tell which solutions belong to which exercises.
+
 [jekyll]: http://jekyllrb.com/
 [jekyll-collection]: https://jekyllrb.com/docs/collections/
 [yaml]: http://yaml.org/

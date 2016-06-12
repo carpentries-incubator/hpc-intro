@@ -5,9 +5,11 @@ exercises: 0
 questions:
 - "What do lesson maintainers do?"
 objectives:
-- "FIXME"
+- "Explain the rights and responsibilities of lesson maintainers."
 keypoints:
-- "FIXME"
+- "Each lesson has one or two maintainers who act as editors."
+- "Maintainers are responsible for ensuring that issues and change requests are addressed."
+- "Maintainers have final say over lesson content."
 ---
 This episode describes the processes used to maintain our lessons.
 
