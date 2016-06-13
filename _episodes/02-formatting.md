@@ -195,6 +195,11 @@ for the following special blockquotes:
 > Checklists.
 {: .checklist}
 
+> ## `.discussion`
+>
+> Discussion questions.
+{: .discussion}
+
 > ## `.keypoints`
 >
 > Key points of an episode.
@@ -226,7 +231,9 @@ for the following special blockquotes:
   </div>
 </div>
 
-One other class, `.quotation`, is used to mark actual quotations
+Note that `.challenge` and `.discussion` have the same color but different icons.
+Note also that one other class, `.quotation`,
+is used to mark actual quotations
 (the original purpose of the blockquote element).
 This does not add any styling,
 but is used to prevent the checking tools from complaining about a missing class.
