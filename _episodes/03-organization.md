@@ -77,7 +77,7 @@ which should *not* be modified:
 
 ## Starter Files
 
-The `bin/initialize` script creates files that need to be customized for each lesson.
+The `bin/lesson-initialize` script creates files that need to be customized for each lesson.
 
 ### `CONTRIBUTING.md`
 
@@ -162,6 +162,12 @@ include level-2 headings for Windows, Mac OS X, and Linux
 with instructions for each.
 The [workshop template]({{ site.workshop_repo }})
 links to the setup instructions for core lessons.
+
+### `_extras/about.md`
+
+General notes about this lesson.
+This page includes brief descriptions of Software Carpentry and Data Carpentry,
+and is a good place to put institutional acknowledgments.
 
 ### `_extras/discussion.md`
 
