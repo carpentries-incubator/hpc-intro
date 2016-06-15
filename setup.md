@@ -18,25 +18,26 @@ permalink: /setup/
 If you want to set up Jekyll
 so that you can preview changes on your own machine before pushing them to GitHub,
 you must install the software described below.
-(Note: Julian Thilo has written instructions for [installing Jekyll on Windows](http://jekyll-windows.juthilo.com/).)
+(Note: Julian Thilo has written instructions for
+[installing Jekyll on Windows][jekyll-windows].)
 
 1.  **Ruby**.
     This is included with Linux and Mac OS X;
-    the simplest option on Windows is to use [RubyInstaller](http://rubyinstaller.org/).
+    the simplest option on Windows is to use [RubyInstaller][ruby-installer].
     You can test your installation by running `ruby --version`.
     For more information,
-    see [the Ruby installation guidelines](https://www.ruby-lang.org/en/downloads/).
+    see [the Ruby installation guidelines][ruby-install-guide].
 
-2.  **[RubyGems](https://rubygems.org/pages/download)**
+2.  **[RubyGems][rubygems]**
     (the package manager for Ruby).
     You can test your installation by running `gem --version`.
 
-3.  **[Jekyll](https://jekyllrb.com/)**.
+3.  **[Jekyll][jekyll]**.
     You can install this by running `gem install jekyll`.
 
-If you want to run `bin/lesson-check` (which is invoked by `make lesson-check`)
+If you want to run `bin/lesson_check.py` (which is invoked by `make lesson-check`)
 you will need Jekyll (so that you have its Markdown parser, which is called Kramdown)
-and the [PyYAML](https://pypi.python.org/pypi/PyYAML) module for Python 3.
+and the [PyYAML][pyyaml] module for Python 3.
 
 ## Creating a New Lesson
 
@@ -144,4 +145,10 @@ lesson is `data-cleanup`.
 
 [contact]: mailto:lessons@software-carpentry.org
 [importer]: http://import.github.com/new
+[jekyll-windows]: http://jekyll-windows.juthilo.com/
+[jekyll]: https://jekyllrb.com/
+[pyyaml]: https://pypi.python.org/pypi/PyYAML
+[ruby-install-guide]: https://www.ruby-lang.org/en/downloads/
+[ruby-installer]: http://rubyinstaller.org/
+[rubygems]: https://rubygems.org/pages/download/
 [styles]: https://github.com/swcarpentry/styles/

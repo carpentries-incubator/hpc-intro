@@ -39,7 +39,7 @@ In brief:
 
 ## Getting Started
 
-1.  Run `bin/lesson-initialize` to create files
+1.  Run `bin/lesson_initialize.py` to create files
     that can't be stored in the template repository
     (because they would cause repeated merge conflicts),
     then edit `_config.yml` as described in the episode on organization.
