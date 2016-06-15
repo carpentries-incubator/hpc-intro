@@ -1,10 +1,14 @@
 ---
 layout: page
-title: Lesson Title
-subtitle: Discussion
+title: Discussion
+permalink: /discuss/
 ---
-*   First point of general discussion.
+Readers may be interested in:
 
-    This may span several paragraphs.
+*   PeerJ's [paper-now], which uses [Jekyll][jekyll] as a framework for writing scientific papers.
+*   The [Morea Framework][morea],
+    a more elaborate template for [Jekyll][jekyll]-based lessons.
 
-*   Second point of general discussion.
+[jekyll]: http://jekyllrb.com/
+[morea]: https://morea-framework.github.io/
+[paper-now]: https://github.com/PeerJ/paper-now

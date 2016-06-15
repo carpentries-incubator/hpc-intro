@@ -1,26 +1,17 @@
 ---
-layout: page
-title: Lesson Title
+layout: lesson
 ---
-Paragraph of introductory material.
+This lesson shows how to use the
+[Software Carpentry]({{ site.swc_site }}) and
+[Data Carpentry]({{ site.dc_site }}) lesson template.
+For guidelines on how to help improve our lessons and this template,
+please see [the contribution guidelines][contributing];
+for guidelines on how to set up your machine to preview changes locally,
+please see [the setup instructions](/setup/).
 
-> ## Prerequisites {.prereq}
+> ## Prerequisites
 >
-> A short paragraph describing what learners need to know
-> before tackling this lesson.
+> Use the `.prereq` style to specify prerequisites.
+{: .prereq}
 
-> ## Getting ready {.getready}
->
-> A short paragraph describing
-> what learners need to do before tackling this lesson.
-
-## Topics
-
-1.  [Topic Title One](01-one.html)
-2.  [Topic Title Two](02-two.html)
-
-## Other Resources
-
-*   [Reference](reference.html)
-*   [Discussion](discussion.html)
-*   [Instructor's Guide](instructors.html)
+[contributing]: {{ site.repo }}/blob/gh-pages/CONTRIBUTING.md
