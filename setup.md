@@ -73,6 +73,7 @@ lesson is `data-cleanup`.
     ~~~
     $ git clone -b gh-pages https://github.com/gvwilson/data-cleanup.git
     ~~~
+    {: .source}
 
     Note that the URL for your lesson will be different than the one above.
 
@@ -81,6 +82,7 @@ lesson is `data-cleanup`.
     ~~~
     $ cd data-cleanup
     ~~~
+    {: .source}
 
     Note that the name of your directory will be different,
     since your lesson probably won't be called `data-cleanup`.
@@ -90,6 +92,7 @@ lesson is `data-cleanup`.
     ~~~
     $ git remote add template https://github.com/swcarpentry/styles.git
     ~~~
+    {: .source}
 
     This will allow you to pull in changes made to the template,
     such as improvements to our CSS style files.
@@ -107,6 +110,7 @@ lesson is `data-cleanup`.
     ~~~
     $ make serve
     ~~~
+    {: .source}
 
 14. Commit your changes *and the HTML pages in the root directory of
     your lesson repository* and push to the `gh-pages` branch of your
@@ -118,6 +122,7 @@ lesson is `data-cleanup`.
     $ git commit -m "Explanatory message"
     $ git push origin gh-pages
     ~~~
+    {: .source}
 
 15. [Tell us][contact] where your lesson is so that we can add it to
     the appropriate index page(s).
