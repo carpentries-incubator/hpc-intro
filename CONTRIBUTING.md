@@ -27,7 +27,7 @@ This is a good way to introduce yourself
 and to meet some of our community members.
 
 1.  If you do not have a [GitHub][github] account,
-    you can [send us comments by email](mailto:admin@software-carpentry.org).
+    you can [send us comments by email][contact].
     However,
     we will be able to respond more quickly if you use one of the other methods described below.
 
@@ -68,8 +68,8 @@ Our lessons already contain more material than we can cover in a typical worksho
 so we are usually *not* looking for more concepts or tools to add to them.
 As a rule,
 if you want to introduce a new idea,
-you must estimate how long it will take to teach
-and explain what you would take out to make room for it.
+you must (a) estimate how long it will take to teach
+and (b) explain what you would take out to make room for it.
 The first encourages contributors to be honest about requirements;
 the second, to think hard about priorities.
 
@@ -78,7 +78,14 @@ Our workshops typically contain a mixture of Windows, Mac OS X, and Linux users;
 in order to be usable,
 our lessons must run equally well on all three.
 
-## Using GitHub
+## Getting Started
+
+The easiest way to get started is to file an issue
+to tell us about a spelling mistake,
+some awkward wording,
+or a factual error.
+This is a good way to introduce yourself
+and to meet some of our community members.
 
 If you want to start adding or fixing material yourself,
 you may want to look at
@@ -111,16 +118,15 @@ and have final say over what gets merged into the lesson.
 
 [This documentation][example-site] explains how we format our lessons
 (and is itself an example of that formatting).
-The episode on tooling explains
-[how to check and preview changes]({{ site.root }}/01-tooling/#checking-and-previewing).
 
 ## Other Resources
 
 General discussion of [Software Carpentry][swc-site] and [Data Carpentry][dc-site]
 happens on the [discussion mailing list][discuss-list],
 which everyone is welcome to join.
-You can also [reach us by email][mailto:admin@software-carpentry.org].
+You can also [reach us by email][contact].
 
+[contact]: mailto:admin@software-carpentry.org
 [dc-issues]: https://github.com/issues?q=user%3Adatacarpentry
 [dc-lessons]: http://datacarpentry.org/lessons/
 [dc-site]: http://datacarpentry.org/
