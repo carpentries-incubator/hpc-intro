@@ -126,6 +126,16 @@ The [template]({{ site.template_repo }}) provides three styles for code blocks:
 *   `.output`: program output.
 *   `.source`: program source.
 
+The following styles are all synonyms for `.source`;
+please use them where possible to indicate the type of source being displayed,
+in case we decide to adopt syntax highlighting at some point:
+
+*   `.bash`: Bash shell commands
+*   `.make`: Makefiles
+*   `.python`: Python source
+*   `.r`: R source
+*   `.sql`: SQL source
+
 > ## Why No Syntax Highlighting?
 >
 > We do not use syntax highlighting for code blocks
