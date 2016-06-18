@@ -7,11 +7,11 @@ This lesson shows how to use the
 For guidelines on how to help improve our lessons and this template,
 please see [the contribution guidelines][contributing];
 for guidelines on how to set up your machine to preview changes locally,
-please see [the setup instructions](/setup/).
+please see [the setup instructions]({{ site.root }}/setup/).
 
 > ## Prerequisites
 >
 > Use the `.prereq` style to specify prerequisites.
 {: .prereq}
 
-[contributing]: {{ site.repo }}/blob/gh-pages/CONTRIBUTING.md
+[contributing]: https://github.com/{{ site.account }}{{ site.root }}/blob/gh-pages/CONTRIBUTING.md
