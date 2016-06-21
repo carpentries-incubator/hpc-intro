@@ -11,6 +11,7 @@ keypoints:
 - "Lessons are design in four stages: conceptual, summative, formative, and connective."
 training: http://swcarpentry.github.io/instructor-training
 ---
+
 This episode describes how we go about designing lessons and why.
 For more information on how we design lessons and why,
 see [the instructor training course][training].

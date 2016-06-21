@@ -11,6 +11,7 @@ keypoints:
 - "Maintainers are responsible for ensuring that issues and change requests are addressed."
 - "Maintainers have final say over lesson content."
 ---
+
 This episode describes the processes used to maintain our lessons.
 
 ## Maintainers

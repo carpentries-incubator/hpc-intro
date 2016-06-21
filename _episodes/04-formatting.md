@@ -17,6 +17,7 @@ keypoints:
 - "Special sections are formatted as blockquotes that open with a level-2 header and close with a class identifier."
 - "Special sections may be callouts or challenges; other styles are used by the template itself."
 ---
+
 A lesson consists of one or more episodes,
 each of which has:
 
