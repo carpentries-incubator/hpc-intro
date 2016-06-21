@@ -1,5 +1,5 @@
 ---
-title: "Demonstration of a lesson written using RMarkdown"
+title: "Using RMarkdown"
 teaching: 10
 exercises: 2
 questions:
@@ -27,7 +27,6 @@ Normal output:
 ```{r}
 1 + 1
 ```
-
 
 Output with error message:
 
