@@ -23,58 +23,55 @@ include chunk for codes, just like you'd normally do:
 Normal output:
 
 
-~~~{.r}
+~~~
 1 + 1
 ~~~
-{: .source}
+{: .r}
 
 
 
 ~~~
 [1] 2
-
 ~~~
 {: .output}
 
 Output with error message:
 
 
-~~~{.r}
+~~~
 x[10]
 ~~~
-{: .source}
+{: .r}
 
 
 
 ~~~
 Error in eval(expr, envir, enclos): object 'x' not found
-
 ~~~
 {: .error}
 
 Output generating figures:
 
 
-~~~{.r}
+~~~
 library(ggplot2)
 ~~~
-{: .source}
+{: .r}
 
 
 
 ~~~
 Warning: package 'ggplot2' was built under R version 3.1.3
-
 ~~~
 {: .error}
 
 
 
-~~~{.r}
+~~~
 ggplot(diamonds, aes(x = carat,  y = price, color = cut)) +
     geom_point()
 ~~~
-{: .source}
+{: .r}
 
 <img src="../fig/swc-rmd-plot-example-1.png" title="plot of chunk plot-example" alt="plot of chunk plot-example" style="display: block; margin: auto;" />
 
@@ -87,17 +84,16 @@ it to include instructions and solutions.
 > What is the output of this command?
 >
 > 
-> ~~~{.r}
+> ~~~
 > paste("This", "new", "template", "looks", "good")
 > ~~~
-> {: .source}
+> {: .r}
 >
 > > ## Solution
 > >
 > > 
 > > ~~~
 > > [1] "This new template looks good"
-> > 
 > > ~~~
 > > {: .output}
 > {: .solution}
