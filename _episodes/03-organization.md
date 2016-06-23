@@ -38,11 +38,11 @@ Instead, each lesson's repository is self-contained.
 The diagram below shows how source files and directories are laid out,
 and how they are mapped to destination files and directories:
 
-![Source and Destination Files]({{ site.github.url }}/fig/file-mapping.svg)
+![Source and Destination Files]({{ site.root }}/fig/file-mapping.svg)
 
 > ## Collections
 >
-> As described [earlier]({{ site.github.url }}/01-tooling/#collections),
+> As described [earlier]({{ site.root }}/01-tooling/#collections),
 > files that appear as top-level items in the navigation menu are stored in the root directory.
 > Files that appear under the "extras" menu are stored in the `_extras` directory,
 > while lesson episodes are stored in the `_episodes` directory.

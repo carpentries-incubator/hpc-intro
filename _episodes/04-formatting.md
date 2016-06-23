@@ -28,7 +28,7 @@ each of which has:
 The diagram below shows the internal structure of a single episode file
 (click on the image to see a larger version):
 
-<a href="{{ site.github.url }}/fig/episode-format.png"><img src="{{ site.github.url }}/fig/episode-format-small.png" alt="Formatting Rules" /></a>
+<a href="{{ site.root }}/fig/episode-format.png"><img src="{{ site.root }}/fig/episode-format-small.png" alt="Formatting Rules" /></a>
 
 ## Locations and Names
 
@@ -45,7 +45,7 @@ These become `/01-tooling/index.html`, `/02-formatting/index.html`, and `/03-org
 When referring to other episodes, use:
 
 {% raw %}
-    [link text]({{ site.github.url }}/dd-subject/)
+    [link text]({{ site.root }}/dd-subject/)
 {% endraw %}
 
 i.e., use the episode's directory path below the site root
