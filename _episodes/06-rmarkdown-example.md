@@ -73,7 +73,7 @@ ggplot(diamonds, aes(x = carat,  y = price, color = cut)) +
 ~~~
 {: .r}
 
-<img src="../fig/swc-rmd-plot-example-1.png" title="plot of chunk plot-example" alt="plot of chunk plot-example" style="display: block; margin: auto;" />
+<img src="../fig/rmd-plot-example-1.png" title="plot of chunk plot-example" alt="plot of chunk plot-example" style="display: block; margin: auto;" />
 
 For the challenges and their solutions, you need to pay attention to the where
 the `>` go and where to leave blank lines. Otherwise, you can include chunks in
