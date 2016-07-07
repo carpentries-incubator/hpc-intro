@@ -18,7 +18,7 @@ The lesson template comes with several utilities to simplify lesson development 
 
 ## Checking
 
-The lesson template includes a Python program to check
+The template includes a Python program to check
 whether lesson files conform to our template.
 You can run this using `make lesson-check`,
 which in turn invokes `bin/lesson_check.py` and `bin/markdown_ast.rb`.
@@ -27,6 +27,12 @@ and executes all of the checks;
 the latter is written in Ruby,
 and uses Jekyll's own Markdown parser (called Kramdown)
 so that we are guaranteed to be checking the same dialect of Markdown that Jekyll uses on GitHub.
+
+The template also includes `bin/repo_check.py`,
+which can be invoked by running `make repo-check`.
+This program looks in `_config.yml` to find the repository's URL,
+then checks that the repository has the right labels set up for issues and pull requests.
+Other checks will be added as time goes by.
 
 ## Previewing
 

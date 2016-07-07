@@ -146,8 +146,9 @@ The [lesson template]({{ site.template_repo }}) does *not* include `_config.yml`
 since each lesson will change some of its value,
 which would result in merge collisions each time the lesson was updated from the template.
 Instead,
-the [template]({{ site.template_repo }}) contains a script called `bin/initialize`
-which should be run *once* to create an initial `_config.yml` file.
+the [template]({{ site.template_repo }}) contains a script called `bin/lesson_initialize.py`
+which should be run *once* to create an initial `_config.yml` file
+(and a few other files as well).
 The author should then edit the values in the top half of the file.
 
 The [template]({{ site.template_repo }}) also contains `_config_dev.yml`,
