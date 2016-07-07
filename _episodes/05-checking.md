@@ -55,7 +55,7 @@ The [setup instructions]({{ site.root }}/setup/) explain what you need and how t
 
 ## Displaying Figures
 
-The command `make figures` uses the script `bin/make_figures.py`
+The command `make lesson-figures` uses the script `bin/make_figures.py`
 to regenerate `includes/all_figures.html`,
 which links to every figure used in the episodes (in order).
 Instructors can scroll through this page to display figures while teaching.
