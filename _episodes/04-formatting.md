@@ -123,9 +123,20 @@ the class identifier with a leading dot,
 and a closing curly brace.
 The [template]({{ site.template_repo }}) provides three styles for code blocks:
 
-*   `.error`: error messages.
-*   `.output`: program output.
-*   `.source`: program source.
+~~~
+.source: program source.
+~~~
+{: .source}
+
+~~~
+.output: program output.
+~~~
+{: .output}
+
+~~~
+.error: error messages.
+~~~
+{: .error}
 
 The following styles are all synonyms for `.source`;
 please use them where possible to indicate the type of source being displayed,
