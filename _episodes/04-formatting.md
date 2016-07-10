@@ -144,6 +144,7 @@ in case we decide to adopt syntax highlighting at some point:
 
 *   `.bash`: Bash shell commands
 *   `.make`: Makefiles
+*   `.matlab`: MATLAB source
 *   `.python`: Python source
 *   `.r`: R source
 *   `.sql`: SQL source

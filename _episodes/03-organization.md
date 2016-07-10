@@ -100,7 +100,7 @@ look for uses of `{USERNAME}`, `{LESSON-NAME}`, `{LESSON-TITLE}`, and `{SITE-NAM
 
 *   `title` is the title of your lesson,
     e.g.,
-    "Defense Against the Dark Arts".
+    "Defence Against the Dark Arts".
 
 *   `repo` is the URL for your repository on GitHub *without* a trailing slash,
     e.g., `https://github.com/username/subject`.

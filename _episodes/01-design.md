@@ -61,7 +61,7 @@ we design lessons in four stages:
     there are often several different orders in which ideas can sensibly be introduced.
     It is common to discover a need for more formative assessments at this stage;
     to continue with the driving example,
-    the lesson author might realize that a third exericse on turning while backing up is needed
+    the lesson author might realize that a third exercise on turning while backing up is needed
     (since many people initially turn the steering wheel the wrong way when they're in reverse).
 
 In practice, the process often looks more like this:

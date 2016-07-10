@@ -9,7 +9,7 @@ objectives:
 - "Run the lesson checking script and interpret its output correctly."
 - "Preview a lesson locally."
 keypoints:
-- "Lessons are checked by runnin `make lesson-check`."
+- "Lessons are checked by running `make lesson-check`."
 - "The checker uses the same Markdown parser as Jekyll."
 - "Lessons can be previewed by running `make serve`."
 ---

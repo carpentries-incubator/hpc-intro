@@ -37,7 +37,7 @@ including detailed instructions on design, setup, and formatting.
 7.  If you find an error or omission in this documentation,
     please [file an issue in this repository][example-issues].
     If you find an error or omission in the lesson template,
-    please [file an issue in the stles repository][styles-issues] instead.
+    please [file an issue in the styles repository][styles-issues] instead.
 
 ## Layout
 
