@@ -7,7 +7,7 @@ This lesson shows how to use the
 For guidelines on how to help improve our lessons and this template,
 please see [the contribution guidelines][contributing];
 for guidelines on how to set up your machine to preview changes locally,
-please see [the setup instructions]({{ site.root }}/setup/).
+please see [the setup instructions]({{ site.github.url }}/setup/).
 
 > ## Prerequisites
 >
@@ -29,5 +29,5 @@ please see [the setup instructions]({{ site.root }}/setup/).
 >     and enhancements to this documentation in this one.
 {: .checklist}
 
-[contributing]: {{ site.repo }}/blob/gh-pages/CONTRIBUTING.md
+[contributing]: {{ site.github.repository_url }}/blob/gh-pages/CONTRIBUTING.md
 [styles]: https://github.com/swcarpentry/styles/

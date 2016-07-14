@@ -28,7 +28,7 @@ each of which has:
 The diagram below shows the internal structure of a single episode file
 (click on the image to see a larger version):
 
-<a href="{{ site.root }}/fig/episode-format.png"><img src="{{ site.root }}/fig/episode-format-small.png" alt="Formatting Rules" /></a>
+<a href="{{ site.github.url }}/fig/episode-format.png"><img src="{{ site.github.url }}/fig/episode-format-small.png" alt="Formatting Rules" /></a>
 
 ## Locations and Names
 
@@ -37,15 +37,16 @@ Episodes are named `dd-subject.md`,
 where `dd` is a two-digit sequence number (with a leading 0)
 and `subject` is a one- or two-word identifier.
 For example,
-the episodes of this example lesson are
-`_episodes/01-tooling.md`
-`_episodes/02-formatting.md`,
-and `_episodes/03-organization.md`.
-These become `/01-tooling/index.html`, `/02-formatting/index.html`, and `/03-organization/index.html` in the published site.
+the first three episodes of this example lesson are
+`_episodes/01-design.md`,
+`_episodes/02-tooling.md`
+and `_episodes/03-formatting.md`.
+These become `/01-design/index.html`, `/02-tooling/index.html`, and `/03-formatting/index.html`
+in the published site.
 When referring to other episodes, use:
 
 {% raw %}
-    [link text]({{ site.root }}/dd-subject/)
+    [link text]({{ site.github.url }}/dd-subject/)
 {% endraw %}
 
 i.e., use the episode's directory path below the site root
