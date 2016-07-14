@@ -151,12 +151,6 @@ which should be run *once* to create an initial `_config.yml` file
 (and a few other files as well).
 The author should then edit the values in the top half of the file.
 
-The [template]({{ site.template_repo }}) also contains `_config_dev.yml`,
-which overrides some settings for use during desktop development.
-The Makefile that comes with the [template]({{ site.template_repo }})
-adds these values to those in `_config.yml` when running a local server
-(see [below](#previewing)).
-
 ## Collections
 
 If several Markdown files are stored in a directory whose name begins with an underscore,

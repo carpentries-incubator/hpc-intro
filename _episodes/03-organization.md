@@ -90,24 +90,13 @@ look for uses of `{LESSON-NAME}`.
 ### `_config.yml`
 
 The [Jekyll][jekyll] configuration file.
-This must be edited so that its links and other settings are correct for this lesson:
-look for uses of `{USERNAME}`, `{LESSON-NAME}`, `{LESSON-TITLE}`, and `{SITE-NAME}`.
+This must be edited so that its links and other settings are correct for this lesson.
 
 *   `carpentry` should be either "dc" (for Data Carpentry) or "swc" (for Software Carpentry).
-
-*   `kind` should be "lesson".
-    (The other legal value, "workshop", is used for workshop repositories.)
 
 *   `title` is the title of your lesson,
     e.g.,
     "Defence Against the Dark Arts".
-
-*   `repo` is the URL for your repository on GitHub *without* a trailing slash,
-    e.g., `https://github.com/username/subject`.
-
-*   `root` is the last portion of `repo`, with a leading slash.
-    For example, if the repository is `https://github.com/username/subject`,
-    then `root` must be `/subject`.
 
 *   `email` is the contact email address for the lesson.
 
@@ -117,7 +106,7 @@ A plain text file explaining how to cite this lesson.
 
 ### `AUTHORS`
 
-A plain text file listing the names and email addresses of the lesson's authors.
+A plain text file listing the names of the lesson's authors.
 
 ### `index.md`
 

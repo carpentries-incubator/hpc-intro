@@ -32,7 +32,8 @@ The diagram below shows the internal structure of a single episode file
 
 ## Locations and Names
 
-Episode files are stored in `_episodes` so that [Jekyll][jekyll] will create a [collection][jekyll-collection] for them.
+Episode files are stored in `_episodes`
+so that [Jekyll][jekyll] will create a [collection][jekyll-collection] for them.
 Episodes are named `dd-subject.md`,
 where `dd` is a two-digit sequence number (with a leading 0)
 and `subject` is a one- or two-word identifier.
@@ -71,11 +72,6 @@ and `key` is the key in the [YAML][yaml] header.
 This lets us do things like
 list each episode's key questions in the syllabus on the lesson home page.
 
-> ## Raw Text
->
-> Markdown in YAML values in the header is *not* rendered when the value is used elsewhere.
-{: .callout}
-
 ## Episode Structure
 
 The episode layout template in `_layouts/episode.html` automatically creates
@@ -105,11 +101,13 @@ Inline code fragments are formatted using back-quotes.
 Longer code blocks are formatted by opening and closing the block with `~~~` (three tildes),
 with a class specifier after the block:
 
+{% raw %}
     ~~~
     for thing in collection:
         do_something
     ~~~
     {: .source}
+{% endraw %}
 
 which is rendered as:
 
