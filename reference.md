@@ -1,21 +1,26 @@
 ---
-layout: page
-title: Lesson Title
-subtitle: Reference
+layout: reference
+permalink: /reference/
 ---
-## [Topic Title One](01-one.html)
-
-...commands and examples...
-
-## [Topic Title Two](02-two.html)
-
-...commands and examples...
 
 ## Glossary
 
+The glossary would go here, formatted as:
+
+~~~
 key word 1
-:   Definition of first term
+:   explanation 1
 
 key word 2
-:   Definition of second term
-    that continues in another line
+:   explanation 2
+~~~
+{: .source}
+
+which renders as:
+
+
+key word 1
+:   explanation 1
+
+key word 2
+:   explanation 2

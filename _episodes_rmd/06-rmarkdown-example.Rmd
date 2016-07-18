@@ -1,0 +1,63 @@
+---
+title: "Using RMarkdown"
+teaching: 10
+exercises: 2
+questions:
+- "How to write a lesson using RMarkdown?"
+objectives:
+- "Explain how to use RMarkdown with the new lesson template."
+- "Demonstrate how to include pieces of code, figures, and challenges."
+keypoints:
+- "It shouldn't be difficult"
+---
+This episode demonstrates all the features that can be used when writing a
+lesson in RMarkdown.
+
+This first chunk is really important, and should be included in all markdown lessons.
+
+```{r, echo=FALSE}
+source("../bin/chunk-options.R")
+```
+
+The rest of the lesson should be written as a normal RMarkdown file. You can
+include chunk for codes, just like you'd normally do:
+
+Normal output:
+
+```{r}
+1 + 1
+```
+
+Output with error message:
+
+```{r}
+x[10]
+```
+
+Output generating figures:
+
+```{r plot-example}
+library(ggplot2)
+ggplot(diamonds, aes(x = carat,  y = price, color = cut)) +
+    geom_point()
+```
+
+For the challenges and their solutions, you need to pay attention to the where
+the `>` go and where to leave blank lines. Otherwise, you can include chunks in
+it to include instructions and solutions.
+
+> ## Challenge: Can you do it?
+>
+> What is the output of this command?
+>
+> ```{r, eval=FALSE}
+> paste("This", "new", "template", "looks", "good")
+> ```
+>
+> > ## Solution
+> >
+> > ```{r, echo=FALSE}
+> > paste("This", "new", "template", "looks", "good")
+> > ```
+> {: .solution}
+{: .challenge}
