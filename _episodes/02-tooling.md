@@ -34,7 +34,7 @@ in a template repo.
 The master copy of each lesson would be a fork of that repo,
 and each author's working copy would be a fork of that master:
 
-![Forking Repositories]({{ site.github.url }}/fig/forking.svg)
+![Forking Repositories](../fig/forking.svg)
 
 However, GitHub only allows a user to have one fork of any particular repo.
 This creates a problem for us because an author may be involved in writing several lessons,
@@ -44,7 +44,7 @@ After the lesson has been created,
 we manually add the [template repository]({{ site.template_repo }}) as a remote called `template`
 to update the lesson when the template changes.
 
-![Repository Links]({{ site.github.url }}/fig/repository-links.svg)
+![Repository Links](../fig/repository-links.svg)
 
 ## GitHub Pages
 

@@ -38,7 +38,7 @@ Instead, each lesson's repository is self-contained.
 The diagram below shows how source files and directories are laid out,
 and how they are mapped to destination files and directories:
 
-![Source and Destination Files]({{ site.github.url }}/fig/file-mapping.svg)
+![Source and Destination Files](../fig/file-mapping.svg)
 
 > ## Collections
 >
