@@ -189,3 +189,4 @@ This page records tips and warnings from people who have taught the lesson.
 
 [jekyll]: http://jekyllrb.com/
 [jekyll-collection]: https://jekyllrb.com/docs/collections/
+[yaml]: http://yaml.org/
