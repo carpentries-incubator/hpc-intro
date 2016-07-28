@@ -74,7 +74,7 @@ If authors want to write lessons in something else,
 such as [R Markdown][r-markdown],
 they must generate HTML or Markdown that [Jekyll][jekyll] can process
 and commit that to the repository.
-The [next episode]({{ site.github.url }}/02-formatting/) describes the Markdown we use.
+A [later episode]({{ site.github.url }}/04-formatting/) describes the Markdown we use.
 
 > ## Teaching Tools
 >
