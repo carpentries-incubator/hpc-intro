@@ -52,7 +52,7 @@ Run `make` on its own to get a full list of commands.
 
 In order to use Jekyll and/or the checking script,
 you may need to install it and some other software.
-The [setup instructions]({{ site.github.url }}/setup/) explain what you need and how to get it.
+The [setup instructions]({{ page.root }}/setup/) explain what you need and how to get it.
 
 ## Displaying Figures
 

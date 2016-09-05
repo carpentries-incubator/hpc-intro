@@ -63,7 +63,7 @@ lesson is `data-cleanup`.
 
 7.  At this point, you should have a page like this:
 
-    ![]({{ site.github.url }}/fig/using-github-import.png)
+    ![]({{ page.root }}/fig/using-github-import.png)
 
     You can now click "Begin Import".
     When the process is done,

@@ -7,7 +7,7 @@ This lesson shows how to use the
 For guidelines on how to help improve our lessons and this template,
 please see [the contribution guidelines][contributing];
 for guidelines on how to set up your machine to preview changes locally,
-please see [the setup instructions]({{ site.github.url }}/setup/).
+please see [the setup instructions]({{ page.root }}/setup/).
 
 > ## Prerequisites
 >
