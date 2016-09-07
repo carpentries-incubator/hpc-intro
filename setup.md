@@ -100,7 +100,7 @@ lesson is `data-cleanup`.
     (Note that the user name above is `swcarpentry`, *not* `gvwilson`,
     since you are adding the master copy of the template as a remote.)
 
-11. Run `bin/lesson-initialize` to create all of the boilerplate files
+11. Run `bin/lesson_initialize.py` to create all of the boilerplate files
     that cannot be put into the styles repository
     (because they would trigger repeated merge conflicts).
 
