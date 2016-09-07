@@ -2,6 +2,7 @@
 layout: lesson
 root: .
 ---
+
 This lesson shows how to use the
 [Software Carpentry]({{ site.swc_site }}) and
 [Data Carpentry]({{ site.dc_site }}) lesson template.
