@@ -110,7 +110,7 @@ lesson is `data-cleanup`.
     that cannot be put into the styles repository
     (because they would trigger repeated merge conflicts).
 
-12. Create and edit files as explained in the episodes of this lesson.
+12. Create and edit files as explained in [the episodes of this lesson]({{ page.root }}/#schedule).
 
 13. Preview the HTML pages for your lesson:
 
