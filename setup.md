@@ -35,6 +35,12 @@ you must install the software described below.
 3.  **[Jekyll][jekyll]**.
     You can install this by running `gem install jekyll`.
 
+4.  **R Packages**.
+    We use [knitr][cran-knitr], [stringr][cran-stringr], and [checkpoint][cran-checkpoint]
+    to format lessons written in R Markdown,
+    so you will need to install these to build R lessons
+    (and this example lesson).
+
 If you want to run `bin/lesson_check.py` (which is invoked by `make lesson-check`)
 you will need Jekyll (so that you have its Markdown parser, which is called Kramdown)
 and the [PyYAML][pyyaml] module for Python 3.
@@ -143,12 +149,15 @@ lesson is `data-cleanup`.
     if the problem persists,
     please [get in touch][contact].
 
+[cran-checkpoint]: https://cran.r-project.org/web/packages/checkpoint/index.html
 [contact]: mailto:lessons@software-carpentry.org
 [importer]: http://import.github.com/new
 [jekyll-windows]: http://jekyll-windows.juthilo.com/
 [jekyll]: https://jekyllrb.com/
+[cran-knitr]: https://cran.r-project.org/web/packages/knitr/index.html
 [pyyaml]: https://pypi.python.org/pypi/PyYAML
 [ruby-install-guide]: https://www.ruby-lang.org/en/downloads/
 [ruby-installer]: http://rubyinstaller.org/
 [rubygems]: https://rubygems.org/pages/download/
+[cran-stringr]: https://cran.r-project.org/web/packages/stringr/index.html
 [styles]: https://github.com/swcarpentry/styles/
