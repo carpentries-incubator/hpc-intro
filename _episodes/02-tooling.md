@@ -113,7 +113,7 @@ this page:
 ---
 name: Science
 ---
-Today we are going to study {{page.name}}.
+{% raw %}Today we are going to study {{page.name}}.{% endraw %}
 ~~~
 {: .source}
 
