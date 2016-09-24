@@ -113,6 +113,6 @@ it takes too long,
 there are usually too many possible right solutions to discuss in just a couple of minutes,
 and many novices find a blank page (or screen) intimidating.
 
-[concept-maps]: {{ page.training }}/07-memory/
+[concept-maps]: {{ page.training }}/08-memory/
 [python-gapminder]: https://swcarpentry.github.io/python-novice-gapminder/
 [training]: {{ page.training }}/
