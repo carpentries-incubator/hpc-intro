@@ -1,10 +1,10 @@
 ---
 layout: page
-title: "Instructors' Guide"
+title: "Instructor Notes"
 permalink: /guide/
 ---
 
-The instructor's guide should provide additional discussion useful to instructors, 
+The instructor notes should provide additional discussion useful to instructors, 
 but not appropriate for inclusion in the main lessons. The following structure 
 provides a consistent way for instructors to both prepare for a workshop and 
 quickly find necessary information during a workshop.
