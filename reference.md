@@ -18,7 +18,7 @@ key word 2
 
 which renders as:
 
-
+{:auto_ids}
 key word 1
 :   explanation 1
 
