@@ -47,7 +47,7 @@ and the [PyYAML][pyyaml] module for Python 3.
 
 ## Creating a New Lesson
 
-We will assume that your user ID is `gvwilson` and the name of your
+We will assume that your user ID is `timtomch` and the name of your
 lesson is `data-cleanup`.
 
 1.  Go to [GitHub's importer][importer].
