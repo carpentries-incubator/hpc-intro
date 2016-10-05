@@ -56,18 +56,16 @@ lesson is `data-cleanup`.
     Do *not* use the URL of this repository,
     as that will bring in a lot of example files you don't actually want.
 
-3.  Click on "Check the URL".  (GitHub won't import until you've done this.)
-
-4.  Select the owner for your new repository.
-    In our example this is `gvwilson`,
+3.  Select the owner for your new repository.
+    In our example this is `timtomch`,
     but it may instead be an organization you belong to.
 
-5.  Choose a name for your lesson repository.
+4.  Choose a name for your lesson repository.
     In our example, this is `data-cleanup`.
 
-6.  Make sure the repository is public.
+5.  Make sure the repository is public.
 
-7.  At this point, you should have a page like this:
+6.  At this point, you should have a page like this:
 
     ![]({{ page.root }}/fig/using-github-import.png)
 
@@ -75,16 +73,16 @@ lesson is `data-cleanup`.
     When the process is done,
     you can click "Continue to repository" to visit your newly-created repository.
 
-8.  Clone your newly-created repository to your desktop:
+7.  Clone your newly-created repository to your desktop:
 
     ~~~
-    $ git clone -b gh-pages https://github.com/gvwilson/data-cleanup.git
+    $ git clone -b gh-pages https://github.com/timtomch/data-cleanup.git
     ~~~
     {: .source}
 
     Note that the URL for your lesson will be different than the one above.
 
-9.  Go into that directory using:
+8.  Go into that directory using:
 
     ~~~
     $ cd data-cleanup
@@ -94,7 +92,7 @@ lesson is `data-cleanup`.
     Note that the name of your directory will be different,
     since your lesson probably won't be called `data-cleanup`.
 
-10. Manually add the styles repository as a remote called `template`:
+9. Manually add the styles repository as a remote called `template`:
 
     ~~~
     $ git remote add template https://github.com/swcarpentry/styles.git
@@ -103,8 +101,22 @@ lesson is `data-cleanup`.
 
     This will allow you to pull in changes made to the template,
     such as improvements to our CSS style files.
-    (Note that the user name above is `swcarpentry`, *not* `gvwilson`,
+    (Note that the user name above is `swcarpentry`, *not* `timtomch`,
     since you are adding the master copy of the template as a remote.)
+
+10. Make sure you are using the `gh-pages` branch of the lesson template:
+
+    ~~~
+    $ git checkout gh-pages
+    ~~~
+    {: .source}
+
+	This will ensure that you are using the most "stable" version of the
+	template repository. Since it's being actively maintained by the
+	Software Carpentry community, you could end up using a development branch
+	that contains experimental (and potentially not working) features without
+	necessarily realising it. Switching to the `gh-branch` ensures you are
+	using the "stable" version of the template.
 
 11. Run `bin/lesson_initialize.py` to create all of the boilerplate files
     that cannot be put into the styles repository
