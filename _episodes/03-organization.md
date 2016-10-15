@@ -85,7 +85,7 @@ The `bin/lesson_initialize.py` script creates files that need to be customized f
 Contribution guidelines.
 The `issues` and `repo` links at the bottom of the file must be changed
 to match the URLs of the lesson:
-look for uses of `{LESSON-NAME}`.
+look for uses of `FIXME`.
 
 ### `_config.yml`
 
@@ -112,7 +112,7 @@ A plain text file listing the names of the lesson's authors.
 
 The home page for the lesson.
 
-1.  It must use the `index` layout.
+1.  It must use the `lesson` layout.
 2.  It must *not* have a `title` field in its [YAML][yaml] header.
 3.  It must open with a few paragraphs of explanatory text.
 4.  That introduction must be followed by a single `.prereq` blockquote
