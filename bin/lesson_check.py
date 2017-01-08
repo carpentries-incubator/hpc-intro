@@ -51,7 +51,7 @@ P_FIGURE_REFS = re.compile(r'<img[^>]+src="([^"]+)"[^>]*>')
 P_INTERNAL_LINK_REF = re.compile(r'\[([^\]]+)\]\[([^\]]+)\]')
 
 # Pattern to match reference links (to resolve internally-defined references).
-P_INTERNAL_LINK_DEF = re.compile(r'^\[([^\]]+)\]:.*')
+P_INTERNAL_LINK_DEF = re.compile(r'^\[([^\]]+)\]:\s*(.+)')
 
 # What kinds of blockquotes are allowed?
 KNOWN_BLOCKQUOTES = {
@@ -106,7 +106,7 @@ def main():
     args = parse_args()
     args.reporter = Reporter()
     check_config(args.reporter, args.source_dir)
-    args.references = read_references(args.reference_path)
+    args.references = read_references(args.reporter, args.reference_path)
 
     docs = read_all_markdown(args.source_dir, args.parser)
     check_fileset(args.source_dir, args.reporter, docs.keys())
@@ -170,22 +170,34 @@ def check_config(reporter, source_dir):
                    '"root" not set to ".." in configuration')
 
 
-def read_references(ref_path):
-    """Read shared file of reference links, returning set of valid references."""
+def read_references(reporter, ref_path):
+    """Read shared file of reference links, returning dictionary of valid references
+    {symbolic_name : URL}
+    """
 
-    result = set()
+    result = {}
+    urls_seen = set()
     if ref_path:
         with open(ref_path, 'r') as reader:
             for (num, line) in enumerate(reader):
+                line_num = num + 1
                 m = P_INTERNAL_LINK_DEF.search(line)
                 require(m,
-                        '{0}:{1} not valid reference:\n{2}'.format(ref_path, num, line.rstrip()))
-                ref = m.group(1)
-                require(ref,
-                        'Empty reference at {0}:{1}'.format(ref_path, num))
-                require(ref not in result,
-                        'Duplicate reference {0} at {1}:{2}'.format(ref, ref_path, num))
-                result.add(ref)
+                        '{0}:{1} not valid reference:\n{2}'.format(ref_path, line_num, line.rstrip()))
+                name = m.group(1)
+                url = m.group(2)
+                require(name,
+                        'Empty reference at {0}:{1}'.format(ref_path, line_num))
+                reporter.check(name not in result,
+                               ref_path,
+                               'Duplicate reference {0} at line {1}',
+                               name, line_num)
+                reporter.check(url not in urls_seen,
+                               ref_path,
+                               'Duplicate definition of URL {0} at line {1}',
+                               url, line_num)
+                result[name] = url
+                urls_seen.add(url)
     return result
 
 
