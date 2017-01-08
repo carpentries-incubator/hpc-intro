@@ -98,3 +98,5 @@ it to include instructions and solutions.
 > > {: .output}
 > {: .solution}
 {: .challenge}
+
+{% include links.md %}
