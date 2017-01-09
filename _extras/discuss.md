@@ -9,6 +9,4 @@ Readers may be interested in:
 *   The [Morea Framework][morea],
     a more elaborate template for [Jekyll][jekyll]-based lessons.
 
-[jekyll]: http://jekyllrb.com/
-[morea]: https://morea-framework.github.io/
-[paper-now]: https://github.com/PeerJ/paper-now
+{% include links.md %}

@@ -11,7 +11,7 @@ keypoints:
 - "It shouldn't be difficult"
 ---
 This episode demonstrates all the features that can be used when writing a
-lesson in RMarkdown.
+lesson in [RMarkdown][r-markdown].
 
 This first chunk is really important, and should be included in all markdown lessons.
 
@@ -98,3 +98,5 @@ it to include instructions and solutions.
 > > {: .output}
 > {: .solution}
 {: .challenge}
+
+{% include links.md %}

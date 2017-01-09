@@ -303,6 +303,4 @@ but the alternatives we considered and discarded are worse:
     but clutters up the page
     and makes it harder for tools to tell which solutions belong to which exercises.
 
-[jekyll]: http://jekyllrb.com/
-[jekyll-collection]: https://jekyllrb.com/docs/collections/
-[yaml]: http://yaml.org/
+{% include links.md %}

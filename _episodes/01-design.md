@@ -9,7 +9,6 @@ objectives:
 - "Describe the purpose and implementation of formative assessments."
 keypoints:
 - "Lessons are design in four stages: conceptual, summative, formative, and connective."
-training: http://swcarpentry.github.io/instructor-training
 ---
 
 This episode describes how we go about designing lessons and why.
@@ -113,6 +112,4 @@ it takes too long,
 there are usually too many possible right solutions to discuss in just a couple of minutes,
 and many novices find a blank page (or screen) intimidating.
 
-[concept-maps]: {{ page.training }}/08-memory/
-[python-gapminder]: https://swcarpentry.github.io/python-novice-gapminder/
-[training]: {{ page.training }}/
+{% include links.md %}
