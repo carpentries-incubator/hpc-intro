@@ -92,6 +92,6 @@ In brief:
 [github-pages]: https://help.github.com/articles/creating-project-pages-manually/
 [issues]: https://github.com/swcarpentry/lesson-example/issues
 [rendered]: https://swcarpentry.github.io/lesson-example/
-[setup]: https://github.com/swcarpentry/lesson-example/blob/gh-pages/setup.md
+[setup]: https://swcarpentry.github.io/lesson-example/setup/
 [styles-issues]: https://github.com/swcarpentry/styles/issues/
 [styles]: https://github.com/swcarpentry/styles/
