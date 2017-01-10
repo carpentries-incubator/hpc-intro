@@ -31,5 +31,4 @@ please see [the setup instructions]({{ page.root }}/setup/).
 >     and enhancements to this documentation in this one.
 {: .checklist}
 
-[contributing]: {{ site.github.repository_url }}/blob/gh-pages/CONTRIBUTING.md
-[styles]: https://github.com/swcarpentry/styles/
+{% include links.md %}

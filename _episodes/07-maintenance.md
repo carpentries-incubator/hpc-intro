@@ -72,3 +72,5 @@ Our repositories use the following labels (and colors) for issues and pull reque
 * `question` (#808040): often turn into discussion threads.
 * `template-and-tools` (#2b3990): issues related to the templates and tools rather than the lessons themselves.
 * `work-in-progress` (#7ae78): someone is still working on this.
+
+{% include links.md %}

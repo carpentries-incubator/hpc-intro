@@ -164,6 +164,4 @@ The `bin/lesson_initialize.py` script creates files that need to be customized f
     3.  Its permalink must be `/guide/`.
     4.  It may include whatever content the author thinks appropriate.
 
-[jekyll]: http://jekyllrb.com/
-[jekyll-collection]: https://jekyllrb.com/docs/collections/
-[yaml]: http://yaml.org/
+{% include links.md %}

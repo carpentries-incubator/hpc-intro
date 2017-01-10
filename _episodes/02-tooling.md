@@ -164,12 +164,4 @@ we store files that appear directly in the navigation bar
 in the root directory of the lesson.
 [The next episode]({{ page.root }}/03-organization/) describes these files.
 
-[github-importer]: https://import.github.com/
-[jekyll]: http://jekyllrb.com/
-[jekyll-collection]: https://jekyllrb.com/docs/collections/
-[jekyll-install]: https://jekyllrb.com/docs/installation/
-[jupyter]: https://jupyter.org/
-[pandoc]: https://pandoc.org/
-[r-markdown]: http://rmarkdown.rstudio.com/
-[rstudio]: https://www.rstudio.com/
-[yaml]: http://yaml.org/
+{% include links.md %}

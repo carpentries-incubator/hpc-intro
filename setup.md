@@ -8,7 +8,7 @@ permalink: /setup/
 1.  Installation instructions for core lessons are included in the [workshop template's home page][template],
     so that they are all in one place.
     The `setup.md` files of core lessons link to
-    the appropriate sections of the [workshop template page][{{ site.workshop_repo }}].
+    the appropriate sections of the [workshop template page][workshop-repo].
 
 2.  Other lessons' `setup.md` include full installation instructions organized by OS
     (following the model of the workshop template home page).
@@ -161,15 +161,4 @@ lesson is `data-cleanup`.
     if the problem persists,
     please [get in touch][contact].
 
-[cran-checkpoint]: https://cran.r-project.org/web/packages/checkpoint/index.html
-[contact]: mailto:lessons@software-carpentry.org
-[importer]: http://import.github.com/new
-[jekyll-windows]: http://jekyll-windows.juthilo.com/
-[jekyll]: https://jekyllrb.com/
-[cran-knitr]: https://cran.r-project.org/web/packages/knitr/index.html
-[pyyaml]: https://pypi.python.org/pypi/PyYAML
-[ruby-install-guide]: https://www.ruby-lang.org/en/downloads/
-[ruby-installer]: http://rubyinstaller.org/
-[rubygems]: https://rubygems.org/pages/download/
-[cran-stringr]: https://cran.r-project.org/web/packages/stringr/index.html
-[styles]: https://github.com/swcarpentry/styles/
+{% include links.md %}
