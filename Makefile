@@ -93,7 +93,7 @@ lesson-check :
 
 ## lesson-check-all : validate lesson Markdown, checking line lengths and trailing whitespace.
 lesson-check-all :
-	@bin/lesson_check.py -s . -p ${PARSER} -l -w
+	@bin/lesson_check.py -s . -p ${PARSER} -r _includes/links.md -l -w
 
 ## lesson-figures   : re-generate inclusion displaying all figures.
 lesson-figures :
