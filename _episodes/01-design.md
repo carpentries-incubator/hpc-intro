@@ -70,7 +70,8 @@ In practice, the process often looks more like this:
 2.  Describe the summative assessments for each half day of material
     (i.e., one summative assessment for a three-hour lesson and two for a full-day lesson).
 
-3.  Write a one- or two-line description of the formative assessments building up to those summative assessments.
+3.  Write a one- or two-line description of the formative assessments
+    building up to those summative assessments.
     These should be paced at roughly 15-minute intervals,
     i.e.,
     four per hour.
@@ -103,8 +104,12 @@ then formative assessments should take no more than 5 minutes.
 This means that formative assessments should be:
 
 *   multiple choice questions,
-*   Parsons Problems (in which the learner is given the parts of the solution in scrambled order and has to put them in the right order),
-*   debugging exercises (in which the learner is given a few lines of code that do the wrong thing and asked to find and fix the bug), or
+*   Parsons Problems
+    (in which the learner is given the parts of the solution in scrambled order
+    and has to put them in the right order),
+*   debugging exercises
+    (in which the learner is given a few lines of code that do the wrong thing
+    and asked to find and fix the bug), or
 *   extensions of examples show in the lecture.
 
 Good formative assessments do *not* require learners to write lots of code from scratch:
