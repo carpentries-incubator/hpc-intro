@@ -5,7 +5,8 @@ permalink: /setup/
 ---
 ## Setup Instructions for Actual Lessons
 
-1.  Installation instructions for core lessons are included in the [workshop template's home page][template],
+1.  Installation instructions for core lessons are included in
+    the [workshop template's home page][template],
     so that they are all in one place.
     The `setup.md` files of core lessons link to
     the appropriate sections of the [workshop template page][workshop-repo].
