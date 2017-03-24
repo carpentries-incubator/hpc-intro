@@ -6,7 +6,7 @@
 carpentry: "swc"
 
 # Overall title for pages.
-title: "Lesson Title"
+title: "Introduction to High-Performance Computing"
 
 # Contact.  This *must* include the protocol: if it's an email
 # address, it must look like "mailto:lessons@software-carpentry.org",
@@ -71,3 +71,4 @@ exclude:
 
 # Turn off built-in syntax highlighting.
 highlighter: false
+

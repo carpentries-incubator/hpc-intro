@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Episode template"
 teaching: 0
 exercises: 0
 questions:
@@ -9,3 +9,7 @@ objectives:
 keypoints:
 - "First key point."
 ---
+
+This is a template you can copy and use to start writing lessons.
+
+
