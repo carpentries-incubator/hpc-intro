@@ -6,58 +6,58 @@ Feel free to edit the topics for your section.
 
 ------------------------------------------
 
-**1. UNIX fundamentals - AR**
+## 1. UNIX fundamentals - AR
 
-	* SSH to a cluster
-	* Bash fundamentals (`cd`, `ls`, etc.)
-	* Transferring files (`scp`? `sftp`? Maybe only one?)
-	* Overview of HPC resources
+* SSH to a cluster
+* Bash fundamentals (`cd`, `ls`, etc.)
+* Transferring files (`scp`? `sftp`? Maybe only one?)
+* Overview of HPC resources
 
-		* What is a cloud?
-		* What is a cluster?
-		* Overview of services available (Compute Canada, Amazon EC2, etc.)
+	* What is a cloud?
+	* What is a cluster?
+	* Overview of services available (Compute Canada, Amazon EC2, etc.)
 
 -------------------------------------------------
 
-**2. Submitting / running jobs - JS**
+## 2. Submitting / running jobs - JS
 
-	* Scheduler - lesson will cover SLURM (which can also run PBS scripts/commands natively)
+* Scheduler - lesson will cover SLURM (which can also run PBS scripts/commands natively)
 
-		* Submitting jobs
-		* Checking status of jobs
-		* Deleting jobs
-		* Job size consequences
-		* GUI vs. batch programs (X-forwarding, SSH tunnels?)
+	* Submitting jobs
+	* Checking status of jobs
+	* Deleting jobs
+	* Job size consequences
+	* GUI vs. batch programs (X-forwarding, SSH tunnels?)
 
-	* Using software and environment modules
-	* Playing friendly in the cluster
+* Using software and environment modules
+* Playing friendly in the cluster
 
-		* Understanding resource utilization
-		* Profiling code - time, size, etc.
-		* Getting system stats
-		* Consequences of going over
+	* Understanding resource utilization
+	* Profiling code - time, size, etc.
+	* Getting system stats
+	* Consequences of going over
 
 ----------------------------------------------------
 
-**3. Language refresher / introduction (Python - JB, Chapel - JZ)**
+## 3. Language refresher / introduction (Python - JB, Chapel - JZ)
 
-	* Programming langage concepts
+* Programming langage concepts
 
-		* Compiled vs. interpreted languages
-		* How does a program work?
-		* Quick intro of programming language of choice
+	* Compiled vs. interpreted languages
+	* How does a program work?
+	* Quick intro of programming language of choice
 
-			* Major features + pros/cons
-			* What is it good at? 
+		* Major features + pros/cons
+		* What is it good at? 
 
-	* Actual language overview
+* Actual language overview
 
-		* Basic syntax (arithmetic, variables, etc.)
-		* Basic data structures (lists, arrays, etc.)
-		* Defining functions
-		* Conditional expressions
-		* For-loops
-		* Reading/writing data
+	* Basic syntax (arithmetic, variables, etc.)
+	* Basic data structures (lists, arrays, etc.)
+	* Defining functions
+	* Conditional expressions
+	* For-loops
+	* Reading/writing data
 
 Some side notes: 
 perhaps a quick refresh of key concepts right before use in parallel section,
@@ -65,22 +65,22 @@ certain concepts could get mixed in right before they're needed by the parallel 
 
 --------------------------------------------------------------
 
-**4. Intro to parallel programming (Python - JB, Chapel - JZ)**
+## 4. Intro to parallel programming (Python - JB, Chapel - JZ)
 
-	* Pipelining / automatic job submission / serial farming
-	* Shared memory programming
-	* Distributed memory programming
-	* Overview of good parallel design
+* Pipelining / automatic job submission / serial farming
+* Shared memory programming
+* Distributed memory programming
+* Overview of good parallel design
 
-		* Dependencies within own code
-		* Race conditions
+	* Dependencies within own code
+	* Race conditions
 
-	* Typical problems and bottlenecks
+* Typical problems and bottlenecks
 
-		* running in parallel (parallel scaling)
-		* parallel I/O (don't write a 1GB file from one processor if data is already distributed, etc.)
-		* Storage limitations (millions of files, compression, text vs. binary storage)
-		* Filesystem choice (home, scratch, tmp, etc.)
+	* running in parallel (parallel scaling)
+	* parallel I/O (don't write a 1GB file from one processor if data is already distributed, etc.)
+	* Storage limitations (millions of files, compression, text vs. binary storage)
+	* Filesystem choice (home, scratch, tmp, etc.)
 
 
 Good luck!
