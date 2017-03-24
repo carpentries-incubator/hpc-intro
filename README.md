@@ -15,8 +15,6 @@ Sections 3 and 4 (programming) will feature two programming languages:
 There are strong arguments for both languages, 
 and instructors will be able to choose which language they wish to teach in.
 
----------------------------------------------------------------------
-
 ## Topic breakdown and todo list
 
 The lesson outline and rough breakdown of topics by lesson writer is in 
@@ -29,7 +27,7 @@ and then reviewed by the rest of the group once complete.
 To begin creating content, follow this guide. 
 This won't cover lesson style or formatting (address that during review?).
 
-For a full guide to our lesson template, see the 
+For a full guide to the lesson template, see the 
 [Software Carpentry example lesson](http://swcarpentry.github.io/lesson-example/). 
 
 ### Lesson structure

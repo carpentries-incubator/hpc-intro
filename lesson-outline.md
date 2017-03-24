@@ -4,8 +4,6 @@ This is the tentative list of tasks and topics for each lesson.
 Lesson writers are indicated with first/last initials (e.g. AR).
 Feel free to edit the topics for your section.
 
-------------------------------------------
-
 ## 1. UNIX fundamentals - AR
 
 * SSH to a cluster
@@ -16,8 +14,6 @@ Feel free to edit the topics for your section.
 	* What is a cloud?
 	* What is a cluster?
 	* Overview of services available (Compute Canada, Amazon EC2, etc.)
-
--------------------------------------------------
 
 ## 2. Submitting / running jobs - JS
 
@@ -36,8 +32,6 @@ Feel free to edit the topics for your section.
 	* Profiling code - time, size, etc.
 	* Getting system stats
 	* Consequences of going over
-
-----------------------------------------------------
 
 ## 3. Language refresher / introduction (Python - JB, Chapel - JZ)
 
@@ -62,8 +56,6 @@ Feel free to edit the topics for your section.
 Some side notes: 
 perhaps a quick refresh of key concepts right before use in parallel section,
 certain concepts could get mixed in right before they're needed by the parallel lesson.
-
---------------------------------------------------------------
 
 ## 4. Intro to parallel programming (Python - JB, Chapel - JZ)
 
