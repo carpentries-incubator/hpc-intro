@@ -35,10 +35,6 @@ Feel free to edit the topics for your section.
 
 3. Language refresher / introduction (Python - JB, Chapel - JZ)
 
-Some side notes: 
-perhaps a quick refresh of key concepts right before use in parallel section,
-certain concepts could get mixed in right before they're needed by the parallel lesson.
-
 	* Programming langage concepts
 
 		* Compiled vs. interpreted languages
@@ -57,9 +53,11 @@ certain concepts could get mixed in right before they're needed by the parallel 
 		* For-loops
 		* Reading/writing data
 
-4. Intro to parallel programming (Python - JB, Chapel - JZ)
+Some side notes: 
+perhaps a quick refresh of key concepts right before use in parallel section,
+certain concepts could get mixed in right before they're needed by the parallel lesson.
 
-This will be an introduction to different parallel strategies:
+4. Intro to parallel programming (Python - JB, Chapel - JZ)
 
 	* Pipelining / automatic job submission / serial farming
 	* Shared memory programming
