@@ -1,0 +1,81 @@
+# Lesson outline and todo list
+
+This is the tentative list of tasks and topics for each lesson.
+Lesson writers are indicated with first/last initials (e.g. AR).
+Feel free to edit the topics for your section.
+
+1. UNIX fundamentals - AR
+
+	* SSH to a cluster
+	* Bash fundamentals (`cd`, `ls`, etc.)
+	* Transferring files (`scp`? `sftp`? Maybe only one?)
+	* Overview of HPC resources
+
+		* What is a cloud?
+		* What is a cluster?
+		* Overview of services available (Compute Canada, Amazon EC2, etc.)
+
+2. Submitting / running jobs - JS
+
+	* Scheduler - lesson will cover SLURM (which can also run PBS scripts/commands natively)
+
+		* Submitting jobs
+		* Checking status of jobs
+		* Deleting jobs
+		* Job size consequences
+		* GUI vs. batch programs (X-forwarding, SSH tunnels?)
+
+	* Using software and environment modules
+	* Playing friendly in the cluster
+
+		* Understanding resource utilization
+		* Profiling code - time, size, etc.
+		* Getting system stats
+		* Consequences of going over
+
+3. Language refresher / introduction (Python - JB, Chapel - JZ)
+
+Some side notes: 
+perhaps a quick refresh of key concepts right before use in parallel section,
+certain concepts could get mixed in right before they're needed by the parallel lesson.
+
+	* Programming langage concepts
+
+		* Compiled vs. interpreted languages
+		* How does a program work?
+		* Quick intro of programming language of choice
+
+			* Major features + pros/cons
+			* What is it good at? 
+
+	* Actual language overview
+
+		* Basic syntax (arithmetic, variables, etc.)
+		* Basic data structures (lists, arrays, etc.)
+		* Defining functions
+		* Conditional expressions
+		* For-loops
+		* Reading/writing data
+
+4. Intro to parallel programming (Python - JB, Chapel - JZ)
+
+This will be an introduction to different parallel strategies:
+
+	* Pipelining / automatic job submission / serial farming
+	* Shared memory programming
+	* Distributed memory programming
+	* Overview of good parallel design
+
+		* Dependencies within own code
+		* Race conditions
+
+	* Typical problems and bottlenecks
+
+		* running in parallel (parallel scaling)
+		* parallel I/O (don't write a 1GB file from one processor if data is already distributed, etc.)
+		* Storage limitations (millions of files, compression, text vs. binary storage)
+		* Filesystem choice (home, scratch, tmp, etc.)
+
+
+Good luck!
+
