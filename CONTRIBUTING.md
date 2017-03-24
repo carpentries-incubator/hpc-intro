@@ -1,4 +1,16 @@
-# Contributing
+# Contributing - HPC Carpentry
+
+**This lesson is currently under active development by the HPC Carpentry team.**
+
+Although this is intended to be an open lesson that follows the general 
+Software and Data Carpentry contribution guidelines,
+we are currently focusing on delivering our initial lesson pass.
+
+Although we appreciate external input, 
+contributions and input from the wider community will be reviewed only once initial lesson generation is complete.
+(We want this lesson as much as you do!)
+
+## General contribution guidelines
 
 [Software Carpentry][swc-site] and [Data Carpentry][dc-site] are open source projects,
 and we welcome contributions of all kinds:
