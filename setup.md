@@ -3,57 +3,17 @@ layout: page
 title: Setup
 permalink: /setup/
 ---
-## Setup Instructions for Actual Lessons
-
-1.  Installation instructions for core lessons are included in
-    the [workshop template's home page][template],
-    so that they are all in one place.
-    The `setup.md` files of core lessons link to
-    the appropriate sections of the [workshop template page][workshop-repo].
-
-2.  Other lessons' `setup.md` include full installation instructions organized by OS
-    (following the model of the workshop template home page).
-
-## Setting Up for Lesson Development
-
-If you want to set up Jekyll
-so that you can preview changes on your own machine before pushing them to GitHub,
-you must install the software described below.
-(Note: Julian Thilo has written instructions for
-[installing Jekyll on Windows][jekyll-windows].)
-
-1.  **Ruby**.
-    This is included with Linux and Mac OS X;
-    the simplest option on Windows is to use [RubyInstaller][ruby-installer].
-    You can test your installation by running `ruby --version`.
-    For more information,
-    see [the Ruby installation guidelines][ruby-install-guide].
-
-2.  **[RubyGems][rubygems]**
-    (the package manager for Ruby).
-    You can test your installation by running `gem --version`.
-
-3.  **[Jekyll][jekyll]**.
-    You can install this by running `gem install jekyll`.
-
-4.  **R Packages**.
-    We use [knitr][cran-knitr], [stringr][cran-stringr], and [checkpoint][cran-checkpoint]
-    to format lessons written in R Markdown,
-    so you will need to install these to build R lessons
-    (and this example lesson).
-
-If you want to run `bin/lesson_check.py` (which is invoked by `make lesson-check`)
-you will need Jekyll (so that you have its Markdown parser, which is called Kramdown)
-and the [PyYAML][pyyaml] module for Python 3.
 
 ## Creating a New Lesson
 
 We will assume that your user ID is `timtomch` and the name of your
-lesson is `data-cleanup`.
+new lesson is `data-cleanup`.
 
-1.  Go to [GitHub's importer][importer].
+1.  We'll use the [GitHub's importer][importer] to make a copy of this repo in your own GitHub account.
+(Note: This is like a GitHub Fork, but not connected to the upstream changes)
 
-2.  Put the URL of [the styles repository][styles] in the "Your old repository’s clone URL" box.
+2.  **Put the URL of [the styles repository][styles]** (https://github.com/swcarpentry/styles) in the "Your 
+    old repository’s clone URL" box.
     Do *not* use the URL of this repository,
     as that will bring in a lot of example files you don't actually want.
 
@@ -73,15 +33,18 @@ lesson is `data-cleanup`.
     You can now click "Begin Import".
     When the process is done,
     you can click "Continue to repository" to visit your newly-created repository.
+    
+    Through the Github interface you can begin to edit and 
 
-7.  Clone your newly-created repository to your desktop:
+7.  If you want to work on the lesson from your local machine, you can 
+    now clone your newly-created repository to your computer:
 
     ~~~
     $ git clone -b gh-pages https://github.com/timtomch/data-cleanup.git
     ~~~
     {: .source}
 
-    Note that the URL for your lesson will be different than the one above.
+    Note that the URL for your lesson will have your username and chosen repository name.
 
 8.  Go into that directory using:
 
@@ -90,10 +53,11 @@ lesson is `data-cleanup`.
     ~~~
     {: .source}
 
-    Note that the name of your directory will be different,
-    since your lesson probably won't be called `data-cleanup`.
+    Note that the name of your directory should be what you named your lesson 
+    on the example this is `data-cleanup`.
 
-9. Manually add the styles repository as a remote called `template`:
+9. To be able to pull upstream style changes, you should manually add the 
+     styles repository as a remote called `template`:
 
     ~~~
     $ git remote add template https://github.com/swcarpentry/styles.git
@@ -123,9 +87,9 @@ lesson is `data-cleanup`.
     that cannot be put into the styles repository
     (because they would trigger repeated merge conflicts).
 
-12. Create and edit files as explained in [the episodes of this lesson]({{ page.root }}/#schedule).
+12. Create and edit files as explained furhter in [the episodes of this lesson]({{ page.root }}/#schedule).
 
-13. Preview the HTML pages for your lesson:
+13. (requires Jekyll Setup from below) Preview the HTML pages for your lesson:
 
     ~~~
     $ make serve
@@ -162,4 +126,51 @@ lesson is `data-cleanup`.
     if the problem persists,
     please [get in touch][contact].
 
+
+## Setup Instructions for a specific existing lesson
+
+1.  Installation instructions for core lessons are included in
+    the [workshop template's home page][template],
+    so that they are all in one place.
+    The `setup.md` files of core lessons link to
+    the appropriate sections of the [workshop template page][workshop-repo].
+
+2.  Other lessons' `setup.md` include full installation instructions organized by OS
+    (following the model of the workshop template home page).
+
+## (Optional) Jekyll Setup for Lesson Development
+
+If you want to set up Jekyll
+so that you can preview changes on your own machine before pushing them to GitHub,
+you must install the software described below.
+(Note: Julian Thilo has written instructions for
+[installing Jekyll on Windows][jekyll-windows].)
+
+1.  **Ruby**.
+    This is included with Linux and Mac OS X;
+    the simplest option on Windows is to use [RubyInstaller][ruby-installer].
+    You can test your installation by running `ruby --version`.
+    For more information,
+    see [the Ruby installation guidelines][ruby-install-guide].
+
+2.  **[RubyGems][rubygems]**
+    (the package manager for Ruby).
+    You can test your installation by running `gem --version`.
+
+3.  **[Jekyll][jekyll]**.
+    You can install this by running `gem install jekyll`.
+
+4.  **R Packages**.
+    We use [knitr][cran-knitr], [stringr][cran-stringr], and [checkpoint][cran-checkpoint]
+    to format lessons written in R Markdown,
+    so you will need to install these to build R lessons
+    (and this example lesson).
+
+If you want to run `bin/lesson_check.py` (which is invoked by `make lesson-check`)
+you will need Jekyll (so that you have its Markdown parser, which is called Kramdown)
+and the [PyYAML][pyyaml] module for Python 3.
+
 {% include links.md %}
+
+
+
