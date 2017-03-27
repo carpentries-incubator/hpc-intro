@@ -4,6 +4,19 @@ title: Setup
 permalink: /setup/
 ---
 
+Our lesson template is kept in the `swcarpentry/styles` repository. The `styles` repository is carefully curated so that 
+changes made to it are easily mergable by downstream lessons. The `styles` repository contains various 
+bits that take Markdown files and render them as a lesson web page. For more information on how to develop 
+lessons and maintain them, see our [lesson-example](lesson-example). It will walk you through the basics of lesson 
+design and how to use GitHub, Markdown and Jekyll for lesson development. Follow the instructions below to make
+your own empty lesson in your own GitHub account. Once you've done that you can just write Markdown code and have 
+lesson web pages just like the [lesson-example](lesson-example) and all of our other lessons.
+
+Requirements:
+* A GitHub account
+* A working python environment to run the lesson initialization script
+* (Optional) A local install of [Jekyll](https://jekyllrb.com/) which will require the Ruby language to be installed
+
 ## Creating a New Lesson
 
 We will assume that your user ID is `timtomch` and the name of your
