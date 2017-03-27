@@ -10,7 +10,7 @@ bits that take Markdown files and render them as a lesson web page. For more inf
 lessons and maintain them, see our [lesson-example](lesson-example). It will walk you through the basics of lesson 
 design and how to use GitHub, Markdown and Jekyll for lesson development. Follow the instructions below to make
 your own empty lesson in your own GitHub account. Once you've done that you can just write Markdown code and have 
-lesson web pages just like the [lesson-example](lesson-example) and all of our other lessons.
+lesson web pages just like the [lesson-example](lesson-example) and all of our other lessons, but with your lesson content.
 
 Requirements:
 * A GitHub account
