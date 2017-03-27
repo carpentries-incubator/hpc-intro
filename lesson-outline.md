@@ -7,12 +7,12 @@ Feel free to edit the topics for your section.
 ## 1. UNIX fundamentals - AR
 
 * SSH to a cluster
-* Bash fundamentals (`cd`, `ls`, etc.)
+* Bash fundamentals (`cd`, `ls`, ..., aliases, functions, ~/.bashrc)
 * Transferring files (`scp`? `sftp`? Maybe only one?)
 * Overview of HPC resources
 
 	* What is a cloud?
-	* What is a cluster?
+	* What is a cluster? Different cluster types
 	* Overview of services available (Compute Canada, Amazon EC2, etc.)
 
 ## 2. Submitting / running jobs - JS
@@ -33,9 +33,9 @@ Feel free to edit the topics for your section.
 	* Getting system stats
 	* Consequences of going over
 
-## 3. Language refresher / introduction (Python - JB, Chapel - JZ)
+## 3. Language refresher / introduction (Python - JB, Chapel - JZ+AR)
 
-* Programming langage concepts
+* Programming language concepts
 
 	* Compiled vs. interpreted languages
 	* How does a program work?
@@ -57,7 +57,7 @@ Some side notes:
 perhaps a quick refresh of key concepts right before use in parallel section,
 certain concepts could get mixed in right before they're needed by the parallel lesson.
 
-## 4. Intro to parallel programming (Python - JB, Chapel - JZ)
+## 4. Intro to parallel programming (Python - JB, Chapel - JZ+AR)
 
 * Pipelining / automatic job submission / serial farming
 * Shared memory programming
@@ -76,4 +76,3 @@ certain concepts could get mixed in right before they're needed by the parallel 
 
 
 Good luck!
-
