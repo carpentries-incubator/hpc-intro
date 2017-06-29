@@ -1,11 +1,12 @@
 ---
-title: "Submitting / running jobs: scheduler"
+title: "Getting used to the scheduler"
 teaching: 0
 exercises: 0
 questions:
-- "Key question"
+- "What is a scheduler?"
+- "Why do we use a scheduler"
 objectives:
-- "First objective."
+- "Submit a job and have it complete successfully."
 keypoints:
 - "First key point."
 ---
