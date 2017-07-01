@@ -1,5 +1,5 @@
 ---
-title: "Getting used to the scheduler"
+title: "Using a cluster: The scheduler (SLURM)"
 teaching: 0
 exercises: 0
 questions:
