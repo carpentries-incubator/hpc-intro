@@ -301,6 +301,7 @@ You can also verify this with `hostname`.
 >
 > Note that this command requires you to have connected with X-forwarding enabled
 > (`ssh -X username@host.address.ca`).
+{: .challenge}
 
 When you are done with the interactive job, type `exit` to quit your session.
 
