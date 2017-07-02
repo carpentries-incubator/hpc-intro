@@ -256,7 +256,8 @@ gra752
 However, instead of specifying these in a script, 
 these options are specified on the command-line when starting a job.
 To submit a job that uses 2 cpus for instance, 
-we could use the following command:
+we could use the following command
+(note that SLURM's environment variables like `SLURM_CPUS_PER_TASK` are only available to batch jobs run with `sbatch`):
 
 ```
 srun -c 2 echo "This job will use 2 cpus."
@@ -268,3 +269,38 @@ This job will use 2 cpus.
 {: .output}
 
 ### Interactive jobs
+
+Sometimes, you will need a lot of resource for interactive use.
+Perhaps it's the first time running an analysis 
+or we are attempting to debug something that went wrong with a previous job.
+Fortunately, SLURM makes it easy to start an interactive job with `srun`:
+
+```
+srun --x11 --pty bash
+```
+{: .bash}
+
+> ## Note for administrators
+> 
+> The `--x11` option will not work unless the [slurm-spank-x11](https://github.com/hautreux/slurm-spank-x11) plugin is installed.
+> You should also make sure `xeyes` is installed as an example X11 app 
+> (`xorg-x11-apps` package on CentOS).
+> If you do not have these installed, just have students use `srun --pty bash` instead.
+{: .callout}
+
+You should be presented with a bash prompt.
+Note that the prompt will likely change to reflect your new location, 
+in this case the worker node we are logged on.
+You can also verify this with `hostname`.
+
+> ## Creating remote graphics
+> 
+> To demonstrate what happens when you create a graphics window on the remote node, 
+> use the `xeyes` command. 
+> A relatively adorable pair of eyes should pop up (press `Ctrl-c` to stop).
+>
+> Note that this command requires you to have connected with X-forwarding enabled
+> (`ssh -X username@host.address.ca`).
+
+When you are done with the interactive job, type `exit` to quit your session.
+
