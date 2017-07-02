@@ -8,11 +8,13 @@ questions:
 - "How do we submit a job?"
 objectives:
 - "Submit a job and have it complete successfully."
+- "Understand how to make resource requests."
 - "Submit an interactive job."
 keypoints:
 - "The scheduler handles how compute resources are shared between users."
 - "Everything you do should be run through the scheduler."
 - "A job is just a shell script."
+- "If in doubt, request more resources than you will need."
 ---
 
 An HPC system might have thousands of nodes and thousands of users.
@@ -50,7 +52,6 @@ Let's create a demo shell script to run as a test.
 If you completed the previous challenge successfully, 
 you probably realize that there is a distinction between 
 running the job through the scheduler and just "running it".
-
 To submit this job to the scheduler, we use the `sbatch` command.
 
 ```
@@ -165,15 +166,25 @@ which is not what we want.
 
 The following are several key resource requests:
 
-* **-c <ncpus>** - How many CPUs does your job need?
+* `-c <ncpus>` - How many CPUs does your job need?
 
-* **--mem <megabytes>** - How much memory on a node does your job need in megabytes? You can also specify gigabytes using by adding a little "g" afterwards (example: `--mem 5g`)
+* `--mem=<megabytes>` - How much memory on a node does your job need in megabytes? You can also specify gigabytes using by adding a little "g" afterwards (example: `--mem=5g`)
 
-* **--time <days-hours:minutes:seconds>** - How much real-world time (walltime) will your job take to run? The `<days>` part can be omitted.
+* `--time <days-hours:minutes:seconds>` - How much real-world time (walltime) will your job take to run? The `<days>` part can be omitted.
 
 > ## Submitting resource requests
 >
 > Submit a job that will use 2 cpus, 4 gigabytes of memory, and 5 minutes of walltime.
+{: .challenge}
+
+> ## Job environment variables
+>
+> When SLURM runs a job, it sets a number of environment variables for the job.
+> One of these will let us check our work from the last problem.
+> The `SLURM_CPUS_PER_TASK` variable is set to the number of CPUs we requested with `-c`.
+> Using the `SLURM_CPUS_PER_TASK` variable, 
+> modify your job so that it prints how many CPUs have been allocated.
+{: .challenge}
 
 Resource requests are typically binding.
 If you exceed them, your job will be killed.
@@ -189,3 +200,71 @@ echo 'This script is running on:'
 hostname
 sleep 120
 ```
+
+Submit the job and wait for it to finish. 
+Once it is has finished, check the log file.
+```
+sbatch example-job.sh
+watch squeue -u yourUsername
+cat slurm-38193.out
+```
+{: .bash}
+```
+This job is running on:
+gra533
+slurmstepd: error: *** JOB 38193 ON gra533 CANCELLED AT 2017-07-02T16:35:48 DUE TO TIME LIMIT ***
+```
+{: .output}
+
+Our job was killed for exceeding the amount of resources it requested.
+Although this appears harsh, this is actually a feature.
+Strict adherence to resource requests allows the scheduler to find the best possible place
+for your jobs.
+Even more importantly, 
+it ensures that another user cannot use more resources than they've been given.
+If another user messes up and accidentally attempts to use all of the CPUs or memory on a node, 
+SLURM will either restrain their job to the requested resources or kill the job outright.
+Other jobs on the node will be unaffected.
+This means that one user cannot mess up the experience of others,
+the only jobs affected by a mistake in scheduling will be their own.
+
+## Other types of jobs
+
+Up to this point, we've focused on running jobs in batch mode.
+SLURM also provides the ability to run tasks as a one-off or start an interactive session.
+
+There are very frequently tasks that need to be done semi-interactively.
+Creating an entire job script might be overkill, 
+but the amount of resources required is too much for a login node to handle.
+A good example of this might be building a genome index for alignment with a tool like [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml).
+Fortunately, we can run these types of tasks as a one-off with `srun`.
+
+`srun` runs a single command on the cluster and then exits.
+Let's demonstrate this by running the `hostname` command with `srun`.
+(We can cancel an `srun` job with `Ctrl-c`.)
+
+```
+srun hostname
+```
+{: .bash}
+```
+gra752
+```
+{: .output}
+
+`srun` accepts all of the same options as `sbatch`.
+However, instead of specifying these in a script, 
+these options are specified on the command-line when starting a job.
+To submit a job that uses 2 cpus for instance, 
+we could use the following command:
+
+```
+srun -c 2 echo "This job will use 2 cpus."
+```
+{: .bash}
+```
+This job will use 2 cpus.
+```
+{: .output}
+
+### Interactive jobs
