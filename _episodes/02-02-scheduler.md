@@ -228,6 +228,48 @@ Other jobs on the node will be unaffected.
 This means that one user cannot mess up the experience of others,
 the only jobs affected by a mistake in scheduling will be their own.
 
+## Canceling a job
+
+Sometimes we'll make a mistake and need to cancel a job.
+This can be done with the `scancel` command.
+Let's submit a job and then cancel it using its job number.
+
+```
+sbatch example-job.sh
+squeue -u yourUsername
+```
+{: .bash}
+```
+Submitted batch job 38759
+
+   JOBID     USER ACCOUNT           NAME  ST REASON    START_TIME                TIME  TIME_LEFT NODES CPUS
+   38759 yourUsername yourAccount example-job.sh  PD Priority  N/A                       0:00       1:00     1    1
+```
+{: .output}
+
+Now cancel the job with it's job number. 
+Absence of any job info indicates that the job has been successfully canceled.
+
+```
+scancel 38759
+squeue -u yourUsername
+```
+{: .bash}
+```
+   JOBID     USER ACCOUNT           NAME  ST REASON    START_TIME                TIME  TIME_LEFT NODES CPUS
+```
+{: .output}
+
+> ## Cancelling multiple jobs
+>
+> We can also all of our jobs at once using the `-u` option. 
+> This will delete all jobs for a specific user (in this case us).
+> Note that you can only delete your own jobs.
+>
+> Try submitting multiple jobs and then cancelling them all with 
+> `scancel -u yourUsername`.
+{: .challenge}
+
 ## Other types of jobs
 
 Up to this point, we've focused on running jobs in batch mode.
