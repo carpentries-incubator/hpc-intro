@@ -1,7 +1,7 @@
 ---
 title: "Using a cluster: Scheduling jobs"
-teaching: 0
-exercises: 0
+teaching: 45
+exercises: 30
 questions:
 - "What is a scheduler?"
 - "Why do we use a scheduler?"

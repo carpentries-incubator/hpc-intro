@@ -1,7 +1,7 @@
 ---
 title: "Using a cluster: Introduction"
-teaching: 0
-exercises: 0
+teaching: 15
+exercises: 10
 questions:
 - "What is a cluster?"
 - "What is high-performance computing?"
