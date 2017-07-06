@@ -1,14 +1,15 @@
 ---
 title: "Using a cluster: Accessing software"
-teaching: 0
-exercises: 0
+teaching: 30
+exercises: 15
 questions:
-- "What is the module system and how does it work?"
+- "How do we load and unload software packages?"
 objectives:
 - "Understand how to load and use a software package."
 keypoints:
 - "Load software with `module load softwareName`"
 - "Unload software with `module purge`"
+- "The module system handles software versioning and package conflicts for you automatically."
 - "You can edit your `.bashrc` file to automatically load a software package."
 ---
 
@@ -72,7 +73,7 @@ Use "module keyword key1 key2 ..." to search for all possible modules matching a
 ```
 {: .output}
 
-## `$PATH` and loading software
+## Loading and unloading software
 
 To load a software module, use `module load`.
 In this example we will use Python 3.
@@ -91,7 +92,7 @@ which python3
 We can load the `python3` command with `module load`.
 
 ```
-module load python/3.5.2
+module load python
 which python3
 ```
 {: .bash}
@@ -137,5 +138,229 @@ easy_install-3.5  pip3	   python    python3.5m        pyvenv-3.5
 ```
 {: .output}
 
+Taking this to it's conclusion, `module load` will add software to your `$PATH`.
+It "loads" software.
+A special note on this - 
+depending on which version of the `module` program that is installed at your site,
+`module load` will also load required software dependencies.
+To demonstrate, let's use `module list`.
+`module list` shows all loaded software modules.
 
+```
+module list
+```
+{: .bash}
+```
+Currently Loaded Modules:
+  1) nixpkgs/.16.09  (H,S)   3) gcccore/.5.4.0    (H)   5) intel/2016.4  (t)   7) StdEnv/2016.4 (S)
+  2) icc/.2016.4.258 (H)     4) ifort/.2016.4.258 (H)   6) openmpi/2.1.1 (m)   8) python/3.5.2  (t)
+
+  Where:
+   S:  Module is Sticky, requires --force to unload or purge
+   m:  MPI implementations / Implémentations MPI
+   t:  Tools for development / Outils de développement
+   H:             Hidden Module
+```
+{: .output}
+
+```
+module load beast
+module list
+```
+{: .bash}
+```
+Currently Loaded Modules:
+  1) nixpkgs/.16.09    (H,S)   5) intel/2016.4  (t)   9) java/1.8.0_121   (t)
+  2) icc/.2016.4.258   (H)     6) openmpi/2.1.1 (m)  10) beagle-lib/2.1.2 (bio)
+  3) gcccore/.5.4.0    (H)     7) StdEnv/2016.4 (S)  11) beast/2.4.0      (chem)
+  4) ifort/.2016.4.258 (H)     8) python/3.5.2  (t)
+
+  Where:
+   S:     Module is Sticky, requires --force to unload or purge
+   bio:   Bioinformatic libraries/apps / Logiciels de bioinformatique
+   m:     MPI implementations / Implémentations MPI
+   t:     Tools for development / Outils de développement
+   chem:  Chemistry libraries/apps / Logiciels de chimie
+   H:                Hidden Module
+```
+{: .output}
+
+So in this case, loading the `beast` module (a bioinformatics software package),
+also loaded `java/1.8.0_121` and `beagle-lib/2.1.2` as well.
+Let's try unloading the `beast` package.
+
+```
+module unload beast
+module list
+```
+{: .bash}
+```
+Currently Loaded Modules:
+  1) nixpkgs/.16.09  (H,S)   3) gcccore/.5.4.0    (H)   5) intel/2016.4  (t)   7) StdEnv/2016.4 (S)
+  2) icc/.2016.4.258 (H)     4) ifort/.2016.4.258 (H)   6) openmpi/2.1.1 (m)   8) python/3.5.2  (t)
+
+  Where:
+   S:  Module is Sticky, requires --force to unload or purge
+   m:  MPI implementations / Implémentations MPI
+   t:  Tools for development / Outils de développement
+   H:             Hidden Module
+```
+{: .output}
+
+So using `module unload` "un-loads" a module along with it's dependencies.
+If we wanted to unload everything at once, we could run `module purge` (unloads everything).
+
+```
+module purge
+```
+{: .bash}
+```
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) StdEnv/2016.4    3) icc/.2016.4.258   5) ifort/.2016.4.258   7) imkl/11.3.4.258
+  2) nixpkgs/.16.09   4) gcccore/.5.4.0    6) intel/2016.4        8) openmpi/2.1.1
+```
+{: .output}
+
+Note that `module purge` is informative. 
+It lets us know that all but a default set of packages have been unloaded
+(and how to actually unload these if we truly so desired).
+
+## Software versioning
+
+So far, we've learned how to load and unload software packages.
+This is very useful.
+However, we have not yet addressed the issue of software versioning.
+At some point or other, 
+you will run into issues where only one particular version of some software will be suitable.
+Perhaps a key bugfix only happened in a certain version, 
+or version X broke compatibility with a file format you use.
+In either of these example cases, 
+it helps to be very specific about what software is loaded.
+
+Let's examine the output of `module avail` more closely.
+
+```
+module avail
+```
+{: .bash}
+```
+----------------------------------------------------------- Core Modules -----------------------------------------------------------
+   StdEnv/2016.4 (S,L)     imkl/11.3.4.258 (L,math,D:11)      mcr/R2014b         (t)          python/3.5.2     (t,D:3:3.5)
+   bioperl/1.7.1 (bio)     imkl/2017.1.132 (math,2017)        mcr/R2015a         (t)          qt/4.8.7         (t)
+   eclipse/4.6.0 (t)       impute2/2.3.2   (bio)              mcr/R2015b         (t)          qt/5.6.1         (t,D)
+   eigen/3.3.2   (math)    intel/2016.4    (L,t,D:16:2016)    mcr/R2016a         (t)          signalp/4.1f     (bio)
+   fastqc/0.11.5 (bio)     intel/2017.1    (t,17:2017)        mcr/R2016b         (t,D)        spark/2.1.0      (t)
+   g2clib/1.6.0            jasper/1.900.1  (vis)              minimac2/2014.9.15 (bio)        spark/2.1.1      (t,D)
+   g2lib/1.4.0             java/1.8.0_121  (L,t)              perl/5.22.2        (t)          tbb/2017.2.132   (t)
+   gatk/3.7      (bio)     mach/1.0.18     (bio)              pgi/17.3           (t)          tmhmm/2.0c       (bio)
+   gcc/4.8.5     (t)       mcr/R2013a      (t)                picard/2.1.1       (bio)        trimmomatic/0.36 (bio)
+   gcc/5.4.0     (t,D)     mcr/R2014a      (t)                python/2.7.13      (t,2:2.7)
+```
+{: .output}
+
+Let's take a closer look at the `gcc` module.
+GCC is an extremely widely used C/C++/Fortran compiler.
+Tons of software is dependent on the GCC version, 
+and might not compile or run if the wrong version is loaded.
+In this case, there are two different versions: `gcc/4.8.5` and `gcc/5.4.0`.
+How do we load each copy and which copy is the default?
+
+In this case, `gcc/5.4.0` has a `(D)` next to it.
+This indicates that it is the default - 
+if we type `module load gcc`, this is the copy that will be loaded.
+
+```
+module load gcc
+gcc --version
+```
+{: .bash}
+```
+Lmod is automatically replacing "intel/2016.4" with "gcc/5.4.0".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) openmpi/2.1.1
+
+gcc (GCC) 5.4.0
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+{: .output}
+
+Note that three things happened:
+the default copy of GCC was loaded (version 5.4.0), 
+the Intel compilers (which conflict with GCC) were unloaded,
+and software that is dependent on compiler (OpenMPI) was reloaded.
+The `module` system turned what might be a super-complex operation into a single command.
+
+So how do we load the non-default copy of a software package?
+In this case, the only change we need to make is be more specific about the module we are loading.
+There are two GCC modules: `gcc/5.4.0` and `gcc/4.8.5`.
+To load a non-default module, the only change we need to make to our `module load` command
+is to leave in the version number after the `/`.
+
+```
+module load gcc/4.8.5
+gcc --version
+```
+{: .bash}
+```
+Inactive Modules:
+  1) openmpi
+
+The following have been reloaded with a version change:
+  1) gcc/5.4.0 => gcc/4.8.5
+
+gcc (GCC) 4.8.5
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+{: .output}
+
+We now have successfully switched from GCC 5.4.0 to GCC 4.8.5.
+It is also important to note that there was no compatible OpenMPI module available for GCC 4.8.5.
+Because of this, the `module` program has "inactivated" the module.
+All this means for us is that if we re-load GCC 5.4.0, 
+`module` will remember OpenMPI used to be loaded and load that module as well.
+
+```
+module load gcc/5.4.0
+```
+{: .bash}
+```
+Activating Modules:
+  1) openmpi/2.1.1
+
+The following have been reloaded with a version change:
+  1) gcc/4.8.5 => gcc/5.4.0
+```
+{: .output}
+
+> ## Using software modules in scripts
+>
+> Create a job that is able to run `python3 --version`.
+> Remember, no software is loaded by default!
+> Running a job is just like logging on to the system 
+> (you should not assume a module loaded on the login node is loaded on a worker node).
+{: .challenge}
+
+> ## Loading a module by default
+> 
+> Adding a set of `module load` commands to all of your scripts and
+> having to manually load modules every time you log on can be tiresome.
+> Fortunately, there is a way of specifying a set of "default modules"
+> that always get loaded, regardless of whether or not you're logged on or running a job.
+>
+> Every user has two hidden files in their home directory: `.bashrc` and `.bash_profile`
+> (you can see these files with `ls -la ~`).
+> These scripts are run every time you log on or run a job.
+> Adding a `module load` command to one of these shell scripts means that
+> that module will always be loaded.
+> Modify either your `.bashrc` or `.bash_profile` scripts to load a commonly used module like Python.
+> Does your `python3 --version` job from before still need `module load` to run?
+{: .challenge}
 
