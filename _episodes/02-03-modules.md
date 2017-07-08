@@ -364,3 +364,82 @@ The following have been reloaded with a version change:
 > Does your `python3 --version` job from before still need `module load` to run?
 {: .challenge}
 
+## Installing software of our own
+
+Most HPC clusters have a pretty large set of preinstalled software.
+Nonetheless, it's unlikely that all of the software we'll need will be available.
+Sooner or later, we'll need to install some software of our own. 
+
+Though software installation differs from package to package,
+the general process is the same:
+download the software, read the installation instructions (important!),
+install dependencies, compile, then start using our software.
+
+As an example we will install the bioinformatics toolkit `seqtk`.
+We'll first need to obtain the source code from Github using `git`.
+
+```
+git clone https://github.com/lh3/seqtk.git
+```
+{: .bash}
+```
+Cloning into 'seqtk'...
+remote: Counting objects: 316, done.
+remote: Total 316 (delta 0), reused 0 (delta 0), pack-reused 316
+Receiving objects: 100% (316/316), 141.52 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (181/181), done.
+```
+{: .output}
+
+Now, using the instructions in the README.md file, 
+all we need to do to complete the install is to `cd` 
+into the seqtk folder and run the command `make`.
+
+```
+cd seqtk
+make
+```
+{: .bash}
+```
+gcc -g -Wall -O2 -Wno-unused-function seqtk.c -o seqtk -lz -lm
+seqtk.c: In function ‘stk_comp’:
+seqtk.c:399:16: warning: variable ‘lc’ set but not used [-Wunused-but-set-variable]
+    int la, lb, lc, na, nb, nc, cnt[11];
+                ^
+```
+{: .output}
+
+It's done!
+Now all we need to do to use the program is invoke it like any other program.
+
+```
+./seqtk
+```
+{: .bash}
+```
+Usage:   seqtk <command> <arguments>
+Version: 1.2-r101-dirty
+
+Command: seq       common transformation of FASTA/Q
+         comp      get the nucleotide composition of FASTA/Q
+         sample    subsample sequences
+         subseq    extract subsequences from FASTA/Q
+         fqchk     fastq QC (base/quality summary)
+         mergepe   interleave two PE FASTA/Q files
+         trimfq    trim FASTQ using the Phred algorithm
+
+         hety      regional heterozygosity
+         gc        identify high- or low-GC regions
+         mutfa     point mutate FASTA at specified positions
+         mergefa   merge two FASTA/Q files
+         famask    apply a X-coded FASTA to a source FASTA
+         dropse    drop unpaired from interleaved PE FASTA/Q
+         rename    rename sequence names
+         randbase  choose a random base from hets
+         cutN      cut sequence at long N
+         listhet   extract the position of each het
+
+```
+{: .output}
+
+We've successfully installed our first piece of software!
