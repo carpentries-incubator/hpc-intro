@@ -1,5 +1,5 @@
 ---
-title: "Python introduction: basic syntax"
+title: "Python introduction: Basic syntax"
 teaching: 30
 exercises: 15
 questions:

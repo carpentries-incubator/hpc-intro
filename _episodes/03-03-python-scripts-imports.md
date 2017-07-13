@@ -1,5 +1,5 @@
 ---
-title: "Python introduction: writing our first program"
+title: "Python introduction: Writing our first program"
 teaching: 15
 exercises: 5
 questions:

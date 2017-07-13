@@ -1,5 +1,5 @@
 ---
-title: "Parallel Python: shared memory programming"
+title: "Parallel Python: Shared memory programming"
 teaching: 0
 exercises: 0
 questions:
