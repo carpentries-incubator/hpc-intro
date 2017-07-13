@@ -1,5 +1,5 @@
 ---
-title: "Python introduction: hello world"
+title: "Python introduction: Hello world!"
 teaching: 15
 exercises: 5
 questions:
