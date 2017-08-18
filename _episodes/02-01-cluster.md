@@ -4,8 +4,8 @@ teaching: 15
 exercises: 10
 questions:
 - "What is a cluster?"
-- "What is high-performance computing?"
 - "How does a cluster work?"
+- "How do I log on to a cluster?"
 objectives:
 - "Connect to a cluster."
 - "Understand the general cluster architecture."

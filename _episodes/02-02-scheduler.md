@@ -3,8 +3,7 @@ title: "Using a cluster: Scheduling jobs"
 teaching: 45
 exercises: 30
 questions:
-- "What is a scheduler?"
-- "Why do we use a scheduler?"
+- "What is a scheduler and why are they used?"
 - "How do we submit a job?"
 objectives:
 - "Submit a job and have it complete successfully."
