@@ -25,7 +25,7 @@ please see [the setup instructions]({{ page.root }}/setup/).
 > 4.  Put lesson episodes in `_episodes` (or `_episodes_rmd` if you are writing in RMarkdown).
 > 5.  Run `make serve` to preview the lesson website locally.
 > 6.  Do *not* commit the generated HTML files in the `_site` directory.
-> 7.  Style blocks and code samples by putting `{: .stylename}` *after* the block or code.
+> 7.  Style blocks and code samples by putting `{: .stylename}` on a newline *after* the block or code.
 > 8.  Put solutions inside challenges using nested blockquotes.
 > 9.  File issues and template fixes in the [styles repository][styles],
 >     and enhancements to this documentation in this one.
