@@ -1,4 +1,4 @@
-# Lesson outline
+# Intro to HPC 
 
 This lesson is focused on teaching the basics of high-performance computing (HPC).
 There are 4 primary components to this lesson. 
