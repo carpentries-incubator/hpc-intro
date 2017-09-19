@@ -2,7 +2,6 @@
 title: "High Performance Computing Introduction"
 teaching: 0
 exercises: 0
-
 questions:
 - "Why would I be interested in High Performance Computing (HPC)?"
 - "What can I expect to learn from this course?"
