@@ -68,3 +68,17 @@ Suppose that each file takes about a minute to analyze on her desktop system and
 Shifting this work to an HPC system will not only stand to speed up the processig of these files but the processing will importantly allow Nelle to continue to use her own computer for other work.
 
 [Example modified from [clemsonciti](https://github.com/clemsonciti/hpc-workshop/).]
+
+## Cloud vs Cluster
+
+Traditionally "HPC" is used to refer to computer systems known as "clusters" because they are groups of computer cores (or central processing units (CPUs)) and resources like memory and storage joined together by special networks that allow these computers to work together at very high speeds.  Such machines often have tens of thousands---or even hundreds of thousands---of cores.
+
+Clusters often share their resources among a large number of users through a piece of software called a scheduler.  When people want to use such a cluster they have to tell the scheduler that they want to do some work and what that work looks like in terms of the number of cores and the amount of memory that they plan to use.  The scheduler then gives them resources when they are available and when their "priority" (a score or ranking that is increased by how valuable their work is seen as being and decreased as they use resources) is high enough.
+
+Another type of computing resource that is catching attention and that is sometimes included in the term "HPC" is "the cloud".  When understood most broadly      using the cloud amounts to using a computer that is elsewhere and on this understanding most of the Internet and the clusters mentioned earlier are part of the cloud.  Often a narrower understanding is meant though...  
+
+Final point is that we're really focused on cluster-based computing in this course.
+
+## Interacting with HPC Resources
+
+Interacting with HPC systems is usually done through a text-based interface known as the "command line" that is a standard part of Linux, the operating system (OS) that is deployed on most clusters...
