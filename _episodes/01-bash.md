@@ -11,8 +11,8 @@ objectives:
 - "Be able to navigate the remote filesystem."
 keypoints:
 - "`ssh` is a common and powerful method for connecting to remote HPC systems."
-- "`ls` is used to view the content of directories and `cd` is used to move around the directory structure.
-- scratch storage is temporary and should not be relied on for crucial data beyond a short period of time
+- "`ls` is used to view the content of directories and `cd` is used to move around the directory structure."
+- "scratch storage is temporary and should not be relied on for crucial data beyond a short period of time."
 ---
 
 ## Opening a Terminal
