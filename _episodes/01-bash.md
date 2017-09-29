@@ -304,7 +304,7 @@ If this works you will see a terminal window open that prompts you for a usernam
 
 Note that you may want to paste in your password rather than typing it.  Use control/ctrl plus a right-click of the mouse to paste content from the clipboard to the PuTTY terminal.
 
-For those logging in with PuTTY it would likely be best to cover the terminal basics already mentioned, above.
+For those logging in with PuTTY it would likely be best to cover the terminal basics already mentioned above before moving on to navigating the remote system.
 
 ## Navigating the Remote System
 
