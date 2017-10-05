@@ -35,6 +35,7 @@ The diagram below shows the internal structure of a single episode file
 ## Locations and Names
 
 Episode files are stored in `_episodes`
+or, for the case of R Markdown files, `_episodes_rmd`
 so that [Jekyll][jekyll] will create a [collection][jekyll-collection] for them.
 Episodes are named `dd-subject.md`,
 where `dd` is a two-digit sequence number (with a leading 0)
@@ -49,13 +50,10 @@ in the published site.
 When referring to other episodes, use:
 
 {% raw %}
-    [link text]({{ page.root }}/dd-subject/)
+    [link text]({{ page.root }}{% link _episodes/dd-subject.md %})
 {% endraw %}
 
-i.e., use the episode's directory path below the site root
-*without* the `index.html` (which the web server fills in automatically).
-This will ensure that the link is valid both when previewing during desktop development
-and when the site is published on GitHub.
+i.e., use [Jekyll's tag link](https://jekyllrb.com/docs/templates/#links) and the name of the file.
 
 ## Episode Header
 
