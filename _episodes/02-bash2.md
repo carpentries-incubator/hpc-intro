@@ -33,7 +33,9 @@ It is often necessary to move data from a local computer to the remote compute a
 	
 It should be expected that a password will be asked for and you should be prepared to provide it.
 
-Once the transfer is complete you should be able to use `ssh` to login to the remote system and then 
+Once the transfer is complete you should be able to use `ssh` to login to the remote system and see your file in your home directory.
+
+WHAT IF YOU WANTED THE FILE SOMEWHERE OTHER THAN THE HOME DIRECTORY?
 
 > ## Remember the `:`
 > Note the colon (`:`) at the end of the command.  This is a very important modifier to include.  If it isn't included then running `scp` will result in a copy of the file that was to be moved being created in the current directory with the name of the remote system.  In the case of the globus.tgz example above it would look like the following:
