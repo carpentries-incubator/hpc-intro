@@ -308,8 +308,6 @@ For those logging in with PuTTY it would likely be best to cover the terminal ba
 
 ## Navigating the Remote System
 
-CUT AND PASTE FROM SWC SHELL-NOVICE. NEEDS TO BE MODIFIED TO INCLUDE A DISCUSSION OF home, scratch, and project
-
 Now let's learn the command that will let us see the contents of the remote filesystem.  We can see what's in our home directory by running `ls`,
 which stands for "listing":
 
@@ -345,7 +343,7 @@ Running `ls` on the remote system is likely significantly different from what yo
 > > Applications Documents    Library      Music        > > Public
 > > Desktop      Downloads    Movies       Pictures
 > > ~~~
-> > In addition you should also note that the 
+> > In addition you should also note that the preamble before the prompt (`$`) is different.  This is very important for making sure you know what system you are issuing commands on when in the shell.
 > {: .solution}
 {: .challenge}
 
@@ -358,10 +356,11 @@ $ ls -F
 {: .bash}
 
 ~~~
-Applications/ Documents/    Library/      Music/        Public/
-Desktop/      Downloads/    Movies/       Pictures/
+project/  projects/  scratch/
 ~~~
 {: .output}
+
+**FROM HERE DOWN NEEDS TWEAKING TO FIT WITH A REMOTE HPC SYSTEM.  PROJECT, SCRATCH, etc. NEED DESCRIBING.** 
 
 `ls` has lots of other options. To find out what they are, we can type:
 
@@ -514,21 +513,6 @@ For more information on how to use `ls` we can type `man ls`.
 `man` is the Unix "manual" command:
 it prints a description of a command and its options,
 and (if you're lucky) provides a few examples of how to use it.
-
-> ## `man` and Git for Windows
->
-> The bash shell provided by Git for Windows does not
-> support the `man` command. Doing a web search for
-> `unix man page COMMAND` (e.g. `unix man page grep`)
-> provides links to numerous copies of the Unix manual
-> pages online.
-> For example, GNU provides links to its
-> [manuals](http://www.gnu.org/manual/manual.html):
-> these include [grep](http://www.gnu.org/software/grep/manual/),
-> and the
-> [core GNU utilities](http://www.gnu.org/software/coreutils/manual/coreutils.html),
-> which covers many commands introduced within this lesson.
-{: .callout}
 
 To navigate through the `man` pages,
 you may use the up and down arrow keys to move line-by-line,
