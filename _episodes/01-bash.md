@@ -316,6 +316,10 @@ You may have noticed that the prompt changed when you logged into the remote sys
 
 `$` when it really doesn't matter which system the terminal is connected to.
 
+> ## Keep Two Terminal Windows Open
+> It is strongly recommended that you have two terminals open, one connected to the local system and one connected to the remote system, that you can switch back and forth between.  If you only use one terminal window then you will need to reconnect to the remote system using one of the methods above when you see a change from `[local]$` to `[remote]$` and disconnect when you see the reverse.
+{: .callout}
+
 ## Navigating the Remote System
 
 Now let's learn the command that will let us see the contents of the remote filesystem.  We can see what's in our home directory by running `ls`,
@@ -370,7 +374,7 @@ project/  projects/  scratch/
 ~~~
 {: .output}
 
-**FROM HERE DOWN NEEDS TWEAKING TO FIT WITH A REMOTE HPC SYSTEM.  PROJECT, SCRATCH, etc. NEED DESCRIBING.** 
+# **FROM HERE DOWN NEEDS TWEAKING TO FIT WITH A REMOTE HPC SYSTEM.  PROJECT, SCRATCH, etc. NEED DESCRIBING.** 
 
 `ls` has lots of other options. To find out what they are, we can type:
 
