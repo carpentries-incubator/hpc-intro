@@ -424,8 +424,33 @@ The syntax is relatively straightforwards: `wget https://some/link/to/a/file.tar
 > 
 {: .callout}
 
+## Scripting
+
+We need a short script and a brief explanation on `nano`.  Or we could use Jeff's simple script (below).
+
+> ## Creating our test job
+> 
+> 
+>
+>```
+>#!/bin/bash
+>
+> echo 'This script is running on:'
+> hostname
+> sleep 120
+>```
+{: .challenge}
+
+nano
+
+<!--
+
+Not sure if we want this content.  Likely should be driven by the use case.
 
 ## Controlling File Ownership
+
+When working on an HPC system you will likely find yourself working with files that you need to either take ownership of or assign ownership to.
+
 
 List with `ls -l`
 
@@ -437,17 +462,9 @@ Change ownership with `chown`
 
 chgrp
 
-## Scripting
-
-This can come out of Jeff's stuff.
-
-echo
-localhost
-
-nano
-
 ## Making Scripts Executable / Changing Permissions
 
 chmod
 
 p. 195
+-->
