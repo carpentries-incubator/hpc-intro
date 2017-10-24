@@ -316,6 +316,10 @@ You may have noticed that the prompt changed when you logged into the remote sys
 
 `$` when it really doesn't matter which system the terminal is connected to.
 
+> ## Being Certain Which System your Terminal is connected to
+> If you ever need to be certain which system a terminal you are using is connected to then use the follwing command: `$ hostname`.
+{: .callout}
+
 > ## Keep Two Terminal Windows Open
 > It is strongly recommended that you have two terminals open, one connected to the local system and one connected to the remote system, that you can switch back and forth between.  If you only use one terminal window then you will need to reconnect to the remote system using one of the methods above when you see a change from `[local]$` to `[remote]$` and disconnect when you see the reverse.
 {: .callout}
