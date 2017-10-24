@@ -306,13 +306,23 @@ Note that you may want to paste in your password rather than typing it.  Use con
 
 For those logging in with PuTTY it would likely be best to cover the terminal basics already mentioned above before moving on to navigating the remote system.
 
+## Telling the Difference between the Local Terminal and the Remote Terminal
+
+You may have noticed that the prompt changed when you logged into the remote system using the terminal (if you logged in using PuTTY this will not apply because it does not offer a local terminal).  This change is important because it makes it clear on which system the commands you type will be run when you pass them into the terminal.  This change is also a small complication that we will need to navigate throughout the workshop.  Exactly what is reported before the `$` in the terminal when it is connected to the local system and the remote system will typically be different for every user.  We still need to indicate which system we are entering commands on though so we will adopt the following convention:
+
+`[local]$` when the command is to be entered on a terminal connected to your local computer
+
+`[remote]$` when the command is to be entered on a terminal connected to the remote system
+
+`$` when it really doesn't matter which system the terminal is connected to.
+
 ## Navigating the Remote System
 
 Now let's learn the command that will let us see the contents of the remote filesystem.  We can see what's in our home directory by running `ls`,
 which stands for "listing":
 
 ~~~
-$ ls
+[remote]$ ls
 ~~~
 {: .bash}
 
@@ -351,7 +361,7 @@ We can make its output more comprehensible by using the **flag** `-F`,
 which tells `ls` to add a trailing `/` to the names of directories:
 
 ~~~
-$ ls -F
+[remote]$ ls -F
 ~~~
 {: .bash}
 
@@ -365,7 +375,7 @@ project/  projects/  scratch/
 `ls` has lots of other options. To find out what they are, we can type:
 
 ~~~
-$ ls --help
+[remote]$ ls --help
 ~~~
 {: .bash}
 
@@ -498,7 +508,7 @@ information on how to use the commands or programs.
 > will print an error message similar to this:
 >
 > ~~~
-> $ ls -j
+> [remote]$ ls -j
 > ~~~
 > {: .bash}
 > 
@@ -539,7 +549,7 @@ which doesn't exist.
 > to refer to the input term(s) given to a command.
 > Consider the example below:
 > ```
-> ls -lh Documents
+> [remote]$ ls -lh Documents
 > ```
 > {: .bash}
 > `ls` is the command, `-lh` are the flags (also called options),
@@ -554,7 +564,7 @@ The second argument --- the one *without* a leading dash --- tells `ls` that
 we want a listing of something other than our current working directory:
 
 ~~~
-$ ls -F Desktop
+[remote]$ ls -F Desktop
 ~~~
 {: .bash}
 
@@ -582,7 +592,7 @@ First, we can look at its contents, using the same strategy as before, passing
 a directory name to `ls`:
 
 ~~~
-$ ls -F Desktop/data-shell
+[remote]$ ls -F Desktop/data-shell
 ~~~
 {: .bash}
 
@@ -607,9 +617,9 @@ Let's say we want to move to the `data` directory we saw above.  We can
 use the following series of commands to get there:
 
 ~~~
-$ cd Desktop
-$ cd data-shell
-$ cd data
+[remote]$ cd Desktop
+[remote]$ cd data-shell
+[remote]$ cd data
 ~~~
 {: .bash}
 
@@ -622,7 +632,7 @@ it lists the contents of `/Users/nelle/Desktop/data-shell/data`,
 because that's where we now are:
 
 ~~~
-$ pwd
+[remote]$ pwd
 ~~~
 {: .bash}
 
@@ -632,7 +642,7 @@ $ pwd
 {: .output}
 
 ~~~
-$ ls -F
+[remote]$ ls -F
 ~~~
 {: .bash}
 
@@ -646,7 +656,7 @@ We now know how to go down the directory tree, but
 how do we go up?  We might try the following:
 
 ~~~
-$ cd data-shell
+[remote]$ cd data-shell
 ~~~
 {: .bash}
 
@@ -666,7 +676,7 @@ There is a shortcut in the shell to move up one directory level
 that looks like this:
 
 ~~~
-$ cd ..
+[remote]$ cd ..
 ~~~
 {: .bash}
 
@@ -678,7 +688,7 @@ Sure enough,
 if we run `pwd` after running `cd ..`, we're back in `/Users/nelle/Desktop/data-shell`:
 
 ~~~
-$ pwd
+[remote]$ pwd
 ~~~
 {: .bash}
 
@@ -691,7 +701,7 @@ The special directory `..` doesn't usually show up when we run `ls`.  If we want
 to display it, we can give `ls` the `-a` flag:
 
 ~~~
-$ ls -F -a
+[remote]$ ls -F -a
 ~~~
 {: .bash}
 
@@ -746,14 +756,14 @@ if you type `cd` on its own, without giving
 a directory?  
 
 ~~~
-$ cd
+[remote]$ cd
 ~~~
 {: .bash}
 
 How can you check what happened?  `pwd` gives us the answer!  
 
 ~~~
-$ pwd
+[remote]$ pwd
 ~~~
 {: .bash}
 
@@ -770,7 +780,7 @@ three commands, but we can actually string together the list of directories
 to move to `data` in one step:
 
 ~~~
-$ cd Desktop/data-shell/data
+[remote]$ cd Desktop/data-shell/data
 ~~~
 {: .bash}
 
@@ -797,7 +807,7 @@ we're looking for, we can use `pwd` and then extract the piece we need
 to move to `data-shell`.  
 
 ~~~
-$ pwd
+[remote]$ pwd
 ~~~
 {: .bash}
 
@@ -807,7 +817,7 @@ $ pwd
 {: .output}
 
 ~~~
-$ cd /Users/nelle/Desktop/data-shell
+[remote]$ cd /Users/nelle/Desktop/data-shell
 ~~~
 {: .bash}
 
@@ -870,7 +880,7 @@ Now in her current directory `data-shell`,
 Nelle can see what files she has using the command:
 
 ~~~
-$ ls north-pacific-gyre/2012-07-03/
+[remote]$ ls north-pacific-gyre/2012-07-03/
 ~~~
 {: .bash}
 
@@ -879,7 +889,7 @@ but she can let the shell do most of the work through what is called **tab compl
 If she types:
 
 ~~~
-$ ls nor
+[remote]$ ls nor
 ~~~
 {: .bash}
 
@@ -887,7 +897,7 @@ and then presses tab (the tab key on her keyboard),
 the shell automatically completes the directory name for her:
 
 ~~~
-$ ls north-pacific-gyre/
+[remote]$ ls north-pacific-gyre/
 ~~~
 {: .bash}
 
