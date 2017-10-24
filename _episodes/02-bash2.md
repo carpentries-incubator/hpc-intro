@@ -259,7 +259,7 @@ scp simpson@cedar.computecanada.ca:junk junk
 
 > ## Copying entire directories
 > 
-> HIGHLIGHT the `-r` flag here.
+> HIGHLIGHT the `-r` flag here.  Note its similarity to `-r` with `rm`.
 > 
 {: .callout}
 
@@ -268,13 +268,12 @@ scp simpson@cedar.computecanada.ca:junk junk
 `scp` is useful, but what if we don't know the exact location of what we want to transfer?
 Or perhaps we're simply not sure which files we want to tranfer yet.
 `sftp` is an interactive way of downloading and uploading files.
-To connect to a cluster, we use the command `sftp yourUsername@remote.computer.address`.
-This will start what appears to be a bash shell (though our prompt says `sftp>`).
-However we only have access to a limited number of commands.
+To connect to a cluster, using `sftp` the syntax is: `sftp yourUsername@remote.computer.address`.
+This will start what appears to be a Bash shell but that is really the sftp program.  We know that we are inside the sftp program because the prompt changes to `sftp>`.  While `sftp` looks like a Bash shell we only have access to a limited number of commands.
 
 We can see which commands are available with `help`:
 ```
-help
+sftp> help
 ```
 {: .bash}
 ```
@@ -307,7 +306,7 @@ We are actually connected to two computers at once (with two working directories
 
 To show our remote working directory:
 ```
-pwd
+sftp> pwd
 ```
 {: .bash}
 ```
@@ -318,7 +317,7 @@ Remote working directory: /global/home/yourUsername
 To show our local working directory, we add an `l` in front of the command:
 
 ```
-lpwd
+sftp> lpwd
 ```
 {: .bash}
 ```
@@ -334,7 +333,7 @@ The same pattern follows for all other commands:
 To upload a file, we type `put some-file.txt` (tab-completion works here).
 
 ```
-put config.toml
+sftp> put config.toml
 ```
 {: .bash}
 ```
@@ -346,7 +345,7 @@ config.toml                                   100%  713     2.4KB/s   00:00
 To download a file we type `get some-file.txt`:
 
 ```
-get config.toml
+sftp> get config.toml
 ```
 {: .bash}
 ```
@@ -359,8 +358,8 @@ And we can recursively put/get files by just adding `-r`.
 Note that the directory needs to be present beforehand.
 
 ```
-mkdir content
-put -r content/
+sftp> mkdir content
+sftp> put -r content/
 ```
 {: .bash}
 ```
