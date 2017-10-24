@@ -29,7 +29,7 @@ It is often necessary to move data from your local computer to the remote system
 
 Before we start moving files around it would be good to have some files to move around that don't really matter beyond their value in being moved around.  If they get lost or damaged or anything else it won't really matter because they are mostly harmless (we say "mostly" because it is possible that they might add clutter or overwrite another file with the same name but we can take steps to avoid these risks).
 
-### `scp`from your local computer to the remote system
+### `scp` from your local computer to the remote system
 The most basic command line tool for moving files around is secure copy or `scp`.
 
 `scp` behaves similarily to `ssh` but with one additional input, the name of the file to be copied.  If we were in the shell on our local computer, the file we wanted to move was in our current directory, named "globus.tgz", and Nelle wanted to move it to her home directory on cedar.computecanada.ca then the command would be
