@@ -9,7 +9,7 @@ questions:
 objectives:
 - "Be able to move files to and from the remote system."
 - "Be able to read and change file permissions."
-- "Be able to write and edit simple scripts
+- "Be able to write and edit simple scripts"
 keypoints:
 - "`scp` (The Secure Copy Program) is a standard way to securely transfer data to remote HPC systems."
 - "File ownership is an important component of a shared computing space and can be controlled with `chgrp` and `chown`."
