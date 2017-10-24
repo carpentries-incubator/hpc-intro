@@ -16,29 +16,213 @@ keypoints:
 - "Scripts are *mostly* just lists of commands from the command line in the order they are to be performed."
 ---
 
+## Making files to practice with
+Before we start moving files around we should have some files to move around that don't really matter beyond their value in being moved around.  If they get lost or damaged or anything else it won't really matter because they are mostly harmless (we say "mostly" because it is possible that they might add clutter or overwrite another file with the same name but we will take steps to avoid these risks).  We will create such files using the `touch` command after using `cd` to make sure that we are in the home directory.
+
+~~~
+[remote]$ cd
+[remote]$ touch fileToMove
+~~~
+{: .bash}
+
+~~~
+[remote]$ ls
+~~~
+{: .bash}
+
+~~~
+...
+fileToMove
+...
+~~~
+{: .output}
+
+We now have a file called "fileToMove" that we can move around.  If you run an `ls -l` you will note that its size is zero.  This is because it has no content.  This makes it a fairly safe file to move around because it can't really do anything.  It is also an easy file to move around because we won't need to worry about transfer times.
+
+> ## Overloading Commands
+> Running `$ man touch` will reveal that `touch` is the command meant to be used for changing the timestamps associated with files.  We're not using it to do this though and are instead using it to create a new file.  This is because when touch is run if it is passed the name for a file that doesn't exist it will create that file.  This is a useful feature but not what the command is specifically intended for and so we sometimes refer to this as "overloading" a command.  Using the concatentate file command `cat` to print the contents of a single file is another example of this.
+{: .callout}
+
+## Creating Directories
+
+Now that we have a file to move around we need a place to move the file to.  We can create a new directory using the `mkdir` command:
+
+~~~
+[remote]$ mkdir practiceDir
+[remote]$ ls
+~~~
+{: .bash}
+
+~~~
+...
+practiceDir
+...
+~~~
+{: .output}
+
+We can check the content of the new directory as well:
+
+~~~
+[remote]$ ls practiceDir
+~~~
+{: .bash}
+
+~~~
+
+~~~
+{: .output}
+
+We don't have any output returned, which is to be expected because we only just created the directory and nothing has been added to it yet.
+
 ## Moving Files Around
 
-`mv` and `cp`
+We can move our new file into the new directory with the move command, `mv`.  The syntax of `mv` is `$ mv file_being_moved location_moving_to`.   Moving our new file "fileToMove" to our new directory "practiceDir" can be done as follows:
 
-These will be an important setup for `scp` since the syntax is basically the same before adding the server components.
+~~~
+[remote]$ mv fileToMove practiceDir
+~~~
+{: .bash}
+
+"Silence is Golden" so as long as the move was successful we will receive no output.  We can check that the file was moved successfully using `ls`:
+
+~~~
+[remote]$ ls practiceDir
+~~~
+{: .bash}
+
+~~~
+fileToMove
+~~~
+{: .output}
+
+We can move `fileToMove` back from `practiceDir` as well:
+
+~~~
+[remote]$ mv practiceDir/fileToMove fileToMove
+~~~
+{: .bash}
+
+Again, if the transfer is successful then we will receive no output but we can use `ls` to check.
+
+~~~
+[remote]$ ls
+~~~
+{: .bash}
+
+~~~
+fileToMove
+~~~
+{: .output}
+
+~~~
+[remote]$ ls practiceDir
+~~~
+{: .bash}
+
+~~~
+
+~~~
+{: .output}
+ 
+## Copying Files
+ 
+We can also copy files, leaving the original file while a second version is created either elsewhere or in the same location.  The copy command is `cp` and its syntax is the same as for `mv`: `$ cp file_being_copied location_copying_to`.  We can create a copy of "fileToMove" inside of the "practiceDir" directory as follows:
+
+~~~
+[remote]$ cp fileToMove practiceDir
+~~~
+{: .bash}
+
+"Silence is Golden" so as long as the copy was successful we will receive no output.  We can check that the file was copied successfully using `ls`:
+
+~~~
+[remote]$ ls
+~~~
+{: .bash}
+
+~~~
+...
+fileToMove
+...
+~~~
+{: .output}
+
+~~~
+[remote]$ ls practiceDir
+~~~
+{: .bash}
+
+~~~
+fileToMove
+~~~
+{: .output}
+
+## Removing Files and Directories
+
+Sooner or later it will become important to be able to remove files and directories from a system via the command line.  This is usually done with the remove command, `rm`.  The syntax of `rm` is: `$rm optional_list_of_opitons list_of_files_to_be_removed`.  To remove "fileToMove" from our current directory, which should also be the home directory, we issue the following command:
+
+~~~
+[remote]$ rm fileToMove
+~~~
+{: .bash}
+
+If the file exists and there is nothing standing in the way of your ability to delete it such as a lack of authority to do so then the `rm` command will not return any output and just remove the file.  We can confirm this with the `ls` command.
+
+We can also remove entire directories with `rm`.  Try this now with `practiceDir`:
+
+~~~
+[remote]$ rm practiceDir
+~~~
+{: .bash}
+
+~~~
+rm: cannot remove 'practiceDir/': Is a directory
+~~~
+{: .output}
+
+This will notably fail with an error declaring that `rm` cannot remove "practiceDir" because it is a directory.  This is not actually the case. `rm` is quite capable of removing directories, we just need to pass the appropriate options.  The option we want here is `-r` with turns on recursion, allowing the removal of all the content within a directory and any directories and files within that directory and any directories and files within those directories and so on.  Let's try again with recursion flag:
+
+~~~
+[remote]$ rm -r practiceDir
+~~~
+{: .bash}
+
+The directory named "practiceDir" is now gone and so is the file named "fileToMove" that was inside it.
+
+> ## No Trash Can or Recycle Bin
+> If you are used to working with graphic user interfaces such as Windows, Mac OSX, or X-Windows on Linux then you are likely used to there being a special folder that holds any files that you delete for at least a short period of time before they are gone for good.  This feature does not exist in most command line environments.  When you use `rm` to remove a file it really is removed, short of a forensic audit of the filesystem.  Be very careful!
+{: .callout}
 
 
 ## Moving files to and from the remote system from and to your local computer
 
 It is often necessary to move data from your local computer to the remote system and vice versa.  There are many ways to do this and we will look at two here: `scp` and `sftp`.
 
-Before we start moving files around it would be good to have some files to move around that don't really matter beyond their value in being moved around.  If they get lost or damaged or anything else it won't really matter because they are mostly harmless (we say "mostly" because it is possible that they might add clutter or overwrite another file with the same name but we can take steps to avoid these risks).
-
 ### `scp` from your local computer to the remote system
 The most basic command line tool for moving files around is secure copy or `scp`.
 
 `scp` behaves similarily to `ssh` but with one additional input, the name of the file to be copied.  If we were in the shell on our local computer, the file we wanted to move was in our current directory, named "globus.tgz", and Nelle wanted to move it to her home directory on cedar.computecanada.ca then the command would be
-
-	$ scp globus.tgz nelle@cedar.computecanada.ca:
+	
+~~~
+[local]$ scp fileToMove nelle@cedar.computecanada.ca:
+~~~
+{: .bash}
 	
 It should be expected that a password will be asked for and you should be prepared to provide it.
 
 Once the transfer is complete you should be able to use `ssh` to login to the remote system and see your file in your home directory.
+
+~~~
+[remote]$ ls
+~~~
+{: .bash}
+
+~~~
+...
+fileToMove
+...
+~~~
+{: .output}
 
 WHAT IF YOU WANTED THE FILE SOMEWHERE OTHER THAN THE HOME DIRECTORY?
 
@@ -46,8 +230,8 @@ WHAT IF YOU WANTED THE FILE SOMEWHERE OTHER THAN THE HOME DIRECTORY?
 > Note the colon (`:`) at the end of the command.  This is a very important modifier to include.  If it isn't included then running `scp` will result in a copy of the file that was to be moved being created in the current directory with the name of the remote system.  In the case of the globus.tgz example above it would look like the following:
 > 
 > ~~~
-> $ scp globus.tgz nelle@cedar.computecanada.ca: 
-> $ ls
+> [local]$ scp globus.tgz nelle@cedar.computecanada.ca: 
+> [local]$ ls
 > ~~~
 > {: .bash}
 > 
@@ -60,7 +244,7 @@ WHAT IF YOU WANTED THE FILE SOMEWHERE OTHER THAN THE HOME DIRECTORY?
 > If this does happen then the extra file can be removed with `rm`.
 > 
 > ~~~
-> $ rm nelle@cedar.computecanada.ca
+> [local]$ rm nelle@cedar.computecanada.ca
 > ~~~
 > {: .bash}
 {: .callout}
@@ -242,8 +426,6 @@ The syntax is relatively straightforwards: `wget https://some/link/to/a/file.tar
 {: .callout}
 
 
-
-
 ## Controlling File Ownership
 
 List with `ls -l`
@@ -257,6 +439,11 @@ Change ownership with `chown`
 chgrp
 
 ## Scripting
+
+This can come out of Jeff's stuff.
+
+echo
+localhost
 
 nano
 
