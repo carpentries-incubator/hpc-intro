@@ -100,7 +100,7 @@ new lesson is `data-cleanup`.
     that cannot be put into the styles repository
     (because they would trigger repeated merge conflicts).
 
-12. Create and edit files as explained furhter in [the episodes of this lesson]({{ page.root }}/#schedule).
+12. Create and edit files as explained further in [the episodes of this lesson]({{ page.root }}/#schedule).
 
 13. (requires Jekyll Setup from below) Preview the HTML pages for your lesson:
 
