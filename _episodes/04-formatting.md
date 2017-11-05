@@ -32,6 +32,17 @@ The diagram below shows the internal structure of a single episode file
   <img src="{{ page.root }}/fig/episode-format-small.png" alt="Formatting Rules" />
 </a>
 
+## Maximum Line Length
+
+Limit all lines to a maximum of 100 characters.
+`bin/lesson_check.py` will report lines longer than 100 characters
+and this can block your contributions of being accepted.
+
+The two reasons behind the decision to enforce a maximum line lenght are
+(1) make diff and merge easier in the command line and other user interfaces
+and
+(2) make update of translation of the lessons easier.
+
 ## Locations and Names
 
 Episode files are stored in `_episodes`
