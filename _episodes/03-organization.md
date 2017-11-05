@@ -164,4 +164,8 @@ The `bin/lesson_initialize.py` script creates files that need to be customized f
     3.  Its permalink must be `/guide/`.
     4.  It may include whatever content the author thinks appropriate.
 
+## Figures
+
+All figures related with the lesson **must** be placed inside the directory `fig` at the root of the project.
+
 {% include links.md %}
