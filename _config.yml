@@ -33,7 +33,7 @@ pre_survey: "https://www.surveymonkey.com/r/swc_pre_workshop_v1?workshop_id="
 post_survey: "https://www.surveymonkey.com/r/swc_post_workshop_v1?workshop_id="
 
 #------------------------------------------------------------
-# Generic settings (should not need to change).
+# Lesson Generic settings (should not need to change).
 #------------------------------------------------------------
 
 # What kind of thing is this ("workshop" or "lesson")?
@@ -50,9 +50,10 @@ start_time: 0
 collections:
   episodes:
     output: true
-    permalink: /:path/
+    permalink: /:path/index.html
   extras:
     output: true
+    permalink: /:path/index.html
 
 # Set the default layout for things in the episodes collection.
 defaults:
@@ -63,6 +64,10 @@ defaults:
       type: episodes
     values:
       layout: episode
+
+#------------------------------------------------------------
+# Jekyll Generic settings (should not need to change).
+#------------------------------------------------------------
 
 # Files and directories that are not to be copied.
 exclude:

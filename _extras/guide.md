@@ -1,7 +1,6 @@
 ---
 layout: page
 title: "Instructor Notes"
-permalink: /guide/
 ---
 
 The instructor notes should provide additional discussion useful to instructors, 

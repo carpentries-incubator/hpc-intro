@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Setup
-permalink: /setup/
 ---
 
 Our lesson template is kept in the `swcarpentry/styles` repository. The `styles` repository is carefully curated so that 

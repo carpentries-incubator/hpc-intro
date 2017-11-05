@@ -1,7 +1,6 @@
 ---
 layout: page
 title: "Licenses"
-permalink: /license/
 ---
 ## Instructional Material
 
