@@ -9,7 +9,7 @@ carpentry: "swc"
 title: "Lesson Title"
 
 # Contact email address.
-contact: "mailto:lessons@software-carpentry.org"
+email: "mailto:lessons@software-carpentry.org"
 
 #------------------------------------------------------------
 # Constant URL addresses across lessons
