@@ -183,6 +183,4 @@ you will need Jekyll (so that you have its Markdown parser, which is called Kram
 and the [PyYAML][pyyaml] module for Python 3.
 
 {% include links.md %}
-
-
-
+[lesson-example]: https://swcarpentry.github.io/lesson-example/
