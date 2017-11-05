@@ -3,7 +3,7 @@ title: "Style Guide"
 teaching: 10
 exercises: 0
 questions:
-- "How are keyboard key combination write?"
+- "How are keyboard key combinations written?"
 objectives:
 - "Explain keyboard key combination."
 keypoints:
@@ -12,7 +12,7 @@ keypoints:
 
 ## Keyboard Key
 
-When make reference to a keyboard key that the reader should press
+When making reference to a keyboard key that the reader should press
 the HTML tag `<kbd>` **must** be used to enclose the key label.
 For example, "to delete the cell press <kbd>D</kbd>" should be write as
 
@@ -20,7 +20,7 @@ For example, "to delete the cell press <kbd>D</kbd>" should be write as
 to delete the cell press <kbd>D</kbd>
 ~~~
 
-The table below cover most of the keyboard key labels.
+The table below covers most of the keyboard key labels.
 
 |-------------------+--------------------------------------------------------------------+--------------------------|
 |   Keyboard key    |                             Style Note                             |         Example          |
@@ -72,8 +72,8 @@ The table below cover most of the keyboard key labels.
 
 ## Keyboard Key Combination
 
-When make reference to a keyboard key combination that the reader should press,
-insert a plus sign **withotu sapce** between each one of the keys.
+When making reference to a keyboard key combination that the reader should press,
+insert a plus sign **without sapce** between each one of the keys.
 For example, "press <kbd>Ctrl</kbd>+<kbd>X</kbd> to quit nano" should be write as
 
 ~~~
