@@ -1,5 +1,6 @@
 ---
 layout: page 
+root: .
 ---
 <script>
   window.onload = function() {

@@ -1,5 +1,6 @@
 ---
 layout: reference
+root: .
 ---
 
 ## Glossary
