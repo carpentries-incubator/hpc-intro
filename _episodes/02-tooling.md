@@ -128,7 +128,7 @@ is translated into:
 </body>
 </html>
 ~~~
-{: .source}
+{: .html}
 
 > ## Back in the Day...
 >
