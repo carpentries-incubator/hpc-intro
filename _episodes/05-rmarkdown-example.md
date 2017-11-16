@@ -33,7 +33,7 @@ each episode written in RMarkdown.
 ~~~
 source("../bin/chunk-options.R")
 ~~~
-{: .r}
+{: .language-r}
 
 The rest of the lesson should be written as a normal RMarkdown file. You can
 include chunk for codes, just like you'd normally do.
@@ -44,7 +44,7 @@ Normal output:
 ~~~
 1 + 1
 ~~~
-{: .r}
+{: .language-r}
 
 
 
@@ -59,7 +59,7 @@ Output with error message:
 ~~~
 x[10]
 ~~~
-{: .r}
+{: .language-r}
 
 
 
@@ -76,7 +76,7 @@ library(ggplot2)
 ggplot(diamonds, aes(x = carat,  y = price, color = cut)) +
     geom_point()
 ~~~
-{: .r}
+{: .language-r}
 
 <img src="../fig/rmd-plot-example-1.png" title="plot of chunk plot-example" alt="plot of chunk plot-example" style="display: block; margin: auto;" />
 
@@ -93,7 +93,7 @@ instructions and solutions. For instance this:
 > ~~~
 > paste("This", "new", "template", "looks", "good")
 > ~~~
-> {: .r}
+> {: .language-r}
 >
 > > ## Solution
 > >
@@ -116,7 +116,7 @@ will generate this:
 > ~~~
 > paste("This", "new", "template", "looks", "good")
 > ~~~
-> {: .r}
+> {: .language-r}
 >
 > > ## Solution
 > >

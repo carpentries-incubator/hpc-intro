@@ -137,7 +137,7 @@ which is rendered as:
 for thing in collection:
     do_something
 ~~~
-{: .source}
+{: .language-python}
 
 The class specified at the bottom using an opening curly brace and colon,
 the class identifier with a leading dot,
@@ -159,23 +159,70 @@ The [template]({{ site.template_repo }}) provides three styles for code blocks:
 ~~~
 {: .error}
 
-The following styles are all synonyms for `.source`;
-please use them where possible to indicate the type of source being displayed,
-in case we decide to adopt syntax highlighting at some point:
+### Syntax Highlighting
 
-*   `.bash`: Bash shell commands
-*   `.make`: Makefiles
-*   `.matlab`: MATLAB source
-*   `.python`: Python source
-*   `.r`: R source
-*   `.sql`: SQL source
+The following styles like `.source`, but include syntax highlighting for the
+specified language.
+Please use them where possible to indicate the type of source being displayed,
+and to make code easier to read.
 
-> ## Why No Syntax Highlighting?
->
-> We do not use syntax highlighting for code blocks
-> because some learners' systems won't do it,
-> or will do it differently than what they see on screen.
-{: .callout}
+`.language-bash`: Bash shell commands:
+
+~~~
+echo "Hello World"
+~~~
+{: .language-bash}
+
+`.html`: HTML source:
+
+~~~
+<html>
+<body>
+<em>Hello World</em>
+</body>
+</html>
+~~~
+{: .html}
+
+`.language-make`: Makefiles:
+
+~~~
+all:
+    g++ main.cpp hello.cpp -o hello
+~~~
+{: .language-make}
+
+`.language-matlab`: MATLAB source:
+
+~~~
+disp('Hello, world!')
+~~~
+{: .language-matlab}
+
+`.language-python`: Python source:
+
+~~~
+print("Hello World")
+~~~
+{: .language-python}
+
+`.language-r`: R source:
+
+~~~
+cat("Hello World")
+~~~
+{: .language-r}
+
+`.language-sql`: SQL source:
+
+~~~
+CREATE PROCEDURE HelloWorld AS
+PRINT 'Hello, world!'
+RETURN (0)
+~~~
+{: .language-sql}
+
+
 
 ## Special Blockquotes
 

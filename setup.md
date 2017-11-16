@@ -55,7 +55,7 @@ new lesson is `data-cleanup`.
     ~~~
     $ git clone -b gh-pages https://github.com/timtomch/data-cleanup.git
     ~~~
-    {: .source}
+    {: .language-bash}
 
     Note that the URL for your lesson will have your username and chosen repository name.
 
@@ -64,7 +64,7 @@ new lesson is `data-cleanup`.
     ~~~
     $ cd data-cleanup
     ~~~
-    {: .source}
+    {: .language-bash}
 
     Note that the name of your directory should be what you named your lesson 
     on the example this is `data-cleanup`.
@@ -75,7 +75,7 @@ new lesson is `data-cleanup`.
     ~~~
     $ git remote add template https://github.com/swcarpentry/styles.git
     ~~~
-    {: .source}
+    {: .language-bash}
 
     This will allow you to pull in changes made to the template,
     such as improvements to our CSS style files.
@@ -87,7 +87,7 @@ new lesson is `data-cleanup`.
     ~~~
     $ git checkout gh-pages
     ~~~
-    {: .source}
+    {: .language-bash}
 
 	This will ensure that you are using the most "stable" version of the
 	template repository. Since it's being actively maintained by the
@@ -107,7 +107,7 @@ new lesson is `data-cleanup`.
     ~~~
     $ make serve
     ~~~
-    {: .source}
+    {: .language-bash}
 
 14. Commit your changes *and the HTML pages in the root directory of
     your lesson repository* and push to the `gh-pages` branch of your
@@ -119,9 +119,9 @@ new lesson is `data-cleanup`.
     $ git commit -m "Explanatory message"
     $ git push origin gh-pages
     ~~~
-    {: .source}
+    {: .language-bash}
 
-15. [Tell us][contact] where your lesson is so that we can add it to
+15. [Tell us][email] where your lesson is so that we can add it to
     the appropriate index page(s).
 
 **Note:**
@@ -137,7 +137,7 @@ new lesson is `data-cleanup`.
     possibly because of the network timing out.
     If you experience a problem, please re-try;
     if the problem persists,
-    please [get in touch][contact].
+    please [get in touch][email].
 
 
 ## Setup Instructions for a specific existing lesson
