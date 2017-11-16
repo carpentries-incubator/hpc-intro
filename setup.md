@@ -121,7 +121,7 @@ new lesson is `data-cleanup`.
     ~~~
     {: .language-bash}
 
-15. [Tell us][contact] where your lesson is so that we can add it to
+15. [Tell us][email] where your lesson is so that we can add it to
     the appropriate index page(s).
 
 **Note:**
@@ -137,7 +137,7 @@ new lesson is `data-cleanup`.
     possibly because of the network timing out.
     If you experience a problem, please re-try;
     if the problem persists,
-    please [get in touch][contact].
+    please [get in touch][email].
 
 
 ## Setup Instructions for a specific existing lesson
