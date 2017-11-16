@@ -19,6 +19,7 @@ For example, "to delete the cell press <kbd>D</kbd>" should be write as
 ~~~
 to delete the cell press <kbd>D</kbd>
 ~~~
+{: .html}
 
 The table below covers most of the keyboard key labels.
 
@@ -79,5 +80,6 @@ For example, "press <kbd>Ctrl</kbd>+<kbd>X</kbd> to quit nano" should be write a
 ~~~
 press <kbd>Ctrl</kbd>+<kbd>X</kbd> to quit nano.
 ~~~
+{: .html}
 
 {% include links.md %}
