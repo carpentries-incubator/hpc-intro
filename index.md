@@ -14,6 +14,7 @@ By the end of this workshop, students will know how to:
 * Learn the fundamentals of programming in Python or Chapel.
 * Understand parallel programming strategies, and write basic parallel code in Python or Chapel. 
 
+**NOTE: This is the draft HPC Carpentry release. Comments and feedback are welcome.** 
 
 > ## Prerequisites
 >
