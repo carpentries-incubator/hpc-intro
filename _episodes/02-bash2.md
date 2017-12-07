@@ -16,6 +16,11 @@ keypoints:
 - "Scripts are *mostly* just lists of commands from the command line in the order they are to be performed."
 ---
 
+<!-- We create files to practice with here for two reasons:
+1. At this point in the lesson it means that it saves problems that can arise when people have access troubles or mishandle actual data files.
+2. It demonstrates an actual development practice of trying things out with files that don't matter.
+-->
+
 ## Making files to practice with
 Before we start moving files around we should have some files to move around that don't really matter beyond their value in being moved around.  If they get lost or damaged or anything else it won't really matter because they are mostly harmless (we say "mostly" because it is possible that they might add clutter or overwrite another file with the same name but we will take steps to avoid these risks).  We will create such files using the `touch` command after using `cd` to make sure that we are in the home directory.
 
@@ -380,8 +385,10 @@ To quit, we type `exit` or `bye`.
 ## Grabbing files from the internet
 
 To download files from the internet, 
-the absolute best tool is `wget`.
+a regularly used tool is `wget`.
 The syntax is relatively straightforwards: `wget https://some/link/to/a/file.tar.gz`
+
+<!--NOTE:  While wget is likely to be available on all remote systems it is NOT available on all local systems, for example, OSX does not include it by default.  We should offer curl either as well or instead. -->
 
 > ## Downloading the Drosophila genome
 > The *Drosophila melanogaster* reference genome is located at the following website:
@@ -423,6 +430,8 @@ The syntax is relatively straightforwards: `wget https://some/link/to/a/file.tar
 >* Compress a lot of files/folders with Gzip - `tar -czvf archive-name.tar.gz folder1 file2 folder3 etc`
 > 
 {: .callout}
+
+<!-- gnu parallel (see: https://docs.computecanada.ca/wiki/GNU_Parallel ) is something that we should consider including here as well.  It would be a friendly introduction to an important HPC concept before the second day and in a context where they could quickly see the difference, especially if the time was tracked.--> 
 
 ## Scripting
 
