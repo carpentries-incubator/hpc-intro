@@ -15,7 +15,7 @@ lesson web pages just like the [lesson-example](lesson-example) and all of our o
 Requirements:
 * A GitHub account
 * A working python environment to run the lesson initialization script
-* (Optional) A local install of [Jekyll](https://jekyllrb.com/) which will require the Ruby language to be installed
+* (Optional) A local install of [Jekyll](https://jekyllrb.com/) (version 3.2 or higher) which will require the Ruby language to be installed.
 
 ## Creating a New Lesson
 
