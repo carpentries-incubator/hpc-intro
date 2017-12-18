@@ -123,9 +123,9 @@ is translated into:
 
 ~~~
 <html>
-<body>
-<p>Today we are going to study Science.</p>
-</body>
+  <body>
+    <p>Today we are going to study Science.</p>
+  </body>
 </html>
 ~~~
 {: .html}
