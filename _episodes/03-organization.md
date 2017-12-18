@@ -14,8 +14,8 @@ keypoints:
 - "The Makefile stores commonly-used commands."
 ---
 
-Each lesson is made up of *episodes* that are 10-30 minutes long
-(including time for both teaching and exercises).
+Each lesson is made up of *episodes*, which are focused on a particular topic and
+include time for both teaching and exercises.
 The episodes of this lesson explain the tools we use to create lessons
 and the formatting rules those lessons must follow.
 
