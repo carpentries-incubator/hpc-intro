@@ -72,9 +72,7 @@ In practice, the process often looks more like this:
 
 3.  Write a one- or two-line description of the formative assessments
     building up to those summative assessments.
-    These should be paced at roughly 15-minute intervals,
-    i.e.,
-    four per hour.
+    These should be used ideally every 5 minutes and at least every 10-15 minutes.
 
 4.  Get early feedback from peers,
     particularly on how realistic the time estimates are.
@@ -104,9 +102,6 @@ then formative assessments should take no more than 5 minutes.
 This means that formative assessments should be:
 
 *   multiple choice questions,
-*   Parsons Problems
-    (in which the learner is given the parts of the solution in scrambled order
-    and has to put them in the right order),
 *   debugging exercises
     (in which the learner is given a few lines of code that do the wrong thing
     and asked to find and fix the bug), or
