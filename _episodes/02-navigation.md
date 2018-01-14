@@ -14,7 +14,8 @@ keypoints:
 - "Your current directory is referred to as the working directory."
 - "To change directories, use `cd`."
 - "To view files, use `ls`."
-- "We can view a command's manual with `man command_name`."
+- "You can view help for a command with `man command` or `command --help`."
+- "Hit `tab` to autocomplete whatever you're currently typing."
 ---
 
 At the point in this lesson, we've just logged into the system. 
@@ -78,6 +79,7 @@ $ ls
 > Open a second terminal window on your local computer and run the `ls` command without logging in remotely.
 > What differences do you see?
 >
+> > ## Solution
 > > You would likely see something more like this:
 > > ~~~
 > > Applications Documents    Library      Music        Public
@@ -146,11 +148,11 @@ Other folders on a UNIX OS contain system files, and get modified and changed as
 > On HPC systems, you have a number of places where you can store your files. These differ in both the amount of space allocated and whether or not they are backed up.
 >
 > File storage locations:  
-> **Home directory** - Your home directory (also known as `~`), is usually a great place to store anything, and is typically backed up. The home directory is typically (but not always!) located under `/home`.
-> **Network filesystem** - Many systems will have other storage locations besides just your home directory that are typically backed up as well. In the last command, `/project` is an example of one such filesystem.
-> **Scratch** - Some systems may offer "scratch" space. Scratch space is typically faster to use than your home directory or network filesystem, but is not usually backed up, and should not be used for long term storage. In the last example, `/scratch` is a scratch drive.
-> **Local scratch (job only)** - Some systems may offer local scratch space while executing a job. Such storage is very fast, but will be deleted at the end of your job.
-> **Ramdisk (job only)** - Some systems may let you store files in a "ramdisk" while running a job, where files are stored directly in the computer's memory. This extremely fast, but files stored here will count against your job's memory usage and be deleted at the end of your job. 
+>
+> * **Network filesystem** - Your home directory is an example of a network filesystem. Data stored here is available throughout the HPC system and files stored here are backed up. Files stored here are typically slower to access, the data is actually stored on another computer and is being transmitted and made available over the network! `/project` and `/home` are both network filesystems. 
+> * **Scratch** - Some systems may offer "scratch" space. Scratch space is typically faster to use than your home directory or network filesystem, but is not usually backed up, and should not be used for long term storage. In the last example, `/scratch` is a scratch drive.
+> * **Local scratch (job only)** - Some systems may offer local scratch space while executing a job. Such storage is very fast, but will be deleted at the end of your job.
+> * **Ramdisk (job only)** - Some systems may let you store files in a "ramdisk" while running a job, where files are stored directly in the computer's memory. This extremely fast, but files stored here will count against your job's memory usage and be deleted at the end of your job. 
 {: .callout}
 
 There are several other useful shortcuts you should be aware of.  
