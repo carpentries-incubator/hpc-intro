@@ -79,13 +79,27 @@ Once the MobaXterm window is open you should see a large button in the middle
 of that window with the text "Start Local Terminal". Click this button and
 you will have a terminal window at your disposal.
 
+#### PuTTY
+
+It is strictly speaking not necessary to have a terminal running on your local computer in order to access and use a remote system, only a window into the remote system once connected.  PuTTy is likely the oldest, most well-known, and widely used software solution to take this approach.
+
+PuTTY is available for free download from [www.putty.org](http://www.putty.org/).  Download the version that is correct for your operating system and install it as you would other software on you Windows system.  Once installed it will be available through the start menu or similar.
+
+Running PuTTY will not initially produce a terminal but intsead a window full of connection options.  Putting the address of the remote system in the "Host Name (or IP Address)" box and either pressing enter or clicking the "Open" button should begin the connection process.
+
+If this works you will see a terminal window open that prompts you for a username through the "login as:" prompt and then for a password.  If both of these are passed correctly then you will be given access to the system and will see a message saying so within the terminal.  If you need to escape the authentication process you can hold the control/ctrl key and press the c key to exit and start again.
+
+Note that you may want to paste in your password rather than typing it.  Use control/ctrl plus a right-click of the mouse to paste content from the clipboard to the PuTTY terminal.
+
+For those logging in with PuTTY it would likely be best to cover the terminal basics already mentioned above before moving on to navigating the remote system.
+
 ## Logging onto the system
 
 With all of this in mind, let's connect to a cluster. 
 For these examples, we will connect to Graham - a high-performance cluster located at the University of Waterloo.
 Although it's unlikely that every system will be exactly like Graham, 
 it's a very good example of what you can expect from a supercomputing installation.
-To connect to our example computer, we will use SSH. 
+To connect to our example computer, we will use SSH (if you are using PuTTY, see above). 
 
 SSH allows us to connect to UNIX computers remotely, and use them as if they were our own.
 The general syntax of the connection command follows the format `ssh yourUsername@some.computer.address`
@@ -117,3 +131,36 @@ We will cover things in depth as we explore the system further.)
 ```{.output}
 [yourUsername@gra-login1 ~]$
 ```
+
+## Telling the Difference between the Local Terminal and the Remote Terminal
+
+You may have noticed that the prompt changed when you logged into the remote
+system using the terminal (if you logged in using PuTTY this will not apply
+because it does not offer a local terminal). This change is important because
+it makes it clear on which system the commands you type will be run when you
+pass them into the terminal. This change is also a small complication that we
+will need to navigate throughout the workshop. Exactly what is reported
+before the `$` in the terminal when it is connected to the local system and
+the remote system will typically be different for every user. We still need
+to indicate which system we are entering commands on though so we will adopt
+the following convention:
+
+`[local]$` when the command is to be entered on a terminal connected to your local computer
+
+`[remote]$` when the command is to be entered on a terminal connected to the remote system
+
+`$` when it really doesn't matter which system the terminal is connected to.
+
+> ## Being Certain Which System your Terminal is connected to
+> If you ever need to be certain which system a terminal you are using is connected to 
+> then use the follwing command: `$ hostname`.
+{: .callout}
+
+> ## Keep Two Terminal Windows Open
+> It is strongly recommended that you have two terminals open, one connected
+> to the local system and one connected to the remote system, that you can
+> switch back and forth between. If you only use one terminal window then you
+> will need to reconnect to the remote system using one of the methods above
+> when you see a change from `[local]$` to `[remote]$` and disconnect when you
+> see the reverse.
+{: .callout}
