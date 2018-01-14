@@ -27,62 +27,6 @@ and are used to accomplish tasks that might otherwise be too substantial for any
 
 ![The cloud is made of Linux](../files/linux-cloud.jpg)
 
-## High performance computing
-
-A high-performance computing cluster is a set of machines that have been 
-designed to handle tasks that normal computers can't handle.
-This doesn't always mean simply having super fast processors. 
-High-performance computing covers a lot of use cases.
-Here are a couple of use cases where high-performance computing becomes extremely useful:
-
-* You need access to large numbers of CPUs.
-* You need to run a large number of jobs.
-* Your jobs are running out of memory.
-* Perhaps you need to store tons and tons of data.
-* You require an exceptionally high-bandwidth internet connection for data transfer.
-* You need a safe archival site for your data.
-* Your compute jobs require specialized GPU or FPGA hardware.
-* Maybe your jobs just take a long time to run.
-
-Chances are, you've run into one of these situations before.
-Fortunately, high-performance computing installations exist to solve these types of problems.
-
-With all of this in mind, let's connect to a cluster (if you haven't done so already!). 
-For these examples, we will connect to Graham - a high-performance cluster located at the University of Waterloo.
-Although it's unlikely that every system will be exactly like Graham, 
-it's a very good example of what you can expect from a supercomputing installation.
-To connect to our example computer, we will use SSH. 
-
-## Logging onto the cluster
-
-SSH allows us to connect to UNIX computers remotely, and use them as if they were our own.
-The general syntax of the connection command follows the format `ssh yourUsername@some.computer.address`
-Let's attempt to connect to the cluster now:
-```
-ssh yourUsername@graham.computecanada.ca
-```
-{: .bash}
-
-```{.output}
-The authenticity of host 'graham.computecanada.ca (199.241.166.2)' can't be established.
-ECDSA key fingerprint is SHA256:JRj286Pkqh6aeO5zx1QUkS8un5fpcapmezusceSGhok.
-ECDSA key fingerprint is MD5:99:59:db:b1:3f:18:d0:2c:49:4e:c2:74:86:ac:f7:c6.
-Are you sure you want to continue connecting (yes/no)?  # type "yes"!
-Warning: Permanently added the ECDSA host key for IP address '199.241.166.2' to the list of known hosts.
-yourUsername@graham.computecanada.ca's password:  # no text appears as you enter your password
-Last login: Wed Jun 28 16:16:20 2017 from s2.n59.queensu.ca
-
-Welcome to the ComputeCanada/SHARCNET cluster Graham.
-```
-
-If you've connected successfully, you should see a prompt like the one below. 
-This prompt is informative, and lets you grasp certain information at a glance:
-in this case `[yourUsername@computerName workingDirectory]$`.
-
-```{.output}
-[yourUsername@gra-login1 ~]$
-```
-
 ## Where are we? 
 
 Very often, many users are tempted to think of a high-performance computing installation as one giant, magical machine.
