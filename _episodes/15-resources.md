@@ -1,5 +1,5 @@
 ---
-title: "Using a cluster: Using resources effectively"
+title: "Using resources effectively"
 teaching: 15
 exercises: 10
 questions:

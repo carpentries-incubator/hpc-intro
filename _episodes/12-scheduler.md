@@ -1,5 +1,5 @@
 ---
-title: "Using a cluster: Scheduling jobs"
+title: "Scheduling jobs"
 teaching: 45
 exercises: 30
 questions:

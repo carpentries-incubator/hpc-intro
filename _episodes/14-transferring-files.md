@@ -1,5 +1,5 @@
 ---
-title: "Using a cluster: Transferring Files"
+title: "Transferring files"
 teaching: 30
 exercises: 10
 questions:

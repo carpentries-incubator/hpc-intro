@@ -1,5 +1,5 @@
 ---
-title: "UNIX fundamentals: File Control"
+title: "Working with files"
 teaching: 0
 exercises: 0
 questions:

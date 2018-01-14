@@ -1,5 +1,5 @@
 ---
-title: "UNIX fundamentals: Connecting & BASH Basics"
+title: "The basics of Bash"
 teaching: 0
 exercises: 0
 questions:

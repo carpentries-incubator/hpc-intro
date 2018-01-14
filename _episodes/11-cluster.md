@@ -1,5 +1,5 @@
 ---
-title: "Using a cluster: Introduction"
+title: "Working on a cluster"
 teaching: 15
 exercises: 10
 questions:
