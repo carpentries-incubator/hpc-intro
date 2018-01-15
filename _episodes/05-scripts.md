@@ -53,9 +53,9 @@ drwxr-xr-x. 2 jeff jeff        18 Jan 25 13:53 fastq
 That's a huge amount of output. Let's see if we can understand what it is, working left to right.
 
 + **1st column - Permissions:** On the very left side, there is a string of the characters `d`, `r`, `w`, `x`, and `-`. The `d` simply indicates if something is a directory (there is a `-` in that spot if it is not a directory). The other `r`, `w`, `x` bits indicates permission to **R**ead **W**rite and e**X**ecute a file.**** There are three columns of `rwx` permissions following the spot for `d`. If a user is missing a permission to do something, it's indicated by a `-`.
-    + The first column of `rwx` are the permissions that the owner has (the owner is indicated by jeff in the next column).
-    + The second set of `rwx`s are permissions that other members of the owner's group share (indicated by jeff).
-    + The third set of `rwx`s are permissions that anyone else with access to this computer can do with a file.
+    + The first column of `rwx` are the permissions that the owner has (in this case the owner is `jeff`).
+    + The second set of `rwx`s are permissions that other members of the owner's group share (in this case, the group is also named `jeff`).
+    + The third set of `rwx`s are permissions that anyone else with access to this computer can do with a file. Though files are typically created with read permissions for everyone, typically the permissions on your home directory prevent others from being able to access the file in the first place.
 
 + **2nd column - Owner:** This is the username of the user who owns the file. Their permissions are indicated in the first permissions column.
 
@@ -203,7 +203,7 @@ total 214132 -rwxr-xr-x. 1 jeff jeff 57 Feb 1 12:20 demo.sh -rw-r-----. 1 jeff j
 ```
 {: .output}
 
-Note that everything got printed on the same line. This is a feature, not a bug, as it allows us to use $(commands) inside lines of script without triggering line breaks (which would end our line of code and execute it prematurely).
+Note that everything got printed on the same line. This is a feature, not a bug, as it allows us to use `$(commands)` inside lines of script without triggering line breaks (which would end our line of code and execute it prematurely).
 
 ## Loops
 
@@ -284,13 +284,15 @@ fb_synonym_fb_2016_01.tsv
 > ## Concatenating variables
 > Concatenating (i.e. mashing together) variables is quite easy to do. Simply add whatever you want to concatenate to the beginning or end of the shell variable after enclosing it in `{}` characters.
 >
-> ```{.bash}
+> ```
 > FILE=stuff.txt
 > echo ${FILE}.processed
 > ```
-> ```{.output}
+> {: .bash}
+> ```
 > stuff.txt.processed
 > ```
+> {: .output}
 >
 > Can you write a script that prints off the name of every file in a directory with ".example" added to it?
 {: .challenge}
