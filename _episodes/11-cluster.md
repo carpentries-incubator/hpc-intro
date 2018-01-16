@@ -25,7 +25,7 @@ A cluster on the other hand, is a term used to describe a network of compters.
 Machines in a cluster typically share a common purpose, 
 and are used to accomplish tasks that might otherwise be too substantial for any one machine. 
 
-![The cloud is made of Linux](../files/linux-cloud.jpg)
+![The cloud is made of Linux](/fig/linux-cloud.jpg)
 
 ## Where are we? 
 
