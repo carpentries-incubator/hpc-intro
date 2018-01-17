@@ -16,6 +16,15 @@ keypoints:
 - "Commands can be chained with `|`"
 ---
 
+> ## Required files
+> If you didn't get them in the last lesson, 
+> make sure to download the example files used in the next few sections:
+> 
+> **Using wget** - `wget http://hpc-carpentry.github.io/hpc-intro/files/bash-lesson.tar.gz`
+>
+> **Using a web browser** - [http://hpc-carpentry.github.io/hpc-intro/files/bash-lesson.tar.gz](http://hpc-carpentry.github.io/hpc-intro/files/bash-lesson.tar.gz)
+{: .testimonial}
+
 Now that we know most of the basic UNIX commands, we are going to explore
 some more advanced features. The first of these features is the wildcard `*`.
 In our examples before, we've done things to files one at a time and
