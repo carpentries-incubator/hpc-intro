@@ -62,7 +62,7 @@ since midnight on the previous day
 (we can change this behavior with the `--start-time` option).
 
 ```
-sacct -u yourUsername
+[remote]$ sacct -u yourUsername
 ```
 {: .bash}
 ```
@@ -84,7 +84,7 @@ we change our `sacct` command slightly
 (`-j` corresponds to job id).
 
 ```
-sacct -j 1965 -l
+[remote]$ sacct -j 1965 -l
 ```
 {: .bash}
 
@@ -93,7 +93,7 @@ collected on your job by the scheduler.
 It may be useful to redirect this information to `less` to make it easier to view (use the left and right arrow keys to scroll through fields).
 
 ```
-sacct -j 1965 -l | less
+[remote]$ sacct -j 1965 -l | less
 ```
 {: .bash}
 
@@ -121,37 +121,37 @@ However, we can also check on stuff running on the login node right now the same
 The best way to check current system stats is with `top`
 (`htop` is a prettier version of `top` but may not be available on your system).
 
-Some sample output from my laptop might look like the following:
+Some sample output from my laptop might look like the following (`ctrl + c` to exit):
 
 ```
-Tasks: 296 total,   1 running, 295 sleeping,   0 stopped,   0 zombie
-%Cpu(s):  4.3 us,  0.8 sy,  0.0 ni, 93.5 id,  0.8 wa,  0.4 hi,  0.3 si,  0.0 st
-KiB Mem :  3948524 total,   119504 free,  1882172 used,  1946848 buff/cache
-KiB Swap:  4083708 total,  3909192 free,   174516 used.  1084104 avail Mem 
+top
+```
+{: .bash}
+```
+top - 21:00:19 up  3:07,  1 user,  load average: 1.06, 1.05, 0.96
+Tasks: 311 total,   1 running, 222 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  7.2 us,  3.2 sy,  0.0 ni, 89.0 id,  0.0 wa,  0.2 hi,  0.2 si,  0.0 st
+KiB Mem : 16303428 total,  8454704 free,  3194668 used,  4654056 buff/cache
+KiB Swap:  8220668 total,  8220668 free,        0 used. 11628168 avail Mem
 
-  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND                                   
- 1712 jeff      20   0 3189124 247912  87788 S  13.2  6.3   7:52.10 gnome-shell                                           
-12958 jeff      20   0 1109104 141568  54128 S   5.0  3.6   2:15.18 tilix                                             
- 2381 jeff      20   0 4209548 178632  29960 S   1.3  4.5   1:29.64 geary                                            
-15150 jeff      20   0  153904   4216   3468 R   0.7  0.1   0:00.03 top                                               
-   37 root      20   0       0      0      0 S   0.3  0.0   0:01.08 rcuos/3                                              
-  612 root     -51   0       0      0      0 S   0.3  0.0   0:07.06 irq/28-INT55D5:                                        
- 1326 root      20   0  448704   4928   2424 S   0.3  0.1   0:11.77 docker-containe                                        
-13947 jeff      20   0  310624  18368  11556 S   0.3  0.5   0:01.11 hugo                                                      
-14288 jeff      20   0  620256 105408  81212 S   0.3  2.7   0:02.33 vivaldi-bin                                             
-    1 root      20   0  224048   7868   5452 S   0.0  0.2   0:01.99 systemd                                                   
-    2 root      20   0       0      0      0 S   0.0  0.0   0:00.01 kthreadd                                                
-    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:0H                                              
-    6 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 mm_percpu_wq                                                   
-    7 root      20   0       0      0      0 S   0.0  0.0   0:00.03 ksoftirqd/0         
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 1693 jeff      20   0 4270580 346944 171372 S  29.8  2.1   9:31.89 gnome-shell
+ 3140 jeff      20   0 3142044 928972 389716 S  27.5  5.7  13:30.29 Web Content
+ 3057 jeff      20   0 3115900 521368 231288 S  18.9  3.2  10:27.71 firefox
+ 6007 jeff      20   0  813992 112336  75592 S   4.3  0.7   0:28.25 tilix
+ 1742 jeff      20   0  975080 164508 130624 S   2.0  1.0   3:29.83 Xwayland
+    1 root      20   0  230484  11924   7544 S   0.3  0.1   0:06.08 systemd    
+   68 root      20   0       0      0      0 I   0.3  0.0   0:01.25 kworker/4:1   
+ 2913 jeff      20   0  965620  47892  37432 S   0.3  0.3   0:11.76 code
+    2 root      20   0       0      0      0 S   0.0  0.0   0:00.02 kthreadd
 ```
 {: .output}
 
-Overview of the main fields:
+Overview of the most important fields:
 
 * `PID` - What is the numerical id of each process?
 * `USER` - Who started the process?
-* `RES` - What is the amount of memory currently being used by a process?
+* `RES` - What is the amount of memory currently being used by a process (in bytes)?
 * `%CPU` - How much of a CPU is each process using? Values higher than 100 percent indicate that a process is running in parallel.
 * `%MEM` - What percent of system memory is a process using?
 * `TIME+` - How much CPU time has a process used so far? Processes using 2 CPUs accumulate time at twice the normal rate.
@@ -163,7 +163,7 @@ Another useful tool is the `free -h` command.
 This will show the currently used/free amount of memory.
 
 ```
-free -h
+$ free -h
 ```
 {: .bash}
 ```
@@ -173,14 +173,18 @@ Swap:          3.9G        170M        3.7G
 ```
 {: .output}
 
-This one is fairly easy to interpret, though keep in mind that `buff/cache` counts as free memory.
+The key fields here are total, used, and available - which represent the amount of memory
+that the machine has in total, how much is currently being used, and how much is still available.
+When a computer runs out of memory it will attempt to use "swap" space on your hard drive instead. 
+Swap space is very slow to access - a computer may appear to "freeze" if it runs out of memory and 
+begins using swap.
 
 ### ps 
 
 To show all processes from your current session, type `ps`.
 
 ```
-ps
+$ ps
 ```
 {: .bash}
 ```
@@ -191,10 +195,12 @@ ps
 {: .output}
 
 Note that this will only show processes from our current session. 
-To show all processes of a user, regardless of a session, you can use `ps -ef` and grep for your username.
+To show all processes you own 
+(regardless of whether they are part of your current session or not), 
+you can use `ps -ef` and `grep` for your username.
 
 ```
-ps -ef | grep yourUsername
+$ ps -ef | grep yourUsername
 ```
 {: .bash}
 ```
