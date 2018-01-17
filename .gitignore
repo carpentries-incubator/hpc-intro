@@ -9,3 +9,5 @@ files/*.gtf
 files/*.fb
 files/*.fastq
 files/*.tsv
+scratch/
+

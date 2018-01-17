@@ -230,34 +230,66 @@ large and complex file type used in bioinformatics- a .gtf file. The GTF2
 format is commonly used to describe the location of genetic features in a
 genome.
 
-Let's grab and unpack an example file for us to use with `wget` (`wget link` downloads a file from a link):
+Let's grab and unpack a set of demo files for use later.
+To do this, we'll use `wget` (`wget link` downloads a file from a link).
 ```
-wget ftp://ftp.ensembl.org/pub/release-77/gtf/drosophila_melanogaster/Drosophila_melanogaster.BDGP5.77.gtf.gz
-gunzip Drosophila_melanogaster.BDGP5.77.gtf.gz
+wget http://hpc-carpentry.github.io/hpc-intro/files/bash-lesson.tar.gz
 ```
 {: .bash}
 
+You'll commonly encounter `.tar.gz` archives while working in UNIX. 
+To extract the files from a `.tar.gz` file, we run the command `tar -xvf filename.tar.gz`:
+
+```
+tar -xvf bash-lesson.tar.gz
+```
+{: .bash}
+```
+dmel-all-r6.19.gtf
+dmel_unique_protein_isoforms_fb_2016_01.tsv
+gene_association.fb
+SRR307023_1.fastq
+SRR307023_2.fastq
+SRR307024_1.fastq
+SRR307024_2.fastq
+SRR307025_1.fastq
+SRR307025_2.fastq
+SRR307026_1.fastq
+SRR307026_2.fastq
+SRR307027_1.fastq
+SRR307027_2.fastq
+SRR307028_1.fastq
+SRR307028_2.fastq
+SRR307029_1.fastq
+SRR307029_2.fastq
+SRR307030_1.fastq
+SRR307030_2.fastq
+```
+{: .output}
+
 > ## Unzipping files
 >
-> We just unzipped a .gz file for this example. What if we run into other file formats that we need to unzip? Just use the handy reference below:
+> We just unzipped a .tar.gz file for this example. What if we run into other file formats that we need to unzip? Just use the handy reference below:
 >
 > * `gunzip` unzips .gz files
 > * `unzip` unzips .zip files
 > * `unrar` unzips .rar files
-> * `tar -xzf` unzips .tar.gz files
-> * `tar -xjf` unzips .tar.bz2 files
+> * `tar -xvf` unzips .tar.gz and .tar.bz2 files
 {: .callout}
 
-We just downloaded every annotated feature in the *Drosophila melanogaster* genome. 
+That is a lot of files!
+One of these files, `dmel-all-r6.19.gtf` is extremely large,
+and contains every annotated feature in the *Drosophila melanogaster* genome. 
 It's a huge file- what happens if we run `cat` on it? (Press `Ctrl + C` to stop it).
 
-So, `cat` really sucks when reading big files. 
+So, `cat` is a really bad option when reading big files... 
+it scrolls through the entire file far too quickly!
 What are the alternatives? Try all of these out and see which ones you like best!
 
 * `head file` - Print the top 10 lines in a file to the console. You can control the number of lines you see with the `-n numberOfLines` flag.
 
-* `tail file` - Same as `head`, but prints the last five lines in a file to the console.
+* `tail file` - Same as `head`, but prints the last 10 lines in a file to the console.
 
-* `more file` - Opens a file and display as much as possible on-screen. You can scroll with `Enter` or the arrow keys on your keyboard. Press `q` to close the viewer. Everything that you've looked at remains on screen.
+* `less file` - Opens a file and display as much as possible on-screen. You can scroll with `Enter` or the arrow keys on your keyboard. Press `q` to close the viewer. 
 
-* `less file` - Identical to `more`, except what you've looked at get's hidden once you close `less` with `q`. Remember, `less` is `more`.
+Out of `cat`, `head`, `tail, and `less`, which method of reading files is your favorite? Why?
