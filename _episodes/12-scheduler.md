@@ -1,5 +1,5 @@
 ---
-title: "Using a cluster: Scheduling jobs"
+title: "Scheduling jobs"
 teaching: 45
 exercises: 30
 questions:
@@ -54,7 +54,7 @@ running the job through the scheduler and just "running it".
 To submit this job to the scheduler, we use the `sbatch` command.
 
 ```
-sbatch example-job.sh
+[remote]$ sbatch example-job.sh
 ```
 {: .bash}
 ```
@@ -66,7 +66,7 @@ And that's all we need to do to submit a job.
 To check on our job's status, we use the command `squeue`.
 
 ```
-squeue -u yourUsername
+[remote]$ squeue -u yourUsername
 ```
 {: .bash}
 ```
@@ -86,8 +86,8 @@ To see a real-time view of our jobs, we can use the `watch` command.
 Let's try using it to monitor another job.
 
 ```
-sbatch example-job.sh
-watch squeue -u yourUsername
+[remote]$ sbatch example-job.sh
+[remote]$ watch squeue -u yourUsername
 ```
 {: .bash}
 
@@ -130,7 +130,7 @@ sleep 120
 ```
 
 ```
-squeue -u yourUsername
+[remote]$ squeue -u yourUsername
 ```
 {: .bash}
 ```
@@ -160,8 +160,8 @@ One thing that is absolutely critical when working on an HPC system is specifyin
 resources required to run a job.
 This allows the scheduler to find the right time and place to schedule our job.
 If you do not specify requirements (such as the amount of time you need), 
-you will likely be stuck with your site's default allocation,
-which is not what we want.
+you will likely be stuck with your site's default resources,
+which is probably not what we want.
 
 The following are several key resource requests:
 
@@ -203,9 +203,9 @@ sleep 120
 Submit the job and wait for it to finish. 
 Once it is has finished, check the log file.
 ```
-sbatch example-job.sh
-watch squeue -u yourUsername
-cat slurm-38193.out
+[remote]$ sbatch example-job.sh
+[remote]$ watch squeue -u yourUsername
+[remote]$ cat slurm-38193.out
 ```
 {: .bash}
 ```
@@ -234,8 +234,8 @@ This can be done with the `scancel` command.
 Let's submit a job and then cancel it using its job number.
 
 ```
-sbatch example-job.sh
-squeue -u yourUsername
+[remote]$ sbatch example-job.sh
+[remote]$ squeue -u yourUsername
 ```
 {: .bash}
 ```
@@ -250,8 +250,8 @@ Now cancel the job with it's job number.
 Absence of any job info indicates that the job has been successfully canceled.
 
 ```
-scancel 38759
-squeue -u yourUsername
+[remote]$ scancel 38759
+[remote]$ squeue -u yourUsername
 ```
 {: .bash}
 ```
@@ -285,7 +285,7 @@ Let's demonstrate this by running the `hostname` command with `srun`.
 (We can cancel an `srun` job with `Ctrl-c`.)
 
 ```
-srun hostname
+[remote]$ srun hostname
 ```
 {: .bash}
 ```
@@ -301,7 +301,7 @@ we could use the following command
 (note that SLURM's environment variables like `SLURM_CPUS_PER_TASK` are only available to batch jobs run with `sbatch`):
 
 ```
-srun -c 2 echo "This job will use 2 cpus."
+[remote]$ srun -c 2 echo "This job will use 2 cpus."
 ```
 {: .bash}
 ```
@@ -312,12 +312,12 @@ This job will use 2 cpus.
 ### Interactive jobs
 
 Sometimes, you will need a lot of resource for interactive use.
-Perhaps it's the first time running an analysis 
+Perhaps it's our first time running an analysis 
 or we are attempting to debug something that went wrong with a previous job.
 Fortunately, SLURM makes it easy to start an interactive job with `srun`:
 
 ```
-srun --x11 --pty bash
+[remote]$ srun --x11 --pty bash
 ```
 {: .bash}
 
@@ -341,7 +341,8 @@ You can also verify this with `hostname`.
 > A relatively adorable pair of eyes should pop up (press `Ctrl-c` to stop).
 >
 > Note that this command requires you to have connected with X-forwarding enabled
-> (`ssh -X username@host.address.ca`).
+> (`ssh -X username@host.address.ca`). If you are using a Mac, you must have installed
+> XQuartz (and restarted your computer) for this to work.
 {: .challenge}
 
 When you are done with the interactive job, type `exit` to quit your session.

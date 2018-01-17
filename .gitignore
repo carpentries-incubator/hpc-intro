@@ -5,3 +5,9 @@
 .sass-cache
 __pycache__
 _site
+files/*.gtf
+files/*.fb
+files/*.fastq
+files/*.tsv
+scratch/
+
