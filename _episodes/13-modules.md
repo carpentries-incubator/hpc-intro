@@ -34,8 +34,8 @@ Software versioning is another common issue.
 A team might depend on a certain package version for their research project - 
 if the software version was to change (for instance, if a package was updated),
 it might affect their results.
-Having access to multiple software versions allow a set of researchers to take 
-software version out of the equation if results are weird.
+Having access to multiple software versions allow a set of researchers to prevent
+software versioning issues from affecting their results.
 
 ## Environment modules (Lmod)
 
@@ -47,7 +47,7 @@ and loads required dependencies.
 To see available software modules, use `module avail`
 
 ```
-module avail
+[remote]$ module avail
 ```
 {: .bash}
 ```
@@ -58,7 +58,7 @@ module avail
    cdo/1.7.2        (geo)       ncview/2.1.7             (vis)     ray/2.3.1           (bio)
 
 
-[snip]
+[removed most of the output here for clarity]
 
    t:        Tools for development / Outils de développement
    vis:      Visualisation software / Logiciels de visualisation
@@ -79,9 +79,12 @@ To load a software module, use `module load`.
 In this example we will use Python 3.
 
 Intially, Python 3 is not loaded. 
+We can test this by using the `which` command.
+`which` looks for programs the same way that Bash does,
+so we can use it to tell us where a particular piece of software is stored.
 
 ```
-which python3
+[remote]$ which python3
 ```
 {: .bash}
 ```
@@ -89,11 +92,11 @@ which python3
 ```
 {: .output}
 
-We can load the `python3` command with `module load`.
+We can load the `python3` command with `module load`:
 
 ```
-module load python
-which python3
+[remote]$ module load python
+[remote[$ which python3
 ```
 {: .bash}
 ```
@@ -111,7 +114,7 @@ that the OS searches through for a command before giving up and telling us it ca
 As with all environment variables we can print it out using `echo`.
 
 ```
-echo $PATH
+[remote]$ echo $PATH
 ```
 {: .bash}
 ```
@@ -127,7 +130,7 @@ it added this directory to the beginning of our `$PATH`.
 Let's examine what's there:
 
 ```
-ls /cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin
+[remote]$ ls /cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin
 ```
 {: .bash}
 ```
@@ -147,7 +150,7 @@ To demonstrate, let's use `module list`.
 `module list` shows all loaded software modules.
 
 ```
-module list
+[remote]$ module list
 ```
 {: .bash}
 ```
@@ -164,8 +167,8 @@ Currently Loaded Modules:
 {: .output}
 
 ```
-module load beast
-module list
+[remote]$ module load beast
+[remote]$ module list
 ```
 {: .bash}
 ```
@@ -190,8 +193,8 @@ also loaded `java/1.8.0_121` and `beagle-lib/2.1.2` as well.
 Let's try unloading the `beast` package.
 
 ```
-module unload beast
-module list
+[remote]$ module unload beast
+[remote]$ module list
 ```
 {: .bash}
 ```
@@ -211,7 +214,7 @@ So using `module unload` "un-loads" a module along with it's dependencies.
 If we wanted to unload everything at once, we could run `module purge` (unloads everything).
 
 ```
-module purge
+[remote]$ module purge
 ```
 {: .bash}
 ```
@@ -242,7 +245,7 @@ it helps to be very specific about what software is loaded.
 Let's examine the output of `module avail` more closely.
 
 ```
-module avail
+[remote]$ module avail
 ```
 {: .bash}
 ```
@@ -272,8 +275,8 @@ This indicates that it is the default -
 if we type `module load gcc`, this is the copy that will be loaded.
 
 ```
-module load gcc
-gcc --version
+[remote]$ module load gcc
+[remote]$ gcc --version
 ```
 {: .bash}
 ```
@@ -303,8 +306,8 @@ To load a non-default module, the only change we need to make to our `module loa
 is to leave in the version number after the `/`.
 
 ```
-module load gcc/4.8.5
-gcc --version
+[remote]$ module load gcc/4.8.5
+[remote]$ gcc --version
 ```
 {: .bash}
 ```
@@ -328,7 +331,7 @@ All this means for us is that if we re-load GCC 5.4.0,
 `module` will remember OpenMPI used to be loaded and load that module as well.
 
 ```
-module load gcc/5.4.0
+[remote]$ module load gcc/5.4.0
 ```
 {: .bash}
 ```
@@ -379,7 +382,7 @@ As an example we will install the bioinformatics toolkit `seqtk`.
 We'll first need to obtain the source code from Github using `git`.
 
 ```
-git clone https://github.com/lh3/seqtk.git
+[remote]$ git clone https://github.com/lh3/seqtk.git
 ```
 {: .bash}
 ```
@@ -396,8 +399,8 @@ all we need to do to complete the install is to `cd`
 into the seqtk folder and run the command `make`.
 
 ```
-cd seqtk
-make
+[remote]$ cd seqtk
+[remote]$ make
 ```
 {: .bash}
 ```
@@ -413,7 +416,7 @@ It's done!
 Now all we need to do to use the program is invoke it like any other program.
 
 ```
-./seqtk
+[remote]$ ./seqtk
 ```
 {: .bash}
 ```

@@ -21,42 +21,14 @@ which is much more straightforwards.
 ## Grabbing files from the internet
 
 To download files from the internet, 
-the absolute best tool is `wget`.
+the easiest tool to use is `wget`.
 The syntax is relatively straightforwards: `wget https://some/link/to/a/file.tar.gz`
+We've actually done this before to download our example files:
 
-> ## Downloading the Drosophila genome
-> The *Drosophila melanogaster* reference genome is located at the following website:
-> [http://metazoa.ensembl.org/Drosophila_melanogaster/Info/Index](http://metazoa.ensembl.org/Drosophila_melanogaster/Info/Index).
-> Download it to the cluster with `wget`.
->
-> Some additional details:
->
-> * You want to go get the genome through the "Download DNA Sequence" link
-> * We are interested in the `Drosophila_melanogaster.BDGP6.dna.toplevel.fa.gz` file.
-{: .challenge}
-
-## Working with compressed files
-
-The file we just downloaded is gzipped (has the `.gz` extension).
-You can uncompress it with `gunzip filename.gz`.
-
-File decompression reference:
-
-* **.tar.gz** - `tar -xzvf archive-name.tar.gz`
-* **.tar.bz2** - `tar -xjvf archive-name.tar.bz2`
-* **.zip** - `unzip archive-name.zip`
-* **.rar** - `unrar archive-name.rar`
-* **.7z** - `7z x archive-name.7z`
-
-However, sometimes we will want to compress files ourselves to make file transfers easier.
-The larger the file, the longer it will take to transfer. 
-Moreover, we can compress a whole bunch of little files into one big file to make it easier
-on us (no one likes transferring 70000) little files!
-
-The two compression commands we'll probably want to remember are the following:
-
-* Compress a single file with Gzip - `gzip filename`
-* Compress a lot of files/folders with Gzip - `tar -czvf archive-name.tar.gz folder1 file2 folder3 etc`
+```
+[remote]$ wget https://hpc-carpentry.github.io/hpc-intro/files/bash-lesson.tar.gz
+```
+{: .bash}
 
 ## Transferring single files and folders with scp
 
@@ -66,13 +38,13 @@ but we'll break it down here:
 
 To transfer *to* another computer:
 ```
-scp /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
+[local]$ scp /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
 ```
 {: .bash}
 
 To download *from* another computer:
 ```
-scp yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/copy
+[local]$ scp yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/copy
 ```
 {: .bash}
 
@@ -81,14 +53,14 @@ On the remote computer, everything after the `:` is relative to our home directo
 We can simply just add a `:` and leave it at that if we don't care where the file goes.
 
 ```
-scp local-file.txt yourUsername@remote.computer.address:
+[local]$ scp local-file.txt yourUsername@remote.computer.address:
 ```
 {: .bash}
 
 To recursively copy a directory, we just add the `-r` (recursive) flag:
 
 ```
-scp -r some-local-folder/ yourUsername@remote.computer.address:target-directory/
+[local]$ scp -r some-local-folder/ yourUsername@remote.computer.address:target-directory/
 ```
 {: .bash}
 
@@ -97,13 +69,19 @@ scp -r some-local-folder/ yourUsername@remote.computer.address:target-directory/
 `scp` is useful, but what if we don't know the exact location of what we want to transfer?
 Or perhaps we're simply not sure which files we want to tranfer yet.
 `sftp` is an interactive way of downloading and uploading files.
-To connect to a cluster, we use the command `sftp yourUsername@remote.computer.address`.
+Let's connect to a cluster, using `sftp`- you'll notice it works the same way as SSH:
+
+```
+sftp yourUsername@remote.computer.address
+```
+{: .bash}
+
 This will start what appears to be a bash shell (though our prompt says `sftp>`).
 However we only have access to a limited number of commands.
-
 We can see which commands are available with `help`:
+
 ```
-help
+sftp> help
 ```
 {: .bash}
 ```
@@ -127,7 +105,7 @@ ln [-s] oldpath newpath            Link remote file (-s for symlink)
 lpwd                               Print local working directory
 ls [-1afhlnrSt] [path]             Display remote directory listing
 
-# omitted further output for brevity
+# omitted further output for clarity
 ```
 {: .output}
 
@@ -136,7 +114,7 @@ We are actually connected to two computers at once (with two working directories
 
 To show our remote working directory:
 ```
-pwd
+sftp> pwd
 ```
 {: .bash}
 ```
@@ -147,7 +125,7 @@ Remote working directory: /global/home/yourUsername
 To show our local working directory, we add an `l` in front of the command:
 
 ```
-lpwd
+sftp> lpwd
 ```
 {: .bash}
 ```
@@ -163,7 +141,7 @@ The same pattern follows for all other commands:
 To upload a file, we type `put some-file.txt` (tab-completion works here).
 
 ```
-put config.toml
+sftp> put config.toml
 ```
 {: .bash}
 ```
@@ -175,7 +153,7 @@ config.toml                                   100%  713     2.4KB/s   00:00
 To download a file we type `get some-file.txt`:
 
 ```
-get config.toml
+sftp> get config.toml
 ```
 {: .bash}
 ```
@@ -188,8 +166,8 @@ And we can recursively put/get files by just adding `-r`.
 Note that the directory needs to be present beforehand.
 
 ```
-mkdir content
-put -r content/
+sftp> mkdir content
+sftp> put -r content/
 ```
 {: .bash}
 ```
@@ -230,6 +208,20 @@ we'll just need to enter our credentials at the top of the screen:
 
 Hit "Quickconnect" to connect!
 You should see your remote files appear on the right hand side of the screen.
+You can drag-and-drop files between the left (local) and right (remote) sides 
+of the screen to transfer files.
+
+## Compressing files
+
+Sometimes we will want to compress files ourselves to make file transfers easier.
+The larger the file, the longer it will take to transfer. 
+Moreover, we can compress a whole bunch of little files into one big file to make it easier
+on us (no one likes transferring 70000 little files)!
+
+The two compression commands we'll probably want to remember are the following:
+
+* Compress a single file with Gzip - `gzip filename`
+* Compress a lot of files/folders with Gzip - `tar -czvf archive-name.tar.gz folder1 file2 folder3 etc`
 
 > ## Transferring files
 > Using one of the above methods, try transferring files to and from the cluster.
@@ -260,10 +252,8 @@ You should see your remote files appear on the right hand side of the screen.
 
 > ## A note on ports
 > All file tranfers using the above methods use encrypted communication over port 22.
-> This is the same port used by SSH.
+> This is the same connection method used by SSH.
 > In fact, all file transfers using these methods occur through an SSH connection.
 > If you can connect via SSH over the normal port, you will be able to transfer files.
-> If your cluster uses a non-standard port, you'll need to change the port for sftp/scp 
-> as well.
 {: .callout}
 

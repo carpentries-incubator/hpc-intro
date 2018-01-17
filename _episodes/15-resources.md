@@ -36,29 +36,26 @@ and then ask the scheduler how many resources it used.
 A good rule of thumb is to ask the scheduler for more time and memory than your job can use.
 This value is typically two to three times what you think your job will need.
 
-> ## Benchmarking `bowtie2-build`
+> ## Benchmarking `fastqc`
 > Create a job that runs the following command 
-> in the same directory as our *Drosophila* reference genome
-> from earlier.
+> in the same directory as `.fastq` files
 > 
 > ```
-> bowtie2-build Drosophila_melanogaster.BDGP6.dna.toplevel.fa dmel-index
+> fastqc name_of_fastq_file
 > ```
 > {: .bash}
 > 
-> The `bowtie2-build` command is provided by the `bowtie2` module.
-> As a reference, this command could use several gigabytes of memory and up to an hour of compute time, 
-> but only 1 cpu in any scenario.
-> 
+> The `fastqc` command is provided by the `fastqc` module.
 > You'll need to figure out a good amount of resources to ask for for this first "test run".
 > You might also want to have the scheduler email you to tell you when the job is done.
+>
+> Hint: the job only needs 1 cpu and not too much memory or time.
+>  The trick is figuring out just how much you'll need!
 {: .challenge}
 
 Once the job completes (note that it takes much less time than expected),
 we can query the scheduler to see how long our job took and what resources were used.
-(Clever users may also notice that the run time is also in the SLURM logfile...)
-
-We can use `sacct` to get statistics about our job.
+We will use `sacct` to get statistics about our job.
 
 By itself, `sacct -u yourUsername` shows all commands that we ran 
 since midnight on the previous day 
@@ -239,7 +236,7 @@ So here are a couple final words to live by:
   Remember, the login node is to be shared with other users.
 
 * If someone is being inappropriate and using the login node to run all of their stuff, 
-  message an administrator to kill their stuff.
+  message an administrator to take a look at things and deal with them.
 
 * Compress files before transferring to save file transfer times with large datasets.
 
@@ -247,7 +244,7 @@ So here are a couple final words to live by:
   of backup/archival system, you shouldn't rely on it for something as key as your research code.
   The best backup system is one you manage yourself.
 
-* Before submitting a run of jobs, submit one as a test first to make sure everything works.
+* Before submitting a large run of jobs, submit one as a test first to make sure everything works.
 
 * The less resources you ask for, the faster your jobs will find a slot in which to run.
   Lots of small jobs generally beat a couple big jobs.
@@ -256,5 +253,4 @@ So here are a couple final words to live by:
   it might be a good idea to message an administrator.
 
 * Always use the default compilers if possible. Newer compilers are great, but older stuff generally
-  means that your software will still work, even if a newer compiler is loaded.
-
+  has less compatibility issues.
