@@ -162,6 +162,7 @@ you must install the software described below.
 1.  **Ruby**.
     This is included with Linux and Mac OS X;
     the simplest option on Windows is to use [RubyInstaller][ruby-installer].
+    Make sure Ruby is upto date otherwise jekyll may fail.
     You can test your installation by running `ruby --version`.
     For more information,
     see [the Ruby installation guidelines][ruby-install-guide].
