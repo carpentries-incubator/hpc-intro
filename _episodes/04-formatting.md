@@ -137,7 +137,7 @@ which is rendered as:
 for thing in collection:
     do_something
 ~~~
-{: .language-python}
+{: .source}
 
 The class specified at the bottom using an opening curly brace and colon,
 the class identifier with a leading dot,
