@@ -15,27 +15,32 @@ keypoints:
 - "Files saved on one node are available everywhere."
 ---
 
-By now, we are all expert Bash users. 
-Well, maybe not experts, but we know everything we need to in order to start 
-using a high-performance computing "supercomputer". 
+By now, we are all expert Bash users.
+Well, maybe not experts, but we know everything we need to in order to start
+using a high-performance computing "supercomputer".
 Before we start though, let's go over a few key concepts.
+
+## What is a cluster?
 
 The words "cloud", "cluster", and "high-performance computing" get thrown around a lot.
 So what do they mean exactly?
 And more importantly, how do we use them for our work?
 
-The "cloud" is a generic term commonly used to refer to remote computing resources of any kind.
-Cloud can refer to webservers, remote storage, API endpoints, 
-as well as more traditional "compute" resources. 
-A cluster on the other hand, is a term used to describe a network of compters.
-Machines in a cluster typically share a common purpose, 
-and are used to accomplish tasks that might otherwise be too big for any one machine. 
+The *cloud* is a generic term commonly used to refer to remote computing
+resources of any kind -- that is, any computers that you use but are not
+right in front of you.  
+Cloud can refer to webservers, remote storage, API endpoints,
+as well as more traditional "compute" resources.
+A *cluster* on the other hand, is a term used to describe a network of computers.
+The computers in a cluster typically share a common purpose,
+and are used to accomplish tasks that might otherwise be too big for any one machine.
 
 ![The cloud is made of Linux](/fig/linux-cloud.jpg)
 
-## Where are we? 
+## Where are we?
 
-Very often, many users are tempted to think of a high-performance computing installation as one giant, magical machine.
+Very often, many users are tempted to think of a high-performance
+computing installation as one giant, magical machine.
 Sometimes, people will assume that the machine they've logged onto is the entire computing cluster.
 So what's really happening? What machine have we logged on to?
 The name of the current computer we are logged onto can be checked with the `hostname` command.
@@ -50,17 +55,38 @@ gra-login3
 ```
 {: .output}
 
-Clusters have different types of machines customized for different types of tasks.
-In this case, we are on a login node.
-A login node serves as an access point to the cluster.
-As a gateway, it is well suited for uploading and downloading files, 
+Individual computers that compose a cluster are typically called *nodes* (although
+  you will also hear people call them *servers*, *computers* and *machines*).  On a cluster,
+  there are different types of nodes for different types of tasks.  
+The node where you are right now is called the *head node*, *login node* or
+*submit node*.  A login node serves as an access point to the cluster.
+As a gateway, it is well suited for uploading and downloading files,
 setting up software, and running quick tests.
 It should never be used for doing actual work.
 
-The real work on a cluster gets done by the "worker" nodes.
-Worker nodes come in many shapes and sizes, 
-but generally are dedicated to doing all of the heavy lifting that needs doing. 
-All interaction with the worker nodes is handled by a specialized piece of software called a scheduler 
+The real work on a cluster gets done by the *worker* (or *execute*) *nodes*
+Worker nodes come in many shapes and sizes,
+but generally are dedicated to doing all of the heavy lifting that needs doing.
+
+All of a cluster's nodes have the same components as your own laptop or desktop:
+*CPUs* (sometimes also called
+  *processors* or *cores*), *memory* (or *RAM*), and *disk* space.  
+  CPUs are a computer's tool for actually running programs and calculations.
+  Information about a current task is stored in the computer's memory.  Disk
+  is a computer's long-term storage for information it will need later.
+
+> ## Explore Your Computer
+>
+> Find this information
+
+> ## Explore The Head Node
+>
+> Cpu, proc, stuff
+>
+> How does this compare to
+
+
+All interaction with the worker nodes is handled by a specialized piece of software called a scheduler
 (the scheduler used in this lesson is called SLURM).
 
 We can view all of the worker nodes with the `sinfo` command.
@@ -83,11 +109,12 @@ compute*     up 7-00:00:00      3   down gra[20,801,937]
 ```
 {: .output}
 
-There are also specialized machines used for managing disk storage, user authentication, 
-and other infrastructure-related tasks. 
-Although we do not typically logon to or interact with these machines directly, 
+
+There are also specialized machines used for managing disk storage, user authentication,
+and other infrastructure-related tasks.
+Although we do not typically logon to or interact with these machines directly,
 they enable a number of key features like ensuring our user account and files are available throughout the cluster.
-This is an important point to remember: 
+This is an important point to remember:
 files saved on one node (computer) are available everywhere on the cluster!
 
 With all of this in mind, we will now cover how to talk to the cluster's scheduler,
