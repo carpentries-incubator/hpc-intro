@@ -68,56 +68,6 @@ The real work on a cluster gets done by the *worker* (or *execute*) *nodes*
 Worker nodes come in many shapes and sizes,
 but generally are dedicated to doing all of the heavy lifting that needs doing.
 
-All of a cluster's nodes have the same components as your own laptop or desktop:
-*CPUs* (sometimes also called
-  *processors* or *cores*), *memory* (or *RAM*), and *disk* space.  
-  CPUs are a computer's tool for actually running programs and calculations.
-  Information about a current task is stored in the computer's memory.  Disk
-  is a computer's long-term storage for information it will need later.
-
-> ## Explore Your Computer
->
-> Try to find out the number of CPUs and amount of memory available on your 
-> personal computer.  
-{: .challenge}
-
-> ## Explore The Head Node
->
-> Now we'll compare the size of your computer, with the size of the head node: 
-> To see the number of processors, run: 
-> ```
-> nproc --all
-> ```
-> {: .bash}
-> or 
-> ```
-> cat /proc/cpuinfo
-> {: .bash}
-> to see full details.  
-> 
-> How about memory? Try running: 
-> ```
-> free -m
-> ```
-> {: .bash}
-> or for more details: 
-> ```
-> cat /proc/meminfo free -m
-> ```
-> {: .bash}
-> 
-> The head node is representative of the worker nodes that will actually run your jobs.  
-{: .challenge}
-
-> ## Units
-> 
-> A computer's memory and disk are measured in units called *bytes*.  The magnitude 
-> of a file or memory use is measured using the same prefixes of the metric system: 
-> kilo, mega, giga, tera.  So 1024 bytes is a kilobyte, 1024 kilobytes is a megabyte, 
-> and so on.  
->
-{: .callout}
-
 All interaction with the worker nodes is handled by a specialized piece of software called a scheduler
 (the scheduler used in this lesson is called SLURM).  We'll learn more about how to use 
 the scheduler to submit jobs next, but for now, it can also tell us more information about 
@@ -143,10 +93,58 @@ compute*     up 7-00:00:00      3   down gra[20,801,937]
 ```
 {: .output}
 
-We can also 
+There are also specialized machines used for managing disk storage, user authentication,
+and other infrastructure-related tasks.
+Although we do not typically logon to or interact with these machines directly,
+they enable a number of key features like ensuring our user account and files are available throughout the cluster.
+This is an important point to remember:
+files saved on one node (computer) are available everywhere on the cluster!
+
+## What's in a node? 
+
+All of a cluster's nodes have the same components as your own laptop or desktop:
+*CPUs* (sometimes also called
+  *processors* or *cores*), *memory* (or *RAM*), and *disk* space.  
+  CPUs are a computer's tool for actually running programs and calculations.
+  Information about a current task is stored in the computer's memory.  Disk
+  is a computer's long-term storage for information it will need later.
+
+> ## Explore Your Computer
+>
+> Try to find out the number of CPUs and amount of memory available on your 
+> personal computer.  
+{: .challenge}
+
+> ## Explore The Head Node
+>
+> Now we'll compare the size of your computer with the size of the head node: 
+> To see the number of processors, run: 
+> ```
+> nproc --all
+> ```
+> {: .bash}
+> or 
+> ```
+> cat /proc/cpuinfo
+> {: .bash}
+> to see full details.  
+> 
+> How about memory? Try running: 
+> ```
+> free -m
+> ```
+> {: .bash}
+> or for more details: 
+> ```
+> cat /proc/meminfo free -m
+> ```
+> {: .bash}
+{: .challenge}
 
 > ## Explore a Worker Node
 > 
+> Finally, let's look at the resources available on the worker nodes where your jobs 
+> will actually run.  
 > Try running this command to see the name, CPUs and memory available on the worker nodes: 
 > ```
 > sinfo -n aci-377 -o "%n %c %m"
@@ -154,12 +152,14 @@ We can also
 > {: .bash}
 {: .challenge}
 
-There are also specialized machines used for managing disk storage, user authentication,
-and other infrastructure-related tasks.
-Although we do not typically logon to or interact with these machines directly,
-they enable a number of key features like ensuring our user account and files are available throughout the cluster.
-This is an important point to remember:
-files saved on one node (computer) are available everywhere on the cluster!
+> ## Units
+> 
+> A computer's memory and disk are measured in units called *bytes*.  The magnitude 
+> of a file or memory use is measured using the same prefixes of the metric system: 
+> kilo, mega, giga, tera.  So 1024 bytes is a kilobyte, 1024 kilobytes is a megabyte, 
+> and so on.  
+>
+{: .callout}
 
 With all of this in mind, we will now cover how to talk to the cluster's scheduler,
 and use it to start running our scripts and programs!
