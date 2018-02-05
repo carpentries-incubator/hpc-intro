@@ -29,9 +29,10 @@ The exact syntax might change, but the concepts remain the same.
 
 ## Running a batch job
 
-The most basic use of the scheduler is to run a command non-interactively.
-This is also referred to as batch job submission.
-In this case, a job is just a shell script.
+The most basic use of the scheduler is to run a command non-interactively.  
+Any command (or series of commands) that you want to run on the cluster is 
+called a *job*.  
+In this case, the job we want to run is just a shell script.
 Let's create a demo shell script to run as a test.
 
 > ## Creating our test job
