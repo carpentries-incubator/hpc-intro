@@ -8,12 +8,8 @@ questions:
 objectives:
 - "Understand how to look up job statistics and profile code."
 - "Understand job size implications."
-- "Be a good person and be nice to other users."
 keypoints:
 - "The smaller your job, the faster it will schedule."
-- "Don't run stuff on the login node."
-- "Again, don't run stuff on the login node."
-- "Don't be a bad person and run stuff on the login node."
 ---
 
 We now know virtually everything we need to know about getting stuff on a cluster.
@@ -229,34 +225,3 @@ To kill the process in the most hardcore manner possible, use the `-9` flag.
 It's recommended to kill using without `-9` first.
 This gives a process the chance to clean up child processes, and exit cleanly.
 However, if a process just isn't responding, use `-9` to kill it instantly.
-
-## Playing nice in the sandbox
-
-You now have everything you need to run jobs, transfer files, use/install software,
-and monitor how many resources your jobs are using.
-
-So here are a couple final words to live by:
-
-* Don't run jobs on the login node, though quick tests are generally fine. 
-  A "quick test" is generally anything that uses less than 10GB of memory, 4 CPUs, and 15 minutes of time.
-  Remember, the login node is to be shared with other users.
-
-* If someone is being inappropriate and using the login node to run all of their stuff, 
-  message an administrator to take a look at things and deal with them.
-
-* Compress files before transferring to save file transfer times with large datasets.
-
-* Use a VCS system like git to keep track of your code. Though most systems have some form
-  of backup/archival system, you shouldn't rely on it for something as key as your research code.
-  The best backup system is one you manage yourself.
-
-* Before submitting a large run of jobs, submit one as a test first to make sure everything works.
-
-* The less resources you ask for, the faster your jobs will find a slot in which to run.
-  Lots of small jobs generally beat a couple big jobs.
-
-* You can generally install software yourself, but if you want a shared installation of some kind,
-  it might be a good idea to message an administrator.
-
-* Always use the default compilers if possible. Newer compilers are great, but older stuff generally
-  has less compatibility issues.
