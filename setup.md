@@ -179,9 +179,11 @@ you must install the software described below.
     to format lessons written in R Markdown,
     so you will need to install these to build R lessons
     (and this example lesson). The best way to install these packages is to open an R window and type:
-    `> install.packages('package_name', dependencies = TRUE)`
-    Substitute the 'package_name' with
-    either 'knitr', 'stringer', and then 'checkpoint'.
+    ```
+    > install.packages('knitr', dependencies = TRUE)
+    > install.packages('stringer', dependencies = TRUE)
+    > install.packages('checkpoint', dependencies = TRUE)
+    ```
 
 If you want to run `bin/lesson_check.py` (which is invoked by `make lesson-check`)
 you will need Jekyll (so that you have its Markdown parser, which is called Kramdown)
