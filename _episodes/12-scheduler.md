@@ -22,6 +22,17 @@ How do we ensure that a task is run with the resources it needs?
 This job is handled by a special piece of software called the scheduler.
 On an HPC system, the scheduler manages which jobs run where and when.
 
+> ## Job scheduling roleplay (optional)
+> 
+> Your instructor will divide you into groups taking on 
+> different roles in the cluster (users, compute nodes 
+> and the scheduler).  Follow their instructions as they 
+> lead you through this exercise.  You will be emulating 
+> how a job scheduling system works on the cluster.  
+> 
+> [Notes for the instructor here](../guide)
+{: .challenge}
+
 The scheduler used in this lesson is SLURM.
 Although SLURM is not used everywhere, 
 running jobs is quite similar regardless of what software is being used.
