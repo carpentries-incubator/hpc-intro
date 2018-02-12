@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<svg version="1.2" baseProfile="tiny" width="165.1mm" height="139.7mm" viewBox="0 0 16510 13970" preserveAspectRatio="xMidYMid" fill-rule="evenodd" clip-path="url(#presentation_clip_path)" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" baseProfile="tiny" width="165.1mm" height="139.7mm" viewBox="0 0 16510 13970" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xml:space="preserve">
  <defs class="ClipPathGroup">
   <clipPath id="presentation_clip_path" clipPathUnits="userSpaceOnUse">
    <rect x="0" y="0" width="16510" height="13970"/>
@@ -39,7 +38,7 @@
    <glyph unicode="A" horiz-adv-x="1372" d="M 1167,0 L 1006,412 364,412 202,0 4,0 579,1409 796,1409 1362,0 Z M 685,1265 L 676,1237 C 659,1182 635,1111 602,1024 L 422,561 949,561 768,1026 C 749,1072 731,1124 712,1182 Z"/>
    <glyph unicode=")" horiz-adv-x="541" d="M 555,528 C 555,335 525,162 465,9 404,-144 311,-289 186,-424 L 12,-424 C 137,-284 229,-137 287,19 345,174 374,344 374,530 374,716 345,887 287,1042 228,1197 137,1345 12,1484 L 186,1484 C 312,1348 405,1203 465,1050 525,896 555,723 555,532 Z"/>
    <glyph unicode="(" horiz-adv-x="540" d="M 127,532 C 127,725 157,898 218,1051 278,1204 371,1349 496,1484 L 670,1484 C 545,1345 454,1198 396,1042 337,886 308,715 308,530 308,345 337,175 395,20 452,-135 544,-283 670,-424 L 496,-424 C 370,-288 277,-143 217,11 157,164 127,337 127,528 Z"/>
-   <glyph unicode="&apos;" horiz-adv-x="181" d="M 266,966 L 125,966 104,1409 288,1409 Z"/>
+   <glyph unicode="'" horiz-adv-x="181" d="M 266,966 L 125,966 104,1409 288,1409 Z"/>
    <glyph unicode=" " horiz-adv-x="562"/>
   </font>
  </defs>
@@ -201,7 +200,7 @@
      </g>
      <g class="com.sun.star.drawing.TextShape">
       <g id="id19">
-       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Sans, sans-serif" font-size="635px" font-weight="400"><tspan class="TextPosition" x="3858" y="11667"><tspan fill="rgb(0,0,0)" stroke="none">Ideal Organization of Repositories</tspan></tspan></tspan><tspan class="TextParagraph" font-family="Liberation Sans, sans-serif" font-size="635px" font-weight="400"><tspan class="TextPosition" x="4768" y="12370"><tspan fill="rgb(0,0,0)" stroke="none">(which we can&apos;t actually do)</tspan></tspan></tspan></text>
+       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Sans, sans-serif" font-size="635px" font-weight="400"><tspan class="TextPosition" x="3858" y="11667"><tspan fill="rgb(0,0,0)" stroke="none">Ideal Organization of Repositories</tspan></tspan></tspan><tspan class="TextParagraph" font-family="Liberation Sans, sans-serif" font-size="635px" font-weight="400"><tspan class="TextPosition" x="4768" y="12370"><tspan fill="rgb(0,0,0)" stroke="none">(which we can't actually do)</tspan></tspan></tspan></text>
       </g>
      </g>
     </g>
