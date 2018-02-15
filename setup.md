@@ -4,13 +4,13 @@ title: Setup
 root: .
 ---
 
-Our lesson template is kept in the `swcarpentry/styles` repository. The `styles` repository is carefully curated so that 
-changes made to it are easily mergable by downstream lessons. The `styles` repository contains various 
-bits that take Markdown files and render them as a lesson web page. For more information on how to develop 
-lessons and maintain them, see our [lesson-example](lesson-example). It will walk you through the basics of lesson 
+Our lesson template is kept in the [`swcarpentry/styles` repository][styles]. The `styles` repository is carefully curated so that
+changes made to it are easily mergable by downstream lessons. The `styles` repository contains various
+bits that take Markdown files and render them as a lesson web page. For more information on how to develop
+lessons and maintain them, see our [lesson-example][lesson-example]. It will walk you through the basics of lesson
 design and how to use GitHub, Markdown and Jekyll for lesson development. Follow the instructions below to make
-your own empty lesson in your own GitHub account. Once you've done that you can just write Markdown code and have 
-lesson web pages just like the [lesson-example](lesson-example) and all of our other lessons, but with your lesson content.
+your own empty lesson in your own GitHub account. Once you've done that you can just write Markdown code and have
+lesson web pages just like the [lesson-example][lesson-example] and all of our other lessons, but with your lesson content.
 
 Requirements:
 * A GitHub account
@@ -25,7 +25,7 @@ new lesson is `data-cleanup`.
 1.  We'll use the [GitHub's importer][importer] to make a copy of this repo in your own GitHub account.
 (Note: This is like a GitHub Fork, but not connected to the upstream changes)
 
-2.  **Put the URL of [the styles repository][styles]** (https://github.com/swcarpentry/styles) in the "Your 
+2.  **Put the URL of [the styles repository][styles]** (https://github.com/swcarpentry/styles) in the "Your
     old repository’s clone URL" box.
     Do *not* use the URL of this repository,
     as that will bring in a lot of example files you don't actually want.
@@ -46,10 +46,10 @@ new lesson is `data-cleanup`.
     You can now click "Begin Import".
     When the process is done,
     you can click "Continue to repository" to visit your newly-created repository.
-    
-    Through the Github interface you can begin to edit and 
 
-7.  If you want to work on the lesson from your local machine, you can 
+    Through the Github interface you can begin to edit and
+
+7.  If you want to work on the lesson from your local machine, you can
     now clone your newly-created repository to your computer:
 
     ~~~
@@ -66,10 +66,10 @@ new lesson is `data-cleanup`.
     ~~~
     {: .language-bash}
 
-    Note that the name of your directory should be what you named your lesson 
+    Note that the name of your directory should be what you named your lesson
     on the example this is `data-cleanup`.
 
-9. To be able to pull upstream style changes, you should manually add the 
+9. To be able to pull upstream style changes, you should manually add the
      styles repository as a remote called `template`:
 
     ~~~
@@ -143,7 +143,7 @@ new lesson is `data-cleanup`.
 ## Setup Instructions for a specific existing lesson
 
 1.  Installation instructions for core lessons are included in
-    the [workshop template's home page][template],
+    the [workshop template's home page][workshop-repo],
     so that they are all in one place.
     The `setup.md` files of core lessons link to
     the appropriate sections of the [workshop template page][workshop-repo].
@@ -185,4 +185,3 @@ you will need Jekyll (so that you have its Markdown parser, which is called Kram
 and the [PyYAML][pyyaml] module for Python 3.
 
 {% include links.md %}
-[lesson-example]: https://swcarpentry.github.io/lesson-example/
