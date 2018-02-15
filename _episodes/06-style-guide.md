@@ -77,6 +77,13 @@ When making reference to a keyboard key combination that the reader should press
 insert a plus sign **without sapce** between each one of the keys.
 For example, "press <kbd>Ctrl</kbd>+<kbd>X</kbd> to quit nano" should be write as
 
+
+## Links
+
+Please label links with meaningful texts, in order to [improve
+accessibility](https://webaccess.berkeley.edu/ask-pecan/click-here). Please avoid
+`click here` or similar.
+
 ~~~
 press <kbd>Ctrl</kbd>+<kbd>X</kbd> to quit nano.
 ~~~
