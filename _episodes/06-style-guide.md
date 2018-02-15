@@ -82,4 +82,11 @@ press <kbd>Ctrl</kbd>+<kbd>X</kbd> to quit nano.
 ~~~
 {: .html}
 
+
+## Links
+
+Please label links with meaningful texts, in order to [improve
+accessibility](https://webaccess.berkeley.edu/ask-pecan/click-here). Please avoid
+`click here` or similar.
+
 {% include links.md %}
