@@ -77,4 +77,3 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 are registered trademarks of [NumFOCUS][numfocus].
 
 {% include links.md %}
-
