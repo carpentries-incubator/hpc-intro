@@ -64,8 +64,10 @@ and to meet some of our community members.
 ## Where to Contribute
 
 1.  If you wish to change this lesson,
-    please work in <https://github.com/swcarpentry/FIXME>,
-    which can be viewed at <https://swcarpentry.github.io/FIXME>.
+    please work in
+    <https://github.com/swcarpentry/lesson-example/CONTRIBUTING.md>,
+    which can be viewed at
+    <https://github.com/carpentries/instructor-training/blob/gh-pages/CONTRIBUTING.md>.
 
 2.  If you wish to change the example lesson,
     please work in <https://github.com/swcarpentry/lesson-example>,
@@ -121,7 +123,7 @@ our lessons must run equally well on all three.
 
 If you choose to contribute via GitHub, you may want to look at
 [How to Contribute to an Open Source Project on GitHub][how-contribute].
-To manage changes, we follow [GitHub flow][github-flow]. 
+To manage changes, we follow [GitHub flow][github-flow].
 Each lesson has two maintainers who review issues and pull requests or encourage others to do so.
 The maintainers are community volunteers and have final say over what gets merged into the lesson.
 To use the web interface for contributing to a lesson:
@@ -279,7 +281,7 @@ FIXME
 
 ROOT_AIO_MD = '''\
 ---
-layout: page 
+layout: page
 root: .
 ---
 <script>
