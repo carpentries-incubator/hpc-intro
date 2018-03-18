@@ -47,10 +47,10 @@ will be named by the year and month they happen, e.g., `2016.05`.
     the *lesson Maintainer(s)* create a branch named after the release,
     e.g., `2016.05`.
 3.  A *Release Maintainer* generates HTML pages for that release and adds them to the branch.
-4.  If there isn't already a directory for that release in the `swc-release` repository,
+4.  If there isn't already a directory for that release in the [`swc-releases` repository][swc-releases],
     the Release Maintainer creates one
     and adds an `index.html` page to it.
-5.  The Release Maintainer adds a submodule to the release directory of `swc-release`
+5.  The Release Maintainer adds a submodule to the release directory of [`swc-releases`][swc-releases]
     that points to the newly-created release branch of the lesson.
 
 ## Issue Labels in Repositories
@@ -67,5 +67,7 @@ Our repositories use the following labels (and colors) for issues and pull reque
 *   `template-and-tools` (#2b3990): issues related to the templates and tools
     rather than the lessons themselves.
 *   `work-in-progress` (#7ae78): someone is still working on this.
+
+[swc-releases]: https://github.com/swcarpentry/swc-releases
 
 {% include links.md %}
