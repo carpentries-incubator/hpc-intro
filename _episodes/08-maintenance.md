@@ -68,6 +68,4 @@ Our repositories use the following labels (and colors) for issues and pull reque
     rather than the lessons themselves.
 *   `work-in-progress` (#7ae78): someone is still working on this.
 
-[swc-releases]: https://github.com/swcarpentry/swc-releases
-
 {% include links.md %}
