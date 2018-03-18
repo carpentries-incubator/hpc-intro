@@ -2,6 +2,7 @@
 layout: page
 title: Discussion
 ---
+
 Readers may be interested in:
 
 *   PeerJ's [paper-now], which uses [Jekyll][jekyll] as a framework for writing scientific papers.
