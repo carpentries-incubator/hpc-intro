@@ -65,9 +65,9 @@ and to meet some of our community members.
 
 1.  If you wish to change this lesson,
     please work in
-    <https://github.com/swcarpentry/lesson-example/CONTRIBUTING.md>,
+    <https://github.com/swcarpentry/lesson-example/>,
     which can be viewed at
-    <https://github.com/carpentries/instructor-training/blob/gh-pages/CONTRIBUTING.md>.
+    <https://github.com/swcarpentry/lesson-example>.
 
 2.  If you wish to change the example lesson,
     please work in <https://github.com/swcarpentry/lesson-example>,
