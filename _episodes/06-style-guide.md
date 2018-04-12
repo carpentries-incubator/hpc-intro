@@ -30,7 +30,7 @@ The table below covers most of the keyboard key labels.
 |-------------------+--------------------------------------------------------------------+--------------------------|
 |      Numbers      |                                                                    |      `<kbd>1</kbd>`      |
 |-------------------+--------------------------------------------------------------------+--------------------------|
-|  Pontuation mark  |                                                                    |      `<kbd>*</kbd>`      |
+|  Punctuation mark |                                                                    |      `<kbd>*</kbd>`      |
 |-------------------+--------------------------------------------------------------------+--------------------------|
 |     Function      |                 Capital F followed by the number.                  |     `<kbd>F12</kbd>`     |
 |-------------------+--------------------------------------------------------------------+--------------------------|
@@ -74,7 +74,7 @@ The table below covers most of the keyboard key labels.
 ## Keyboard Key Combination
 
 When making reference to a keyboard key combination that the reader should press,
-insert a plus sign **without sapce** between each one of the keys.
+insert a plus sign **without space** between each one of the keys.
 For example, "press <kbd>Ctrl</kbd>+<kbd>X</kbd> to quit nano" should be write as
 
 ~~~
