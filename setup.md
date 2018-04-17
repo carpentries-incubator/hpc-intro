@@ -178,7 +178,8 @@ you must install the software described below.
     We use [knitr][cran-knitr], [stringr][cran-stringr], and [checkpoint][cran-checkpoint]
     to format lessons written in R Markdown,
     so you will need to install these to build R lessons
-    (and this example lesson). The best way to install these packages is to open an R window and type:
+    (and this example lesson). The best way to install these packages is to open an R terminal and type:
+
     ```
     > install.packages('knitr', dependencies = TRUE)
     > install.packages('stringer', dependencies = TRUE)
