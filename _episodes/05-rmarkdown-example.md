@@ -89,7 +89,7 @@ instructions and solutions. For instance this:
 >
 > What is the output of this command?
 >
-> 
+>
 > ~~~
 > paste("This", "new", "template", "looks", "good")
 > ~~~
@@ -97,7 +97,7 @@ instructions and solutions. For instance this:
 >
 > > ## Solution
 > >
-> > 
+> >
 > > ~~~
 > > [1] "This new template looks good"
 > > ~~~
@@ -112,7 +112,7 @@ will generate this:
 >
 > What is the output of this command?
 >
-> 
+>
 > ~~~
 > paste("This", "new", "template", "looks", "good")
 > ~~~
@@ -120,7 +120,7 @@ will generate this:
 >
 > > ## Solution
 > >
-> > 
+> >
 > > ~~~
 > > [1] "This new template looks good"
 > > ~~~

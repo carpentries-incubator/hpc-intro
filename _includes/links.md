@@ -21,7 +21,7 @@
 [lesson-example]: https://swcarpentry.github.io/lesson-example/
 [mit-license]: https://opensource.org/licenses/mit-license.html
 [morea]: https://morea-framework.github.io/
-[numfocus]: https://numfocus.org/
+[numfocus]: https://www.numfocus.org/
 [osi]: https://opensource.org
 [pandoc]: https://pandoc.org/
 [paper-now]: https://github.com/PeerJ/paper-now

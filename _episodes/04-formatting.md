@@ -107,14 +107,14 @@ Authors should *not* use:
 *   HTML layout (e.g., `div` elements).
 
 
-> ## Linking section IDs 
+> ## Linking section IDs
 >
-> In the HTML output each header of a section, code sample, exercise will be associated with an unique ID (the rules of 
+> In the HTML output each header of a section, code sample, exercise will be associated with an unique ID (the rules of
 > the ID generation are given in kramdown [documentation](https://kramdown.gettalong.org/converter/html.html#auto-ids),
-> but it is easier to look for them directly in the page sources). 
-> These IDs can be used to easily link to the section by attaching the hash (`#`) followed by the ID to the page's URL 
-> (like [this](#linking-section-ids)). For example, the instructor might copy the link to 
-> the etherpad, so that the lesson opens in learners' web browser directly at the right spot. 
+> but it is easier to look for them directly in the page sources).
+> These IDs can be used to easily link to the section by attaching the hash (`#`) followed by the ID to the page's URL
+> (like [this](#linking-section-ids)). For example, the instructor might copy the link to
+> the etherpad, so that the lesson opens in learners' web browser directly at the right spot.
 {: .callout}
 
 ## Formatting Code
