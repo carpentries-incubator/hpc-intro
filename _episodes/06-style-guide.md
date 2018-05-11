@@ -10,6 +10,86 @@ keypoints:
 - "Keyboard keys need to use `<kbd>` HTML tag."
 ---
 
+## Emphasis
+
+Markdown treats asterisks (_*_) as indicators of emphasis.
+We use emphasis
+
+- to highlight a word, phrase, or character where it is itself the object of discussion.
+
+  For example,
+
+  ~~~
+  we want to output the lines that do not contain the word *the*.
+  ~~~
+
+  This is preferable instead of the use of quotation marks.
+
+  See the "Keyboard Key" section for characters or keyboard keys that the learn should type.
+  
+- for words and phrases that are still regarded as foreign.
+- for titles of books, periodicals, plays, films, TV, radio series, and music albums.
+
+  For example,
+
+  ~~~
+  we will use a file that contains three haikus taken from a 1998 competition in *Salon* magazine.
+  ~~~
+
+## Strong Emphasis
+
+Markdown treats double asterisks (_**_) as indicators of strong emphasis.
+We use strong emphasis
+
+- to highlight a newly introduced term, often one that is going to be defined or explained.
+  For example,
+
+  ~~~
+  We are all familiar with **graphical user interfaces**
+  ~~~
+
+## Span of Code
+
+Markdown treats backtick quotes (_\`_) as indicators of a span of code.
+We use span of code
+
+- to highlight part of some code where it is itself the object of discussion.
+
+  For example,
+
+  ~~~
+  For example, `range(3, 10, 2)` produces
+  ~~~
+- to highlight one command where it is itself the object of discussion.
+
+  For example,
+
+  ~~~
+  you can run it by opening a terminal and typing `bash`.
+  ~~~
+
+  When the object of discussion is the program or language in a broad sense,
+  we don't use span of code. For example,
+
+  ~~~
+  The most popular Unix shell is Bash
+  ~~~
+- to highlight one function where it is itself the object of discussion.
+
+  For example,
+
+  ~~~
+  `len` is much faster than any function we could write ourselves
+  ~~~
+- to highlight one file name where it is itself the object of discussion.
+
+  For example,
+
+  ~~~
+  `my_file.txt` can also be viewed in your GUI file explorer.
+  ~~~
+- to highlight any sequence of character that the user is expected to type.
+
 ## Keyboard Key
 
 When making reference to a keyboard key that the reader should press
