@@ -271,7 +271,7 @@ for the following special blockquotes:
 <div class="row">
   <div class="col-md-6" markdown="1">
 
-> ## .callout
+> ## `.callout`
 >
 > An aside or other comment.
 {: .callout}
