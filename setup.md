@@ -173,6 +173,8 @@ you must install the software described below.
 
 3.  **[Jekyll][jekyll]**.
     You can install this by running `gem install jekyll`.
+    On a MacOS user does not have a permision to write to `/Library/Ruby/Gems/`.
+    Run `gem install jelyll --user-install` instead.
 
 4.  **R Packages**.
     We use [knitr][cran-knitr], [stringr][cran-stringr], and [checkpoint][cran-checkpoint]
