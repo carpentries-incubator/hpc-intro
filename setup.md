@@ -184,7 +184,7 @@ you must install the software described below.
 
     ```
     > install.packages('knitr', dependencies = TRUE)
-    > install.packages('stringer', dependencies = TRUE)
+    > install.packages('stringr', dependencies = TRUE)
     > install.packages('checkpoint', dependencies = TRUE)
     ```
 
