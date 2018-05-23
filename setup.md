@@ -1,7 +1,5 @@
 ---
-layout: page
 title: Setup
-root: .
 ---
 
 Our lesson template is kept in the [`swcarpentry/styles` repository][styles]. The `styles` repository is carefully curated so that
