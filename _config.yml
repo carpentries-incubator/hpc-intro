@@ -59,12 +59,20 @@ collections:
 # Set the default layout for things in the episodes collection.
 defaults:
   - values:
-      root: ..
+      root: .
+      layout: page
   - scope:
       path: ""
       type: episodes
     values:
       layout: episode
+      root: ..
+  - scope:
+      path: ""
+      type: extras
+    values:
+      root: ..
+      layout: page
 
 #------------------------------------------------------------
 # Jekyll Generic settings (should not need to change).
