@@ -12,7 +12,8 @@ keypoints:
 
 ## Emphasis
 
-Markdown treats asterisks (_*_) as indicators of emphasis.
+Markdown treats asterisks (_*_) indicators of emphasis,
+and renders text marked up like this in italics.
 We use emphasis
 
 - to highlight a word, phrase, or character where it is itself the object of discussion.
@@ -20,25 +21,26 @@ We use emphasis
   For example,
 
   ~~~
-  we want to output the lines that do not contain the word *the*.
+  We want to output the lines that do not contain the word *the*.
   ~~~
 
   This is preferable instead of the use of quotation marks.
 
   See the "Keyboard Key" section for characters or keyboard keys that the learn should type.
   
-- for words and phrases that are still regarded as foreign.
+- for words and phrases that are still regarded as unfamiliar.
 - for titles of books, periodicals, plays, films, TV, radio series, and music albums.
 
   For example,
 
   ~~~
-  we will use a file that contains three haikus taken from a 1998 competition in *Salon* magazine.
+  We will use a file that contains three haikus taken from a 1998 competition in *Salon* magazine.
   ~~~
 
 ## Strong Emphasis
 
-Markdown treats double asterisks (_**_) as indicators of strong emphasis.
+Markdown treats double asterisks (_**_) as indicators of strong emphasis,
+and renders text marked up like this in boldface.
 We use strong emphasis
 
 - to highlight a newly introduced term, often one that is going to be defined or explained.
@@ -72,14 +74,14 @@ We use span of code
   we don't use span of code. For example,
 
   ~~~
-  The most popular Unix shell is Bash
+  The most popular Unix shell is Bash.
   ~~~
 - to highlight one function where it is itself the object of discussion.
 
   For example,
 
   ~~~
-  `len` is much faster than any function we could write ourselves
+  `len` is much faster than any function we could write ourselves.
   ~~~
 - to highlight one file name where it is itself the object of discussion.
 
