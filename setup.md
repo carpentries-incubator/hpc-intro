@@ -181,9 +181,10 @@ you must install the software described below.
     (and this example lesson). The best way to install these packages is to open an R terminal and type:
 
     ```
-    > install.packages('knitr', dependencies = TRUE)
-    > install.packages('stringr', dependencies = TRUE)
-    > install.packages('checkpoint', dependencies = TRUE)
+    > install.packages('knitr', repos = 'https://', dependencies = TRUE)
+    > install.packages('stringr', repos = 'https://cran.rstudio.com', dependencies = TRUE)
+    > install.packages('checkpoint', repos = 'https://cran.rstudio.com', dependencies = TRUE)
+    > install.packages('ggplot2', repos = 'https://cran.rstudio.com', dependencies = TRUE)
     ```
 
 If you want to run `bin/lesson_check.py` (which is invoked by `make lesson-check`)
