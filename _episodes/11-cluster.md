@@ -35,7 +35,7 @@ A *cluster* on the other hand, is a term used to describe a network of computers
 The computers in a cluster typically share a common purpose,
 and are used to accomplish tasks that might otherwise be too big for any one computer.
 
-![The cloud is made of Linux](/fig/linux-cloud.jpg)
+![The cloud is made of Linux](../fig/linux-cloud.jpg)
 
 ## Where are we?
 
@@ -126,6 +126,7 @@ All of a cluster's nodes have the same components as your own laptop or desktop:
 > or 
 > ```
 > cat /proc/cpuinfo
+> ```
 > {: .bash}
 > to see full details.  
 > 
