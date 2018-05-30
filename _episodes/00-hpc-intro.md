@@ -22,7 +22,7 @@ computers that qualify as HPC systems are typically seen as being more powerful
 than other systems, usually because they have more central processing units
 (CPUs), CPUs that operate at higher speeds, more memory, more storage, and
 faster connections with other computer systems.  HPC systems are used when the
-resources of more standard computers, such as most dektops and laptops, are not
+resources of more standard computers, such as most desktops and laptops, are not
 enough to provide results in a timely fashion, if at all.
 
 Using HPC systems often involves the use of a shell through a command line
