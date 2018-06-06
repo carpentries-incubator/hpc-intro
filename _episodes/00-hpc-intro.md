@@ -1,6 +1,6 @@
 ---
-title: "What is High Performance Computing?"
-teaching: 15 
+title: "Why Use a Cluster?"
+teaching: 15
 exercises: 5
 questions:
 - "Why would I be interested in High Performance Computing (HPC)?"
@@ -14,16 +14,72 @@ keypoints:
 - "The standard method of interacting with such systems is via a command line interface called Bash."
 ---
 
-## What is High Performance Computing (HPC)?
+## Why Use These Computers?
 
-High Performance Computing (HPC) is the name given to the use of computers with
-capabilities well beyond the scope of standard desktop computers.   The
-computers that qualify as HPC systems are typically seen as being more powerful
-than other systems, usually because they have more central processing units
-(CPUs), CPUs that operate at higher speeds, more memory, more storage, and
-faster connections with other computer systems.  HPC systems are used when the
-resources of more standard computers, such as most desktops and laptops, are not
-enough to provide results in a timely fashion, if at all.
+> ## What do you need?  
+>
+> Talk to your neighbor about your research.  How does computing
+> help you do your research?  How could more computing help you
+> do more or better research?  
+{: .challenge}
+
+Frequently, research problems that use computing can outgrow the desktop
+or laptop computer where they started:
+
+* A statistics student wants to do cross-validate their model.  This involves
+running the model 1000 times -- but each run takes an hour.  Running on their
+laptop will take over a month!
+
+* A genomics researcher has been using small datasets of sequence data, but
+soon will be receiving a new type of sequencing data that is 10 times as large.
+It's already challenging to open the datasets on their computer -- analyzing
+these larger datasets will probably crash it.
+
+* An engineer is using a fluid dynamics package that has an option to run
+in parallel.  So far, they haven't used this option on their desktop, but in
+going from 2D to 3D simulations, simulation time has more than tripled and it
+might be useful to take advantage of that feature.  
+
+In all these cases, what is needed is access to more computers than can be
+used at the same time.  Luckily, large scale computing systems -- shared computing
+resources with lots of computers -- are available at many universities, labs,
+or through national networks.  These resources usually have
+more central processing units(CPUs), CPUs that operate at higher speeds,
+more memory, more storage, and
+faster connections with other computer systems.  They are frequently called
+"clusters", "supercomputers" or resources for "high performance computing" or
+HPC.  In this lesson, we will usually use the terminology of HPC and HPC cluster.  
+
+Using a cluster often has the following advantages for researchers:
+
+* **Speed.** With many more CPU cores, often with higher performance specs,
+  than a typical laptop or desktop, HPC systems can offer
+  significant speed up.
+* **Volume.** Many HPC systems have both the processing memory (RAM) and disk
+  storage to handle very large amounts of data. Terabytes of RAM and
+  petabytes of storage are available for research projects.
+* **Efficiency.** Many HPC systems operate a pool of resources that are drawn
+  on by a many users.  In most cases when the pool is large and diverse enough
+  the resources on the system are used almost constantly.
+* **Cost.** Bulk purchasing and government funding mean that the cost to the
+  research community for using these systems in significantly less that it
+  would be otherwise.
+* **Convenience.** Maybe your calculations just take a long time to run or are
+  otherwise inconvenient to run on your personal computer. There's no need to
+  tie up your own computer for hours when you can use someone else's instead.
+
+This is how a large-scale compute system like a cluster can help solve problems like
+those listed at the start of the lesson.  
+
+> ## Thinking ahead
+>
+> How do you think using a large-scale computing system will be different
+> from using your laptop? Talk to your neighbor about some
+> differences you may already know about, and some
+> differences/difficulties you imagine you may run into.
+{: .challenge}
+
+## On Command Line
 
 Using HPC systems often involves the use of a shell through a command line
 interface (CLI) and either specialized software or programming techniques.  The
@@ -52,34 +108,12 @@ and then presses the Enter (or Return) key, the computer reads it, executes it,
 and prints its output.  The user then types another command, and so on until
 the user logs off.
 
-## Why HPC?
-
-Of course, the important question to ask is why learn how to do all this?
 Learning to use Bash or any other shell sometimes feels more like programming
 than like using a mouse.  Commands are terse (often only a couple of characters
 long), their names are frequently cryptic, and their output is lines of text
-rather than something visual like a graph. 
-
-Where's the payoff?
-
-The benefits of using HPC systems often far outweigh the cost of
-learning to use them, including:
-
-* **Speed.** With many more CPU cores, often with higher performance specs,
-  than the computers most people have access to HPC systems can offer
-  significant speed up.
-* **Volume.** Many HPC systems have both the processing memory (RAM) and disk
-  storage to handle very large amounts of data. Terabytes of RAM and
-  petabytes of storage are available for research projects.
-* **Efficiency.** Many HPC systems operate a pool of resources that are drawn
-  on by a many users.  In most cases when the pool is large and diverse enough
-  the resources on the system are used almost constantly.
-* **Cost.** Bulk purchasing and government funding mean that the cost to the
-  research community for using these systems in significantly less that it
-  would be otherwise.
-* **Convenience.** Maybe your calculations just take a long time to run or are
-  otherwise inconvenient to run on your personal computer. There's no need to
-  tie up your own computer for hours when you can use someone else's instead.
+rather than something visual like a graph.  However, using a command line
+interface can be extremely powerful, and learning how to use one will allow
+you to reap the benefits described above.  
 
 ## The rest of this lesson
 
@@ -89,9 +123,9 @@ This introduction to HPC systems has two parts:
 * We will learn to use the UNIX command line (also known as Bash).
 * We will use our new Bash skills to connect to and operate a high-performance computing supercomputer.
 
-The skills we learn here have other uses beyond just HPC - 
+The skills we learn here have other uses beyond just HPC -
 Bash and UNIX skills used everywhere, be it for web development, running software, or operating servers.
-It's become so essential that Microsoft 
+It's become so essential that Microsoft
 [now ships it as part of Windows](https://www.microsoft.com/en-us/store/p/ubuntu/9nblggh4msv6)!
 Knowing how to use Bash and HPC systems will allow you to operate virtually any modern device.
 Wit all of this in mind, let's connect to a cluster and get started!
