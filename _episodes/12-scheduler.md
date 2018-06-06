@@ -40,9 +40,12 @@ The exact syntax might change, but the concepts remain the same.
 
 ## Running a batch job
 
-The most basic use of the scheduler is to run a command non-interactively.
-This is also referred to as batch job submission.
-In this case, a job is just a shell script.
+The most basic use of the scheduler is to run a command non-interactively.  
+Any command (or series of commands) that you want to run on the cluster is 
+called a *job*, and the process of using a scheduler to run the job is called 
+*batch job submission*.  
+
+In this case, the job we want to run is just a shell script.
 Let's create a demo shell script to run as a test.
 
 > ## Creating our test job
@@ -73,8 +76,10 @@ Submitted batch job 36855
 ```
 {: .output}
 
-And that's all we need to do to submit a job. 
-To check on our job's status, we use the command `squeue`.
+And that's all we need to do to submit a job.  Our work is done -- now the 
+scheduler takes over and tries to run the job for us.  While the job is waiting 
+to run, it goes into a list of jobs called the *queue*.  
+To check on our job's status, we check the queue using the command `squeue`.
 
 ```
 [remote]$ squeue -u yourUsername
@@ -108,7 +113,7 @@ Press `Ctrl-C` when you want to stop the `watch` command.
 
 ## Customizing a job
 
-The job we just ran used all of the schedulers default options.
+The job we just ran used all of the scheduler's default options.
 In a real-world scenario, that's probably not what we want.
 The default options represent a reasonable minimum.
 Chances are, we will need more cores, more memory, more time, 
@@ -176,11 +181,17 @@ which is probably not what we want.
 
 The following are several key resource requests:
 
+* `-n <nnodes>` - how many nodes does your job need? 
+
 * `-c <ncpus>` - How many CPUs does your job need?
 
 * `--mem=<megabytes>` - How much memory on a node does your job need in megabytes? You can also specify gigabytes using by adding a little "g" afterwards (example: `--mem=5g`)
 
 * `--time <days-hours:minutes:seconds>` - How much real-world time (walltime) will your job take to run? The `<days>` part can be omitted.
+
+Note that just *requesting* these resources does not make your job run faster!  We'll 
+talk more about how to make sure that you're using resources effectively in a later 
+episode of this lesson.  
 
 > ## Submitting resource requests
 >
