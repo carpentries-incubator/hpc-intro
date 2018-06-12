@@ -2,7 +2,7 @@
 title: Setup
 ---
 
-Our lesson template is kept in the [`swcarpentry/styles` repository][styles]. The `styles` repository is carefully curated so that
+Our lesson template is kept in the [`carpentries/styles` repository][styles]. The `styles` repository is carefully curated so that
 changes made to it are easily mergable by downstream lessons. The `styles` repository contains various
 bits that take Markdown files and render them as a lesson web page. For more information on how to develop
 lessons and maintain them, see our [lesson-example][lesson-example]. It will walk you through the basics of lesson
@@ -23,7 +23,7 @@ new lesson is `data-cleanup`.
 1.  We'll use the [GitHub's importer][importer] to make a copy of this repo in your own GitHub account.
 (Note: This is like a GitHub Fork, but not connected to the upstream changes)
 
-2.  **Put the URL of [the styles repository][styles]** (https://github.com/swcarpentry/styles) in the "Your
+2.  **Put the URL of [the styles repository][styles]** (https://github.com/carpentries/styles) in the "Your
     old repository’s clone URL" box.
     Do *not* use the URL of this repository,
     as that will bring in a lot of example files you don't actually want.
@@ -71,13 +71,13 @@ new lesson is `data-cleanup`.
      styles repository as a remote called `template`:
 
     ~~~
-    $ git remote add template https://github.com/swcarpentry/styles.git
+    $ git remote add template https://github.com/carpentries/styles.git
     ~~~
     {: .language-bash}
 
     This will allow you to pull in changes made to the template,
     such as improvements to our CSS style files.
-    (Note that the user name above is `swcarpentry`, *not* `timtomch`,
+    (Note that the user name above is `carpentries`, *not* `timtomch`,
     since you are adding the master copy of the template as a remote.)
 
 10. Make sure you are using the `gh-pages` branch of the lesson template:

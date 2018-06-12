@@ -4,7 +4,7 @@ lesson-example
 This repository shows how to create a lesson using
 the [Software Carpentry lesson template][styles],
 and is itself an example of the use of that template.
-Please see <https://swcarpentry.github.io/lesson-example/>
+Please see <https://carpentries.github.io/lesson-example/>
 for a rendered version of this material,
 including detailed instructions on design, setup, and formatting.
 
@@ -87,11 +87,11 @@ In brief:
     please see [the list of issues for this repository][issues].
 
 [collections]: https://jekyllrb.com/docs/collections/
-[editing-config]: https://swcarpentry.github.io/lesson-example/03-organization/
-[example-issues]: https://github.com/swcarpentry/lesson-example/issues/
+[editing-config]: https://carpentries.github.io/lesson-example/03-organization/
+[example-issues]: https://github.com/carpentries/lesson-example/issues/
 [github-pages]: https://help.github.com/articles/creating-project-pages-manually/
-[issues]: https://github.com/swcarpentry/lesson-example/issues
-[rendered]: https://swcarpentry.github.io/lesson-example/
-[setup]: https://swcarpentry.github.io/lesson-example/setup.html
-[styles-issues]: https://github.com/swcarpentry/styles/issues/
-[styles]: https://github.com/swcarpentry/styles/
+[issues]: https://github.com/carpentries/lesson-example/issues
+[rendered]: https://carpentries.github.io/lesson-example/
+[setup]: https://carpentries.github.io/lesson-example/setup.html
+[styles-issues]: https://github.com/carpentries/styles/issues/
+[styles]: https://github.com/carpentries/styles/
