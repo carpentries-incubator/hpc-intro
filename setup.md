@@ -171,7 +171,7 @@ you must install the software described below.
 
 3.  **[Jekyll][jekyll]**.
     You can install this by running `gem install jekyll`.
-    On macOS, a user does not have a permision to write to `/Library/Ruby/Gems/`.
+    On macOS, a user does not have a permission to write to `/Library/Ruby/Gems/`.
     Run `gem install jekyll --user-install` instead.
 
 4.  **R Packages**.
