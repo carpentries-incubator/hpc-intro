@@ -17,6 +17,7 @@
 [jekyll-windows]: http://jekyll-windows.juthilo.com/
 [jekyll]: https://jekyllrb.com/
 [jupyter]: https://jupyter.org/
+[kramdown]: https://kramdown.gettalong.org/
 [lesson-example]: https://carpentries.github.io/lesson-example/
 [mit-license]: https://opensource.org/licenses/mit-license.html
 [morea]: https://morea-framework.github.io/

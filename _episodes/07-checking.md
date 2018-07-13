@@ -24,7 +24,7 @@ You can run this using `make lesson-check`,
 which in turn invokes `bin/markdown_ast.rb` to parse Markdown files
 and `bin/lesson_check.py` to check their structure.
 The former is written in Ruby,
-and uses Jekyll's own Markdown parser (called Kramdown)
+and uses [Jekyll][jekyll]'s own Markdown parser (called [Kramdown][kramdown])
 so that we are guaranteed to be checking the same dialect of Markdown that Jekyll uses on GitHub.
 The latter is written in Python 3,
 and executes all of the checks.
@@ -52,13 +52,6 @@ Run `make` on its own to get a full list of commands.
 
 In order to use Jekyll and/or the checking script,
 you may need to install it and some other software.
-The [setup instructions]({{ page.root }}/setup/#optional-jekyll-setup-for-lesson-development) explain what you need and how to get it.
-
-## Displaying Figures
-
-The command `make lesson-figures` uses the script `bin/make_figures.py`
-to regenerate `includes/all_figures.html`,
-which links to every figure used in the episodes (in order).
-Instructors can scroll through this page to display figures while teaching.
+The [setup instructions]({{ page.root }}{% link setup.md %}#optional-jekyll-setup-for-lesson-development) explain what you need and how to get it.
 
 {% include links.md %}
