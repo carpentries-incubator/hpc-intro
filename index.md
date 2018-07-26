@@ -13,10 +13,12 @@ By the end of this workshop, students will know how to:
 * Submit and manage jobs on a cluster using a scheduler, transfer files, and use software through environment modules.
 
 **NOTE: This is the draft HPC Carpentry release. Comments and feedback are welcome.** 
+**NOTE 2: Link to https://hpc-carpentry.github.io/hpc-shell/ when that is complete. **
 
 > ## Prerequisites
 >
-> There are no real prerequisites for this lesson, 
-> but prior programming and/or command line experience will be helpful.
+> Although not compulsory, command line experience will be helpful. We recommend the participants 
+> to go through https://swcarpentry.github.io/shell-novice/ if new to the terminal. 
+
 {: .prereq}
 
