@@ -11,14 +11,14 @@ By the end of this workshop, students will know how to:
 
 * Use the UNIX command line to operate a computer, connect to a cluster, and write simple shell scripts.
 * Submit and manage jobs on a cluster using a scheduler, transfer files, and use software through environment modules.
-* Learn the fundamentals of programming in Python or Chapel.
-* Understand parallel programming strategies, and write basic parallel code in Python or Chapel. 
 
 **NOTE: This is the draft HPC Carpentry release. Comments and feedback are welcome.** 
+**NOTE 2: Link to https://hpc-carpentry.github.io/hpc-shell/ when that is complete.**
 
 > ## Prerequisites
 >
-> There are no real prerequisites for this lesson, 
-> but prior programming and/or command line experience will be helpful.
+> Command line experience is necessary for this lesson. We recommend the participants 
+> to go through https://swcarpentry.github.io/shell-novice/ if new to the terminal. 
+
 {: .prereq}
 
