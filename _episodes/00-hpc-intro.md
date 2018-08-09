@@ -44,7 +44,7 @@ In all these cases, what is needed is access to more computers than can be
 used at the same time.  Luckily, large scale computing systems -- shared computing
 resources with lots of computers -- are available at many universities, labs,
 or through national networks.  These resources usually have
-more central processing units(CPUs), CPUs that operate at higher speeds,
+more central processing units (CPUs), CPUs that operate at higher speeds,
 more memory, more storage, and
 faster connections with other computer systems.  They are frequently called
 "clusters", "supercomputers" or resources for "high performance computing" or
@@ -52,7 +52,7 @@ HPC.  In this lesson, we will usually use the terminology of HPC and HPC cluster
 
 Using a cluster often has the following advantages for researchers:
 
-* **Speed.** With many more CPU cores, often with higher performance specs,
+* **Speed.** With many more CPU cores, often with higher performance specs
   than a typical laptop or desktop, HPC systems can offer
   significant speed up.
 * **Volume.** Many HPC systems have both the processing memory (RAM) and disk
@@ -62,7 +62,7 @@ Using a cluster often has the following advantages for researchers:
   on by a many users.  In most cases when the pool is large and diverse enough
   the resources on the system are used almost constantly.
 * **Cost.** Bulk purchasing and government funding mean that the cost to the
-  research community for using these systems in significantly less that it
+  research community for using these systems is significantly less than it
   would be otherwise.
 * **Convenience.** Maybe your calculations just take a long time to run or are
   otherwise inconvenient to run on your personal computer. There's no need to
@@ -124,7 +124,7 @@ This introduction to HPC systems has two parts:
 * We will use our new Bash skills to connect to and operate a high-performance computing supercomputer.
 
 The skills we learn here have other uses beyond just HPC -
-Bash and UNIX skills used everywhere, be it for web development, running software, or operating servers.
+Bash and UNIX skills are used everywhere, be it for web development, running software, or operating servers.
 It's become so essential that Microsoft
 [now ships it as part of Windows](https://www.microsoft.com/en-us/store/p/ubuntu/9nblggh4msv6)!
 Knowing how to use Bash and HPC systems will allow you to operate virtually any modern device.
