@@ -45,7 +45,7 @@ Remember, the login node is to be shared with other users.
 
 ## Have a backup plan
 
-* Use a VCS system like git to keep track of your code. Though most systems have some form
+* Use a Version Control system like git to keep track of your code. Though most systems have some form
   of backup/archival system, you shouldn't rely on it for something as key as your research code.
   The best backup system is one you manage yourself.
 
