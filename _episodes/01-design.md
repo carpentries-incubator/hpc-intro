@@ -42,7 +42,7 @@ we design lessons in four stages:
 2.  **Summative Assessment:**
     figure out how learners will demonstrate that they have mastered the material.
 
-    _**This is the most important step**_ because
+    **This is the most important step** because
     it determines the scope of the lesson.
 
     **Example**:
