@@ -19,6 +19,5 @@ By the end of this workshop, students will know how to:
 >
 > Command line experience is necessary for this lesson. We recommend the participants 
 > to go through https://swcarpentry.github.io/shell-novice/ if new to the terminal. 
-
 {: .prereq}
 
