@@ -12,8 +12,11 @@ By the end of this workshop, students will know how to:
 * Use the UNIX command line to operate a computer, connect to a cluster, and write simple shell scripts.
 * Submit and manage jobs on a cluster using a scheduler, transfer files, and use software through environment modules.
 
-**NOTE: This is the draft HPC Carpentry release. Comments and feedback are welcome.** 
-**NOTE 2: Link to https://hpc-carpentry.github.io/hpc-shell/ when that is complete.**
+> ## Note
+> 
+> - This is the draft HPC Carpentry release. Comments and feedback are welcome.
+> - Link to https://hpc-carpentry.github.io/hpc-shell/ when that is complete.
+{: .callout}
 
 > ## Prerequisites
 >
