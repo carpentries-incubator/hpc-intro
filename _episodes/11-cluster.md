@@ -68,7 +68,7 @@ The real work on a cluster gets done by the *worker* (or *execute*) *nodes*
 Worker nodes come in many shapes and sizes,
 but generally are dedicated to doing all of the heavy lifting that needs doing.
 
-All interaction with the worker nodes is handled by a specialised piece of software called a scheduler
+All interaction with the worker nodes is handled by a specialized piece of software called a scheduler
 (the scheduler used in this lesson is called SLURM).  We'll learn more about how to use 
 the scheduler to submit jobs next, but for now, it can also tell us more information about 
 the worker nodes.  
@@ -93,7 +93,7 @@ compute*     up 7-00:00:00      3   down gra[20,801,937]
 ```
 {: .output}
 
-There are also specialised machines used for managing disk storage, user authentication,
+There are also specialized machines used for managing disk storage, user authentication,
 and other infrastructure-related tasks.
 Although we do not typically logon to or interact with these machines directly,
 they enable a number of key features like ensuring our user account and files are available throughout the cluster.

@@ -187,7 +187,7 @@ Notice how we still got some output to the console even though we "piped" the
 output to a file? Our expected output still went to the file, but how did the
 error message get skipped and not go to the file?
 
-This phenomenon is an artefact of how UNIX systems are built. There are 3
+This phenomenon is an artifact of how UNIX systems are built. There are 3
 input/output streams for every UNIX program you will run: `stdin`, `stdout`,
 and `stderr`.
 

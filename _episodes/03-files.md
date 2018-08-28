@@ -210,7 +210,7 @@ directories be very, very careful.
 
 > ## What happens when you use `rm -rf` accidentally
 >
-> Steam is a major online sales platform for PC videogames with over 125 million users. 
+> Steam is a major online sales platform for PC video games with over 125 million users. 
 > Despite this, it hasn't always had the most stable or error-free code.
 >
 > In January 2015, user kevyin on GitHub 

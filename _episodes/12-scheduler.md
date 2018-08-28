@@ -63,7 +63,7 @@ Let's create a demo shell script to run as a test.
 {: .challenge}
 
 If you completed the previous challenge successfully, 
-you probably realise that there is a distinction between 
+you probably realize that there is a distinction between 
 running the job through the scheduler and just "running it".
 To submit this job to the scheduler, we use the `sbatch` command.
 
@@ -111,14 +111,14 @@ You should see an auto-updating display of your job's status.
 When it finishes, it will disappear from the queue.
 Press `Ctrl-C` when you want to stop the `watch` command.
 
-## Customising a job
+## Customizing a job
 
 The job we just ran used all of the scheduler's default options.
 In a real-world scenario, that's probably not what we want.
 The default options represent a reasonable minimum.
 Chances are, we will need more cores, more memory, more time, 
 among other special considerations.
-To get access to these resources we must customise our job script.
+To get access to these resources we must customize our job script.
 
 Comments in UNIX (denoted by `#`) are typically ignored.
 But there are exceptions.
