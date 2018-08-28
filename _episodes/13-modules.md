@@ -41,7 +41,7 @@ software versioning issues from affecting their results.
 
 Environment modules are the solution to these problems.
 A module is a self-contained software package - 
-it contains all of the files required to run a software packace 
+it contains all of the files required to run a software package 
 and loads required dependencies.
 
 To see available software modules, use `module avail`
@@ -78,7 +78,7 @@ Use "module keyword key1 key2 ..." to search for all possible modules matching a
 To load a software module, use `module load`.
 In this example we will use Python 3.
 
-Intially, Python 3 is not loaded. 
+Initially, Python 3 is not loaded. 
 We can test this by using the `which` command.
 `which` looks for programs the same way that Bash does,
 so we can use it to tell us where a particular piece of software is stored.
@@ -108,7 +108,7 @@ So what just happened?
 
 To understand the output, first we need to understand the nature of the 
 `$PATH` environment variable.
-`$PATH` is a special ennvironment variable that controls where a UNIX system looks for software.
+`$PATH` is a special environment variable that controls where a UNIX system looks for software.
 Specifically `$PATH` is a list of directories (separated by `:`)
 that the OS searches through for a command before giving up and telling us it can't find it.
 As with all environment variables we can print it out using `echo`.
@@ -210,7 +210,7 @@ Currently Loaded Modules:
 ```
 {: .output}
 
-So using `module unload` "un-loads" a module along with it's dependencies.
+So using `module unload` "un-loads" a module along with its dependencies.
 If we wanted to unload everything at once, we could run `module purge` (unloads everything).
 
 ```
@@ -379,7 +379,7 @@ download the software, read the installation instructions (important!),
 install dependencies, compile, then start using our software.
 
 As an example we will install the bioinformatics toolkit `seqtk`.
-We'll first need to obtain the source code from Github using `git`.
+We'll first need to obtain the source code from GitHub using `git`.
 
 ```
 [remote]$ git clone https://github.com/lh3/seqtk.git
@@ -441,7 +441,6 @@ Command: seq       common transformation of FASTA/Q
          randbase  choose a random base from hets
          cutN      cut sequence at long N
          listhet   extract the position of each het
-
 ```
 {: .output}
 

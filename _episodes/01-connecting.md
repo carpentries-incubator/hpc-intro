@@ -39,7 +39,7 @@ key sequence: Ctrl+Alt+T.
 
 ### Mac
 
-Macs have had a terminal built in since the first version of OSX since it is
+Macs have had a terminal built in since the first version of OS X since it is
 built on a Linux flavour known as BSD (Berkeley Systems Designs). 
 The terminal can be quickly opened through the use of the Searchlight tool. 
 Hold down the command key and press the spacebar. 
@@ -85,11 +85,11 @@ It is strictly speaking not necessary to have a terminal running on your local c
 
 PuTTY is available for free download from [www.putty.org](http://www.putty.org/).  Download the version that is correct for your operating system and install it as you would other software on you Windows system.  Once installed it will be available through the start menu or similar.
 
-Running PuTTY will not initially produce a terminal but intsead a window full of connection options.  Putting the address of the remote system in the "Host Name (or IP Address)" box and either pressing enter or clicking the "Open" button should begin the connection process.
+Running PuTTY will not initially produce a terminal but instead a window full of connection options.  Putting the address of the remote system in the "Host Name (or IP Address)" box and either pressing enter or clicking the "Open" button should begin the connection process.
 
-If this works you will see a terminal window open that prompts you for a username through the "login as:" prompt and then for a password.  If both of these are passed correctly then you will be given access to the system and will see a message saying so within the terminal.  If you need to escape the authentication process you can hold the control/ctrl key and press the c key to exit and start again.
+If this works you will see a terminal window open that prompts you for a username through the "login as:" prompt and then for a password.  If both of these are passed correctly then you will be given access to the system and will see a message saying so within the terminal.  If you need to escape the authentication process you can hold the control/Ctrl key and press the c key to exit and start again.
 
-Note that you may want to paste in your password rather than typing it.  Use control/ctrl plus a right-click of the mouse to paste content from the clipboard to the PuTTY terminal.
+Note that you may want to paste in your password rather than typing it.  Use control/Ctrl plus a right-click of the mouse to paste content from the clipboard to the PuTTY terminal.
 
 For those logging in with PuTTY it would likely be best to cover the terminal basics already mentioned above before moving on to navigating the remote system.
 
@@ -153,7 +153,7 @@ the following convention:
 
 > ## Being Certain Which System your Terminal is connected to
 > If you ever need to be certain which system a terminal you are using is connected to 
-> then use the follwing command: `$ hostname`.
+> then use the following command: `$ hostname`.
 {: .callout}
 
 > ## Keep Two Terminal Windows Open

@@ -187,7 +187,7 @@ Notice how we still got some output to the console even though we "piped" the
 output to a file? Our expected output still went to the file, but how did the
 error message get skipped and not go to the file?
 
-This phenomena is an artifact of how UNIX systems are built. There are 3
+This phenomenon is an artefact of how UNIX systems are built. There are 3
 input/output streams for every UNIX program you will run: `stdin`, `stdout`,
 and `stderr`.
 
@@ -232,7 +232,7 @@ wc: fastq: Is a directory
 ```
 {: .output}
 
-Success! The `wc: fastq: Is a directory` error message was written to the file. Also, note how the file was silently overwritten by directing output to the same place as before. Sometimes this is not the behavior we want. How do we append (add) to a file instead of overwriting it?
+Success! The `wc: fastq: Is a directory` error message was written to the file. Also, note how the file was silently overwritten by directing output to the same place as before. Sometimes this is not the behaviour we want. How do we append (add) to a file instead of overwriting it?
 
 Appending to a file is done the same was as redirecting output. However, instead of `>`, we will use `>>`.
 

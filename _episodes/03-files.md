@@ -25,7 +25,7 @@ There are a few ways of doing this, the easiest of which is simply using a text 
 For this lesson, we are going to us `nano`, since it's super easy to use.
 
 To use `nano` on a file, simply type `nano filename`. If the file does not exist, it will be created. 
-`^O` (ctrl + O) saves the file, and `^X` quits. 
+`^O` (Ctrl + O) saves the file, and `^X` quits. 
 If you have not saved your file upon trying to quit, it will ask you if you want to save.
 
 > ## Using `vim` as a text editor
@@ -292,4 +292,4 @@ What are the alternatives? Try all of these out and see which ones you like best
 
 * `less file` - Opens a file and display as much as possible on-screen. You can scroll with `Enter` or the arrow keys on your keyboard. Press `q` to close the viewer. 
 
-Out of `cat`, `head`, `tail, and `less`, which method of reading files is your favorite? Why?
+Out of `cat`, `head`, `tail, and `less`, which method of reading files is your favourite? Why?

@@ -99,7 +99,7 @@ That's a huge amount of output. Let's see if we can understand what it is, worki
 
 + **3rd column - Group:** This is the user group of the user who owns the file. Members of this user group have permissions indicated in the second permissions column.
 
-+ **4th column - Size of file:** This is the size of a file in bytes, or the number of files/subdirectories if we are looking at a directory. (We can use the `-h` option here to get a human-readable filesize in megabytes, gigabytes, etc.)
++ **4th column - Size of file:** This is the size of a file in bytes, or the number of files/subdirectories if we are looking at a directory. (We can use the `-h` option here to get a human-readable file size in megabytes, gigabytes, etc.)
 
 + **5th column - Time last modified:** This is the last time the file was modified.
 

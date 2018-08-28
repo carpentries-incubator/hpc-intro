@@ -50,7 +50,7 @@ Let's create a demo shell script to run as a test.
 
 > ## Creating our test job
 > 
-> Using your favorite text editor, create the following script and run it.
+> Using your favourite text editor, create the following script and run it.
 > Does it run on the cluster or just our login node?
 >
 >```
@@ -63,7 +63,7 @@ Let's create a demo shell script to run as a test.
 {: .challenge}
 
 If you completed the previous challenge successfully, 
-you probably realize that there is a distinction between 
+you probably realise that there is a distinction between 
 running the job through the scheduler and just "running it".
 To submit this job to the scheduler, we use the `sbatch` command.
 
@@ -111,14 +111,14 @@ You should see an auto-updating display of your job's status.
 When it finishes, it will disappear from the queue.
 Press `Ctrl-C` when you want to stop the `watch` command.
 
-## Customizing a job
+## Customising a job
 
 The job we just ran used all of the scheduler's default options.
 In a real-world scenario, that's probably not what we want.
 The default options represent a reasonable minimum.
 Chances are, we will need more cores, more memory, more time, 
 among other special considerations.
-To get access to these resources we must customize our job script.
+To get access to these resources we must customise our job script.
 
 Comments in UNIX (denoted by `#`) are typically ignored.
 But there are exceptions.
@@ -195,7 +195,7 @@ episode of this lesson.
 
 > ## Submitting resource requests
 >
-> Submit a job that will use 2 cpus, 4 gigabytes of memory, and 5 minutes of walltime.
+> Submit a job that will use 2 CPUs, 4 gigabytes of memory, and 5 minutes of walltime.
 {: .challenge}
 
 > ## Job environment variables
@@ -249,7 +249,7 @@ Other jobs on the node will be unaffected.
 This means that one user cannot mess up the experience of others,
 the only jobs affected by a mistake in scheduling will be their own.
 
-## Canceling a job
+## Cancelling a job
 
 Sometimes we'll make a mistake and need to cancel a job.
 This can be done with the `scancel` command.
@@ -269,7 +269,7 @@ Submitted batch job 38759
 {: .output}
 
 Now cancel the job with it's job number. 
-Absence of any job info indicates that the job has been successfully canceled.
+Absence of any job info indicates that the job has been successfully cancelled.
 
 ```
 [remote]$ scancel 38759
@@ -318,16 +318,16 @@ gra752
 `srun` accepts all of the same options as `sbatch`.
 However, instead of specifying these in a script, 
 these options are specified on the command-line when starting a job.
-To submit a job that uses 2 cpus for instance, 
+To submit a job that uses 2 CPUs for instance, 
 we could use the following command
 (note that SLURM's environment variables like `SLURM_CPUS_PER_TASK` are only available to batch jobs run with `sbatch`):
 
 ```
-[remote]$ srun -c 2 echo "This job will use 2 cpus."
+[remote]$ srun -c 2 echo "This job will use 2 CPUs."
 ```
 {: .bash}
 ```
-This job will use 2 cpus.
+This job will use 2 CPUs.
 ```
 {: .output}
 
