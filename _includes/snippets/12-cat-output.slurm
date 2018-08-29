@@ -1,0 +1,12 @@
+```
+[remote]$ sbatch example-job.sh
+[remote]$ watch squeue -u yourUsername
+[remote]$ cat slurm-38193.out
+```
+{: .bash}
+```
+This job is running on:
+gra533
+slurmstepd: error: *** JOB 38193 ON gra533 CANCELLED AT 2017-07-02T16:35:48 DUE TO TIME LIMIT ***
+```
+{: .output}

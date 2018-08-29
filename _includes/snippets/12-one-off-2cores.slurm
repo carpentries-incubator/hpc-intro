@@ -1,0 +1,12 @@
+```
+[remote]$ sbatch example-job.sh
+[remote]$ squeue -u yourUsername
+```
+{: .bash}
+```
+Submitted batch job 38759
+
+   JOBID     USER ACCOUNT           NAME  ST REASON    START_TIME                TIME  TIME_LEFT NODES CPUS
+   38759 yourUsername yourAccount example-job.sh  PD Priority  N/A                       0:00       1:00     1    1
+```
+{: .output}

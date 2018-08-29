@@ -67,31 +67,14 @@ you probably realize that there is a distinction between
 running the job through the scheduler and just "running it".
 To submit this job to the scheduler, we use the `sbatch` command.
 
-```
-[remote]$ sbatch example-job.sh
-```
-{: .bash}
-```
-Submitted batch job 36855
-```
-{: .output}
+{% include /snippets/12-example-job.{{ site.workshop_scheduler }} %}
 
 And that's all we need to do to submit a job.  Our work is done -- now the 
 scheduler takes over and tries to run the job for us.  While the job is waiting 
 to run, it goes into a list of jobs called the *queue*.  
 To check on our job's status, we check the queue using the command `squeue`.
 
-```
-[remote]$ squeue -u yourUsername
-```
-{: .bash}
-```
-   JOBID     USER ACCOUNT           NAME  ST REASON    START_TIME                TIME  TIME_LEFT NODES CPU
-S
-   36856 yourUsername yourAccount example-job.sh   R None      2017-07-01T16:47:02       0:11      59:49     1
-1
-```
-{: .output}
+{% include /snippets/12-list-job.{{ site.workshop_scheduler }} %}
 
 We can see all the details of our job, most importantly that it is in the "R" or "RUNNING" state.
 Sometimes our jobs might need to wait in a queue ("PENDING") or have an error.
@@ -101,11 +84,7 @@ To see a real-time view of our jobs, we can use the `watch` command.
 `watch` reruns a given command at 2-second intervals. 
 Let's try using it to monitor another job.
 
-```
-[remote]$ sbatch example-job.sh
-[remote]$ watch squeue -u yourUsername
-```
-{: .bash}
+{% include /snippets/12-watch-jobs.{{ site.workshop_scheduler }} %}
 
 You should see an auto-updating display of your job's status.
 When it finishes, it will disappear from the queue.
@@ -134,40 +113,13 @@ Let's illustrate this by example.
 By default, a job's name is the name of the script,
 but the `-J` option can be used to change the name of a job.
 
-Submit the following job (`sbatch example-job.sh`):
+Submit the following job:
 
-```
-#!/bin/bash
-#SBATCH -J new_name
-
-echo 'This script is running on:'
-hostname
-sleep 120
-```
-
-```
-[remote]$ squeue -u yourUsername
-```
-{: .bash}
-```
-   JOBID     USER ACCOUNT           NAME  ST REASON    START_TIME                TIME  TIME_LEFT NODES CPUS
-   38191 yourUsername yourAccount       new_name  PD Priority  N/A                       0:00    1:00:00     1  1
-```
-{: .output}
+{% include /snippets/12-new-job-name.{{ site.workshop_scheduler }} %}
 
 Fantastic, we've successfully changed the name of our job!
 
-> ## Setting up email notifications
-> 
-> Jobs on an HPC system might run for days or even weeks.
-> We probably have better things to do than constantly check on the status of our job
-> with `squeue`.
-> Looking at the [online documentation for `sbatch`](https://slurm.schedmd.com/sbatch.html)
-> (you can also google "sbatch slurm"),
-> can you set up our test job to send you an email when it finishes?
-> 
-> Hint: you will need to use the `--mail-user` and `--mail-type` options.
-{: .challenge}
+{% include /snippets/12-email-notification.{{ site.workshop_scheduler }} %}
 
 ### Resource requests
 
@@ -181,13 +133,7 @@ which is probably not what we want.
 
 The following are several key resource requests:
 
-* `-n <nnodes>` - how many nodes does your job need? 
-
-* `-c <ncpus>` - How many CPUs does your job need?
-
-* `--mem=<megabytes>` - How much memory on a node does your job need in megabytes? You can also specify gigabytes using by adding a little "g" afterwards (example: `--mem=5g`)
-
-* `--time <days-hours:minutes:seconds>` - How much real-world time (walltime) will your job take to run? The `<days>` part can be omitted.
+{% include /snippets/12-key-resources.{{ site.workshop_scheduler }} %}
 
 Note that just *requesting* these resources does not make your job run faster!  We'll 
 talk more about how to make sure that you're using resources effectively in a later 
@@ -224,18 +170,8 @@ sleep 120
 
 Submit the job and wait for it to finish. 
 Once it is has finished, check the log file.
-```
-[remote]$ sbatch example-job.sh
-[remote]$ watch squeue -u yourUsername
-[remote]$ cat slurm-38193.out
-```
-{: .bash}
-```
-This job is running on:
-gra533
-slurmstepd: error: *** JOB 38193 ON gra533 CANCELLED AT 2017-07-02T16:35:48 DUE TO TIME LIMIT ***
-```
-{: .output}
+
+{% include /snippets/12-cat-output.{{ site.workshop_scheduler }} %}
 
 Our job was killed for exceeding the amount of resources it requested.
 Although this appears harsh, this is actually a feature.
@@ -255,31 +191,12 @@ Sometimes we'll make a mistake and need to cancel a job.
 This can be done with the `scancel` command.
 Let's submit a job and then cancel it using its job number.
 
-```
-[remote]$ sbatch example-job.sh
-[remote]$ squeue -u yourUsername
-```
-{: .bash}
-```
-Submitted batch job 38759
-
-   JOBID     USER ACCOUNT           NAME  ST REASON    START_TIME                TIME  TIME_LEFT NODES CPUS
-   38759 yourUsername yourAccount example-job.sh  PD Priority  N/A                       0:00       1:00     1    1
-```
-{: .output}
+{% include /snippets/12-submit-to-cancel.{{ site.workshop_scheduler }} %}
 
 Now cancel the job with it's job number. 
 Absence of any job info indicates that the job has been successfully canceled.
 
-```
-[remote]$ scancel 38759
-[remote]$ squeue -u yourUsername
-```
-{: .bash}
-```
-   JOBID     USER ACCOUNT           NAME  ST REASON    START_TIME                TIME  TIME_LEFT NODES CPUS
-```
-{: .output}
+{% include /snippets/12-cancel-job.{{ site.workshop_scheduler }} %}
 
 > ## Cancelling multiple jobs
 >
@@ -306,14 +223,7 @@ Fortunately, we can run these types of tasks as a one-off with `srun`.
 Let's demonstrate this by running the `hostname` command with `srun`.
 (We can cancel an `srun` job with `Ctrl-c`.)
 
-```
-[remote]$ srun hostname
-```
-{: .bash}
-```
-gra752
-```
-{: .output}
+{% include /snippets/12-one-off.{{ site.workshop_scheduler }} %}
 
 `srun` accepts all of the same options as `sbatch`.
 However, instead of specifying these in a script, 
@@ -322,14 +232,7 @@ To submit a job that uses 2 cpus for instance,
 we could use the following command
 (note that SLURM's environment variables like `SLURM_CPUS_PER_TASK` are only available to batch jobs run with `sbatch`):
 
-```
-[remote]$ srun -c 2 echo "This job will use 2 cpus."
-```
-{: .bash}
-```
-This job will use 2 cpus.
-```
-{: .output}
+{% include /snippets/12-one-off-2cores.{{ site.workshop_scheduler }} %}
 
 ### Interactive jobs
 
@@ -338,18 +241,7 @@ Perhaps it's our first time running an analysis
 or we are attempting to debug something that went wrong with a previous job.
 Fortunately, SLURM makes it easy to start an interactive job with `srun`:
 
-```
-[remote]$ srun --x11 --pty bash
-```
-{: .bash}
-
-> ## Note for administrators
-> 
-> The `--x11` option will not work unless the [slurm-spank-x11](https://github.com/hautreux/slurm-spank-x11) plugin is installed.
-> You should also make sure `xeyes` is installed as an example X11 app 
-> (`xorg-x11-apps` package on CentOS).
-> If you do not have these installed, just have students use `srun --pty bash` instead.
-{: .callout}
+{% include /snippets/12-x11.{{ site.workshop_scheduler }} %}
 
 You should be presented with a bash prompt.
 Note that the prompt will likely change to reflect your new location, 

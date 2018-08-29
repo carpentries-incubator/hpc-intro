@@ -1,0 +1,4 @@
+```
+sinfo -n aci-377 -o "%n %c %m"
+```
+{: .bash}
