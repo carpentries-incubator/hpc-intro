@@ -9,7 +9,8 @@ objectives:
 - "Explain how to use RMarkdown with the new lesson template."
 - "Demonstrate how to include pieces of code, figures, and challenges."
 keypoints:
-- "It shouldn't be difficult"
+- "Edit the .Rmd files not the .md files"
+- "Run `make serve` to knit documents and preview lesson website locally"
 ---
 
 This episode demonstrates all the features that can be used when writing a
