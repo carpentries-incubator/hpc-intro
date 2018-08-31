@@ -4,20 +4,25 @@ This is the tentative list of tasks and topics for each lesson.
 Lesson writers are indicated with first/last initials (e.g. AR).
 Feel free to edit the topics for your section.
 
-## 1. UNIX fundamentals - AR
+## 1. UNIX fundamentals
+
+This lesson is hosted in the [hpc-shell](https://github.com/hpc-carpentry/hpc-shell) repo.
 
 * SSH to a cluster
 * Bash fundamentals (`cd`, `ls`, ..., aliases, functions, ~/.bashrc)
 * Transferring files (`scp`? `sftp`? Maybe only one?)
+* Working with the environment
 * Overview of HPC resources
 
 	* What is a cloud?
 	* What is a cluster? Different cluster types
 	* Overview of services available (Compute Canada, Amazon EC2, etc.)
 
-## 2. Submitting / running jobs - JS
+## 2. Submitting / running jobs
 
-* Scheduler - lesson will cover SLURM (which can also run PBS scripts/commands natively)
+This lesson is hosted in the [hpc-intro](https://github.com/hpc-carpentry/hpc-intro) repo.
+
+* Scheduler - lesson will cover SLURM by default (which can also run PBS scripts/commands natively)
 
 	* Submitting jobs
 	* Checking status of jobs
@@ -28,7 +33,7 @@ Feel free to edit the topics for your section.
 * Using software and environment modules
 * Playing friendly in the cluster
 
-	* Understanding resource utilization
+	* Understanding resource utilisation
 	* Profiling code - time, size, etc.
 	* Getting system stats
 	* Consequences of going over
