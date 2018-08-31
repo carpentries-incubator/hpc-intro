@@ -18,7 +18,7 @@ keypoints:
 
 > ## What do you need?  
 >
-> Talk to your neighbour about your research.  How does computing
+> Talk to your neighbor about your research.  How does computing
 > help you do your research?  How could more computing help you
 > do more or better research?  
 {: .challenge}
@@ -74,7 +74,7 @@ those listed at the start of the lesson.
 > ## Thinking ahead
 >
 > How do you think using a large-scale computing system will be different
-> from using your laptop? Talk to your neighbour about some
+> from using your laptop? Talk to your neighbor about some
 > differences you may already know about, and some
 > differences/difficulties you imagine you may run into.
 {: .challenge}
