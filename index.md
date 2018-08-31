@@ -15,7 +15,7 @@ By the end of this workshop, students will know how to:
 > ## Note
 > 
 > - This is the draft HPC Carpentry release. Comments and feedback are welcome.
-> - Link to https://hpc-carpentry.github.io/hpc-shell/ when that is complete.
+> - Link to [hpc-shell](https://hpc-carpentry.github.io/hpc-shell/) when that is complete.
 {: .callout}
 
 > ## Prerequisites
