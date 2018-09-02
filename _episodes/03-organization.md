@@ -126,7 +126,7 @@ The `bin/lesson_initialize.py` script creates files that need to be customized f
 :   Detailed setup instructions for the lesson.
     Note that we usually divide setup instructions by platform,
     e.g.,
-    include level-2 headings for Windows, Mac OS X, and Linux
+    include level-2 headings for Windows, macOS, and Linux
     with instructions for each.
     The [workshop template]({{ site.workshop_repo }})
     links to the setup instructions for core lessons.
