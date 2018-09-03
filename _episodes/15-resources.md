@@ -45,7 +45,7 @@ This value is typically two to three times what you think your job will need.
 > You'll need to figure out a good amount of resources to ask for for this first "test run".
 > You might also want to have the scheduler email you to tell you when the job is done.
 >
-> Hint: the job only needs 1 cpu and not too much memory or time.
+> Hint: the job only needs 1 CPU and not too much memory or time.
 >  The trick is figuring out just how much you'll need!
 {: .challenge}
 
@@ -55,7 +55,7 @@ We will use `sacct` to get statistics about our job.
 
 By itself, `sacct -u yourUsername` shows all commands that we ran 
 since midnight on the previous day 
-(we can change this behavior with the `--start-time` option).
+(we can change this behaviour with the `--start-time` option).
 
 ```
 [remote]$ sacct -u yourUsername
@@ -117,7 +117,7 @@ However, we can also check on stuff running on the login node right now the same
 The best way to check current system stats is with `top`
 (`htop` is a prettier version of `top` but may not be available on your system).
 
-Some sample output from my laptop might look like the following (`ctrl + c` to exit):
+Some sample output from my laptop might look like the following (`Ctrl + c` to exit):
 
 ```
 top

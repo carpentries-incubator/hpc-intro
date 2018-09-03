@@ -33,7 +33,7 @@ This lesson is hosted in the [hpc-intro](https://github.com/hpc-carpentry/hpc-in
 * Using software and environment modules
 * Playing friendly in the cluster
 
-	* Understanding resource utilization
+	* Understanding resource utilisation
 	* Profiling code - time, size, etc.
 	* Getting system stats
 	* Consequences of going over

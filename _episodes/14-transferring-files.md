@@ -5,7 +5,7 @@ exercises: 10
 questions:
 - "How do I upload/download files to the cluster?"
 objectives:
-- "Be able to tranfer files to and from a computing cluster."
+- "Be able to transfer files to and from a computing cluster."
 keypoints:
 - "`wget` downloads a file from the internet."
 - "`sftp`/`scp` transfer files to and from your computer."
@@ -67,7 +67,7 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 ## Transferring files interactively with sftp
 
 `scp` is useful, but what if we don't know the exact location of what we want to transfer?
-Or perhaps we're simply not sure which files we want to tranfer yet.
+Or perhaps we're simply not sure which files we want to transfer yet.
 `sftp` is an interactive way of downloading and uploading files.
 Let's connect to a cluster, using `sftp`- you'll notice it works the same way as SSH:
 
@@ -251,7 +251,7 @@ The two compression commands we'll probably want to remember are the following:
 {: .callout}
 
 > ## A note on ports
-> All file tranfers using the above methods use encrypted communication over port 22.
+> All file transfers using the above methods use encrypted communication over port 22.
 > This is the same connection method used by SSH.
 > In fact, all file transfers using these methods occur through an SSH connection.
 > If you can connect via SSH over the normal port, you will be able to transfer files.
