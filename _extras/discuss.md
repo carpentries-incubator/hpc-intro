@@ -1,6 +1,6 @@
 ---
-layout: page
 title: Discussion
-permalink: /discuss/
 ---
 FIXME
+
+{% include links.md %}
