@@ -12,49 +12,45 @@ keypoints:
 - "The smaller your job, the faster it will schedule."
 ---
 
-We now know virtually everything we need to know about getting stuff on a cluster.
-We can log on, submit different types of jobs, use preinstalled software, 
-and install and use software of our own.
+We now know virtually everything we need to know about getting stuff on a cluster. We can log on,
+submit different types of jobs, use preinstalled software, and install and use software of our own.
 What we need to do now is use the systems effectively.
 
 ## Estimating required resources using the scheduler
 
-Although we covered requesting resources from the scheduler earlier,
-how do we know how much and what type of resources we will need in the first place?
+Although we covered requesting resources from the scheduler earlier, how do we know how much and
+what type of resources we will need in the first place?
 
-Answer: we don't. 
-Not until we've tried it ourselves at least once.
-We'll need to benchmark our job and experiment with it before
-we know how much it needs in the way of resources.
+Answer: we don't. Not until we've tried it ourselves at least once. We'll need to benchmark our job
+and experiment with it before we know how much it needs in the way of resources.
 
-The most effective way of figuring out how much resources a job needs is to submit a test job,
-and then ask the scheduler how many resources it used.
-A good rule of thumb is to ask the scheduler for more time and memory than your job can use.
-This value is typically two to three times what you think your job will need.
+The most effective way of figuring out how much resources a job needs is to submit a test job, and
+then ask the scheduler how many resources it used. A good rule of thumb is to ask the scheduler for
+more time and memory than your job can use. This value is typically two to three times what you
+think your job will need.
 
 > ## Benchmarking `fastqc`
-> Create a job that runs the following command 
-> in the same directory as `.fastq` files
+>
+> Create a job that runs the following command in the same directory as `.fastq` files
 > 
 > ```
 > fastqc name_of_fastq_file
 > ```
 > {: .bash}
 > 
-> The `fastqc` command is provided by the `fastqc` module.
-> You'll need to figure out a good amount of resources to ask for for this first "test run".
-> You might also want to have the scheduler email you to tell you when the job is done.
+> The `fastqc` command is provided by the `fastqc` module. You'll need to figure out a good amount
+> of resources to ask for for this first "test run". You might also want to have the scheduler email
+> you to tell you when the job is done.
 >
-> Hint: the job only needs 1 CPU and not too much memory or time.
->  The trick is figuring out just how much you'll need!
+> Hint: the job only needs 1 CPU and not too much memory or time. The trick is figuring out just how
+>  much you'll need!
 {: .challenge}
 
-Once the job completes (note that it takes much less time than expected),
-we can query the scheduler to see how long our job took and what resources were used.
-We will use `sacct` to get statistics about our job.
+Once the job completes (note that it takes much less time than expected), we can query the scheduler
+to see how long our job took and what resources were used. We will use `sacct` to get statistics
+about our job.
 
-By itself, `sacct -u yourUsername` shows all commands that we ran 
-since midnight on the previous day 
+By itself, `sacct -u yourUsername` shows all commands that we ran since midnight on the previous day
 (we can change this behaviour with the `--start-time` option).
 
 ```
@@ -73,20 +69,17 @@ since midnight on the previous day
 ```
 {: .output}
 
-This shows all the jobs we ran recently 
-(note that there are multiple entries per job).
-To get detailed info about a job, 
-we change our `sacct` command slightly
-(`-j` corresponds to job id).
+This shows all the jobs we ran recently (note that there are multiple entries per job). To get
+detailed info about a job, we change our `sacct` command slightly (`-j` corresponds to job id).
 
 ```
 [remote]$ sacct -j 1965 -l
 ```
 {: .bash}
 
-It will show a ton of info, in fact, every single piece of info
-collected on your job by the scheduler.
-It may be useful to redirect this information to `less` to make it easier to view (use the left and right arrow keys to scroll through fields).
+It will show a ton of info, in fact, every single piece of info collected on your job by the
+scheduler. It may be useful to redirect this information to `less` to make it easier to view (use
+the left and right arrow keys to scroll through fields).
 
 ```
 [remote]$ sacct -j 1965 -l | less
@@ -104,18 +97,16 @@ Some interesting fields include the following:
 
 ## Measuring the statistics of currently running tasks
 
-One very useful feature of SLURM is the ability to SSH 
-to a node where a job is running and check how it's doing.
-To do this, check where a job is running with `squeue`,
-then run `ssh nodename`.
+One very useful feature of SLURM is the ability to SSH to a node where a job is running and check
+how it's doing. To do this, check where a job is running with `squeue`, then run `ssh nodename`.
 
-However, we can also check on stuff running on the login node right now the same way
-(so it's not necessary to `ssh` to a node for this example).
+However, we can also check on stuff running on the login node right now the same way (so it's not
+necessary to `ssh` to a node for this example).
 
 ### top
 
-The best way to check current system stats is with `top`
-(`htop` is a prettier version of `top` but may not be available on your system).
+The best way to check current system stats is with `top` (`htop` is a prettier version of `top` but
+may not be available on your system).
 
 Some sample output from my laptop might look like the following (`Ctrl + c` to exit):
 
@@ -148,15 +139,17 @@ Overview of the most important fields:
 * `PID` - What is the numerical id of each process?
 * `USER` - Who started the process?
 * `RES` - What is the amount of memory currently being used by a process (in bytes)?
-* `%CPU` - How much of a CPU is each process using? Values higher than 100 percent indicate that a process is running in parallel.
+* `%CPU` - How much of a CPU is each process using? Values higher than 100 percent indicate that a
+  process is running in parallel.
 * `%MEM` - What percent of system memory is a process using?
-* `TIME+` - How much CPU time has a process used so far? Processes using 2 CPUs accumulate time at twice the normal rate.
+* `TIME+` - How much CPU time has a process used so far? Processes using 2 CPUs accumulate time at
+  twice the normal rate.
 * `COMMAND` - What command was used to launch a process?
 
 ### free
 
-Another useful tool is the `free -h` command. 
-This will show the currently used/free amount of memory.
+Another useful tool is the `free -h` command. This will show the currently used/free amount of
+memory.
 
 ```
 $ free -h
@@ -169,11 +162,11 @@ Swap:          3.9G        170M        3.7G
 ```
 {: .output}
 
-The key fields here are total, used, and available - which represent the amount of memory
-that the machine has in total, how much is currently being used, and how much is still available.
-When a computer runs out of memory it will attempt to use "swap" space on your hard drive instead. 
-Swap space is very slow to access - a computer may appear to "freeze" if it runs out of memory and 
-begins using swap.
+The key fields here are total, used, and available - which represent the amount of memory that the
+machine has in total, how much is currently being used, and how much is still available. When a
+computer runs out of memory it will attempt to use "swap" space on your hard drive instead. Swap
+space is very slow to access - a computer may appear to "freeze" if it runs out of memory and begins
+using swap.
 
 ### ps 
 
@@ -190,10 +183,9 @@ $ ps
 ```
 {: .output}
 
-Note that this will only show processes from our current session. 
-To show all processes you own 
-(regardless of whether they are part of your current session or not), 
-you can use `ps -ef` and `grep` for your username.
+Note that this will only show processes from our current session. To show all processes you own
+(regardless of whether they are part of your current session or not), you can use `ps -ef` and
+`grep` for your username.
 
 ```
 $ ps -ef | grep yourUsername
@@ -214,14 +206,12 @@ This is useful for identifying which processes are doing what.
 
 ## Killing processes
 
-To kill all of a certain type of process, you can run `killall commandName`.
-`killall rsession` would kill all `rsession` processes created by RStudio,
-for instance.
-Note that you can only kill your own processes.
+To kill all of a certain type of process, you can run `killall commandName`. `killall rsession`
+would kill all `rsession` processes created by RStudio, for instance. Note that you can only kill
+your own processes.
 
-You can also kill processes by their PIDs using `kill 1234` where `1234` is a `PID`.
-Sometimes however, killing a process does not work instantly.
-To kill the process in the most hardcore manner possible, use the `-9` flag.
-It's recommended to kill using without `-9` first.
-This gives a process the chance to clean up child processes, and exit cleanly.
-However, if a process just isn't responding, use `-9` to kill it instantly.
+You can also kill processes by their PIDs using `kill 1234` where `1234` is a `PID`. Sometimes
+however, killing a process does not work instantly. To kill the process in the most hardcore manner
+possible, use the `-9` flag. It's recommended to kill using without `-9` first. This gives a process
+the chance to clean up child processes, and exit cleanly. However, if a process just isn't
+responding, use `-9` to kill it instantly.

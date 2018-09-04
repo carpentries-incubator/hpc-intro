@@ -13,36 +13,29 @@ keypoints:
 - "You can edit your `.bashrc` file to automatically load a software package."
 ---
 
-On a high-performance computing system, no software is loaded by default.
-If we want to use a software package, we will need to "load" it ourselves.
+On a high-performance computing system, no software is loaded by default. If we want to use a
+software package, we will need to "load" it ourselves.
 
-Before we start using individual software packages, however, 
-we should understand the reasoning behind this approach.
-The two biggest factors are software incompatibilities and versioning.
+Before we start using individual software packages, however, we should understand the reasoning
+behind this approach. The two biggest factors are software incompatibilities and versioning.
 
-Software incompatibility is a major headache for programmers.
-Sometimes the presence (or absence) 
-of a software package will break others that depend on it.
-Two of the most famous examples are Python 2 and 3 and C compiler versions.
-Python 3 famously provides a `python` command 
-that conflicts with that provided by Python 2. 
-Software compiled against a newer version of the C libraries 
-and then used when they are not present will result in a nasty
-`'GLIBCXX_3.4.20' not found` error, for instance. 
+Software incompatibility is a major headache for programmers. Sometimes the presence (or absence) of
+a software package will break others that depend on it. Two of the most famous examples are Python 2
+and 3 and C compiler versions. Python 3 famously provides a `python` command that conflicts with
+that provided by Python 2. Software compiled against a newer version of the C libraries and then
+used when they are not present will result in a nasty `'GLIBCXX_3.4.20' not found` error, for
+instance.
 
-Software versioning is another common issue.
-A team might depend on a certain package version for their research project - 
-if the software version was to change (for instance, if a package was updated),
-it might affect their results.
-Having access to multiple software versions allow a set of researchers to prevent
-software versioning issues from affecting their results.
+Software versioning is another common issue. A team might depend on a certain package version for
+their research project - if the software version was to change (for instance, if a package was
+updated), it might affect their results. Having access to multiple software versions allow a set of
+researchers to prevent software versioning issues from affecting their results.
 
 ## Environment modules (Lmod)
 
-Environment modules are the solution to these problems.
-A module is a self-contained software package - 
-it contains all of the files required to run a software package 
-and loads required dependencies.
+Environment modules are the solution to these problems. A module is a self-contained software
+package - it contains all of the files required to run a software package and loads required
+dependencies.
 
 To see available software modules, use `module avail`
 
@@ -88,7 +81,8 @@ so we can use it to tell us where a particular piece of software is stored.
 ```
 {: .bash}
 ```
-/usr/bin/which: no python3 in (/opt/software/slurm/16.05.9/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/avx2/Compiler/intel2016.4/openmpi/2.1.1/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/mkl/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/ifort/2016.4.258/compilers_and_libraries_2016.4.258/linux/bin/intel64:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/gcc-5.4.0/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/icc/2016.4.258/compilers_and_libraries_2016.4.258/linux/bin/intel64:/opt/software/bin:/opt/puppetlabs/puppet/bin:/opt/software/slurm/current/bin:/opt/software/slurm/bin:/cvmfs/soft.computecanada.ca/easybuild/bin:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/bin:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/sbin:/cvmfs/soft.computecanada.ca/custom/bin:/opt/software/slurm/current/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/yourUsername/.local/bin:/home/yourUsername/bin)
+/usr/bin/which: no python3 in
+(/opt/software/slurm/16.05.9/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/avx2/Compiler/intel2016.4/openmpi/2.1.1/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/mkl/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/ifort/2016.4.258/compilers_and_libraries_2016.4.258/linux/bin/intel64:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/gcc-5.4.0/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/icc/2016.4.258/compilers_and_libraries_2016.4.258/linux/bin/intel64:/opt/software/bin:/opt/puppetlabs/puppet/bin:/opt/software/slurm/current/bin:/opt/software/slurm/bin:/cvmfs/soft.computecanada.ca/easybuild/bin:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/bin:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/sbin:/cvmfs/soft.computecanada.ca/custom/bin:/opt/software/slurm/current/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/yourUsername/.local/bin:/home/yourUsername/bin)
 ```
 {: .output}
 
@@ -106,12 +100,12 @@ We can load the `python3` command with `module load`:
 
 So what just happened?
 
-To understand the output, first we need to understand the nature of the 
-`$PATH` environment variable.
-`$PATH` is a special environment variable that controls where a UNIX system looks for software.
-Specifically `$PATH` is a list of directories (separated by `:`)
-that the OS searches through for a command before giving up and telling us it can't find it.
-As with all environment variables we can print it out using `echo`.
+
+To understand the output, first we need to understand the nature of the `$PATH` environment
+variable. `$PATH` is a special environment variable that controls where a UNIX system looks for
+software. Specifically `$PATH` is a list of directories (separated by `:`) that the OS searches
+through for a command before giving up and telling us it can't find it. As with all environment
+variables we can print it out using `echo`.
 
 ```
 [remote]$ echo $PATH
@@ -122,12 +116,10 @@ As with all environment variables we can print it out using `echo`.
 ```
 {: .output}
 
-You'll notice a similarity to the output of the `which` command. 
-In this case, there's only one difference:
-the `/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin` directory at the beginning.
-When we ran `module load python/3.5.2`, 
-it added this directory to the beginning of our `$PATH`.
-Let's examine what's there:
+You'll notice a similarity to the output of the `which` command. In this case, there's only one
+difference: the `/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin` directory at
+the beginning. When we ran `module load python/3.5.2`, it added this directory to the beginning of
+our `$PATH`. Let's examine what's there:
 
 ```
 [remote]$ ls /cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin
@@ -141,13 +133,10 @@ easy_install-3.5  pip3	   python    python3.5m        pyvenv-3.5
 ```
 {: .output}
 
-Taking this to it's conclusion, `module load` will add software to your `$PATH`.
-It "loads" software.
-A special note on this - 
-depending on which version of the `module` program that is installed at your site,
-`module load` will also load required software dependencies.
-To demonstrate, let's use `module list`.
-`module list` shows all loaded software modules.
+Taking this to it's conclusion, `module load` will add software to your `$PATH`. It "loads"
+software. A special note on this - depending on which version of the `module` program that is
+installed at your site, `module load` will also load required software dependencies. To demonstrate,
+let's use `module list`. `module list` shows all loaded software modules.
 
 ```
 [remote]$ module list
@@ -188,9 +177,8 @@ Currently Loaded Modules:
 ```
 {: .output}
 
-So in this case, loading the `beast` module (a bioinformatics software package),
-also loaded `java/1.8.0_121` and `beagle-lib/2.1.2` as well.
-Let's try unloading the `beast` package.
+So in this case, loading the `beast` module (a bioinformatics software package), also loaded
+`java/1.8.0_121` and `beagle-lib/2.1.2` as well. Let's try unloading the `beast` package.
 
 ```
 [remote]$ module unload beast
@@ -226,21 +214,16 @@ The following modules were not unloaded:
 ```
 {: .output}
 
-Note that `module purge` is informative. 
-It lets us know that all but a default set of packages have been unloaded
-(and how to actually unload these if we truly so desired).
+Note that `module purge` is informative. It lets us know that all but a default set of packages have
+been unloaded (and how to actually unload these if we truly so desired).
 
 ## Software versioning
 
-So far, we've learned how to load and unload software packages.
-This is very useful.
-However, we have not yet addressed the issue of software versioning.
-At some point or other, 
-you will run into issues where only one particular version of some software will be suitable.
-Perhaps a key bugfix only happened in a certain version, 
-or version X broke compatibility with a file format you use.
-In either of these example cases, 
-it helps to be very specific about what software is loaded.
+So far, we've learned how to load and unload software packages. This is very useful. However, we
+have not yet addressed the issue of software versioning. At some point or other, you will run into
+issues where only one particular version of some software will be suitable. Perhaps a key bugfix
+only happened in a certain version, or version X broke compatibility with a file format you use. In
+either of these example cases, it helps to be very specific about what software is loaded.
 
 Let's examine the output of `module avail` more closely.
 
@@ -263,16 +246,13 @@ Let's examine the output of `module avail` more closely.
 ```
 {: .output}
 
-Let's take a closer look at the `gcc` module.
-GCC is an extremely widely used C/C++/Fortran compiler.
-Tons of software is dependent on the GCC version, 
-and might not compile or run if the wrong version is loaded.
-In this case, there are two different versions: `gcc/4.8.5` and `gcc/5.4.0`.
-How do we load each copy and which copy is the default?
+Let's take a closer look at the `gcc` module. GCC is an extremely widely used C/C++/Fortran
+compiler. Tons of software is dependent on the GCC version, and might not compile or run if the
+wrong version is loaded. In this case, there are two different versions: `gcc/4.8.5` and
+`gcc/5.4.0`. How do we load each copy and which copy is the default?
 
-In this case, `gcc/5.4.0` has a `(D)` next to it.
-This indicates that it is the default - 
-if we type `module load gcc`, this is the copy that will be loaded.
+In this case, `gcc/5.4.0` has a `(D)` next to it. This indicates that it is the default - if we type
+`module load gcc`, this is the copy that will be loaded.
 
 ```
 [remote]$ module load gcc
@@ -293,17 +273,15 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
 {: .output}
 
-Note that three things happened:
-the default copy of GCC was loaded (version 5.4.0), 
-the Intel compilers (which conflict with GCC) were unloaded,
-and software that is dependent on compiler (OpenMPI) was reloaded.
-The `module` system turned what might be a super-complex operation into a single command.
+Note that three things happened: the default copy of GCC was loaded (version 5.4.0), the Intel
+compilers (which conflict with GCC) were unloaded, and software that is dependent on compiler
+(OpenMPI) was reloaded. The `module` system turned what might be a super-complex operation into a
+single command.
 
-So how do we load the non-default copy of a software package?
-In this case, the only change we need to make is be more specific about the module we are loading.
-There are two GCC modules: `gcc/5.4.0` and `gcc/4.8.5`.
-To load a non-default module, the only change we need to make to our `module load` command
-is to leave in the version number after the `/`.
+So how do we load the non-default copy of a software package? In this case, the only change we need
+to make is be more specific about the module we are loading. There are two GCC modules: `gcc/5.4.0`
+and `gcc/4.8.5`. To load a non-default module, the only change we need to make to our `module load`
+command is to leave in the version number after the `/`.
 
 ```
 [remote]$ module load gcc/4.8.5
@@ -324,10 +302,9 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
 {: .output}
 
-We now have successfully switched from GCC 5.4.0 to GCC 4.8.5.
-It is also important to note that there was no compatible OpenMPI module available for GCC 4.8.5.
-Because of this, the `module` program has "inactivated" the module.
-All this means for us is that if we re-load GCC 5.4.0, 
+We now have successfully switched from GCC 5.4.0 to GCC 4.8.5. It is also important to note that
+there was no compatible OpenMPI module available for GCC 4.8.5. Because of this, the `module`
+program has "inactivated" the module. All this means for us is that if we re-load GCC 5.4.0,
 `module` will remember OpenMPI used to be loaded and load that module as well.
 
 ```
@@ -345,41 +322,36 @@ The following have been reloaded with a version change:
 
 > ## Using software modules in scripts
 >
-> Create a job that is able to run `python3 --version`.
-> Remember, no software is loaded by default!
-> Running a job is just like logging on to the system 
-> (you should not assume a module loaded on the login node is loaded on a worker node).
+> Create a job that is able to run `python3 --version`. Remember, no software is loaded by default!
+> Running a job is just like logging on to the system (you should not assume a module loaded on the
+> login node is loaded on a worker node).
 {: .challenge}
 
 > ## Loading a module by default
 > 
-> Adding a set of `module load` commands to all of your scripts and
-> having to manually load modules every time you log on can be tiresome.
-> Fortunately, there is a way of specifying a set of "default modules"
-> that always get loaded, regardless of whether or not you're logged on or running a job.
+> Adding a set of `module load` commands to all of your scripts and having to manually load modules
+> every time you log on can be tiresome. Fortunately, there is a way of specifying a set of "default
+> modules" that always get loaded, regardless of whether or not you're logged on or running a job.
 >
-> Every user has two hidden files in their home directory: `.bashrc` and `.bash_profile`
-> (you can see these files with `ls -la ~`).
-> These scripts are run every time you log on or run a job.
-> Adding a `module load` command to one of these shell scripts means that
-> that module will always be loaded.
-> Modify either your `.bashrc` or `.bash_profile` scripts to load a commonly used module like Python.
-> Does your `python3 --version` job from before still need `module load` to run?
+> Every user has two hidden files in their home directory: `.bashrc` and `.bash_profile` (you can
+> see these files with `ls -la ~`). These scripts are run every time you log on or run a job. Adding
+> a `module load` command to one of these shell scripts means that that module will always be
+> loaded. Modify either your `.bashrc` or `.bash_profile` scripts to load a commonly used module
+> like Python. Does your `python3 --version` job from before still need `module load` to run?
 {: .challenge}
 
 ## Installing software of our own
 
-Most HPC clusters have a pretty large set of preinstalled software.
-Nonetheless, it's unlikely that all of the software we'll need will be available.
-Sooner or later, we'll need to install some software of our own. 
+Most HPC clusters have a pretty large set of preinstalled software. Nonetheless, it's unlikely that
+all of the software we'll need will be available. Sooner or later, we'll need to install some
+software of our own.
 
-Though software installation differs from package to package,
-the general process is the same:
-download the software, read the installation instructions (important!),
-install dependencies, compile, then start using our software.
+Though software installation differs from package to package, the general process is the same:
+download the software, read the installation instructions (important!), install dependencies,
+compile, then start using our software.
 
-As an example we will install the bioinformatics toolkit `seqtk`.
-We'll first need to obtain the source code from GitHub using `git`.
+As an example we will install the bioinformatics toolkit `seqtk`. We'll first need to obtain the
+source code from GitHub using `git`.
 
 ```
 [remote]$ git clone https://github.com/lh3/seqtk.git
@@ -394,9 +366,8 @@ Resolving deltas: 100% (181/181), done.
 ```
 {: .output}
 
-Now, using the instructions in the README.md file, 
-all we need to do to complete the install is to `cd` 
-into the seqtk folder and run the command `make`.
+Now, using the instructions in the README.md file, all we need to do to complete the install is to
+`cd` into the seqtk folder and run the command `make`.
 
 ```
 [remote]$ cd seqtk
@@ -412,8 +383,7 @@ seqtk.c:399:16: warning: variable ‘lc’ set but not used [-Wunused-but-set-va
 ```
 {: .output}
 
-It's done!
-Now all we need to do to use the program is invoke it like any other program.
+It's done! Now all we need to do to use the program is invoke it like any other program.
 
 ```
 [remote]$ ./seqtk
