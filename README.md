@@ -13,6 +13,9 @@ Sections 3 and 4 (programming) will feature two programming languages:
 [Python](https://www.python.org/) and [Chapel](http://chapel.cray.com/). There are strong arguments
 for both languages, and instructors will be able to choose which language they wish to teach in.
 
+[![Build Status](https://travis-ci.com/tkphd/hpc-intro.svg?branch=gh-pages)](
+https://travis-ci.com/tkphd/hpc-intro)
+
 ## Topic breakdown and todo list
 
 The lesson outline and rough breakdown of topics by lesson writer is in
