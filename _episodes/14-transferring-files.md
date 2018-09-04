@@ -40,7 +40,7 @@ To transfer *to* another computer:
 
 To download *from* another computer:
 ```
-[local]$ scp yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/copy
+[local]$ scp yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
 ```
 {: .bash}
 
@@ -153,7 +153,7 @@ sftp> get config.toml
 {: .bash}
 ```
 Fetching /global/home/yourUsername/config.toml to config.toml
-/global/home/yourUsername/config.toml                               100%  713     9.3KB/s   00:00 
+/global/home/yourUsername/config.toml                               100%  713     9.3KB/s   00:00
 ```
 {: .output}
 
@@ -168,13 +168,13 @@ sftp> put -r content/
 ```
 Uploading content/ to /global/home/yourUsername/content
 Entering content/
-content/scheduler.md              100%   11KB  21.4KB/s   00:00    
-content/index.md                  100% 1051     7.2KB/s   00:00    
-content/transferring-files.md     100% 6117    36.6KB/s   00:00    
-content/.transferring-files.md.sw 100%   24KB  28.4KB/s   00:00    
-content/cluster.md                100% 5542    35.0KB/s   00:00    
-content/modules.md                100%   17KB 158.0KB/s   00:00    
-content/resources.md              100% 1115    29.9KB/s   00:00    
+content/scheduler.md              100%   11KB  21.4KB/s   00:00
+content/index.md                  100% 1051     7.2KB/s   00:00
+content/transferring-files.md     100% 6117    36.6KB/s   00:00
+content/.transferring-files.md.sw 100%   24KB  28.4KB/s   00:00
+content/cluster.md                100% 5542    35.0KB/s   00:00
+content/modules.md                100%   17KB 158.0KB/s   00:00
+content/resources.md              100% 1115    29.9KB/s   00:00
 ```
 {: .output}
 
@@ -212,7 +212,8 @@ into one big file to make it easier on us (no one likes transferring 70000 littl
 The two compression commands we'll probably want to remember are the following:
 
 * Compress a single file with Gzip - `gzip filename`
-* Compress a lot of files/folders with Gzip - `tar -czvf archive-name.tar.gz folder1 file2 folder3 etc`
+* Compress a lot of files/folders with Gzip - `tar -czvf archive-name.tar.gz folder1 file2 folder3
+  etc.`
 
 > ## Transferring files
 >

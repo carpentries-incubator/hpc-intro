@@ -81,8 +81,7 @@ so we can use it to tell us where a particular piece of software is stored.
 ```
 {: .bash}
 ```
-/usr/bin/which: no python3 in
-(/opt/software/slurm/16.05.9/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/avx2/Compiler/intel2016.4/openmpi/2.1.1/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/mkl/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/ifort/2016.4.258/compilers_and_libraries_2016.4.258/linux/bin/intel64:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/gcc-5.4.0/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/icc/2016.4.258/compilers_and_libraries_2016.4.258/linux/bin/intel64:/opt/software/bin:/opt/puppetlabs/puppet/bin:/opt/software/slurm/current/bin:/opt/software/slurm/bin:/cvmfs/soft.computecanada.ca/easybuild/bin:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/bin:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/sbin:/cvmfs/soft.computecanada.ca/custom/bin:/opt/software/slurm/current/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/yourUsername/.local/bin:/home/yourUsername/bin)
+/usr/bin/which: no python3 in (/opt/software/slurm/16.05.9/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/avx2/Compiler/intel2016.4/openmpi/2.1.1/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/mkl/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/ifort/2016.4.258/compilers_and_libraries_2016.4.258/linux/bin/intel64:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/gcc-5.4.0/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/icc/2016.4.258/compilers_and_libraries_2016.4.258/linux/bin/intel64:/opt/software/bin:/opt/puppetlabs/puppet/bin:/opt/software/slurm/current/bin:/opt/software/slurm/bin:/cvmfs/soft.computecanada.ca/easybuild/bin:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/bin:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/sbin:/cvmfs/soft.computecanada.ca/custom/bin:/opt/software/slurm/current/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/yourUsername/.local/bin:/home/yourUsername/bin)
 ```
 {: .output}
 
@@ -99,7 +98,6 @@ We can load the `python3` command with `module load`:
 {: .output}
 
 So what just happened?
-
 
 To understand the output, first we need to understand the nature of the `$PATH` environment
 variable. `$PATH` is a special environment variable that controls where a UNIX system looks for

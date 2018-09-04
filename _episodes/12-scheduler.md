@@ -80,10 +80,8 @@ tries to run the job for us. While the job is waiting to run, it goes into a lis
 ```
 {: .bash}
 ```
-   JOBID     USER ACCOUNT           NAME  ST REASON    START_TIME                TIME  TIME_LEFT NODES CPU
-S
-   36856 yourUsername yourAccount example-job.sh   R None      2017-07-01T16:47:02       0:11      59:49     1
-1
+JOBID USER         ACCOUNT     NAME           ST REASON START_TIME         TIME TIME_LEFT NODES CPUS
+36856 yourUsername yourAccount example-job.sh R  None   2017-07-01T16:47:02 0:11 59:49     1     1
 ```
 {: .output}
 
@@ -135,8 +133,8 @@ sleep 120
 ```
 {: .bash}
 ```
-   JOBID     USER ACCOUNT           NAME  ST REASON    START_TIME                TIME  TIME_LEFT NODES CPUS
-   38191 yourUsername yourAccount       new_name  PD Priority  N/A                       0:00    1:00:00     1  1
+JOBID USER         ACCOUNT     NAME     ST REASON   START_TIME TIME TIME_LEFT NODES CPUS
+38191 yourUsername yourAccount new_name PD Priority N/A        0:00 1:00:00   1     1
 ```
 {: .output}
 
@@ -238,8 +236,8 @@ command. Let's submit a job and then cancel it using its job number.
 ```
 Submitted batch job 38759
 
-   JOBID     USER ACCOUNT           NAME  ST REASON    START_TIME                TIME  TIME_LEFT NODES CPUS
-   38759 yourUsername yourAccount example-job.sh  PD Priority  N/A                       0:00       1:00     1    1
+JOBID USER         ACCOUNT     NAME           ST REASON   START_TIME TIME TIME_LEFT NODES CPUS
+38759 yourUsername yourAccount example-job.sh PD Priority N/A        0:00 1:00      1     1
 ```
 {: .output}
 
@@ -252,7 +250,7 @@ successfully cancelled.
 ```
 {: .bash}
 ```
-   JOBID     USER ACCOUNT           NAME  ST REASON    START_TIME                TIME  TIME_LEFT NODES CPUS
+JOBID  USER  ACCOUNT  NAME  ST  REASON  START_TIME  TIME  TIME_LEFT  NODES  CPUS
 ```
 {: .output}
 
@@ -335,4 +333,3 @@ new location, in this case the worker node we are logged on. You can also verify
 {: .challenge}
 
 When you are done with the interactive job, type `exit` to quit your session.
-

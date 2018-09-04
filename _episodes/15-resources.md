@@ -59,13 +59,13 @@ By itself, `sacct -u yourUsername` shows all commands that we ran since midnight
 {: .bash}
 ```
       JobID    JobName  Partition    Account  AllocCPUS      State ExitCode 
------------- ---------- ---------- ---------- ---------- ---------- -------- 
-1964               bash   standard    default          1  COMPLETED      0:0 
-1964.extern      extern               default          1  COMPLETED      0:0 
-1964.0             bash               default          1  COMPLETED      0:0 
-1965         build-ind+ summer-sc+    default          1  COMPLETED      0:0 
-1965.batch        batch               default          1  COMPLETED      0:0 
-1965.extern      extern               default          1  COMPLETED      0:0 
+------------ ---------- ---------- ---------- ---------- ---------- --------
+1964               bash   standard    default          1  COMPLETED      0:0
+1964.extern      extern               default          1  COMPLETED      0:0
+1964.0             bash               default          1  COMPLETED      0:0
+1965         build-ind+ summer-sc+    default          1  COMPLETED      0:0
+1965.batch        batch               default          1  COMPLETED      0:0
+1965.extern      extern               default          1  COMPLETED      0:0
 ```
 {: .output}
 
@@ -127,8 +127,8 @@ KiB Swap:  8220668 total,  8220668 free,        0 used. 11628168 avail Mem
  3057 jeff      20   0 3115900 521368 231288 S  18.9  3.2  10:27.71 firefox
  6007 jeff      20   0  813992 112336  75592 S   4.3  0.7   0:28.25 tilix
  1742 jeff      20   0  975080 164508 130624 S   2.0  1.0   3:29.83 Xwayland
-    1 root      20   0  230484  11924   7544 S   0.3  0.1   0:06.08 systemd    
-   68 root      20   0       0      0      0 I   0.3  0.0   0:01.25 kworker/4:1   
+    1 root      20   0  230484  11924   7544 S   0.3  0.1   0:06.08 systemd
+   68 root      20   0       0      0      0 I   0.3  0.0   0:01.25 kworker/4:1
  2913 jeff      20   0  965620  47892  37432 S   0.3  0.3   0:11.76 code
     2 root      20   0       0      0      0 S   0.0  0.0   0:00.02 kthreadd
 ```
@@ -196,7 +196,7 @@ jeff      1594     1  0 14:23 ?        00:00:00 /usr/lib/systemd/systemd --user
 jeff      1599  1594  0 14:23 ?        00:00:00 (sd-pam)
 jeff      1610     1  0 14:23 ?        00:00:01 /usr/bin/gnome-keyring-daemon --daemonize --login
 jeff      1627  1586  0 14:23 tty2     00:00:00 /usr/libexec/gdm-wayland-session gnome-session
-jeff      1629  1594  0 14:23 ?        00:00:01 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+jeff      1629  1594  0 14:23 ?        00:00:01 /usr/bin/dbus-daemon --session --address=systemd:...
 jeff      1632  1627  0 14:23 tty2     00:00:00 /usr/libexec/gnome-session-binary
 jeff      1692  1594  0 14:23 ?        00:00:00 /usr/libexec/gvfsd
 ```
