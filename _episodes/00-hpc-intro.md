@@ -118,3 +118,5 @@ allow you to operate virtually any modern device. With all of this in mind, let'
 cluster and get started!
 
 [_ms-ubuntu]: https://www.microsoft.com/en-us/store/p/ubuntu/9nblggh4msv6
+
+{% include links.md %}

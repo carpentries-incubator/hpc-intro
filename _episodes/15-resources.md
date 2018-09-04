@@ -215,3 +215,5 @@ however, killing a process does not work instantly. To kill the process in the m
 possible, use the `-9` flag. It's recommended to kill using without `-9` first. This gives a process
 the chance to clean up child processes, and exit cleanly. However, if a process just isn't
 responding, use `-9` to kill it instantly.
+
+{% include links.md %}

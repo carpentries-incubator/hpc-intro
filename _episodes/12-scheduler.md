@@ -333,3 +333,5 @@ new location, in this case the worker node we are logged on. You can also verify
 {: .challenge}
 
 When you are done with the interactive job, type `exit` to quit your session.
+
+{% include links.md %}

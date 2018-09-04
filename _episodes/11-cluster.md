@@ -158,3 +158,5 @@ the computer's memory. Disk is a computer's long-term storage for information it
 
 With all of this in mind, we will now cover how to talk to the cluster's scheduler, and use it to
 start running our scripts and programs!
+
+{% include links.md %}

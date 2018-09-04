@@ -64,3 +64,5 @@ So here are a couple final words to live by:
 
 * Always use the default compilers if possible. Newer compilers are great, but older stuff generally
   has less compatibility issues.
+
+{% include links.md %}
