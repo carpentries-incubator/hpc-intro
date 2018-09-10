@@ -68,10 +68,10 @@ Using a cluster often has the following advantages for researchers:
   otherwise inconvenient to run on your personal computer. There's no need to
   tie up your own computer for hours when you can use someone else's instead.
   Also, users can focus on their research and not systems administration.  
-  You don't have to worry about security updates, O.S. patching, hardware
+  You don't have to worry about security updates, operating system patching, hardware
   replacement/failures, networking and systems monitoring. In a typical HPC 
   cluster these hassles are taken care of by others.  Because of the nature of 
-  the Linux filesystem sharing data/files if easy and can be often managed by 
+  the Linux filesystem sharing data/files is easy and can be often managed by 
   users themselves.
 
 This is how a large-scale compute system like a cluster can help solve problems like
