@@ -1,8 +1,7 @@
 ---
 layout: page
-title: Lesson outline and todo list
+title: HPC Carpentry Lesson Outline
 ---
-# Lesson outline and todo list
 
 This is the tentative list of tasks and topics for each lesson.
 Lesson writers are indicated with first/last initials (e.g. AR).
@@ -22,25 +21,34 @@ This lesson is hosted in the [hpc-shell](https://github.com/hpc-carpentry/hpc-sh
 	* What is a cluster? Different cluster types
 	* Overview of services available (Compute Canada, Amazon EC2, etc.)
 
-## 2. Submitting / running jobs
+## **2. Submitting / running jobs**
 
-This lesson is hosted in the [hpc-intro](https://github.com/hpc-carpentry/hpc-intro) repo.
+This lesson is hosted [here](https://github.com/hpc-carpentry/hpc-intro).
 
-* Scheduler - lesson will cover SLURM by default (which can also run PBS scripts/commands natively)
+* Scheduler - lesson will cover SLURM by default, other schedulers are planned. From [hpc-in-a-day](https://github.com/psteinb/hpc-in-a-day) we know that material comprising Slurm, PBS and LSF is possible, but hard already as e.g. PBS doesn't support direct dispatchment as `srun`.
 
-	* Submitting jobs
-	* Checking status of jobs
-	* Deleting jobs
-	* Job size consequences
-	* GUI vs. batch programs (X-forwarding, SSH tunnels?)
+    * [0] Scheduling basics (what is a job)
+    
+	* [1] Definition of a job and batch processing 
+    * [1] Submitting a job to the scheduler
+    * [1] Passing options to the scheduler (log files)
+    * [1] Callout: Changing a job's name
+    * [1] Optional Callout: Send an email once the job completes (not all sites support sending emails)
+    * [2] Requesting resources on a compute node
+    
+    * [2] Checking status of jobs
+    * [2] Wall times
+    * [2] Cancelling/deleting a job
 
 * Using software and environment modules
-* Playing friendly in the cluster
+* Playing friendly in the cluster (psteinb: the following is very tricky as it is site dependent)
 
 	* Understanding resource utilisation
 	* Profiling code - time, size, etc.
 	* Getting system stats
 	* Consequences of going over
+
+For the above, [1] can be adapted from [hpc-in-a-day/02-01-batch-systems-101.md](https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/02-01-batch-systems-101.md) and [2] can be adapted from [hpc-in-a-day/02-02-advanced-job-scheduling.md](https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/02-02-advanced-job-scheduling.md) while merging existing content from [this repo](https://github.com/hpc-carpentry/hpc-intro).
 
 ## 3. Language refresher / introduction (Python - JB, Chapel - JZ+AR)
 
