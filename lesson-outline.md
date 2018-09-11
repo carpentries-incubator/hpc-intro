@@ -1,3 +1,7 @@
+---
+layout: page
+title: Lesson outline and todo list
+---
 # Lesson outline and todo list
 
 This is the tentative list of tasks and topics for each lesson.
