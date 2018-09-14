@@ -4,11 +4,13 @@ teaching: 45
 exercises: 30
 questions:
 - "What is a scheduler and why are they used?"
-- "How do we submit a job?"
+- "How do I launch a program to run on any one remote host in the cluster?"
+- "How do I capture the output of a program that is run on a remote host?"
 objectives:
-- "Submit a job and have it complete successfully."
-- "Understand how to make resource requests."
-- "Submit an interactive job."
+- "Run a simple Hello World style program on the cluster."
+- "Submit a simple Hello World style script to the cluster."
+- "Use the batch system command line tools to monitor the execution of your job."
+- "Inspect the output and error files of your jobs."
 keypoints:
 - "The scheduler handles how compute resources are shared between users."
 - "Everything you do should be run through the scheduler."
