@@ -57,7 +57,7 @@ node*, *login node* or *submit node*. A login node serves as an access point to 
 gateway, it is well suited for uploading and downloading files, setting up software, and running
 quick tests. It should never be used for doing actual work.
 
-The real work on a cluster gets done by the *worker* (or *execute*) *nodes* Worker nodes come in
+The real work on a cluster gets done by the *worker* (or *execute*) *nodes*. Worker nodes come in
 many shapes and sizes, but generally are dedicated to doing all of the heavy lifting that needs
 doing.
 
