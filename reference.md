@@ -3,6 +3,10 @@ layout: reference
 permalink: /reference/
 ---
 
+## Cheatsheets for Queuing System Quick Reference
+
+* [SLURM](https://slurm.schedmd.com/pdfs/summary.pdf)
+
 ## Glossary
 
 The following list captures terms that need to be added to this glossary. This is a great way to contribute.
@@ -11,7 +15,9 @@ The following list captures terms that need to be added to this glossary. This i
 - [Beowulf cluster](https://en.wikipedia.org/wiki/Beowulf_cluster)
 - [Central processing unit](https://en.wikipedia.org/wiki/Central_processing_unit)
 - [Cloud computing](https://en.wikipedia.org/wiki/Cloud_computing)
-- [Cluster](https://en.wikipedia.org/wiki/Computer_cluster)
+- [Cluster](https://en.wikipedia.org/wiki/Computer_cluster): a collection of computers configured to enable collaboration on a common task by
+  means of purposefully configured hardware (*e.g.*, networking) and software (*e.g.* workload
+  management).
 - [Distributed memory](https://en.wikipedia.org/wiki/Distributed_memory)
 - [Grid computing](https://en.wikipedia.org/wiki/Grid_computing)
 - [High availability computing](https://en.wikipedia.org/wiki/High_availability)

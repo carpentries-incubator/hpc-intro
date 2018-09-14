@@ -1,6 +1,6 @@
 ---
 title: Discussion
 ---
-FIXME
+## Frequently Asked Questions
 
 {% include links.md %}

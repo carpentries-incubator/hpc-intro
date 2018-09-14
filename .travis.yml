@@ -1,0 +1,17 @@
+# dist: trusty  # Ubuntu 14.04
+language: python
+python: 3.6
+branches:
+  only:
+  - gh-pages
+  - /.*/
+before_install:
+  - sudo apt-get update -y
+  - rvm default
+  - gem install json kramdown jekyll
+install:
+  - pip install pyyaml
+script:
+  - make lesson-check
+  - make lesson-check-all
+  - make --always-make site
