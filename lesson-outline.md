@@ -7,27 +7,38 @@ This is the tentative list of tasks and topics for each lesson.
 Lesson writers are indicated with first/last initials (e.g. AR).
 Feel free to edit the topics for your section.
 
-## 1. UNIX fundamentals
+## [hpc-shell](https://github.com/hpc-carpentry/hpc-shell): UNIX fundamentals on HPC installations
 
 This lesson is hosted in the [hpc-shell](https://github.com/hpc-carpentry/hpc-shell) repo.
 
-* SSH to a cluster
+* SSH to a cluster 
 * Bash fundamentals (`cd`, `ls`, ..., aliases, functions, ~/.bashrc)
 * Transferring files (`scp`? `sftp`? Maybe only one?)
-* Working with the environment
-* Overview of HPC resources
+* Working with the environment (showing the power of changing `PATH`)
+* Introducing modules or similar 
 
-	* What is a cloud?
-	* What is a cluster? Different cluster types
-	* Overview of services available (Compute Canada, Amazon EC2, etc.)
 
-## **2. Submitting / running jobs**
+## [hpc-intro](https://github.com/hpc-carpentry/hpc-intro): Submitting / running jobs
 
 This lesson is hosted [here](https://github.com/hpc-carpentry/hpc-intro).
 
-* Scheduler - lesson will cover SLURM by default, other schedulers are planned. From [hpc-in-a-day](https://github.com/psteinb/hpc-in-a-day) we know that material comprising Slurm, PBS and LSF is possible, but hard already as e.g. PBS doesn't support direct dispatchment as `srun`.
+### Overview of cluster resources
 
-    * [0] Scheduling basics (what is a job)
+* [11-hpc-intro.md](_episodes/11-hpc-intro.md) (brief, concentrate on the concepts not details like interconnect type)
+
+    * What is a server? (remote computer, typically no GUI)
+	* What is a cluster? (shared resource, interconnected set of computers, local or distributed storage)
+	* What is a cloud?
+    * user profiles (academic and/or commercial)
+    * story introduction
+
+### Scheduling jobs
+
+* Scheduler - lesson will cover SLURM by default, other schedulers are planned.   
+  From [hpc-in-a-day](https://github.com/psteinb/hpc-in-a-day) we know that material comprising Slurm, PBS and LSF is possible, but hard already as e.g. PBS doesn't support direct dispatchment as `srun`.
+
+
+    * [0] Scheduling basics (why scheduling, what is a job)
     
 	* [1] Definition of a job and batch processing 
     * [1] Submitting a job to the scheduler
@@ -40,7 +51,7 @@ This lesson is hosted [here](https://github.com/hpc-carpentry/hpc-intro).
     * [2] Wall times
     * [2] Cancelling/deleting a job
 
-* Using software and environment modules
+* Using software and environment modules (a repetition of [hpc-shell](https://github.com/hpc-carpentry/hpc-shell))
 * Playing friendly in the cluster (psteinb: the following is very tricky as it is site dependent)
 
 	* Understanding resource utilisation
