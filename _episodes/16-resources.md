@@ -97,8 +97,7 @@ Some interesting fields include the following:
 
 ## Measuring the statistics of currently running tasks
 
-One very useful feature of SLURM is the ability to SSH to a node where a job is running and check
-how it's doing. To do this, check where a job is running with `squeue`, then run `ssh nodename`.
+Typically, clusters allow users to SSH directly into worker nodes from the head node. This is useful to check on a running job and see how it's doing. To do this, check where a job is running with `squeue`, then run `ssh nodename`.
 
 However, we can also check on stuff running on the login node right now the same way (so it's not
 necessary to `ssh` to a node for this example).
