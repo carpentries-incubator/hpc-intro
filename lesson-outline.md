@@ -74,7 +74,7 @@ This lesson is hosted [here](https://github.com/hpc-carpentry/hpc-intro).
 	* Getting system stats
 	* Consequences of going over
 
-## 3. Language refresher / introduction (Python - JB, Chapel - JZ+AR)
+## Language refresher / introduction ([Python](https://github.com/hpc-carpentry/hpc-python), [Chapel](https://github.com/hpc-carpentry/hpc-python))
 
 * Programming language concepts
 
@@ -98,7 +98,7 @@ Some side notes:
 perhaps a quick refresh of key concepts right before use in parallel section,
 certain concepts could get mixed in right before they're needed by the parallel lesson.
 
-## 4. Intro to parallel programming (Python - JB, Chapel - JZ+AR)
+## Intro to parallel programming ([Python](https://github.com/hpc-carpentry/hpc-python), [Chapel](https://github.com/hpc-carpentry/hpc-python))
 
 * Pipelining / automatic job submission / serial farming
 * Shared memory programming
