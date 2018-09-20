@@ -106,7 +106,6 @@ run `ssh nodename`.
 {: .callout}
   
 We can also check on stuff running on the login node right now the same way (so it's not necessary to `ssh` to a node for this example).
-{: .callout}
 
 ### top
 
