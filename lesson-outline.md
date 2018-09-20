@@ -13,7 +13,7 @@ This lesson is hosted in the [hpc-shell](https://github.com/hpc-carpentry/hpc-sh
 
 * SSH to a cluster 
 * Bash fundamentals (`cd`, `ls`, ..., aliases, functions, ~/.bashrc)
-* Transferring files (`scp`? `sftp`? Maybe only one?)
+* Transferring files (`scp`? `sftp`? Maybe only one?), maybe adapt [15-transferring-files.md](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_episodes/15-transferring-files.md)
 * Working with the environment (showing the power of changing `PATH`)
 * Introducing modules or similar 
 
@@ -24,9 +24,10 @@ This lesson is hosted [here](https://github.com/hpc-carpentry/hpc-intro).
 
 ### Overview of cluster resources
 
-* [11-hpc-intro.md](_episodes/11-hpc-intro.md) (brief, concentrate on the concepts not details like interconnect type)
+* [11-hpc-intro.md](_episodes/11-hpc-intro.md) (brief, concentrate on the concepts not details like interconnect type etc)
 
-    * What is a server? (remote computer, typically no GUI)
+    * What is a laptop/desktop? (sketches of a von-Neumann architecture without calling it that)
+	* What is a server? (remote computer, typically no GUI)
 	* What is a cluster? (shared resource, interconnected set of computers, local or distributed storage)
 	* What is a cloud?
     * user profiles (academic and/or commercial)
@@ -37,29 +38,41 @@ This lesson is hosted [here](https://github.com/hpc-carpentry/hpc-intro).
 * Scheduler - lesson will cover SLURM by default, other schedulers are planned.   
   From [hpc-in-a-day](https://github.com/psteinb/hpc-in-a-day) we know that material comprising Slurm, PBS and LSF is possible, but hard already as e.g. PBS doesn't support direct dispatchment as `srun`.
 
-
-    * [0] Scheduling basics (why scheduling, what is a job)
+    * [12-cluster.md](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_episodes/12-cluster.md)
+        * logging in with ssh
+        * looking around (compare with your laptop)
+        * now what? Scheduling basics (why scheduling, what is a job), see for example [here](https://psteinb.github.io/hpc-in-a-day/02-01-batch-systems-101/) on trying to illustrate the fair share problem
     
-	* [1] Definition of a job and batch processing 
-    * [1] Submitting a job to the scheduler
-    * [1] Passing options to the scheduler (log files)
-    * [1] Callout: Changing a job's name
-    * [1] Optional Callout: Send an email once the job completes (not all sites support sending emails)
-    * [2] Requesting resources on a compute node
-    
-    * [2] Checking status of jobs
-    * [2] Wall times
-    * [2] Cancelling/deleting a job
-
+    * [13-scheduler.md](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_episodes/13-scheduler.md)
+	    * submit a `echo Hello World` on the command line (`srun`, `bsub`, etc.)
+        * check the automagically log file for output
+        * submit a batch script (`sbatch`, `bsub`, etc)
+        * NB: do not dive into options yet
+        * for a starting point, see [the bottom half of this](https://psteinb.github.io/hpc-in-a-day/02-01-batch-systems-101/) for reference
+        
+    * `14-advanced-jobs.md` (doesn't exist yet)
+        * Checking status of jobs (`squeue`, `bjobs` etc.), explain different job states and relate to scheduler basics
+        * Cancelling/deleting a job (`scancel`, `bkill` etc.)
+        * Passing options to the scheduler (log files)
+        * Callout: Changing a job's name
+        * Optional Callout: Send an email once the job completes (not all sites support sending emails)
+        * for a starting point, see [this](https://psteinb.github.io/hpc-in-a-day/02-02-advanced-job-scheduling/) for reference
+        
+        
+    * `15-filesystem-zoo.md` (doesn't exist yet)
+        * execute a job that collects node information and stores the output to `/tmp`
+        * ask participants where the output went and why they can't see it
+        * execute a job that collects node information and stores the output to `/shared` or however your shared file system is called
+        * for a starting point, see [this](https://psteinb.github.io/hpc-in-a-day/02-03-shared-filesystem/) for reference
+        
 * Using software and environment modules (a repetition of [hpc-shell](https://github.com/hpc-carpentry/hpc-shell))
-* Playing friendly in the cluster (psteinb: the following is very tricky as it is site dependent)
+
+* Playing friendly in the cluster (psteinb: the following is very tricky as it is site dependent, I personally would like to see it in [_extras](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_extras))
 
 	* Understanding resource utilisation
 	* Profiling code - time, size, etc.
 	* Getting system stats
 	* Consequences of going over
-
-For the above, [1] can be adapted from [hpc-in-a-day/02-01-batch-systems-101.md](https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/02-01-batch-systems-101.md) and [2] can be adapted from [hpc-in-a-day/02-02-advanced-job-scheduling.md](https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/02-02-advanced-job-scheduling.md) while merging existing content from [this repo](https://github.com/hpc-carpentry/hpc-intro).
 
 ## 3. Language refresher / introduction (Python - JB, Chapel - JZ+AR)
 
