@@ -35,7 +35,12 @@ too big for any one computer.
 
 ## Where are we?
 
-Go ahead and log in to the cluster, using the `ssh` command.
+Go ahead and log in to the cluster.
+```
+[user@laptop]$ ssh remote
+```
+{: .bash}
+
 
 Very often, many users are tempted to think of a high-performance computing installation as one
 giant, magical machine. Sometimes, people will assume that the computer they've logged onto is the
@@ -152,7 +157,7 @@ the computer's memory. Disk is a computer's long-term storage for information it
 {: .challenge}
 
 > ## Differences Between Nodes
-> The cluster may not be homogeneous. Many HPC clusters have a variety of nodes optimized for particular workloads. Some nodes may have larger amount of memory, or specialized resources such as Graphical Processing Units.
+> Many HPC clusters have a variety of nodes optimized for particular workloads. Some nodes may have larger amount of memory, or specialized resources such as Graphical Processing Units.
 {: .callout}
 
 > ## Units
