@@ -287,8 +287,7 @@ gra752
 
 `srun` accepts all of the same options as `sbatch`. However, instead of specifying these in a
 script, these options are specified on the command-line when starting a job. To submit a job that
-uses 2 CPUs for instance, we could use the following command (note that SLURM's environment
-variables like `SLURM_CPUS_PER_TASK` are only available to batch jobs run with `sbatch`):
+uses 2 CPUs for instance, we could use the following command:
 
 ```
 [remote]$ srun -c 2 echo "This job will use 2 CPUs."
@@ -298,6 +297,8 @@ variables like `SLURM_CPUS_PER_TASK` are only available to batch jobs run with `
 This job will use 2 CPUs.
 ```
 {: .output}
+
+Typically, the resulting shell environment will be the same as that for `sbatch`.
 
 ### Interactive jobs
 
