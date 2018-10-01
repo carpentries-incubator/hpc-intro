@@ -3,18 +3,35 @@ layout: page
 title: Introduction to HPC Lesson Outline
 ---
 
+# How to use this outline
+
+The following list of items is meant as a guide on what content should go where in this repo. This should work as a guide where you can contribute. If a bullet point is prefixed by a file name, this is the lesson where the listed content should go into. This document is meant as a concept map converted into a flow learning goals and questions.
+
 # Fundamentals of cluster resources
 
 * [11-hpc-intro.md](_episodes/11-hpc-intro.md) (brief, concentrate on the concepts not details like interconnect type etc)
 
-    * What is a laptop/desktop? (sketches of a von-Neumann architecture without calling it that, mostly controlled through keyboard/mouse inputs)
-	* What is a server? (remote computer, typically no GUI, only reachable by some form of network)
-	* What is a cluster? (shared resource, interconnected set of computers by means of a network, local or distributed storage, only reachable by some form of network)
-	* What is a cloud? (on-demand virtualized resource with exclusive usage permissions by the user) 
+    * What is a laptop/desktop? 
+        * sketches of a von-Neumann architecture without calling it that
+        * machine is mostly controlled through keyboard/mouse inputs
+        
+	* What is a server? 
+        * remote computer
+        * typically no GUI
+        * only reachable by some form of network
+        
+	* What is a cluster? 
+        * shared resource
+        * interconnected set of computers by means of a network
+        * local or distributed storage, only reachable by some form of network
+        
+	* What is a cloud?  
+        * on-demand virtualized resource with exclusive usage permissions by the user
+        
     * user profiles (academic and/or commercial) of clusters
     * story introduction (in the following 
 
-# Jobs
+# Using a cluster for science
 
 * Scheduler - lesson will cover SLURM by default, other schedulers are planned.   
   From [hpc-in-a-day](https://github.com/psteinb/hpc-in-a-day) we know that material comprising Slurm, PBS and LSF is possible, but hard already as e.g. PBS doesn't support direct dispatchment as `srun`.
