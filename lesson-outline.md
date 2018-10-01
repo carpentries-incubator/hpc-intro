@@ -3,7 +3,7 @@ layout: page
 title: Introduction to HPC Lesson Outline
 ---
 
-# Overview of cluster resources
+# Fundamentals of cluster resources
 
 * [11-hpc-intro.md](_episodes/11-hpc-intro.md) (brief, concentrate on the concepts not details like interconnect type etc)
 
