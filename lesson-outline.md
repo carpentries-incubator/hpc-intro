@@ -7,12 +7,12 @@ title: Introduction to HPC Lesson Outline
 
 * [11-hpc-intro.md](_episodes/11-hpc-intro.md) (brief, concentrate on the concepts not details like interconnect type etc)
 
-    * What is a laptop/desktop? (sketches of a von-Neumann architecture without calling it that)
-	* What is a server? (remote computer, typically no GUI)
-	* What is a cluster? (shared resource, interconnected set of computers, local or distributed storage)
-	* What is a cloud?
-    * user profiles (academic and/or commercial)
-    * story introduction
+    * What is a laptop/desktop? (sketches of a von-Neumann architecture without calling it that, mostly controlled through keyboard/mouse inputs)
+	* What is a server? (remote computer, typically no GUI, only reachable by some form of network)
+	* What is a cluster? (shared resource, interconnected set of computers by means of a network, local or distributed storage, only reachable by some form of network)
+	* What is a cloud? (on-demand virtualized resource with exclusive usage permissions by the user) 
+    * user profiles (academic and/or commercial) of clusters
+    * story introduction (in the following 
 
 # Jobs
 
