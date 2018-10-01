@@ -43,9 +43,10 @@ The following list of items is meant as a guide on what content should go where 
     
     * [13-scheduler.md](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_episodes/13-scheduler.md)
 	    * submit a `echo Hello World` on the command line (`srun`, `bsub`, etc.)
-        * check the automagically log file for output
-        * submit a batch script (`sbatch`, `bsub`, etc)
-        * NB: do not dive into options yet
+        * second iteration of `srun` et al, use `hostname` to illustrate that the process is not running on the login node
+        * check the automagically created log file for output
+        * submit a batch script (`sbatch`, `bsub`, etc) doing the same as above or alternatively use `hostname`
+        * NB: do not dive into options yet of the submit command
         * for a starting point, see [the bottom half of this](https://psteinb.github.io/hpc-in-a-day/02-01-batch-systems-101/) for reference
         
     * `14-advanced-jobs.md` (doesn't exist yet)
