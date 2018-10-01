@@ -1,6 +1,6 @@
 ---
 layout: page
-title: HPC Carpentry Lesson Outline
+title: Introduction to HPC Lesson Outline
 ---
 
 # Overview of cluster resources
@@ -14,7 +14,7 @@ title: HPC Carpentry Lesson Outline
     * user profiles (academic and/or commercial)
     * story introduction
 
-# jobs
+# Jobs
 
 * Scheduler - lesson will cover SLURM by default, other schedulers are planned.   
   From [hpc-in-a-day](https://github.com/psteinb/hpc-in-a-day) we know that material comprising Slurm, PBS and LSF is possible, but hard already as e.g. PBS doesn't support direct dispatchment as `srun`.
