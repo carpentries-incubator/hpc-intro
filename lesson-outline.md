@@ -63,8 +63,10 @@ The following list of items is meant as a guide on what content should go where 
         * ask participants where the output went and why they can't see it
         * execute a job that collects node information and stores the output to `/shared` or however your shared file system is called
         * for a starting point, see [this](https://psteinb.github.io/hpc-in-a-day/02-03-shared-filesystem/) for reference
-        
-* Using software and environment modules (a repetition of [hpc-shell](https://github.com/hpc-carpentry/hpc-shell))
+
+# Lesson ideas up for debate
+
+* Using software and environment modules (a repetition of [hpc-shell](https://github.com/hpc-carpentry/hpc-shell) potentially)
 
 * Playing friendly in the cluster (psteinb: the following is very tricky as it is site dependent, I personally would like to see it in [_extras](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_extras))
 
