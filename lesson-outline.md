@@ -1,87 +1,76 @@
 ---
 layout: page
-title: Lesson outline and todo list
+title: Introduction to HPC Lesson Outline
 ---
-# Lesson outline and todo list
 
-This is the tentative list of tasks and topics for each lesson.
-Lesson writers are indicated with first/last initials (e.g. AR).
-Feel free to edit the topics for your section.
+# How to use this outline
 
-## 1. UNIX fundamentals
+The following list of items is meant as a guide on what content should go where in this repo. This should work as a guide where you can contribute. If a bullet point is prefixed by a file name, this is the lesson where the listed content should go into. This document is meant as a concept map converted into a flow learning goals and questions.
 
-This lesson is hosted in the [hpc-shell](https://github.com/hpc-carpentry/hpc-shell) repo.
+# Fundamentals of cluster resources
 
-* SSH to a cluster
-* Bash fundamentals (`cd`, `ls`, ..., aliases, functions, ~/.bashrc)
-* Transferring files (`scp`? `sftp`? Maybe only one?)
-* Working with the environment
-* Overview of HPC resources
+* [11-hpc-intro.md](_episodes/11-hpc-intro.md) (brief, concentrate on the concepts not details like interconnect type etc)
 
-	* What is a cloud?
-	* What is a cluster? Different cluster types
-	* Overview of services available (Compute Canada, Amazon EC2, etc.)
+    * What is a laptop/desktop? 
+        * sketches of a von-Neumann architecture without calling it that
+        * machine is mostly controlled through keyboard/mouse inputs
+        
+	* What is a server? 
+        * remote computer
+        * typically no GUI
+        * only reachable by some form of network
+        
+	* What is a cluster? 
+        * shared resource
+        * interconnected set of computers by means of a network
+        * local or distributed storage, only reachable by some form of network
+        
+	* What is a cloud?  
+        * on-demand virtualized resource with exclusive usage permissions by the user
+        
+    * user profiles (academic and/or commercial) of clusters
+    * story introduction (in the following 
 
-## 2. Submitting / running jobs
+# Using a cluster for science
 
-This lesson is hosted in the [hpc-intro](https://github.com/hpc-carpentry/hpc-intro) repo.
+* Scheduler - lesson will cover SLURM by default, other schedulers are planned.   
+  From [hpc-in-a-day](https://github.com/psteinb/hpc-in-a-day) we know that material comprising Slurm, PBS and LSF is possible, but hard already as e.g. PBS doesn't support direct dispatchment as `srun`.
 
-* Scheduler - lesson will cover SLURM by default (which can also run PBS scripts/commands natively)
+    * [12-cluster.md](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_episodes/12-cluster.md)
+        * logging in with ssh
+        * looking around (compare with your laptop)
+        * now what? Scheduling basics (why scheduling, what is a job), see for example [here](https://psteinb.github.io/hpc-in-a-day/02-01-batch-systems-101/) on trying to illustrate the fair share problem
+    
+    * [13-scheduler.md](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_episodes/13-scheduler.md)
+	    * submit a `echo Hello World` on the command line (`srun`, `bsub`, etc.)
+        * second iteration of `srun` et al, use `hostname` to illustrate that the process is not running on the login node
+        * check the automagically created log file for output
+        * submit a batch script (`sbatch`, `bsub`, etc) doing the same as above or alternatively use `hostname`
+        * NB: do not dive into options yet of the submit command
+        * for a starting point, see [the bottom half of this](https://psteinb.github.io/hpc-in-a-day/02-01-batch-systems-101/) for reference
+        
+    * `14-advanced-jobs.md` (doesn't exist yet)
+        * Checking status of jobs (`squeue`, `bjobs` etc.), explain different job states and relate to scheduler basics
+        * Cancelling/deleting a job (`scancel`, `bkill` etc.)
+        * Passing options to the scheduler (log files)
+        * Callout: Changing a job's name
+        * Optional Callout: Send an email once the job completes (not all sites support sending emails)
+        * for a starting point, see [this](https://psteinb.github.io/hpc-in-a-day/02-02-advanced-job-scheduling/) for reference
+        
+        
+    * `15-filesystem-zoo.md` (doesn't exist yet)
+        * execute a job that collects node information and stores the output to `/tmp`
+        * ask participants where the output went and why they can't see it
+        * execute a job that collects node information and stores the output to `/shared` or however your shared file system is called
+        * for a starting point, see [this](https://psteinb.github.io/hpc-in-a-day/02-03-shared-filesystem/) for reference
 
-	* Submitting jobs
-	* Checking status of jobs
-	* Deleting jobs
-	* Job size consequences
-	* GUI vs. batch programs (X-forwarding, SSH tunnels?)
+# Lesson ideas up for debate
 
-* Using software and environment modules
-* Playing friendly in the cluster
+* Using software and environment modules (a repetition of [hpc-shell](https://github.com/hpc-carpentry/hpc-shell) potentially)
+
+* Playing friendly in the cluster (psteinb: the following is very tricky as it is site dependent, I personally would like to see it in [_extras](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_extras))
 
 	* Understanding resource utilisation
 	* Profiling code - time, size, etc.
 	* Getting system stats
 	* Consequences of going over
-
-## 3. Language refresher / introduction (Python - JB, Chapel - JZ+AR)
-
-* Programming language concepts
-
-	* Compiled vs. interpreted languages
-	* How does a program work?
-	* Quick intro of programming language of choice
-
-		* Major features + pros/cons
-		* What is it good at? 
-
-* Actual language overview
-
-	* Basic syntax (arithmetic, variables, etc.)
-	* Basic data structures (lists, arrays, etc.)
-	* Defining functions
-	* Conditional expressions
-	* For-loops
-	* Reading/writing data
-
-Some side notes: 
-perhaps a quick refresh of key concepts right before use in parallel section,
-certain concepts could get mixed in right before they're needed by the parallel lesson.
-
-## 4. Intro to parallel programming (Python - JB, Chapel - JZ+AR)
-
-* Pipelining / automatic job submission / serial farming
-* Shared memory programming
-* Distributed memory programming
-* Overview of good parallel design
-
-	* Dependencies within own code
-	* Race conditions
-
-* Typical problems and bottlenecks
-
-	* running in parallel (parallel scaling)
-	* parallel I/O (don't write a 1GB file from one processor if data is already distributed, etc.)
-	* Storage limitations (millions of files, compression, text vs. binary storage)
-	* Filesystem choice (home, scratch, tmp, etc.)
-
-
-Good luck!
