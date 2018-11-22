@@ -140,7 +140,7 @@ the computer's memory. Disk is a computer's long-term storage for information it
 > or for more details: 
 >
 > ```
-> cat /proc/meminfo free -m
+> cat /proc/meminfo
 > ```
 > {: .bash}
 {: .challenge}
