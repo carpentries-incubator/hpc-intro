@@ -1,8 +1,8 @@
 lesson-example
 ==============
 
-This repository shows how to create a lesson using
-the [Software Carpentry lesson template][styles],
+This repository shows how to create a lesson using 
+[The Carpentries lesson template][styles],
 and is itself an example of the use of that template.
 Please see <https://carpentries.github.io/lesson-example/>
 for a rendered version of this material,
