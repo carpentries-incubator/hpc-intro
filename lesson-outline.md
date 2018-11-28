@@ -29,7 +29,7 @@ The following list of items is meant as a guide on what content should go where 
         * on-demand virtualized resource with exclusive usage permissions by the user
         
     * user profiles (academic and/or commercial) of clusters
-    * story introduction (in the following 
+    * story introduction
 
 # Using a cluster for science
 
