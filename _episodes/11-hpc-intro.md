@@ -58,13 +58,6 @@ Using a cluster often has the following advantages for researchers:
 This is how a large-scale compute system like a cluster can help solve problems like those listed at
 the start of the lesson.
 
-> ## Thinking ahead
->
-> How do you think using a large-scale computing system will be different from using your laptop?
-> Talk to your neighbor about some differences you may already know about, and some
-> differences/difficulties you imagine you may run into.
-{: .challenge}
-
 ## On Command Line
 
 Using HPC systems often involves the use of a shell through a command line interface (CLI) and
@@ -94,13 +87,10 @@ cryptic, and their output is lines of text rather than something visual like a g
 a command line interface can be extremely powerful, and learning how to use one will allow you to
 reap the benefits described above.
 
-## The rest of this lesson
+## This lesson
 
 The only way to use these types of resources is by learning to use the command line. This
-introduction to HPC systems has two parts:
-
-* We will learn to use the UNIX command line (also known as Bash).
-* We will use our new Bash skills to connect to and operate a high-performance computing
+introduction to HPC systems has two parts We will use our new Bash skills to connect to and operate a high-performance computing
   supercomputer.
 
 The skills we learn here have other uses beyond just HPC - Bash and UNIX skills are used everywhere,
