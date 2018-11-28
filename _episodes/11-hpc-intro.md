@@ -35,9 +35,7 @@ they started:
 
 In all these cases, what is needed is access to more computers than can be used at the same time.
 Luckily, large scale computing systems -- shared computing resources with lots of computers -- are
-available at many universities, labs, or through national networks. These resources usually have
-more central processing units (CPUs), CPUs that operate at higher speeds, more memory, more storage,
-and faster connections with other computer systems. They are frequently called "clusters",
+available at many universities, labs, or through national networks. They are frequently called "clusters",
 "supercomputers" or resources for "high performance computing" or HPC. In this lesson, we will
 usually use the terminology of HPC and HPC cluster.
 
