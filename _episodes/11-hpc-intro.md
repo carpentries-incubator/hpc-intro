@@ -19,12 +19,6 @@ keypoints:
 
 ## Why Use These Computers?
 
-> ## What do you need?
->
-> Talk to your neighbor about your research. How does computing help you do your research? How could
-> more computing help you do more or better research?
-{: .challenge}
-
 Frequently, research problems that use computing can outgrow the desktop or laptop computer where
 they started:
 
