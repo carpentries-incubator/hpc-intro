@@ -41,3 +41,25 @@ In all these cases, what is needed is access to more computers than can be used 
 > How could more computing help you do more or better research?
 {: .callout }
 
+
+## All these Computers
+
+Today, people coding or analysing data typically work with laptops.
+
+![A laptop](fig/laptop-openclipartorg-aoguerrero.svg)
+
+For programs to run on a laptop, the keyboard that is directly attached to it is used. The laptop also has a disk to store data and display results by means of the monitor. To achieve a long runtime on battery, laptops are typically made up of energy efficient components. 
+
+![A server in a server rack](fig/servers-openclipartorg-ericlemerdy.svg)
+
+If computations are getting too long or data too big, a laptop or workstation is not enough. Then a server is used to offer more resources, be it the ability to perform more computations or to store more data or both. Servers typically have neither a keyboard, monitor or mouse attached to them. They can only be reached by a network (the internet or a local network in a building or on campus).
+
+
+## The Story
+
+
+Through out this material, we will assist Lola Curious and look over her shoulder while she is starting to work at the Institute of Things as a side job to earn some extra money. 
+
+On the first day, her supervisor greets her friendly and welcomes her to the job. She explains what her task is and suggests her that she will need to use the cluster on the campus. Lola has so far used her Laptop at home for her studies, so the idea of using a super computer appears a bit intimidating to her. Her supervisor notices her anxiety and tells her that she will receive an introduction to the super computer after she has requested an account on the cluster. 
+
+Lola walks to the IT department and finishes the paper work to get an account. One of the admins promises to sit down with her in the morning to show her the way around the machine. The admin explains that Lola will use a small to mid-range HPC cluster.
