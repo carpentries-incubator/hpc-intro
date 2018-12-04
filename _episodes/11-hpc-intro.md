@@ -35,5 +35,9 @@ they started:
 
 In all these cases, what is needed is access to more computers than can be used at the same time.
 
-
+> # And what do you do?
+> 
+> Talk to your neighbour, office mate or [rubber duck](https://rubberduckdebugging.com/) about your research. How does computing help you do your research? 
+> How could more computing help you do more or better research?
+{: .callout }
 
