@@ -4,8 +4,8 @@ teaching: 45
 exercises: 30
 questions:
 - "What is a scheduler and why are they used?"
-- "How do I launch a program to run on any one remote host in the cluster?"
-- "How do I capture the output of a program that is run on a remote host?"
+- "How do I launch a program to run on any one node in the cluster?"
+- "How do I capture the output of a program that is run on a node in the cluster?"
 objectives:
 - "Run a simple Hello World style program on the cluster."
 - "Submit a simple Hello World style script to the cluster."
