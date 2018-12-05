@@ -42,17 +42,44 @@ In all these cases, what is needed is access to more computers than can be used 
 {: .callout }
 
 
-## All these Computers
+## Doing Analysis or Running Code
+
+### A standard Laptop for standard tasks
 
 Today, people coding or analysing data typically work with laptops.
+ 
+{% include figure.html url="" max-width="20%" file="/fig/200px-laptop-openclipartorg-aoguerrero.svg" alt="A standard laptop"
+caption="" %}
 
-![A laptop](fig/laptop-openclipartorg-aoguerrero.svg)
+While the following discussion may appear silly at first glance, let's dissect what resources programs running on a laptop require:
+- the keyboard and touchpad is used to provide flags and options
+- the display is shows progress and results
+- the laptops internal computing power and memory is used to perform calculations
+- offen GUI style human interfaces are employed
 
-For programs to run on a laptop, the keyboard that is directly attached to it is used. The laptop also has a disk to store data and display results by means of the monitor. To achieve a long runtime on battery, laptops are typically made up of energy efficient components. 
+### When tasks take too long
 
-![A server in a server rack](fig/servers-openclipartorg-ericlemerdy.svg)
+When the task to solve become more heavy on computations, the operations are typically out-sourced from the local hardware in the laptop. Take for example the task to find the directions for your next business trip. The capabilities of your laptop are typically not enough to calculate that route spontaneously. So you use website, which in turn runs on a server that is almost exclusively no in the same room than you are.
 
-If computations are getting too long or data too big, a laptop or workstation is not enough. Then a server is used to offer more resources, be it the ability to perform more computations or to store more data or both. Servers typically have neither a keyboard, monitor or mouse attached to them. They can only be reached by a network (the internet or a local network in a building or on campus).
+{% include figure.html url="" max-width="20%" file="/fig/servers-openclipartorg-ericlemerdy.svg" alt="A rack half full with servers"
+caption="" %}
+
+Note here, that a server is mostly a noisy computer mounted into a rack cabinet which in turn resides in a data center. The internet made it possible that these data centers do not require to be nearby your laptop. 
+What people call **the cloud** is mostly a web-service where you can rent such servers by providing your credit card details and by clicking together the specs of this remote resource.
+
+The server itself has no direct display or input methods attached to it. But most importantly, it has much more storage, memory and compute capacity than your laptop will ever have. In any case, you need a local device (laptop, workstation, mobile phone or tablet) to interact with this remote machine, people typically call 'a server'. 
+
+### When one server is not enough
+
+If the computational task or analysis to complete is daunting for a single server, larger agglomerations of servers are used. These go by the name of clusters or super computers.
+
+{% include figure.html url="" max-width="20%" file="/fig/serverrack-openclipartorg-psteinb-basedon-ericlemerdy.svg" alt="A rack full with servers"
+caption="" %}
+
+The methodology of providing the input data, communicating options and flags as well as retrieving the results is quite opposite to using a plain laptop. Moreover, using a GUI style interface is often discarded in favor of using the command line. This imposes a double paradigm shift for prospect users:
+
+1. they work with the command line (not a GUI style user interface)
+2. they work with a distributed set of computers (called nodes)
 
 
 ## The Story
