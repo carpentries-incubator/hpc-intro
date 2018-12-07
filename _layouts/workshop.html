@@ -1,13 +1,13 @@
 ---
 ---
-
 {% include base_path.html %}
+{% include gh_variables.html %}
 
 <!doctype html>
 <html lang="en">
   <head>
 
-    <meta name="slug" content="{{site.github.project_title}}" />
+    <meta name="slug" content="{{project_title}}" />
     <meta name="startdate" content="{{page.startdate}}" />
     <meta name="enddate" content="{{page.enddate}}" />
     <meta name="humandate" content="{{page.humandate}}" />
@@ -20,6 +20,7 @@
     <meta name="instructor" content="{{page.instructor|join:'|'}}" />
     <meta name="helper" content="{{page.helper|join:'|'}}" />
     <meta name="contact" content="{{page.email}}" />
+    <meta name="carpentry" content="{{site.carpentry}}"
     {% if page.redirect %}
     <meta http-equiv="refresh" content="0; url={{page.redirect}}" />
     {% endif %}
