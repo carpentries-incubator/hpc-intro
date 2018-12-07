@@ -27,43 +27,57 @@ Lola walks to the IT department and finishes the paper work to get an account. O
 
 ## Where are we?
 
-Go ahead and log in to the cluster.
-```
-[user@laptop]$ ssh remote
-```
+First of all, the admin asks Lola to connect to the cluster. She mentions that in the past, compute clusters were named after planets or moons as they often presented distant somewhat mythological places. Her first instructors then often said, that they would use the Space Shuttle (or `ssh` briefly) to reach that planet or moon. So she asks Lola to open a terminal on her laptop and type in the following commands:
+
+~~~ 
+$ ssh lola@{{ site.workshop_login_host }}
+~~~
 {: .bash}
 
-
-Very often, many users are tempted to think of a high-performance computing installation as one
-giant, magical machine. Sometimes, people will assume that the computer they've logged onto is the
-entire computing cluster. So what's really happening? What computer have we logged on to? The name
-of the current computer we are logged onto can be checked with the `hostname` command. (Clever users
-will notice that the current hostname is also part of our prompt!)
-
-```
-[remote]$ hostname
-```
-{: .bash}
-```
-gra-login3
-```
+~~~ 
+Last login: Tue Mar 14 14:13:14 2018 from lolas_laptop
+-bash-4.1$ 
+~~~
 {: .output}
 
-Individual computers that compose a cluster are typically called *nodes* (although you will also
-hear people call them *servers*, *computers* and *machines*). On a cluster, there are different
-types of nodes for different types of tasks. The node where you are right now is called the *head
-node*, *login node* or *submit node*. A login node serves as an access point to the cluster. As a
-gateway, it is well suited for uploading and downloading files, setting up software, and running
-quick tests. It should never be used for doing actual work.
+The admin explains to Lola that she is using the secure shell or `ssh`. This establishes a temporary secure connection between Lola's laptop and `{{ site.workshop_login_host }}`. The word before the `@` symbol, e.g. `lola` here, is the user account name that Lola has access permissions for on the cluster. 
 
-The real work on a cluster gets done by the *worker* (or *execute*) *nodes*. Worker nodes come in
-many shapes and sizes, but generally are dedicated to doing all of the heavy lifting that needs
-doing.
+> ## Where do I get this `ssh` from ?
+> On Linux and/or macOS, the `ssh` command line utility is typically pre-installed. Just open a terminal and you are good to go. At the time of writing, the openssh support on microsoft is still pretty [recent](https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/). Alternatives to this are [putty](http://www.putty.org), [bitvise SSH](https://www.bitvise.com/ssh-client-download) or [mRemoteNG](https://mremoteng.org/). Download it, install it and open the GUI. They typically ask for your user name and the destination address or IP. Once provided, you will be queried for your password just like in the example above.
+{: .callout}
 
-All interaction with the worker nodes is handled by a specialised piece of software called a
-scheduler (the scheduler used in this lesson is called SLURM). We'll learn more about how to use the
-scheduler to submit jobs next, but for now, it can also tell us more information about the worker
-nodes.
+Rob tells her to use a UNIX command called `ls` (for list directory contents) to have a look around. 
+
+~~~ 
+$ ls
+~~~
+{: .bash}
+
+~~~ 
+~~~
+{: .output}
+
+To no surprise, there is nothing in there. Rob asks Lola to issue a command to see on what machine she currently is on.
+
+~~~ 
+$ hostname
+~~~
+{: .bash}
+
+~~~ 
+{{ site.workshop_login_host }}
+~~~
+{: .output}
+
+Lola wonders a bit what this may be about, that you need a dedicated command to tell you where you are, but the admin explains to her that he has so many machines under her responsibility, that the output of `hostname` is very valuable.
+
+The admin explains to Lola that she has to work with this remote shell session in order to run programs on the HPC cluster. Launching programs that open a Graphical User Interface (GUI) is possible, but the interaction with the GUI will be slow as everything will have to get transferred through the WiFi network her laptop is currently logged into. Before continuing, she suggests to leave the cluster node again for the sake of practise. For this, Lola can type in `logout` or `exit`.
+
+~~~ 
+$ logout
+~~~
+{: .bash}
+
 
 For example, we can view all of the worker nodes with the `sinfo` command.
 
