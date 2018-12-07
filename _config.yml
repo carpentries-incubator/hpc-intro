@@ -60,6 +60,12 @@ lc_post_survey: "https://www.surveymonkey.com/r/lcpostworkshopsurvey?workshop_id
 instructor_pre_survey: "https://www.surveymonkey.com/r/instructor_training_pre_survey?workshop_id="
 instructor_post_survey: "https://www.surveymonkey.com/r/instructor_training_post_survey?workshop_id="
 
+# this is the scheduler to be used for the workshop
+# possible values: slurm  (pbs and lsf are planned)
+workshop_scheduler: "slurm"
+workshop_login_host: "cray-1"
+workshop_shared_fast_filesystem: "/fastfs"
+
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
 start_time: 0
 
