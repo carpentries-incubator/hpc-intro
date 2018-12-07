@@ -23,7 +23,7 @@
 [lesson-example]: https://carpentries.github.io/lesson-example/
 [mit-license]: https://opensource.org/licenses/mit-license.html
 [morea]: https://morea-framework.github.io/
-[numfocus]: https://www.numfocus.org/
+[numfocus]: https://numfocus.org/
 [osi]: https://opensource.org
 [pandoc]: https://pandoc.org/
 [paper-now]: https://github.com/PeerJ/paper-now
