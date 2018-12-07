@@ -17,8 +17,6 @@ keypoints:
   Bash."
 ---
 
-## Why Use These Computers?
-
 Frequently, research problems that use computing can outgrow the desktop or laptop computer where
 they started:
 
@@ -39,27 +37,32 @@ In all these cases, what is needed is access to more computers than can be used 
 > 
 > Talk to your neighbour, office mate or [rubber duck](https://rubberduckdebugging.com/) about your research. How does computing help you do your research? 
 > How could more computing help you do more or better research?
-{: .callout }
+{: .challenge }
 
 
-## Doing Analysis or Running Code
+# Doing Analysis or Running Code
 
-### A standard Laptop for standard tasks
+## A standard Laptop for standard tasks
 
 Today, people coding or analysing data typically work with laptops.
  
 {% include figure.html url="" max-width="20%" file="/fig/200px-laptop-openclipartorg-aoguerrero.svg" alt="A standard laptop"
 caption="" %}
 
-While the following discussion may appear silly at first glance, let's dissect what resources programs running on a laptop require:
-- the keyboard and touchpad is used to provide flags and options
-- the display is shows progress and results
-- the laptops internal computing power and memory is used to perform calculations
-- offen GUI style human interfaces are employed
+Let's dissect what resources programs running on a laptop require:
+- the keyboard and/or touchpad is used to tell the the computer what to do (**Input**)
+- the internal computing resources **Central Processing Unit** and **Memory** perform calculation
+- the display depicts progress and results (**Output**)
 
-### When tasks take too long
+Schematically, this can be reduced to the following:
 
-When the task to solve become more heavy on computations, the operations are typically out-sourced from the local hardware in the laptop. Take for example the task to find the directions for your next business trip. The capabilities of your laptop are typically not enough to calculate that route spontaneously. So you use website, which in turn runs on a server that is almost exclusively no in the same room than you are.
+{% include figure.html url="" max-width="30%" file="/fig/Simple_Von_Neumann_Architecture.svg" alt="Schematic of how a computer works"
+caption="" %}
+
+
+## When tasks take too long
+
+When the task to solve become more heavy on computations, the operations are typically out-sourced from the local laptop or desktop to elsewhere. Take for example the task to find the directions for your next business trip. The capabilities of your laptop are typically not enough to calculate that route spontaneously. So you use website, which in turn runs on a server that is almost exclusively no in the same room than you are.
 
 {% include figure.html url="" max-width="20%" file="/fig/servers-openclipartorg-ericlemerdy.svg" alt="A rack half full with servers"
 caption="" %}
@@ -69,7 +72,7 @@ What people call **the cloud** is mostly a web-service where you can rent such s
 
 The server itself has no direct display or input methods attached to it. But most importantly, it has much more storage, memory and compute capacity than your laptop will ever have. In any case, you need a local device (laptop, workstation, mobile phone or tablet) to interact with this remote machine, people typically call 'a server'. 
 
-### When one server is not enough
+## When one server is not enough
 
 If the computational task or analysis to complete is daunting for a single server, larger agglomerations of servers are used. These go by the name of clusters or super computers.
 
@@ -81,14 +84,7 @@ The methodology of providing the input data, communicating options and flags as 
 1. they work with the command line (not a GUI style user interface)
 2. they work with a distributed set of computers (called nodes)
 
-
-## The Story
-
-
-Through out this material, we will assist Lola Curious and look over her shoulder while she is starting to work at the Institute of Things as a side job to earn some extra money. 
-
-On the first day, her supervisor greets her friendly and welcomes her to the job. She explains what her task is and suggests her that she will need to use the cluster on the campus. Lola has so far used her Laptop at home for her studies, so the idea of using a super computer appears a bit intimidating to her. Her supervisor notices her anxiety and tells her that she will receive an introduction to the super computer after she has requested an account on the cluster. 
-
-Lola walks to the IT department and finishes the paper work to get an account. One of the admins promises to sit down with her in the morning to show her the way around the machine. The admin explains that Lola will use a small to mid-range HPC cluster.
-
-{% include links.md %}
+> # I've never used a server, did I?
+> 
+> Take a minute and think about which of your daily interactions with a computer may require a remote server or even cluster to provide you with results. 
+{: .challenge }
