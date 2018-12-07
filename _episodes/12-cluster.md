@@ -15,23 +15,15 @@ keypoints:
 - "Files saved on one node are available everywhere."
 ---
 
-By now, we are all expert Bash users. Well, maybe not experts, but we know everything we need to in
-order to start using a high-performance computing "supercomputer". Before we start though, let's go
-over a few key concepts.
+## The Story
 
-## What is a cluster?
+Through out this material, we will assist Lola Curious and look over her shoulder while she is starting to work at the Institute of Things as a side job to earn some extra money. 
 
-The words "cloud", "cluster", and "high-performance computing" get thrown around a lot. So what do
-they mean exactly? And more importantly, how do we use them for our work?
+On the first day, her supervisor greets her friendly and welcomes her to the job. She explains what her task is and suggests her that she will need to use the cluster on the campus. Lola has so far used her Laptop at home for her studies, so the idea of using a super computer appears a bit intimidating to her. Her supervisor notices her anxiety and tells her that she will receive an introduction to the super computer after she has requested an account on the cluster. 
 
-The *cloud* is a generic term commonly used to refer to remote computing resources of any kind --
-that is, any computers that you use but are not right in front of you. Cloud can refer to
-webservers, remote storage, API endpoints, as well as more traditional "compute" resources. A
-*cluster* on the other hand, is a term used to describe a network of computers. The computers in a
-cluster typically share a common purpose, and are used to accomplish tasks that might otherwise be
-too big for any one computer.
+Lola walks to the IT department and finishes the paper work to get an account. One of the admins promises to sit down with her in the morning to show her the way around the machine. The admin explains that Lola will use a small to mid-range HPC cluster.
 
-![The cloud is made of Linux](../fig/linux-cloud.jpg)
+{% include links.md %}
 
 ## Where are we?
 
