@@ -17,14 +17,6 @@ keypoints:
   Bash."
 ---
 
-## Why Use These Computers?
-
-> ## What do you need?
->
-> Talk to your neighbor about your research. How does computing help you do your research? How could
-> more computing help you do more or better research?
-{: .challenge}
-
 Frequently, research problems that use computing can outgrow the desktop or laptop computer where
 they started:
 
@@ -40,83 +32,59 @@ they started:
   has more than tripled and it might be useful to take advantage of that feature.
 
 In all these cases, what is needed is access to more computers than can be used at the same time.
-Luckily, large scale computing systems -- shared computing resources with lots of computers -- are
-available at many universities, labs, or through national networks. These resources usually have
-more central processing units (CPUs), CPUs that operate at higher speeds, more memory, more storage,
-and faster connections with other computer systems. They are frequently called "clusters",
-"supercomputers" or resources for "high performance computing" or HPC. In this lesson, we will
-usually use the terminology of HPC and HPC cluster.
 
-Using a cluster often has the following advantages for researchers:
+> # And what do you do?
+> 
+> Talk to your neighbour, office mate or [rubber duck](https://rubberduckdebugging.com/) about your research. How does computing help you do your research? 
+> How could more computing help you do more or better research?
+{: .challenge }
 
-* **Speed.** With many more CPU cores, often with higher performance specs than a typical laptop or
-  desktop, HPC systems can offer significant speed up.
-* **Volume.** Many HPC systems have both the processing memory (RAM) and disk storage to handle very
-  large amounts of data. Terabytes of RAM and petabytes of storage are available for research
-  projects.
-* **Efficiency.** Many HPC systems operate a pool of resources that are drawn on by many users. In
-  most cases when the pool is large and diverse enough the resources on the system are used almost
-  constantly, with individual users only using (and possibly paying for) a fraction of the system.
-* **Cost.** Bulk purchasing and government funding mean that the cost to the research community for
-  using these systems is significantly less than it would be otherwise.
-* **Convenience.** Maybe your calculations just take a long time to run or are otherwise
-  inconvenient to run on your personal computer. There's no need to tie up your own computer for
-  hours when you can use someone else's instead.
 
-This is how a large-scale compute system like a cluster can help solve problems like those listed at
-the start of the lesson.
+# Doing Analysis or Running Code
 
-> ## Thinking ahead
->
-> How do you think using a large-scale computing system will be different from using your laptop?
-> Talk to your neighbor about some differences you may already know about, and some
-> differences/difficulties you imagine you may run into.
-{: .challenge}
+## A standard Laptop for standard tasks
 
-## On Command Line
+Today, people coding or analysing data typically work with laptops.
+ 
+{% include figure.html url="" max-width="20%" file="/fig/200px-laptop-openclipartorg-aoguerrero.svg" alt="A standard laptop"
+caption="" %}
 
-Using HPC systems often involves the use of a shell through a command line interface (CLI) and
-either specialized software or programming techniques. The shell is a program with the special role
-of having the job of running other programs rather than doing calculations or similar tasks itself.
-What the user types goes into the shell, which then figures out what commands to run and orders the
-computer to execute them. (Note that the shell is called "the shell" because it encloses the
-operating system in order to hide some of its complexity and make it simpler to interact with.) The
-most popular Unix shell is Bash, the Bourne Again SHell (so-called because it's derived from a shell
-written by Stephen Bourne). Bash is the default shell on most modern implementations of Unix and in
-most packages that provide Unix-like tools for Windows.
+Let's dissect what resources programs running on a laptop require:
+- the keyboard and/or touchpad is used to tell the the computer what to do (**Input**)
+- the internal computing resources **Central Processing Unit** and **Memory** perform calculation
+- the display depicts progress and results (**Output**)
 
-Interacting with the shell is done via a command line interface (CLI) on most HPC systems. In the
-earliest days of computers, the only way to interact with early computers was to rewire them. From
-the 1950s to the 1980s most people used line printers. These devices only allowed input and output
-of the letters, numbers, and punctuation found on a standard keyboard, so programming languages and
-software interfaces had to be designed around that constraint and text-based interfaces were the way
-to do this. Typing-based interfaces are often called a **command-line interface**, or CLI, to
-distinguish it from a **graphical user interface**, or GUI, which most people now use. The heart of
-a CLI is a **read-evaluate-print loop**, or REPL: when the user types a command and then presses the
-Enter (or Return) key, the computer reads it, executes it, and prints its output. The user then
-types another command, and so on until the user logs off.
+Schematically, this can be reduced to the following:
 
-Learning to use Bash or any other shell sometimes feels more like programming than like using a
-mouse. Commands are terse (often only a couple of characters long), their names are frequently
-cryptic, and their output is lines of text rather than something visual like a graph. However, using
-a command line interface can be extremely powerful, and learning how to use one will allow you to
-reap the benefits described above.
+{% include figure.html url="" max-width="30%" file="/fig/Simple_Von_Neumann_Architecture.svg" alt="Schematic of how a computer works"
+caption="" %}
 
-## The rest of this lesson
 
-The only way to use these types of resources is by learning to use the command line. This
-introduction to HPC systems has two parts:
+## When tasks take too long
 
-* We will learn to use the UNIX command line (also known as Bash).
-* We will use our new Bash skills to connect to and operate a high-performance computing
-  supercomputer.
+When the task to solve become more heavy on computations, the operations are typically out-sourced from the local laptop or desktop to elsewhere. Take for example the task to find the directions for your next business trip. The capabilities of your laptop are typically not enough to calculate that route spontaneously. So you use website, which in turn runs on a server that is almost exclusively no in the same room than you are.
 
-The skills we learn here have other uses beyond just HPC - Bash and UNIX skills are used everywhere,
-be it for web development, running software, or operating servers. It's become so essential that
-Microsoft now ships as [part of Windows][_ms-ubuntu])! Knowing how to use Bash and HPC systems will
-allow you to operate virtually any modern device. With all of this in mind, let's connect to a
-cluster and get started!
+{% include figure.html url="" max-width="20%" file="/fig/servers-openclipartorg-ericlemerdy.svg" alt="A rack half full with servers"
+caption="" %}
 
-[_ms-ubuntu]: https://www.microsoft.com/en-us/store/p/ubuntu/9nblggh4msv6
+Note here, that a server is mostly a noisy computer mounted into a rack cabinet which in turn resides in a data center. The internet made it possible that these data centers do not require to be nearby your laptop. 
+What people call **the cloud** is mostly a web-service where you can rent such servers by providing your credit card details and by clicking together the specs of this remote resource.
 
-{% include links.md %}
+The server itself has no direct display or input methods attached to it. But most importantly, it has much more storage, memory and compute capacity than your laptop will ever have. In any case, you need a local device (laptop, workstation, mobile phone or tablet) to interact with this remote machine, people typically call 'a server'. 
+
+## When one server is not enough
+
+If the computational task or analysis to complete is daunting for a single server, larger agglomerations of servers are used. These go by the name of clusters or super computers.
+
+{% include figure.html url="" max-width="20%" file="/fig/serverrack-openclipartorg-psteinb-basedon-ericlemerdy.svg" alt="A rack full with servers"
+caption="" %}
+
+The methodology of providing the input data, communicating options and flags as well as retrieving the results is quite opposite to using a plain laptop. Moreover, using a GUI style interface is often discarded in favor of using the command line. This imposes a double paradigm shift for prospect users:
+
+1. they work with the command line (not a GUI style user interface)
+2. they work with a distributed set of computers (called nodes)
+
+> # I've never used a server, did I?
+> 
+> Take a minute and think about which of your daily interactions with a computer may require a remote server or even cluster to provide you with results. 
+{: .challenge }
