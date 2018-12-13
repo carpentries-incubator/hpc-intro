@@ -23,11 +23,12 @@ We use emphasis
   ~~~
   We want to output the lines that do not contain the word *the*.
   ~~~
+  {: .source}
 
   This is preferable instead of the use of quotation marks.
 
   See the "Keyboard Key" section for characters or keyboard keys that the learn should type.
-  
+
 - for words and phrases that are still regarded as unfamiliar.
 - for titles of books, periodicals, plays, films, TV, radio series, and music albums.
 
@@ -36,6 +37,7 @@ We use emphasis
   ~~~
   We will use a file that contains three haikus taken from a 1998 competition in *Salon* magazine.
   ~~~
+  {: .source}
 
 ## Strong Emphasis
 
@@ -49,6 +51,7 @@ We use strong emphasis
   ~~~
   We are all familiar with **graphical user interfaces**
   ~~~
+  {: .source}
 
 ## Span of Code
 
@@ -62,6 +65,7 @@ We use span of code
   ~~~
   For example, `range(3, 10, 2)` produces
   ~~~
+  {: .source}
 - to highlight one command where it is itself the object of discussion.
 
   For example,
@@ -69,6 +73,7 @@ We use span of code
   ~~~
   you can run it by opening a terminal and typing `bash`.
   ~~~
+  {: .source}
 
   When the object of discussion is the program or language in a broad sense,
   we don't use span of code. For example,
@@ -76,6 +81,7 @@ We use span of code
   ~~~
   The most popular Unix shell is Bash.
   ~~~
+  {: .source}
 - to highlight one function where it is itself the object of discussion.
 
   For example,
@@ -83,6 +89,7 @@ We use span of code
   ~~~
   `len` is much faster than any function we could write ourselves.
   ~~~
+  {: .source}
 - to highlight one file name where it is itself the object of discussion.
 
   For example,
@@ -90,6 +97,7 @@ We use span of code
   ~~~
   `my_file.txt` can also be viewed in your GUI file explorer.
   ~~~
+  {: .source}
 - to highlight any sequence of character that the user is expected to type.
 
 ## Keyboard Key
