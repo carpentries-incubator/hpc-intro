@@ -56,7 +56,7 @@ Let's dissect what resources programs running on a laptop require:
 
 Schematically, this can be reduced to the following:
 
-{% include figure.html url="" max-width="30%" file="/fig/Simple_Von_Neumann_Architecture.svg" alt="Schematic of how a computer works"
+{% include figure.html url="" max-width="30%" file="site.url/fig/Simple_Von_Neumann_Architecture.svg" alt="Schematic of how a computer works"
 caption="" %}
 
 
@@ -64,7 +64,7 @@ caption="" %}
 
 When the task to solve become more heavy on computations, the operations are typically out-sourced from the local laptop or desktop to elsewhere. Take for example the task to find the directions for your next business trip. The capabilities of your laptop are typically not enough to calculate that route spontaneously. So you use website, which in turn runs on a server that is almost exclusively no in the same room than you are.
 
-{% include figure.html url="" max-width="20%" file="/fig/servers-openclipartorg-ericlemerdy.svg" alt="A rack half full with servers"
+{% include figure.html url="" max-width="20%" file="site.url/fig/servers-openclipartorg-ericlemerdy.svg" alt="A rack half full with servers"
 caption="" %}
 
 Note here, that a server is mostly a noisy computer mounted into a rack cabinet which in turn resides in a data center. The internet made it possible that these data centers do not require to be nearby your laptop. 
@@ -76,7 +76,7 @@ The server itself has no direct display or input methods attached to it. But mos
 
 If the computational task or analysis to complete is daunting for a single server, larger agglomerations of servers are used. These go by the name of clusters or super computers.
 
-{% include figure.html url="" max-width="20%" file="/fig/serverrack-openclipartorg-psteinb-basedon-ericlemerdy.svg" alt="A rack full with servers"
+{% include figure.html url="" max-width="20%" file="site.url/fig/serverrack-openclipartorg-psteinb-basedon-ericlemerdy.svg" alt="A rack full with servers"
 caption="" %}
 
 The methodology of providing the input data, communicating options and flags as well as retrieving the results is quite opposite to using a plain laptop. Moreover, using a GUI style interface is often discarded in favor of using the command line. This imposes a double paradigm shift for prospect users:
