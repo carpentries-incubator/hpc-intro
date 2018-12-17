@@ -3,16 +3,20 @@ title: "Working on a cluster"
 teaching: 15
 exercises: 10
 questions:
-- "What is a cluster?"
-- "How does a cluster work?"
 - "How do I log on to a cluster?"
+- "How do I transfer data to a cluster?"
+- "How is a cluster different to my laptop?"
+- "How do I run processes on the cluster?"
 objectives:
-- "Connect to a cluster."
-- "Understand the general cluster architecture."
+- "Connect to a cluster using ssh."
+- "Transfer files to and from the cluster."
+- "Run the `hostname` command on a compute node of the cluster." 
 keypoints:
-- "A cluster is a set of networked machines."
-- "Clusters typically provide a login node and a set of worker nodes."
-- "Files saved on one node are available everywhere."
+- "Clusters (almost always) provide a login node."
+- "You connect to the login node by special software using an encrypted connection."
+- "Data has to be transferred to and from the cluster using specialized software."
+- "A cluster is a shared resource."
+- "Running a process on the cluster requires using the scheduler."
 ---
 
 ## The Story
@@ -41,7 +45,7 @@ $ ssh lola@{{ site.workshop_login_host }}
 > ~~~
 > {: .output}
 > 
-> Now is your chance to type in your password. But watchout, the characters you type are not displayed on the screen.
+> Now is your chance to type in your password. But watch out, the characters you type are not displayed on the screen.
 {: .callout}
 
 ~~~ 
@@ -55,7 +59,7 @@ The admin explains to Lola that she is using a program known as the secure shell
 > ## Where do I get this `ssh` from ?
 > On Linux and/or macOS, the `ssh` command line utility is almost always pre-installed. Open a terminal and type `ssh --help` to check if that is the case. 
 > 
-> At the time of writing, the openssh support on microsoft is still very [recent](https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/). Alternatives to this are [putty](http://www.putty.org), [bitvise SSH](https://www.bitvise.com/ssh-client-download) or [mRemoteNG](https://mremoteng.org/). Download it, install it and open the GUI. The GUI asks for your user name and the destination address or IP of the computer you want to connect to. Once provided, you will be queried for your password just like in the example above.
+> At the time of writing, the openssh support on Microsoft is still very [recent](https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/). Alternatives to this are [putty](http://www.putty.org), [bitvise SSH](https://www.bitvise.com/ssh-client-download) or [mRemoteNG](https://mremoteng.org/). Download it, install it and open the GUI. The GUI asks for your user name and the destination address or IP of the computer you want to connect to. Once provided, you will be queried for your password just like in the example above.
 {: .callout}
 
 Lola is asked to use a UNIX command called `ls` (for list directory contents) to have a look around. 
@@ -99,7 +103,7 @@ $ nproc --all
 ~~~
 {: .bash}
 
-- every cluster node has a certain amount of memory or [RAM](https://en.wikipedia.org/wiki/Random-access_memory) (Random-access memory). To see huch memory `{{ site.workshop_login_host }}` in units of [Gigabyte](https://en.wikipedia.org/wiki/Gigabyte) has, Lola can run
+- every cluster node has a certain amount of memory or [RAM](https://en.wikipedia.org/wiki/Random-access_memory) (Random-access memory). To see much memory `{{ site.workshop_login_host }}` in units of [Gigabyte](https://en.wikipedia.org/wiki/Gigabyte) has, Lola can run
 
 ~~~
 $ free -g
@@ -214,7 +218,9 @@ $ man scp
 ~~~
 {: .bash}
 
+## Using the login node is not using the cluster
 
+As a final word on this lesson, the admin tells Lola that she should never execute long running processes or applications on `{{ site.workshop_login_host }}`. This is a server that is used by many users of `{{ site.workshop_cluster_name }}`. If Lola starts a lot of long running processes, other users may start seeing their commands taking longer to complete. To actually to do science and complete the tasks Lola is meant to complete, a software called __the scheduler__ has to be used. 
 
 > ## All mixed up
 >
@@ -247,7 +253,7 @@ $ man scp
 
 > ## Where did they go ?
 >
-> Rob has a zip file stored under `/tmp/passwords.zip` on the login node of the cluser `{{ site.workshop_login_host }}`. He wants to unzip it on his laptop under `/important/passwords`. How does he do that?
+> Rob has a zip file stored under `/tmp/passwords.zip` on the login node of the cluster `{{ site.workshop_login_host }}`. He wants to unzip it on his laptop under `/important/passwords`. How does he do that?
 >
 > 
 > 1.   
@@ -279,8 +285,8 @@ $ man scp
 > > ## Solution
 > > 
 > > 1. No: Rob only unpacks the zip file, but does not transfer the unpacked files onto his laptop
-> > 2. No: Rob mixed up the syntax for scpc
-> > 3. No: Rob did not specify the correct path of `/tmp/passwords.zip` on the login node of the cluser `{{ site.workshop_login_host }}`
+> > 2. No: Rob mixed up the syntax for `scp`
+> > 3. No: Rob did not specify the correct path of `/tmp/passwords.zip` on the login node of the cluster `{{ site.workshop_login_host }}`
 > > 4. Yes: you may also use `unzip foo.zip -d /somewhere` if you want to omit the first command
 > {: .solution}
 {: .challenge}
