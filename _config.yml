@@ -63,6 +63,16 @@ instructor_post_survey: "https://www.surveymonkey.com/r/instructor_training_post
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
 start_time: 0
 
+####################################################
+# WORKSHOP specific configuration
+# this is the scheduler to be used for the workshop
+# possible values: slurm (planned lsf & pbs)
+workshop_scheduler: "slurm"
+workshop_login_host: "cray-1"
+workshop_cluster_name: "cray-1"
+workshop_shared_fast_filesystem: "/fastfs"
+
+
 # Specify that things in the episodes collection should be output.
 collections:
   episodes:
