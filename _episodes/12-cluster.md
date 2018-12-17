@@ -34,7 +34,7 @@ First of all, the admin asks Lola to connect to the super computer. She mentions
 ~~~ 
 $ ssh lola@{{ site.workshop_login_host }}
 ~~~
-{: .bash}
+{: .language-bash}
 
 > ## Logging in
 > 
@@ -67,7 +67,7 @@ Lola is asked to use a UNIX command called `ls` (for list directory contents) to
 ~~~ 
 $ ls
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~ 
 ~~~
@@ -78,7 +78,7 @@ To no surprise, there is nothing displayed. To prove, that Lola is really logged
 ~~~ 
 $ hostname
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~ 
 {{ site.workshop_login_host }}
@@ -90,7 +90,7 @@ The admin explains that Lola has to work with this remote shell session in order
 ~~~ 
 $ logout
 ~~~
-{: .bash}
+{: .language-bash}
 
 ## Looking around more
 
@@ -101,14 +101,14 @@ The admin continues to encourage Lola to look around. She explains that all of a
 ~~~
 $ nproc --all
 ~~~
-{: .bash}
+{: .language-bash}
 
 - every cluster node has a certain amount of memory or [RAM](https://en.wikipedia.org/wiki/Random-access_memory) (Random-access memory). To see much memory `{{ site.workshop_login_host }}` in units of [Gigabyte](https://en.wikipedia.org/wiki/Gigabyte) has, Lola can run
 
 ~~~
 $ free -g
 ~~~
-{: .bash}
+{: .language-bash}
 
 > ## Units and Language
 > 
@@ -132,7 +132,7 @@ The admin continues to explain, that typically people perform computationally he
 ~~~ 
 $ scp todays_canteen_menu.pdf lola@{{ site.workshop_login_host }}:todays_canteen_menu.pdf
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~ 
 todays_canteen_menu.pdf                                              100%   28KB  27.6KB/s   00:00
@@ -146,7 +146,7 @@ $ ssh lola@{{ site.workshop_login_host }}
 Last login: Tue Mar 14 14:17:44 2017 from lolas_laptop
 -bash-4.1$ ls
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~ 
 todays_canteen_menu.pdf
@@ -158,7 +158,7 @@ Now, let's try the other way around, i.e. downloading a file from the cluster to
 ~~~ 
 $ scp lola@{{ site.workshop_login_host }}:todays_canteen_menu.pdf todays_canteen_menu_downloaded.pdf
 ~~~
-{: .bash}
+{: .language-bash}
 
 Lola notices how the command line changed. First, she has to enter the source (`lola@{{ site.workshop_login_host }}`) then put a `:` and continue with the path of the file she wants to download. After that, separated by a space, the destination has to be provided, which in this case is a file `todays_canteen_menu_downloaded.pdf` in the current directory.
 
@@ -174,7 +174,7 @@ To finish, The admin asks Lola that she can also transfer entire directories. Sh
 ~~~ 
 $ scp -r lola@{{ site.workshop_login_host }}:/tmp/this_weeks_canteen_menus .
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~ 
 canteen_menu_day_2.pdf                                                 100%   28KB  27.6KB/s   00:00    
@@ -190,7 +190,7 @@ The trailing `.` is a short-hand to represent the current working directory that
 ~~~ 
 $ ls
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 this_weeks_canteen_menus/  todays_canteen_menu_downloaded.pdf  todays_canteen_menu.pdf
@@ -202,7 +202,7 @@ A closer look into that directory using the relative path with respect to the cu
 ~~~ 
 $ ls this_weeks_canteen_menus/
 ~~~
-{: .bash}
+{: .language-bash}
 
 reveals the transferred files.
 
@@ -216,7 +216,7 @@ Rob suggests to Lola to consult the man page of `scp` for further details by cal
 ~~~ 
 $ man scp
 ~~~
-{: .bash}
+{: .language-bash}
 
 ## Using the login node is not using the cluster
 
@@ -226,19 +226,22 @@ As a final word on this lesson, the admin tells Lola that she should never execu
 >
 > Lola needs to obtain a file called `results.data` from a remote machine that is called `safe-store-1`. This machine is hidden behind the login node `{{ site.workshop_login_host }}`. However she mixed up the commands somehow that are needed to get the file onto her laptop. Help her and rearrange the following commands into the right order!
 >
-> ~~~~~
+> ~~~
 > $ ssh lola@`{{ site.workshop_login_host }}`
 > $ logout
 > $ scp lola@`{{ site.workshop_login_host }}`:results.data .
 > $ scp lola@safe-store-1:results.data .
-> ~~~~~
+> ~~~
+> {: .language-bash}
+>
 > > ## Solution
-> > ~~~~~
+> > ~~~
 > > $ ssh lola@`{{ site.workshop_login_host }}`
 > > $ scp lola@safe-store-1:results.data .
 > > $ logout
 > > $ scp lola@`{{ site.workshop_login_host }}`:results.data .
-> > ~~~~~
+> > ~~~
+> > {: .language-bash}
 > {: .solution}
 {: .challenge}
 
@@ -256,31 +259,35 @@ As a final word on this lesson, the admin tells Lola that she should never execu
 > Rob has a zip file stored under `/tmp/passwords.zip` on the login node of the cluster `{{ site.workshop_login_host }}`. He wants to unzip it on his laptop under `/important/passwords`. How does he do that?
 >
 > 
-> 1.   
-> ~~~~~
+> 1.
+> ~~~
 > $ ssh rob@{{ site.workshop_login_host }}
 > $ unzip /tmp/passwords.zip
-> ~~~~~
+> ~~~
+> {: .language-bash}
 > 
-> 2.  
-> ~~~~~
+> 2.
+> ~~~
 > $ scp {{ site.workshop_login_host }}@rob:/tmp/passwords.zip .
 > $ unzip passwords.zip
-> ~~~~~
+> ~~~
+> {: .language-bash}
 > 
-> 3.  
-> ~~~~~
+> 3.
+> ~~~
 > $ cd /important/passwords
 > $ scp rob@{{ site.workshop_login_host }}:passwords.zip .
 > $ unzip passwords.zip
-> ~~~~~
+> ~~~
+> {: .language-bash}
 > 
-> 4.  
-> ~~~~~
+> 4.
+> ~~~
 > $ cd /important/passwords
 > $ scp rob@{{ site.workshop_login_host }}:/tmp/passwords.zip .
 > $ unzip passwords.zip
-> ~~~~~
+> ~~~
+> {: .language-bash}
 > 
 > > ## Solution
 > > 
