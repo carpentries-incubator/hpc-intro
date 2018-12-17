@@ -162,9 +162,11 @@ site's default resources, which is probably not what we want.
 
 The following are several key resource requests:
 
-* `-n <nnodes>` - how many nodes does your job need? 
+* `-N <nnodes>` - how many nodes does your job need? 
 
-* `-c <ncpus>` - How many CPUs does your job need?
+* `-n <ntasks>` – how many tasks does your job have?
+
+* `-c <ncpus>` - How many CPUs per task does your job need?
 
 * `--mem=<megabytes>` - How much memory on a node does your job need in megabytes? You can also
   specify gigabytes using by adding a little "g" afterwards (example: `--mem=5g`)
