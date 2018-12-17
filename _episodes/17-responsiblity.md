@@ -20,9 +20,9 @@ So here are a couple final words to live by:
 ## Be kind to the login node
 
 * The login node is very busy managing lots and lots of jobs! It doesn’t have any extra space to run
-  computational work. Don’t run jobs on the login node, though quick tests are generally fine. A
-  “quick test” is generally anything that uses less than 10GB of memory, 4 CPUs, and 15 minutes of
-  time. Remember, the login node is to be shared with other users.
+  computational work. Don’t run jobs on the login node, though quick tasks like downloading a file or compiling a small program are generally fine. You'll often find limits set on the login/head node that prevent you from using too many resources.  Attempting to run programs when resource limits are set will often cause your programs to die with strange errors. Remember, the login node is to be shared with other users.  
+
+* Most clusters have a queue available for interactive use called {% for queue in site.workshop_interactive_queues %} {{ queue }}, {% endfor %} etc.  This is generally a better way to run small tests or compile programs.
 
 > ## Login Node Etiquette
 > 

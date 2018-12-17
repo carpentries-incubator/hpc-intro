@@ -60,6 +60,13 @@ lc_post_survey: "https://www.surveymonkey.com/r/lcpostworkshopsurvey?workshop_id
 instructor_pre_survey: "https://www.surveymonkey.com/r/instructor_training_pre_survey?workshop_id="
 instructor_post_survey: "https://www.surveymonkey.com/r/instructor_training_post_survey?workshop_id="
 
+# Workshop specific values
+
+# Interactive queue names, one or more as a list
+workshop_interactive_queues:
+  - debug
+  - testing
+
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
 start_time: 0
 
