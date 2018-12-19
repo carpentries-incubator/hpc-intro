@@ -73,7 +73,7 @@ $ ls
 ~~~
 {: .output}
 
-To no surprise, there is nothing displayed. To prove, that Lola is really logged in to another machine, Lola issues a command to see on what machine she currently is on.
+There is nothing displayed. To prove, that Lola is really logged in to another machine, Lola issues a command that prints the name of the machine she is currently working on:
 
 ~~~ 
 $ hostname
