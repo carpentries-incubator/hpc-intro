@@ -167,6 +167,22 @@ todays_canteen_menu.pdf                                                100%   28
 ~~~
 {: .output}
 
+> ## Paths Are everywhere
+> 
+> Issueing a `ssh` command always entails the same logic of path or folder description than in the regular shell. For example,
+>
+> ~~~ 
+> $ scp lola@{{ site.workshop_login_host }}:todays_canteen_menu.pdf todays_canteen_menu_downloaded.pdf
+> ~~~
+> {: .language-bash}
+> 
+> yields two relative paths. For the remote source `lola@{{ site.workshop_login_host }}:todays_canteen_menu.pdf`, the file name mentioned after the colon, is a relative path to the home directory. For brevity, this information is not shown. The same is true for the destination on the local machine `todays_canteen_menu_downloaded.pdf`. This is a relative path to the folder Lola currently works in. The same command as above expressed with absolute paths, could look like this (if Lola currently works inside `/home/lola/work`):
+>
+> ~~~ 
+> $ scp lola@{{ site.workshop_login_host }}:/home/lola/todays_canteen_menu.pdf /home/lola/work/todays_canteen_menu_downloaded.pdf
+> ~~~
+> {: .language-bash}
+
 Lola has a look in the current directory and indeed `todays_canteen_menu_downloaded.pdf`. She opens it with her pdf reader and can tell that it contains indeed the same content as the original one. The admin explains that if she would have used the same name as the destination, i.e. `todays_canteen_menu.pdf`, `scp` would have overwritten her local copy.
 
 To finish, The admin asks Lola that she can also transfer entire directories. She prepared a temporary directory on the cluster for her under `/tmp/this_weeks_canteen_menus`. She asks Lola to obtain a copy of the entire directory onto her laptop.
