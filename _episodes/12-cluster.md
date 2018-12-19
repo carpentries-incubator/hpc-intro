@@ -50,7 +50,7 @@ $ ssh lola@{{ site.workshop_login_host }}
 
 ~~~ 
 Last login: Fri Dec 14 14:13:14 2018 from lolas_laptop
--bash-4.1$ 
+$ 
 ~~~
 {: .output}
 
@@ -144,7 +144,7 @@ She can now `ssh` into the cluster again and check, if the file has arrived afte
 ~~~ 
 $ ssh lola@{{ site.workshop_login_host }}
 Last login: Tue Mar 14 14:17:44 2017 from lolas_laptop
--bash-4.1$ ls
+$ ls
 ~~~
 {: .language-bash}
 
