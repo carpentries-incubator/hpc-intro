@@ -167,10 +167,11 @@ todays_canteen_menu.pdf                                                100%   28
 ~~~
 {: .output}
 
+
 > ## Paths Are everywhere
 > 
 > Issueing a `ssh` command always entails the same logic of path or folder description than in the regular shell. For example,
->
+> 
 > ~~~ 
 > $ scp lola@{{ site.workshop_login_host }}:todays_canteen_menu.pdf todays_canteen_menu_downloaded.pdf
 > ~~~
@@ -182,6 +183,7 @@ todays_canteen_menu.pdf                                                100%   28
 > $ scp lola@{{ site.workshop_login_host }}:/home/lola/todays_canteen_menu.pdf /home/lola/work/todays_canteen_menu_downloaded.pdf
 > ~~~
 > {: .language-bash}
+{: .callout}
 
 Lola has a look in the current directory and indeed `todays_canteen_menu_downloaded.pdf`. She opens it with her pdf reader and can tell that it contains indeed the same content as the original one. The admin explains that if she would have used the same name as the destination, i.e. `todays_canteen_menu.pdf`, `scp` would have overwritten her local copy.
 
