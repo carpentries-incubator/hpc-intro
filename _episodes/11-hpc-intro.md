@@ -67,7 +67,7 @@ When the task to solve become more heavy on computations, the operations are typ
 from the local laptop or desktop to elsewhere. Take for example the task to find the directions for
 your next business trip. The capabilities of your laptop are typically not enough to calculate that 
 route spontaneously. So you use website, which in turn runs on a server that is almost exclusively 
-no in the same room than you are.
+not in the same room as you are.
 
 {% include figure.html url="" max-width="20%" file="/fig/servers-openclipartorg-ericlemerdy.svg" alt="A rack half full with servers"
 caption="" %}
