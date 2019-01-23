@@ -17,11 +17,17 @@ keypoints:
 
 ## The Story
 
-Throughout this material, we will assist Lola Curious and look over her shoulder while she is starting to work at the Institute of Things as a side job to earn some extra money. 
+Throughout this material, we will assist Lola Curious and look over her shoulder while she is 
+starting to work at the Institute of Things as a side job to earn some extra money. On the first
+day, her supervisor greets her friendly and welcomes her to the job. She explains what her task is
+and suggests her that she will need to use the cluster on the campus. Lola has so far used her 
+Laptop at home for her studies, so the idea of using a super computer appears a bit intimidating to
+her. Her supervisor notices her anxiety and tells her that she will receive an introduction to the
+super computer after she has requested an account on the cluster. 
 
-On the first day, her supervisor greets her friendly and welcomes her to the job. She explains what her task is and suggests her that she will need to use the cluster on the campus. Lola has so far used her Laptop at home for her studies, so the idea of using a super computer appears a bit intimidating to her. Her supervisor notices her anxiety and tells her that she will receive an introduction to the super computer after she has requested an account on the cluster. 
-
-Lola walks to the IT department and finishes the paper work to get an account. One of the admins promises to sit down with her in the morning to show her the way around the machine. The admin explains that Lola will use a small to mid-range HPC cluster.
+Lola walks to the IT department and finishes the paper work to get an account. One of the admins 
+promises to sit down with her in the morning to show her the way around the machine. The admin 
+explains that Lola will use a small to mid-range HPC cluster.
 
 {% include links.md %}
 
@@ -149,7 +155,8 @@ the computer's memory. Disk is a computer's long-term storage for information it
 {: .challenge}
 
 > ## Differences Between Nodes
-> Many HPC clusters have a variety of nodes optimized for particular workloads. Some nodes may have larger amount of memory, or specialized resources such as Graphical Processing Units.
+> Many HPC clusters have a variety of nodes optimized for particular workloads. Some nodes may have
+>larger amount of memory, or specialized resources such as Graphical Processing Units.
 {: .callout}
 
 > ## Units
