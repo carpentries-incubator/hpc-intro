@@ -246,17 +246,15 @@ Let's examine the output of `module avail` more closely.
 ```
 {: .bash}
 ```
------------------------------------------------ Core Modules -------------------------------------
- StdEnv/2016.4 (S,L) imkl/11.3.4.258 (L,math,D:11) mcr/R2014b    (t)   python/3.5.2     (t,D:3:3.5)
- bioperl/1.7.1 (bio) imkl/2017.1.132 (math,2017)   mcr/R2015a    (t)   qt/4.8.7         (t)
- eclipse/4.6.0 (t)   impute2/2.3.2   (bio)         mcr/R2015b    (t)   qt/5.6.1         (t,D)
- eigen/3.3.2   (math intel/2016.4    (L,t,D:16:2016) mcr/R2016a  (t)   signalp/4.1f     (bio)
- fastqc/0.11.5 (bio) intel/2017.1    (t,17:2017)   mcr/R2016b    (t,D) spark/2.1.0      (t)
- g2clib/1.6.0        jasper/1.900.1  (vis)         spark/2.1.1   (t,D) g2lib/1.4.0         
- java/1.8.0_121  (L,t)         perl/5.22.2   (t)   tbb/2017.2.132   (t) gatk/3.7      (bio) 
- mach/1.0.18     (bio)         pgi/17.3      (t)   tmhmm/2.0c       (bio) gcc/4.8.5     (t)   
- mcr/R2013a      (t)           picard/2.1.1  (bio) trimmomatic/0.36 (bio) gcc/5.4.0     (t,D) 
- mcr/R2014a      (t)           python/2.7.13 (t,2:2.7)
+----------------------------------------------- Core Modules---------------------------------------
+   StdEnv/2016.4 (S,L) imkl/11.3.4.258 (L,math,D:11) mcr/R2014b (t)          python/3.5.2 (t,D:3:3.5)
+   bioperl/1.7.1 (bio) imkl/2017.1.132 (math,2017)   mcr/R2015a (t)          qt/4.8.7 (t)
+   eclipse/4.6.0 (t)   impute2/2.3.2 (bio)           mcr/R2015b (t)          qt/5.6.1 (t,D)
+   fastqc/0.11.5 (bio) intel/2017.1 (t,17:2017)      mcr/R2016b (t,D)        spark/2.1.0 (t)
+   g2lib/1.4.0        java/1.8.0_121 (L,t)           perl/5.22.2 (t)         tbb/2017.2.132 (t)
+   gatk/3.7 (bio)      mach/1.0.18 (bio)             pgi/17.3 (t)            tmhmm/2.0c (bio)
+   gcc/4.8.5 (t)       mcr/R2013a (t)                picard/2.1.1 (bio)      trimmomatic/0.36 (bio)
+   gcc/5.4.0 (t,D)     mcr/R2014a (t)                python/2.7.5 (t,2:2.7)
 ```
 {: .output}
 
