@@ -21,10 +21,10 @@ behind this approach. The two biggest factors are software incompatibilities and
 
 Software incompatibility is a major headache for programmers. Sometimes the presence (or absence) 
 of a software package will break others that depend on it. Two of the most famous examples are 
-Python 2 and 3 and C compiler versions. Python 3 famously provides a `python` command that conflicts
-with that provided by Python 2. Software compiled against a newer version of the C libraries and then
-used when they are not present will result in a nasty `'GLIBCXX_3.4.20' not found` error, for
-instance.
+Python 2 and 3 and C compiler versions. Python 3 famously provides a `python` command that 
+conflicts with that provided by Python 2. Software compiled against a newer version of the C 
+libraries and then used when they are not present will result in a nasty `'GLIBCXX_3.4.20' not
+found` error, for instance.
 
 Software versioning is another common issue. A team might depend on a certain package version for
 their research project - if the software version was to change (for instance, if a package was
@@ -114,7 +114,19 @@ variables we can print it out using `echo`.
 ```
 {: .bash}
 ```
-/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin:/opt/software/slurm/16.05.9/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/avx2/Compiler/intel2016.4/openmpi/2.1.1/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/mkl/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/ifort/2016.4.258/compilers_and_libraries_2016.4.258/linux/bin/intel64:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/gcc-5.4.0/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/icc/2016.4.258/compilers_and_libraries_2016.4.258/linux/bin/intel64:/opt/software/bin:/opt/puppetlabs/puppet/bin:/opt/software/slurm/current/bin:/opt/software/slurm/bin:/cvmfs/soft.computecanada.ca/easybuild/bin:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/bin:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/sbin:/cvmfs/soft.computecanada.ca/custom/bin:/opt/software/slurm/current/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/yourUsername/.local/bin:/home/yourUsername/bin
+/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin:
+/opt/software/slurm/16.05.9/bin:
+/cvmfs/soft.computecanada.ca/easybuild/software/2017/avx2/Compiler/intel2016.4/openmpi/2.1.1/bin:
+/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/mkl/bin:
+/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/bin:
+/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/gcc-5.4.0/bin:
+/opt/software/bin:/opt/puppetlabs/puppet/bin:/opt/software/slurm/current/bin:
+/opt/software/slurm/bin:/cvmfs/soft.computecanada.ca/easybuild/bin:
+/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/bin:
+/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/sbin:
+/cvmfs/soft.computecanada.ca/custom/bin:/opt/software/slurm/current/bin:
+/usr/local/bin:
+/usr/bin:/usr/local/sbin:/usr/sbin:/home/yourUsername/.local/bin:/home/yourUsername/bin
 ```
 {: .output}
 
