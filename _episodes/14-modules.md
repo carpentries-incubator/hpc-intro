@@ -149,8 +149,8 @@ easy_install-3.5  pip3	   python    python3.5m        pyvenv-3.5
 
 Taking this to it's conclusion, `module load` will add software to your `$PATH`. It "loads"
 software. A special note on this - depending on which version of the `module` program that is
-installed at your site, `module load` will also load required software dependencies. To demonstrate,
-let's use `module list`. `module list` shows all loaded software modules.
+installed at your site, `module load` will also load required software dependencies. To 
+demonstrate, let's use `module list`. `module list` shows all loaded software modules.
 
 ```
 [remote]$ module list
@@ -228,8 +228,8 @@ The following modules were not unloaded:
 ```
 {: .output}
 
-Note that `module purge` is informative. It lets us know that all but a default set of packages have
-been unloaded (and how to actually unload these if we truly so desired).
+Note that `module purge` is informative. It lets us know that all but a default set of packages 
+have been unloaded (and how to actually unload these if we truly so desired).
 
 ## Software versioning
 
@@ -246,17 +246,17 @@ Let's examine the output of `module avail` more closely.
 ```
 {: .bash}
 ```
------------------------------------------------------------ Core Modules -----------------------------------------------------------
-   StdEnv/2016.4 (S,L)     imkl/11.3.4.258 (L,math,D:11)      mcr/R2014b         (t)          python/3.5.2     (t,D:3:3.5)
-   bioperl/1.7.1 (bio)     imkl/2017.1.132 (math,2017)        mcr/R2015a         (t)          qt/4.8.7         (t)
-   eclipse/4.6.0 (t)       impute2/2.3.2   (bio)              mcr/R2015b         (t)          qt/5.6.1         (t,D)
-   eigen/3.3.2   (math)    intel/2016.4    (L,t,D:16:2016)    mcr/R2016a         (t)          signalp/4.1f     (bio)
-   fastqc/0.11.5 (bio)     intel/2017.1    (t,17:2017)        mcr/R2016b         (t,D)        spark/2.1.0      (t)
-   g2clib/1.6.0            jasper/1.900.1  (vis)              minimac2/2014.9.15 (bio)        spark/2.1.1      (t,D)
-   g2lib/1.4.0             java/1.8.0_121  (L,t)              perl/5.22.2        (t)          tbb/2017.2.132   (t)
-   gatk/3.7      (bio)     mach/1.0.18     (bio)              pgi/17.3           (t)          tmhmm/2.0c       (bio)
-   gcc/4.8.5     (t)       mcr/R2013a      (t)                picard/2.1.1       (bio)        trimmomatic/0.36 (bio)
-   gcc/5.4.0     (t,D)     mcr/R2014a      (t)                python/2.7.13      (t,2:2.7)
+----------------------------------------------- Core Modules -------------------------------------
+ StdEnv/2016.4 (S,L) imkl/11.3.4.258 (L,math,D:11) mcr/R2014b    (t)   python/3.5.2     (t,D:3:3.5)
+ bioperl/1.7.1 (bio) imkl/2017.1.132 (math,2017)   mcr/R2015a    (t)   qt/4.8.7         (t)
+ eclipse/4.6.0 (t)   impute2/2.3.2   (bio)         mcr/R2015b    (t)   qt/5.6.1         (t,D)
+ eigen/3.3.2   (math intel/2016.4    (L,t,D:16:2016) mcr/R2016a  (t)   signalp/4.1f     (bio)
+ fastqc/0.11.5 (bio) intel/2017.1    (t,17:2017)   mcr/R2016b    (t,D) spark/2.1.0      (t)
+ g2clib/1.6.0        jasper/1.900.1  (vis)         spark/2.1.1   (t,D) g2lib/1.4.0         
+ java/1.8.0_121  (L,t)         perl/5.22.2   (t)   tbb/2017.2.132   (t) gatk/3.7      (bio) 
+ mach/1.0.18     (bio)         pgi/17.3      (t)   tmhmm/2.0c       (bio) gcc/4.8.5     (t)   
+ mcr/R2013a      (t)           picard/2.1.1  (bio) trimmomatic/0.36 (bio) gcc/5.4.0     (t,D) 
+ mcr/R2014a      (t)           python/2.7.13 (t,2:2.7)
 ```
 {: .output}
 
@@ -344,14 +344,14 @@ The following have been reloaded with a version change:
 > ## Loading a module by default
 > 
 > Adding a set of `module load` commands to all of your scripts and having to manually load modules
-> every time you log on can be tiresome. Fortunately, there is a way of specifying a set of "default
-> modules" that always get loaded, regardless of whether or not you're logged on or running a job.
->
-> Every user has two hidden files in their home directory: `.bashrc` and `.bash_profile` (you can
-> see these files with `ls -la ~`). These scripts are run every time you log on or run a job. Adding
-> a `module load` command to one of these shell scripts means that that module will always be
-> loaded. Modify either your `.bashrc` or `.bash_profile` scripts to load a commonly used module
-> like Python. Does your `python3 --version` job from before still need `module load` to run?
+> every time you log on can be tiresome. Fortunately, there is a way of specifying a set of 
+> "default  modules" that always get loaded, regardless of whether or not you're logged on or 
+> running a job. Every user has two hidden files in their home directory: `.bashrc` and 
+> `.bash_profile` (you can see these files with `ls -la ~`). These scripts are run every time you 
+> log on or run a job. Adding a `module load` command to one of these shell scripts means that 
+> that module will always be loaded. Modify either your `.bashrc` or `.bash_profile` scripts to 
+> load a commonly used module like Python. Does your `python3 --version` job from before still 
+> need `module load` to run?
 {: .challenge}
 
 ## Installing software of our own
