@@ -29,7 +29,7 @@ Lola walks to the IT department and finishes the paper work to get an account. O
 
 ## Going remote
 
-First of all, the admin asks Lola to connect to the super computer. She mentions that in the past, compute clusters were named after planets or moons as they often presented distant somewhat mythological places. One of the admin's first instructors then often said, that they would use the Space Shuttle (or `ssh` briefly) to reach that planet or moon. So the admin asks Lola to open a terminal on her laptop and type in the following commands:
+First of all, the admin asks Lola to connect to the super computer. The admin asks Lola to open a terminal on her laptop and type in the following commands:
 
 ~~~ 
 $ ssh lola@{{ site.workshop_login_host }}
