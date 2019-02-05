@@ -19,10 +19,16 @@ So here are a couple final words to live by:
 
 ## Be kind to the login node
 
-* The login node is very busy managing lots and lots of jobs! It doesn’t have any extra space to run
-  computational work. Don’t run jobs on the login node, though quick tasks like downloading a file or compiling a small program are generally fine. You'll often find limits set on the login/head node that prevent you from using too many resources.  Attempting to run programs when resource limits are set will often cause your programs to die with strange errors. Remember, the login node is to be shared with other users.  
+* The login node is very busy managing lots and lots of jobs! It doesn’t have any extra space to 
+  run computational work. Don’t run jobs on the login node, though quick tasks like downloading 
+  a file or compiling a small program are generally fine. You'll often find limits set on the 
+  login/head node that prevent you from using too many resources.  Attempting to run programs 
+  when resource limits are set will often cause your programs to die with strange errors. 
+  Remember, the login node is to be shared with other users.  
 
-* Most clusters have a queue available for interactive use called {% for queue in site.workshop_interactive_queues %} {{ queue }}, {% endfor %} etc.  This is generally a better way to run small tests or compile programs.
+* Most clusters have a queue available for interactive use called 
+  {% for queue in site.workshop_interactive_queues %}{{ queue }}, {% endfor %} etc.  
+  This is generally a better way to run small tests or compile programs.
 
 > ## Login Node Etiquette
 > 
@@ -47,8 +53,8 @@ So here are a couple final words to live by:
   form of backup/archival system, you shouldn't rely on it for something as key as your research
   code. The best backup system is one you manage yourself.
 
-* Eventually, your data will need to leave the cluster. You should have a plan of where you’ll store
-  all your results *before* you run jobs.
+* Eventually, your data will need to leave the cluster. You should have a plan of where you’ll 
+  store all your results *before* you run jobs.
 
 ## Save time
 
@@ -62,7 +68,7 @@ So here are a couple final words to live by:
 * You can generally install software yourself, but if you want a shared installation of some kind,
   it might be a good idea to message an administrator.
 
-* Always use the default compilers if possible. Newer compilers are great, but older stuff generally
-  has less compatibility issues.
+* Always use the default compilers if possible. Newer compilers are great, but older stuff 
+  generally has less compatibility issues.
 
 {% include links.md %}

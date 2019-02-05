@@ -38,12 +38,12 @@ concepts remain the same.
 
 ## Running a batch job
 
-The most basic use of the scheduler is to run a command non-interactively. Any command (or series of
-commands) that you want to run on the cluster is called a *job*, and the process of using a
+The most basic use of the scheduler is to run a command non-interactively. Any command (or series 
+of commands) that you want to run on the cluster is called a *job*, and the process of using a
 scheduler to run the job is called *batch job submission*.
 
-In this case, the job we want to run is just a shell script. Let's create a demo shell script to run
-as a test.
+In this case, the job we want to run is just a shell script. Let's create a demo shell script to 
+run as a test.
 
 > ## Creating our test job
 > 
@@ -74,8 +74,8 @@ Submitted batch job 36855
 {: .output}
 
 And that's all we need to do to submit a job. Our work is done -- now the scheduler takes over and
-tries to run the job for us. While the job is waiting to run, it goes into a list of jobs called the
-*queue*. To check on our job's status, we check the queue using the command `squeue`.
+tries to run the job for us. While the job is waiting to run, it goes into a list of jobs called 
+the *queue*. To check on our job's status, we check the queue using the command `squeue`.
 
 ```
 [remote]$ squeue -u yourUsername
@@ -154,11 +154,11 @@ Fantastic, we've successfully changed the name of our job!
 
 ### Resource requests
 
-But what about more important changes, such as the number of CPUs and memory for our jobs? One thing
-that is absolutely critical when working on an HPC system is specifying the resources required to
-run a job. This allows the scheduler to find the right time and place to schedule our job. If you do
-not specify requirements (such as the amount of time you need), you will likely be stuck with your
-site's default resources, which is probably not what we want.
+But what about more important changes, such as the number of CPUs and memory for our jobs? One 
+thing that is absolutely critical when working on an HPC system is specifying the resources 
+required to run a job. This allows the scheduler to find the right time and place to schedule our 
+job. If you do not specify requirements (such as the amount of time you need), you will likely be
+stuck with your site's default resources, which is probably not what we want.
 
 The following are several key resource requests:
 
@@ -172,8 +172,8 @@ The following are several key resource requests:
 * `--time <days-hours:minutes:seconds>` - How much real-world time (walltime) will your job take to
   run? The `<days>` part can be omitted.
 
-Note that just *requesting* these resources does not make your job run faster! We'll talk more about
-how to make sure that you're using resources effectively in a later episode of this lesson.
+Note that just *requesting* these resources does not make your job run faster! We'll talk more 
+about how to make sure that you're using resources effectively in a later episode of this lesson.
 
 > ## Submitting resource requests
 >

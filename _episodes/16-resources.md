@@ -39,16 +39,15 @@ think your job will need.
 > {: .bash}
 > 
 > The `fastqc` command is provided by the `fastqc` module. You'll need to figure out a good amount
-> of resources to ask for for this first "test run". You might also want to have the scheduler email
-> you to tell you when the job is done.
->
-> Hint: the job only needs 1 CPU and not too much memory or time. The trick is figuring out just how
->  much you'll need!
+> of resources to ask for for this first "test run". You might also want to have the scheduler 
+> email  you to tell you when the job is done.
+> Hint: the job only needs 1 CPU and not too much memory or time. The trick is figuring out just 
+> how much you'll need!
 {: .challenge}
 
-Once the job completes (note that it takes much less time than expected), we can query the scheduler
-to see how long our job took and what resources were used. We will use `sacct` to get statistics
-about our job.
+Once the job completes (note that it takes much less time than expected), we can query the 
+scheduler to see how long our job took and what resources were used. We will use `sacct` to
+get statistics about our job.
 
 By itself, `sacct -u yourUsername` shows all commands that we ran since midnight on the previous day
 (we can change this behaviour with the `--start-time` option).
@@ -105,7 +104,8 @@ Some interesting fields include the following:
 run `ssh nodename`.
 {: .callout}
   
-We can also check on stuff running on the login node right now the same way (so it's not necessary to `ssh` to a node for this example).
+We can also check on stuff running on the login node right now the same way (so it's 
+not necessary to `ssh` to a node for this example).
 
 ### top
 
@@ -169,8 +169,8 @@ Swap:          3.9G        170M        3.7G
 The key fields here are total, used, and available - which represent the amount of memory that the
 machine has in total, how much is currently being used, and how much is still available. When a
 computer runs out of memory it will attempt to use "swap" space on your hard drive instead. Swap
-space is very slow to access - a computer may appear to "freeze" if it runs out of memory and begins
-using swap.
+space is very slow to access - a computer may appear to "freeze" if it runs out of memory and 
+begins using swap.
 
 ### ps 
 
@@ -196,13 +196,13 @@ $ ps -ef | grep yourUsername
 ```
 {: .bash}
 ```
-jeff      1594     1  0 14:23 ?        00:00:00 /usr/lib/systemd/systemd --user
-jeff      1599  1594  0 14:23 ?        00:00:00 (sd-pam)
-jeff      1610     1  0 14:23 ?        00:00:01 /usr/bin/gnome-keyring-daemon --daemonize --login
-jeff      1627  1586  0 14:23 tty2     00:00:00 /usr/libexec/gdm-wayland-session gnome-session
-jeff      1629  1594  0 14:23 ?        00:00:01 /usr/bin/dbus-daemon --session --address=systemd:...
-jeff      1632  1627  0 14:23 tty2     00:00:00 /usr/libexec/gnome-session-binary
-jeff      1692  1594  0 14:23 ?        00:00:00 /usr/libexec/gvfsd
+jeff      1594     1  0 14:23 ?      00:00:00 /usr/lib/systemd/systemd --user
+jeff      1599  1594  0 14:23 ?      00:00:00 (sd-pam)
+jeff      1610     1  0 14:23 ?      00:00:01 /usr/bin/gnome-keyring-daemon --daemonize --login
+jeff      1627  1586  0 14:23 tty2   00:00:00 /usr/libexec/gdm-wayland-session gnome-session
+jeff      1629  1594  0 14:23 ?      00:00:01 /usr/bin/dbus-daemon --session --address=systemd:...
+jeff      1632  1627  0 14:23 tty2   00:00:00 /usr/libexec/gnome-session-binary
+jeff      1692  1594  0 14:23 ?      00:00:00 /usr/libexec/gvfsd
 ```
 {: .output}
 
@@ -216,8 +216,8 @@ your own processes.
 
 You can also kill processes by their PIDs using `kill 1234` where `1234` is a `PID`. Sometimes
 however, killing a process does not work instantly. To kill the process in the most hardcore manner
-possible, use the `-9` flag. It's recommended to kill using without `-9` first. This gives a process
-the chance to clean up child processes, and exit cleanly. However, if a process just isn't
+possible, use the `-9` flag. It's recommended to kill using without `-9` first. This gives a 
+process the chance to clean up child processes, and exit cleanly. However, if a process just isn't
 responding, use `-9` to kill it instantly.
 
 {% include links.md %}
