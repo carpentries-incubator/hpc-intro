@@ -71,13 +71,13 @@ workshop_interactive_queues:
 start_time: 0
 
 ####################################################
-# WORKSHOP specific configuration
+# SITE specific configuration
 # this is the scheduler to be used for the workshop
 # possible values: slurm (planned lsf & pbs)
-workshop_scheduler: "slurm"
-workshop_login_host: "cray-1"
-workshop_cluster_name: "cray-1"
-workshop_shared_fast_filesystem: "/fastfs"
+scheduler: "slurm"
+login_host: "cray-1"
+cluster_name: "cray-1"
+shared_fast_filesystem: "/fastfs"
 
 
 # Specify that things in the episodes collection should be output.
