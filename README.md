@@ -40,7 +40,7 @@ lesson outline?).
 An episode is just a markdown file that lives under the `_episodes` folder. Here is a link to a
 [markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) with most
 markdown syntax. Additionally, the Software Carpentry lesson template uses several extra bits of
-formatting- see here for a [full guide](http://swcarpentry.github.io/lesson-example/04-formatting/).
+formatting- see here for a [full guide](https://carpentries.github.io/lesson-example/04-formatting/index.html).
 The most significant change is the addition of a YAML header that adds metadata (key questions,
 lesson teaching times, etc.) and special syntax for code blocks, exercises, and the like.
 
