@@ -91,11 +91,13 @@ We can see all the details of our job, most importantly that it is in the "R" or
 Sometimes our jobs might need to wait in a queue ("PENDING") or have an error. The best way to check
 our job's status is with `squeue`. Of course, running `squeue` repeatedly to check on things can be
 a little tiresome. To see a real-time view of our jobs, we can use the `watch` command. `watch`
-reruns a given command at 2-second intervals. Let's try using it to monitor another job.
+reruns a given command at 2-second intervals. This is too frequent, and will likely upset your system
+administrator. You can change the interval to a more resonable value, for example 60 seconds, with the
+`-n 60` parameter. Let's try using it to monitor another job.
 
 ```
 [remote]$ sbatch example-job.sh
-[remote]$ watch squeue -u yourUsername
+[remote]$ watch -n 60 squeue -u yourUsername
 ```
 {: .bash}
 
@@ -205,7 +207,7 @@ Submit the job and wait for it to finish. Once it is has finished, check the log
 
 ```
 [remote]$ sbatch example-job.sh
-[remote]$ watch squeue -u yourUsername
+[remote]$ watch -n 60 squeue -u yourUsername
 [remote]$ cat slurm-38193.out
 ```
 {: .bash}
