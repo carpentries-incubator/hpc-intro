@@ -97,7 +97,7 @@ administrator. You can change the interval to a more resonable value, for exampl
 
 ```
 [remote]$ sbatch example-job.sh
-[remote]$ watch squeue -n 60 -u yourUsername
+[remote]$ watch -n 60 squeue -u yourUsername
 ```
 {: .bash}
 
