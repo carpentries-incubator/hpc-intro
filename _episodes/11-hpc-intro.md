@@ -100,7 +100,7 @@ prospect users:
 1. they work with the command line (not a GUI style user interface)
 2. they work with a distributed set of computers (called nodes)
 
-> # I've never used a server, did I?
+> # I've never used a server, have I?
 > 
 > Take a minute and think about which of your daily interactions with a computer may require a 
 > remote server or even cluster to provide you with results. 
