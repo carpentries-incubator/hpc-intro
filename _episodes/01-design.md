@@ -17,41 +17,49 @@ see [the instructor training course][training].
 
 ## Reverse Instructional Design
 
+### Idealized
+
 In principle,
 we design lessons in four stages:
 
-1.  **Conceptual**:
-    describe who the lesson is for,
-    what its overall goals are,
+1.  **Conteptual:** describe target audience,
+    overall lesson's goals,
     and how long it is going to be.
-    For example,
-    the lesson might be for people who have taught themselves
+
+    **Example**:
+
+    a. A lesson for people who have taught themselves
     how to write page-long statistical analyses in R using RStudio,
     but have never written functions or run programs from the Unix shell prompt.
-    Its overall goal might be to teach them how to write modular multi-page programs
-    and how to use dplyr to regularize their analyses,
-    and the time allotted might be half a day.
+
+    b. Lesson's overall goal is to teach them how to write modular programs
+    and how to use `dplyr` to regularize their analyses.
+
+    c. Esimated time: half a day.
+
     It's often helpful to use [concept maps][concept-maps] in this stage.
 
-2.  **Summative Assessment**:
-    figure out what learners will do to demonstrate that they have mastered the material.
-    This is the most important step of the four,
-    since it is what *actually* determines the scope of the lesson.
-    In this case,
-    the summative assessment might be to write a four-function program
+2.  **Summative Assessment:**
+    figure out how learners will demonstrate that they have mastered the material.
+
+    **This is the most important step** because
+    it determines the scope of the lesson.
+
+    **Example**:
+    Write a four-function program
     to load, clean up, analyze, and plot a collection of medical data sets.
 
-3.  **Formative Assessments**:
-    describe the exercises that learners will do during the lesson.
-    To switch examples for a moment,
-    it wouldn't be fair to ask someone to parallel park on a driving test
-    if they'd never done it before,
-    so two formative assessments in a driving course might be
-    "back up" and "parallel park between some safety cones".
+3.  **Formative Assessments:** describe exercises that learners will do during the lesson.
+
+    It wouldn't be fair to ask someone to parallel park on a driving test
+    if they'd never done it before.
+    Therefore, two formative assessments in a driving course might be
+    "back up" and "parallel park between safety cones".
 
 4.  **Connect the Dots**:
     put the formative assessments in order
     and develop lesson episodes to go from one to the next.
+
     It is common to sketch a concept map for each lesson episode,
     both to outline its key ideas
     and to check that it's not too big.
@@ -62,6 +70,9 @@ we design lessons in four stages:
     to continue with the driving example,
     the lesson author might realize that a third exercise on turning while backing up is needed
     (since many people initially turn the steering wheel the wrong way when they're in reverse).
+
+
+### In practice
 
 In practice, the process often looks more like this:
 
