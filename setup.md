@@ -2,30 +2,35 @@
 title: Setup
 ---
 
-Our lesson template is kept in the [`carpentries/styles` repository][styles]. The `styles` repository is carefully curated so that
-changes made to it are easily mergable by downstream lessons. The `styles` repository contains various
-bits that take Markdown files and render them as a lesson web page. For more information on how to develop
-lessons and maintain them, see our [lesson-example][lesson-example]. It will walk you through the basics of lesson
-design and how to use GitHub, Markdown and Jekyll for lesson development. Follow the instructions below to make
-your own empty lesson in your own GitHub account. Once you've done that you can just write Markdown code and have
-lesson web pages just like the [lesson-example][lesson-example] and all of our other lessons, but with your lesson content.
+Our lesson template is kept in the [`carpentries/styles` repository][styles]. The `styles`
+repository is carefully curated so that changes made to it are easily mergable by downstream
+lessons. The `styles` repository contains various bits that take Markdown files and render them as a
+lesson web page. For more information on how to develop lessons and maintain them, see our
+[lesson-example][lesson-example]. It will walk you through the basics of lesson design and how to
+use GitHub, Markdown and Jekyll for lesson development. Follow the instructions below to make your
+own empty lesson in your own GitHub account. Once you've done that you can just write Markdown code
+and have lesson web pages just like the [lesson-example][lesson-example] and all of our other
+lessons, but with your lesson content.
 
-Requirements:
+## Requirements
+
 * A GitHub account
-* A working Python 3.4+ environment to run the lesson initialization script
-* (Optional) A local install of [Jekyll](https://jekyllrb.com/) (version 3.2 or higher) which will require the Ruby language to be installed.
+* A working [Python 3.4+](https://www.python.org) environment to run the lesson initialization
+  script
+* (Optional) A local install of [Jekyll](https://jekyllrb.com/) (version 3.2 or higher) which will
+  require the Ruby language to be installed.
 
 ## Creating a New Lesson
 
 We will assume that your user ID is `timtomch` and the name of your
 new lesson is `data-cleanup`.
 
-1.  We'll use the [GitHub's importer][importer] to make a copy of this repo in your own GitHub account.
-(Note: This is like a GitHub Fork, but not connected to the upstream changes)
+1.  We'll use the [GitHub's importer][importer] to make a copy of this repo in your own GitHub
+    account. (Note: This is like a GitHub Fork, but not connected to the upstream changes)
 
-2.  **Put the URL of [the styles repository][styles]** (https://github.com/carpentries/styles) in the "Your
-    old repository’s clone URL" box.
-    Do *not* use the URL of this repository,
+2.  Put the URL of **[the styles repository][styles]**, that is
+    **https://github.com/carpentries/styles** in the "Your old repository’s clone URL" box.
+    Do not use the URL of this repository,
     as that will bring in a lot of example files you don't actually want.
 
 3.  Select the owner for your new repository.
@@ -80,6 +85,13 @@ new lesson is `data-cleanup`.
     (Note that the user name above is `carpentries`, *not* `timtomch`,
     since you are adding the master copy of the template as a remote.)
 
+10. Configure the `template` remote to not download tags:
+
+    ~~~
+    $ git config --local remote.template.tagOpt --no-tags
+    ~~~
+    {: .language-bash}
+
 10. Make sure you are using the `gh-pages` branch of the lesson template:
 
     ~~~
@@ -98,7 +110,8 @@ new lesson is `data-cleanup`.
     that cannot be put into the styles repository
     (because they would trigger repeated merge conflicts).
 
-12. Create and edit files as explained further in [the episodes of this lesson]({{ page.root }}/#schedule).
+12. Create and edit files as explained further in
+    [the episodes of this lesson]({{ relative_root_path }}/#schedule).
 
 13. (requires Jekyll Setup from below) Preview the HTML pages for your lesson:
 
@@ -107,13 +120,19 @@ new lesson is `data-cleanup`.
     ~~~
     {: .language-bash}
 
-14. Commit your changes *and the HTML pages in the root directory of
-    your lesson repository* and push to the `gh-pages` branch of your
+    Alternatively, you can try using Docker:
+
+    ~~~
+    $ make docker-serve
+    ~~~
+    {: .language-bash}
+
+14. Commit your changes and push to the `gh-pages` branch of your
     repository:
 
     ~~~
     $ cd data-cleanup
-    $ git add changed-file.md changed-file.html
+    $ git add changed-file.md
     $ git commit -m "Explanatory message"
     $ git push origin gh-pages
     ~~~
@@ -122,14 +141,13 @@ new lesson is `data-cleanup`.
 15. [Tell us][email] where your lesson is so that we can add it to
     the appropriate index page(s).
 
-**Note:**
+## Notes
 
 1.  SSH cloning (rather than the HTTPS cloning used above)
     will also work for those who have set up SSH keys with GitHub.
 
 2.  Once a lesson has been created, please submit changes
-    for review as pull requests that contain *only the modified Markdown files*.
-    Do *not* submit generated HTML.
+    for review as pull requests that contain Markdown files only.
 
 3.  Some people have had intermittent errors during the import process,
     possibly because of the network timing out.
@@ -151,23 +169,51 @@ new lesson is `data-cleanup`.
 
 ## (Optional) Jekyll Setup for Lesson Development
 
-If you want to set up Jekyll
-so that you can preview changes on your own machine before pushing them to GitHub,
+If you want to preview changes on your own machine before pushing them to GitHub,
 you must install the software described below.
-(Note: Julian Thilo has written instructions for
-[installing Jekyll on Windows][jekyll-windows].)
+Julian Thilo wrote instructions for [installing Jekyll on Windows][jekyll-windows].
 
-1.  **Ruby**.
-    This is included with Linux and macOS;
-    the simplest option on Windows is to use [RubyInstaller][ruby-installer].
-    Make sure Ruby is upto date otherwise jekyll may fail.
-    You can test your installation by running `ruby --version`.
-    For more information,
-    see [the Ruby installation guidelines][ruby-install-guide].
+1.  **[Ruby](https://www.ruby-lang.org/en/downloads/)**.
+
+    **Linux/macOS**: Ruby is usually included with Linux and macOS. However, to reliably render
+    lessons the way GitHub does, we have to use the same version of Ruby as GitHub. Currently,
+    GitHub uses Ruby 2.5.3. In order to install Ruby 2.5.3 on Linux and macOS, we recommend using
+    [rbenv](https://github.com/rbenv/rbenv):
+
+    ~~~
+    rbenv install 2.5.3
+    ~~~
+    {: .language-bash}
+
+    And then instructing `rbenv` to use it in your lesson development process by executing the
+    following command from your lesson directory:
+
+    ~~~
+    rbenv local 2.5.3
+    ~~~
+    {: .language-bash}
+
+    To install `rbenv`, please use [rbenv-installer](https://github.com/rbenv/rbenv-installer).
+
+    **Windows**: Please use [RubyInstaller][ruby-installer] to install Ruby on Windows.
+
+    Upon installing Ruby, check its version by executing
+
+    ~~~
+    ruby --version
+    ~~~
+    {: .language-bash}
+
+    For more information, see [the Ruby installation guidelines][ruby-install-guide].
 
 2.  **[RubyGems][rubygems]**
-    (the package manager for Ruby).
-    You can test your installation by running `gem --version`.
+    is a tool which manages Ruby packages. It should be installed along with Ruby and you can
+    test your installation by running
+
+    ~~~
+    gem --version
+    ~~~
+    {: .language-bash}
 
 3.  **[Jekyll][jekyll]**.
     You can install this by running `gem install jekyll`.
@@ -180,12 +226,11 @@ you must install the software described below.
     so you will need to install these to build R lessons
     (and this example lesson). The best way to install these packages is to open an R terminal and type:
 
-    ```
-    > install.packages('knitr', repos = 'https://', dependencies = TRUE)
-    > install.packages('stringr', repos = 'https://cran.rstudio.com', dependencies = TRUE)
-    > install.packages('checkpoint', repos = 'https://cran.rstudio.com', dependencies = TRUE)
-    > install.packages('ggplot2', repos = 'https://cran.rstudio.com', dependencies = TRUE)
-    ```
+    ~~~
+    install.packages(c('knitr', 'stringr', 'checkpoint', 'ggplot2'),
+                     repos = 'https://cran.rstudio.com', dependencies = TRUE)
+    ~~~
+    {: .language-r}
 
 If you want to run `bin/lesson_check.py` (which is invoked by `make lesson-check`)
 you will need Jekyll (so that you have its Markdown parser, which is called Kramdown)
