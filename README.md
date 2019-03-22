@@ -1,7 +1,9 @@
 lesson-example
 ==============
 
-This repository shows how to create a lesson using 
+[![Create a Slack Account with us][create_slack_svg]][slack_heroku_invite]
+
+This repository shows how to create a lesson using
 [The Carpentries lesson template][styles],
 and is itself an example of the use of that template.
 Please see <https://carpentries.github.io/lesson-example/>
@@ -95,3 +97,5 @@ In brief:
 [setup]: https://carpentries.github.io/lesson-example/setup.html
 [styles-issues]: https://github.com/carpentries/styles/issues/
 [styles]: https://github.com/carpentries/styles/
+[create_slack_svg]: https://img.shields.io/badge/Create_Slack_Account-The_Carpentries-071159.svg
+[slack_heroku_invite]: https://swc-slack-invite.herokuapp.com
