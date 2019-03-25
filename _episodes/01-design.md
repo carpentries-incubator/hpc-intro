@@ -6,5 +6,5 @@ questions:
 - "How do we design lessons?"
 ---
 
-Test text.
+Visit our [new curriculum development guide](https://carpentries.github.io/curriculum-development/).
 
