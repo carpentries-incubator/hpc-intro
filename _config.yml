@@ -99,3 +99,7 @@ exclude:
 
 # Turn on built-in syntax highlighting.
 highlighter: rouge
+
+plugins:
+  - jekyll-redirect-from
+  - jekyll-paginate
