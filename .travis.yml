@@ -1,4 +1,5 @@
 # dist: trusty  # Ubuntu 14.04
+dist: xenial # Ubuntu 16.04 
 language: python
 python: 3.7
 branches:
