@@ -15,6 +15,8 @@
   {% endfor %}
   {% assign current = site.start_time %}
 
+
+
   <table class="table table-striped">
   <tr>
     {% if multiday %}<td class="col-md-1"></td>{% endif %}
@@ -22,7 +24,11 @@
     <td class="col-md-3"><a href="{{ relative_root_path }}{% link setup.md %}">Setup</a></td>
     <td class="col-md-7">Download files required for the lesson</td>
   </tr>
+
   {% for episode in site.episodes %}
+
+    {% unless episode.hidden %}
+
     {% if episode.start %} {% comment %} Starting a new day? {% endcomment %}
       {% assign day = day | plus: 1 %}
       {% if day > 1 %} {% comment %} If about to start day 2 or later, show finishing time for previous day {% endcomment %}
@@ -62,6 +68,9 @@
       </td>
     </tr>
     {% assign current = current | plus: episode.teaching | plus: episode.exercises | plus: episode.break %}
+
+   {% endunless %}
+   
   {% endfor %}
   {% assign hours = current | divided_by: 60 %}
   {% assign minutes = current | modulo: 60 %}
@@ -72,6 +81,7 @@
     <td class="col-md-7"></td>
   </tr>
   </table>
+
 
   <p>
     The actual schedule may vary slightly depending on the topics and exercises chosen by the instructor.
