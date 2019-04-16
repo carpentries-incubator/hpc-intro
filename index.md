@@ -4,6 +4,8 @@ root: .  # Is the only page that doesn't follow the pattern /:path/index.html
 permalink: index.html  # Is the only page that doesn't follow the pattern /:path/index.html
 ---
 
+{% include gh_variables.html %}
+
 For guidelines on how to develop curriculum content, please visit [The Carpentries Curriculum Development Handbook](https://carpentries.github.io/curriculum-development/).
 
 This lesson shows how to use [The Carpentries]({{ site.carpentries_site}})
