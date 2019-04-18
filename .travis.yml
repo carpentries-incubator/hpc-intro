@@ -1,24 +1,27 @@
-# dist: trusty  # Ubuntu 14.04
-dist: xenial # Ubuntu 16.04 
-language: python
-python: 3.7
-branches:
-  only:
-  - gh-pages
-  - /.*/
 before_install:
-  - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-  - echo "deb https://cran.rstudio.com/bin/linux/ubuntu trusty/" | sudo tee -a /etc/apt/sources.list
   - sudo apt-get update -y
-  - sudo apt-get install -y r-base
-  - sudo Rscript -e "install.packages('knitr', repos = 'https://', dependencies = TRUE)"
-  - sudo Rscript -e "install.packages('stringr', repos = 'https://cran.rstudio.com', dependencies = TRUE)"
-  - sudo Rscript -e "install.packages('checkpoint', repos = 'https://cran.rstudio.com', dependencies = TRUE)"
-  - sudo Rscript -e "install.packages('ggplot2', repos = 'https://cran.rstudio.com', dependencies = TRUE)"
-  - rvm default
-  - gem install json kramdown jekyll
+  - sudo apt-get install libgit2-dev libudunits2-dev
+  - sudo apt-get install python3-setuptools python3-pip
+  - rvm install 2.5.3
+  - rvm 2.5.3 do ruby -S gem install bundle
+  - R -q -e 'install.packages(c("remotes", "curl"))'
+  - R -q -e 'remotes::install_github("hadley/requirements")'
 install:
-  - pip install pyyaml
+  - sudo -H pip3 install pyyaml
 script:
+  - bundle install
   - make lesson-check-all
   - make --always-make site
+
+
+# Header
+language: r
+sudo: false
+cache: packages
+latex: false
+
+#env
+env:
+  global:
+  - _R_CHECK_FORCE_SUGGESTS_=false
+  #- MAKEFLAGS="-j 2"
