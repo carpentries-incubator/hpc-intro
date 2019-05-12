@@ -144,7 +144,7 @@ $ free -g
 
 > ## Units and Language
 > 
-> A computer's memory and disk are measured in units called *Bytes* (one Byte are 8 bits). 
+> A computer's memory and disk are measured in units called *Bytes* (one Byte is 8 bits). 
 > As today's files and memory have grown to be large given historic standards, volumes are 
 > noted using the [SI](https://en.wikipedia.org/wiki/International_System_of_Units) prefixes. 
 > So 1000 Bytes is a Kilobyte (kB), 1000 Kilobytes is a Megabyte, 1000 Megabytes is a 
