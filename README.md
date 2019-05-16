@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/carpentries/lesson-example.svg?branch=gh-pages)](https://travis-ci.org/carpentries/lesson-example)
+
 lesson-example
 ==============
 
