@@ -176,7 +176,7 @@ todays_canteen_menu.pdf                                                100%   28
 
 > ## Paths Are everywhere
 > 
-> Issueing a `ssh` command always entails the same logic of path or folder description than in the regular shell. For example,
+> Issuing a `ssh` command always entails the same logic of path or folder description than in the regular shell. For example,
 > 
 > ~~~ 
 > $ scp lola@{{ site.login_host }}:todays_canteen_menu.pdf todays_canteen_menu_downloaded.pdf
