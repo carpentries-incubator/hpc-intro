@@ -4,6 +4,7 @@ python: "3.6"
 branches:
   only:
   - gh-pages
+  - /.*/
 before_install:
   - sudo apt-get update -y
   - rvm default
