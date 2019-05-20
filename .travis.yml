@@ -18,6 +18,7 @@ script:
 jobs:
   include:
     - stage: spelling
+      python: 3.7
       # Use codespell for spell checking
       install:
         pip install codespell
