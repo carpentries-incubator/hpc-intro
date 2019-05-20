@@ -24,3 +24,4 @@ jobs:
       install:
         pip install codespell
       script: codespell --skip="assets,*.svg" --quiet-level=2  --ignore-words-list="rouge"
+    - stage: check_and_build
