@@ -13,7 +13,7 @@ generate_md_episodes <- function() {
   required_pkgs <- unique(c(
     ## Packages for episodes
     requirements:::req_dir("_episodes_rmd"),
-    ## Pacakges for tools
+    ## Packages for tools
     requirements:::req_dir("bin")
   ))
 

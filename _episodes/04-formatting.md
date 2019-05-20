@@ -38,7 +38,7 @@ Limit all lines to a maximum of 100 characters.
 `bin/lesson_check.py` will report lines longer than 100 characters
 and this can block your contributions of being accepted.
 
-The two reasons behind the decision to enforce a maximum line lenght are
+The two reasons behind the decision to enforce a maximum line length are
 (1) make diff and merge easier in the command line and other user interfaces
 and
 (2) make update of translation of the lessons easier.

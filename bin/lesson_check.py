@@ -259,7 +259,7 @@ def check_fileset(source_dir, reporter, filenames_present):
     for m in missing:
         reporter.add(None, 'Missing required file {0}', m)
 
-    # Check episode files' names.
+    # Check names of episode files.
     seen = []
     for filename in filenames_present:
         if '_episodes' not in filename:
