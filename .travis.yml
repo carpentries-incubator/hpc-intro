@@ -15,3 +15,9 @@ script:
   - make lesson-check
   - make lesson-check-all
   - make --always-make site
+jobs:
+  - stage: spelling
+    # Use codespell for spell checking
+    install:
+      pip install codespell
+    script: codespell --skip="assets,*.svg" --quiet-level=2
