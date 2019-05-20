@@ -92,7 +92,7 @@ Sometimes our jobs might need to wait in a queue ("PENDING") or have an error. T
 our job's status is with `squeue`. Of course, running `squeue` repeatedly to check on things can be
 a little tiresome. To see a real-time view of our jobs, we can use the `watch` command. `watch`
 reruns a given command at 2-second intervals. This is too frequent, and will likely upset your system
-administrator. You can change the interval to a more resonable value, for example 60 seconds, with the
+administrator. You can change the interval to a more reasonable value, for example 60 seconds, with the
 `-n 60` parameter. Let's try using it to monitor another job.
 
 ```

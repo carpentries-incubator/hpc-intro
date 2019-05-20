@@ -23,4 +23,4 @@ jobs:
       # Use codespell for spell checking
       install:
         pip install codespell
-      script: codespell --skip="assets,*.svg" --quiet-level=2
+      script: codespell --skip="assets,*.svg" --quiet-level=2  --ignore-words-list="rouge"
