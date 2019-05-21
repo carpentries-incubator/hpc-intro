@@ -1,6 +1,6 @@
 # dist: trusty  # Ubuntu 14.04
 language: python
-python: 3.6
+python: "3.6"
 branches:
   only:
   - gh-pages
@@ -15,3 +15,13 @@ script:
   - make lesson-check
   - make lesson-check-all
   - make --always-make site
+jobs:
+  include:
+    - stage: spelling
+      # The default before_install step is slow
+      before_install:
+      # Use codespell for spell checking
+      install:
+        pip install codespell
+      script: codespell --skip="assets,*.svg,bin" --quiet-level=2  --ignore-words-list="rouge,dropse"
+    - stage: check_and_build
