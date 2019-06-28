@@ -1,0 +1,6 @@
+* **exec_vnode** - Where did your job run?
+* **resources_used.walltime** - How long did the job take?
+* **comment** - Any notes on success or errors in the job
+* **Output_Path** - The file that stdout from the job was sent to
+* **Resource_List.** - Set of resources requested by the job
+* **resources_used.** - Set of resources used by the job
