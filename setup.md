@@ -167,16 +167,20 @@ new lesson is `data-cleanup`.
 2.  Other lessons' `setup.md` include full installation instructions organized by OS
     (following the model of the workshop template home page).
 
-## (Optional) Jekyll Setup for Lesson Development
+## Jekyll Setup for Lesson Development
 
-If you want to preview changes on your own machine before pushing them to GitHub,
-you must install the software described below.
-Julian Thilo wrote instructions for [installing Jekyll on Windows][jekyll-windows].
+Though not essential, it is desirable to be able to preview changes on your own machine
+before pushing them to GitHub.
+
+In order to preview changes locally, you must install the software described below.
 
 1.  **[Ruby](https://www.ruby-lang.org/en/downloads/)**.
 
-    **Linux/macOS**: Ruby is usually included with Linux and macOS. However, to reliably render
-    lessons the way GitHub does, we have to use the same version of Ruby as GitHub. Currently,
+    **Linux/macOS**: Ruby is usually included with Linux and macOS ---
+    this is usually sufficient to preview your changes locally.
+
+    If you aren't able to preview reliably with your default Ruby installation,
+    you can use the same version of Ruby as GitHub. Currently,
     GitHub uses Ruby 2.5.3. In order to install Ruby 2.5.3 on Linux and macOS, we recommend using
     [rbenv](https://github.com/rbenv/rbenv):
 
@@ -204,10 +208,13 @@ Julian Thilo wrote instructions for [installing Jekyll on Windows][jekyll-window
     ~~~
     {: .language-bash}
 
+    Windows users should select the start menu option `Start command prompt with Ruby`
+    to execute the above command.
+
     For more information, see [the Ruby installation guidelines][ruby-install-guide].
 
 2.  **[RubyGems][rubygems]**
-    is a tool which manages Ruby packages. It should be installed along with Ruby and you can
+    is a tool which manages Ruby packages. It should have been installed along with Ruby and you can
     test your installation by running
 
     ~~~
