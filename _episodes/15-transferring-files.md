@@ -8,24 +8,68 @@ objectives:
 - "Be able to transfer files to and from a computing cluster."
 keypoints:
 - "`wget` downloads a file from the internet."
-- "`sftp`/`scp` transfer files to and from your computer."
+- "`scp` transfer files to and from your computer."
 - "You can use an SFTP client like FileZilla to transfer files through a GUI."
 ---
 
-One thing people very frequently struggle with is transferring files to and from a cluster. We'll
-cover several methods of doing this from the command line, then cover how to do this using the GUI
-program FileZilla, which is much more straightforwards.
+Computing with a remote computer offers very limited use if we cannot get files to 
+or from the cluster. There are several options for transferring data between computing 
+resources, from command line options to GUI programs, which we will cover here.
 
-## Grabbing files from the internet
+## Download files from the internet using wget
 
-To download files from the internet, the easiest tool to use is `wget`. The syntax is relatively
-straightforwards: `wget https://some/link/to/a/file.tar.gz` We've actually done this before to
-download our example files:
+One of the most straightforward ways to download files is to use `wget`. Any file 
+that can be downloaded in your web browser with an accessable link can be downloaded 
+using `wget`. This is a quick way to download datasets or source code. 
+
+The syntax is: `wget https://some/link/to/a/file.tar.gz`. For example, download the 
+lesson sample files using the following command:
 
 ```
 [remote]$ wget https://hpc-carpentry.github.io/hpc-intro/files/bash-lesson.tar.gz
 ```
 {: .bash}
+
+
+##  Compressing files
+
+Let's look at the file we just downloaded:
+
+```
+[remote]$ ls
+bash-lesson.tar.gz
+```
+
+You may recognize that this is a compressed file, or an *archive*, by the file extension `tar.gz`. 
+Sometimes it is convenient to compress files to make file transfers easier. 
+The larger the file, the longer it will take to transfer. Moreover, we can compress a whole bunch of little files
+into one big file to make it easier on us (no one likes transferring 70000 little files)!
+
+Let's extract this file with the `tar` command:
+
+```
+[remote]$ tar -xf bash-lesson.tar.gz
+[remote]$ ls
+bash-lesson.tar.gz                           SRR307023_1.fastq  SRR307025_1.fastq  SRR307027_1.fastq  SRR307029_1.fastq
+dmel-all-r6.19.gtf                           SRR307023_2.fastq  SRR307025_2.fastq  SRR307027_2.fastq  SRR307029_2.fastq
+dmel_unique_protein_isoforms_fb_2016_01.tsv  SRR307024_1.fastq  SRR307026_1.fastq  SRR307028_1.fastq  SRR307030_1.fastq
+gene_association.fb                          SRR307024_2.fastq  SRR307026_2.fastq  SRR307028_2.fastq  SRR307030_2.fastq
+``` 
+
+To compress files, we can use the `tar` command again, but this time with the `-c` 
+flag to indicate we want to compress files. The syntax for compressing files is 
+`tar -czf archive-name.tar.gz file1 file2 ...`. Let's make another archive that contains
+only the `fasta` files:
+
+```
+[remote]$ tar -czf bash-lesson_fastq.tar.gz *.fastq
+[remote]$ ls
+bash-lesson_fastq.tar.gz                     SRR307023_1.fastq  SRR307025_2.fastq  SRR307028_1.fastq  SRR307030_2.fastq
+bash-lesson.tar.gz                           SRR307023_2.fastq  SRR307026_1.fastq  SRR307028_2.fastq
+dmel-all-r6.19.gtf                           SRR307024_1.fastq  SRR307026_2.fastq  SRR307029_1.fastq
+dmel_unique_protein_isoforms_fb_2016_01.tsv  SRR307024_2.fastq  SRR307027_1.fastq  SRR307029_2.fastq
+gene_association.fb                          SRR307025_1.fastq  SRR307027_2.fastq  SRR307030_1.fastq
+```
 
 ## Transferring single files and folders with scp
 
@@ -60,131 +104,11 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 ```
 {: .bash}
 
-## Transferring files interactively with sftp
-
-`scp` is useful, but what if we don't know the exact location of what we want to transfer? Or
-perhaps we're simply not sure which files we want to transfer yet. `sftp` is an interactive way of
-downloading and uploading files. Let's connect to a cluster, using `sftp`- you'll notice it works
-the same way as SSH:
-
-```
-sftp yourUsername@remote.computer.address
-```
-{: .bash}
-
-This will start what appears to be a bash shell (though our prompt says `sftp>`). However we only
-have access to a limited number of commands. We can see which commands are available with `help`:
-
-```
-sftp> help
-```
-{: .bash}
-```
-Available commands:
-bye                                Quit sftp
-cd path                            Change remote directory to 'path'
-chgrp grp path                     Change group of file 'path' to 'grp'
-chmod mode path                    Change permissions of file 'path' to 'mode'
-chown own path                     Change owner of file 'path' to 'own'
-df [-hi] [path]                    Display statistics for current directory or
-                                   filesystem containing 'path'
-exit                               Quit sftp
-get [-afPpRr] remote [local]       Download file
-reget [-fPpRr] remote [local]      Resume download file
-reput [-fPpRr] [local] remote      Resume upload file
-help                               Display this help text
-lcd path                           Change local directory to 'path'
-lls [ls-options [path]]            Display local directory listing
-lmkdir path                        Create local directory
-ln [-s] oldpath newpath            Link remote file (-s for symlink)
-lpwd                               Print local working directory
-ls [-1afhlnrSt] [path]             Display remote directory listing
-
-# omitted further output for clarity
-```
-{: .output}
-
-Notice the presence of multiple commands that make mention of local and remote. We are actually
-connected to two computers at once (with two working directories!).
-
-To show our remote working directory:
-```
-sftp> pwd
-```
-{: .bash}
-```
-Remote working directory: /global/home/yourUsername
-```
-{: .output}
-
-To show our local working directory, we add an `l` in front of the command:
-
-```
-sftp> lpwd
-```
-{: .bash}
-```
-Local working directory: /home/jeff/Documents/teaching/hpc-intro
-```
-{: .output}
-
-The same pattern follows for all other commands:
-
-* `ls` shows the contents of our remote directory, while `lls` shows our local directory contents.
-* `cd` changes the remote directory, `lcd` changes the local one.
-
-To upload a file, we type `put some-file.txt` (tab-completion works here).
-
-```
-sftp> put config.toml
-```
-{: .bash}
-```
-Uploading config.toml to /global/home/yourUsername/config.toml
-config.toml                                   100%  713     2.4KB/s   00:00 
-```
-{: .output}
-
-To download a file we type `get some-file.txt`:
-
-```
-sftp> get config.toml
-```
-{: .bash}
-```
-Fetching /global/home/yourUsername/config.toml to config.toml
-/global/home/yourUsername/config.toml                               100%  713     9.3KB/s   00:00
-```
-{: .output}
-
-And we can recursively put/get files by just adding `-r`. Note that the directory needs to be
-present beforehand.
-
-```
-sftp> mkdir content
-sftp> put -r content/
-```
-{: .bash}
-```
-Uploading content/ to /global/home/yourUsername/content
-Entering content/
-content/scheduler.md              100%   11KB  21.4KB/s   00:00
-content/index.md                  100% 1051     7.2KB/s   00:00
-content/transferring-files.md     100% 6117    36.6KB/s   00:00
-content/.transferring-files.md.sw 100%   24KB  28.4KB/s   00:00
-content/cluster.md                100% 5542    35.0KB/s   00:00
-content/modules.md                100%   17KB 158.0KB/s   00:00
-content/resources.md              100% 1115    29.9KB/s   00:00
-```
-{: .output}
-
-To quit, we type `exit` or `bye`. 
-
 ## Transferring files interactively with FileZilla (sftp)
 
 FileZilla is a cross-platform client for downloading and uploading files to and from a remote
-computer. It is absolutely fool-proof and always works quite well. In fact, it uses the exact same
-protocol as `sftp` under the hood. If `sftp` works, so will FileZilla!
+computer. It is absolutely fool-proof and always works quite well. It uses the `sftp`
+protocol. You can read more about using the `sftp` protocol in the command line [here]({{ site.baseurl }}{% link _extras/discuss.md %}).
 
 Download and install the FileZilla client from
 [https://filezilla-project.org](https://filezilla-project.org). After installing and opening the
@@ -202,24 +126,6 @@ To connect to the cluster, we'll just need to enter our credentials at the top o
 Hit "Quickconnect" to connect! You should see your remote files appear on the right hand side of the
 screen. You can drag-and-drop files between the left (local) and right (remote) sides of the screen
 to transfer files.
-
-## Compressing files
-
-Sometimes we will want to compress files ourselves to make file transfers easier. The larger the
-file, the longer it will take to transfer. Moreover, we can compress a whole bunch of little files
-into one big file to make it easier on us (no one likes transferring 70000 little files)!
-
-The two compression commands we'll probably want to remember are the following:
-
-* Compress a single file with Gzip - `gzip filename`
-* Compress a lot of files/folders with Gzip - `tar -czvf archive-name.tar.gz folder1 file2 folder3
-  etc.`
-
-> ## Transferring files
->
-> Using one of the above methods, try transferring files to and from the cluster. Which method do
-> you like the best?
-{: .challenge}
 
 > ## Working with Windows
 >
@@ -250,5 +156,10 @@ The two compression commands we'll probably want to remember are the following:
 > files.
 {: .callout}
 
+> ## Transferring files
+>
+> Using one of the above methods, try transferring files to and from the cluster. Which method do
+> you like the best?
+{: .challenge}
 
 {% include links.md %}
