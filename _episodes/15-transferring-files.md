@@ -19,7 +19,7 @@ resources, from command line options to GUI programs, which we will cover here.
 ## Download files from the internet using wget
 
 One of the most straightforward ways to download files is to use `wget`. Any file 
-that can be downloaded in your web browser with an accessable link can be downloaded 
+that can be downloaded in your web browser with an accessible link can be downloaded 
 using `wget`. This is a quick way to download datasets or source code. 
 
 The syntax is: `wget https://some/link/to/a/file.tar.gz`. For example, download the 
