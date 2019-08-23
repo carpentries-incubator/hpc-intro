@@ -2,12 +2,13 @@
 # Values for this lesson.
 #------------------------------------------------------------
 
-# Which carpentry is this ("swc", "dc", "lc", or "cp")?
+# Which carpentry is this ("swc", "dc", "lc", "hpcc", or "cp")?
 # swc: Software Carpentry
 # dc: Data Carpentry
 # lc: Library Carpentry
+# hpcc: HPC Carpentry
 # cp: Carpentries (to use for instructor traning for instance)
-carpentry: "swc"
+carpentry: "hpcc"
 
 # Overall title for pages.
 title: "Introduction to High-Performance Computing"
@@ -43,6 +44,7 @@ lc_site: "https://librarycarpentry.org/"
 swc_github: "https://github.com/swcarpentry"
 swc_pages: "https://swcarpentry.github.io"
 swc_site: "https://software-carpentry.org"
+hpcc_site: "https://hpc-carpentry.github.io"
 template_repo: "https://github.com/carpentries/styles"
 training_site: "https://carpentries.github.io/instructor-training"
 workshop_repo: "https://github.com/carpentries/workshop-template"
