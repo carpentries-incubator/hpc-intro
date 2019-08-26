@@ -3,8 +3,6 @@ title: Discussion
 ---
 ## Frequently Asked Questions
 
-{% include links.md %}
-
 ## Transferring files interactively with sftp
 
 `scp` is useful, but what if we don't know the exact location of what we want to transfer? Or
@@ -124,3 +122,6 @@ content/resources.md              100% 1115    29.9KB/s   00:00
 {: .output}
 
 To quit, we type `exit` or `bye`. 
+
+
+{% include links.md %}

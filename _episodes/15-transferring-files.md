@@ -39,6 +39,7 @@ Let's look at the file we just downloaded:
 [remote]$ ls
 bash-lesson.tar.gz
 ```
+{: .bash}
 
 You may recognize that this is a compressed file, or an *archive*, by the file extension `tar.gz`. 
 Sometimes it is convenient to compress files to make file transfers easier. 
@@ -49,12 +50,17 @@ Let's extract this file with the `tar` command:
 
 ```
 [remote]$ tar -xf bash-lesson.tar.gz
+```
+{: .bash}
+
+```
 [remote]$ ls
 bash-lesson.tar.gz                           SRR307023_1.fastq  SRR307025_1.fastq  SRR307027_1.fastq  SRR307029_1.fastq
 dmel-all-r6.19.gtf                           SRR307023_2.fastq  SRR307025_2.fastq  SRR307027_2.fastq  SRR307029_2.fastq
 dmel_unique_protein_isoforms_fb_2016_01.tsv  SRR307024_1.fastq  SRR307026_1.fastq  SRR307028_1.fastq  SRR307030_1.fastq
 gene_association.fb                          SRR307024_2.fastq  SRR307026_2.fastq  SRR307028_2.fastq  SRR307030_2.fastq
 ``` 
+{: .output}
 
 To compress files, we can use the `tar` command again, but this time with the `-c` 
 flag to indicate we want to compress files. The syntax for compressing files is 
@@ -63,6 +69,10 @@ only the `fasta` files:
 
 ```
 [remote]$ tar -czf bash-lesson_fastq.tar.gz *.fastq
+```
+{: .bash}
+
+```
 [remote]$ ls
 bash-lesson_fastq.tar.gz                     SRR307023_1.fastq  SRR307025_2.fastq  SRR307028_1.fastq  SRR307030_2.fastq
 bash-lesson.tar.gz                           SRR307023_2.fastq  SRR307026_1.fastq  SRR307028_2.fastq
@@ -70,6 +80,7 @@ dmel-all-r6.19.gtf                           SRR307024_1.fastq  SRR307026_2.fast
 dmel_unique_protein_isoforms_fb_2016_01.tsv  SRR307024_2.fastq  SRR307027_1.fastq  SRR307029_2.fastq
 gene_association.fb                          SRR307025_1.fastq  SRR307027_2.fastq  SRR307030_1.fastq
 ```
+{: .output}
 
 ## Transferring single files and folders with scp
 
@@ -118,7 +129,7 @@ hand side.
 
 To connect to the cluster, we'll just need to enter our credentials at the top of the screen:
 
-* Host: `sftp://login.cac.queensu.ca`
+* Host: `sftp://{{ site.login_host }}`
 * User: Your cluster username
 * Password: Your cluster password
 * Port: (leave blank to use the default port)
