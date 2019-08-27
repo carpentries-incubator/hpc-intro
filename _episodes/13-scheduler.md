@@ -326,7 +326,7 @@ Fortunately, SLURM makes it easy to start an interactive job with `srun`:
 {: .bash}
 
 You should be presented with a bash prompt. Note that the prompt will likely change to reflect your
-new location, in this case the worker node we are logged on. You can also verify this with
+new location, in this case the compute node we are logged on. You can also verify this with
 `hostname`.
 
 > ## Creating remote graphics

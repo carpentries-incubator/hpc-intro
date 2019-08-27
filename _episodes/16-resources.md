@@ -97,7 +97,7 @@ Some interesting fields include the following:
 ## Measuring the statistics of currently running tasks
 
 > ## Connecting to Nodes
-> Typically, clusters allow users to connect directly to worker nodes from the head 
+> Typically, clusters allow users to connect directly to compute nodes from the head 
 > node. This is useful to check on a running job and see how it's doing, but is not
 > a recommended practice in general, because it bypasses the resource manager.
 > If you need to do this, > check where a job is running with `squeue`, then 
