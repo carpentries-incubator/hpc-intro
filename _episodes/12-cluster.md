@@ -158,9 +158,7 @@ the computer's memory. Disk is a computer's long-term storage for information it
 > run. Try running this command to see the name, CPUs and memory available on the worker nodes:
 >
 > ```
->
 > {% include /snippets/12/explore.{{ site.host_id }} %}
->
 > ```
 > {: .language-bash}
 {: .challenge}
