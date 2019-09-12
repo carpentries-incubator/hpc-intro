@@ -161,6 +161,7 @@ the computer's memory. Disk is a computer's long-term storage for information it
 > {% include /snippets/12/explore.{{ site.host_id }} %}
 > ```
 > {: .language-bash}
+>
 {: .challenge}
 
 > ## Units and Language
