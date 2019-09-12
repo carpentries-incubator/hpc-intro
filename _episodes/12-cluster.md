@@ -60,7 +60,7 @@ permissions for on the cluster.
 > your password just like in the example above.
 {: .callout}
 
-## Where are we?
+## Where are we?
 
 Very often, many users are tempted to think of a high-performance computing installation as one
 giant, magical machine. Sometimes, people will assume that the computer they've logged onto is the
@@ -68,7 +68,7 @@ entire computing cluster. So what's really happening? What computer have we logg
 of the current computer we are logged onto can be checked with the `hostname` command. (You may also
 notice that the current hostname is also part of our prompt!)
 
-## Nodes
+## Nodes
 
 Individual computers that compose a cluster are typically called *nodes* (although you will also
 hear people call them *servers*, *computers* and *machines*). On a cluster, there are different
@@ -160,7 +160,7 @@ the computer's memory. Disk is a computer's long-term storage for information it
 > ```
 > {% include /snippets/12/explore.{{ site.host_id }} %}
 > ```
-> {: .bash}
+> {: .language-bash}
 {: .challenge}
 
 > ## Units and Language
