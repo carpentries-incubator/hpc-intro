@@ -336,7 +336,7 @@ The following have been reloaded with a version change:
 >
 > Create a job that is able to run `python3 --version`. Remember, no software is loaded by default!
 > Running a job is just like logging on to the system (you should not assume a module loaded on the
-> login node is loaded on a worker node).
+> login node is loaded on a compute node).
 {: .challenge}
 
 > ## Loading a module by default

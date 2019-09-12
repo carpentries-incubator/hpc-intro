@@ -61,6 +61,49 @@ instructor_pre_survey: "https://www.surveymonkey.com/r/instructor_training_pre_s
 instructor_post_survey: "https://www.surveymonkey.com/r/instructor_training_post_survey?workshop_id="
 
 # Workshop specific values
+####################################################
+# SITE specific configuration
+# Host and scheduler options
+# Example: Compute Canada: Graham + SLURM
+host: "Graham"
+host_id: "ComputeCanada_Graham_slurm"
+login_host: "graham.computecanada.ca"
+host_location: "University of Waterloo"
+host_homedir: "/home"
+host_prompt: "[yourUsername@gra-login1 ~]$ "
+sched_name: "slurm"
+sched_submit: "sbatch"
+sched_submitopt: ""
+sched_stat: "squeue"
+sched_uopt: "-u yourUsername"
+sched_del: "scancel"
+sched_submiti: "srun"
+sched_submitiopt: ""
+sched_info: "sinfo"
+sched_comment: "#SBATCH"
+sched_nameopt: "-J"
+sched_hist: "sacct  -u yourUsername"
+sched_histdetail: ""
+# Example: EPCC, The University of Edinburgh: Cirrus + PBS Pro
+# host: "Cirrus"
+# host_id: "EPCC_Cirrus_pbs"
+# login_host: "login.cirrus.ac.uk"
+# host_location: "EPCC, The University of Edinburgh"
+# host_homedir: "/lustre/home/tc001/lola"
+# host_prompt: "[yourUsername@cirrus-login0 ~]$"
+#  sched_name: "PBS Pro"
+# sched_submit: "qsub"
+# sched_submitopt: "-A tc001 -q R387726"
+# sched_stat: "qstat"
+# sched_uopt: "-u yourUsername"
+# sched_del: "qdel"
+# sched_submiti: "qsub"
+# sched_submitiopt: "-IVl select=1:ncpus=1"
+# sched_info: "pbsnodes -a"
+# sched_comment: "#PBS"
+# sched_nameopt: "-N"
+# sched_hist: "qstat -x"
+# sched_histdetail: "-f"
 
 # Interactive queue names, one or more as a list
 workshop_interactive_queues:
@@ -69,16 +112,6 @@ workshop_interactive_queues:
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
 start_time: 0
-
-####################################################
-# SITE specific configuration
-# this is the scheduler to be used for the workshop
-# possible values: slurm (planned lsf & pbs)
-scheduler: "slurm"
-login_host: "cray-1"
-cluster_name: "cray-1"
-shared_fast_filesystem: "/fastfs"
-
 
 # Specify that things in the episodes collection should be output.
 collections:
