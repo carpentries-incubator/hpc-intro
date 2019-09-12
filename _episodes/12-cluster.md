@@ -152,16 +152,7 @@ the computer's memory. Disk is a computer's long-term storage for information it
 > {: .language-bash}
 {: .challenge}
 
-> ## Explore a Worker Node
-> 
-> Finally, let's look at the resources available on the worker nodes where your jobs will actually
-> run. Try running this command to see the name, CPUs and memory available on the worker nodes:
->
-> ```
-> {% include /snippets/12/explore.{{ site.host_id }} %}
-> ```
-> {: .language-bash}
-{: .challenge}
+{% include /snippets/12/explore.{{ site.host_id }} %}
 
 > ## Units and Language
 > 
