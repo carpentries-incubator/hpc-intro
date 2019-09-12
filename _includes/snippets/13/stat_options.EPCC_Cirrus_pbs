@@ -5,5 +5,5 @@
   run?
 
 * `-l place=scatter:excl` - Reserve your nodes just for yourself. (If you are using full nodes,
-  you should include this as it stops other users from interferring with the performance of your
+  you should include this as it stops other users from interfering with the performance of your
   job.)
