@@ -94,7 +94,7 @@ For example, we can view all of the worker nodes with the `{{ site.sched_info }}
 ```
 {: .bash}
 ```
-{% include /snippets/12/info.{{ site.host_id }} %}
+{% include /snippets/12/info.snip %}
 ```
 {: .output}
 
@@ -152,7 +152,7 @@ the computer's memory. Disk is a computer's long-term storage for information it
 > {: .language-bash}
 {: .challenge}
 
-{% include /snippets/12/explore.{{ site.host_id }} %}
+{% include /snippets/12/explore.snip %}
 
 > ## Units and Language
 > 
