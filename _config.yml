@@ -64,9 +64,17 @@ instructor_post_survey: "https://www.surveymonkey.com/r/instructor_training_post
 ####################################################
 # SITE specific configuration
 # Host and scheduler options
-# Example: Compute Canada: Graham + SLURM
+# Default: Compute Canada: Graham + SLURM
+# 
+# Other options can be found in _extras/snippet_library
+#   Replace options below with those in `_config_options.yml` from the library
+#   and copy all folders in the library into '_includes/snippets'. e.g to setup
+#   for EPCC_Cirrus_pbs we could replace the options below with those from:
+#     _extras/snippet_library/EPCC_Cirrus_pbs/_config_options.yml
+#   and:
+#     cp -r _extras/snippet_library/EPCC_Cirrus_pbs/* _includes/snippets
+#
 host: "Graham"
-host_id: "ComputeCanada_Graham_slurm"
 login_host: "graham.computecanada.ca"
 host_location: "University of Waterloo"
 host_homedir: "/home"
@@ -84,26 +92,6 @@ sched_comment: "#SBATCH"
 sched_nameopt: "-J"
 sched_hist: "sacct  -u yourUsername"
 sched_histdetail: ""
-# Example: EPCC, The University of Edinburgh: Cirrus + PBS Pro
-# host: "Cirrus"
-# host_id: "EPCC_Cirrus_pbs"
-# login_host: "login.cirrus.ac.uk"
-# host_location: "EPCC, The University of Edinburgh"
-# host_homedir: "/lustre/home/tc001/lola"
-# host_prompt: "[yourUsername@cirrus-login0 ~]$"
-#  sched_name: "PBS Pro"
-# sched_submit: "qsub"
-# sched_submitopt: "-A tc001 -q R387726"
-# sched_stat: "qstat"
-# sched_uopt: "-u yourUsername"
-# sched_del: "qdel"
-# sched_submiti: "qsub"
-# sched_submitiopt: "-IVl select=1:ncpus=1"
-# sched_info: "pbsnodes -a"
-# sched_comment: "#PBS"
-# sched_nameopt: "-N"
-# sched_hist: "qstat -x"
-# sched_histdetail: "-f"
 
 # Interactive queue names, one or more as a list
 workshop_interactive_queues:
