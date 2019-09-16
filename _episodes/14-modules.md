@@ -13,55 +13,78 @@ keypoints:
 - "You can edit your `.bashrc` file to automatically load a software package."
 ---
 
-On a high-performance computing system, no software is loaded by default. If we want to use a
+On a high-performance computing system, it is often the case that no software is loaded by default. If we want to use a
 software package, we will need to "load" it ourselves.
 
 Before we start using individual software packages, however, we should understand the reasoning
-behind this approach. The two biggest factors are software incompatibilities and versioning.
+behind this approach. The three biggest factors are:
 
-Software incompatibility is a major headache for programmers. Sometimes the presence (or absence) 
-of a software package will break others that depend on it. Two of the most famous examples are 
-Python 2 and 3 and C compiler versions. Python 3 famously provides a `python` command that 
-conflicts with that provided by Python 2. Software compiled against a newer version of the C 
-libraries and then used when they are not present will result in a nasty `'GLIBCXX_3.4.20' not
-found` error, for instance.
+- software incompatibilities;
+- versioning;
+- dependencies.
+
+Software incompatibility is a major headache for programmers. Sometimes the presence (or absence) of
+a software package will break others that depend on it. Two of the most famous examples are Python 2
+and 3 and C compiler versions. Python 3 famously provides a `python` command that conflicts with
+that provided by Python 2. Software compiled against a newer version of the C libraries and then
+used when they are not present will result in a nasty `'GLIBCXX_3.4.20' not found` error, for
+instance.
 
 Software versioning is another common issue. A team might depend on a certain package version for
 their research project - if the software version was to change (for instance, if a package was
 updated), it might affect their results. Having access to multiple software versions allow a set of
 researchers to prevent software versioning issues from affecting their results.
 
-## Environment modules (Lmod)
+Dependencies are where a particular software package (or even a particular version)
+depends on having access to another software package (or even a particular version of
+another software package). For example, the VASP materials science software may 
+depend on having a particular version of the FFTW (Fastest Fourer Transform in the West)
+software library available for it to work.
 
-Environment modules are the solution to these problems. A module is a self-contained software
-package - it contains all of the files required to run a software package and loads required
-dependencies.
+## Environment modules
+
+Environment modules are the solution to these problems.
+A *module* is a self-contained description of a software package - 
+it contains the settings required to run a software packace 
+and, usually, encodes required dependencies on other software packages.
+
+There are a number of different environment module implementations commonly
+used on HPC systems: the two most common are *TCL modules* and *Lmod*. Both of
+these use similar syntax and the concepts are the same so learning to use one will
+allow you to use whichever is installed on the system you are using. In both 
+implementations the `module` command is used to interact with environment modules. An
+additional subcommand is usually added to the command to specify what you want to do. For a list
+of subcommands you can use `module -h` or `module help`. As for all commands, you can 
+access the full help on the *man* pages with `man module`.
+
+On login you may start out with a default set of modules loaded or you may start out
+with an empty environment, this depends on the setup of the system you are using.
+
+### Listing currently loaded modules
+
+You can use the `module list` command to see which modules you currently have loaded
+in your environment. If you have no modules loaded, you will see a message telling you
+so
+
+```
+{{ site.workshop_host_prompt }} module list
+```
+{: .bash}
+```
+No Modulefiles Currently Loaded.
+```
+{: .output}
+
+### Listing available modules
 
 To see available software modules, use `module avail`
 
 ```
-[remote]$ module avail
+{{ site.host_prompt }} module avail
 ```
 {: .bash}
 ```
------------------------------ MPI-dependent avx2 modules -------------------------------
-abinit/8.2.2     (chem)      lammps/20170331                    plumed/2.3.0        (chem)
-abyss/1.9.0      (bio)       mrbayes/3.2.6            (bio)     pnetcdf/1.8.1       (io)
-boost-mpi/1.60.0 (t)         ncl/6.4.0                          quantumespresso/6.0 (chem)
-cdo/1.7.2        (geo)       ncview/2.1.7             (vis)     ray/2.3.1           (bio)
-
-[removed most of the output here for clarity]
-
-   t:        Tools for development / Outils de développement
-   vis:      Visualisation software / Logiciels de visualisation
-   chem:     Chemistry libraries/apps / Logiciels de chimie
-   geo:      Geography libraries/apps / Logiciels de géographie
-   phys:     Physics libraries/apps / Logiciels de physique
-   Aliases:  Aliases exist: foo/1.2.3 (1.2) means that "module load foo/1.2" will load foo/1.2.3
-   D:        Default Module
-
-Use "module spider" to find all possible modules.
-Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
+{% include /snippets/14/module_avail.snip %}
 ```
 {: .output}
 
@@ -76,32 +99,26 @@ We can test this by using the `which` command.
 so we can use it to tell us where a particular piece of software is stored.
 
 ```
-[remote]$ which python3
+{{ site.host_prompt }} which python3
 ```
 {: .bash}
 ```
-/usr/bin/which:no python3 in 
-(/opt/software/slurm/16.05.9/bin:
-/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/bin:
-/opt/software/bin:/opt/puppetlabs/puppet/bin:/opt/software/slurm/current/bin:
-/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/yourUsername/.local/bin:
-/home/yourUsername/bin)
+{% include /snippets/14/which_missing.snip %}
 ```
 {: .output}
 
 We can load the `python3` command with `module load`:
 
 ```
-[remote]$ module load python
-[remote[$ which python3
+{% include /snippets/14/load_python.snip %}
 ```
 {: .bash}
 ```
-/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin/python3
+{% include /snippets/14/which_python.snip %}
 ```
 {: .output}
 
-So what just happened?
+So, what just happened?
 
 To understand the output, first we need to understand the nature of the `$PATH` environment
 variable. `$PATH` is a special environment variable that controls where a UNIX system looks for
@@ -110,126 +127,32 @@ through for a command before giving up and telling us it can't find it. As with 
 variables we can print it out using `echo`.
 
 ```
-[remote]$ echo $PATH
+{{ site.host_prompt }} echo $PATH
 ```
 {: .bash}
 ```
-/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin:
-/opt/software/slurm/16.05.9/bin:
-/cvmfs/soft.computecanada.ca/easybuild/software/2017/avx2/Compiler/intel2016.4/openmpi/2.1.1/bin:
-/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/mkl/bin:
-/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/bin:
-/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/gcc-5.4.0/bin:
-/opt/software/bin:/opt/puppetlabs/puppet/bin:/opt/software/slurm/current/bin:
-/opt/software/slurm/bin:/cvmfs/soft.computecanada.ca/easybuild/bin:
-/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/bin:
-/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/sbin:
-/cvmfs/soft.computecanada.ca/custom/bin:/opt/software/slurm/current/bin:
-/usr/local/bin:
-/usr/bin:/usr/local/sbin:/usr/sbin:/home/yourUsername/.local/bin:/home/yourUsername/bin
+{% include /snippets/14/path.snip %}
 ```
 {: .output}
 
 You'll notice a similarity to the output of the `which` command. In this case, there's only one
-difference: the `/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin` directory at
-the beginning. When we ran `module load python/3.5.2`, it added this directory to the beginning of
-our `$PATH`. Let's examine what's there:
+difference: the different directory at the beginning. When we ran the `module load` command,
+it added a directory to the beginning of our `$PATH`. Let's examine what's there:
 
 ```
-[remote]$ ls /cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin
+{% include /snippets/14/ls_dir.snip %}
 ```
 {: .bash}
 ```
-2to3		  idle3    pip3.5    python3	       python3.5m-config  virtualenv
-2to3-3.5	  idle3.5  pydoc3    python3.5	       python3-config	  wheel
-easy_install	  pip	   pydoc3.5  python3.5-config  pyvenv
-easy_install-3.5  pip3	   python    python3.5m        pyvenv-3.5
+{% include /snippets/14/ls_dir_output.snip %}
 ```
 {: .output}
 
 Taking this to it's conclusion, `module load` will add software to your `$PATH`. It "loads"
 software. A special note on this - depending on which version of the `module` program that is
-installed at your site, `module load` will also load required software dependencies. To 
-demonstrate, let's use `module list`. `module list` shows all loaded software modules.
+installed at your site, `module load` will also load required software dependencies.
 
-```
-[remote]$ module list
-```
-{: .bash}
-```
-Currently Loaded Modules:
-  1) nixpkgs/.16.09  (H,S)   3) gcccore/.5.4.0    (H)   5) intel/2016.4  (t)   7) StdEnv/2016.4 (S)
-  2) icc/.2016.4.258 (H)     4) ifort/.2016.4.258 (H)   6) openmpi/2.1.1 (m)   8) python/3.5.2  (t)
-
-  Where:
-   S:  Module is Sticky, requires --force to unload or purge
-   m:  MPI implementations / Implémentations MPI
-   t:  Tools for development / Outils de développement
-   H:             Hidden Module
-```
-{: .output}
-
-```
-[remote]$ module load beast
-[remote]$ module list
-```
-{: .bash}
-```
-Currently Loaded Modules:
-  1) nixpkgs/.16.09    (H,S)   5) intel/2016.4  (t)   9) java/1.8.0_121   (t)
-  2) icc/.2016.4.258   (H)     6) openmpi/2.1.1 (m)  10) beagle-lib/2.1.2 (bio)
-  3) gcccore/.5.4.0    (H)     7) StdEnv/2016.4 (S)  11) beast/2.4.0      (chem)
-  4) ifort/.2016.4.258 (H)     8) python/3.5.2  (t)
-
-  Where:
-   S:     Module is Sticky, requires --force to unload or purge
-   bio:   Bioinformatic libraries/apps / Logiciels de bioinformatique
-   m:     MPI implementations / Implémentations MPI
-   t:     Tools for development / Outils de développement
-   chem:  Chemistry libraries/apps / Logiciels de chimie
-   H:                Hidden Module
-```
-{: .output}
-
-So in this case, loading the `beast` module (a bioinformatics software package), also loaded
-`java/1.8.0_121` and `beagle-lib/2.1.2` as well. Let's try unloading the `beast` package.
-
-```
-[remote]$ module unload beast
-[remote]$ module list
-```
-{: .bash}
-```
-Currently Loaded Modules:
-  1) nixpkgs/.16.09  (H,S)   3) gcccore/.5.4.0    (H)   5) intel/2016.4  (t)   7) StdEnv/2016.4 (S)
-  2) icc/.2016.4.258 (H)     4) ifort/.2016.4.258 (H)   6) openmpi/2.1.1 (m)   8) python/3.5.2  (t)
-
-  Where:
-   S:  Module is Sticky, requires --force to unload or purge
-   m:  MPI implementations / Implémentations MPI
-   t:  Tools for development / Outils de développement
-   H:             Hidden Module
-```
-{: .output}
-
-So using `module unload` "un-loads" a module along with its dependencies.
-If we wanted to unload everything at once, we could run `module purge` (unloads everything).
-
-```
-[remote]$ module purge
-```
-{: .bash}
-```
-The following modules were not unloaded:
-  (Use "module --force purge" to unload all):
-
-  1) StdEnv/2016.4    3) icc/.2016.4.258   5) ifort/.2016.4.258   7) imkl/11.3.4.258
-  2) nixpkgs/.16.09   4) gcccore/.5.4.0    6) intel/2016.4        8) openmpi/2.1.1
-```
-{: .output}
-
-Note that `module purge` is informative. It lets us know that all but a default set of packages 
-have been unloaded (and how to actually unload these if we truly so desired).
+{% include /snippets/14/depend_demo.snip %}
 
 ## Software versioning
 
@@ -242,95 +165,15 @@ either of these example cases, it helps to be very specific about what software 
 Let's examine the output of `module avail` more closely.
 
 ```
-[remote]$ module avail
+{{ site.host_prompt }} module avail
 ```
 {: .bash}
 ```
------------------------------------------------ Core Modules---------------------------------------
-   StdEnv/2016.4 (S,L) imkl/11.3.4.258 (L,math,D:11) mcr/R2014b (t)          python/3.5.2 (t,D:3:3.5)
-   bioperl/1.7.1 (bio) imkl/2017.1.132 (math,2017)   mcr/R2015a (t)          qt/4.8.7 (t)
-   eclipse/4.6.0 (t)   impute2/2.3.2 (bio)           mcr/R2015b (t)          qt/5.6.1 (t,D)
-   fastqc/0.11.5 (bio) intel/2017.1 (t,17:2017)      mcr/R2016b (t,D)        spark/2.1.0 (t)
-   g2lib/1.4.0        java/1.8.0_121 (L,t)           perl/5.22.2 (t)         tbb/2017.2.132 (t)
-   gatk/3.7 (bio)      mach/1.0.18 (bio)             pgi/17.3 (t)            tmhmm/2.0c (bio)
-   gcc/4.8.5 (t)       mcr/R2013a (t)                picard/2.1.1 (bio)      trimmomatic/0.36 (bio)
-   gcc/5.4.0 (t,D)     mcr/R2014a (t)                python/2.7.5 (t,2:2.7)
+{% include /snippets/14/module_avail.{{ site.host_id }} %}
 ```
 {: .output}
 
-Let's take a closer look at the `gcc` module. GCC is an extremely widely used C/C++/Fortran
-compiler. Tons of software is dependent on the GCC version, and might not compile or run if the
-wrong version is loaded. In this case, there are two different versions: `gcc/4.8.5` and
-`gcc/5.4.0`. How do we load each copy and which copy is the default?
-
-In this case, `gcc/5.4.0` has a `(D)` next to it. This indicates that it is the default - if we type
-`module load gcc`, this is the copy that will be loaded.
-
-```
-[remote]$ module load gcc
-[remote]$ gcc --version
-```
-{: .bash}
-```
-Lmod is automatically replacing "intel/2016.4" with "gcc/5.4.0".
-
-
-Due to MODULEPATH changes, the following have been reloaded:
-  1) openmpi/2.1.1
-
-gcc (GCC) 5.4.0
-Copyright (C) 2015 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-```
-{: .output}
-
-Note that three things happened: the default copy of GCC was loaded (version 5.4.0), the Intel
-compilers (which conflict with GCC) were unloaded, and software that is dependent on compiler
-(OpenMPI) was reloaded. The `module` system turned what might be a super-complex operation into a
-single command.
-
-So how do we load the non-default copy of a software package? In this case, the only change we need
-to make is be more specific about the module we are loading. There are two GCC modules: `gcc/5.4.0`
-and `gcc/4.8.5`. To load a non-default module, the only change we need to make to our `module load`
-command is to leave in the version number after the `/`.
-
-```
-[remote]$ module load gcc/4.8.5
-[remote]$ gcc --version
-```
-{: .bash}
-```
-Inactive Modules:
-  1) openmpi
-
-The following have been reloaded with a version change:
-  1) gcc/5.4.0 => gcc/4.8.5
-
-gcc (GCC) 4.8.5
-Copyright (C) 2015 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-```
-{: .output}
-
-We now have successfully switched from GCC 5.4.0 to GCC 4.8.5. It is also important to note that
-there was no compatible OpenMPI module available for GCC 4.8.5. Because of this, the `module`
-program has "inactivated" the module. All this means for us is that if we re-load GCC 5.4.0,
-`module` will remember OpenMPI used to be loaded and load that module as well.
-
-```
-[remote]$ module load gcc/5.4.0
-```
-{: .bash}
-```
-Activating Modules:
-  1) openmpi/2.1.1
-
-The following have been reloaded with a version change:
-  1) gcc/4.8.5 => gcc/5.4.0
-```
-{: .output}
+{% include /snippets/14/gcc_example.snip %}
 
 > ## Using software modules in scripts
 >
@@ -366,7 +209,7 @@ As an example we will install the bioinformatics toolkit `seqtk`. We'll first ne
 source code from GitHub using `git`.
 
 ```
-[remote]$ git clone https://github.com/lh3/seqtk.git
+{{ site.host_prompt }} git clone https://github.com/lh3/seqtk.git
 ```
 {: .bash}
 ```
@@ -382,8 +225,8 @@ Now, using the instructions in the README.md file, all we need to do to complete
 `cd` into the seqtk folder and run the command `make`.
 
 ```
-[remote]$ cd seqtk
-[remote]$ make
+{{ site.host_prompt }} cd seqtk
+{{ site.host_prompt }} make
 ```
 {: .bash}
 ```
@@ -398,7 +241,7 @@ seqtk.c:399:16: warning: variable ‘lc’ set but not used [-Wunused-but-set-va
 It's done! Now all we need to do to use the program is invoke it like any other program.
 
 ```
-[remote]$ ./seqtk
+{{ site.host_prompt }} ./seqtk
 ```
 {: .bash}
 ```
