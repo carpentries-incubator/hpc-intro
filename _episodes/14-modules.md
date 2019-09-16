@@ -169,7 +169,7 @@ Let's examine the output of `module avail` more closely.
 ```
 {: .bash}
 ```
-{% include /snippets/14/module_avail.{{ site.host_id }} %}
+{% include /snippets/14/module_avail.snip %}
 ```
 {: .output}
 
