@@ -67,7 +67,7 @@ in your environment. If you have no modules loaded, you will see a message telli
 so
 
 ```
-{{ site.workshop_host_prompt }} module list
+{{ site.host_prompt }} module list
 ```
 {: .bash}
 ```
