@@ -26,61 +26,9 @@ The syntax is: `wget https://some/link/to/a/file.tar.gz`. For example, download 
 lesson sample files using the following command:
 
 ```
-[remote]$ wget https://hpc-carpentry.github.io/hpc-intro/files/bash-lesson.tar.gz
+{{ site.host_prompt }} wget {{site.url}}{{site.baseurl}}/bash-lesson.tar.gz
 ```
 {: .bash}
-
-
-##  Compressing files
-
-Let's look at the file we just downloaded:
-
-```
-[remote]$ ls
-bash-lesson.tar.gz
-```
-{: .bash}
-
-You may recognize that this is a compressed file, or an *archive*, by the file extension `tar.gz`. 
-Sometimes it is convenient to compress files to make file transfers easier. 
-The larger the file, the longer it will take to transfer. Moreover, we can compress a whole bunch of little files
-into one big file to make it easier on us (no one likes transferring 70000 little files)!
-
-Let's extract this file with the `tar` command:
-
-```
-[remote]$ tar -xf bash-lesson.tar.gz
-```
-{: .bash}
-
-```
-[remote]$ ls
-bash-lesson.tar.gz                           SRR307023_1.fastq  SRR307025_1.fastq  SRR307027_1.fastq  SRR307029_1.fastq
-dmel-all-r6.19.gtf                           SRR307023_2.fastq  SRR307025_2.fastq  SRR307027_2.fastq  SRR307029_2.fastq
-dmel_unique_protein_isoforms_fb_2016_01.tsv  SRR307024_1.fastq  SRR307026_1.fastq  SRR307028_1.fastq  SRR307030_1.fastq
-gene_association.fb                          SRR307024_2.fastq  SRR307026_2.fastq  SRR307028_2.fastq  SRR307030_2.fastq
-``` 
-{: .output}
-
-To compress files, we can use the `tar` command again, but this time with the `-c` 
-flag to indicate we want to compress files. The syntax for compressing files is 
-`tar -czf archive-name.tar.gz file1 file2 ...`. Let's make another archive that contains
-only the `fasta` files:
-
-```
-[remote]$ tar -czf bash-lesson_fastq.tar.gz *.fastq
-```
-{: .bash}
-
-```
-[remote]$ ls
-bash-lesson_fastq.tar.gz                     SRR307023_1.fastq  SRR307025_2.fastq  SRR307028_1.fastq  SRR307030_2.fastq
-bash-lesson.tar.gz                           SRR307023_2.fastq  SRR307026_1.fastq  SRR307028_2.fastq
-dmel-all-r6.19.gtf                           SRR307024_1.fastq  SRR307026_2.fastq  SRR307029_1.fastq
-dmel_unique_protein_isoforms_fb_2016_01.tsv  SRR307024_2.fastq  SRR307027_1.fastq  SRR307029_2.fastq
-gene_association.fb                          SRR307025_1.fastq  SRR307027_2.fastq  SRR307030_1.fastq
-```
-{: .output}
 
 ## Transferring single files and folders with scp
 
@@ -129,7 +77,7 @@ hand side.
 
 To connect to the cluster, we'll just need to enter our credentials at the top of the screen:
 
-* Host: `sftp://{{ site.login_host }}`
+* Host: `sftp://{{ site.host_login }}`
 * User: Your cluster username
 * Password: Your cluster password
 * Port: (leave blank to use the default port)
@@ -137,6 +85,23 @@ To connect to the cluster, we'll just need to enter our credentials at the top o
 Hit "Quickconnect" to connect! You should see your remote files appear on the right hand side of the
 screen. You can drag-and-drop files between the left (local) and right (remote) sides of the screen
 to transfer files.
+
+## Compressing files
+
+Sometimes we will want to compress files ourselves to make file transfers easier. The larger the
+file, the longer it will take to transfer. Moreover, we can compress a whole bunch of little files
+into one big file to make it easier on us (no one likes transferring 70000 little files)!
+
+The two compression commands we'll probably want to remember are the following:
+
+* Compress a single file with Gzip - `gzip filename`
+* Compress a lot of files/folders with Gzip - `tar -czvf archive-name.tar.gz folder1 file2 folder3  etc.`
+
+> ## Transferring files
+>
+> Using one of the above methods, try transferring files to and from the cluster. Which method do
+> you like the best?
+{: .challenge}
 
 > ## Working with Windows
 >
@@ -166,11 +131,5 @@ to transfer files.
 > an SSH connection. If you can connect via SSH over the normal port, you will be able to transfer
 > files.
 {: .callout}
-
-> ## Transferring files
->
-> Using one of the above methods, try transferring files to and from the cluster. Which method do
-> you like the best?
-{: .challenge}
 
 {% include links.md %}
