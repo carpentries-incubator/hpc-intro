@@ -174,7 +174,7 @@ stuck with your site's default resources, which is probably not what we want.
 
 The following are several key resource requests:
 
-* `-n <nnodes>` - how many nodes does your job need? 
+* `-N <nnodes>` - how many nodes does your job need? 
 
 * `-c <ncpus>` - How many CPUs does your job need?
 
