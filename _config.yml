@@ -90,8 +90,8 @@ sched_submitiopt: ""
 sched_info: "sinfo"
 sched_comment: "#SBATCH"
 sched_nameopt: "-J"
-sched_hist: "sacct  -u yourUsername"
-sched_histdetail: ""
+sched_hist: "sacct -u yourUsername"
+sched_histdetail: "-l -j"
 
 # Interactive queue names, one or more as a list
 workshop_interactive_queues:
