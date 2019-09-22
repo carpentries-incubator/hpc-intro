@@ -26,7 +26,7 @@ The syntax is: `wget https://some/link/to/a/file.tar.gz`. For example, download 
 lesson sample files using the following command:
 
 ```
-{{ site.host_prompt }} wget {{site.url}}{{site.baseurl}}/bash-lesson.tar.gz
+{{ site.host_prompt }} wget {{ site.url }}{{ site.baseurl }}/bash-lesson.tar.gz
 ```
 {: .bash}
 
@@ -37,13 +37,13 @@ for new users, but we'll break it down here:
 
 To transfer *to* another computer:
 ```
-[local]$ scp /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
+[user@laptop]$ scp /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
 ```
 {: .bash}
 
 To download *from* another computer:
 ```
-[local]$ scp yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
+[user@laptop]$ scp yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
 ```
 {: .bash}
 
@@ -52,14 +52,14 @@ after the `:` is relative to our home directory. We can simply just add a `:` an
 if we don't care where the file goes.
 
 ```
-[local]$ scp local-file.txt yourUsername@remote.computer.address:
+[user@laptop]$ scp local-file.txt yourUsername@remote.computer.address:
 ```
 {: .bash}
 
 To recursively copy a directory, we just add the `-r` (recursive) flag:
 
 ```
-[local]$ scp -r some-local-folder/ yourUsername@remote.computer.address:target-directory/
+[user@laptop]$ scp -r some-local-folder/ yourUsername@remote.computer.address:target-directory/
 ```
 {: .bash}
 

@@ -16,7 +16,7 @@ keypoints:
 - "Files saved on one node are available on all nodes."
 ---
 
-## What is a an HPC system?
+## What is an HPC system?
 
 The words "cloud", "cluster", and "high-performance computing" get thrown around a lot. So what do
 they mean exactly? And more importantly, how do we use them for our work?
@@ -27,8 +27,6 @@ webservers, remote storage, API endpoints, as well as more traditional "compute"
 *HPC system* on the other hand, is a term used to describe a network of computers. The computers in a
 cluster typically share a common purpose, and are used to accomplish tasks that might otherwise be
 too big for any one computer.
-
-![The cloud is made of Linux](../fig/linux-cloud.jpg)
 
 ## Logging in
 
@@ -124,14 +122,14 @@ the computer's memory. Disk is a computer's long-term storage for information it
 > processors, run:
 >
 > ```
-> nproc --all
+> {{ site.host_prompt}} nproc --all
 > ```
 > {: .language-bash}
 >
 > or
 >
 > ```
-> lscpu
+> {{ site.host_prompt}} lscpu
 > ```
 > {: .language-bash}
 >
@@ -140,14 +138,14 @@ the computer's memory. Disk is a computer's long-term storage for information it
 > How about memory? Try running: 
 >
 > ```
-> free -m
+> {{ site.host_prompt}} free -m
 > ```
 > {: .language-bash}
 >
 > or for more details: 
 >
 > ```
-> cat /proc/meminfo
+> {{ site.host_prompt}} cat /proc/meminfo
 > ```
 > {: .language-bash}
 {: .challenge}

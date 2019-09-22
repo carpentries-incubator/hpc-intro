@@ -48,7 +48,7 @@ This shows all the jobs we ran recently (note that there are multiple entries pe
 detailed info about a job, we change command slightly.
 
 ```
-{{ site.host_prompt }} {{ site.sched_hist }} {{ site.sched_histdetail }} 1965
+{{ site.host_prompt }} {{ site.sched_hist }} {{ site.sched_flag_histdetail }} 1965
 ```
 {: .bash}
 
@@ -57,7 +57,7 @@ scheduler. It may be useful to redirect this information to `less` to make it ea
 the left and right arrow keys to scroll through fields).
 
 ```
-{{ site.host_prompt }} {{ site.sched_hist }} {{ site.sched_histdetail }} 1965| less
+{{ site.host_prompt }} {{ site.sched_hist }} {{ site.sched_flag_histdetail }} 1965| less
 ```
 {: .bash}
 
@@ -76,8 +76,8 @@ Some interesting fields include the following:
 > Typically, clusters allow users to connect directly to compute nodes from the head 
 > node. This is useful to check on a running job and see how it's doing, but is not
 > a recommended practice in general, because it bypasses the resource manager.
-> If you need to do this, > check where a job is running with `squeue`, then 
-run `ssh nodename`.
+> If you need to do this, check where a job is running with `{{ site.sched_status }}`, then
+> run `ssh nodename`. (Note, this may not work on all clusters.)
 {: .callout}
   
 We can also check on stuff running on the login node right now the same way (so it's 
@@ -88,10 +88,10 @@ not necessary to `ssh` to a node for this example).
 The best way to check current system stats is with `top` (`htop` is a prettier version of `top` but
 may not be available on your system).
 
-Some sample output from my laptop might look like the following (`Ctrl + c` to exit):
+Some sample output might look like the following (`Ctrl + c` to exit):
 
 ```
-[local]$ top
+{{ site.host_prompt }} top
 ```
 {: .bash}
 ```
@@ -117,7 +117,7 @@ Another useful tool is the `free -h` command. This will show the currently used/
 memory.
 
 ```
-[local]$ free -h
+{{ site.host_prompt }} free -h
 ```
 {: .bash}
 ```

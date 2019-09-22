@@ -57,7 +57,7 @@ run as a test.
 
 > ## Creating our test job
 > 
-> Using your favourite text editor, create the following script and run it. Does it run on the
+> Using your favorite text editor, create the following script and run it. Does it run on the
 > cluster or just our login node?
 >
 >```
@@ -75,7 +75,7 @@ distinction between running the job through the scheduler and just "running it".
 to the scheduler, we use the `{{ site.sched_submit }}` command.
 
 ```
-[{{ site.host_prompt }} {{ site.sched_submitopt }} example-job.sh
+[{{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh
 ```
 {: .bash}
 ```
@@ -85,10 +85,11 @@ to the scheduler, we use the `{{ site.sched_submit }}` command.
 
 And that's all we need to do to submit a job. Our work is done -- now the scheduler takes over and
 tries to run the job for us. While the job is waiting to run, it goes into a list of jobs called 
-the *queue*. To check on our job's status, we check the queue using the command `{{ site.sched_statu }}`.
+the *queue*. To check on our job's status, we check the queue using the command
+`{{ site.sched_status }} {{ site.sched_flag_user }}`.
 
 ```
-{{ site.host_prompt }} {{ site.sched_statu }}
+{{ site.host_prompt }} {{ site.sched_status }} {{ site.sched_flag_user }}
 ```
 {: .bash}
 ```
@@ -98,15 +99,15 @@ the *queue*. To check on our job's status, we check the queue using the command 
 
 We can see all the details of our job, most importantly that it is in the "R" or "RUNNING" state.
 Sometimes our jobs might need to wait in a queue ("PENDING") or have an error. The best way to check
-our job's status is with `{{ site.sched_stat }}`. Of course, running `{{ site.sched_stat }}` repeatedly to check on things can be
+our job's status is with `{{ site.sched_status }}`. Of course, running `{{ site.sched_status }}` repeatedly to check on things can be
 a little tiresome. To see a real-time view of our jobs, we can use the `watch` command. `watch`
 reruns a given command at 2-second intervals. This is too frequent, and will likely upset your system
 administrator. You can change the interval to a more reasonable value, for example 60 seconds, with the
 `-n 60` parameter. Let's try using it to monitor another job.
 
 ```
-{{ site.host_prompt }} {{ site.sched_submitopt }} example-job.sh
-{{ site.host_prompt }} watch -n 60 {{ site.sched_statu }}
+{{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh
+{{ site.host_prompt }} watch -n 60 {{ site.sched_status }} {{ site.sched_flag_user }}
 ```
 {: .bash}
 
@@ -118,7 +119,7 @@ from the queue. Press `Ctrl-C` when you want to stop the `watch` command.
 The job we just ran used all of the scheduler's default options. In a real-world scenario, that's
 probably not what we want. The default options represent a reasonable minimum. Chances are, we will
 need more cores, more memory, more time, among other special considerations. To get access to these
-resources we must customise our job script.
+resources we must customize our job script.
 
 Comments in UNIX (denoted by `#`) are typically ignored. But there are exceptions. For instance the
 special `#!` comment at the beginning of scripts specifies what program should be used to run it
@@ -129,13 +130,13 @@ Anything following the `{{ site.sched_comment }}` comment is interpreted as an
 instruction to the scheduler.
 
 Let's illustrate this by example. By default, a job's name is the name of the script, but the
-`{{ site.sched_nameopt }}` option can be used to change the name of a job.
+`{{ site.sched_flag_name }}` option can be used to change the name of a job.
 
-Submit the following job (`{{ site.sched_submitopt }} example-job.sh`):
+Submit the following job (`{{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh`):
 
 ```
 #!/bin/bash
-{{ site.sched_comment }} {{ site.sched_nameopt }} new_name
+{{ site.sched_comment }} {{ site.sched_flag_name }} new_name
 
 echo 'This script is running on:'
 hostname
@@ -143,7 +144,7 @@ sleep 120
 ```
 
 ```
-{{ site.host_prompt }} {{ site.sched_statu }}
+{{ site.host_prompt }} {{ site.sched_status }} {{ site.sched_flag_user }}
 ```
 {: .bash}
 ```
@@ -156,7 +157,7 @@ Fantastic, we've successfully changed the name of our job!
 > ## Setting up email notifications
 > 
 > Jobs on an HPC system might run for days or even weeks. We probably have better things to do than
-> constantly check on the status of our job with `{{ site.sched_stat }}`. Looking at the
+> constantly check on the status of our job with `{{ site.sched_status }}`. Looking at the
 > man page for `{{ site.sched_submit }}`, can you set up our test job to send you an email
 > when it finishes?
 > >
@@ -164,7 +165,7 @@ Fantastic, we've successfully changed the name of our job!
 
 ### Resource requests
 
-But what about more important changes, such as the number of CPUs and memory for our jobs? One 
+But what about more important changes, such as the number of cores and memory for our jobs? One 
 thing that is absolutely critical when working on an HPC system is specifying the resources 
 required to run a job. This allows the scheduler to find the right time and place to schedule our 
 job. If you do not specify requirements (such as the amount of time you need), you will likely be
@@ -195,8 +196,8 @@ minutes.
 Submit the job and wait for it to finish. Once it is has finished, check the log file.
 
 ```
-{{ site.host_prompt }} {{ site.sched_submitopt }} example-job.sh
-{{ site.host_prompt }} watch -n 60 {{ site.sched_statu }}
+{{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh
+{{ site.host_prompt }} watch -n 60 {{ site.sched_status }} {{ site.sched_flag_user }}
 {% include /snippets/13/long_job_cat.snip %}
 ```
 {: .bash}
@@ -209,7 +210,7 @@ Our job was killed for exceeding the amount of resources it requested. Although 
 this is actually a feature. Strict adherence to resource requests allows the scheduler to find the
 best possible place for your jobs. Even more importantly, it ensures that another user cannot use
 more resources than they've been given. If another user messes up and accidentally attempts to use
-all of the CPUs or memory on a node, {{ site.sched_name }} will either restrain their job
+all of the cores or memory on a node, {{ site.sched_name }} will either restrain their job
 to the requested resources or kill the job outright. Other jobs on the node will be unaffected.
 This means that one user cannot  mess up the experience of others, the only jobs affected by a
 mistake in scheduling will be their
@@ -222,8 +223,8 @@ command. Let's submit a job and then cancel it using its job number (remember to
 walltime so that it runs long enough for you to cancel it before it is killed!).
 
 ```
-{{ site.host_prompt }} {{ site.sched_submitopt }} example-job.sh
-{{ site.host_prompt }} {{ site.sched_statu }}
+{{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh
+{{ site.host_prompt }} {{ site.sched_status }} {{ site.sched_flag_user }}
 ```
 {: .bash}
 ```
@@ -237,7 +238,7 @@ successfully cancelled.
 ```
 {% include /snippets/13/del_job.snip %}
 ... Note that it might take a minute for the job to disappear from the queue ...
-{{ site.host_prompt }} {{ site.sched_statu }}
+{{ site.host_prompt }} {{ site.sched_status }} {{ site.sched_flag_user }}
 ```
 {: .bash}
 ```
@@ -256,7 +257,7 @@ There are very frequently tasks that need to be done interactively. Creating an 
 script might be overkill, but the amount of resources required is too much for a login node to
 handle. A good example of this might be building a genome index for alignment with a tool like
 [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml). Fortunately, we can run these types of
-tasks as a one-off with `{{ site.sched_submiti }}`.
+tasks as a one-off with `{{ site.sched_interactive }}`.
 
 {% include /snippets/13/interactive_example.snip %}
 
