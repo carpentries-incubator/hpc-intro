@@ -26,7 +26,7 @@ run where and when.
 
 The following illustration compares these tasks of a job scheduler to a waiter in a restaurant.
 If you can relate to an instance where you had to wait for a while in a queue to get in to a 
-popular restaurant, then you may now understand why sometimes your job do not start instanstantly
+popular restaurant, then you may now understand why sometimes your job do not start instantly
 as in your laptop.
 
 {% include figure.html max-width="75%" file="/fig/restaurant_queue_manager.svg"
@@ -42,8 +42,8 @@ alt="Compare a job scheduler to a waiter in a restaurant" caption="" %}
 > [*notes for the instructor here*](../guide)
 {: .challenge}
 
-The scheduler used in this lesson is SLURM. Although SLURM is not used everywhere, running jobs is
-quite similar regardless of what software is being used. The exact syntax might change, but the
+The scheduler used in this lesson is {{ site.sched_name }}. Although {{ site.sched_name }} is not used everywhere,
+running jobs is quite similar regardless of what software is being used. The exact syntax might change, but the
 concepts remain the same.
 
 ## Running a batch job

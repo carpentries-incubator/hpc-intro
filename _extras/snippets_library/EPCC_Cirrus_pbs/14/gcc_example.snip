@@ -10,8 +10,8 @@ This indicates that it is the default -
 if we type `module load gcc`, this is the copy that will be loaded.
 
 ```
-[yourUsername@cirrus-login0 ~]$ module load gcc
-[yourUsername@cirrus-login0 ~]$ gcc --version
+{{ site.host_prompt }} module load gcc
+{{ site.host_prompt }} gcc --version
 ```
 {: .bash}
 ```
@@ -28,7 +28,7 @@ There are three GCC modules:  `gcc/6.2.0`, `gcc/6.3.0` and `gcc/7.2.0`
 To load a non-default module, we need to make add the version number after the `/` in our `module load` command
 
 ```
-[yourUsername@cirrus-login0 ~]$ module load gcc/7.2.0
+{{ site.host_prompt }} module load gcc/7.2.0
 ```
 {: .bash}
 ```
@@ -42,9 +42,9 @@ same time as this could cause confusion about which version you are using. We ne
 default version before we load the new version.
 
 ```
-[yourUsername@cirrus-login0 ~]$ module unload gcc
-[yourUsername@cirrus-login0 ~]$ module load gcc/7.2.0
-[yourUsername@cirrus-login0 ~]$ gcc --version
+{{ site.host_prompt }} module unload gcc
+{{ site.host_prompt }} module load gcc/7.2.0
+{{ site.host_prompt }} gcc --version
 ```
 {: .bash}
 ```
@@ -62,11 +62,11 @@ As switching between different versions of the same module is often used you can
 rather than unloading one version before loading another. The equivalent of the steps above would be:
 
 ```
-[yourUsername@cirrus-login0 ~]$ module purge
-[yourUsername@cirrus-login0 ~]$ module load gcc
-[yourUsername@cirrus-login0 ~]$ gcc --version
-[yourUsername@cirrus-login0 ~]$ module swap gcc gcc/7.2.0
-[yourUsername@cirrus-login0 ~]$ gcc --version
+{{ site.host_prompt }} module purge
+{{ site.host_prompt }} module load gcc
+{{ site.host_prompt }} gcc --version
+{{ site.host_prompt }} module swap gcc gcc/7.2.0
+{{ site.host_prompt }} gcc --version
 ```
 {: .bash}
 ```

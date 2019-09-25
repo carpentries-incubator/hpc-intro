@@ -3,8 +3,8 @@ which modules we currently have loaded in our environment. ([Abinit](https://www
 materials science modelling software package.)
 
 ```
-[yourUsername@cirrus-login0 ~]$ module load abinit
-[yourUsername@cirrus-login0 ~]$ module list
+{{ site.host_prompt }} module load abinit
+{{ site.host_prompt }} module list
 ```
 {: .bash}
 ```
@@ -21,8 +21,8 @@ also loaded a variety of other modules.
 Let's try unloading the `abinit` package.
 
 ```
-[yourUsername@cirrus-login0 ~]$ module unload abinit
-[yourUsername@cirrus-login0 ~]$ module list
+{{ site.host_prompt }} module unload abinit
+{{ site.host_prompt }} module list
 ```
 {: .bash}
 ```
@@ -35,8 +35,8 @@ So using `module unload` "un-loads" a module along with its dependencies.
 If we wanted to unload everything at once, we could run `module purge` (unloads everything).
 
 ```
-[yourUsername@cirrus-login0 ~]$ module load abinit
-[yourUsername@cirrus-login0 ~]$ module purge
+{{ site.host_prompt }} module load abinit
+{{ site.host_prompt }} module purge
 ```
 {: .bash}
 ```

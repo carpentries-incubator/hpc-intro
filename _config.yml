@@ -74,12 +74,13 @@ instructor_post_survey: "https://www.surveymonkey.com/r/instructor_training_post
 #   and:
 #     cp -r _extras/snippet_library/EPCC_Cirrus_pbs/* _includes/snippets
 #
-host: "Graham"
-login_host: "graham.computecanada.ca"
+host_name: "Graham"
+host_login: "graham.computecanada.ca"
 host_location: "University of Waterloo"
 host_homedir: "/home"
-host_prompt: "[yourUsername@gra-login1 ~]$ "
-sched_name: "Slurm"
+host_prompt: "[yourUsername@gra-login1 ~]$"
+local_prompt: "[user@laptop ~]$"
+sched_name: "SLURM"
 sched_submit: "sbatch"
 sched_submit_options: ""
 sched_status: "squeue"

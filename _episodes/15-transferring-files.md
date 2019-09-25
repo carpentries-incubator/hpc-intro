@@ -37,13 +37,13 @@ for new users, but we'll break it down here:
 
 To transfer *to* another computer:
 ```
-[user@laptop]$ scp /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
+{{ site.local_prompt }} scp /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
 ```
 {: .bash}
 
 To download *from* another computer:
 ```
-[user@laptop]$ scp yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
+{{ site.local_prompt }} scp yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
 ```
 {: .bash}
 
@@ -52,14 +52,14 @@ after the `:` is relative to our home directory. We can simply just add a `:` an
 if we don't care where the file goes.
 
 ```
-[user@laptop]$ scp local-file.txt yourUsername@remote.computer.address:
+{{ site.local_prompt }} scp local-file.txt yourUsername@remote.computer.address:
 ```
 {: .bash}
 
 To recursively copy a directory, we just add the `-r` (recursive) flag:
 
 ```
-[user@laptop]$ scp -r some-local-folder/ yourUsername@remote.computer.address:target-directory/
+{{ site.local_prompt }} scp -r some-local-folder/ yourUsername@remote.computer.address:target-directory/
 ```
 {: .bash}
 

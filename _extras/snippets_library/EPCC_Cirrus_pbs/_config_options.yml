@@ -1,9 +1,10 @@
 # EPCC, The University of Edinburgh: Cirrus + PBS Pro
-host: "Cirrus"
-login_host: "login.cirrus.ac.uk"
+host_name: "Cirrus"
+host_login: "login.cirrus.ac.uk"
 host_location: "EPCC, The University of Edinburgh"
 host_homedir: "/lustre/home/tc001/lola"
 host_prompt: "[yourUsername@cirrus-login0 ~]$"
+local_prompt: "[user@laptop ~]$"
 sched_name: "PBS Pro"
 sched_submit: "qsub"
 sched_submit_options: "-A tc001 -q R387726"

@@ -30,9 +30,9 @@ too big for any one computer.
 
 ## Logging in
 
-Go ahead and log in to the cluster.
+Go ahead and log in to the cluster: {{ site.host_name }} at {{ site.host_location }}.
 ```
-[user@laptop]$ ssh yourUsername@{{ site.login_host }}
+{{ site.local_prompt }} ssh yourUsername@{{ site.host_login }}
 ```
 {: .bash}
 
@@ -40,7 +40,7 @@ Remember to replace `yourUsername` with the username supplied by the instructors
 your password. But watch out, the characters you type are not displayed on the screen.
 
 You are logging in using a program known as the secure shell or `ssh`. 
-This establishes a temporary encrypted connection between your laptop and `{{ site.login_host }}`.
+This establishes a temporary encrypted connection between your laptop and `{{ site.host_login }}`.
 The word before the `@` symbol, e.g. `yourUsername` here, is the user account name that Lola has access 
 permissions for on the cluster. 
 

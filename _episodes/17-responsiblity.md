@@ -164,8 +164,8 @@ The `tar` command packs files into a "Tape ARchive" format intended for backup p
 a compressed archive file from a directory you can use:
 
 ```
-[remote]$ tar -cvWlf mydata.tar mydata
-[remote]$ gzip mydata.tar
+{{ site.host_prompt }} tar -cvWlf mydata.tar mydata
+{{ site.host_prompt }} gzip mydata.tar
 ```
 {: .bash}
 ```
@@ -211,7 +211,7 @@ To extract files from a tar file, the option `-x` is used. If the tar file has a
 `gzip` (as we did above) `tar` will automatically uncompress the archive. For example:
 
 ```
-[local]$ tar -xvf mydata.tar.gz
+{{ site.local_prompt }} tar -xvf mydata.tar.gz
 ```
 {: .bash}
 ```
