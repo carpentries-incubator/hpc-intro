@@ -78,7 +78,7 @@ scheduler: "slurm"
 login_host: "cray-1"
 cluster_name: "cray-1"
 shared_fast_filesystem: "/fastfs"
-
+ls_user_home_output: "README"
 
 # Specify that things in the episodes collection should be output.
 collections:

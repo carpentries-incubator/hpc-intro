@@ -91,6 +91,7 @@ $ ls
 {: .language-bash}
 
 ~~~ 
+{{ site.ls_user_home_output }}
 ~~~
 {: .output}
 
