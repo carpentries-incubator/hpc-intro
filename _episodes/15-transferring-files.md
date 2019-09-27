@@ -167,6 +167,14 @@ to transfer files.
 > files.
 {: .callout}
 
+> ## A note on rsync
+>
+> As you gain experience with transferring files, you may find the above methods limiting. The
+> [rsync](https://rsync.samba.org/) utility provides advanced features for file transfer and is
+> typically faster. It is especially useful for transferring large and/or many files and creating
+> synced backup folders.
+{: .callout}
+
 > ## Transferring files
 >
 > Using one of the above methods, try transferring files to and from the cluster. Which method do
