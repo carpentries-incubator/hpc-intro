@@ -12,21 +12,22 @@ objectives:
 keypoints:
 - "An HPC system is a set of networked machines."
 - "HPC systems typically provides login nodes and a set of worker nodes."
-- "The resources available on different nodes can be different."
+- "The resources found on independent (worker) nodes can vary in volume and type (amount of RAM, processor architecture, availability of network mounted file systems, etc.)."
 - "Files saved on one node are available on all nodes."
 ---
 
 ## What is an HPC system?
 
-The words "cloud", "cluster", and "high-performance computing" get thrown around a lot. So what do
-they mean exactly? And more importantly, how do we use them for our work?
+The words "cloud", "cluster", and "high-performance computing" are used a lot in different contexts
+and with varying degrees of correctness. So what do they mean exactly? And more importantly, how do
+we use them for our work?
 
 The *cloud* is a generic term commonly used to refer to remote computing resources of any kind --
 that is, any computers that you use but are not right in front of you. Cloud can refer to
-webservers, remote storage, API endpoints, as well as more traditional "compute" resources. An
-*HPC system* on the other hand, is a term used to describe a network of computers. The computers in a
-cluster typically share a common purpose, and are used to accomplish tasks that might otherwise be
-too big for any one computer.
+machines serving websites, providing shared storage, providing webservices (such as e-mail or social
+media platforms), as well as more traditional "compute" resources. An *HPC system* on the other hand,
+is a term used to describe a network of computers. The computers in a cluster typically share a common
+purpose, and are used to accomplish tasks that might otherwise be too big for any one computer.
 
 ## Logging in
 
@@ -66,6 +67,16 @@ entire computing cluster. So what's really happening? What computer have we logg
 of the current computer we are logged onto can be checked with the `hostname` command. (You may also
 notice that the current hostname is also part of our prompt!)
 
+```
+{{ site.host_prompt}} hostname
+```
+{: .bash}
+
+```
+{{ site.host_name }}
+```
+{: .output}
+
 ## Nodes
 
 Individual computers that compose a cluster are typically called *nodes* (although you will also
@@ -76,8 +87,8 @@ gateway, it is well suited for uploading and downloading files, setting up softw
 quick tests. It should never be used for doing actual work.
 
 The real work on a cluster gets done by the *worker* (or *compute*) *nodes*. Worker nodes come in
-many shapes and sizes, but generally are dedicated to doing all of the heavy lifting that needs
-doing.
+many shapes and sizes, but generally are dedicated to long or hard tasks that require a lot of
+computational resources.
 
 All interaction with the worker nodes is handled by a specialized piece of software called a
 scheduler (the scheduler used in this lesson is called {{ site.workshop_shed_name }}). We'll
@@ -101,15 +112,21 @@ infrastructure-related tasks. Although we do not typically logon to or interact 
 directly, they enable a number of key features like ensuring our user account and files are
 available throughout the HPC system.
 
-**This is an important point to remember: files saved on one node (computer) are often available
-everywhere on the cluster!**
+> ## Shared file systems
+> This is an important point to remember: files saved on one node (computer) are often available
+> everywhere on the cluster!
+{: .callout}
 
 ## What's in a node? 
 
 All of a HPC system's nodes have the same components as your own laptop or desktop: *CPUs* (sometimes
 also called *processors* or *cores*), *memory* (or *RAM*), and *disk* space. CPUs are a computer's
 tool for actually running programs and calculations. Information about a current task is stored in
-the computer's memory. Disk is a computer's long-term storage for information it will need later.
+the computer's memory. Disk refers to all storage that can be accessed like a file system. This is
+generally storage that can hold data permanently, i.e. data is still there even if the computer has
+been restarted.
+
+{% include figure.html url="" max-width="40%" file="/fig/node_anatomy.png" alt="Node anatomy" caption="" %}
 
 > ## Explore Your Computer
 >
@@ -125,15 +142,6 @@ the computer's memory. Disk is a computer's long-term storage for information it
 > {{ site.host_prompt}} nproc --all
 > ```
 > {: .language-bash}
->
-> or
->
-> ```
-> {{ site.host_prompt}} lscpu
-> ```
-> {: .language-bash}
->
-> to see full details.
 > 
 > How about memory? Try running: 
 >
@@ -141,16 +149,36 @@ the computer's memory. Disk is a computer's long-term storage for information it
 > {{ site.host_prompt}} free -m
 > ```
 > {: .language-bash}
+{: .challenge}
+
+
+
+> ## Getting more information
 >
-> or for more details: 
+> You can get more detailed information on both the processors and memory by using different commands.
 >
+> For more information on processors use `lscpu`
+> ```
+> {{ site.host_prompt}} lscpu
+> ```
+> {: .language-bash}
+>
+> For more information on memory you can look in the `/proc/meminfo` file:
 > ```
 > {{ site.host_prompt}} cat /proc/meminfo
 > ```
 > {: .language-bash}
-{: .challenge}
+{: .callout}
 
 {% include /snippets/12/explore.snip %}
+
+> ## Compare Your Computer, the Head Node and the Worker Node
+>
+> Compare your laptop's number of processors and memory with the numbers you see on the cluster 
+> head node and worker node. Discuss the differences with your neighbor. What implications do
+> you think the differences might have on running your research work on the different systems
+> and nodes?
+{: .challenge}
 
 > ## Units and Language
 > 
@@ -169,7 +197,9 @@ the computer's memory. Disk is a computer's long-term storage for information it
 {: .callout}
 
 > ## Differences Between Nodes
-> Many HPC clusters have a variety of nodes optimized for particular workloads. Some nodes may have larger amount of memory, or specialized resources such as Graphical Processing Units (GPUs).
+> Many HPC clusters have a variety of nodes optimized for particular workloads. Some nodes
+> may have larger amount of memory, or specialized resources such as Graphical Processing Units
+> (GPUs).
 {: .callout}
 
 With all of this in mind, we will now cover how to talk to the cluster's scheduler, and use it to
