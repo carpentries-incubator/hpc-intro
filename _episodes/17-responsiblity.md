@@ -36,7 +36,7 @@ The login node is often very busy managing lots of users logged in, creating and
 and compiling software! It doesn’t have any extra space to run computational work.
 
 Don’t run jobs on the login node (though quick tests are generally fine). A “quick test” is
-generally anything that uses less than 4GB of memory, 4 CPUs, and 10 minutes of time. If you
+generally anything that uses less than 5 minutes of time. If you
 use too much resource then other users on the login node will start to be affected - their
 login sessions will start to run slowly and may even freeze or hang. 
 
@@ -48,7 +48,7 @@ login sessions will start to run slowly and may even freeze or hang.
 >
 {: .callout}
 
-Remember, you can always use the commands `top` and `ps ux` to list the processes you are running on a login
+You can always use the commands `top` and `ps ux` to list the processes you are running on a login
 node and the amount of CPU and memory they are using. The `kill` command can be used along
 with the *PID* to terminate any processes that are using large amounts of resource.
 
@@ -80,7 +80,7 @@ idle compute nodes).
 
 On very busy resources you may wait many days in a queue for your job to fail within 10 seconds
 of starting due to a trivial typo in the job script. This is extremely frustrating! Most
-systems provide small, short queues for testing that have short wait times to help you 
+systems provide dedicated resources for testing that have short wait times to help you 
 avoid this issue.
 
 > ## Test job submission scripts that use large amounts of resource
@@ -157,11 +157,8 @@ As mentioned above, if you have related data that consists of a large number of 
 is strongly recommended to pack the files into a larger *archive* file for long term storage and
 transfer. A single large file makes more efficient use of the file system and is easier to move,
 copy and transfer because significantly fewer meta-data operations are required. Archive files can
-be created using tools like `tar`, `cpio` and `zip`. We are going to look at `tar` as it is the 
-most commonly used.
-
-The `tar` command packs files into a "Tape ARchive" format intended for backup purposes. To create
-a compressed archive file from a directory you can use:
+be created using tools like `tar` and `zip`. We have already met `tar` when we talked about data
+transfer earlier. Here is another example where we show how a archive can be created and verified:
 
 ```
 {{ site.host_prompt }} tar -cvWlf mydata.tar mydata
