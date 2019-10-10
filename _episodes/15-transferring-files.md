@@ -86,16 +86,57 @@ Hit "Quickconnect" to connect! You should see your remote files appear on the ri
 screen. You can drag-and-drop files between the left (local) and right (remote) sides of the screen
 to transfer files.
 
-## Compressing files
+## Archiving files
 
-Sometimes we will want to compress files ourselves to make file transfers easier. The larger the
-file, the longer it will take to transfer. Moreover, we can compress a whole bunch of little files
-into one big file to make it easier on us (no one likes transferring 70000 little files)!
+One of the biggest challenges we often face when transferring data between remote HPC systems
+is that of large numbers of files. There is an overhead to transferring each individual file 
+and when we are transferring large numbers of files these overheads combine to slow down our
+transfers to a large degree.
 
-The two compression commands we'll probably want to remember are the following:
+The solution to this problem is to *archive* multiple files into smaller numbers of larger files
+before we transfer the data to improve our transfer efficiency. Sometimes we will combine 
+archiving with *compression* to reduce the amount of data we have to transfer and so speed up
+the transfer.
 
-* Compress a single file with Gzip - `gzip filename`
-* Compress a lot of files/folders with Gzip - `tar -czvf archive-name.tar.gz folder1 file2 folder3  etc.`
+The most common archiving command you will use on (Linux) HPC cluster is `tar`. `tar` can be used
+to combine files into a single archive file and, optionally, compress. For example, to combine
+all files within a folder called `output_data` into an archive file called `output_data.tar` we
+would use:
+
+```
+tar -cvf output_data.tar output_data/
+```
+{: .bash}
+
+We also use the `tar` command to extract the files from the archive once we have transferred it:
+
+```
+tar -xvf output_data.tar
+```
+{: .bash}
+
+This will put the data into a directory called `output_data`. Be careful, it will overwrite data there if this
+directory already exists!
+
+Sometimes you may also want to compress the archive to save space and speed up the transfer. However,
+you should be aware that for large amounts of data compressing and un-compressing can take longer
+than transferring the un-compressed data  so you may not want to transfer. To create a compressed
+archive using `tar` we add the `-z` option and add the `.gz` extension to the file to indicate
+it is compressed, e.g.:
+
+```
+tar -czvf output_data.tar.gz output_data/
+```
+{: .bash}
+
+The `tar` command is used to extract the files from the archive in exactly the same way as for
+uncompressed data as `tar` recognizes it is compressed and un-compresses and extracts at the 
+same time:
+
+```
+tar -xvf output_data.tar.gz
+```
+{: .bash}
 
 > ## Transferring files
 >
