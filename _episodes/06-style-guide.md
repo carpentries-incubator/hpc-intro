@@ -183,6 +183,14 @@ Please label links with meaningful texts, in order to [improve
 accessibility](https://webaccess.berkeley.edu/ask-pecan/click-here). Please avoid
 `click here` or similar.
 
+## Menu Items
+
+Use double quotes for menu and submenu items. For multiple menu and submenu options in a sequence, use the right angle bracket or greater than sign.
+
+e.g.:
+
+"Help" > "Check for updates"  
+
 ## Title Casing
 
 Lesson and episode titles should be written in title case e.g.
