@@ -26,61 +26,9 @@ The syntax is: `wget https://some/link/to/a/file.tar.gz`. For example, download 
 lesson sample files using the following command:
 
 ```
-[remote]$ wget https://hpc-carpentry.github.io/hpc-intro/files/bash-lesson.tar.gz
+{{ site.host_prompt }} wget {{ site.url }}{{ site.baseurl }}/bash-lesson.tar.gz
 ```
 {: .bash}
-
-
-##  Compressing files
-
-Let's look at the file we just downloaded:
-
-```
-[remote]$ ls
-bash-lesson.tar.gz
-```
-{: .bash}
-
-You may recognize that this is a compressed file, or an *archive*, by the file extension `tar.gz`. 
-Sometimes it is convenient to compress files to make file transfers easier. 
-The larger the file, the longer it will take to transfer. Moreover, we can compress a whole bunch of little files
-into one big file to make it easier on us (no one likes transferring 70000 little files)!
-
-Let's extract this file with the `tar` command:
-
-```
-[remote]$ tar -xf bash-lesson.tar.gz
-```
-{: .bash}
-
-```
-[remote]$ ls
-bash-lesson.tar.gz                           SRR307023_1.fastq  SRR307025_1.fastq  SRR307027_1.fastq  SRR307029_1.fastq
-dmel-all-r6.19.gtf                           SRR307023_2.fastq  SRR307025_2.fastq  SRR307027_2.fastq  SRR307029_2.fastq
-dmel_unique_protein_isoforms_fb_2016_01.tsv  SRR307024_1.fastq  SRR307026_1.fastq  SRR307028_1.fastq  SRR307030_1.fastq
-gene_association.fb                          SRR307024_2.fastq  SRR307026_2.fastq  SRR307028_2.fastq  SRR307030_2.fastq
-``` 
-{: .output}
-
-To compress files, we can use the `tar` command again, but this time with the `-c` 
-flag to indicate we want to compress files. The syntax for compressing files is 
-`tar -czf archive-name.tar.gz file1 file2 ...`. Let's make another archive that contains
-only the `fasta` files:
-
-```
-[remote]$ tar -czf bash-lesson_fastq.tar.gz *.fastq
-```
-{: .bash}
-
-```
-[remote]$ ls
-bash-lesson_fastq.tar.gz                     SRR307023_1.fastq  SRR307025_2.fastq  SRR307028_1.fastq  SRR307030_2.fastq
-bash-lesson.tar.gz                           SRR307023_2.fastq  SRR307026_1.fastq  SRR307028_2.fastq
-dmel-all-r6.19.gtf                           SRR307024_1.fastq  SRR307026_2.fastq  SRR307029_1.fastq
-dmel_unique_protein_isoforms_fb_2016_01.tsv  SRR307024_2.fastq  SRR307027_1.fastq  SRR307029_2.fastq
-gene_association.fb                          SRR307025_1.fastq  SRR307027_2.fastq  SRR307030_1.fastq
-```
-{: .output}
 
 ## Transferring single files and folders with scp
 
@@ -89,13 +37,13 @@ for new users, but we'll break it down here:
 
 To transfer *to* another computer:
 ```
-[local]$ scp /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
+{{ site.local_prompt }} scp /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
 ```
 {: .bash}
 
 To download *from* another computer:
 ```
-[local]$ scp yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
+{{ site.local_prompt }} scp yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
 ```
 {: .bash}
 
@@ -104,14 +52,14 @@ after the `:` is relative to our home directory. We can simply just add a `:` an
 if we don't care where the file goes.
 
 ```
-[local]$ scp local-file.txt yourUsername@remote.computer.address:
+{{ site.local_prompt }} scp local-file.txt yourUsername@remote.computer.address:
 ```
 {: .bash}
 
 To recursively copy a directory, we just add the `-r` (recursive) flag:
 
 ```
-[local]$ scp -r some-local-folder/ yourUsername@remote.computer.address:target-directory/
+{{ site.local_prompt }} scp -r some-local-folder/ yourUsername@remote.computer.address:target-directory/
 ```
 {: .bash}
 
@@ -129,7 +77,7 @@ hand side.
 
 To connect to the cluster, we'll just need to enter our credentials at the top of the screen:
 
-* Host: `sftp://{{ site.login_host }}`
+* Host: `sftp://{{ site.host_login }}`
 * User: Your cluster username
 * Password: Your cluster password
 * Port: (leave blank to use the default port)
@@ -137,6 +85,64 @@ To connect to the cluster, we'll just need to enter our credentials at the top o
 Hit "Quickconnect" to connect! You should see your remote files appear on the right hand side of the
 screen. You can drag-and-drop files between the left (local) and right (remote) sides of the screen
 to transfer files.
+
+## Archiving files
+
+One of the biggest challenges we often face when transferring data between remote HPC systems
+is that of large numbers of files. There is an overhead to transferring each individual file 
+and when we are transferring large numbers of files these overheads combine to slow down our
+transfers to a large degree.
+
+The solution to this problem is to *archive* multiple files into smaller numbers of larger files
+before we transfer the data to improve our transfer efficiency. Sometimes we will combine 
+archiving with *compression* to reduce the amount of data we have to transfer and so speed up
+the transfer.
+
+The most common archiving command you will use on (Linux) HPC cluster is `tar`. `tar` can be used
+to combine files into a single archive file and, optionally, compress. For example, to combine
+all files within a folder called `output_data` into an archive file called `output_data.tar` we
+would use:
+
+```
+tar -cvf output_data.tar output_data/
+```
+{: .bash}
+
+We also use the `tar` command to extract the files from the archive once we have transferred it:
+
+```
+tar -xvf output_data.tar
+```
+{: .bash}
+
+This will put the data into a directory called `output_data`. Be careful, it will overwrite data there if this
+directory already exists!
+
+Sometimes you may also want to compress the archive to save space and speed up the transfer. However,
+you should be aware that for large amounts of data compressing and un-compressing can take longer
+than transferring the un-compressed data  so you may not want to transfer. To create a compressed
+archive using `tar` we add the `-z` option and add the `.gz` extension to the file to indicate
+it is compressed, e.g.:
+
+```
+tar -czvf output_data.tar.gz output_data/
+```
+{: .bash}
+
+The `tar` command is used to extract the files from the archive in exactly the same way as for
+uncompressed data as `tar` recognizes it is compressed and un-compresses and extracts at the 
+same time:
+
+```
+tar -xvf output_data.tar.gz
+```
+{: .bash}
+
+> ## Transferring files
+>
+> Using one of the above methods, try transferring files to and from the cluster. Which method do
+> you like the best?
+{: .challenge}
 
 > ## Working with Windows
 >
@@ -166,11 +172,5 @@ to transfer files.
 > an SSH connection. If you can connect via SSH over the normal port, you will be able to transfer
 > files.
 {: .callout}
-
-> ## Transferring files
->
-> Using one of the above methods, try transferring files to and from the cluster. Which method do
-> you like the best?
-{: .challenge}
 
 {% include links.md %}
