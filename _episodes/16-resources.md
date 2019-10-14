@@ -25,9 +25,14 @@ Answer: we don't. Not until we've tried it ourselves at least once. We'll need t
 and experiment with it before we know how much it needs in the way of resources.
 
 The most effective way of figuring out how much resources a job needs is to submit a test job, and
-then ask the scheduler how many resources it used. A good rule of thumb is to ask the scheduler for
-more time and memory than your job can use. This value is typically two to three times what you
-think your job will need.
+then ask the scheduler how many resources it used.
+
+A good rule of thumb is to ask the scheduler for more time and memory than you expect your job to
+need. This ensures that minor fluctuations in run time or memory use will not result in your job
+being canceled by the scheduler. Recommendations for how much extra to ask for vary but 10% is 
+probably the minimum, with 20-30% being more typical. Keep in mind that if you ask for too much,
+your job may not run even though enough resources are available, because the scheduler will be
+waiting to match what you asked for.
 
 {% include /snippets/16/bench.snip %}
 
