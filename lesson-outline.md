@@ -46,25 +46,33 @@ Lesson will cover SLURM by default, other schedulers are planned.  From [hpc-in-
     * Extras: .bashrc, .bash_profile
 
 * [15-Filesystems and Storage]
+This topic didn't get fleshed out too far. But objectives could include:
+    * Understand the difference between a local and shared/network filesystem
+    * Learn about high performance / scratch Filesystems
+    * Raise the attention that misuse (intentional or not) of a common file system neatively affects all users very quickly.
+    * Possible tools: echo $TEMP, ls -al /tmp, df, quota
 
 * [16- Transferring Files]
-    * Be able to transfer files to and from a computing cluster.
+    * Understand the (cognitive) limitations that remote systems don't necessarily have local Finder/Explorer windows
+    * Be mindful of network and speed restrictions (e.g. cannot push from cluster; many files vs one archive)
+    * Know what tools can be used for file transfers, and transfer modes (binary vs text)
+    * Objective: Be able to transfer files to and from a computing cluster.
     * Tools: wget, scp, rsync (callout), mkdir, FileZilla, 
     * Remove: dos2unix, unix2dos,
     * Bonus: gzip, tar, dos2unix, cat, unix2dos, sftp, pwd, lpwd, put, get, 
     * Later:
 
 * [17- Using Resources Effectively]
-    * Understand how to look up job statistics and profile code.
-    * Understand job size implications.
-    * Tools: fastqc, sacct, ssh, top, free, ps, kill, killall
+    * Understand how to look up job statistics
+    * Learn some very basic techniques to monitor / profile code execution.
+    * Understand job size and resource request implications.
+    * Tools: fastqc, sacct, ssh, top, free, ps, kill, killall (note that some of these may not be appropriate on shared systems)
 
-# Lesson ideas up for debate
+# Previous lesson ideas up for debate
 
 * Using software and environment modules (a repetition of [hpc-shell](https://github.com/hpc-carpentry/hpc-shell) potentially)
 
 * Playing friendly in the cluster (psteinb: the following is very tricky as it is site dependent, I personally would like to see it in [_extras](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_extras))
-
 	* Understanding resource utilisation
 	* Profiling code - time, size, etc.
 	* Getting system stats
@@ -72,12 +80,12 @@ Lesson will cover SLURM by default, other schedulers are planned.  From [hpc-in-
 	
 
 * `Advanced-jobs.md` (doesn't exist yet)
-        * Checking status of jobs (`squeue`, `bjobs` etc.), explain different job states and relate to scheduler basics
-        * Cancelling/deleting a job (`scancel`, `bkill` etc.)
-        * Passing options to the scheduler (log files)
-        * Callout: Changing a job's name
-        * Optional Callout: Send an email once the job completes (not all sites support sending emails)
-        * for a starting point, see [this](https://psteinb.github.io/hpc-in-a-day/02-02-advanced-job-scheduling/) for reference
+	* Checking status of jobs (`squeue`, `bjobs` etc.), explain different job states and relate to scheduler basics
+	* Cancelling/deleting a job (`scancel`, `bkill` etc.)
+	* Passing options to the scheduler (log files)
+	* Callout: Changing a job's name
+	* Optional Callout: Send an email once the job completes (not all sites support sending emails)
+	* for a starting point, see [this](https://psteinb.github.io/hpc-in-a-day/02-02-advanced-job-scheduling/) for reference
         
         
 * `Filesystem-zoo.md` (doesn't exist yet)
