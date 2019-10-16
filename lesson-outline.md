@@ -20,9 +20,10 @@ The following list of items is meant as a guide on what content should go where 
     * Jargon busting
 
 * [12-cluster.md: Accessing the Cluster](_episodes/12-cluster.md)
-    * Connect to a cluster using ssh: 
-    * Transfer files to and from the cluster
-    * Run the hostname command on a compute node of the cluster.
+    * Understand the purpose of using a terminal program and SSH
+    * Learn the basics of working on a remote system
+    * Know the differences of between login and compute nodes
+    * Objectives: Connect to a cluster using ssh; Transfer files to and from the cluster; Run the hostname command on a compute node of the cluster.
     * Potential tools: ssh, ls, hostname, logout, nproc, free, scp, man, w
   
 * [13-scheduler.md: Working with the Scheduler](_episodes/13-scheduler.md): Lesson will cover SLURM by default, other schedulers are planned.  From [hpc-in-a-day](https://github.com/psteinb/hpc-in-a-day) we know that material comprising Slurm, PBS and LSF is possible, but hard already as e.g. PBS doesn't support direct dispatchment as `srun`.
