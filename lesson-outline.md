@@ -19,13 +19,13 @@ The following list of items is meant as a guide on what content should go where 
     * Identify how an compute cluster could benefit you.
     * Jargon busting
 
-* [12-cluster.md: Accessing the Cluster](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_episodes/12-cluster.md)
+* [12-cluster.md: Accessing the Cluster](_episodes/12-cluster.md)
     * Connect to a cluster using ssh: 
     * Transfer files to and from the cluster
     * Run the hostname command on a compute node of the cluster.
     * Potential tools: ssh, ls, hostname, logout, nproc, free, scp, man, w
   
-* [13-scheduler.md: Working with the Scheduler](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_episodes/13-scheduler.md): Lesson will cover SLURM by default, other schedulers are planned.  From [hpc-in-a-day](https://github.com/psteinb/hpc-in-a-day) we know that material comprising Slurm, PBS and LSF is possible, but hard already as e.g. PBS doesn't support direct dispatchment as `srun`.
+* [13-scheduler.md: Working with the Scheduler](_episodes/13-scheduler.md): Lesson will cover SLURM by default, other schedulers are planned.  From [hpc-in-a-day](https://github.com/psteinb/hpc-in-a-day) we know that material comprising Slurm, PBS and LSF is possible, but hard already as e.g. PBS doesn't support direct dispatchment as `srun`.
     * Know how to submit a program and batch scrip to the cluster (interactive & batch)
     * Use the batch system command line tools to monitor the execution of your job.
     * Inspect the output and error files of your jobs.
@@ -34,7 +34,7 @@ The following list of items is meant as a guide on what content should go where 
     * Remove? watch, 
     * Later lessons? -N -n -c
     
-* [14-modules.md: Accessing Software](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_episodes/14-modules.md)
+* [14-modules.md: Accessing Software](_episodes/14-modules.md)
     * Understand the runtime environment at login
     * Learn how software modules can modify your environment
     * Learn how modules prevent problems and promote reproducibility
@@ -43,13 +43,13 @@ The following list of items is meant as a guide on what content should go where 
     * Remove: make, git clone, 
     * Extras: .bashrc, .bash_profile
 
-* [15-Filesystems and Storage]: This topic didn't get fleshed out in the call. But objectives could include items from PStein's [Shared Filesystem lesson](https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/01-04-shared-filesystem.md):
+* [15-Filesystems and Storage]: This topic didn't get fleshed out in the call. But objectives likely include items from PStein's [Shared Filesystem lesson](https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/01-04-shared-filesystem.md):
     * Understand the difference between a local and shared/network filesystem
     * Learn about high performance / scratch Filesystems
     * Raise the attention that misuse (intentional or not) of a common file system neatively affects all users very quickly.
     * Possible tools: echo $TEMP, ls -al /tmp, df, quota
 
-* [15-transferring-files.md: Transferring Files](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_episodes/15-transferring-files.md)
+* [15-transferring-files.md: Transferring Files](_episodes/15-transferring-files.md)
     * Understand the (cognitive) limitations that remote systems don't necessarily have local Finder/Explorer windows
     * Be mindful of network and speed restrictions (e.g. cannot push from cluster; many files vs one archive)
     * Know what tools can be used for file transfers, and transfer modes (binary vs text)
@@ -59,7 +59,7 @@ The following list of items is meant as a guide on what content should go where 
     * Bonus: gzip, tar, dos2unix, cat, unix2dos, sftp, pwd, lpwd, put, get, 
     * Later:
 
-* [16-resources.md: Using Resources Effectively](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_episodes/16-resources.md)
+* [16-resources.md: Using Resources Effectively](_episodes/16-resources.md)
     * Understand how to look up job statistics
     * Learn how to use job statistics to understand the health of your jobs
     * Learn some very basic techniques to monitor / profile code execution.
