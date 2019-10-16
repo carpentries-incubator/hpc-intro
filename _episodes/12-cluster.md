@@ -1,71 +1,48 @@
 ---
-title: "Working on a cluster"
-teaching: 15
+title: "Working on a remote HPC system"
+teaching: 25
 exercises: 10
 questions:
-- "How do I log on to a cluster?"
-- "How do I transfer data to a cluster?"
-- "How is a cluster different to my laptop?"
-- "How do I run processes on the cluster?"
+- "What is an HPC system?"
+- "How does an HPC system work?"
+- "How do I log on to a remote HPC system?"
 objectives:
-- "Connect to a cluster using ssh."
-- "Transfer files to and from the cluster."
-- "Run the `hostname` command on a compute node of the cluster." 
+- "Connect to a remote HPC system."
+- "Understand the general HPC system architecture."
 keypoints:
-- "Clusters (almost always) provide a login node."
-- "You connect to the login node by special software using an encrypted connection."
-- "Data has to be transferred to and from the cluster using specialized software."
-- "A cluster is a shared resource."
-- "Running a process on the cluster requires using the scheduler."
+- "An HPC system is a set of networked machines."
+- "HPC systems typically provides login nodes and a set of worker nodes."
+- "The resources found on independent (worker) nodes can vary in volume and type (amount of RAM, processor architecture, availability of network mounted file systems, etc.)."
+- "Files saved on one node are available on all nodes."
 ---
 
-## The Story
+## What is an HPC system?
 
-Throughout this material, we will assist Lola Curious and look over her shoulder while she is 
-starting to work at the Institute of Things as a side job to earn some extra money. On the first
-day, her supervisor greets her friendly and welcomes her to the job. She explains what her task is
-and suggests her that she will need to use the cluster on the campus. Lola has so far used her 
-Laptop at home for her studies, so the idea of using a super computer appears a bit intimidating to
-her. Her supervisor notices her anxiety and tells her that she will receive an introduction to the
-super computer after she has requested an account on the cluster. 
+The words "cloud", "cluster", and "high-performance computing" are used a lot in different contexts
+and with varying degrees of correctness. So what do they mean exactly? And more importantly, how do
+we use them for our work?
 
-Lola walks to the IT department and finishes the paper work to get an account. One of the admins 
-promises to sit down with her in the morning to show her the way around the machine. The admin 
-explains that Lola will use a small to mid-range HPC cluster.
+The *cloud* is a generic term commonly used to refer to remote computing resources of any kind --
+that is, any computers that you use but are not right in front of you. Cloud can refer to
+machines serving websites, providing shared storage, providing webservices (such as e-mail or social
+media platforms), as well as more traditional "compute" resources. An *HPC system* on the other hand,
+is a term used to describe a network of computers. The computers in a cluster typically share a common
+purpose, and are used to accomplish tasks that might otherwise be too big for any one computer.
 
-## Going remote
+## Logging in
 
-First of all, the admin asks Lola to connect to the super computer. The admin asks Lola to open 
-a terminal on her laptop and type in the following commands:
+Go ahead and log in to the cluster: {{ site.host_name }} at {{ site.host_location }}.
+```
+{{ site.local_prompt }} ssh yourUsername@{{ site.host_login }}
+```
+{: .bash}
 
-~~~ 
-$ ssh lola@{{ site.login_host }}
-~~~
-{: .language-bash}
+Remember to replace `yourUsername` with the username supplied by the instructors. You will be asked for
+your password. But watch out, the characters you type are not displayed on the screen.
 
-> ## Logging in
-> 
-> If you do this material on your own, be sure to replace `lola` with the username that is 
-> attributed to you on {{ site.login_host }}. When you hit enter, a prompt like this might appear:
->
-> ~~~
-> lola@{{ site.login_host }}'s password:
-> ~~~
-> {: .output}
-> 
-> Now is your chance to type in your password. But watch out, the characters you type are not
->  displayed on the screen.
-{: .callout}
-
-~~~ 
-Last login: Fri Dec 14 14:13:14 2018 from lolas_laptop
-$ 
-~~~
-{: .output}
-
-The admin explains to Lola that she is using a program known as the secure shell or `ssh`. 
-This establishes a temporary encrypted connection between Lola's laptop and `{{ site.login_host }}`.
-The word before the `@` symbol, e.g. `lola` here, is the user account name that Lola has access 
+You are logging in using a program known as the secure shell or `ssh`. 
+This establishes a temporary encrypted connection between your laptop and `{{ site.host_login }}`.
+The word before the `@` symbol, e.g. `yourUsername` here, is the user account name that Lola has access 
 permissions for on the cluster. 
 
 > ## Where do I get this `ssh` from ?
@@ -82,65 +59,126 @@ permissions for on the cluster.
 > your password just like in the example above.
 {: .callout}
 
-Lola is asked to use a UNIX command called `ls` (for list directory contents) to have a look 
-around. 
+## Where are we?
 
-~~~ 
-$ ls
-~~~
-{: .language-bash}
+Very often, many users are tempted to think of a high-performance computing installation as one
+giant, magical machine. Sometimes, people will assume that the computer they've logged onto is the
+entire computing cluster. So what's really happening? What computer have we logged on to? The name
+of the current computer we are logged onto can be checked with the `hostname` command. (You may also
+notice that the current hostname is also part of our prompt!)
 
-~~~ 
-~~~
+```
+{{ site.host_prompt}} hostname
+```
+{: .bash}
+
+```
+{{ site.host_name }}
+```
 {: .output}
 
-There is nothing displayed. To prove, that Lola is really logged in to another machine, 
-Lola issues a command that prints the name of the machine she is currently working on:
+## Nodes
 
-~~~ 
-$ hostname
-~~~
-{: .language-bash}
+Individual computers that compose a cluster are typically called *nodes* (although you will also
+hear people call them *servers*, *computers* and *machines*). On a cluster, there are different
+types of nodes for different types of tasks. The node where you are right now is called the *head
+node*, *login node* or *submit node*. A login node serves as an access point to the cluster. As a
+gateway, it is well suited for uploading and downloading files, setting up software, and running
+quick tests. It should never be used for doing actual work.
 
-~~~ 
-{{ site.login_host }}
-~~~
+The real work on a cluster gets done by the *worker* (or *compute*) *nodes*. Worker nodes come in
+many shapes and sizes, but generally are dedicated to long or hard tasks that require a lot of
+computational resources.
+
+All interaction with the worker nodes is handled by a specialized piece of software called a
+scheduler (the scheduler used in this lesson is called {{ site.workshop_shed_name }}). We'll
+learn more about how to use the scheduler to submit jobs next, but for now, it can also tell us
+more information about the worker
+nodes.
+
+For example, we can view all of the worker nodes with the `{{ site.sched_info }}` command.
+
+```
+{{ site.host_prompt}} {{ site.sched_info }}
+```
+{: .bash}
+```
+{% include /snippets/12/info.snip %}
+```
 {: .output}
 
-The admin explains that Lola has to work with this remote shell session in order to
-run programs on the cluster. Launching programs that open a Graphical User Interface
-(GUI) is possible, but the interaction with the GUI will be slow as everything will
-have to get transferred through the WiFi network her laptop is currently logged into.
-Before Rob continues, he suggests to leave the cluster node again. For this, Lola can
-type in `logout` or `exit`.
+There are also specialized machines used for managing disk storage, user authentication, and other
+infrastructure-related tasks. Although we do not typically logon to or interact with these machines
+directly, they enable a number of key features like ensuring our user account and files are
+available throughout the HPC system.
 
-~~~ 
-$ logout
-~~~
-{: .language-bash}
+> ## Shared file systems
+> This is an important point to remember: files saved on one node (computer) are often available
+> everywhere on the cluster!
+{: .callout}
 
-## Looking around more
+## What's in a node? 
 
-The admin continues to encourage Lola to look around. She explains that all of a 
-cluster's nodes have similar components as Lola's laptop or workstation. 
+All of a HPC system's nodes have the same components as your own laptop or desktop: *CPUs* (sometimes
+also called *processors* or *cores*), *memory* (or *RAM*), and *disk* space. CPUs are a computer's
+tool for actually running programs and calculations. Information about a current task is stored in
+the computer's memory. Disk refers to all storage that can be accessed like a file system. This is
+generally storage that can hold data permanently, i.e. data is still there even if the computer has
+been restarted.
 
-- every cluster node offers a certain amount of CPU (Central Processing Unit) cores.
-To see how many, Lola can run
+{% include figure.html url="" max-width="40%" file="/fig/node_anatomy.png" alt="Node anatomy" caption="" %}
 
-~~~
-$ nproc --all
-~~~
-{: .language-bash}
+> ## Explore Your Computer
+>
+> Try to find out the number of CPUs and amount of memory available on your personal computer.
+{: .challenge}
 
-- every cluster node has a certain amount of memory or 
-[RAM](https://en.wikipedia.org/wiki/Random-access_memory) (Random-access memory). 
-To see much memory `{{ site.login_host }}` in units of 
-[Gigabyte](https://en.wikipedia.org/wiki/Gigabyte) has, Lola can run
+> ## Explore The Head Node
+>
+> Now we'll compare the size of your computer with the size of the head node: To see the number of
+> processors, run:
+>
+> ```
+> {{ site.host_prompt}} nproc --all
+> ```
+> {: .language-bash}
+> 
+> How about memory? Try running: 
+>
+> ```
+> {{ site.host_prompt}} free -m
+> ```
+> {: .language-bash}
+{: .challenge}
 
-~~~
-$ free -g
-~~~
-{: .language-bash}
+
+
+> ## Getting more information
+>
+> You can get more detailed information on both the processors and memory by using different commands.
+>
+> For more information on processors use `lscpu`
+> ```
+> {{ site.host_prompt}} lscpu
+> ```
+> {: .language-bash}
+>
+> For more information on memory you can look in the `/proc/meminfo` file:
+> ```
+> {{ site.host_prompt}} cat /proc/meminfo
+> ```
+> {: .language-bash}
+{: .callout}
+
+{% include /snippets/12/explore.snip %}
+
+> ## Compare Your Computer, the Head Node and the Worker Node
+>
+> Compare your laptop's number of processors and memory with the numbers you see on the cluster 
+> head node and worker node. Discuss the differences with your neighbor. What implications do
+> you think the differences might have on running your research work on the different systems
+> and nodes?
+{: .challenge}
 
 > ## Units and Language
 > 
@@ -158,242 +196,13 @@ $ free -g
 >  etc. For more details, see [here](https://en.wikipedia.org/wiki/Binary_prefix)
 {: .callout}
 
-> ## Relative to your Laptop
-> 
-> Note down the number of CPU cores, the amount of RAM and the total disk space available 
-> on `{{ site.login_host }}`. Compare it to your laptop!
-> 
-> Bonus: Divide the values obtained from `{{ site.login_host }}` by the numbers obtained 
-> for your laptop. How much more powerful is the login node of the cluster compared to your laptop?
-{: .challenge}
-
-
-## Transferring Data
-
-The admin continues to explain, that typically people perform computationally heavy tasks on the 
-cluster and prepare files that contain the results or a subset of data to create final results 
-on the individuals laptop. So communication to and from the cluster is done mostly by transferring
-files. For example, Lola is asked to use a [file of her liking]({{page.root}}/filesystem/home/admin/this_weeks_canteen_menus/todays_canteen_menu.pdf) and transfer it over. For this, he advises her to use the secure copy command, `scp`. As before, this establishes a secure encrypted temporary connection between Lola's laptop and the cluster just for the sake of transferring the files. After the transfer has completed, scp will close the connection again.
-
-~~~ 
-$ scp todays_canteen_menu.pdf lola@{{ site.login_host }}:todays_canteen_menu.pdf
-~~~
-{: .language-bash}
-
-~~~ 
-todays_canteen_menu.pdf                                              100%   28KB  27.6KB/s   00:00
-~~~
-{: .output}
-
-She can now `ssh` into the cluster again and check, if the file has arrived after she just 
-uploaded it:
-
-~~~ 
-$ ssh lola@{{ site.login_host }}
-Last login: Tue Mar 14 14:17:44 2017 from lolas_laptop
-$ ls
-~~~
-{: .language-bash}
-
-~~~ 
-todays_canteen_menu.pdf
-~~~
-{: .output}
-
-Now, let's try the other way around, i.e. downloading a file from the cluster to Lola's laptop.
-For this, Lola has to swap the two arguments of the `scp` command she just issued.
-
-~~~ 
-$ scp lola@{{ site.login_host }}:todays_canteen_menu.pdf todays_canteen_menu_downloaded.pdf
-~~~
-{: .language-bash}
-
-Lola notices how the command line changed. First, she has to enter the source 
-(`lola@{{ site.login_host }}`) then put a `:` and continue with the path of the file she wants
-to download. After that, separated by a space, the destination has to be provided, which in this
-case is a file `todays_canteen_menu_downloaded.pdf` in the current directory.
-
-~~~
-todays_canteen_menu.pdf                                                100%   28KB  27.6KB/s   00:00
-~~~
-{: .output}
-
-
-> ## Paths Are everywhere
-> 
-> Issuing a `ssh` command always entails the same logic of path or folder description than in
-> the regular shell. For example,
-> 
-> ~~~ 
-> $ scp lola@{{ site.login_host }}:todays_canteen_menu.pdf todays_canteen_menu_downloaded.pdf
-> ~~~
-> {: .language-bash}
-> 
-> yields two relative paths. For the remote source `lola@{{ site.login_host }}:todays_canteen_menu.pdf`, 
-> the file name mentioned after the colon, is a relative path to the home directory. For brevity, 
-> this information is not shown. The same is true for the destination on the local machine 
-> `todays_canteen_menu_downloaded.pdf`. This is a relative path to the folder Lola currently works in.
-> The same command as above expressed with absolute paths, could look like this (if Lola currently 
-> works inside `/home/lola/work`):
->
-> ~~~ 
-> $ scp lola@{{ site.login_host }}:/home/lola/todays_canteen_menu.pdf /home/lola/work/todays_canteen_menu_downloaded.pdf
-> ~~~
-> {: .language-bash}
-{: .callout}
-
-Lola has a look in the current directory and indeed `todays_canteen_menu_downloaded.pdf`. 
-She opens it with her pdf reader and can tell that it contains indeed the same content as 
-the original one. The admin explains that if she would have used the same name as the 
-destination, i.e. `todays_canteen_menu.pdf`, `scp` would have overwritten her local copy.
-
-To finish, The admin asks Lola that she can also transfer entire directories. She prepared a
-temporary directory on the cluster for her under `/tmp/this_weeks_canteen_menus`. She asks 
-Lola to obtain a copy of the entire directory onto her laptop.
-
-~~~ 
-$ scp -r lola@{{ site.login_host }}:/tmp/this_weeks_canteen_menus .
-~~~
-{: .language-bash}
-
-~~~ 
-canteen_menu_day_2.pdf                                                 100%   28KB  27.6KB/s   00:00    
-canteen_menu_day_3.pdf                                                 100%   28KB  27.6KB/s   00:00    
-canteen_menu_day_5.pdf                                                 100%   28KB  27.6KB/s   00:00    
-canteen_menu_day_4.pdf                                                 100%   28KB  27.6KB/s   00:00    
-canteen_menu_day_1.pdf                                                 100%   28KB  27.6KB/s   00:00
-~~~
-{: .output}
-
-The trailing `.` is a short-hand to represent the current working directory that Lola currently 
-calls `scp` from. When inspecting this directory, Lola sees the transferred directory:
-
-~~~ 
-$ ls
-~~~
-{: .language-bash}
-
-~~~
-this_weeks_canteen_menus/  todays_canteen_menu_downloaded.pdf  todays_canteen_menu.pdf
-~~~
-{: .output}
-
-A closer look into that directory using the relative path with respect to the current one:
-
-~~~ 
-$ ls this_weeks_canteen_menus/
-~~~
-{: .language-bash}
-
-reveals the transferred files.
-
-~~~ 
-canteen_menu_day_1.pdf  canteen_menu_day_2.pdf  canteen_menu_day_3.pdf  canteen_menu_day_4.pdf  canteen_menu_day_5.pdf
-~~~
-{: .output}
-
-Rob suggests to Lola to consult the man page of `scp` for further details by calling:
-
-~~~ 
-$ man scp
-~~~
-{: .language-bash}
-
-## Using the login node is not using the cluster
-
-As a final word on this lesson, the admin tells Lola that she should never execute long running 
-processes or applications on `{{ site.login_host }}`. This is a server that is used by many users 
-of `{{ site.cluster_name }}`. If Lola starts a lot of long running processes, other users may 
-start seeing their commands taking longer to complete. To actually to do science and complete the
-tasks Lola is meant to complete, a software called __the scheduler__ has to be used. 
-
-> ## All mixed up
->
-> Lola needs to obtain a file called `results.data` from a remote machine that is called 
-> `safe-store-1`. This machine is hidden behind the login node `{{ site.login_host }}`. 
-> However she mixed up the commands somehow that are needed to get the file onto her laptop. 
-> Help her and rearrange the following commands into the right order!
->
-> ~~~
-> $ ssh lola@`{{ site.login_host }}`
-> $ logout
-> $ scp lola@`{{ site.login_host }}`:results.data .
-> $ scp lola@safe-store-1:results.data .
-> ~~~
-> {: .language-bash}
->
-> > ## Solution
-> > ~~~
-> > $ ssh lola@`{{ site.login_host }}`
-> > $ scp lola@safe-store-1:results.data .
-> > $ logout
-> > $ scp lola@`{{ site.login_host }}`:results.data .
-> > ~~~
-> > {: .language-bash}
-> {: .solution}
-{: .challenge}
-
-
-> ## Who is hanging around ?
->
-> The `w` utility displays a list logged-in users and what they are currently doing. Use it to check:
->
-> 1. that nobody but yourself is logged into your laptop/desktop
-> 2. that a lot of people use the login node of your cluster `{{ site.login_host }}`
-{: .challenge}
-
-> ## Where did they go ?
->
-> Rob has a zip file stored under `/tmp/passwords.zip` on the login node of the cluster 
-> `{{ site.login_host }}`. He wants to unzip it on his laptop under `/important/passwords`. 
-> How does he do that?
->
-> 
-> 1.
-> ~~~
-> $ ssh rob@{{ site.login_host }}
-> $ unzip /tmp/passwords.zip
-> ~~~
-> {: .language-bash}
-> 
-> 2.
-> ~~~
-> $ scp {{ site.login_host }}@rob:/tmp/passwords.zip .
-> $ unzip passwords.zip
-> ~~~
-> {: .language-bash}
-> 
-> 3.
-> ~~~
-> $ cd /important/passwords
-> $ scp rob@{{ site.login_host }}:passwords.zip .
-> $ unzip passwords.zip
-> ~~~
-> {: .language-bash}
-> 
-> 4.
-> ~~~
-> $ cd /important/passwords
-> $ scp rob@{{ site.login_host }}:/tmp/passwords.zip .
-> $ unzip passwords.zip
-> ~~~
-> {: .language-bash}
-> 
-> > ## Solution
-> > 
-> > 1. No: Rob only unpacks the zip file, but does not transfer the unpacked files onto his laptop
-> > 2. No: Rob mixed up the syntax for `scp`
-> > 3. No: Rob did not specify the correct path of `/tmp/passwords.zip` on the login node of the 
-> cluster `{{ site.login_host }}`
-> > 4. Yes: you may also use `unzip foo.zip -d /somewhere` if you want to omit the first command
-> {: .solution}
-{: .challenge}
-
 > ## Differences Between Nodes
-> Many HPC clusters have a variety of nodes optimized for particular workloads. Some nodes may have
-> larger amount of memory, or specialized resources such as Graphical Processing Units.
+> Many HPC clusters have a variety of nodes optimized for particular workloads. Some nodes
+> may have larger amount of memory, or specialized resources such as Graphical Processing Units
+> (GPUs).
 {: .callout}
 
-
+With all of this in mind, we will now cover how to talk to the cluster's scheduler, and use it to
+start running our scripts and programs!
 
 {% include links.md %}
