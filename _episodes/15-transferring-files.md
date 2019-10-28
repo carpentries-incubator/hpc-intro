@@ -100,18 +100,23 @@ the transfer.
 
 The most common archiving command you will use on (Linux) HPC cluster is `tar`. `tar` can be used
 to combine files into a single archive file and, optionally, compress. For example, to combine
-all files within a folder called `output_data` into an archive file called `output_data.tar` we
-would use:
+all files of the pattern `output_data/output00001.out`, `output_data/output00002.out`, ... within a folder called `output_data` into an archive file called `output_data.tar` we would use:
 
 ```
-tar -cvf output_data.tar output_data/
+{{ site.local_prompt }} tar -cvf output_data.tar output_data/
 ```
 {: .bash}
 
-We also use the `tar` command to extract the files from the archive once we have transferred it:
+The options we used for `tar` are:
+
+- `-c` - Create new archive
+- `-v` - Verbose (print what you are doing!)
+- `-f mydata.tar` - Create the archive in file *output_data.tar*
+
+The tar command allows users to concatenate flags. Instead of typing `tar -c -v -f`, we can do `tar -cvf`. We can also use the `tar` command to extract the files from the archive once we have transferred it:
 
 ```
-tar -xvf output_data.tar
+{{ site.local_prompt }} tar -xvf output_data.tar
 ```
 {: .bash}
 
@@ -125,7 +130,7 @@ archive using `tar` we add the `-z` option and add the `.gz` extension to the fi
 it is compressed, e.g.:
 
 ```
-tar -czvf output_data.tar.gz output_data/
+{{ site.local_prompt }} tar -czvf output_data.tar.gz output_data/
 ```
 {: .bash}
 
@@ -134,7 +139,7 @@ uncompressed data as `tar` recognizes it is compressed and un-compresses and ext
 same time:
 
 ```
-tar -xvf output_data.tar.gz
+{{ site.local_prompt }} tar -xvf output_data.tar.gz
 ```
 {: .bash}
 
