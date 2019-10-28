@@ -141,6 +141,12 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 > {: .bash}
 > 
 > The `a` (archive) option implies recursion.
+> 
+> To download a file, we simply change the source and destination:
+> ```
+> [local]$ rsync -avzP yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
+> ```
+> {: .bash}
 {: .callout}
 
 ## Transferring files interactively with FileZilla (sftp)
