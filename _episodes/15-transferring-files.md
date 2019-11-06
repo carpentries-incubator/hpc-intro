@@ -99,8 +99,8 @@ archiving with *compression* to reduce the amount of data we have to transfer an
 the transfer.
 
 The most common archiving command you will use on (Linux) HPC cluster is `tar`. `tar` can be used
-to combine files into a single archive file and, optionally, compress. For example, to combine
-all files of the pattern `output_data/output00001.out`, `output_data/output00002.out`, ... within a folder called `output_data` into an archive file called `output_data.tar` we would use:
+to combine files into a single archive file and, optionally, compress. For example, to collect
+all files contained inside `output_data` into an archive file called `output_data.tar` we would use:
 
 ```
 {{ site.local_prompt }} tar -cvf output_data.tar output_data/
