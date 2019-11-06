@@ -113,7 +113,7 @@ The options we used for `tar` are:
 - `-v` - Verbose (print what you are doing!)
 - `-f mydata.tar` - Create the archive in file *output_data.tar*
 
-The tar command allows users to concatenate flags. Instead of typing `tar -c -v -f`, we can do `tar -cvf`. We can also use the `tar` command to extract the files from the archive once we have transferred it:
+The tar command allows users to concatenate flags. Instead of typing `tar -c -v -f`, we can use `tar -cvf`. We can also use the `tar` command to extract the files from the archive once we have transferred it:
 
 ```
 {{ site.local_prompt }} tar -xvf output_data.tar
