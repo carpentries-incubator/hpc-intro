@@ -28,11 +28,10 @@ writer, and then reviewed by the rest of the group once complete.
       when the lesson is built. For example, if the `snippet_name` was `login_output`,
       then the snippet file would be called `login_output.snip`.
    2. Code snippets are placed in subdirectories that are named according to the episode they
-      appear in. For example, if the snippet is for episode 01, then it will be in a 
-      subdirectory called `01`.
-   3. The default is the setup for the Graham Compute Canada cluster hosted at the University
-      of Waterloo which uses the SLURM scheduler. Other examples can be found in the
-      `_extras/snippets_library/` directory.
+      appear in. For example, if the snippet is for episode 12, then it will be in a 
+      subdirectory called `12`.
+   3. In the episodes source, snippets are included using Liquid scripting  `include` statements. For
+      example, the first snippet in episode 12 is included using `{% include /snippets/12/info.snip %}`.
 
 Please contribute any configurations you create for your local systems back into the 
 HPC Carpentry snippets library.
