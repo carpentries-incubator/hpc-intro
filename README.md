@@ -30,8 +30,9 @@ writer, and then reviewed by the rest of the group once complete.
    2. Code snippets are placed in subdirectories that are named according to the episode they
       appear in. For example, if the snippet is for episode 12, then it will be in a 
       subdirectory called `12`.
-   3. In the episodes source, snippets are included using Liquid scripting  `include` statements. For
-      example, the first snippet in episode 12 is included using `{% include /snippets/12/info.snip %}`.
+   3. In the episodes source, snippets are included using [Liquid](https://shopify.github.io/liquid/)
+      scripting  `include` statements. For example, the first snippet in episode 12 is included using 
+      `{% include /snippets/12/info.snip %}`.
 
 Please contribute any configurations you create for your local systems back into the 
 HPC Carpentry snippets library.
