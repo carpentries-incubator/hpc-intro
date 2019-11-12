@@ -158,74 +158,7 @@ is strongly recommended to pack the files into a larger *archive* file for long 
 transfer. A single large file makes more efficient use of the file system and is easier to move,
 copy and transfer because significantly fewer meta-data operations are required. Archive files can
 be created using tools like `tar` and `zip`. We have already met `tar` when we talked about data
-transfer earlier. Here is another example where we show how a archive can be created and verified:
-
-```
-{{ site.host_prompt }} tar -cvWlf mydata.tar mydata
-{{ site.host_prompt }} gzip mydata.tar
-```
-{: .bash}
-```
-mydata/
-mydata/output00063.out
-mydata/output00066.out
-mydata/output00051.out
-mydata/output00002.out
-mydata/output00067.out
-mydata/output00046.out
-mydata/output00041.out
-mydata/output00054.out
-
-[long output trimmed]
-
-Verify mydata/
-Verify mydata/output00063.out
-Verify mydata/output00066.out
-Verify mydata/output00051.out
-Verify mydata/output00002.out
-Verify mydata/output00067.out
-Verify mydata/output00046.out
-Verify mydata/output00041.out
-Verify mydata/output00054.out
-
-[long output trimmed]
-
-```
-{: .output}
-
-(In bash, rather than include all options with their own `-` indicator, we can string them together so
-the above tar command is equivalent to `tar -c -v -W -f mydata.tar mydata`.) The second step 
-*compresses* the archive to reduce its size.
-
-The options we used for `tar` are:
-
-- `-c` - Create new archive
-- `-v` - Verbose (print what you are doing!)
-- `-W` - Verify integrity of created archive
-- `-f mydata.tar` - Create the archive in file *mydata.tar*
-
-To extract files from a tar file, the option `-x` is used. If the tar file has also been compressed using
-`gzip` (as we did above) `tar` will automatically uncompress the archive. For example:
-
-```
-{{ site.local_prompt }} tar -xvf mydata.tar.gz
-```
-{: .bash}
-```
-mydata/
-mydata/output00063.out
-mydata/output00066.out
-mydata/output00051.out
-mydata/output00002.out
-mydata/output00067.out
-mydata/output00046.out
-mydata/output00041.out
-mydata/output00054.out
-
-[long output trimmed]
-
-```
-{: .output}
+transfer earlier. 
 
 > ## Consider the best way to transfer data
 > If you are transferring large amounts of data you will need to think about what may affect your transfer

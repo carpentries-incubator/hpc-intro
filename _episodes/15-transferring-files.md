@@ -63,6 +63,40 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 ```
 {: .bash}
 
+> ## A note on rsync
+>
+> As you gain experience with transferring files, you may find the `scp` command limiting. The
+> [rsync](https://rsync.samba.org/) utility provides advanced features for file transfer and is
+> typically faster compared to both `scp` and `sftp` (see below). It is especially useful for
+> transferring large and/or many files and creating synced backup folders.
+>
+> The syntax is similar to `scp`. To transfer *to* another computer with commonly used options:
+> ```
+> [local]$ rsync -avzP /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
+> ```
+> {: .bash}
+>
+> The `a` (archive) option preserves file timestamps and permissions among other things; the `v` (verbose)
+> option gives verbose output to help monitor the transfer; the `z` (compression) option compresses
+> the file during transit to reduce size and transfer time; and the `P` (partial/progress) option
+> preserves partially transferred files in case of an interruption and also displays the progress
+> of the transfer.
+>
+> To recursively copy a directory, we can use the same options:
+> ```
+> [local]$ rsync -avzP /path/to/local/dir yourUsername@remote.computer.address:/path/on/remote/computer
+> ```
+> {: .bash}
+> 
+> The `a` (archive) option implies recursion.
+> 
+> To download a file, we simply change the source and destination:
+> ```
+> [local]$ rsync -avzP yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
+> ```
+> {: .bash}
+{: .callout}
+
 ## Transferring files interactively with FileZilla (sftp)
 
 FileZilla is a cross-platform client for downloading and uploading files to and from a remote
@@ -99,19 +133,24 @@ archiving with *compression* to reduce the amount of data we have to transfer an
 the transfer.
 
 The most common archiving command you will use on (Linux) HPC cluster is `tar`. `tar` can be used
-to combine files into a single archive file and, optionally, compress. For example, to combine
-all files within a folder called `output_data` into an archive file called `output_data.tar` we
-would use:
+to combine files into a single archive file and, optionally, compress. For example, to collect
+all files contained inside `output_data` into an archive file called `output_data.tar` we would use:
 
 ```
-tar -cvf output_data.tar output_data/
+{{ site.local_prompt }} tar -cvf output_data.tar output_data/
 ```
 {: .bash}
 
-We also use the `tar` command to extract the files from the archive once we have transferred it:
+The options we used for `tar` are:
+
+- `-c` - Create new archive
+- `-v` - Verbose (print what you are doing!)
+- `-f mydata.tar` - Create the archive in file *output_data.tar*
+
+The tar command allows users to concatenate flags. Instead of typing `tar -c -v -f`, we can use `tar -cvf`. We can also use the `tar` command to extract the files from the archive once we have transferred it:
 
 ```
-tar -xvf output_data.tar
+{{ site.local_prompt }} tar -xvf output_data.tar
 ```
 {: .bash}
 
@@ -125,7 +164,7 @@ archive using `tar` we add the `-z` option and add the `.gz` extension to the fi
 it is compressed, e.g.:
 
 ```
-tar -czvf output_data.tar.gz output_data/
+{{ site.local_prompt }} tar -czvf output_data.tar.gz output_data/
 ```
 {: .bash}
 
@@ -134,7 +173,7 @@ uncompressed data as `tar` recognizes it is compressed and un-compresses and ext
 same time:
 
 ```
-tar -xvf output_data.tar.gz
+{{ site.local_prompt }} tar -xvf output_data.tar.gz
 ```
 {: .bash}
 
