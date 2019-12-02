@@ -7,7 +7,7 @@ before_install:
   - R -q -e 'install.packages(c("remotes", "curl"))'
   - R -q -e 'remotes::install_github("hadley/requirements")'
 install:
-  - sudo -H pip3 install pyyaml
+  - sudo -H pip3 install --upgrade pyyaml
 script:
   - bundle install
   - make lesson-check-all
