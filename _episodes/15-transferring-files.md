@@ -26,7 +26,7 @@ The syntax is: `wget https://some/link/to/a/file.tar.gz`. For example, download 
 lesson sample files using the following command:
 
 ```
-{{ site.host_prompt }} wget {{ site.url }}{{ site.baseurl }}/bash-lesson.tar.gz
+{{ site.host_prompt }} wget {{ site.url }}{{ site.baseurl }}/files/bash-lesson.tar.gz
 ```
 {: .bash}
 
