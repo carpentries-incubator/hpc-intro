@@ -29,8 +29,14 @@ serve` or `make site`.
 This first chunk is really important, and need to be included at the beginning of
 each episode written in RMarkdown.
 
-```{r, echo=TRUE}
-source("../bin/chunk-options.R")
+```{r, echo=FALSE, eval=TRUE, collapse=TRUE, comment=NA, results='asis'}
+cat("~~~",
+"\n```{r, eval=TRUE}",
+"\nsource(\"../bin/chunk-options.R\")",
+"\n```",
+"\n~~~",
+"\n{: .language-r}",
+"\n")
 ```
 
 The rest of the lesson should be written as a normal RMarkdown file. You can
