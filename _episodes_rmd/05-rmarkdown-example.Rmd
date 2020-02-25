@@ -13,6 +13,12 @@ keypoints:
 - "Run `make serve` to knit documents and preview lesson website locally"
 ---
 
+```{r, include=FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("01-")
+```
+
+
 This episode demonstrates all the features that can be used when writing a
 lesson in [RMarkdown][r-markdown].
 
