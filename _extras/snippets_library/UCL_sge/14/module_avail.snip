@@ -1,49 +1,802 @@
 
----------------------------------------------- /usr/share/Modules/modulefiles ----------------------------------------------
-dot         module-git  module-info modules     mpt/2.16    null        perfboost   perfcatcher use.own
+---------------------- /shared/ucl/apps/modulefiles/core -----------------------
+gerun             ops-tools/1.1.0   screen/4.2.1      userscripts/1.3.0
+lm-utils/1.0      ops-tools/2.0.0   userscripts/1.0.0 userscripts/1.4.0
+mrxvt/0.5.4       rcps-core/1.0.0   userscripts/1.1.0
+ops-tools/1.0.0   rlwrap/0.43       userscripts/1.2.0
 
--------------------------------------------------- /lustre/sw/modulefiles --------------------------------------------------
-abinit/8.2.3-intel17-mpt214(default)    gdal/2.1.2-gcc6                         ipm/2.0.6-impi
-allinea/7.0.0(default)                  gnu-parallel/20170322(default)          lammps/31Mar2017-gcc6-mpt214(default)
-altair-hwsolvers/13.0.213               gnuplot/5.0.5(default)                  matlab/R2016b(default)
-altair-hwsolvers/14.0.210               gnuplot/5.0.5-x11                       matlab/R2018a
-amber/16                                gromacs/2016.3(default)                 meqtrees/1.5.1(default)
-anaconda/python2(default)               gromacs/2018.3                          mercurial/3.9.1(default)
-anaconda/python3                        gsl/2.5-gcc6(default)                   miniconda/python2
-ansys/17.2                              hdf5parallel/1.10.1-gcc6-mpt214         miniconda/python3
-ansys/18.0                              hdf5parallel/1.10.1-intel17-intel-mpi   molpro/2012.1.22(default)
-ansys/19.0                              hdf5parallel/1.10.1-intel17-mpt214      mpt/2.14
-blast/2.7.1+(default)                   intel-cc-16/16.0.2.181                  mpt/2.17
-casa/5.4.0(default)                     intel-cc-16/16.0.3.210(default)         namd/2.12(default)
-casacore/2.4.1(default)                 intel-cc-17/17.0.2.174(default)         nano/2.6.3
-castep/16.11                            intel-cc-18/18.0.5.274                  ncl/6.4.0
-castep/18.1.0-intel17(default)          intel-cmkl-16/16.0.2.181                nco/4.6.9
-cmake/3.10.0(default)                   intel-cmkl-16/16.0.3.210(default)       ncview/2.1.7
-cp2k/4.1                                intel-cmkl-17/17.0.2.174(default)       netcdf/4.4.1
-cp2k-mpt/4.1                            intel-cmkl-18/18.0.5.274                netcdf-parallel/4.5.0
-cuda/9.0                                intel-compilers-16/16.0.2.181           netcdf-parallel/4.5.0-gcc6-mpt214
-cuda/9.1(default)                       intel-compilers-16/16.0.3.210(default)  netcdf-parallel/4.5.0-intel17
-dolfin/2017.1.0(default)                intel-compilers-17/17.0.2.174(default)  netcdf-parallel/4.5.0-intel17-mpt214
-dolfin/2017.1.0-python-2.7              intel-compilers-18/18.05.274            openfoam/foundation/5.0
-dolfin/2017.2.0                         intel-fc-16/16.0.2.181                  openfoam/v1706
-dolfin/2017.2.0-intel-mpi               intel-fc-16/16.0.3.210(default)         openfoam/v1712
-dolfin/2017.2.0-mpt                     intel-fc-17/17.0.2.174(default)         petsc/3.8.4-intel-mpi
-dolfin/2018.1.0-intel-mpi               intel-fc-18/18.0.5.274                  petsc/3.8.4-mpt
-doxygen/1.8.14(default)                 intel-itac/9.1.2.024                    qe/6.1(default)
-eclipse/4.2                             intel-itac-17/2017.2.028(default)       qe/6.1+d3q
-epcc-tools/1.1(default)                 intel-itac-18/2018.5.025                R/3.4.0(default)
-fenics/2016.2.0(default)                intel-mpi-16/16.0.3.210                 scalasca/2.3.1-gcc6
-fenics/2017.2.0                         intel-mpi-17/17.0.2.174                 scalasca/2.3.1-intel17
-fenics/2017.2.0-intel-mpi               intel-mpi-18/18.0.5.274                 singularity/2.4(default)
-fenics/2017.2.0-mpt                     intel-tbb/16.0.2.181                    sionlib/1.7.2-gcc6-mpt214
-fenics/2018.1.0-intel-mpi               intel-tbb/16.0.3.210(default)           spack/20161205
-fftw/3.3.5-gcc6                         intel-tbb-17/17.0.2.174(default)        spack/cirrus(default)
-fftw/3.3.5-intel17                      intel-tbb-18/18.0.5.274                 spark/2.1.1(default)
-flacs/10.5.1                            intel-tools-16/16.0.2.181               starccm+/12.04.011(default)
-flacs/10.6.3                            intel-tools-16/16.0.3.210(default)      starccm+/12.04.011-R8
-gaussian/09.E01                         intel-tools-17/17.0.2.174(default)      szip/2.1.1
-gaussian/16.A03(default)                intel-tools-18/18.0.5.274               testing/qe/6.1-intel
-gcc/6.2.0                               intel-vtune-16/2016.2.0.444464          tinker/8.2.1
-gcc/6.3.0(default)                      intel-vtune-16/2016.3.0.463186(default) valgrind/3.11.0
-gcc/7.2.0                               intel-vtune-17/2017.2.0.499904(default) vasp/5.4.4-intel17-mpt214(default)
-gcc/8.2.0                               intel-vtune-18/2018.4.0.573462          xflow/98.00
+------------------ /shared/ucl/apps/modulefiles/applications -------------------
+abaqus/2017
+adf/2014.10
+afni/20151030
+afni/20181011
+amber/14/mpi/intel-2015-update2
+amber/14/openmp/intel-2015-update2
+amber/14/serial/intel-2015-update2
+amber/16/mpi/gnu-4.9.2
+amber/16/mpi/intel-2015-update2
+amber/16/openmp/gnu-4.9.2
+amber/16/openmp/intel-2015-update2
+amber/16/serial/gnu-4.9.2
+amber/16/serial/intel-2015-update2
+ansys/17.2
+ansys/18.0
+ansys/19.1
+ansys/2019.r3
+ants/2.1.0
+approxwf/gnu-4.9.2
+arrayfire/3.5.0/gnu-4.9.2
+asp/2.6.2
+autodock/4.2.6
+bamtools/2.4.0/gnu-4.9.2
+bcftools/1.2/gnu-4.9.2
+bcftools/1.3.1/gnu-4.9.2
+bcftools/2.1/gnu-4.9.2
+bcl2fastq/1.8.4
+bcl2fastq2/2.19.1
+beast/2.3.0
+bedtools/2.25.0
+bgen/1.1.4
+blast/2.2.26
+blast+/2.2.30/intel-2015-update2
+blender/2.79
+boltztrap/1.2.5/intel-2018
+bowtie/1.1.2
+bowtie2/2.2.5
+bwa/0.6.2/gnu-4.9.2
+bwa/0.7.12/gnu-4.9.2
+caffe/1.0/cpu
+caffe/1.0/cudnn
+caffe/1.0/gpu
+cancerit/20190218-python-2.7.12/gnu-4.9.2
+cancerit/gnu-4.9.2
+castep/17.2/intel-2017
+castep/17.21/intel-2017
+castep/19.1.1/intel-2019
+cctools/5.4.1/gnu-4.9.2
+cctools/7.0.11/gnu-4.9.2
+cesm/1.0.6/intel-2015-update2
+cesm/1.2.2/intel-2015-update2
+cfd-ace/2014.1
+cfd-ace/2018.0
+chemshell/3.7.1/mpi/gulp4.5
+chemshell/3.7.1/standalone
+clustal-omega/1.2.1
+clustal-w/2.1
+cmg/2017.101
+cmg/2018.101
+cmg/2019.101
+collectl/4.0.2
+compucell3d/3.7.4
+comsol/52
+comsol/52a
+comsol/53a
+cosi-corr/oct14
+covid-19-spatial-sim/0.13.0/gnu-4.9.2
+covid-19-spatial-sim/0.14.0/gnu-4.9.2
+covid-19-spatial-sim/0.14.0/intel-2020
+covid-19-spatial-sim/0.8.0/intel-2020
+covid-19-spatial-sim/0.9.0/gnu-4.9.2
+cp2k/4.1/ompi/gnu-4.9.2
+cp2k/5.1/ompi/gnu-4.9.2
+cp2k/5.1/ompi-plumed/gnu-4.9.2
+cp2k/6.1/ompi/gnu-4.9.2
+cp2k/7.1/ompi/gnu-4.9.2
+cpmd/4.1/intel-2017
+crystal14/v1.0.3
+crystal14/v1.0.4
+crystal14/v1.0.4_2017
+crystal17/v1.0.1
+crystal17/v1.0.2/intel-2017
+cuba/4.2/gnu-4.9.2
+cufflinks/2.2.1
+curl/7.47.1/gnu-4.9.2
+datamash/1.4
+deeptools/3.0.2
+delly/0.7.8-bindist
+dftbplus/17.1/intel-2017
+dftbplus/18.2/intel-2018
+dftbplus/19.1/intel-2018
+dftbplus/dev/d07f92e/intel-2017
+dl_poly/4.07/intel-2015-update2
+dl_poly/4.08/intel-2015-update2
+dl_poly/4.08-plumed-2.3.1/intel-2017
+dl_poly/4.09/intel-2018
+dl_poly/classic/1.9/intel-2015-update2
+dock/6.9-impi/intel-2018
+dock/6.9-reference/gnu-4.9.2
+dos2unix/7.3
+dssp/3.0.0/gnu-4.9.2
+dymola/2020.1-1
+ea-utils/822
+easylausanne/55c7bf0
+eigensoft/6.1.1/gnu-4.9.2
+elk/4.0.15/intel-2018
+elk/4.0.15/intel-2018+wa
+elk/4.3.6/intel-2017
+elk/4.3.6/intel-2017+wa
+elk/5.2.14/intel-2018
+energyplus/8.9.0-bindist
+energyplus/9.1.0-bindist
+envi/5.5.2
+envi/5.5.3
+epacts/3.3.0/gnu-4.9.2
+examl/8dcf2cc/gnu-4.9.2
+exonerate/2.2.0
+fasta/36.3.8d/gnu-4.9.2
+fastqc/0.11.5
+fastqc/0.11.8
+ffmpeg/4.1/gnu-4.9.2
+fgbio/0.5.1
+fgbio/0.6.1
+figtree/1.4.2
+foldx/4
+freesurfer/5.3.0
+freesurfer/6.0.0
+fsl/5.0.10
+fsl/5.0.9
+fsl/6.0.0
+fsl/6.0.0_cuda
+gamess/5Dec2014_R1/intel-2015-update2
+gatk/3.4.46
+gatk/3.8.0
+gatk/4.0.3.0
+gatk/4.0.8.0
+gaussian/g09-c01_linda/pgi-2013.9
+gaussian/g09-d01/pgi-2015.4
+gaussian/g09-d01/pgi-2015.7
+gaussian/g16-a03/pgi-2016.5
+gdal/2.0.0
+gdal/2.1.1
+gdal/2.1.4
+gdal/3.0.4/gnu-4.9.2
+gephi/0.9.1
+ghostscript/9.16/gnu-4.9.2
+ghostscript/9.19/gnu-4.9.2
+gmsh/2.12.0-bindist
+gmt/5.1.2
+gmt/5.3.1
+gmt/5.4.5
+gnuplot/5.0.1
+grace/5.1.25
+graphicsmagick/1.3.21
+graphviz/2.38.0/gnu-4.9.2
+graphviz/2.40.1/gnu-4.9.2
+groff/1.22.3/gnu-4.9.2
+gromacs/2016.3/intel-2017-update1
+gromacs/2016.3/plumed/intel-2017-update1
+gromacs/2016.4/plumed/intel-2017
+gromacs/2018/intel-2017
+gromacs/2018.2/intel-2018
+gromacs/2018.3/intel-2018
+gromacs/2018.3/plumed/intel-2018
+gromacs/2019.3/cuda-10
+gromacs/2019.3/intel-2018
+gromacs/2019.3/plumed/intel-2018
+gromacs/5.0.4/intel-2015-update2
+gromacs/5.0.4/plumed/intel-2015-update2
+gromacs/5.1.1/intel-2015-update2
+gromacs/5.1.1/plumed/intel-2015-update2
+gromacs/5.1.3/plumed/intel-2015-update2
+gulp/4.5/intel-2018
+gulp/5.1.1/intel-2018
+gurobi/7.5.1
+gurobi/8.1.1
+h5utils/1.12.1
+hammock/1.0.5
+hhsuite/3.0-beta.1/gnu-4.9.2
+hmmer/3.1b2
+hoomd-blue/2.4.2
+hopspack/2.0.2/gnu-4.9.2
+hopspack/2.0.2/intel-2017
+icommands/4.1.7
+idl/8.4.1
+idl/8.7.3
+illustrate/20190807
+impute2/2.3.2
+inetutils/1.9.4
+intltool/0.51.0
+iva/0.11.6
+iva/1.0.0
+jags/3.4.0/gnu.4.9.2-atlas
+jags/3.4.0/gnu.4.9.2-openblas
+jags/4.2.0/gnu.4.9.2-openblas
+jq/1.5/gnu-4.9.2
+kallisto/v0.42.5
+keras/2.2.4
+kmc/2.1.1/gnu-4.9.2
+knitro/12.0.0/gnu-4.9.2
+lammps/10Feb15/intel-2015-update2
+lammps/13Apr17/intel-2017
+lammps/16Mar18/basic/intel-2018
+lammps/16Mar18/gpu/intel-2018
+lammps/16Mar18/intel-2017
+lammps/16Mar18/userintel/intel-2018
+lammps/3Mar20/plumed-colvars/intel-2018
+lammps/7Aug19/basic/intel-2018
+lammps/7Aug19/gpu/intel-2018
+lammps/7Aug19/userintel/intel-2018
+lammps/8Dec15/intel-2015-update2
+lynx/2.8.9
+mathematica/10.1.0
+mathematica/10.2.0
+mathematica/10.4.0
+mathematica/11.0.1
+mathematica/11.2.0
+mathematica/11.3.0
+matlab/full/r2015a/8.5
+matlab/full/r2015b/8.6
+matlab/full/r2016b/9.1
+matlab/full/r2017a/9.2
+matlab/full/r2018a/9.4
+matlab/full/r2018b/9.5
+matlab/full/r2019b/9.7
+mcl/14-137
+meep/1.11.0-ompi/gnu-4.9.2
+meep/1.3/gnu-4.9.2
+meep/1.3-ompi/gnu-4.9.2
+meme/4.10.1_4
+mgltools/1.5.6
+mirdeep/2.0.0.7
+molden/5.2.2
+molpro/2012.1.25/gnu-4.9.2
+molpro/2015.1.3
+molpro/2015.1.5/intel-2015-update2
+mosek/9.1.12
+mothur/1.41.3-bindist
+mpb/1.5/gnu-4.9.2
+mpb/1.5-ompi/gnu-4.9.2
+mpb/1.9.0-hdf5-ompi/gnu-4.9.2
+mrbayes/3.2.5/mpi/intel-2015-update2
+mrbayes/3.2.5/serial/intel-2015-update2
+mrtrix/0.3.12/nogui
+mrtrix/0.3.16/gnu-4.9.2/nogui
+mrtrix/3.0rc3/gnu-4.9.2/nogui
+mstor/2013/gnu-4.9.2
+mumax/3.9.3
+mummer/3.23/gnu-4.9.2
+muscle/3.8.31
+mutect/1.1.7
+namd/2.10/intel-2015-update2
+namd/2.11/intel-2015-update2
+namd/2.12/intel-2015-update2
+namd/2.12/intel-2017-update1
+namd/2.12/intel-2018-update3
+namd/2.13/intel-2018-update3
+namd/2.13/plumed/intel-2018-update3
+nco/4.5.0
+nektar++/4.3.5-impi/intel-2017-update1
+nektar++/4.3.5-ompi/gnu-4.9.2
+ngsutils/0.5.9
+nighres/1.1.0b
+nonmem/7.3.0/gnu-4.9.2
+nonmem/7.3.0/intel-2015-update2
+novocraft/3.04.06
+nwchem/6.5-r26243/atlas/intel-2015-update2
+nwchem/6.5-r26243/intel-2015-update2
+nwchem/6.6-r27746/intel-2015-update2
+nwchem/6.6-r27746/intel-2017
+nwchem/6.8-47-gdf6c956/intel-2017
+oasislmf/1.2.4
+oasislmf/ktools/3.0.3/gnu-4.9.2
+oasislmf/ktools/f92a41f/gnu-4.9.2
+octave/4.4.1
+octopus/4.1.2/intel-2015-update2
+octopus/4.1.2-impi/intel-2015-update2
+octopus/5.0.1/gnu-4.9.2
+octopus/5.0.1-ompi/gnu-4.9.2
+octopus/6.0/gnu-4.9.2
+octopus/6.0-ompi/gnu-4.9.2
+openbabel/2.4.1/gnu-4.9.2
+opencv/2.4.13/gnu-4.9.2
+opencv/3.4.1/gnu-4.9.2
+openfoam/2.3.1/intel-2015-update2
+openfoam/2.4.0/intel-2017-update1
+openfoamplus/v1706/gnu-4.9.2
+openfoamplus/v1906/gnu-7.3.0
+openmm/7.3.1/cuda-10
+openmm/7.3.1/gnu-4.9.2
+openmx/3.8.3
+optimet/1.0.1/gnu-4.9.2
+p7zip/15.09/gnu-4.9.2
+pandoc/1.19.2.1
+parallel/20181122
+paraview/5.3.0
+parmed/3.2.0
+petsc/3.12.1/gnu-4.9.2
+phon/1.39/gnu-4.9.2
+phon/1.43/gnu-4.9.2
+picard-tools/1.136
+picard-tools/2.18.9
+platypus/3e72641
+plink/1.07
+plink/1.90b3.40
+plink/2.0alpha-git
+plumed/2.1.2/intel-2015-update2
+plumed/2.2/intel-2015-update2
+plumed/2.2.3/intel-2015-update2
+plumed/2.3.1/intel-2017-update1
+plumed/2.4.1/gnu-4.9.2
+plumed/2.4.1/intel-2017-update4
+plumed/2.4.3/intel-2018
+plumed/2.5.2/intel-2018
+plumed/2.6.0/intel-2018
+postgres+postgis/9.5.3+2.2.2/gnu-4.9.2
+postgresql/9.5.3/gnu-4.9.2
+primer3/2.3.6
+probabel/0.4.5/gnu-4.9.2
+proj.4/4.9.1
+proj.4/5.2.0
+proj.4/6.0.0
+proj.4/6.1.0
+proovread/2.13.11-8Jan2016-f6a856a
+pymol/1.7.7.2
+pymol/1.8.2.1
+pyrosetta/release-73
+pytorch/1.2.0/cpu
+pytorch/1.2.0/gpu
+qctool/2/beta/ba5eaa44a62f
+quantum-espresso/5.2.0-impi/intel-2015-update2
+quantum-espresso/6.1-impi/intel2017
+quantum-espresso/6.3-impi/thermo_pw-1.0.9/intel-2018
+quantum-espresso/6.4.1-impi/intel-2018
+quantum-espresso/6.5-impi/intel-2018
+quantum-espresso/6.5-impi/thermo_pw-1.2.1/intel-2018
+r/3.2.0-atlas/gnu-4.9.2
+r/3.2.2-openblas/gnu-4.9.2
+r/3.3.0-openblas/gnu-4.9.2
+r/3.3.2-openblas/gnu-4.9.2
+r/3.4.0-openblas/gnu-4.9.2
+r/3.4.2-openblas/gnu-4.9.2
+r/3.5.0-openblas/gnu-4.9.2
+r/3.5.1-openblas/gnu-4.9.2
+r/3.5.3-openblas/gnu-4.9.2
+r/3.6.0-openblas/gnu-4.9.2
+randfold/2.0/gnu-4.9.2
+rclone/1.51.0
+repast-hpc/2.1/gnu-4.9.2
+root/5.34.30/gnu-4.9.2
+root/5.34.30/gnu-4.9.2-fftw-3.3.6
+root/5.34.36/gnu-4.9.2-fftw-3.3.6
+root/5.34.36/gnu-4.9.2-fftw-3.3.6-gsl-2.4
+root/6.04.00/gnu-4.9.2
+rosetta/2015.31.58019
+rosetta/2015.31.58019-mpi
+rosetta/2018.48.60516
+rosetta/2018.48.60516-mpi
+rsem/1.2.31
+sac/101.6a
+sambamba/0.6.7-bindist
+samblaster/0.1.24/gnu-4.9.2
+samsrf/5.84/matlab.r2019b
+samtools/0.1.19
+samtools/1.2/gnu-4.9.2
+samtools/1.3.1/gnu-4.9.2
+samtools/1.9/gnu-4.9.2
+sas/9.4/64
+sas/9.4-M6/64
+sc/7.16
+siesta/4.0.1/intel-2017
+skewer/0.2.2
+smalt/0.7.6/gnu-4.9.2
+snptest/2.5.4-beta3
+sod/3.2.7
+spm/12/jan2020/matlab.r2019b
+spm/12/r6470/matlab.r2015a
+spm/8/r6313/matlab.r2015a
+spss/24
+spss/25
+spss/26
+sqlite/3.31.1/gnu-9.2.0
+star/2.5.2a
+star/2.7.3a
+star-ccm+/11.04.010-R8
+star-ccm+/12.04.010
+star-ccm+/13.02.011
+star-ccm+/13.06.012
+star-ccm+/14.06.013
+star-ccm+/9.06.011
+star-cd/4.22.058
+star-cd/4.26.011
+star-cd/4.26.022
+star-cd/4.28.050
+stata/14
+stata/15
+supermagic/1.2/intel-2017
+taup/2.1.2
+tensorflow/1.12.0/cpu
+tensorflow/1.12.0/gpu
+tensorflow/1.12.0/mkl
+tensorflow/1.13.1/cpu
+tensorflow/1.13.1/gpu
+tensorflow/1.13.1/mkl
+tensorflow/1.14.0/cpu
+tensorflow/1.14.0/gpu
+tensorflow/1.14.0/mkl
+tensorflow/1.4.1/cpu
+tensorflow/1.4.1/gpu
+tensorflow/1.4.1/mkl
+tensorflow/1.8.0/cpu
+tensorflow/1.8.0/gpu
+tensorflow/1.8.0/mkl
+tensorflow/2.0.0/gpu-py37
+tensorflow/2.0.0/gpu-py37-cudnn75
+tensorflow/2.0.0/mkl-py37
+tephra2/2.0/gnu-4.9.2
+tephra2/normal/r149
+tesseract/3.05.01
+texinfo/5.2/gnu-4.9.2
+texinfo/6.6/gnu-4.9.2
+texlive/2014
+texlive/2015
+texlive/2019
+textract/1.5.0
+tmux/2.2
+tophat/2.1.0
+tracer/1.6
+tractor/3.2.5
+tree/1.7.0
+trim_galore/0.4.1
+trimmomatic/0.33
+turbomole/6.4/mpi
+turbomole/6.4/serial
+turbomole/6.4/smp
+turbomole/6.5/mpi
+turbomole/6.5/serial
+turbomole/6.5/smp
+turbomole/6.6/mpi
+turbomole/6.6/serial
+turbomole/6.6/smp
+ubpred/1-bin32dist
+udunits/2.2.19
+udunits/2.2.20/gnu-4.9.2
+udunits/2.2.26/gnu-4.9.2
+varscan/2.3.9
+vasp/5.4.1-05feb16-p2/intel-2015-update2
+vasp/5.4.1-24jun15-p08072015/intel-2015-update2
+vasp/5.4.1-24jun15-p2-vtst-r160/intel-2015-update2
+vasp/5.4.4-18apr2017/intel-2017-update1
+vasp/5.4.4-18apr2017-libbeef/intel-2017-update1
+vasp/5.4.4-18apr2017-vtst-r178/intel-2017-update1
+vcftools/0.1.15/gnu-4.9.2
+velvet/1.2.10
+vep/95.0
+vesta/3.4.6-bindist
+vg/1.11.0
+viennarna/2.1.9/gnu-4.9.2
+vinalc/1.1.2/gnu-4.9.2
+visit/2.9.2
+vmd/1.9.3/GL+CUDA
+vmd/1.9.3/text-only
+vt/2018-08-01/gnu-4.9.2
+xmds/2.2.2
+xtalopt/r12.1/gnu-4.9.2
+xulrunner/10.0.2
+xulrunner/3.6.28/gnu-4.9.2
+yambo/4.1.4/intel-2017
+
+-------------------- /shared/ucl/apps/modulefiles/libraries --------------------
+apr/1.5.2
+apr-util/1.5.4
+argtable/2.13
+armadillo/7.400.3/intel-2015-update2
+arpack-ng/3.4.0/intel-2015-update2
+arpack-ng/3.5.0/gnu-4.9.2-serial
+arpack-ng/3.5.0/gnu-4.9.2-threaded
+arpack-ng/3.5.0/intel-2017
+atlas/3.10.2/gnu-4.9.2
+atlas/3.10.2/intel-2015-update2
+bambamc/0.0.50/gnu-4.9.2
+boost/1_54_0/gnu-4.9.2
+boost/1_54_0/mpi/gnu-4.9.2
+boost/1_54_0/mpi/gnu-4.9.2-ompi-1.10.1
+boost/1_54_0/mpi/intel-2015-update2
+boost/1_63_0/gnu-4.9.2
+boost/1_63_0/mpi/gnu-4.9.2
+boost/1_63_0/mpi/intel-2017-update1
+cernlib/2006/gnu-4.9.2
+cernlib/2006-35
+cfitsio/3370/gnu-4.9.2
+cfitsio/3370/intel-2015-update2
+cgal/4.9/gnu-4.9.2
+clusteringsuite/2.6.6/bindist
+cunit/2.1-3/gnu-4.9.2
+cvmfs/2.2.1/gnu-4.9.2
+dyninst/9.3.2/gnu-4.9.2
+eigen/3.2.5/gnu-4.9.2
+elfutils/0.170/gnu-4.9.2
+fftw/2.1.5/gnu-4.9.2
+fftw/2.1.5/intel-2015-update2
+fftw/3.3.4/gnu-4.9.2
+fftw/3.3.4/intel-2015-update2
+fftw/3.3.4-impi/gnu-4.9.2
+fftw/3.3.4-impi/intel-2017-update1
+fftw/3.3.4-ompi/gnu-4.9.2
+fftw/3.3.4-ompi-1.10.1/gnu-4.9.2
+fftw/3.3.4-threads/gnu-4.9.2
+fftw/3.3.6-pl2/gnu-4.9.2
+fftw/3.3.6-pl2/intel-2017
+fftw/3.3.8-impi/intel-2018
+fftw/3.3.8-ompi/gnu-4.9.2
+forge/1.0.0/gnu-4.9.2
+freeimage/3.17.0/gnu-4.9.2
+freetype/2.8.1/gnu-4.9.2
+ga/5.7/intel-2018
+ga/5.7-8BInts/intel-2018
+gcc-libs/4.9.2
+geos/3.5.0/gnu-4.9.2
+gflags/2.2.1
+giflib/5.1.1
+glbinding/2.1.2/gnu-4.9.2
+glew/1.13.0/gnu-4.9.2
+glfw/3.2.1/gnu-4.9.2
+glog/0.3.5
+glpk/4.60/gnu-4.9.2
+gsl/1.16/gnu-4.9.2
+gsl/1.16/intel-2015-update2
+gsl/2.4/gnu-4.9.2
+gsl/2.4/intel-2017
+gstreamer/1.12.0
+gulp/4.5/libgulp/intel-2018
+h5py/2.10.0-ompi/gnu-4.9.2
+harminv/1.4/gnu-4.9.2
+harminv/1.4.1/gnu-4.9.2
+hdf/5-1.10.2/intel-2018
+hdf/5-1.10.2-impi/intel-2018
+hdf/5-1.10.5/gnu-4.9.2
+hdf/5-1.10.5-ompi/gnu-4.9.2
+hdf/5-1.8.15/gnu-4.9.2
+hdf/5-1.8.15/intel-2015-update2
+hdf/5-1.8.15-p1-impi/intel-2015-update2
+hdf/5-1.8.15-p1-ompi/gnu-4.9.2
+htslib/1.2.1
+htslib/1.3.1
+htslib/1.7
+hwloc/1.11.12
+hypre/2.11.2/openmpi-3.0.0/intel-2017
+hypre/2.11.2/openmpi-3.1.1/intel-2018
+jansson/2.11
+json-c/0.12/gnu-4.9.2
+lapack/3.8.0/gnu-4.9.2
+leptonica/1.74.4
+leveldb/1.20
+libbdwgc/7.4.2/gnu-4.9.2
+libbeef/0.1.3/intel-2018
+libctl/3.2.2/gnu.4.9.2
+libctl/4.3.0/gnu-4.9.2
+libdwarf/20170709/gnu-4.9.2
+libelf/0.8.13/gnu-4.9.2
+libetsfio/1.0.4/gnu-4.9.2
+libetsfio/1.0.4/intel-2015-update2
+libflac/1.3.1/gnu-4.9.2
+libgd/2.1.1/gnu-4.9.2
+libgd/2.1.1/intel-2015-update2
+libgdsii/0.21/gnu-4.9.2
+libint/1.1.4/gnu-4.9.2
+libmatheval/1.1.11
+libsodium/1.0.6/gnu-4.9.2
+libsox/14.4.2/gnu-4.9.2
+libuuid/1.0.3/gnu-4.9.2
+libxc/2.1.2/intel-2015-update2
+libxc/2.2.2/gnu-4.9.2
+libxc/2.2.2/intel-2015-update2
+libxc/3.0.0/gnu-4.9.2
+libxc/3.0.0/intel-2015-update2
+libxc/4.2.3/intel-2018
+libxml2/2.9.4/gnu-4.9.2
+llvm/3.3
+llvm/3.9.1
+llvm/6.0.1
+llvm/8.0.0/gnu-4.9.2
+lmdb/0.9.22
+lz4/1.8.3
+magma/2.4.0
+med/4.0.0/gnu-4.9.2
+mesa/10.6.3
+mesa/10.6.9/gnu-4.9.2
+mesa/13.0.6/gnu-4.9.2
+mesa/6.5/gnu-4.9.2
+metis/5.1.0/gnu-4.9.2
+metis/5.1.0/intel-2015-update2
+mpi/intel/2013/update1/intel
+mpi/intel/2015/update3/gnu-4.9.2
+mpi/intel/2015/update3/intel
+mpi/intel/2017/update1/gnu-4.9.2
+mpi/intel/2017/update1/intel
+mpi/intel/2017/update2/gnu-4.9.2
+mpi/intel/2017/update2/intel
+mpi/intel/2017/update3/gnu-4.9.2
+mpi/intel/2017/update3/intel
+mpi/intel/2018/update3/intel
+mpi/intel/2019/update4/intel
+mpi/intel/2019/update5/intel
+mpi/intel/2019/update6/intel
+mpi/openmpi/1.10.1/gnu-4.9.2
+mpi/openmpi/1.10.1/intel-2015-update2
+mpi/openmpi/1.8.4/gnu-4.9.2
+mpi/openmpi/1.8.4/intel-2015-update2
+mpi/openmpi/2.0.2/gnu-4.9.2
+mpi/openmpi/2.0.2/intel-2017
+mpi/openmpi/2.1.2/gnu-4.9.2
+mpi/openmpi/2.1.2/intel-2017
+mpi/openmpi/3.0.0/gnu-4.9.2
+mpi/openmpi/3.0.0/intel-2017
+mpi/openmpi/3.1.1/gnu-4.9.2
+mpi/openmpi/3.1.1/intel-2018
+mpi/openmpi/3.1.4/gnu-4.9.2
+mpi/openmpi/3.1.4/intel-2018
+mpi/openmpi/4.0.3/gnu-4.9.2
+mpi4py/2.0.0/python2
+mpi4py/2.0.0/python3
+mpi4py/3.0.0/python3
+mpi4py/3.0.2/gnu-4.9.2
+mumps/5.2.1/intel-2018
+mysql-connector-python/2.0.4/python-3.5.2
+mysql-connector-python/2.0.4/python-3.6.3
+mysql-connector-python/2.0.4/python-3.7.4
+mysql-connector-python/2.0.4/python-3.8.0
+nag/fortran/mark22/gnu-4.9.2
+nag/fortran/mark24/gnu-4.9.2
+nag/fortran/mark24/nag-6.0.1044
+nag/fortran/mark25/intel-2015-update2
+nag/fortran/mark26/gnu-4.9.2
+nag/fortran/mark26/intel-2017
+nag/fortran/mark26/nag-6.1.6106
+nag/fortran/mark26/nag-6.2.6223
+nag/mark27/intel-2019
+netcdf/4.3.3.1/gnu-4.9.2
+netcdf/4.3.3.1/intel-2015-update2
+netcdf-c++/4.2/gnu-4.9.2
+netcdf-c++/4.2/intel-2015-update2
+netcdf-c++4/4.2/gnu-4.9.2
+netcdf-c++4/4.2/intel-2015-update2
+netcdf-fortran/4.4.1/gnu-4.9.2
+netcdf-fortran/4.4.1/intel-2015-update2
+numactl/2.0.12
+openblas/0.2.14/gnu-4.9.2
+openblas/0.2.14/intel-2015-update2
+openblas/0.2.14-threads/gnu-4.9.2
+openblas/0.3.2-native-threads/gnu-4.9.2
+openblas/0.3.2-openmp/gnu-4.9.2
+openblas/0.3.2-serial/gnu-4.9.2
+openblas/0.3.7-native-threads/gnu-4.9.2
+openblas/0.3.7-openmp/gnu-4.9.2
+openblas/0.3.7-serial/gnu-4.9.2
+papi/5.5.1/gnu-4.9.2
+parmetis/4.0.3/intel-2015-update2
+pcre2/10.21/gnu-4.9.2
+pgplot/5.2.2/intel-2017
+pgplot/5.2.2/intel-2018
+pillow-simd/6.0.0.post0/python-3.7.4
+protobuf/12-2017/gnu-4.9.2
+protobuf/3.5.1/gnu-4.9.2
+pstreams/1.0.1/gnu-4.9.2
+pygsl/2.1.1-python3.6/gnu-4.9.2
+pyngl/1.4.0
+pynio/1.4.1
+quip/18c5440/gnu-4.9.2
+quip/18c5440-threads/gnu-4.9.2
+qutip/4.1.0/python-2.7.12
+scalapack/2.0.2/gnu-4.9.2/openblas
+scalapack/2.0.2/gnu-4.9.2/openblas-0.3.2
+scalapack/2.0.2/gnu-4.9.2/openblas-0.3.7
+snappy/1.1.7
+sparskit2/2009.11.18/gnu-4.9.2
+sparskit2/2009.11.18/intel-2015-update2
+spectral/3.4.0/bindist
+spglib/1.7.4/gnu-4.9.2
+squid/1.9g/gnu-4.9.2
+suitesparse/4.5.5/gnu-4.9.2-serial
+suitesparse/4.5.5/gnu-4.9.2-threaded
+suitesparse/4.5.5/intel-2017-update1
+superlu/5.2.1/intel-2015-update2
+superlu-dist/5.1.0/intel-2015-update2
+szip/2.1
+ucx/1.8.0/gnu-4.9.2
+unixodbc/2.3.7
+vtk/5.10.1/gnu-4.9.2
+vtk/6.2.0/gnu-4.9.2
+wavpack/5.1.0/gnu-4.9.2
+webkitgtk/2.2.4-1
+webkitgtk/2.4.9-1
+zeromq/4.1.4/gnu-4.9.2
+
+-------------------- /shared/ucl/apps/modulefiles/compilers --------------------
+compilers/clang/8.0.0          compilers/intel/2020/release
+compilers/gnu/4.9.2            compilers/nag/6.0.1044
+compilers/go/1.12.4            compilers/nag/6.1.6106
+compilers/go/1.7.3             compilers/nag/6.2.6214
+compilers/go/1.8               compilers/nag/6.2.6223
+compilers/intel/2013.1.046     compilers/pgi/2012.10
+compilers/intel/2015/update2   compilers/pgi/2015.4
+compilers/intel/2016.0.109     compilers/pgi/2015.7
+compilers/intel/2017/update1   compilers/pgi/2016.5/gnu-4.9.2
+compilers/intel/2017/update3   compilers/pgi/2017.3
+compilers/intel/2017/update4   compilers/pgi/2018.5
+compilers/intel/2018/update3   compilers/pgi/2018.5-llvm
+compilers/intel/2019/update4   compilers/rust/1.18.0
+compilers/intel/2019/update5
+
+------------------- /shared/ucl/apps/modulefiles/development -------------------
+autoconf/2.69                    julia/0.5.0
+autogen/5.18.12/gnu-4.9.2        julia/0.6.0
+automake/1.16.1                  julia/0.7.0
+bazel/0.14.1/gnu-4.9.2           julia/1.0.0
+bazel/0.21.0/gnu-4.9.2           julia/1.1.0
+bazel/0.24.0/gnu-4.9.2           julia/1.2.0
+bazel/0.24.1/gnu-4.9.2           julia/1.3.1
+bazel/0.26.1/gnu-4.9.2           libtool/2.4.6
+bazel/0.27.1/gnu-4.9.2           ltrace/0.7.3/gnu-4.9.2
+bazel/0.7.0                      lua/5.3.1
+binutils/2.29.1/gnu-4.9.2        mc/4.8.14
+bison/3.0.4/gnu-4.9.2            mono/3.12.1
+chicken/4.13.0                   mono/5.20.1.27/gnu-4.9.2
+clojure/1.10.0.411               nano/2.4.2
+cmake/3.13.3(default)            nano/4.9
+cmake/3.2.1                      nasm/2.13.01
+cmake/3.7.2                      ncl/6.0.0
+cuda/10.0.130/gnu-4.9.2          ncl/6.3.0
+cuda/10.1.243/gnu-4.9.2          nedit/5.6-aug15
+cuda/7.5.18/gnu-4.9.2            netlogo/6.1.0
+cuda/8.0.61-patch2/gnu-4.9.2     paraver/4.6.4.rc1/bindist
+cuda/9.0.176-patch4/gnu-4.9.2    perl/5.16.0
+cudnn/5.1/cuda-7.5               perl/5.22.0
+cudnn/5.1/cuda-8.0               perlbrew/0.73
+cudnn/6.0/cuda-7.5               pigz/2.4
+cudnn/6.0/cuda-8.0               pycuda/2017.1/python2
+cudnn/7.0.4/cuda-8.0             pycuda/2017.1/python3
+cudnn/7.1.4/cuda-9.0             pypy3/6.0.0/gnu-4.9.2
+cudnn/7.4.2.24/cuda-10.0         python/2.7.12
+cudnn/7.4.2.24/cuda-9.0          python/2.7.9
+cudnn/7.5.0.56/cuda-10.0         python/3.4.3
+cudnn/7.5.0.56/cuda-10.1         python/3.5.2
+cudnn/7.6.5.32/cuda-10.0         python/3.6.1/gnu-4.9.2
+cudnn/7.6.5.32/cuda-10.1         python/3.6.3(default)
+ddt/6.0.4                        python/3.7.0
+depot_tools/788d9e0d             python/3.7.2
+depot_tools/c03a9cf              python/3.7.4
+dimemas/5.3.3/bindist            python/3.8.0
+doxygen/1.8.14                   python/idp3/2019/3.6.8
+emacs/24.5                       python/miniconda3/4.5.11
+emacs/26.3                       qt/4.8.6/gnu-4.9.2
+extrae/3.5.2/intel-2017          qt/5.12.1/gnu-4.9.2
+f2c/2013-09-26/gnu-4.9.2         qt/5.4.2/gnu-4.9.2
+flex/2.5.39                      qwt/6.1.4/gnu-4.9.2
+git/2.10.2                       racket/6.8
+git/2.19.1                       rappture/20130903
+git/2.3.5                        ruby/2.2.2
+gperf/3.0.4/gnu-4.9.2            ruse/1.0.1
+guile/2.0.11/gnu-4.9.2           sbcl/1.3.19
+haskellplatform/2014.2.0.0       scons/2.3.4
+htop/1.0.3/gnu-4.9.2             strace/4.12
+java/1.8.0_45                    subversion/1.8.13
+java/1.8.0_92                    swig/3.0.5/gnu-4.9.2
+java/openjdk-11/11.0.1           swig/3.0.7/gnu-4.9.2
+java/openjdk-11/11.0.3u7/hotspot tcl/8.6.8
+java/openjdk-11/11.0.3u7/openj9  v8/3.15
+java/openjdk-8/8u212/hotspot     v8/5.6
+java/openjdk-8/8u212/openj9      valgrind/3.11.0/gnu-4.9.2
+julia/0.3.10                     xbae/4.60.4
+julia/0.4.0                      xorg-utils/X11R7.7
+julia/0.4.7
+
+--------------------- /shared/ucl/apps/modulefiles/bundles ---------------------
+beta-modules                  octave/recommended
+bioperl/recommended           personal-modules
+blic-modules                  physics-modules
+cancerit/20190218             pypy3/3.5-compat
+cancerit/recommended          python2/recommended
+chemistry-modules             python3/3.4
+climate-tools/recommended     python3/3.5
+deep_earth                    python3/3.6
+default-modules/2015          python3/3.7
+default-modules/2017          python3/3.8
+default-modules/2018(default) python3/recommended(default)
+default-modules-aristotle     r/new
+economics-modules             r/old
+farr/recommended              r/r-3.6.0_bc-3.9
+farr-modules                  r/recommended
+gmt/new                       rsd-modules
+gmt/old                       thermo-modules
+gmt/recommended               torch-deps
+naglib/mark27-intel-2019      workaround-modules
