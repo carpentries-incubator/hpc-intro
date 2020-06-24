@@ -148,7 +148,7 @@ it added a directory to the beginning of our `$PATH`. Let's examine what's there
 ```
 {: .output}
 
-Taking this to it's conclusion, `module load` will add software to your `$PATH`. It "loads"
+Taking this to its conclusion, `module load` will add software to your `$PATH`. It "loads"
 software. A special note on this - depending on which version of the `module` program that is
 installed at your site, `module load` will also load required software dependencies.
 
@@ -173,7 +173,21 @@ Let's examine the output of `module avail` more closely.
 ```
 {: .output}
 
-{% include /snippets/14/gcc_example.snip %}
+To be more specific, you can specify the particular software you want.
+e.g.
+```
+{{ site.host_prompt }} module avail stata
+```
+{: .bash}
+```
+------------------------------------- /shared/ucl/apps/modulefiles/applications --------------------------------------
+stata/14 stata/15
+```
+{: .output}
+
+```
+{% include /snippets/14/matlab_example.snip %}
+```
 
 > ## Using software modules in scripts
 >
