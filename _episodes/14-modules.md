@@ -279,7 +279,9 @@ Command: seq       common transformation of FASTA/Q
          rename    rename sequence names
          randbase  choose a random base from hets
          cutN      cut sequence at long N
+         gap       get the gap locations
          listhet   extract the position of each het
+         hpc       homopolyer-compressed sequence
 ```
 {: .output}
 
