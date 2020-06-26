@@ -23,5 +23,5 @@ jobs:
       # Use codespell for spell checking
       install:
         pip install codespell
-      script: codespell --skip="assets,*.svg,bin" --quiet-level=2  --ignore-words-list="rouge,dropse" -L "namd"
+      script: codespell --skip="assets,*.svg,bin" --quiet-level=2  -L "rouge,dropse,namd"
     - stage: check_and_build
