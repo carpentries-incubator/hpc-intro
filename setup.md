@@ -376,12 +376,12 @@ install.packages('remotes', repos = 'https://cran.rstudio.com')
    ~~~
    {: .language-bash}
 
-   You need Ruby 2.1.0 or later (currently GitHub pages uses Ruby 2.5.3). If you
+   You need Ruby 2.1.0 or later (currently GitHub pages uses Ruby 2.5.8). If you
    have an older version of Ruby, if possible upgrade your operating system to a
    more recent version. If it's not possible, consider using [rbenv](https://github.com/rbenv/rbenv).
 
     ~~~
-    rbenv install 2.5.3
+    rbenv install 2.5.8
     ~~~
     {: .language-bash}
 
@@ -389,7 +389,7 @@ install.packages('remotes', repos = 'https://cran.rstudio.com')
     executing the following command from your lesson directory:
 
     ~~~
-    rbenv local 2.5.3
+    rbenv local 2.5.8
     ~~~
     {: .language-bash}
 
