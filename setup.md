@@ -349,7 +349,7 @@ Further help:
 
     There will be several lines of output after this. If there were errors or warnings you can use
     them to fix your lesson and run again if ti it failed. If it was successful the last few lines
-    will include `Server address: http://217.0.0.1:4000` and `Server running... press ctrl-c to
+    will include `Server address: http://127.0.0.1:4000` and `Server running... press ctrl-c to
     stop`. You can see your rendered site by pointing your browser to the address shown.
 
 ### For R-based lessons
