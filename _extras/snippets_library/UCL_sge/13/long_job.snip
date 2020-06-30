@@ -1,6 +1,8 @@
-#!/bin/bash
-#PBS -l 0:0:30
+#!/bin/bash -l
+#$ -N long_job
+#$ -l h_rt=0:0:30
 
 echo 'This script is running on:'
 hostname
 sleep 120
+echo 'This script has finished successfully'

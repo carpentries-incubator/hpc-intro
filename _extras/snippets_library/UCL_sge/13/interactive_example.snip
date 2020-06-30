@@ -1,13 +1,14 @@
-qsub (with the right options) can submit a job and then wait for it to start
-so we can use the compute node resources interactively. Let’s demonstrate
-this by submitting an interactive job that uses a single core:
-
+For an interactive session, you reserve some compute nodes via the scheduler and then are logged in live,
+just like on the login nodes. These can be used for live visualisation, software debugging, or to work up a
+script to run your program without having to submit each attempt separately to the queue and wait for it to
+complete.
 ```
-{{ site.host_prompt }} {{ site.sched_submitiopt }}
+{{ site.host_prompt }} {{ site.sched_interactive }} {{ site.sched_flag_interactive }}
 ```
-
-You should be presented with a bash prompt. Note that the prompt will likely
-change to reflect your new location, in this case the worker node we are logged
-on. You can also verify this with `hostname`.
+All `{{ site.sched_submit }}` options are supported like regular job submission with the difference that with
+`{{ site.sched_interactive }}` they must be given at the command line, and not with any job script. Once a
+node is allocated to you, you should be presented with a bash prompt. Note that the prompt will likely change
+to reflect your new location, in this case the worker node we are logged on. You can also verify this with
+`hostname`.
 
 When you are done with the interactive job, type exit to quit your session.
