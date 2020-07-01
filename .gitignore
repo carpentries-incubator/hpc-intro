@@ -2,6 +2,7 @@
 *~
 .DS_Store
 .ipynb_checkpoints
+.jekyll-cache
 .sass-cache
 __pycache__
 _site
