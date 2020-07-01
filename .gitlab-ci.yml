@@ -14,7 +14,7 @@ before_script:
 pages:
   stage: deploy
   script:
-   - jekyll build -s jekyll -d public
+   - jekyll build -d public
   artifacts:
     paths:
     - public
