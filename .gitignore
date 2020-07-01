@@ -10,5 +10,6 @@ files/*.gtf
 files/*.fb
 files/*.fastq
 files/*.tsv
+Gemfile.lock
 scratch/
 
