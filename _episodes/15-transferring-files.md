@@ -28,7 +28,7 @@ lesson sample files using the following command:
 ```
 {{ site.host_prompt }} wget {{ site.url }}{{ site.baseurl }}/files/bash-lesson.tar.gz
 ```
-{: .bash}
+{:.bash}
 
 ## Transferring single files and folders with scp
 
@@ -39,13 +39,13 @@ To transfer *to* another computer:
 ```
 {{ site.local_prompt }} scp /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
 ```
-{: .bash}
+{:.bash}
 
 To download *from* another computer:
 ```
 {{ site.local_prompt }} scp yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
 ```
-{: .bash}
+{:.bash}
 
 Note that we can simplify doing this by shortening our paths. On the remote computer, everything
 after the `:` is relative to our home directory. We can simply just add a `:` and leave it at that
@@ -54,16 +54,16 @@ if we don't care where the file goes.
 ```
 {{ site.local_prompt }} scp local-file.txt yourUsername@remote.computer.address:
 ```
-{: .bash}
+{:.bash}
 
 To recursively copy a directory, we just add the `-r` (recursive) flag:
 
 ```
 {{ site.local_prompt }} scp -r some-local-folder/ yourUsername@remote.computer.address:target-directory/
 ```
-{: .bash}
+{:.bash}
 
-> ## A note on rsync
+> ## A note on `rsync`
 >
 > As you gain experience with transferring files, you may find the `scp` command limiting. The
 > [rsync](https://rsync.samba.org/) utility provides advanced features for file transfer and is
@@ -71,10 +71,11 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 > transferring large and/or many files and creating synced backup folders.
 >
 > The syntax is similar to `scp`. To transfer *to* another computer with commonly used options:
+>
 > ```
 > [local]$ rsync -avzP /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
 > ```
-> {: .bash}
+> {:.bash}
 >
 > The `a` (archive) option preserves file timestamps and permissions among other things; the `v` (verbose)
 > option gives verbose output to help monitor the transfer; the `z` (compression) option compresses
@@ -83,25 +84,28 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 > of the transfer.
 >
 > To recursively copy a directory, we can use the same options:
+>
 > ```
 > [local]$ rsync -avzP /path/to/local/dir yourUsername@remote.computer.address:/path/on/remote/computer
 > ```
-> {: .bash}
+> {:.bash}
 > 
 > The `a` (archive) option implies recursion.
 > 
 > To download a file, we simply change the source and destination:
+>
 > ```
 > [local]$ rsync -avzP yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
 > ```
-> {: .bash}
-{: .callout}
+> {:.bash}
+{:.callout}
 
 ## Transferring files interactively with FileZilla (sftp)
 
 FileZilla is a cross-platform client for downloading and uploading files to and from a remote
-computer. It is absolutely fool-proof and always works quite well. It uses the `sftp`
-protocol. You can read more about using the `sftp` protocol in the command line [here]({{ site.baseurl }}{% link _extras/discuss.md %}).
+computer. It is absolutely fool-proof and always works quite well. It uses the `sftp` protocol. You
+can read more about using the `sftp` protocol in the command line [here]({{ site.baseurl }}{% link
+_extras/discuss.md %}).
 
 Download and install the FileZilla client from
 [https://filezilla-project.org](https://filezilla-project.org). After installing and opening the
@@ -139,7 +143,7 @@ all files contained inside `output_data` into an archive file called `output_dat
 ```
 {{ site.local_prompt }} tar -cvf output_data.tar output_data/
 ```
-{: .bash}
+{:.bash}
 
 The options we used for `tar` are:
 
@@ -147,15 +151,17 @@ The options we used for `tar` are:
 - `-v` - Verbose (print what you are doing!)
 - `-f mydata.tar` - Create the archive in file *output_data.tar*
 
-The tar command allows users to concatenate flags. Instead of typing `tar -c -v -f`, we can use `tar -cvf`. We can also use the `tar` command to extract the files from the archive once we have transferred it:
+The tar command allows users to concatenate flags. Instead of typing `tar -c -v -f`, we can use `tar
+-cvf`. We can also use the `tar` command to extract the files from the archive once we have
+transferred it:
 
 ```
 {{ site.local_prompt }} tar -xvf output_data.tar
 ```
-{: .bash}
+{:.bash}
 
-This will put the data into a directory called `output_data`. Be careful, it will overwrite data there if this
-directory already exists!
+This will put the data into a directory called `output_data`. Be careful, it will overwrite data
+there if this directory already exists!
 
 Sometimes you may also want to compress the archive to save space and speed up the transfer. However,
 you should be aware that for large amounts of data compressing and un-compressing can take longer
@@ -166,7 +172,7 @@ it is compressed, e.g.:
 ```
 {{ site.local_prompt }} tar -czvf output_data.tar.gz output_data/
 ```
-{: .bash}
+{:.bash}
 
 The `tar` command is used to extract the files from the archive in exactly the same way as for
 uncompressed data as `tar` recognizes it is compressed and un-compresses and extracts at the 
@@ -175,13 +181,13 @@ same time:
 ```
 {{ site.local_prompt }} tar -xvf output_data.tar.gz
 ```
-{: .bash}
+{:.bash}
 
 > ## Transferring files
 >
 > Using one of the above methods, try transferring files to and from the cluster. Which method do
 > you like the best?
-{: .challenge}
+{:.challenge}
 
 > ## Working with Windows
 >
@@ -202,7 +208,7 @@ same time:
 > 
 > To convert the file, just run `dos2unix filename`. (Conversely, to convert back to Windows format,
 > you can run `unix2dos filename`.)
-{: .callout}
+{:.callout}
 
 > ## A note on ports
 >
@@ -210,6 +216,6 @@ same time:
 > same connection method used by SSH. In fact, all file transfers using these methods occur through
 > an SSH connection. If you can connect via SSH over the normal port, you will be able to transfer
 > files.
-{: .callout}
+{:.callout}
 
 {% include links.md %}
