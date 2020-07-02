@@ -92,6 +92,7 @@ the *queue*. To check on our job's status, we check the queue using the command
 ```
 {{ site.host_prompt }} {{ site.sched_status }} {{ site.sched_flag_user }}
 ```
+{: .bash}
 {% include /snippets/13/statu_output.snip %}
 
 The best way to check our job's status is with `{{ site.sched_status }}`.
