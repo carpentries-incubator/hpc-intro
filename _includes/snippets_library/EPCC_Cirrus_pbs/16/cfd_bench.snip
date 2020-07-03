@@ -3,13 +3,13 @@
 > Copy the Python 2D CFD application from the course website to the HPC system using the following command:
 >
 > ```
-> {{ site.workshop_host_prompt }} wget {{ site.url }}{{ site.baseurl }}/files/cfd.tar.gz
+> {{ site.workshop_host.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/cfd.tar.gz
 > ```
 >
 > Then unpack it using
 >
 > ```
-> {{ site.workshop_host_prompt }} tar -xvf cfd.tar.gz
+> {{ site.workshop_host.prompt }} tar -xvf cfd.tar.gz
 > ```
 > 
 > Create a job that runs the following commands in the directory containing the `cfd.py` program.

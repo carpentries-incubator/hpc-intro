@@ -2,7 +2,7 @@
 `hostname` command with `srun`. (We can cancel an `srun` job with `Ctrl-c`.)
 
 ```
-{{ site.host_prompt }} srun hostname
+{{ site.host.prompt }} srun hostname
 ```
 {: .bash}
 ```
@@ -15,7 +15,7 @@ script, these options are specified on the command-line when starting a job. To 
 uses 2 CPUs for instance, we could use the following command:
 
 ```
-{{ site.host_prompt }} srun -c 2 echo "This job will use 2 CPUs."
+{{ site.host.prompt }} srun -c 2 echo "This job will use 2 CPUs."
 ```
 {: .bash}
 ```
@@ -32,7 +32,7 @@ an analysis or we are attempting to debug something that went wrong with a previ
 Fortunately, SLURM makes it easy to start an interactive job with `srun`:
 
 ```
-{{ site.host_prompt }} srun --pty bash
+{{ site.host.prompt }} srun --pty bash
 ```
 {: .bash}
 
