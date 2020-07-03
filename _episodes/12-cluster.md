@@ -31,9 +31,9 @@ purpose, and are used to accomplish tasks that might otherwise be too big for an
 
 ## Logging in
 
-Go ahead and log in to the cluster: {{ site.host.name }} at {{ site.host.location }}.
+Go ahead and log in to the cluster: {{ site.remote.name }} at {{ site.remote.location }}.
 ```
-{{ site.local.prompt }} ssh yourUsername@{{ site.host.login }}
+{{ site.local.prompt }} ssh yourUsername@{{ site.remote.login }}
 ```
 {: .bash}
 
@@ -41,7 +41,7 @@ Remember to replace `yourUsername` with the username supplied by the instructors
 your password. But watch out, the characters you type are not displayed on the screen.
 
 You are logging in using a program known as the secure shell or `ssh`. 
-This establishes a temporary encrypted connection between your laptop and `{{ site.host.login }}`.
+This establishes a temporary encrypted connection between your laptop and `{{ site.remote.login }}`.
 The word before the `@` symbol, e.g. `yourUsername` here, is the user account name that Lola has access 
 permissions for on the cluster. 
 
@@ -69,12 +69,12 @@ of the current computer we are logged onto can be checked with the `hostname` co
 notice that the current hostname is also part of our prompt!)
 
 ```
-{{ site.host.prompt }} hostname
+{{ site.remote.prompt }} hostname
 ```
 {: .bash}
 
 ```
-{{ site.host.name }}
+{{ site.remote.name }}
 ```
 {: .output}
 
@@ -100,7 +100,7 @@ nodes.
 For example, we can view all of the worker nodes with the `{{ site.sched.info }}` command.
 
 ```
-{{ site.host.prompt }} {{ site.sched.info }}
+{{ site.remote.prompt }} {{ site.sched.info }}
 ```
 {: .bash}
 
@@ -142,14 +142,14 @@ been restarted.
 > processors, run:
 >
 > ```
-> {{ site.host.prompt }} nproc --all
+> {{ site.remote.prompt }} nproc --all
 > ```
 > {: .language-bash}
 > 
 > How about memory? Try running: 
 >
 > ```
-> {{ site.host.prompt }} free -m
+> {{ site.remote.prompt }} free -m
 > ```
 > {: .language-bash}
 {: .challenge}
@@ -163,14 +163,14 @@ been restarted.
 > For more information on processors use `lscpu`
 >
 > ```
-> {{ site.host.prompt }} lscpu
+> {{ site.remote.prompt }} lscpu
 > ```
 > {: .language-bash}
 >
 > For more information on memory you can look in the `/proc/meminfo` file:
 >
 > ```
-> {{ site.host.prompt }} cat /proc/meminfo
+> {{ site.remote.prompt }} cat /proc/meminfo
 > ```
 > {: .language-bash}
 {: .callout}

@@ -67,7 +67,7 @@ in your environment. If you have no modules loaded, you will see a message telli
 so
 
 ```
-{{ site.host.prompt }} module list
+{{ site.remote.prompt }} module list
 ```
 {: .bash}
 
@@ -81,7 +81,7 @@ No Modulefiles Currently Loaded.
 To see available software modules, use `module avail`
 
 ```
-{{ site.host.prompt }} module avail
+{{ site.remote.prompt }} module avail
 ```
 {: .bash}
 
@@ -101,7 +101,7 @@ We can test this by using the `which` command.
 so we can use it to tell us where a particular piece of software is stored.
 
 ```
-{{ site.host.prompt }} which python3
+{{ site.remote.prompt }} which python3
 ```
 {: .bash}
 
@@ -131,7 +131,7 @@ through for a command before giving up and telling us it can't find it. As with 
 variables we can print it out using `echo`.
 
 ```
-{{ site.host.prompt }} echo $PATH
+{{ site.remote.prompt }} echo $PATH
 ```
 {: .bash}
 
@@ -171,7 +171,7 @@ either of these example cases, it helps to be very specific about what software 
 Let's examine the output of `module avail` more closely.
 
 ```
-{{ site.host.prompt }} module avail
+{{ site.remote.prompt }} module avail
 ```
 {: .bash}
 
@@ -216,7 +216,7 @@ As an example we will install the bioinformatics toolkit `seqtk`. We'll first ne
 source code from GitHub using `git`.
 
 ```
-{{ site.host.prompt }} git clone https://github.com/lh3/seqtk.git
+{{ site.remote.prompt }} git clone https://github.com/lh3/seqtk.git
 ```
 {:.bash}
 
@@ -233,8 +233,8 @@ Now, using the instructions in the README.md file, all we need to do to complete
 `cd` into the seqtk folder and run the command `make`.
 
 ```
-{{ site.host.prompt }} cd seqtk
-{{ site.host.prompt }} make
+{{ site.remote.prompt }} cd seqtk
+{{ site.remote.prompt }} make
 ```
 {:.bash}
 
@@ -250,7 +250,7 @@ seqtk.c:399:16: warning: variable ‘lc’ set but not used [-Wunused-but-set-va
 It's done! Now all we need to do to use the program is invoke it like any other program.
 
 ```
-{{ site.host.prompt }} ./seqtk
+{{ site.remote.prompt }} ./seqtk
 ```
 {:.bash}
 

@@ -25,7 +25,7 @@ snippets: "/snippets_library/ComputeCanada_Graham_slurm"
 local:
   prompt: "[user@laptop ~]$"
 
-host:
+remote:
   name: "Graham"
   login: "graham.computecanada.ca"
   location: "University of Waterloo"

@@ -22,7 +22,7 @@ snippets: "/snippets_library/EPCC_Cirrus_pbs"
 local:
   prompt: "[user@laptop ~]$"
 
-host:
+remote:
   name: "Cirrus"
   login: "login.cirrus.ac.uk"
   location: "EPCC, The University of Edinburgh"

@@ -41,7 +41,7 @@ to see how long our job took and what resources were used. We will use `{{ site.
 get statistics about our job.
 
 ```
-{{ site.host.prompt }} {{ site.sched.hist }}
+{{ site.remote.prompt }} {{ site.sched.hist }}
 ```
 {:.bash}
 
@@ -54,7 +54,7 @@ This shows all the jobs we ran recently (note that there are multiple entries pe
 detailed info about a job, we change command slightly.
 
 ```
-{{ site.host.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965
+{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965
 ```
 {:.bash}
 
@@ -63,7 +63,7 @@ scheduler. It may be useful to redirect this information to `less` to make it ea
 the left and right arrow keys to scroll through fields).
 
 ```
-{{ site.host.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965| less
+{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965| less
 ```
 {:.bash}
 
@@ -98,7 +98,7 @@ may not be available on your system).
 Some sample output might look like the following (`Ctrl + c` to exit):
 
 ```
-{{ site.host.prompt }} top
+{{ site.remote.prompt }} top
 ```
 {:.bash}
 
@@ -125,7 +125,7 @@ Another useful tool is the `free -h` command. This will show the currently used/
 memory.
 
 ```
-{{ site.host.prompt }} free -h
+{{ site.remote.prompt }} free -h
 ```
 {:.bash}
 
@@ -146,7 +146,7 @@ they run out of memory you usually get an "Out Of Memory (OOM)" error instead.
 To show all processes from your current session, type `ps`.
 
 ```
-{{ site.host.prompt }} ps
+{{ site.remote.prompt }} ps
 ```
 {:.bash}
 
@@ -161,7 +161,7 @@ Note that this will only show processes from our current session. To show all pr
 (regardless of whether they are part of your current session or not), you can use `ps ux`.
 
 ```
-{{ site.host.prompt }} ps ux
+{{ site.remote.prompt }} ps ux
 ```
 {:.bash}
 

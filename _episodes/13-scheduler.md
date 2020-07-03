@@ -77,7 +77,7 @@ distinction between running the job through the scheduler and just "running it".
 to the scheduler, we use the `{{ site.sched.submit.name }}` command.
 
 ```
-[{{ site.host.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
+[{{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
 ```
 {: .bash}
 
@@ -92,7 +92,7 @@ the *queue*. To check on our job's status, we check the queue using the command
 `{{ site.sched.status }} {{ site.sched.flag.user }}`.
 
 ```
-{{ site.host.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
+{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .bash}
 
@@ -106,8 +106,8 @@ administrator. You can change the interval to a more reasonable value, for examp
 `-n 60` parameter. Let's try using it to monitor another job.
 
 ```
-{{ site.host.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
-{{ site.host.prompt }} watch -n 60 {{ site.sched.status }} {{ site.sched.flag.user }}
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
+{{ site.remote.prompt }} watch -n 60 {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .bash}
 
@@ -146,7 +146,7 @@ echo 'This script has finished successfully'
 {:.bash}
 
 ```
-{{ site.host.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
+{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .bash}
 
@@ -200,8 +200,8 @@ minutes.
 Submit the job and wait for it to finish. Once it is has finished, check the log file.
 
 ```
-{{ site.host.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
-{{ site.host.prompt }} watch -n 60 {{ site.sched.status }} {{ site.sched.flag.user }}
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
+{{ site.remote.prompt }} watch -n 60 {{ site.sched.status }} {{ site.sched.flag.user }}
 {% include {{ site.snippets }}/13/long_job_cat.snip %}
 ```
 {: .bash}
@@ -228,8 +228,8 @@ command. Let's submit a job and then cancel it using its job number (remember to
 walltime so that it runs long enough for you to cancel it before it is killed!).
 
 ```
-{{ site.host.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
-{{ site.host.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
+{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .bash}
 
@@ -244,7 +244,7 @@ successfully cancelled.
 ```
 {% include {{ site.snippets }}/13/del_job.snip %}
 # ... Note that it might take a minute for the job to disappear from the queue ...
-{{ site.host.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
+{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .bash}
 
