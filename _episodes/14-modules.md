@@ -85,10 +85,7 @@ To see available software modules, use `module avail`
 ```
 {: .bash}
 
-```
 {% include {{ site.snippets }}/14/module_avail.snip %}
-```
-{: .output}
 
 ## Loading and unloading software
 
@@ -105,22 +102,13 @@ so we can use it to tell us where a particular piece of software is stored.
 ```
 {: .bash}
 
-```
 {% include {{ site.snippets }}/14/which_missing.snip %}
-```
-{: .output}
 
 We can load the `python3` command with `module load`:
 
-```
 {% include {{ site.snippets }}/14/load_python.snip %}
-```
-{: .bash}
 
-```
 {% include {{ site.snippets }}/14/which_python.snip %}
-```
-{: .output}
 
 So, what just happened?
 
@@ -135,24 +123,15 @@ variables we can print it out using `echo`.
 ```
 {: .bash}
 
-```
 {% include {{ site.snippets }}/14/path.snip %}
-```
-{: .output}
 
 You'll notice a similarity to the output of the `which` command. In this case, there's only one
 difference: the different directory at the beginning. When we ran the `module load` command,
 it added a directory to the beginning of our `$PATH`. Let's examine what's there:
 
-```
 {% include {{ site.snippets }}/14/ls_dir.snip %}
-```
-{: .bash}
 
-```
 {% include {{ site.snippets }}/14/ls_dir_output.snip %}
-```
-{: .output}
 
 Taking this to it's conclusion, `module load` will add software to your `$PATH`. It "loads"
 software. A special note on this - depending on which version of the `module` program that is
@@ -175,10 +154,7 @@ Let's examine the output of `module avail` more closely.
 ```
 {: .bash}
 
-```
 {% include {{ site.snippets }}/14/module_avail.snip %}
-```
-{: .output}
 
 {% include {{ site.snippets }}/14/gcc_example.snip %}
 
@@ -218,7 +194,7 @@ source code from GitHub using `git`.
 ```
 {{ site.remote.prompt }} git clone https://github.com/lh3/seqtk.git
 ```
-{:.bash}
+{: .bash}
 
 ```
 Cloning into 'seqtk'...
@@ -227,7 +203,7 @@ remote: Total 316 (delta 0), reused 0 (delta 0), pack-reused 316
 Receiving objects: 100% (316/316), 141.52 KiB | 0 bytes/s, done.
 Resolving deltas: 100% (181/181), done.
 ```
-{:.output}
+{: .output}
 
 Now, using the instructions in the README.md file, all we need to do to complete the install is to
 `cd` into the seqtk folder and run the command `make`.
@@ -236,7 +212,7 @@ Now, using the instructions in the README.md file, all we need to do to complete
 {{ site.remote.prompt }} cd seqtk
 {{ site.remote.prompt }} make
 ```
-{:.bash}
+{: .bash}
 
 ```
 gcc -g -Wall -O2 -Wno-unused-function seqtk.c -o seqtk -lz -lm
@@ -245,14 +221,14 @@ seqtk.c:399:16: warning: variable ‘lc’ set but not used [-Wunused-but-set-va
     int la, lb, lc, na, nb, nc, cnt[11];
                 ^
 ```
-{:.output}
+{: .output}
 
 It's done! Now all we need to do to use the program is invoke it like any other program.
 
 ```
 {{ site.remote.prompt }} ./seqtk
 ```
-{:.bash}
+{: .bash}
 
 ```
 Usage:   seqtk <command> <arguments>
@@ -277,7 +253,7 @@ Command: seq       common transformation of FASTA/Q
          cutN      cut sequence at long N
          listhet   extract the position of each het
 ```
-{:.output}
+{: .output}
 
 We've successfully installed our first piece of software!
 

@@ -25,6 +25,7 @@ local:
 remote:
   name: "Graham"
   login: "graham.computecanada.ca"
+  node: "aci-377"
   location: "University of Waterloo"
   homedir: "/home"
   prompt: "[yourUsername@gra-login1 ~]$"
@@ -41,6 +42,7 @@ sched:
     interactive: ""
     histdetail: "-l -j"
     name: "-J"
+    time: "-t"
   del: "scancel"
   interactive: "srun"
   info: "sinfo"

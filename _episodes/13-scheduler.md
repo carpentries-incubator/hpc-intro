@@ -81,10 +81,7 @@ to the scheduler, we use the `{{ site.sched.submit.name }}` command.
 ```
 {: .bash}
 
-```
 {% include {{ site.snippets }}/13/submit_output.snip %}
-```
-{: .output}
 
 And that's all we need to do to submit a job. Our work is done -- now the scheduler takes over and
 tries to run the job for us. While the job is waiting to run, it goes into a list of jobs called 
@@ -125,8 +122,8 @@ Comments in UNIX (denoted by `#`) are typically ignored. But there are exception
 special `#!` comment at the beginning of scripts specifies what program should be used to run it
 (typically `/bin/bash`). Schedulers like {{ site.sched.name }} also have a special comment
 used to denote special scheduler-specific options. Though these comments differ from scheduler to
-scheduler, {{ site.sched.name }}'s special comment is `{{ site.sched.directive }}`.
-Anything following the `{{ site.sched.directive }}` comment is interpreted as an
+scheduler, {{ site.sched.name }}'s special comment is `{{ site.sched.comment }}`.
+Anything following the `{{ site.sched.comment }}` comment is interpreted as an
 instruction to the scheduler.
 
 Let's illustrate this by example. By default, a job's name is the name of the script, but the
@@ -136,24 +133,21 @@ Submit the following job (`{{ site.sched.submit.name }} {{ site.sched.submit.opt
 
 ```
 #!/bin/bash
-{{ site.sched.directive }} {{ site.sched.flag.name }} new_name
+{{ site.sched.comment }} {{ site.sched.flag.name }} new_name
 
 echo 'This script is running on:'
 hostname
 sleep 120
 echo 'This script has finished successfully'
 ```
-{:.bash}
+{: .bash}
 
 ```
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .bash}
 
-```
 {% include {{ site.snippets }}/13/statu_name_output.snip %}
-```
-{: .output}
 
 Fantastic, we've successfully changed the name of our job!
 
@@ -192,24 +186,19 @@ Resource requests are typically binding. If you exceed them, your job will be ki
 walltime as an example. We will request 30 seconds of walltime, and attempt to run a job for two
 minutes.
 
-```
 {% include {{ site.snippets }}/13/long_job.snip %}
-```
-{:.bash}
 
 Submit the job and wait for it to finish. Once it is has finished, check the log file.
 
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
 {{ site.remote.prompt }} watch -n 60 {{ site.sched.status }} {{ site.sched.flag.user }}
-{% include {{ site.snippets }}/13/long_job_cat.snip %}
 ```
 {: .bash}
 
-```
+{% include {{ site.snippets }}/13/long_job_cat.snip %}
+
 {% include {{ site.snippets }}/13/long_job_err.snip %}
-```
-{: .output}
 
 Our job was killed for exceeding the amount of resources it requested. Although this appears harsh,
 this is actually a feature. Strict adherence to resource requests allows the scheduler to find the
@@ -233,25 +222,19 @@ walltime so that it runs long enough for you to cancel it before it is killed!).
 ```
 {: .bash}
 
-```
 {% include {{ site.snippets }}/13/del_job_output1.snip %}
-```
-{: .output}
 
 Now cancel the job with it's job number. Absence of any job info indicates that the job has been
 successfully cancelled.
 
-```
 {% include {{ site.snippets }}/13/del_job.snip %}
+```
 # ... Note that it might take a minute for the job to disappear from the queue ...
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .bash}
 
-```
 {% include {{ site.snippets }}/13/del_job_output2.snip %}
-```
-{: .output}
 
 {% include {{ site.snippets }}/13/del_multiple_challenge.snip %}
 

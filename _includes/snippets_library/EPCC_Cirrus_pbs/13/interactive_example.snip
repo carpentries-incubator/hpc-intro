@@ -1,9 +1,9 @@
-qsub (with the right options) can submit a job and then wait for it to start
+`qsub` (with the right options) can submit a job and then wait for it to start
 so we can use the compute node resources interactively. Let’s demonstrate
 this by submitting an interactive job that uses a single core:
 
 ```
-{{ site.host.prompt }} {{ site.sched.submit.iopt }}
+{{ site.remote.prompt }} {{ site.sched.submit.iopt }}
 ```
 
 You should be presented with a bash prompt. Note that the prompt will likely

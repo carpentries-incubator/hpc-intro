@@ -1,19 +1,17 @@
-Let's take a closer look at the `gcc` module.
-GCC is an extremely widely used C/C++/Fortran compiler.
-Lots of software is dependent on the GCC version, 
-and might not compile or run if the wrong version is loaded.
-In this case, there are three different versions: `gcc/6.2.0`, `gcc/6.3.0` and `gcc/7.2.0`.
-How do we load each copy and which copy is the default?
+Let's take a closer look at the `gcc` module. GCC is an extremely widely used C/C++/Fortran
+compiler. Lots of software is dependent on the GCC version, and might not compile or run if the
+wrong version is loaded. In this case, there are three different versions: `gcc/6.2.0`, `gcc/6.3.0`
+and `gcc/7.2.0`. How do we load each copy and which copy is the default?
 
-In this case, `gcc/6.2.0` has a `(default)` next to it.
-This indicates that it is the default - 
-if we type `module load gcc`, this is the copy that will be loaded.
+In this case, `gcc/6.2.0` has a `(default)` next to it. This indicates that it is the default - if
+we type `module load gcc`, this is the copy that will be loaded.
 
 ```
-{{ site.host.prompt }} module load gcc
-{{ site.host.prompt }} gcc --version
+{{ site.remote.prompt }} module load gcc
+{{ site.remote.prompt }} gcc --version
 ```
 {: .bash}
+
 ```
 gcc (GCC) 6.2.0
 Copyright (C) 2016 Free Software Foundation, Inc.
@@ -28,9 +26,10 @@ There are three GCC modules:  `gcc/6.2.0`, `gcc/6.3.0` and `gcc/7.2.0`
 To load a non-default module, we need to make add the version number after the `/` in our `module load` command
 
 ```
-{{ site.host.prompt }} module load gcc/7.2.0
+{{ site.remote.prompt }} module load gcc/7.2.0
 ```
 {: .bash}
+
 ```
 gcc/7.2.0(17):ERROR:150: Module 'gcc/7.2.0' conflicts with the currently loaded module(s) 'gcc/6.2.0'
 gcc/7.2.0(17):ERROR:102: Tcl command execution failed: conflict gcc
@@ -42,11 +41,12 @@ same time as this could cause confusion about which version you are using. We ne
 default version before we load the new version.
 
 ```
-{{ site.host.prompt }} module unload gcc
-{{ site.host.prompt }} module load gcc/7.2.0
-{{ site.host.prompt }} gcc --version
+{{ site.remote.prompt }} module unload gcc
+{{ site.remote.prompt }} module load gcc/7.2.0
+{{ site.remote.prompt }} gcc --version
 ```
 {: .bash}
+
 ```
 gcc (GCC) 7.2.0
 Copyright (C) 2017 Free Software Foundation, Inc.
@@ -55,20 +55,20 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
 {: .output}
 
-
 We now have successfully switched from GCC 6.2.0 to GCC 7.2.0.
 
 As switching between different versions of the same module is often used you can use `module swap` 
 rather than unloading one version before loading another. The equivalent of the steps above would be:
 
 ```
-{{ site.host.prompt }} module purge
-{{ site.host.prompt }} module load gcc
-{{ site.host.prompt }} gcc --version
-{{ site.host.prompt }} module swap gcc gcc/7.2.0
-{{ site.host.prompt }} gcc --version
+{{ site.remote.prompt }} module purge
+{{ site.remote.prompt }} module load gcc
+{{ site.remote.prompt }} gcc --version
+{{ site.remote.prompt }} module swap gcc gcc/7.2.0
+{{ site.remote.prompt }} gcc --version
 ```
 {: .bash}
+
 ```
 gcc (GCC) 6.2.0
 Copyright (C) 2016 Free Software Foundation, Inc.

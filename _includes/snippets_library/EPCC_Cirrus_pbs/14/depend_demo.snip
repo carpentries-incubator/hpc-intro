@@ -3,10 +3,11 @@ which modules we currently have loaded in our environment. ([Abinit](https://www
 materials science modelling software package.)
 
 ```
-{{ site.host.prompt }} module load abinit
-{{ site.host.prompt }} module list
+{{ site.remote.prompt }} module load abinit
+{{ site.remote.prompt }} module list
 ```
 {: .bash}
+
 ```
 Currently Loaded Modulefiles:
   1) anaconda/python3                  5) intel-compilers-17/17.0.2.174     9) netcdf/4.4.1
@@ -21,10 +22,11 @@ also loaded a variety of other modules.
 Let's try unloading the `abinit` package.
 
 ```
-{{ site.host.prompt }} module unload abinit
-{{ site.host.prompt }} module list
+{{ site.remote.prompt }} module unload abinit
+{{ site.remote.prompt }} module list
 ```
 {: .bash}
+
 ```
 Currently Loaded Modulefiles:
   1) anaconda/python3
@@ -35,10 +37,11 @@ So using `module unload` "un-loads" a module along with its dependencies.
 If we wanted to unload everything at once, we could run `module purge` (unloads everything).
 
 ```
-{{ site.host.prompt }} module load abinit
-{{ site.host.prompt }} module purge
+{{ site.remote.prompt }} module load abinit
+{{ site.remote.prompt }} module purge
 ```
 {: .bash}
+
 ```
 No Modulefiles Currently Loaded.
 ```

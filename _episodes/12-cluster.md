@@ -99,15 +99,9 @@ nodes.
 
 For example, we can view all of the worker nodes with the `{{ site.sched.info }}` command.
 
-```
 {{ site.remote.prompt }} {{ site.sched.info }}
-```
-{: .bash}
 
-```
 {% include {{ site.snippets }}/12/info.snip %}
-```
-{: .output}
 
 There are also specialized machines used for managing disk storage, user authentication, and other
 infrastructure-related tasks. Although we do not typically logon to or interact with these machines

@@ -1,9 +1,10 @@
 To demonstrate, let's use `module list`. `module list` shows all loaded software modules.
 
 ```
-{{ site.host.prompt }} module list
+{{ site.remote.prompt }} module list
 ```
 {: .bash}
+
 ```
 Currently Loaded Modules:
   1) nixpkgs/.16.09  (H,S)   3) gcccore/.5.4.0    (H)   5) intel/2016.4  (t)   7) StdEnv/2016.4 (S)
@@ -18,10 +19,11 @@ Currently Loaded Modules:
 {: .output}
 
 ```
-{{ site.host.prompt }} module load beast
-{{ site.host.prompt }} module list
+{{ site.remote.prompt }} module load beast
+{{ site.remote.prompt }} module list
 ```
 {: .bash}
+
 ```
 Currently Loaded Modules:
   1) nixpkgs/.16.09    (H,S)   5) intel/2016.4  (t)   9) java/1.8.0_121   (t)
@@ -43,10 +45,11 @@ So in this case, loading the `beast` module (a bioinformatics software package),
 `java/1.8.0_121` and `beagle-lib/2.1.2` as well. Let's try unloading the `beast` package.
 
 ```
-{{ site.host.prompt }} module unload beast
-{{ site.host.prompt }} module list
+{{ site.remote.prompt }} module unload beast
+{{ site.remote.prompt }} module list
 ```
 {: .bash}
+
 ```
 Currently Loaded Modules:
   1) nixpkgs/.16.09  (H,S)   3) gcccore/.5.4.0    (H)   5) intel/2016.4  (t)   7) StdEnv/2016.4 (S)
@@ -64,9 +67,10 @@ So using `module unload` "un-loads" a module along with its dependencies.
 If we wanted to unload everything at once, we could run `module purge` (unloads everything).
 
 ```
-{{ site.host.prompt }} module purge
+{{ site.remote.prompt }} module purge
 ```
 {: .bash}
+
 ```
 The following modules were not unloaded:
   (Use "module --force purge" to unload all):

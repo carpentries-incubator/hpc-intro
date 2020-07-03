@@ -43,12 +43,9 @@ get statistics about our job.
 ```
 {{ site.remote.prompt }} {{ site.sched.hist }}
 ```
-{:.bash}
+{: .bash}
 
-```
 {% include {{ site.snippets }}/16/stat_output.snip %}
-```
-{:.output}
 
 This shows all the jobs we ran recently (note that there are multiple entries per job). To get
 detailed info about a job, we change command slightly.
@@ -56,7 +53,7 @@ detailed info about a job, we change command slightly.
 ```
 {{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965
 ```
-{:.bash}
+{: .bash}
 
 It will show a lot of info, in fact, every single piece of info collected on your job by the
 scheduler. It may be useful to redirect this information to `less` to make it easier to view (use
@@ -65,7 +62,7 @@ the left and right arrow keys to scroll through fields).
 ```
 {{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965| less
 ```
-{:.bash}
+{: .bash}
 
 Some interesting fields include the following:
 
@@ -100,12 +97,9 @@ Some sample output might look like the following (`Ctrl + c` to exit):
 ```
 {{ site.remote.prompt }} top
 ```
-{:.bash}
+{: .bash}
 
-```
 {% include {{ site.snippets }}/16/top_output.snip %}
-```
-{:.output}
 
 Overview of the most important fields:
 
@@ -127,12 +121,9 @@ memory.
 ```
 {{ site.remote.prompt }} free -h
 ```
-{:.bash}
+{: .bash}
 
-```
 {% include {{ site.snippets }}/16/free_output.snip %}
-```
-{:.output}
 
 The key fields here are total, used, and available - which represent the amount of memory that the
 machine has in total, how much is currently being used, and how much is still available. When a
@@ -148,14 +139,14 @@ To show all processes from your current session, type `ps`.
 ```
 {{ site.remote.prompt }} ps
 ```
-{:.bash}
+{: .bash}
 
 ```
   PID TTY          TIME CMD
 15113 pts/5    00:00:00 bash
 15218 pts/5    00:00:00 ps
 ```
-{:.output}
+{: .output}
 
 Note that this will only show processes from our current session. To show all processes you own
 (regardless of whether they are part of your current session or not), you can use `ps ux`.
@@ -163,7 +154,7 @@ Note that this will only show processes from our current session. To show all pr
 ```
 {{ site.remote.prompt }} ps ux
 ```
-{:.bash}
+{: .bash}
 
 ```
 USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
@@ -171,7 +162,7 @@ auser  67780  0.0  0.0 149140  1724 pts/81   R+   13:51   0:00 ps ux
 auser  73083  0.0  0.0 142392  2136 ?        S    12:50   0:00 sshd: auser@pts/81
 auser  73087  0.0  0.0 114636  3312 pts/81   Ss   12:50   0:00 -bash
 ```
-{:.output}
+{: .output}
 
 This is useful for identifying which processes are doing what.
 

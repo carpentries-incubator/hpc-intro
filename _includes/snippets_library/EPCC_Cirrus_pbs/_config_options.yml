@@ -25,6 +25,7 @@ local:
 remote:
   name: "Cirrus"
   login: "login.cirrus.ac.uk"
+  node: "r1i0n32"
   location: "EPCC, The University of Edinburgh"
   homedir: "/lustre/home/tc001/lola"
   prompt: "[yourUsername@cirrus-login0 ~]$"
@@ -41,10 +42,11 @@ sched:
     interactive: "-IVl select=1:ncpus=1"
     name: "-N"
     histdetail: "-f"
+    time: "-l"
   del: "qdel"
   interactive: "qsub"
   info: "pbsnodes -a"
-  directive: "#PBS"
+  comment: "#PBS"
   hist: "qstat -x"
 
 # Interactive queue names, one or more as a list

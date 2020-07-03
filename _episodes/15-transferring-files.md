@@ -28,7 +28,7 @@ lesson sample files using the following command:
 ```
 {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/bash-lesson.tar.gz
 ```
-{:.bash}
+{: .bash}
 
 ## Transferring single files and folders with scp
 
@@ -37,15 +37,15 @@ for new users, but we'll break it down here:
 
 To transfer *to* another computer:
 ```
-{{ site.local.prompt }} scp path/to/local/file.txt yourUsername@{{ site.remote.login }}:path/on/remote/computer
+{{ site.local.prompt }} scp path/to/local/file.txt yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}
 ```
-{:.bash}
+{: .bash}
 
 To download *from* another computer:
 ```
-{{ site.local.prompt }} scp yourUsername@{{ site.remote.login }}:path/on/remote/computer/file.txt path/to/local/
+{{ site.local.prompt }} scp yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
 ```
-{:.bash}
+{: .bash}
 
 Note that we can simplify doing this by shortening our paths. On the remote computer, everything
 after the `:` is relative to our home directory. We can simply just add a `:` and leave it at that
@@ -54,14 +54,14 @@ if we don't care where the file goes.
 ```
 {{ site.local.prompt }} scp local-file.txt yourUsername@{{ site.remote.login }}:
 ```
-{:.bash}
+{: .bash}
 
 To recursively copy a directory, we just add the `-r` (recursive) flag:
 
 ```
 {{ site.local.prompt }} scp -r some-local-folder/ yourUsername@{{ site.remote.login }}:target-directory/
 ```
-{:.bash}
+{: .bash}
 
 > ## A note on `rsync`
 >
@@ -73,9 +73,9 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 > The syntax is similar to `scp`. To transfer *to* another computer with commonly used options:
 >
 > ```
-> [local]$ rsync -avzP path/to/local/file.txt yourUsername@{{ site.remote.login }}:path/on/remote/computer
+> {{ site.local.prompt }} rsync -avzP path/to/local/file.txt yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}
 > ```
-> {:.bash}
+> {: .bash}
 >
 > The `a` (archive) option preserves file timestamps and permissions among other things; the `v` (verbose)
 > option gives verbose output to help monitor the transfer; the `z` (compression) option compresses
@@ -86,18 +86,18 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 > To recursively copy a directory, we can use the same options:
 >
 > ```
-> [local]$ rsync -avzP path/to/local/dir yourUsername@{{ site.remote.login }}:path/on/remote/computer
+> {{ site.local.prompt }} rsync -avzP path/to/local/dir yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}
 > ```
-> {:.bash}
+> {: .bash}
 > 
 > The `a` (archive) option implies recursion.
 > 
 > To download a file, we simply change the source and destination:
 >
 > ```
-> [local]$ rsync -avzP yourUsername@{{ site.remote.login }}:path/on/remote/computer/file.txt path/to/local/
+> {{ site.local.prompt }} rsync -avzP yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
 > ```
-> {:.bash}
+> {: .bash}
 {:.callout}
 
 ## Transferring files interactively with FileZilla (sftp)
@@ -143,7 +143,7 @@ all files contained inside `output_data` into an archive file called `output_dat
 ```
 {{ site.local.prompt }} tar -cvf output_data.tar output_data/
 ```
-{:.bash}
+{: .bash}
 
 The options we used for `tar` are:
 
@@ -158,7 +158,7 @@ transferred it:
 ```
 {{ site.local.prompt }} tar -xvf output_data.tar
 ```
-{:.bash}
+{: .bash}
 
 This will put the data into a directory called `output_data`. Be careful, it will overwrite data
 there if this directory already exists!
@@ -172,7 +172,7 @@ it is compressed, e.g.:
 ```
 {{ site.local.prompt }} tar -czvf output_data.tar.gz output_data/
 ```
-{:.bash}
+{: .bash}
 
 The `tar` command is used to extract the files from the archive in exactly the same way as for
 uncompressed data as `tar` recognizes it is compressed and un-compresses and extracts at the 
@@ -181,7 +181,7 @@ same time:
 ```
 {{ site.local.prompt }} tar -xvf output_data.tar.gz
 ```
-{:.bash}
+{: .bash}
 
 > ## Transferring files
 >
