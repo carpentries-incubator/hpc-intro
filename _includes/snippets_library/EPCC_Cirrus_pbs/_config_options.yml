@@ -20,32 +20,32 @@
 snippets: "/snippets_library/EPCC_Cirrus_pbs"
 
 local:
-  - prompt: "[user@laptop ~]$"
+  prompt: "[user@laptop ~]$"
 
 host:
-  - name: "Cirrus"
-  - login: "login.cirrus.ac.uk"
-  - location: "EPCC, The University of Edinburgh"
-  - homedir: "/lustre/home/tc001/lola"
-  - prompt: "[yourUsername@cirrus-login0 ~]$"
+  name: "Cirrus"
+  login: "login.cirrus.ac.uk"
+  location: "EPCC, The University of Edinburgh"
+  homedir: "/lustre/home/tc001/lola"
+  prompt: "[yourUsername@cirrus-login0 ~]$"
 
 sched:
-  - name: "PBS Pro"
-  - submit:
-    - name: "qsub"
-    - options: "-A tc001 -q R387726"
-    - iopt: ""
-  - status: "qstat"
-  - flag:
-    - user: "-u yourUsername"
-    - interactive: "-IVl select=1:ncpus=1"
-    - name: "-N"
-    - histdetail: "-f"
-  - del: "qdel"
-  - interactive: "qsub"
-  - info: "pbsnodes -a"
-  - directive: "#PBS"
-  - hist: "qstat -x"
+  name: "PBS Pro"
+  submit:
+    name: "qsub"
+    options: "-A tc001 -q R387726"
+    iopt: ""
+  status: "qstat"
+  flag:
+    user: "-u yourUsername"
+    interactive: "-IVl select=1:ncpus=1"
+    name: "-N"
+    histdetail: "-f"
+  del: "qdel"
+  interactive: "qsub"
+  info: "pbsnodes -a"
+  directive: "#PBS"
+  hist: "qstat -x"
 
 # Interactive queue names, one or more as a list
 workshop_interactive_queues:

@@ -23,32 +23,32 @@
 snippets: "/snippets_library/ComputeCanada_Graham_slurm"
 
 local:
-  - prompt: "[user@laptop ~]$"
+  prompt: "[user@laptop ~]$"
 
 host:
-  - name: "Graham"
-  - login: "graham.computecanada.ca"
-  - location: "University of Waterloo"
-  - homedir: "/home"
-  - prompt: "[yourUsername@gra-login1 ~]$"
+  name: "Graham"
+  login: "graham.computecanada.ca"
+  location: "University of Waterloo"
+  homedir: "/home"
+  prompt: "[yourUsername@gra-login1 ~]$"
 
 sched:
-  - name: "SLURM"
-  - user: "yourUsername"
-  - submit:
-    - name: "sbatch"
-    - options: ""
-  - status: "squeue"
-  - flag:
-    - user: "-u yourUsername"
-    - interactive: ""
-    - histdetail: "-l -j"
-    - name: "-J"
-  - del: "scancel"
-  - interactive: "srun"
-  - info: "sinfo"
-  - comment: "#SBATCH"
-  - hist: "sacct -u yourUsername"
+  name: "SLURM"
+  user: "yourUsername"
+  submit:
+    name: "sbatch"
+    options: ""
+  status: "squeue"
+  flag:
+    user: "-u yourUsername"
+    interactive: ""
+    histdetail: "-l -j"
+    name: "-J"
+  del: "scancel"
+  interactive: "srun"
+  info: "sinfo"
+  comment: "#SBATCH"
+  hist: "sacct -u yourUsername"
 
 # Interactive queue names, one or more as a list
 workshop_interactive_queues:
