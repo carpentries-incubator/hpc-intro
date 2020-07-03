@@ -89,7 +89,7 @@ and this will differ from individual to individual!
 > serial BLAST+ analyses in parallel. There are many different ways to do this that can be used
 > on their own or in combination. Some ideas include:
 >
-> - Using {{ site.sched_name }} job arrays to run multiple copies across different nodes
+> - Using {{ site.sched.name }} job arrays to run multiple copies across different nodes
 > - Using a bash loop within a node
 > - Using GNU parallel within a node
 >

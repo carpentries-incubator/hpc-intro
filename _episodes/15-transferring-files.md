@@ -26,7 +26,7 @@ The syntax is: `wget https://some/link/to/a/file.tar.gz`. For example, download 
 lesson sample files using the following command:
 
 ```
-{{ site.host_prompt }} wget {{ site.url }}{{ site.baseurl }}/files/bash-lesson.tar.gz
+{{ site.host.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/bash-lesson.tar.gz
 ```
 {:.bash}
 
@@ -37,13 +37,13 @@ for new users, but we'll break it down here:
 
 To transfer *to* another computer:
 ```
-{{ site.local_prompt }} scp path/to/local/file.txt yourUsername@{{ site.host_login }}:path/on/remote/computer
+{{ site.local.prompt }} scp path/to/local/file.txt yourUsername@{{ site.host.login }}:path/on/remote/computer
 ```
 {:.bash}
 
 To download *from* another computer:
 ```
-{{ site.local_prompt }} scp yourUsername@{{ site.host_login }}:path/on/remote/computer/file.txt path/to/local/
+{{ site.local.prompt }} scp yourUsername@{{ site.host.login }}:path/on/remote/computer/file.txt path/to/local/
 ```
 {:.bash}
 
@@ -52,14 +52,14 @@ after the `:` is relative to our home directory. We can simply just add a `:` an
 if we don't care where the file goes.
 
 ```
-{{ site.local_prompt }} scp local-file.txt yourUsername@{{ site.host_login }}:
+{{ site.local.prompt }} scp local-file.txt yourUsername@{{ site.host.login }}:
 ```
 {:.bash}
 
 To recursively copy a directory, we just add the `-r` (recursive) flag:
 
 ```
-{{ site.local_prompt }} scp -r some-local-folder/ yourUsername@{{ site.host_login }}:target-directory/
+{{ site.local.prompt }} scp -r some-local-folder/ yourUsername@{{ site.host.login }}:target-directory/
 ```
 {:.bash}
 
@@ -73,7 +73,7 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 > The syntax is similar to `scp`. To transfer *to* another computer with commonly used options:
 >
 > ```
-> [local]$ rsync -avzP path/to/local/file.txt yourUsername@{{ site.host_login }}:path/on/remote/computer
+> [local]$ rsync -avzP path/to/local/file.txt yourUsername@{{ site.host.login }}:path/on/remote/computer
 > ```
 > {:.bash}
 >
@@ -86,7 +86,7 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 > To recursively copy a directory, we can use the same options:
 >
 > ```
-> [local]$ rsync -avzP path/to/local/dir yourUsername@{{ site.host_login }}:path/on/remote/computer
+> [local]$ rsync -avzP path/to/local/dir yourUsername@{{ site.host.login }}:path/on/remote/computer
 > ```
 > {:.bash}
 > 
@@ -95,7 +95,7 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 > To download a file, we simply change the source and destination:
 >
 > ```
-> [local]$ rsync -avzP yourUsername@{{ site.host_login }}:path/on/remote/computer/file.txt path/to/local/
+> [local]$ rsync -avzP yourUsername@{{ site.host.login }}:path/on/remote/computer/file.txt path/to/local/
 > ```
 > {:.bash}
 {:.callout}
@@ -115,7 +115,7 @@ hand side.
 
 To connect to the cluster, we'll just need to enter our credentials at the top of the screen:
 
-* Host: `sftp://{{ site.host_login }}`
+* Host: `sftp://{{ site.host.login }}`
 * User: Your cluster username
 * Password: Your cluster password
 * Port: (leave blank to use the default port)
@@ -141,7 +141,7 @@ to combine files into a single archive file and, optionally, compress. For examp
 all files contained inside `output_data` into an archive file called `output_data.tar` we would use:
 
 ```
-{{ site.local_prompt }} tar -cvf output_data.tar output_data/
+{{ site.local.prompt }} tar -cvf output_data.tar output_data/
 ```
 {:.bash}
 
@@ -156,7 +156,7 @@ The tar command allows users to concatenate flags. Instead of typing `tar -c -v 
 transferred it:
 
 ```
-{{ site.local_prompt }} tar -xvf output_data.tar
+{{ site.local.prompt }} tar -xvf output_data.tar
 ```
 {:.bash}
 
@@ -170,7 +170,7 @@ archive using `tar` we add the `-z` option and add the `.gz` extension to the fi
 it is compressed, e.g.:
 
 ```
-{{ site.local_prompt }} tar -czvf output_data.tar.gz output_data/
+{{ site.local.prompt }} tar -czvf output_data.tar.gz output_data/
 ```
 {:.bash}
 
@@ -179,7 +179,7 @@ uncompressed data as `tar` recognizes it is compressed and un-compresses and ext
 same time:
 
 ```
-{{ site.local_prompt }} tar -xvf output_data.tar.gz
+{{ site.local.prompt }} tar -xvf output_data.tar.gz
 ```
 {:.bash}
 

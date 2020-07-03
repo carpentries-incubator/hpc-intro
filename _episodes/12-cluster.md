@@ -31,9 +31,9 @@ purpose, and are used to accomplish tasks that might otherwise be too big for an
 
 ## Logging in
 
-Go ahead and log in to the cluster: {{ site.host_name }} at {{ site.host_location }}.
+Go ahead and log in to the cluster: {{ site.host.name }} at {{ site.host.location }}.
 ```
-{{ site.local_prompt }} ssh yourUsername@{{ site.host_login }}
+{{ site.local.prompt }} ssh yourUsername@{{ site.host.login }}
 ```
 {: .bash}
 
@@ -41,7 +41,7 @@ Remember to replace `yourUsername` with the username supplied by the instructors
 your password. But watch out, the characters you type are not displayed on the screen.
 
 You are logging in using a program known as the secure shell or `ssh`. 
-This establishes a temporary encrypted connection between your laptop and `{{ site.host_login }}`.
+This establishes a temporary encrypted connection between your laptop and `{{ site.host.login }}`.
 The word before the `@` symbol, e.g. `yourUsername` here, is the user account name that Lola has access 
 permissions for on the cluster. 
 
@@ -69,12 +69,12 @@ of the current computer we are logged onto can be checked with the `hostname` co
 notice that the current hostname is also part of our prompt!)
 
 ```
-{{ site.host_prompt}} hostname
+{{ site.host.prompt }} hostname
 ```
 {: .bash}
 
 ```
-{{ site.host_name }}
+{{ site.host.name }}
 ```
 {: .output}
 
@@ -97,10 +97,10 @@ learn more about how to use the scheduler to submit jobs next, but for now, it c
 more information about the worker
 nodes.
 
-For example, we can view all of the worker nodes with the `{{ site.sched_info }}` command.
+For example, we can view all of the worker nodes with the `{{ site.sched.info }}` command.
 
 ```
-{{ site.host_prompt}} {{ site.sched_info }}
+{{ site.host.prompt }} {{ site.sched.info }}
 ```
 {: .bash}
 
@@ -142,14 +142,14 @@ been restarted.
 > processors, run:
 >
 > ```
-> {{ site.host_prompt}} nproc --all
+> {{ site.host.prompt }} nproc --all
 > ```
 > {: .language-bash}
 > 
 > How about memory? Try running: 
 >
 > ```
-> {{ site.host_prompt}} free -m
+> {{ site.host.prompt }} free -m
 > ```
 > {: .language-bash}
 {: .challenge}
@@ -163,14 +163,14 @@ been restarted.
 > For more information on processors use `lscpu`
 >
 > ```
-> {{ site.host_prompt}} lscpu
+> {{ site.host.prompt }} lscpu
 > ```
 > {: .language-bash}
 >
 > For more information on memory you can look in the `/proc/meminfo` file:
 >
 > ```
-> {{ site.host_prompt}} cat /proc/meminfo
+> {{ site.host.prompt }} cat /proc/meminfo
 > ```
 > {: .language-bash}
 {: .callout}
