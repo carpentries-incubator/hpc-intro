@@ -34,7 +34,7 @@ probably the minimum, with 20-30% being more typical. Keep in mind that if you a
 your job may not run even though enough resources are available, because the scheduler will be
 waiting to match what you asked for.
 
-{% include /snippets/16/bench.snip %}
+{% include {{ site.snippets }}/16/bench.snip %}
 
 Once the job completes (note that it takes much less time than expected), we can query the scheduler
 to see how long our job took and what resources were used. We will use `{{ site.sched_hist }}` to
@@ -46,7 +46,7 @@ get statistics about our job.
 {:.bash}
 
 ```
-{% include /snippets/16/stat_output.snip %}
+{% include {{ site.snippets }}/16/stat_output.snip %}
 ```
 {:.output}
 
@@ -103,7 +103,7 @@ Some sample output might look like the following (`Ctrl + c` to exit):
 {:.bash}
 
 ```
-{% include /snippets/16/top_output.snip %}
+{% include {{ site.snippets }}/16/top_output.snip %}
 ```
 {:.output}
 
@@ -130,7 +130,7 @@ memory.
 {:.bash}
 
 ```
-{% include /snippets/16/free_output.snip %}
+{% include {{ site.snippets }}/16/free_output.snip %}
 ```
 {:.output}
 
@@ -141,7 +141,7 @@ space is very slow to access - a computer may appear to "freeze" if it runs out 
 begins using swap. However, compute nodes on HPC systems usually have swap space disabled so when
 they run out of memory you usually get an "Out Of Memory (OOM)" error instead.
 
-### ps 
+### `ps `
 
 To show all processes from your current session, type `ps`.
 

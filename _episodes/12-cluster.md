@@ -105,7 +105,7 @@ For example, we can view all of the worker nodes with the `{{ site.sched_info }}
 {: .bash}
 
 ```
-{% include /snippets/12/info.snip %}
+{% include {{ site.snippets }}/12/info.snip %}
 ```
 {: .output}
 
@@ -175,7 +175,7 @@ been restarted.
 > {: .language-bash}
 {: .callout}
 
-{% include /snippets/12/explore.snip %}
+{% include {{ site.snippets }}/12/explore.snip %}
 
 > ## Compare Your Computer, the Head Node and the Worker Node
 >

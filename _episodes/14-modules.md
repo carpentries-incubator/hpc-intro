@@ -86,7 +86,7 @@ To see available software modules, use `module avail`
 {: .bash}
 
 ```
-{% include /snippets/14/module_avail.snip %}
+{% include {{ site.snippets }}/14/module_avail.snip %}
 ```
 {: .output}
 
@@ -106,19 +106,19 @@ so we can use it to tell us where a particular piece of software is stored.
 {: .bash}
 
 ```
-{% include /snippets/14/which_missing.snip %}
+{% include {{ site.snippets }}/14/which_missing.snip %}
 ```
 {: .output}
 
 We can load the `python3` command with `module load`:
 
 ```
-{% include /snippets/14/load_python.snip %}
+{% include {{ site.snippets }}/14/load_python.snip %}
 ```
 {: .bash}
 
 ```
-{% include /snippets/14/which_python.snip %}
+{% include {{ site.snippets }}/14/which_python.snip %}
 ```
 {: .output}
 
@@ -136,7 +136,7 @@ variables we can print it out using `echo`.
 {: .bash}
 
 ```
-{% include /snippets/14/path.snip %}
+{% include {{ site.snippets }}/14/path.snip %}
 ```
 {: .output}
 
@@ -145,12 +145,12 @@ difference: the different directory at the beginning. When we ran the `module lo
 it added a directory to the beginning of our `$PATH`. Let's examine what's there:
 
 ```
-{% include /snippets/14/ls_dir.snip %}
+{% include {{ site.snippets }}/14/ls_dir.snip %}
 ```
 {: .bash}
 
 ```
-{% include /snippets/14/ls_dir_output.snip %}
+{% include {{ site.snippets }}/14/ls_dir_output.snip %}
 ```
 {: .output}
 
@@ -158,7 +158,7 @@ Taking this to it's conclusion, `module load` will add software to your `$PATH`.
 software. A special note on this - depending on which version of the `module` program that is
 installed at your site, `module load` will also load required software dependencies.
 
-{% include /snippets/14/depend_demo.snip %}
+{% include {{ site.snippets }}/14/depend_demo.snip %}
 
 ## Software versioning
 
@@ -176,11 +176,11 @@ Let's examine the output of `module avail` more closely.
 {: .bash}
 
 ```
-{% include /snippets/14/module_avail.snip %}
+{% include {{ site.snippets }}/14/module_avail.snip %}
 ```
 {: .output}
 
-{% include /snippets/14/gcc_example.snip %}
+{% include {{ site.snippets }}/14/gcc_example.snip %}
 
 > ## Using software modules in scripts
 >

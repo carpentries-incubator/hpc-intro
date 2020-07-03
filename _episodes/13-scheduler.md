@@ -82,7 +82,7 @@ to the scheduler, we use the `{{ site.sched_submit }}` command.
 {: .bash}
 
 ```
-{% include /snippets/13/submit_output.snip %}
+{% include {{ site.snippets }}/13/submit_output.snip %}
 ```
 {: .output}
 
@@ -96,7 +96,7 @@ the *queue*. To check on our job's status, we check the queue using the command
 ```
 {: .bash}
 
-{% include /snippets/13/statu_output.snip %}
+{% include {{ site.snippets }}/13/statu_output.snip %}
 
 The best way to check our job's status is with `{{ site.sched_status }}`.
 Of course, running `{{ site.sched_status }}` repeatedly to check on things can be
@@ -141,7 +141,7 @@ Submit the following job (`{{ site.sched_submit }} {{ site.sched_submit_options 
 echo 'This script is running on:'
 hostname
 sleep 120
-> echo 'This script has finished successfully'
+echo 'This script has finished successfully'
 ```
 {:.bash}
 
@@ -151,7 +151,7 @@ sleep 120
 {: .bash}
 
 ```
-{% include /snippets/13/statu_name_output.snip %}
+{% include {{ site.snippets }}/13/statu_name_output.snip %}
 ```
 {: .output}
 
@@ -176,7 +176,7 @@ stuck with your site's default resources, which is probably not what we want.
 
 The following are several key resource requests:
 
-{% include /snippets/13/stat_options.snip %}
+{% include {{ site.snippets }}/13/stat_options.snip %}
 
 Note that just *requesting* these resources does not make your job run faster! We'll talk more 
 about how to make sure that you're using resources effectively in a later episode of this lesson.
@@ -186,14 +186,14 @@ about how to make sure that you're using resources effectively in a later episod
 > Submit a job that will use 1 full node and 5 minutes of walltime.
 {: .challenge}
 
-{% include /snippets/13/env_challenge.snip %}
+{% include {{ site.snippets }}/13/env_challenge.snip %}
 
 Resource requests are typically binding. If you exceed them, your job will be killed. Let's use
 walltime as an example. We will request 30 seconds of walltime, and attempt to run a job for two
 minutes.
 
 ```
-{% include /snippets/13/long_job.snip %}
+{% include {{ site.snippets }}/13/long_job.snip %}
 ```
 {:.bash}
 
@@ -202,12 +202,12 @@ Submit the job and wait for it to finish. Once it is has finished, check the log
 ```
 {{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh
 {{ site.host_prompt }} watch -n 60 {{ site.sched_status }} {{ site.sched_flag_user }}
-{% include /snippets/13/long_job_cat.snip %}
+{% include {{ site.snippets }}/13/long_job_cat.snip %}
 ```
 {: .bash}
 
 ```
-{% include /snippets/13/long_job_err.snip %}
+{% include {{ site.snippets }}/13/long_job_err.snip %}
 ```
 {: .output}
 
@@ -234,7 +234,7 @@ walltime so that it runs long enough for you to cancel it before it is killed!).
 {: .bash}
 
 ```
-{% include /snippets/13/del_job_output1.snip %}
+{% include {{ site.snippets }}/13/del_job_output1.snip %}
 ```
 {: .output}
 
@@ -242,18 +242,18 @@ Now cancel the job with it's job number. Absence of any job info indicates that 
 successfully cancelled.
 
 ```
-{% include /snippets/13/del_job.snip %}
+{% include {{ site.snippets }}/13/del_job.snip %}
 # ... Note that it might take a minute for the job to disappear from the queue ...
 {{ site.host_prompt }} {{ site.sched_status }} {{ site.sched_flag_user }}
 ```
 {: .bash}
 
 ```
-{% include /snippets/13/del_job_output2.snip %}
+{% include {{ site.snippets }}/13/del_job_output2.snip %}
 ```
 {: .output}
 
-{% include /snippets/13/del_multiple_challenge.snip %}
+{% include {{ site.snippets }}/13/del_multiple_challenge.snip %}
 
 ## Other types of jobs
 
@@ -266,6 +266,6 @@ handle. A good example of this might be building a genome index for alignment wi
 [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml). Fortunately, we can run these types of
 tasks as a one-off with `{{ site.sched_interactive }}`.
 
-{% include /snippets/13/interactive_example.snip %}
+{% include {{ site.snippets }}/13/interactive_example.snip %}
 
 {% include links.md %}

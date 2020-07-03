@@ -1,5 +1,56 @@
+# HPC-Intro Jekyll configuration
+---
+
 #------------------------------------------------------------
-# Values for this lesson.
+# SITE specific configuration
+#------------------------------------------------------------
+
+# Cluster host and scheduler options: the defaults come from
+# Graham at Compute Canada, running SLURM. Other options can
+# be found in the library of snippets,
+# `_includes/snippets_library`. To use one, replace options
+# below with those in `_config_options.yml` from the
+# library. E.g, to customise for Cirrus at EPCC, running
+# PBS, we could replace the options below with those from
+# 
+# _includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
+# 
+# If your cluster is not represented in the library, please
+# copy an existing folder, rename it, and customize for your
+# installation. Remember to keep the leading slash on the
+# `snippets` variable below!
+
+snippets: "/snippets_library/ComputeCanada_Graham_slurm"
+
+local_prompt: "[user@laptop ~]$"
+
+host_name: "Graham"
+host_login: "graham.computecanada.ca"
+host_location: "University of Waterloo"
+host_homedir: "/home"
+host_prompt: "[yourUsername@gra-login1 ~]$"
+
+sched_name: "SLURM"
+sched_submit: "sbatch"
+sched_submit_options: ""
+sched_status: "squeue"
+sched_flag_user: "-u yourUsername"
+sched_del: "scancel"
+sched_interactive: "srun"
+sched_flag_interactive: ""
+sched_info: "sinfo"
+sched_comment: "#SBATCH"
+sched_flag_name: "-J"
+sched_hist: "sacct -u yourUsername"
+sched_flag_histdetail: "-l -j"
+
+# Interactive queue names, one or more as a list
+workshop_interactive_queues:
+  - debug
+  - testing
+
+#------------------------------------------------------------
+# Workshop specific configuration
 #------------------------------------------------------------
 
 # Which carpentry is this ("swc", "dc", "lc", or "cp")?
@@ -59,45 +110,6 @@ lc_pre_survey: "https://www.surveymonkey.com/r/lcpreworkshopsurvey?workshop_id="
 lc_post_survey: "https://www.surveymonkey.com/r/lcpostworkshopsurvey?workshop_id="
 instructor_pre_survey: "https://www.surveymonkey.com/r/instructor_training_pre_survey?workshop_id="
 instructor_post_survey: "https://www.surveymonkey.com/r/instructor_training_post_survey?workshop_id="
-
-# Workshop specific values
-####################################################
-# SITE specific configuration
-# Host and scheduler options
-# Default: Compute Canada: Graham + SLURM
-# 
-# Other options can be found in _extras/snippet_library
-#   Replace options below with those in `_config_options.yml` from the library
-#   and copy all folders in the library into '_includes/snippets'. e.g to setup
-#   for EPCC_Cirrus_pbs we could replace the options below with those from:
-#     _extras/snippet_library/EPCC_Cirrus_pbs/_config_options.yml
-#   and:
-#     cp -r _extras/snippet_library/EPCC_Cirrus_pbs/* _includes/snippets
-#
-host_name: "Graham"
-host_login: "graham.computecanada.ca"
-host_location: "University of Waterloo"
-host_homedir: "/home"
-host_prompt: "[yourUsername@gra-login1 ~]$"
-local_prompt: "[user@laptop ~]$"
-sched_name: "SLURM"
-sched_submit: "sbatch"
-sched_submit_options: ""
-sched_status: "squeue"
-sched_flag_user: "-u yourUsername"
-sched_del: "scancel"
-sched_interactive: "srun"
-sched_flag_interactive: ""
-sched_info: "sinfo"
-sched_comment: "#SBATCH"
-sched_flag_name: "-J"
-sched_hist: "sacct -u yourUsername"
-sched_flag_histdetail: "-l -j"
-
-# Interactive queue names, one or more as a list
-workshop_interactive_queues:
-  - debug
-  - testing
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
 start_time: 0
