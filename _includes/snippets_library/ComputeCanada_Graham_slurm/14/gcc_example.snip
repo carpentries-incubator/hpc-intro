@@ -7,8 +7,8 @@ In this case, `gcc/5.4.0` has a `(D)` next to it. This indicates that it is the 
 `module load gcc`, this is the copy that will be loaded.
 
 ```
-{{ site.host.prompt }} module load gcc
-{{ site.host.prompt }} gcc --version
+{{ site.host_prompt }} module load gcc
+{{ site.host_prompt }} gcc --version
 ```
 {: .bash}
 ```
@@ -36,8 +36,8 @@ and `gcc/4.8.5`. To load a non-default module, the only change we need to make t
 command is to leave in the version number after the `/`.
 
 ```
-{{ site.host.prompt }} module load gcc/4.8.5
-{{ site.host.prompt }} gcc --version
+{{ site.host_prompt }} module load gcc/4.8.5
+{{ site.host_prompt }} gcc --version
 ```
 {: .bash}
 ```
@@ -60,7 +60,7 @@ program has "inactivated" the module. All this means for us is that if we re-loa
 `module` will remember OpenMPI used to be loaded and load that module as well.
 
 ```
-{{ site.host.prompt }} module load gcc/5.4.0
+{{ site.host_prompt }} module load gcc/5.4.0
 ```
 {: .bash}
 ```

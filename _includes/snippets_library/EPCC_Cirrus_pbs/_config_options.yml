@@ -19,33 +19,26 @@
 
 snippets: "/snippets_library/EPCC_Cirrus_pbs"
 
-local:
-  prompt: "[user@laptop ~]$"
+local_prompt: "[user@laptop ~]$"
 
-host:
-  name: "Cirrus"
-  login: "login.cirrus.ac.uk"
-  location: "EPCC, The University of Edinburgh"
-  homedir: "/lustre/home/tc001/lola"
-  prompt: "[yourUsername@cirrus-login0 ~]$"
-
-sched:
-  name: "PBS Pro"
-  submit:
-    name: "qsub"
-    options: "-A tc001 -q R387726"
-    iopt: ""
-  status: "qstat"
-  flag:
-    user: "-u yourUsername"
-    interactive: "-IVl select=1:ncpus=1"
-    name: "-N"
-    histdetail: "-f"
-  del: "qdel"
-  interactive: "qsub"
-  info: "pbsnodes -a"
-  directive: "#PBS"
-  hist: "qstat -x"
+host_name: "Cirrus"
+host_login: "login.cirrus.ac.uk"
+host_location: "EPCC, The University of Edinburgh"
+host_homedir: "/lustre/home/tc001/lola"
+host_prompt: "[yourUsername@cirrus-login0 ~]$"
+sched_name: "PBS Pro"
+sched_submit: "qsub"
+sched_submit_options: "-A tc001 -q R387726"
+sched_status: "qstat"
+sched_flag_user: "-u yourUsername"
+sched_del: "qdel"
+sched_interactive: "qsub"
+sched_flag_interactive: "-IVl select=1:ncpus=1"
+sched_info: "pbsnodes -a"
+sched_comment: "#PBS"
+sched_flag_name: "-N"
+sched_hist: "qstat -x"
+sched_flag_histdetail: "-f"
 
 # Interactive queue names, one or more as a list
 workshop_interactive_queues:

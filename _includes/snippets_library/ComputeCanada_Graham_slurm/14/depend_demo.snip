@@ -1,7 +1,7 @@
 To demonstrate, let's use `module list`. `module list` shows all loaded software modules.
 
 ```
-{{ site.host.prompt }} module list
+{{ site.host_prompt }} module list
 ```
 {: .bash}
 ```
@@ -18,8 +18,8 @@ Currently Loaded Modules:
 {: .output}
 
 ```
-{{ site.host.prompt }} module load beast
-{{ site.host.prompt }} module list
+{{ site.host_prompt }} module load beast
+{{ site.host_prompt }} module list
 ```
 {: .bash}
 ```
@@ -43,8 +43,8 @@ So in this case, loading the `beast` module (a bioinformatics software package),
 `java/1.8.0_121` and `beagle-lib/2.1.2` as well. Let's try unloading the `beast` package.
 
 ```
-{{ site.host.prompt }} module unload beast
-{{ site.host.prompt }} module list
+{{ site.host_prompt }} module unload beast
+{{ site.host_prompt }} module list
 ```
 {: .bash}
 ```
@@ -64,7 +64,7 @@ So using `module unload` "un-loads" a module along with its dependencies.
 If we wanted to unload everything at once, we could run `module purge` (unloads everything).
 
 ```
-{{ site.host.prompt }} module purge
+{{ site.host_prompt }} module purge
 ```
 {: .bash}
 ```

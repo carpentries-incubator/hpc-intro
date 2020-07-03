@@ -37,11 +37,11 @@ waiting to match what you asked for.
 {% include {{ site.snippets }}/16/bench.snip %}
 
 Once the job completes (note that it takes much less time than expected), we can query the scheduler
-to see how long our job took and what resources were used. We will use `{{ site.sched.hist }}` to
+to see how long our job took and what resources were used. We will use `{{ site.sched_hist }}` to
 get statistics about our job.
 
 ```
-{{ site.host.prompt }} {{ site.sched.hist }}
+{{ site.host_prompt }} {{ site.sched_hist }}
 ```
 {:.bash}
 
@@ -54,7 +54,7 @@ This shows all the jobs we ran recently (note that there are multiple entries pe
 detailed info about a job, we change command slightly.
 
 ```
-{{ site.host.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965
+{{ site.host_prompt }} {{ site.sched_hist }} {{ site.sched_flag_histdetail }} 1965
 ```
 {:.bash}
 
@@ -63,7 +63,7 @@ scheduler. It may be useful to redirect this information to `less` to make it ea
 the left and right arrow keys to scroll through fields).
 
 ```
-{{ site.host.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965| less
+{{ site.host_prompt }} {{ site.sched_hist }} {{ site.sched_flag_histdetail }} 1965| less
 ```
 {:.bash}
 
@@ -83,7 +83,7 @@ Some interesting fields include the following:
 > Typically, clusters allow users to connect directly to compute nodes from the head 
 > node. This is useful to check on a running job and see how it's doing, but is not
 > a recommended practice in general, because it bypasses the resource manager.
-> If you need to do this, check where a job is running with `{{ site.sched.status }}`, then
+> If you need to do this, check where a job is running with `{{ site.sched_status }}`, then
 > run `ssh nodename`. (Note, this may not work on all clusters.)
 {:.callout}
   
@@ -98,7 +98,7 @@ may not be available on your system).
 Some sample output might look like the following (`Ctrl + c` to exit):
 
 ```
-{{ site.host.prompt }} top
+{{ site.host_prompt }} top
 ```
 {:.bash}
 
@@ -125,7 +125,7 @@ Another useful tool is the `free -h` command. This will show the currently used/
 memory.
 
 ```
-{{ site.host.prompt }} free -h
+{{ site.host_prompt }} free -h
 ```
 {:.bash}
 
@@ -146,7 +146,7 @@ they run out of memory you usually get an "Out Of Memory (OOM)" error instead.
 To show all processes from your current session, type `ps`.
 
 ```
-{{ site.host.prompt }} ps
+{{ site.host_prompt }} ps
 ```
 {:.bash}
 
@@ -161,7 +161,7 @@ Note that this will only show processes from our current session. To show all pr
 (regardless of whether they are part of your current session or not), you can use `ps ux`.
 
 ```
-{{ site.host.prompt }} ps ux
+{{ site.host_prompt }} ps ux
 ```
 {:.bash}
 
