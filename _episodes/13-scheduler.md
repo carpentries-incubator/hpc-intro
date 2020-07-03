@@ -67,6 +67,7 @@ run as a test.
 > echo 'This script is running on:'
 > hostname
 > sleep 120
+> echo 'This script has finished successfully'
 > ```
 > {: .bash}
 {: .challenge}
@@ -95,19 +96,14 @@ the *queue*. To check on our job's status, we check the queue using the command
 ```
 {: .bash}
 
-```
 {% include /snippets/13/statu_output.snip %}
-```
-{: .output}
 
-We can see all the details of our job, most importantly that it is in the "R" or "RUNNING" state.
-Sometimes our jobs might need to wait in a queue ("PENDING") or have an error. The best way to check
-our job's status is with `{{ site.sched_status }}`. Of course, running `{{ site.sched_status }}`
-repeatedly to check on things can be a little tiresome. To see a real-time view of our jobs, we can
-use the `watch` command. `watch` reruns a given command at 2-second intervals. This is too frequent,
-and will likely upset your system administrator. You can change the interval to a more reasonable
-value, for example 60 seconds, with the `-n 60` parameter. Let's try using it to monitor another
-job.
+The best way to check our job's status is with `{{ site.sched_status }}`.
+Of course, running `{{ site.sched_status }}` repeatedly to check on things can be
+a little tiresome. To see a real-time view of our jobs, we can use the `watch` command. `watch`
+reruns a given command at 2-second intervals. This is too frequent, and will likely upset your system
+administrator. You can change the interval to a more reasonable value, for example 60 seconds, with the
+`-n 60` parameter. Let's try using it to monitor another job.
 
 ```
 {{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh
@@ -145,6 +141,7 @@ Submit the following job (`{{ site.sched_submit }} {{ site.sched_submit_options 
 echo 'This script is running on:'
 hostname
 sleep 120
+> echo 'This script has finished successfully'
 ```
 {:.bash}
 
@@ -166,7 +163,7 @@ Fantastic, we've successfully changed the name of our job!
 > constantly check on the status of our job with `{{ site.sched_status }}`. Looking at the
 > man page for `{{ site.sched_submit }}`, can you set up our test job to send you an email
 > when it finishes?
-> >
+>
 {: .challenge}
 
 ### Resource requests
