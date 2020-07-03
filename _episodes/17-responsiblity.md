@@ -46,7 +46,7 @@ login sessions will start to run slowly and may even freeze or hang.
 > issues for other people. Think carefully about the potential implications of issuing
 > commands that may use large amounts of resource.
 >
-{: .callout}
+{:.callout}
 
 You can always use the commands `top` and `ps ux` to list the processes you are running on a login
 node and the amount of CPU and memory they are using. The `kill` command can be used along
@@ -61,7 +61,7 @@ with the *PID* to terminate any processes that are using large amounts of resour
 > molecular_dynamics_2
 > tar -xzf R-3.3.0.tar.gz
 > 
-{: .challenge}
+{:.challenge}
 
 If you experience performance issues with a login node you should report it to the system
 staff (usually via the helpdesk) for them to investigate. You can use the `top` command
@@ -84,12 +84,13 @@ systems provide dedicated resources for testing that have short wait times to he
 avoid this issue.
 
 > ## Test job submission scripts that use large amounts of resource
+>
 > Before submitting a large run of jobs, submit one as a test first to make sure everything works
 > as expected.
 >
 > Before submitting a very large or very long job submit a short truncated test to ensure that
 > the job starts as expected
-{: .callout}
+{:.callout}
 
 ## Have a backup plan
 
@@ -117,11 +118,12 @@ In all these cases, the helpdesk of the system you are using should be able to p
 guidance on your options for data transfer for the volumes of data you will be using.
 
 > ## Your data is your responsibility
+>
 > Make sure you understand what the backup policy is on the file systems on the system you are
 > using and what implications this has for your work if you lose your data on the system. Plan
 > your backups of critical data and how you will transfer data off the system throughout the
 > project.
-{: .callout}
+{:.callout}
 
 ## Transferring data
 
@@ -161,13 +163,13 @@ be created using tools like `tar` and `zip`. We have already met `tar` when we t
 transfer earlier. 
 
 > ## Consider the best way to transfer data
+>
 > If you are transferring large amounts of data you will need to think about what may affect your transfer
 > performance. It is always useful to run some tests that you can use to extrapolate how long it will
 > take to transfer your data.
 >
 > If you have many files, it is best to combine them into an archive file before you transfer them using a
 > tool such as `tar`.
-{: .callout}
-
+{:.callout}
 
 {% include links.md %}

@@ -8,7 +8,8 @@ branches:
 before_install:
   - sudo apt-get update -y
   - rvm default
-  - gem install json kramdown jekyll
+  - gem install bundler
+  - bundle install
 install:
   - pip install pyyaml
 script:

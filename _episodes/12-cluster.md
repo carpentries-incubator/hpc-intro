@@ -46,6 +46,7 @@ The word before the `@` symbol, e.g. `yourUsername` here, is the user account na
 permissions for on the cluster. 
 
 > ## Where do I get this `ssh` from ?
+>
 > On Linux and/or macOS, the `ssh` command line utility is almost always pre-installed. Open a
 > terminal and type `ssh --help` to check if that is the case. 
 > 
@@ -102,6 +103,7 @@ For example, we can view all of the worker nodes with the `{{ site.sched_info }}
 {{ site.host_prompt}} {{ site.sched_info }}
 ```
 {: .bash}
+
 ```
 {% include /snippets/12/info.snip %}
 ```
@@ -113,6 +115,7 @@ directly, they enable a number of key features like ensuring our user account an
 available throughout the HPC system.
 
 > ## Shared file systems
+>
 > This is an important point to remember: files saved on one node (computer) are often available
 > everywhere on the cluster!
 {: .callout}
@@ -158,12 +161,14 @@ been restarted.
 > You can get more detailed information on both the processors and memory by using different commands.
 >
 > For more information on processors use `lscpu`
+>
 > ```
 > {{ site.host_prompt}} lscpu
 > ```
 > {: .language-bash}
 >
 > For more information on memory you can look in the `/proc/meminfo` file:
+>
 > ```
 > {{ site.host_prompt}} cat /proc/meminfo
 > ```
@@ -197,6 +202,7 @@ been restarted.
 {: .callout}
 
 > ## Differences Between Nodes
+>
 > Many HPC clusters have a variety of nodes optimized for particular workloads. Some nodes
 > may have larger amount of memory, or specialized resources such as Graphical Processing Units
 > (GPUs).

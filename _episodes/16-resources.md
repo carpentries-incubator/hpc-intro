@@ -36,18 +36,19 @@ waiting to match what you asked for.
 
 {% include /snippets/16/bench.snip %}
 
-Once the job completes (note that it takes much less time than expected), we can query the 
-scheduler to see how long our job took and what resources were used. We will use `{{ site.sched_hist }}` to
+Once the job completes (note that it takes much less time than expected), we can query the scheduler
+to see how long our job took and what resources were used. We will use `{{ site.sched_hist }}` to
 get statistics about our job.
 
 ```
 {{ site.host_prompt }} {{ site.sched_hist }}
 ```
-{: .bash}
+{:.bash}
+
 ```
 {% include /snippets/16/stat_output.snip %}
 ```
-{: .output}
+{:.output}
 
 This shows all the jobs we ran recently (note that there are multiple entries per job). To get
 detailed info about a job, we change command slightly.
@@ -55,7 +56,7 @@ detailed info about a job, we change command slightly.
 ```
 {{ site.host_prompt }} {{ site.sched_hist }} {{ site.sched_flag_histdetail }} 1965
 ```
-{: .bash}
+{:.bash}
 
 It will show a lot of info, in fact, every single piece of info collected on your job by the
 scheduler. It may be useful to redirect this information to `less` to make it easier to view (use
@@ -64,7 +65,7 @@ the left and right arrow keys to scroll through fields).
 ```
 {{ site.host_prompt }} {{ site.sched_hist }} {{ site.sched_flag_histdetail }} 1965| less
 ```
-{: .bash}
+{:.bash}
 
 Some interesting fields include the following:
 
@@ -78,17 +79,18 @@ Some interesting fields include the following:
 ## Measuring the statistics of currently running tasks
 
 > ## Connecting to Nodes
+>
 > Typically, clusters allow users to connect directly to compute nodes from the head 
 > node. This is useful to check on a running job and see how it's doing, but is not
 > a recommended practice in general, because it bypasses the resource manager.
 > If you need to do this, check where a job is running with `{{ site.sched_status }}`, then
 > run `ssh nodename`. (Note, this may not work on all clusters.)
-{: .callout}
+{:.callout}
   
 We can also check on stuff running on the login node right now the same way (so it's 
 not necessary to `ssh` to a node for this example).
 
-### top
+### `top`
 
 The best way to check current system stats is with `top` (`htop` is a prettier version of `top` but
 may not be available on your system).
@@ -98,11 +100,12 @@ Some sample output might look like the following (`Ctrl + c` to exit):
 ```
 {{ site.host_prompt }} top
 ```
-{: .bash}
+{:.bash}
+
 ```
 {% include /snippets/16/top_output.snip %}
 ```
-{: .output}
+{:.output}
 
 Overview of the most important fields:
 
@@ -116,7 +119,7 @@ Overview of the most important fields:
   twice the normal rate.
 * `COMMAND` - What command was used to launch a process?
 
-### free
+### `free`
 
 Another useful tool is the `free -h` command. This will show the currently used/free amount of
 memory.
@@ -124,11 +127,12 @@ memory.
 ```
 {{ site.host_prompt }} free -h
 ```
-{: .bash}
+{:.bash}
+
 ```
 {% include /snippets/16/free_output.snip %}
 ```
-{: .output}
+{:.output}
 
 The key fields here are total, used, and available - which represent the amount of memory that the
 machine has in total, how much is currently being used, and how much is still available. When a
@@ -144,13 +148,14 @@ To show all processes from your current session, type `ps`.
 ```
 {{ site.host_prompt }} ps
 ```
-{: .bash}
+{:.bash}
+
 ```
   PID TTY          TIME CMD
 15113 pts/5    00:00:00 bash
 15218 pts/5    00:00:00 ps
 ```
-{: .output}
+{:.output}
 
 Note that this will only show processes from our current session. To show all processes you own
 (regardless of whether they are part of your current session or not), you can use `ps ux`.
@@ -158,14 +163,15 @@ Note that this will only show processes from our current session. To show all pr
 ```
 {{ site.host_prompt }} ps ux
 ```
-{: .bash}
+{:.bash}
+
 ```
 USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 auser  67780  0.0  0.0 149140  1724 pts/81   R+   13:51   0:00 ps ux
 auser  73083  0.0  0.0 142392  2136 ?        S    12:50   0:00 sshd: auser@pts/81
 auser  73087  0.0  0.0 114636  3312 pts/81   Ss   12:50   0:00 -bash
 ```
-{: .output}
+{:.output}
 
 This is useful for identifying which processes are doing what.
 

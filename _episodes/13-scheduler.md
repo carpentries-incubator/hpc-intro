@@ -19,6 +19,7 @@ keypoints:
 ---
 
 ## Job scheduler
+
 An HPC system might have thousands of nodes and thousands of users. How do we decide who gets what
 and when? How do we ensure that a task is run with the resources it needs? This job is handled by a
 special piece of software called the scheduler. On an HPC system, the scheduler manages which jobs
@@ -42,9 +43,9 @@ alt="Compare a job scheduler to a waiter in a restaurant" caption="" %}
 > [*notes for the instructor here*](../guide)
 {: .challenge}
 
-The scheduler used in this lesson is {{ site.sched_name }}. Although {{ site.sched_name }} is not used everywhere,
-running jobs is quite similar regardless of what software is being used. The exact syntax might change, but the
-concepts remain the same.
+The scheduler used in this lesson is {{ site.sched_name }}. Although {{ site.sched_name }} is not
+used everywhere, running jobs is quite similar regardless of what software is being used. The exact
+syntax might change, but the concepts remain the same.
 
 ## Running a batch job
 
@@ -78,6 +79,7 @@ to the scheduler, we use the `{{ site.sched_submit }}` command.
 [{{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh
 ```
 {: .bash}
+
 ```
 {% include /snippets/13/submit_output.snip %}
 ```
@@ -92,6 +94,7 @@ the *queue*. To check on our job's status, we check the queue using the command
 {{ site.host_prompt }} {{ site.sched_status }} {{ site.sched_flag_user }}
 ```
 {: .bash}
+
 ```
 {% include /snippets/13/statu_output.snip %}
 ```
@@ -99,11 +102,12 @@ the *queue*. To check on our job's status, we check the queue using the command
 
 We can see all the details of our job, most importantly that it is in the "R" or "RUNNING" state.
 Sometimes our jobs might need to wait in a queue ("PENDING") or have an error. The best way to check
-our job's status is with `{{ site.sched_status }}`. Of course, running `{{ site.sched_status }}` repeatedly to check on things can be
-a little tiresome. To see a real-time view of our jobs, we can use the `watch` command. `watch`
-reruns a given command at 2-second intervals. This is too frequent, and will likely upset your system
-administrator. You can change the interval to a more reasonable value, for example 60 seconds, with the
-`-n 60` parameter. Let's try using it to monitor another job.
+our job's status is with `{{ site.sched_status }}`. Of course, running `{{ site.sched_status }}`
+repeatedly to check on things can be a little tiresome. To see a real-time view of our jobs, we can
+use the `watch` command. `watch` reruns a given command at 2-second intervals. This is too frequent,
+and will likely upset your system administrator. You can change the interval to a more reasonable
+value, for example 60 seconds, with the `-n 60` parameter. Let's try using it to monitor another
+job.
 
 ```
 {{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh
@@ -142,11 +146,13 @@ echo 'This script is running on:'
 hostname
 sleep 120
 ```
+{:.bash}
 
 ```
 {{ site.host_prompt }} {{ site.sched_status }} {{ site.sched_flag_user }}
 ```
 {: .bash}
+
 ```
 {% include /snippets/13/statu_name_output.snip %}
 ```
@@ -192,6 +198,7 @@ minutes.
 ```
 {% include /snippets/13/long_job.snip %}
 ```
+{:.bash}
 
 Submit the job and wait for it to finish. Once it is has finished, check the log file.
 
@@ -201,6 +208,7 @@ Submit the job and wait for it to finish. Once it is has finished, check the log
 {% include /snippets/13/long_job_cat.snip %}
 ```
 {: .bash}
+
 ```
 {% include /snippets/13/long_job_err.snip %}
 ```
@@ -227,6 +235,7 @@ walltime so that it runs long enough for you to cancel it before it is killed!).
 {{ site.host_prompt }} {{ site.sched_status }} {{ site.sched_flag_user }}
 ```
 {: .bash}
+
 ```
 {% include /snippets/13/del_job_output1.snip %}
 ```
@@ -237,10 +246,11 @@ successfully cancelled.
 
 ```
 {% include /snippets/13/del_job.snip %}
-... Note that it might take a minute for the job to disappear from the queue ...
+# ... Note that it might take a minute for the job to disappear from the queue ...
 {{ site.host_prompt }} {{ site.sched_status }} {{ site.sched_flag_user }}
 ```
 {: .bash}
+
 ```
 {% include /snippets/13/del_job_output2.snip %}
 ```

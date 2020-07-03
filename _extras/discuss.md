@@ -11,7 +11,7 @@ downloading and uploading files. Let's connect to a cluster, using `sftp`- you'l
 the same way as SSH:
 
 ```
-sftp yourUsername@remote.computer.address
+{{ site.local_prompt }} sftp yourUsername@remote.computer.address
 ```
 {: .bash}
 
