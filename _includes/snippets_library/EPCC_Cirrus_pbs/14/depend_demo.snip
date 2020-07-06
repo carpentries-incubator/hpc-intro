@@ -1,6 +1,6 @@
-To demonstrate, let's load the `abinit` module and then use the `module list` command to show
-which modules we currently have loaded in our environment. ([Abinit](https://www.abinit.org/) is an open source 
-materials science modelling software package.)
+To demonstrate, let's load the `abinit` module and then use the `module list` command to show which
+modules we currently have loaded in our environment. ([Abinit](https://www.abinit.org/) is an open
+source materials science modelling software package.)
 
 ```
 {{ site.remote.prompt }} module load abinit
@@ -17,9 +17,8 @@ Currently Loaded Modulefiles:
 ```
 {: .output}
 
-So in this case, loading the `abinit` module
-also loaded a variety of other modules.
-Let's try unloading the `abinit` package.
+So in this case, loading the `abinit` module also loaded a variety of other modules. Let's try
+unloading the `abinit` package.
 
 ```
 {{ site.remote.prompt }} module unload abinit
@@ -33,8 +32,8 @@ Currently Loaded Modulefiles:
 ```
 {: .output}
 
-So using `module unload` "un-loads" a module along with its dependencies.
-If we wanted to unload everything at once, we could run `module purge` (unloads everything).
+So using `module unload` "un-loads" a module along with its dependencies. If we wanted to unload
+everything at once, we could run `module purge` (unloads everything).
 
 ```
 {{ site.remote.prompt }} module load abinit
