@@ -25,6 +25,7 @@ local:
 remote:
   name: "Graham"
   login: "graham.computecanada.ca"
+  host: "gra-login1"
   node: "aci-377"
   location: "University of Waterloo"
   homedir: "/home"

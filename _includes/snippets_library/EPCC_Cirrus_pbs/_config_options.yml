@@ -25,6 +25,7 @@ local:
 remote:
   name: "Cirrus"
   login: "login.cirrus.ac.uk"
+  host: "cirrus-login0"
   node: "r1i0n32"
   location: "EPCC, The University of Edinburgh"
   homedir: "/lustre/home/tc001/lola"

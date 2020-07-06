@@ -77,7 +77,7 @@ distinction between running the job through the scheduler and just "running it".
 to the scheduler, we use the `{{ site.sched.submit.name }}` command.
 
 ```
-[{{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
 ```
 {: .bash}
 
@@ -155,7 +155,7 @@ Fantastic, we've successfully changed the name of our job!
 > 
 > Jobs on an HPC system might run for days or even weeks. We probably have better things to do than
 > constantly check on the status of our job with `{{ site.sched.status }}`. Looking at the
-> man page for `{{ site.sched.submit.name }}`, can you set up our test job to send you an email
+> manual page for `{{ site.sched.submit.name }}`, can you set up our test job to send you an email
 > when it finishes?
 >
 {: .challenge}
@@ -178,6 +178,22 @@ about how to make sure that you're using resources effectively in a later episod
 > ## Submitting resource requests
 >
 > Submit a job that will use 1 full node and 5 minutes of walltime.
+>
+> > ## Solution
+> >
+> > ```
+> > {{ site.remote.prompt }} cat five_minute_job.sh
+> > #!/bin/bash
+> > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:05:00
+> > 
+> > echo 'This script is running on:'
+> > hostname
+> > sleep $(( 5 * 60 ))
+> > echo 'This script has finished successfully'
+> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} five_minute_job.sh
+> > ```
+> > {: .bash}
+> {: .solution}
 {: .challenge}
 
 {% include {{ site.snippets }}/13/env_challenge.snip %}
@@ -187,6 +203,7 @@ walltime as an example. We will request 30 seconds of walltime, and attempt to r
 minutes.
 
 ```
+{{ site.remote.prompt }} cat example-job.sh
 #!/bin/bash
 {{ site.sched.comment }} {{ site.sched.flag.time }} 00:00:30
 
@@ -213,17 +230,16 @@ Our job was killed for exceeding the amount of resources it requested. Although 
 this is actually a feature. Strict adherence to resource requests allows the scheduler to find the
 best possible place for your jobs. Even more importantly, it ensures that another user cannot use
 more resources than they've been given. If another user messes up and accidentally attempts to use
-all of the cores or memory on a node, {{ site.sched.name }} will either restrain their job
-to the requested resources or kill the job outright. Other jobs on the node will be unaffected.
-This means that one user cannot  mess up the experience of others, the only jobs affected by a
-mistake in scheduling will be their
-own.
+all of the cores or memory on a node, {{ site.sched.name }} will either restrain their job to the
+requested resources or kill the job outright. Other jobs on the node will be unaffected. This means
+that one user cannot mess up the experience of others, the only jobs affected by a mistake in
+scheduling will be their own.
 
 ## Cancelling a job
 
-Sometimes we'll make a mistake and need to cancel a job. This can be done with the `{{ site.sched.del }}`
-command. Let's submit a job and then cancel it using its job number (remember to change the 
-walltime so that it runs long enough for you to cancel it before it is killed!).
+Sometimes we'll make a mistake and need to cancel a job. This can be done with the `{{
+site.sched.del }}` command. Let's submit a job and then cancel it using its job number (remember to
+change the walltime so that it runs long enough for you to cancel it before it is killed!).
 
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
@@ -233,11 +249,11 @@ walltime so that it runs long enough for you to cancel it before it is killed!).
 
 {% include {{ site.snippets }}/13/del_job_output1.snip %}
 
-Now cancel the job with it's job number. Absence of any job info indicates that the job has been
-successfully cancelled.
+Now cancel the job with it's job number. A clean return of your command prompt indicates that the
+request to cancel the job was successful.
 
-{% include {{ site.snippets }}/13/del_job.snip %}
 ```
+{{ site.remote.prompt }} {{site.sched.del }} 38759
 # ... Note that it might take a minute for the job to disappear from the queue ...
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
