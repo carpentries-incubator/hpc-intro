@@ -163,19 +163,11 @@ Let's examine the output of `module avail` more closely.
 > Create a job that is able to run `python3 --version`. Remember, no software is loaded by default!
 > Running a job is just like logging on to the system (you should not assume a module loaded on the
 > login node is loaded on a compute node).
-{: .challenge}
-
-> ## Loading a module by default
-> 
-> Adding a set of `module load` commands to all of your scripts and having to manually load modules
-> every time you log on can be tiresome. Fortunately, there is a way of specifying a set of 
-> "default  modules" that always get loaded, regardless of whether or not you're logged on or 
-> running a job. Every user has two hidden files in their home directory: `.bashrc` and 
-> `.bash_profile` (you can see these files with `ls -la ~`). These scripts are run every time you 
-> log on or run a job. Adding a `module load` command to one of these shell scripts means that 
-> that module will always be loaded. Modify either your `.bashrc` or `.bash_profile` scripts to 
-> load a commonly used module like Python. Does your `python3 --version` job from before still 
-> need `module load` to run?
+>
+> > ## Solution
+> >
+> >
+> {: .solution}
 {: .challenge}
 
 ## Installing software of our own
@@ -198,18 +190,21 @@ source code from GitHub using `git`.
 
 ```
 Cloning into 'seqtk'...
-remote: Counting objects: 316, done.
-remote: Total 316 (delta 0), reused 0 (delta 0), pack-reused 316
-Receiving objects: 100% (316/316), 141.52 KiB | 0 bytes/s, done.
-Resolving deltas: 100% (181/181), done.
+remote: Enumerating objects: 14, done.
+remote: Counting objects: 100% (14/14), done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 353 (delta 7), reused 11 (delta 4), pack-reused 339
+Receiving objects: 100% (353/353), 169.79 KiB | 5.48 MiB/s, done.
+Resolving deltas: 100% (202/202), done.
 ```
 {: .output}
 
-Now, using the instructions in the README.md file, all we need to do to complete the install is to
-`cd` into the seqtk folder and run the command `make`.
+Now, using the instructions in the `README.md` file, all we need to do to complete the install is
+to `cd` into the `seqtk` folder and run the command `make`.
 
 ```
 {{ site.remote.prompt }} cd seqtk
+{{ site.remote.prompt }} less README.md
 {{ site.remote.prompt }} make
 ```
 {: .bash}
@@ -217,7 +212,7 @@ Now, using the instructions in the README.md file, all we need to do to complete
 ```
 gcc -g -Wall -O2 -Wno-unused-function seqtk.c -o seqtk -lz -lm
 seqtk.c: In function ‘stk_comp’:
-seqtk.c:399:16: warning: variable ‘lc’ set but not used [-Wunused-but-set-variable]
+seqtk.c:400:16: warning: variable ‘lc’ set but not used [-Wunused-but-set-variable]
     int la, lb, lc, na, nb, nc, cnt[11];
                 ^
 ```
@@ -255,6 +250,6 @@ Command: seq       common transformation of FASTA/Q
 ```
 {: .output}
 
-We've successfully installed our first piece of software!
+We've successfully built our first piece of software on the cluster!
 
 {% include links.md %}

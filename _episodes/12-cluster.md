@@ -99,7 +99,10 @@ nodes.
 
 For example, we can view all of the worker nodes with the `{{ site.sched.info }}` command.
 
+```
 {{ site.remote.prompt }} {{ site.sched.info }}
+```
+{: .bash}
 
 {% include {{ site.snippets }}/12/info.snip %}
 
@@ -128,71 +131,84 @@ been restarted.
 > ## Explore Your Computer
 >
 > Try to find out the number of CPUs and amount of memory available on your personal computer.
+>
+> > ## Solution
+> >
+> > There are several ways to do this. Most operating systems have a graphical system monitor,
+> > like the Windows Task Manager. More detailed information can be found on the command line:
+> >
+> > * Run system utilities
+> >   ```
+> >   {{ site.local.prompt }} nproc --all
+> >   {{ site.local.prompt }} free -m
+> >   ```
+> >   {: .bash}
+> >
+> > * Read from `/proc`
+> >   ```
+> >   {{ site.local.prompt }} cat /proc/cpuinfo
+> >   {{ site.local.prompt }} cat /proc/meminfo
+> >   ```
+> >   {: .bash}
+> >
+> > * Run system monitor
+> >   ```
+> >   {{ site.local.prompt }} htop
+> >   ```
+> >   {: .bash}
+> {: .solution}
 {: .challenge}
 
 > ## Explore The Head Node
 >
-> Now we'll compare the size of your computer with the size of the head node: To see the number of
-> processors, run:
+> Now compare the resources of your computer with those of the head node.
 >
-> ```
-> {{ site.remote.prompt }} nproc --all
-> ```
-> {: .language-bash}
-> 
-> How about memory? Try running: 
->
-> ```
-> {{ site.remote.prompt }} free -m
-> ```
-> {: .language-bash}
+> > ## Solution
+> >
+> > ```
+> > {{ site.local.prompt }} ssh yourUsername@{{ site.remote.login }}
+> > {{ site.remote.prompt }} nproc --all
+> > {{ site.remote.prompt }} free -m
+> > ```
+> > {: .bash}
+> >
+> > You can get more information about the processors using `lscpu`,
+> > and a lot of detail about the memory by reading the file `/proc/meminfo`:
+> >
+> > ```
+> > {{ site.remote.prompt }} less /proc/meminfo
+> > ```
+> > {: .bash}
+> {: .solution}
 {: .challenge}
-
-
-
-> ## Getting more information
->
-> You can get more detailed information on both the processors and memory by using different commands.
->
-> For more information on processors use `lscpu`
->
-> ```
-> {{ site.remote.prompt }} lscpu
-> ```
-> {: .language-bash}
->
-> For more information on memory you can look in the `/proc/meminfo` file:
->
-> ```
-> {{ site.remote.prompt }} cat /proc/meminfo
-> ```
-> {: .language-bash}
-{: .callout}
 
 {% include {{ site.snippets }}/12/explore.snip %}
 
 > ## Compare Your Computer, the Head Node and the Worker Node
 >
 > Compare your laptop's number of processors and memory with the numbers you see on the cluster 
-> head node and worker node. Discuss the differences with your neighbor. What implications do
-> you think the differences might have on running your research work on the different systems
-> and nodes?
-{: .challenge}
+> head node and worker node. Discuss the differences with your neighbor. 
+>
+> What implications do you think the differences might have on running your research work on the
+> different systems and nodes?
+{: .discussion}
 
 > ## Units and Language
 > 
 > A computer's memory and disk are measured in units called *Bytes* (one Byte is 8 bits). 
 > As today's files and memory have grown to be large given historic standards, volumes are 
 > noted using the [SI](https://en.wikipedia.org/wiki/International_System_of_Units) prefixes. 
-> So 1000 Bytes is a Kilobyte (kB), 1000 Kilobytes is a Megabyte, 1000 Megabytes is a 
-> Gigabyte etc. 
+> So 1000 Bytes is a Kilobyte (kB), 1000 Kilobytes is a Megabyte (MB), 1000 Megabytes is a 
+> Gigabyte (GB), etc. 
 > 
-> History and common language have however mixed this notation with a different meaning. 
-> When people say "Kilobyte", they mean 1024 Bytes instead. In that spirit, a Megabyte are 
-> 1024 Kilobytes. To address this ambiguity, the [International System of 
-> Quantities](https://en.wikipedia.org/wiki/International_System_of_Quantities) 
-> standardizes the binary prefixes (with base of 1024) by the prefixes kibi, mibi, gibi,
->  etc. For more details, see [here](https://en.wikipedia.org/wiki/Binary_prefix)
+> History and common language have however mixed this notation with a different meaning. When
+> people say "Kilobyte", they mean 1024 Bytes instead. In that spirit, a Megabyte is 1024
+> Kilobytes.
+>
+> To address this ambiguity, the [International System of
+> Quantities](https://en.wikipedia.org/wiki/International_System_of_Quantities) standardizes the
+> *binary* prefixes (with base of 2<sup>10</sup>=1024) by the prefixes Kibi (ki), Mibi (Mi), Gibi
+> (Gi), etc. For more details, see [here](https://en.wikipedia.org/wiki/Binary_prefix)
 {: .callout}
 
 > ## Differences Between Nodes

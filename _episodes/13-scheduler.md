@@ -33,7 +33,6 @@ as in your laptop.
 {% include figure.html max-width="75%" file="/fig/restaurant_queue_manager.svg"
 alt="Compare a job scheduler to a waiter in a restaurant" caption="" %}
 
-
 > ## Job scheduling roleplay (optional)
 > 
 > Your instructor will divide you into groups taking on different roles in the cluster (users,
@@ -41,7 +40,7 @@ alt="Compare a job scheduler to a waiter in a restaurant" caption="" %}
 > exercise. You will be emulating how a job scheduling system works on the cluster.
 > 
 > [*notes for the instructor here*](../guide)
-{: .challenge}
+{: .discussion}
 
 The scheduler used in this lesson is {{ site.sched.name }}. Although {{ site.sched.name }} is not
 used everywhere, running jobs is quite similar regardless of what software is being used. The exact
@@ -53,23 +52,41 @@ The most basic use of the scheduler is to run a command non-interactively. Any c
 of commands) that you want to run on the cluster is called a *job*, and the process of using a
 scheduler to run the job is called *batch job submission*.
 
-In this case, the job we want to run is just a shell script. Let's create a demo shell script to 
-run as a test.
+In this case, the job we want to run is just a shell script. Let's create a demo shell script to
+run as a test. The landing pad will have a number of terminal-based text editors installed. Use
+whichever you prefer. Unsure? `nano` is a pretty good, basic choice.
+
+```
+{{ site.remote.prompt }} cat example-job.sh
+{{ site.remote.prompt }} chmod +x example-job.sh
+```
+{: .bash}
+
+```
+#!/bin/bash
+
+echo -n "This script is running on "
+hostname
+```
+{: .output}
 
 > ## Creating our test job
 > 
-> Using your favorite text editor, create the following script and run it. Does it run on the
-> cluster or just our login node?
+> Run the script. Does it execute on the cluster or just our login node?
 >
->```
->#!/bin/bash
->
-> echo 'This script is running on:'
-> hostname
-> sleep 120
-> echo 'This script has finished successfully'
-> ```
-> {: .bash}
+> > ## Solution
+> >
+> > ```
+> > {{ site.remote.prompt }} ./example-job.sh
+> > ```
+> > {: .bash}
+> > ```
+> > This script is running on {{ site.remote.host }}
+> > ```
+> > {: .output}
+> > 
+> > This job runs on the login node.
+> {: .solution}
 {: .challenge}
 
 If you completed the previous challenge successfully, you probably realise that there is a
@@ -95,21 +112,30 @@ the *queue*. To check on our job's status, we check the queue using the command
 
 {% include {{ site.snippets }}/13/statu_output.snip %}
 
-The best way to check our job's status is with `{{ site.sched.status }}`.
-Of course, running `{{ site.sched.status }}` repeatedly to check on things can be
-a little tiresome. To see a real-time view of our jobs, we can use the `watch` command. `watch`
-reruns a given command at 2-second intervals. This is too frequent, and will likely upset your system
-administrator. You can change the interval to a more reasonable value, for example 60 seconds, with the
-`-n 60` parameter. Let's try using it to monitor another job.
+The best way to check our job's status is with `{{ site.sched.status }}`. Of course, running 
+`{{ site.sched.status }}` repeatedly to check on things can be a little tiresome. To see a real-time
+view of our jobs, we can use the `watch` command. `watch` reruns a given command at 2-second
+intervals. This is too frequent, and will likely upset your system administrator. You can change
+the interval to a more reasonable value, for example 15 seconds, with the `-n 15` parameter. Let's
+try using it to monitor another job.
 
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
-{{ site.remote.prompt }} watch -n 60 {{ site.sched.status }} {{ site.sched.flag.user }}
+{{ site.remote.prompt }} watch -n 15 {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .bash}
 
 You should see an auto-updating display of your job's status. When it finishes, it will disappear
 from the queue. Press `Ctrl-C` when you want to stop the `watch` command.
+
+> ## Where's the output?
+>
+> On the login node, this script printed output to the terminal -- but when we exit `watch`,
+> there's nothing. Where'd it go?
+>
+> Cluster job output is typically redirected to a file in the directory you launched it from.
+> Use `ls` to find and read the file.
+{: .discussion}
 
 ## Customising a job
 
@@ -118,29 +144,35 @@ probably not what we want. The default options represent a reasonable minimum. C
 need more cores, more memory, more time, among other special considerations. To get access to these
 resources we must customize our job script.
 
-Comments in UNIX (denoted by `#`) are typically ignored. But there are exceptions. For instance the
-special `#!` comment at the beginning of scripts specifies what program should be used to run it
-(typically `/bin/bash`). Schedulers like {{ site.sched.name }} also have a special comment
-used to denote special scheduler-specific options. Though these comments differ from scheduler to
-scheduler, {{ site.sched.name }}'s special comment is `{{ site.sched.comment }}`.
-Anything following the `{{ site.sched.comment }}` comment is interpreted as an
-instruction to the scheduler.
+Comments in UNIX shell scripts (denoted by `#`) are typically ignored, but there are exceptions.
+For instance the special `#!` comment at the beginning of scripts specifies what program should be
+used to run it (you'll typically see `#!/bin/bash`). Schedulers like {{ site.sched.name }} also
+have a special comment used to denote special scheduler-specific options. Though these comments
+differ from scheduler to scheduler, {{ site.sched.name }}'s special comment is 
+`{{ site.sched.comment }}`. Anything following the `{{ site.sched.comment }}` comment is interpreted
+as an instruction to the scheduler.
 
-Let's illustrate this by example. By default, a job's name is the name of the script, but the
-`{{ site.sched.flag.name }}` option can be used to change the name of a job.
+Let's illustrate this by example. By default, a job's name is the name of the script, but the 
+`{{ site.sched.flag.name }}` option can be used to change the name of a job. Add an option to the
+script:
 
-Submit the following job (`{{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh`):
+```
+{{ site.remote.prompt }} cat example-job.sh
+```
+{: .bash}
 
 ```
 #!/bin/bash
 {{ site.sched.comment }} {{ site.sched.flag.name }} new_name
 
-echo 'This script is running on:'
+echo -n "This script is running on "
 hostname
-sleep 120
-echo 'This script has finished successfully'
+echo "This script has finished successfully."
 ```
-{: .bash}
+{: .output}
+
+Submit the job (using `{{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh`)
+and monitor it:
 
 ```
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
@@ -177,22 +209,32 @@ about how to make sure that you're using resources effectively in a later episod
 
 > ## Submitting resource requests
 >
-> Submit a job that will use 1 full node and 5 minutes of walltime.
+> Submit a job that will use 1 full node and 1 minute of walltime.
 >
 > > ## Solution
 > >
 > > ```
-> > {{ site.remote.prompt }} cat five_minute_job.sh
-> > #!/bin/bash
-> > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:05:00
-> > 
-> > echo 'This script is running on:'
-> > hostname
-> > sleep $(( 5 * 60 ))
-> > echo 'This script has finished successfully'
-> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} five_minute_job.sh
+> > {{ site.remote.prompt }} cat example-job.sh
 > > ```
 > > {: .bash}
+> >
+> > ```
+> > #!/bin/bash
+> > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:01:10
+> >
+> > echo -n "This script is running on "
+> > sleep 60 # time in seconds
+> > hostname
+> > echo "This script has finished successfully."
+> > ```
+> > {: .output}
+> >
+> > ```
+> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
+> > ```
+> > {: .bash}
+> >
+> > Why are the {{ site.sched.name }} runtime and `sleep` time not identical?
 > {: .solution}
 {: .challenge}
 
@@ -204,21 +246,25 @@ minutes.
 
 ```
 {{ site.remote.prompt }} cat example-job.sh
+```
+{: .bash}
+
+```
 #!/bin/bash
 {{ site.sched.comment }} {{ site.sched.flag.time }} 00:00:30
 
-echo 'This script is running on:'
+echo -n "This script is running on "
+sleep 120 # time in seconds
 hostname
-sleep 120
-echo 'This script has finished successfully'
+echo "This script has finished successfully."
 ```
-{: .bash}
+{: .output}
 
 Submit the job and wait for it to finish. Once it is has finished, check the log file.
 
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
-{{ site.remote.prompt }} watch -n 60 {{ site.sched.status }} {{ site.sched.flag.user }}
+{{ site.remote.prompt }} watch -n 15 {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .bash}
 
@@ -237,9 +283,9 @@ scheduling will be their own.
 
 ## Cancelling a job
 
-Sometimes we'll make a mistake and need to cancel a job. This can be done with the `{{
-site.sched.del }}` command. Let's submit a job and then cancel it using its job number (remember to
-change the walltime so that it runs long enough for you to cancel it before it is killed!).
+Sometimes we'll make a mistake and need to cancel a job. This can be done with the 
+`{{ site.sched.del }}` command. Let's submit a job and then cancel it using its job number (remember
+to change the walltime so that it runs long enough for you to cancel it before it is killed!).
 
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
@@ -249,8 +295,8 @@ change the walltime so that it runs long enough for you to cancel it before it i
 
 {% include {{ site.snippets }}/13/del_job_output1.snip %}
 
-Now cancel the job with it's job number. A clean return of your command prompt indicates that the
-request to cancel the job was successful.
+Now cancel the job with its job number (printed in your terminal). A clean return of your command
+prompt indicates that the request to cancel the job was successful.
 
 ```
 {{ site.remote.prompt }} {{site.sched.del }} 38759
