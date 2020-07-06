@@ -186,7 +186,16 @@ Resource requests are typically binding. If you exceed them, your job will be ki
 walltime as an example. We will request 30 seconds of walltime, and attempt to run a job for two
 minutes.
 
-{% include {{ site.snippets }}/13/long_job.snip %}
+```
+#!/bin/bash
+{{ site.sched.comment }} {{ site.sched.flag.time }} 00:00:30
+
+echo 'This script is running on:'
+hostname
+sleep 120
+echo 'This script has finished successfully'
+```
+{: .bash}
 
 Submit the job and wait for it to finish. Once it is has finished, check the log file.
 
