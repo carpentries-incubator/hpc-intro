@@ -34,7 +34,26 @@ probably the minimum, with 20-30% being more typical. Keep in mind that if you a
 your job may not run even though enough resources are available, because the scheduler will be
 waiting to match what you asked for.
 
-{% include {{ site.snippets }}/16/bench.snip %}
+> ## Benchmarking `fastqc`
+>
+> Create a job that runs the following command in the same directory as `.fastq` files
+> 
+> ```
+> {{site.remote.prompt }} fastqc name_of_fastq_file
+> ```
+> {: .bash}
+> 
+> The `fastqc` command is provided by the `fastqc` module. You'll need to figure out a good amount
+> of resources to ask for for this first "test run". You might also want to have the scheduler 
+> email  you to tell you when the job is done.
+>
+> *Hint:* The job only needs 1 CPU and not too much memory or time. The trick is figuring out just 
+> how much you'll need!
+>
+> > ## Solution
+> >
+> {: .solution}
+{: .challenge}
 
 Once the job completes (note that it takes much less time than expected), we can query the scheduler
 to see how long our job took and what resources were used. We will use `{{ site.sched.hist }}` to
