@@ -123,5 +123,4 @@ content/resources.md              100% 1115    29.9KB/s   00:00
 
 To quit, we type `exit` or `bye`. 
 
-
 {% include links.md %}

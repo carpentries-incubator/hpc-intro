@@ -1,18 +1,47 @@
-language: python
-python:
-  - "3.6"
-
-# command to install dependencies
+before_install:
+  - sudo apt-get update -y
+  - sudo apt-get install libgit2-dev libudunits2-dev automake
+  - sudo apt-get install python3-setuptools python3-pip
+  - rvm install 2.5.3
+  - rvm 2.5.3 do ruby -S gem install bundle
+  - R -q -e 'install.packages(c("remotes", "curl"))'
+  - R -q -e 'remotes::install_github("hadley/requirements")'
 install:
-  - pip install -r requirements.txt  
-    # per https://docs.travis-ci.com/user/installing-dependencies/  
-
-# run tests
-before_script:
-  - "python bin/_travis.py"  
+  - sudo -H pip3 install --upgrade pyyaml
 script:
-  - python bin/workshop_check.py .
-  - python -m unittest bin/_test/bs4test.py
-  - python bin/lesson_check.py .
-  - codespell --skip="assets,*.svg,bin" --quiet-level=2  -L "rouge,dropse,namd,hist"
+  - bundle install
+  - make lesson-check-all
+  - make --always-make site
 
+
+# Header
+language: r
+sudo: false
+cache: packages
+latex: false
+
+branches:
+  only:
+  - gh-pages
+  - /.*/
+
+#env
+env:
+  global:
+  - _R_CHECK_FORCE_SUGGESTS_=false
+  #- MAKEFLAGS="-j 2"
+
+# Add spellchecking for PRs
+jobs:
+  include:
+    - stage: spelling
+      language: python
+      sudo: true
+      python: "3.6"
+      # The default before_install step is slow
+      before_install:
+      # Use codespell for spell checking
+      install:
+        sudo pip install codespell
+      script: codespell --skip="assets,fig,*.svg,AUTHORS,.mailmap" --quiet-level=2 --ignore-words-list="rouge,keyserver"
+    - stage: check_and_build

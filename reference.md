@@ -1,6 +1,5 @@
 ---
 layout: reference
-permalink: /reference/
 ---
 
 ## Cheatsheets for Queuing System Quick Reference
