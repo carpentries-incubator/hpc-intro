@@ -197,7 +197,7 @@ For Data Carpentry workshops,
 installation instructions live on the workshop overview page for each curriculum.
 Instead of including installation instructions in the workshop template,
 the workshop template includes links to these instructions.
-The correct link will be displyed
+The correct link will be displayed
 when using the appropriate combination of values
 for the `curriculum`  and `flavor` variables
 in the `_config.yml` file.
