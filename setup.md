@@ -50,14 +50,19 @@ Once installed, you can open a terminal by running the program Git Bash from the
 >
 > For advanced users, you may choose one of the following alternatives: 
 >
-> * Install the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
-> * Use the Windows [Powershell](https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7)
-> * Read up on [Using a Unix/Linux emulator (Cygwin) or Secure Shell (SSH) client (Putty)](http://faculty.smu.edu/reynolds/unixtut/windows.html)
+> * Install the [Windows Subsystem for
+>   Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+> * Use the Windows [Powershell][
+https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7
+> * Read up on [Using a Unix/Linux emulator (Cygwin) or Secure Shell (SSH) client
+>   (Putty)](http://faculty.smu.edu/reynolds/unixtut/windows.html)
 >
+> > ## Warning
+> >
 > > Commands in the Windows Subsystem for Linux (WSL), Powershell, or Cygwin may differ slightly
 > > from those shown in the lesson or presented in the workshop. Please ask if you encounter such
 > > a mismatch &ndash; you're probably not alone.
-> {: .warning}
+> {: .challenge}
 {: .discussion}
 
 ### macOS
@@ -79,7 +84,8 @@ typing `bash`.
 
 #### Reference 
 
-[How to Use Terminal on a Mac](http://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608274/)
+[How to Use Terminal on a
+Mac](http://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608274/)
 
 ### Linux
 
@@ -122,3 +128,4 @@ macOS comes with SSH pre-installed: you do not have to do anything.
 ### Linux
 
 Linux comes with SSH and X window support preinstalled: you do not have to do anything.
+

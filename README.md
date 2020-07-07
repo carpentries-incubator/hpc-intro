@@ -1,6 +1,6 @@
 # Intro to HPC
 
-[![Build Status](https://travis-ci.org/hpc-carpentry/hpc-intro.svg?branch=gh-pages)](https://travis-ci.org/hpc-carpentry/hpc-intro)
+[![Build Status](https://travis-ci.org/hpc-carpentry/hpc-intro.svg?branch=gh-pages)][travis-link]
 
 This lesson is focused on teaching the basics of high-performance computing (HPC). The curriculum
 is still in the "alpha" stage. If you would like to contribute, please see the [Lesson
@@ -16,17 +16,18 @@ Outline][lesson-outline]. Thanks!
    [_includes/snippets_library/](_includes/snippets_library/) directory.
 
 2. Create the required host-specific code snippets in subdirectories in
-   [_includes/snippets_library](_includes/snippets_library). These snippets provide inputs and outputs that 
-   are host-specific and that are included automatically when the lesson website is built.
+   [_includes/snippets_library](_includes/snippets_library). These snippets provide inputs and
+   outputs that are host-specific and that are included automatically when the lesson website is
+   built.
    1. Code snippets are in files named `snippet_name.snip` and are included automatically
       when the lesson is built. For example, if the `snippet_name` was `login_output`,
       then the snippet file would be called `login_output.snip`.
    2. Code snippets are placed in subdirectories that are named according to the episode they
       appear in. For example, if the snippet is for episode 12, then it will be in a 
       subdirectory called `12`.
-   3. In the episodes source, snippets are included using [Liquid](https://shopify.github.io/liquid/)
-      scripting  `include` statements. For example, the first snippet in episode 12 is included using 
-      `{% include /snippets/12/info.snip %}`.
+   3. In the episodes source, snippets are included using
+      [Liquid](https://shopify.github.io/liquid/) scripting `include` statements. For example, the
+      first snippet in episode 12 is included using `{% include /snippets/12/info.snip %}`.
 
    Please contribute any configurations you create for your local systems back into the HPC Intro
    snippets library.
@@ -66,14 +67,15 @@ The layout of this repository is explained in [this site's episodes][rendered]. 
 
 5. Figures are stored in the `fig` directory, data sets in `data`, source code in `code`, and
    miscellaneous files in `files`.
-   
+
 6. If you wish to add a new figure to a lesson, please use appropriate Liquid variables, e.g., `{{
    site.url }}/fig/...` instead of plain `/fig/...`. For example, `![Your alt text]({{ site.url
    }}/fig/image_name.png)` rather than `![Your alt text](/fig/image_name.png)`. This helps guard
    against broken links.
-   
-   Note that the preferred method to include scalable vector graphics (SVG files) is 
-   `{% include figure.html max-width="30%" file="{{ site.url }}/fig/image_name.svg" alt="Your alt text" caption="Your figure caption" %}`
+
+   Note that the preferred method to include scalable vector graphics (SVG files) is `{% include
+   figure.html max-width="30%" file="{{ site.url }}/fig/image_name.svg" alt="Your alt text"
+   caption="Your figure caption" %}`
 
 ## Getting Started
 
@@ -92,3 +94,4 @@ The layout of this repository is explained in [this site's episodes][rendered]. 
 [rendered]: https://hpc-carpentry.github.io/hpc-intro/
 [setup]: https://hpc-carpentry.github.io/hpc-intro/setup.html
 [styles-issues]: https://github.com/carpentries/styles/issues/
+[travis-link]: https://travis-ci.org/hpc-carpentry/hpc-intro

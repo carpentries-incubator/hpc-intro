@@ -177,7 +177,7 @@ def check_config(reporter, source_dir):
     reporter.check_field(config_file, 'configuration',
                          config, 'kind', 'lesson')
     reporter.check_field(config_file, 'configuration',
-                         config, 'carpentry', ('swc', 'dc', 'lc', 'cp'))
+                         config, 'carpentry', ('swc', 'dc', 'hpc', 'lc', 'cp'))
     reporter.check_field(config_file, 'configuration', config, 'title')
     reporter.check_field(config_file, 'configuration', config, 'email')
 
@@ -358,7 +358,7 @@ class CheckBase:
 
         if self.args.line_lengths:
             over = [i for (i, l, n) in self.lines if (
-                n > MAX_LINE_LEN) and (not l.startswith('!'))]
+                n > MAX_LINE_LEN) and (not l.startswith('!')) and (not l.startswith('http'))]
             self.reporter.check(not over,
                                 self.filename,
                                 'Line(s) too long: {0}',

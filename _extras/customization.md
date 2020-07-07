@@ -61,7 +61,8 @@ options.
 
 *   `country` must be a two-letter ISO-3166 code for the country in
     which the workshop is going to take place, such as "fr" (for
-    France) or "nz" (for New Zealand) - see [Wikipedia](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
+    France) or "nz" (for New Zealand) - see [Wikipedia](
+    https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
     for a complete list. See section below for value to use for
     online workshops.
 

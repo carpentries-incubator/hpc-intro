@@ -8,7 +8,8 @@ layout: reference
 
 ## Glossary
 
-The following list captures terms that need to be added to this glossary. This is a great way to contribute.
+The following list captures terms that need to be added to this glossary. This is a great way to
+contribute.
 
 {:auto_ids}
 [Accelerator](https://en.wikipedia.org/wiki/Hardware_acceleration)
@@ -24,8 +25,8 @@ The following list captures terms that need to be added to this glossary. This i
 :    *to be defined*
 
 [Cluster](https://en.wikipedia.org/wiki/Computer_cluster)
-:     a collection of computers configured to enable collaboration on a common task by
-      means of purposefully configured hardware (*e.g.*, networking) and software (*e.g.* workload
+:     a collection of computers configured to enable collaboration on a common task by means of
+      purposefully configured hardware (*e.g.*, networking) and software (*e.g.* workload
       management).
 
 [Distributed memory](https://en.wikipedia.org/wiki/Distributed_memory)
@@ -37,7 +38,8 @@ The following list captures terms that need to be added to this glossary. This i
 [High availability computing](https://en.wikipedia.org/wiki/High_availability)
 :    *to be defined*
 
-[High performance computing](https://en.wikipedia.org/w/index.php?title=High-performance_computing&redirect=no)
+[High performance
+computing](https://en.wikipedia.org/w/index.php?title=High-performance_computing&redirect=no)
 :    *to be defined*
 
 [Interconnect](https://en.wikipedia.org/wiki/Supercomputer_architecture)
@@ -62,7 +64,8 @@ The following list captures terms that need to be added to this glossary. This i
 :    *to be defined*
 
 [Supercomputer](https://en.wikipedia.org/wiki/Supercomputer)
-:    ... "[a major scientific instrument](https://www.hpcnotes.com/2015/10/essential-analogies-for-hpc-advocate.html)" ...
+:    ... "[a major scientific
+     instrument](https://www.hpcnotes.com/2015/10/essential-analogies-for-hpc-advocate.html)" ...
 
 [Workstation](https://en.wikipedia.org/wiki/Workstation)
 :    *to be defined*
@@ -70,5 +73,6 @@ The following list captures terms that need to be added to this glossary. This i
 [Grid Engine](https://en.wikipedia.org/wiki/Oracle_Grid_Engine)
 :    *to be defined*
 
-[Parallel File System](https://en.wikipedia.org/wiki/Clustered_file_system#Distributed_file_systems)
+[Parallel File
+System](https://en.wikipedia.org/wiki/Clustered_file_system#Distributed_file_systems)
 :    *to be defined*

@@ -23,10 +23,10 @@ and with varying degrees of correctness. So what do they mean exactly? And more 
 we use them for our work?
 
 The *cloud* is a generic term commonly used to refer to remote computing resources of any kind --
-that is, any computers that you use but are not right in front of you. Cloud can refer to
-machines serving websites, providing shared storage, providing webservices (such as e-mail or social
-media platforms), as well as more traditional "compute" resources. An *HPC system* on the other hand,
-is a term used to describe a network of computers. The computers in a cluster typically share a common
+that is, any computers that you use but are not right in front of you. Cloud can refer to machines
+serving websites, providing shared storage, providing webservices (such as e-mail or social media
+platforms), as well as more traditional "compute" resources. An *HPC system* on the other hand, is
+a term used to describe a network of computers. The computers in a cluster typically share a common
 purpose, and are used to accomplish tasks that might otherwise be too big for any one computer.
 
 ## Logging in
@@ -37,27 +37,26 @@ Go ahead and log in to the cluster: {{ site.remote.name }} at {{ site.remote.loc
 ```
 {: .bash}
 
-Remember to replace `yourUsername` with the username supplied by the instructors. You will be asked for
-your password. But watch out, the characters you type are not displayed on the screen.
+Remember to replace `yourUsername` with the username supplied by the instructors. You will be asked
+for your password. But watch out, the characters you type are not displayed on the screen.
 
-You are logging in using a program known as the secure shell or `ssh`. 
-This establishes a temporary encrypted connection between your laptop and `{{ site.remote.login }}`.
-The word before the `@` symbol, e.g. `yourUsername` here, is the user account name that Lola has access 
-permissions for on the cluster. 
+You are logging in using a program known as the secure shell or `ssh`. This establishes a temporary
+encrypted connection between your laptop and `{{ site.remote.login }}`. The word before the `@`
+symbol, e.g. `yourUsername` here, is the user account name that Lola has access permissions for on
+the cluster.
 
 > ## Where do I get this `ssh` from ?
 >
 > On Linux and/or macOS, the `ssh` command line utility is almost always pre-installed. Open a
 > terminal and type `ssh --help` to check if that is the case. 
 > 
-> At the time of writing, the openssh support on Microsoft is still very 
-> [recent](https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/). 
-> Alternatives to this are [putty](http://www.putty.org), 
-> [bitvise SSH](https://www.bitvise.com/ssh-client-download), 
-> [mRemoteNG](https://mremoteng.org/) or [MobaXterm](https://mobaxterm.mobatek.net/). 
-> Download it, install it and open the GUI. The GUI asks for your user name and the destination
-> address or IP of the computer you want to connect to. Once provided, you will be queried for 
-> your password just like in the example above.
+> At the time of writing, the OpenSSH support on Microsoft is still very [recent](
+https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/).
+> Alternatives to this are [putty](http://www.putty.org), [bitvise
+> SSH](https://www.bitvise.com/ssh-client-download), [mRemoteNG](https://mremoteng.org/) or
+> [MobaXterm](https://mobaxterm.mobatek.net/). Download it, install it and open the GUI. The GUI
+> asks for your user name and the destination address or IP of the computer you want to connect to.
+> Once provided, you will be queried for your password just like in the example above.
 {: .callout}
 
 ## Where are we?
@@ -65,8 +64,8 @@ permissions for on the cluster.
 Very often, many users are tempted to think of a high-performance computing installation as one
 giant, magical machine. Sometimes, people will assume that the computer they've logged onto is the
 entire computing cluster. So what's really happening? What computer have we logged on to? The name
-of the current computer we are logged onto can be checked with the `hostname` command. (You may also
-notice that the current hostname is also part of our prompt!)
+of the current computer we are logged onto can be checked with the `hostname` command. (You may
+also notice that the current hostname is also part of our prompt!)
 
 ```
 {{ site.remote.prompt }} hostname
@@ -119,14 +118,15 @@ available throughout the HPC system.
 
 ## What's in a node? 
 
-All of a HPC system's nodes have the same components as your own laptop or desktop: *CPUs* (sometimes
-also called *processors* or *cores*), *memory* (or *RAM*), and *disk* space. CPUs are a computer's
-tool for actually running programs and calculations. Information about a current task is stored in
-the computer's memory. Disk refers to all storage that can be accessed like a file system. This is
-generally storage that can hold data permanently, i.e. data is still there even if the computer has
-been restarted.
+All of a HPC system's nodes have the same components as your own laptop or desktop: *CPUs*
+(sometimes also called *processors* or *cores*), *memory* (or *RAM*), and *disk* space. CPUs are a
+computer's tool for actually running programs and calculations. Information about a current task is
+stored in the computer's memory. Disk refers to all storage that can be accessed like a file
+system. This is generally storage that can hold data permanently, i.e. data is still there even if
+the computer has been restarted.
 
-{% include figure.html url="" max-width="40%" file="/fig/node_anatomy.png" alt="Node anatomy" caption="" %}
+{% include figure.html url="" max-width="40%" file="/fig/node_anatomy.png" alt="Node anatomy"
+caption="" %}
 
 > ## Explore Your Computer
 >
@@ -222,3 +222,4 @@ With all of this in mind, we will now cover how to talk to the cluster's schedul
 start running our scripts and programs!
 
 {% include links.md %}
+
