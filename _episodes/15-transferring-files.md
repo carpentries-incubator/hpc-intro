@@ -12,56 +12,90 @@ keypoints:
 - "You can use an SFTP client like FileZilla to transfer files through a GUI."
 ---
 
-Computing with a remote computer offers very limited use if we cannot get files to 
-or from the cluster. There are several options for transferring data between computing 
-resources, from command line options to GUI programs, which we will cover here.
+Computing with a remote computer offers very limited use if we cannot get files to or from the
+cluster. There are several options for transferring data between computing resources, from command
+line options to GUI programs, which we will cover here.
 
 ## Download files from the internet using wget
 
-One of the most straightforward ways to download files is to use `wget`. Any file 
-that can be downloaded in your web browser with an accessible link can be downloaded 
-using `wget`. This is a quick way to download datasets or source code. 
+One of the most straightforward ways to download files is to use `wget`. Any file that can be
+downloaded in your web browser with an accessible link can be downloaded using `wget`. This is a
+quick way to download datasets or source code.
 
-The syntax is: `wget https://some/link/to/a/file.tar.gz`. For example, download the 
-lesson sample files using the following command:
+The syntax is: `wget https://some/link/to/a/file.tar.gz`. For example, download the lesson sample
+files using the following command:
 
 ```
-{{ site.host_prompt }} wget {{ site.url }}{{ site.baseurl }}/files/bash-lesson.tar.gz
+{{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/bash-lesson.tar.gz
 ```
-{:.bash}
+{: .bash}
 
 ## Transferring single files and folders with scp
 
-To copy a single file to or from the cluster, we can use `scp`. The syntax can be a little complex
-for new users, but we'll break it down here:
+To copy a single file to or from the cluster, we can use `scp` ("secure copy"). The syntax can be
+a little complex for new users, but we'll break it down.
 
 To transfer *to* another computer:
 ```
-{{ site.local_prompt }} scp /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
+{{ site.local.prompt }} scp path/to/local/file.txt yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}
 ```
-{:.bash}
+{: .bash}
+
+> ## Transfer a file
+>
+> Create a "calling card" with your name and email address, then transfer it to your home directory
+> on {{ site.remote.name }}.
+>
+> > ## Solution
+> > 
+> > Create a file like this, with your name (or an alias) and top-level domain:
+> >
+> > ```
+> > {{ site.local.prompt }} cat calling-card.txt
+> > ```
+> > {: .bash}
+> >
+> > ```
+> > Your Name
+> > Your.Address@institution.tld
+> > ```
+> > {: .output}
+> >
+> > Now, transfer it to {{ site.remote.name }}:
+> >
+> > ```
+> > {{ site.local.prompt }} scp calling-card.txt yourUsername@{{ site.remote.login }}:~/
+> > ```
+> > {: .bash}
+> >
+> > ```
+> > calling-card.txt                                                 100%   37     7.6 KB/s   00:00
+> > ```
+> > {: .output}
+> {: .solution}
+{: .challenge}
 
 To download *from* another computer:
 ```
-{{ site.local_prompt }} scp yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
+{{ site.local.prompt }} scp yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
 ```
-{:.bash}
+{: .bash}
 
 Note that we can simplify doing this by shortening our paths. On the remote computer, everything
 after the `:` is relative to our home directory. We can simply just add a `:` and leave it at that
 if we don't care where the file goes.
 
 ```
-{{ site.local_prompt }} scp local-file.txt yourUsername@remote.computer.address:
+{{ site.local.prompt }} scp local-file.txt yourUsername@{{ site.remote.login }}:
 ```
-{:.bash}
+{: .bash}
 
 To recursively copy a directory, we just add the `-r` (recursive) flag:
 
 ```
-{{ site.local_prompt }} scp -r some-local-folder/ yourUsername@remote.computer.address:target-directory/
+{{ site.local.prompt }} scp -r some-local-folder/ yourUsername@{{ site.remote.login }}:target-directory/
 ```
-{:.bash}
+{: .bash}
 
 > ## A note on `rsync`
 >
@@ -73,9 +107,9 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 > The syntax is similar to `scp`. To transfer *to* another computer with commonly used options:
 >
 > ```
-> [local]$ rsync -avzP /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
+> {{ site.local.prompt }} rsync -avzP path/to/local/file.txt yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}
 > ```
-> {:.bash}
+> {: .bash}
 >
 > The `a` (archive) option preserves file timestamps and permissions among other things; the `v` (verbose)
 > option gives verbose output to help monitor the transfer; the `z` (compression) option compresses
@@ -86,21 +120,21 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 > To recursively copy a directory, we can use the same options:
 >
 > ```
-> [local]$ rsync -avzP /path/to/local/dir yourUsername@remote.computer.address:/path/on/remote/computer
+> {{ site.local.prompt }} rsync -avzP path/to/local/dir yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}
 > ```
-> {:.bash}
+> {: .bash}
 > 
 > The `a` (archive) option implies recursion.
 > 
 > To download a file, we simply change the source and destination:
 >
 > ```
-> [local]$ rsync -avzP yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
+> {{ site.local.prompt }} rsync -avzP yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
 > ```
-> {:.bash}
-{:.callout}
+> {: .bash}
+{: .callout}
 
-## Transferring files interactively with FileZilla (sftp)
+## Transferring files interactively with FileZilla
 
 FileZilla is a cross-platform client for downloading and uploading files to and from a remote
 computer. It is absolutely fool-proof and always works quite well. It uses the `sftp` protocol. You
@@ -115,12 +149,12 @@ hand side.
 
 To connect to the cluster, we'll just need to enter our credentials at the top of the screen:
 
-* Host: `sftp://{{ site.host_login }}`
+* Host: `sftp://{{ site.remote.login }}`
 * User: Your cluster username
 * Password: Your cluster password
 * Port: (leave blank to use the default port)
 
-Hit "Quickconnect" to connect! You should see your remote files appear on the right hand side of the
+Hit "Quickconnect" to connect. You should see your remote files appear on the right hand side of the
 screen. You can drag-and-drop files between the left (local) and right (remote) sides of the screen
 to transfer files.
 
@@ -141,9 +175,9 @@ to combine files into a single archive file and, optionally, compress. For examp
 all files contained inside `output_data` into an archive file called `output_data.tar` we would use:
 
 ```
-{{ site.local_prompt }} tar -cvf output_data.tar output_data/
+{{ site.local.prompt }} tar -cvf output_data.tar output_data/
 ```
-{:.bash}
+{: .bash}
 
 The options we used for `tar` are:
 
@@ -156,9 +190,9 @@ The tar command allows users to concatenate flags. Instead of typing `tar -c -v 
 transferred it:
 
 ```
-{{ site.local_prompt }} tar -xvf output_data.tar
+{{ site.local.prompt }} tar -xvf output_data.tar
 ```
-{:.bash}
+{: .bash}
 
 This will put the data into a directory called `output_data`. Be careful, it will overwrite data
 there if this directory already exists!
@@ -167,27 +201,27 @@ Sometimes you may also want to compress the archive to save space and speed up t
 you should be aware that for large amounts of data compressing and un-compressing can take longer
 than transferring the un-compressed data  so you may not want to transfer. To create a compressed
 archive using `tar` we add the `-z` option and add the `.gz` extension to the file to indicate
-it is compressed, e.g.:
+it is `gzip`-compressed, e.g.:
 
 ```
-{{ site.local_prompt }} tar -czvf output_data.tar.gz output_data/
+{{ site.local.prompt }} tar -czvf output_data.tar.gz output_data/
 ```
-{:.bash}
+{: .bash}
 
 The `tar` command is used to extract the files from the archive in exactly the same way as for
 uncompressed data as `tar` recognizes it is compressed and un-compresses and extracts at the 
 same time:
 
 ```
-{{ site.local_prompt }} tar -xvf output_data.tar.gz
+{{ site.local.prompt }} tar -xvf output_data.tar.gz
 ```
-{:.bash}
+{: .bash}
 
 > ## Transferring files
 >
 > Using one of the above methods, try transferring files to and from the cluster. Which method do
 > you like the best?
-{:.challenge}
+{: .discussion}
 
 > ## Working with Windows
 >
@@ -208,7 +242,7 @@ same time:
 > 
 > To convert the file, just run `dos2unix filename`. (Conversely, to convert back to Windows format,
 > you can run `unix2dos filename`.)
-{:.callout}
+{: .callout}
 
 > ## A note on ports
 >
@@ -216,6 +250,6 @@ same time:
 > same connection method used by SSH. In fact, all file transfers using these methods occur through
 > an SSH connection. If you can connect via SSH over the normal port, you will be able to transfer
 > files.
-{:.callout}
+{: .callout}
 
 {% include links.md %}

@@ -1,0 +1,56 @@
+#------------------------------------------------------------
+# ComputeCanada: Graham + SLURM
+#------------------------------------------------------------
+
+# Cluster host and scheduler options: the defaults come from
+# Graham at Compute Canada, running SLURM. Other options can
+# be found in the library of snippets,
+# `_includes/snippets_library`. To use one, replace options
+# below with those in `_config_options.yml` from the
+# library. E.g, to customise for Cirrus at EPCC, running
+# PBS, we could replace the options below with those from
+# 
+# _includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
+# 
+# If your cluster is not represented in the library, please
+# copy an existing folder, rename it, and customize for your
+# installation. Remember to keep the leading slash on the
+# `snippets` variable below!
+
+snippets: "/snippets_library/ComputeCanada_Graham_slurm"
+
+local:
+  prompt: "[user@laptop ~]$"
+
+remote:
+  name: "Graham"
+  login: "graham.computecanada.ca"
+  host: "gra-login1"
+  node: "aci-377"
+  location: "University of Waterloo"
+  homedir: "/home"
+  prompt: "[yourUsername@gra-login1 ~]$"
+
+sched:
+  name: "SLURM"
+  user: "yourUsername"
+  submit:
+    name: "sbatch"
+    options: ""
+  status: "squeue"
+  flag:
+    user: "-u yourUsername"
+    interactive: ""
+    histdetail: "-l -j"
+    name: "-J"
+    time: "-t"
+  del: "scancel"
+  interactive: "srun"
+  info: "sinfo"
+  comment: "#SBATCH"
+  hist: "sacct -u yourUsername"
+
+# Interactive queue names, one or more as a list
+workshop_interactive_queues:
+  - debug
+  - testing

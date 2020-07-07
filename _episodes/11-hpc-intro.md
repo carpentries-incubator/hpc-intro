@@ -36,9 +36,11 @@ In all these cases, what is needed is access to more computers than can be used 
 > ## And what do you do?
 > 
 > Talk to your neighbour, office mate or [rubber duck](https://rubberduckdebugging.com/) about your
-> research. How does computing help you do your research? 
-> How could more computing help you do more or better research?
-{: .challenge }
+> research.
+>
+> - How does computing help you do your research? 
+> - How could more computing help you do more or better research?
+{: .discussion }
 
 
 ## A standard Laptop for standard tasks
@@ -102,6 +104,6 @@ prospect users:
 > 
 > Take a minute and think about which of your daily interactions with a computer may require a 
 > remote server or even cluster to provide you with results. 
-{: .challenge }
+{: .discussion }
 
 {% include links.md %}

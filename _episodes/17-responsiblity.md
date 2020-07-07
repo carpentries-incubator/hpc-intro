@@ -20,33 +20,31 @@ keypoints:
 - "Don't be a bad person and run stuff on the login node."
 ---
 
-One of the major differences between using remote HPC resources and your own system 
-(e.g. your laptop) is that they are a shared resource. How many users the resource is
-shared between at any one time varies from system to system but it is unlikely you
-will ever be the only user logged into or using such a system.
+One of the major differences between using remote HPC resources and your own system (e.g. your
+laptop) is that they are a shared resource. How many users the resource is shared between at any
+one time varies from system to system but it is unlikely you will ever be the only user logged into
+or using such a system.
 
-We have already mentioned one of the consequences of this shared nature of the resources:
-the scheduling system where you submit your jobs, but there are other things you need 
-to consider in order to be a considerate HPC citizen, to protect your critical data
-and to transfer data 
+We have already mentioned one of the consequences of this shared nature of the resources: the
+scheduling system where you submit your jobs, but there are other things you need to consider in
+order to be a considerate HPC citizen, to protect your critical data and to transfer data
 
 ## Be kind to the login nodes
 
-The login node is often very busy managing lots of users logged in, creating and editing files
-and compiling software! It doesn’t have any extra space to run computational work.
+The login node is often very busy managing lots of users logged in, creating and editing files and
+compiling software! It doesn’t have any extra space to run computational work.
 
 Don’t run jobs on the login node (though quick tests are generally fine). A “quick test” is
-generally anything that uses less than 5 minutes of time. If you
-use too much resource then other users on the login node will start to be affected - their
-login sessions will start to run slowly and may even freeze or hang. 
+generally anything that uses less than 5 minutes of time. If you use too much resource then other
+users on the login node will start to be affected - their login sessions will start to run slowly
+and may even freeze or hang.
 
 > ## Login nodes are a shared resource
 >
 > Remember, the login node is shared with all other users and your actions could cause
 > issues for other people. Think carefully about the potential implications of issuing
 > commands that may use large amounts of resource.
->
-{:.callout}
+{: .callout}
 
 You can always use the commands `top` and `ps ux` to list the processes you are running on a login
 node and the amount of CPU and memory they are using. The `kill` command can be used along
@@ -55,13 +53,24 @@ with the *PID* to terminate any processes that are using large amounts of resour
 > ## Login Node Etiquette
 > 
 > Which of these commands would probably be okay to run on the login node?
-> python physics_sim.py
-> make
-> create_directories.sh
-> molecular_dynamics_2
-> tar -xzf R-3.3.0.tar.gz
+>
+> 1. `python physics_sim.py`
+> 2. `make`
+> 3. `create_directories.sh`
+> 4. `molecular_dynamics_2`
+> 5. `tar -xzf R-3.3.0.tar.gz`
 > 
-{:.challenge}
+> > ## Solution
+> >
+> > Building software, creating directories, and unpacking software are common and acceptable
+> > tasks for the login node: options #2 (`make`), #3 (`mkdir`), and #5 (`tar`) are probably OK.
+> > Note that script names do not always reflect their contents: before launching #3, please
+> > `less create_directories.sh` and make sure it's not a Trojan horse.
+> > 
+> > Running resource-intensive applications is frowned upon. Unless you have cleared it with
+> > the system administrators, do not run #1 (`python`) or #4 (custom MD code).
+> {: .solution}
+{: .challenge}
 
 If you experience performance issues with a login node you should report it to the system
 staff (usually via the helpdesk) for them to investigate. You can use the `top` command
@@ -83,14 +92,14 @@ of starting due to a trivial typo in the job script. This is extremely frustrati
 systems provide dedicated resources for testing that have short wait times to help you 
 avoid this issue.
 
-> ## Test job submission scripts that use large amounts of resource
+> ## Test job submission scripts that use large amounts of resources
 >
 > Before submitting a large run of jobs, submit one as a test first to make sure everything works
 > as expected.
 >
 > Before submitting a very large or very long job submit a short truncated test to ensure that
-> the job starts as expected
-{:.callout}
+> the job starts as expected.
+{: .callout}
 
 ## Have a backup plan
 
@@ -123,7 +132,7 @@ guidance on your options for data transfer for the volumes of data you will be u
 > using and what implications this has for your work if you lose your data on the system. Plan
 > your backups of critical data and how you will transfer data off the system throughout the
 > project.
-{:.callout}
+{: .callout}
 
 ## Transferring data
 
@@ -133,22 +142,22 @@ but the advice below applies in either case). Data transfer speed may be limited
 different factors so the best data transfer mechanism to use depends on the type of data being
 transferred and where the data is going. Some of the key issues to be aware of are:
 
-- **Disk speed** - File systems on HPC systems are often highly parallel, consisting of a very
+- **Disk speed**: File systems on HPC systems are often highly parallel, consisting of a very
   large number of high performance disk drives. This allows them to support a very high data
   bandwidth. Unless the remote system has a similar parallel file system you may find your
   transfer speed limited by disk performance at that end.
-- **Meta-data performance** - *Meta-data operations* such as opening and closing files or
+- **Meta-data performance**: *Meta-data operations* such as opening and closing files or
   listing the owner or size of a file are much less parallel than read/write operations. If
   your data consists of a very large number of small files you may find your transfer speed is
   limited by meta-data operations. Meta-data operations performed by other users of the system
   can also interact strongly with those you perform so reducing the number of such operations
   you use (by combining multiple files into a single file) may reduce variability in your transfer
   rates and increase transfer speeds.
-- **Network speed** - Data transfer performance can be limited by network speed. More importantly
+- **Network speed**: Data transfer performance can be limited by network speed. More importantly
   it is limited by the slowest section of the network between source and destination. If you are
   transferring to your laptop/workstation, this is likely to be its connection (either via LAN or 
   wifi).
-- **Firewall speed** - Most modern networks are protected by some form of firewall that filters
+- **Firewall speed**: Most modern networks are protected by some form of firewall that filters
   out malicious traffic. This filtering has some overhead and can result in a reduction in data
   transfer performance. The needs of a general purpose network that hosts email/web-servers and
   desktop machines are quite different from a research network that needs to support high volume
@@ -164,12 +173,50 @@ transfer earlier.
 
 > ## Consider the best way to transfer data
 >
-> If you are transferring large amounts of data you will need to think about what may affect your transfer
-> performance. It is always useful to run some tests that you can use to extrapolate how long it will
-> take to transfer your data.
+> If you are transferring large amounts of data you will need to think about what may affect your
+> transfer performance. It is always useful to run some tests that you can use to extrapolate how
+> long it will take to transfer your data.
 >
-> If you have many files, it is best to combine them into an archive file before you transfer them using a
-> tool such as `tar`.
-{:.callout}
+> Say you have a "data" folder containing 10,000 or so files, a healthy mix of small and large
+> ASCII and binary data. Which of the following would be the best way to transfer them to {{ site.remote.name }}?
+>
+> 1. ```
+>    {{ site.local.prompt }} scp -r data yourUsername@{{ site.remote.login }}:~/
+>    ```
+>    {: .bash}
+> 2. ```
+>    {{ site.local.prompt }} rsync -ra data yourUsername@{{ site.remote.login }}:~/
+>    ```
+>    {: .bash}
+> 3. ```
+>    {{ site.local.prompt }} rsync -raz data yourUsername@{{ site.remote.login }}:~/
+>    ```
+>    {: .bash}
+> 4. ```
+>    {{ site.local.prompt }} tar -cvf data.tar data
+>    {{ site.local.prompt }} rsync -raz data.tar yourUsername@{{ site.remote.login }}:~/
+>    ```
+>    {: .bash}
+> 5. ```
+>    {{ site.local.prompt }} tar -cvzf data.tar.gz data
+>    {{ site.local.prompt }} rsync -ra data.tar.gz yourUsername@{{ site.remote.login }}:~/
+>    ```
+>    {: .bash}
+>
+> > ## Solution
+> >
+> > 1. `scp` will recursively copy the directory. This works, but without compression.
+> > 2. `rsync -ra` works like `scp -r`, but preserves file information like creation times. This is
+> >    marginally better.
+> > 3. `rsync -raz` adds compression, which will save some bandwidth. If you have a strong CPU at
+> >    both ends of the line, and you're on a slow network, this is a good choice.
+> > 4. This command first uses `tar` to merge everything into a single file, then `rsync -z` to 
+> >    transfer it with compression. With this large *number* of files, latency per-file can hamper
+> >    your transfer, so this is a good idea.
+> > 5. This command uses `tar -z` to compress the archive, then `rsync` to transfer it. This may 
+> >    perform similarly to #4, but in most cases (for large datasets), it's the best combination
+> >    of high throughput and low latency (making the most of your time and network connection).
+> {: .solution}
+{: .challenge}
 
 {% include links.md %}

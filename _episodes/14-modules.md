@@ -67,7 +67,7 @@ in your environment. If you have no modules loaded, you will see a message telli
 so
 
 ```
-{{ site.host_prompt }} module list
+{{ site.remote.prompt }} module list
 ```
 {: .bash}
 
@@ -81,14 +81,11 @@ No Modulefiles Currently Loaded.
 To see available software modules, use `module avail`
 
 ```
-{{ site.host_prompt }} module avail
+{{ site.remote.prompt }} module avail
 ```
 {: .bash}
 
-```
-{% include /snippets/14/module_avail.snip %}
-```
-{: .output}
+{% include {{ site.snippets }}/14/module_avail.snip %}
 
 ## Loading and unloading software
 
@@ -101,26 +98,17 @@ We can test this by using the `which` command.
 so we can use it to tell us where a particular piece of software is stored.
 
 ```
-{{ site.host_prompt }} which python3
+{{ site.remote.prompt }} which python3
 ```
 {: .bash}
 
-```
-{% include /snippets/14/which_missing.snip %}
-```
-{: .output}
+{% include {{ site.snippets }}/14/which_missing.snip %}
 
 We can load the `python3` command with `module load`:
 
-```
-{% include /snippets/14/load_python.snip %}
-```
-{: .bash}
+{% include {{ site.snippets }}/14/load_python.snip %}
 
-```
-{% include /snippets/14/which_python.snip %}
-```
-{: .output}
+{% include {{ site.snippets }}/14/which_python.snip %}
 
 So, what just happened?
 
@@ -131,34 +119,25 @@ through for a command before giving up and telling us it can't find it. As with 
 variables we can print it out using `echo`.
 
 ```
-{{ site.host_prompt }} echo $PATH
+{{ site.remote.prompt }} echo $PATH
 ```
 {: .bash}
 
-```
-{% include /snippets/14/path.snip %}
-```
-{: .output}
+{% include {{ site.snippets }}/14/path.snip %}
 
 You'll notice a similarity to the output of the `which` command. In this case, there's only one
 difference: the different directory at the beginning. When we ran the `module load` command,
 it added a directory to the beginning of our `$PATH`. Let's examine what's there:
 
-```
-{% include /snippets/14/ls_dir.snip %}
-```
-{: .bash}
+{% include {{ site.snippets }}/14/ls_dir.snip %}
 
-```
-{% include /snippets/14/ls_dir_output.snip %}
-```
-{: .output}
+{% include {{ site.snippets }}/14/ls_dir_output.snip %}
 
 Taking this to it's conclusion, `module load` will add software to your `$PATH`. It "loads"
 software. A special note on this - depending on which version of the `module` program that is
 installed at your site, `module load` will also load required software dependencies.
 
-{% include /snippets/14/depend_demo.snip %}
+{% include {{ site.snippets }}/14/depend_demo.snip %}
 
 ## Software versioning
 
@@ -171,35 +150,24 @@ either of these example cases, it helps to be very specific about what software 
 Let's examine the output of `module avail` more closely.
 
 ```
-{{ site.host_prompt }} module avail
+{{ site.remote.prompt }} module avail
 ```
 {: .bash}
 
-```
-{% include /snippets/14/module_avail.snip %}
-```
-{: .output}
+{% include {{ site.snippets }}/14/module_avail.snip %}
 
-{% include /snippets/14/gcc_example.snip %}
+{% include {{ site.snippets }}/14/gcc_example.snip %}
 
 > ## Using software modules in scripts
 >
 > Create a job that is able to run `python3 --version`. Remember, no software is loaded by default!
 > Running a job is just like logging on to the system (you should not assume a module loaded on the
 > login node is loaded on a compute node).
-{: .challenge}
-
-> ## Loading a module by default
-> 
-> Adding a set of `module load` commands to all of your scripts and having to manually load modules
-> every time you log on can be tiresome. Fortunately, there is a way of specifying a set of 
-> "default  modules" that always get loaded, regardless of whether or not you're logged on or 
-> running a job. Every user has two hidden files in their home directory: `.bashrc` and 
-> `.bash_profile` (you can see these files with `ls -la ~`). These scripts are run every time you 
-> log on or run a job. Adding a `module load` command to one of these shell scripts means that 
-> that module will always be loaded. Modify either your `.bashrc` or `.bash_profile` scripts to 
-> load a commonly used module like Python. Does your `python3 --version` job from before still 
-> need `module load` to run?
+>
+> > ## Solution
+> >
+> >
+> {: .solution}
 {: .challenge}
 
 ## Installing software of our own
@@ -216,43 +184,46 @@ As an example we will install the bioinformatics toolkit `seqtk`. We'll first ne
 source code from GitHub using `git`.
 
 ```
-{{ site.host_prompt }} git clone https://github.com/lh3/seqtk.git
+{{ site.remote.prompt }} git clone https://github.com/lh3/seqtk.git
 ```
-{:.bash}
+{: .bash}
 
 ```
 Cloning into 'seqtk'...
-remote: Counting objects: 316, done.
-remote: Total 316 (delta 0), reused 0 (delta 0), pack-reused 316
-Receiving objects: 100% (316/316), 141.52 KiB | 0 bytes/s, done.
-Resolving deltas: 100% (181/181), done.
+remote: Enumerating objects: 14, done.
+remote: Counting objects: 100% (14/14), done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 353 (delta 7), reused 11 (delta 4), pack-reused 339
+Receiving objects: 100% (353/353), 169.79 KiB | 5.48 MiB/s, done.
+Resolving deltas: 100% (202/202), done.
 ```
-{:.output}
+{: .output}
 
-Now, using the instructions in the README.md file, all we need to do to complete the install is to
-`cd` into the seqtk folder and run the command `make`.
+Now, using the instructions in the `README.md` file, all we need to do to complete the install is
+to `cd` into the `seqtk` folder and run the command `make`.
 
 ```
-{{ site.host_prompt }} cd seqtk
-{{ site.host_prompt }} make
+{{ site.remote.prompt }} cd seqtk
+{{ site.remote.prompt }} less README.md
+{{ site.remote.prompt }} make
 ```
-{:.bash}
+{: .bash}
 
 ```
 gcc -g -Wall -O2 -Wno-unused-function seqtk.c -o seqtk -lz -lm
 seqtk.c: In function ‘stk_comp’:
-seqtk.c:399:16: warning: variable ‘lc’ set but not used [-Wunused-but-set-variable]
+seqtk.c:400:16: warning: variable ‘lc’ set but not used [-Wunused-but-set-variable]
     int la, lb, lc, na, nb, nc, cnt[11];
                 ^
 ```
-{:.output}
+{: .output}
 
 It's done! Now all we need to do to use the program is invoke it like any other program.
 
 ```
-{{ site.host_prompt }} ./seqtk
+{{ site.remote.prompt }} ./seqtk
 ```
-{:.bash}
+{: .bash}
 
 ```
 Usage:   seqtk <command> <arguments>
@@ -277,8 +248,8 @@ Command: seq       common transformation of FASTA/Q
          cutN      cut sequence at long N
          listhet   extract the position of each het
 ```
-{:.output}
+{: .output}
 
-We've successfully installed our first piece of software!
+We've successfully built our first piece of software on the cluster!
 
 {% include links.md %}

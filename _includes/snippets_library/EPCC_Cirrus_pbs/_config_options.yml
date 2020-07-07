@@ -1,0 +1,56 @@
+#------------------------------------------------------------
+# EPCC, The University of Edinburgh: Cirrus + PBS Pro
+#------------------------------------------------------------
+
+# Cluster host and scheduler options: the defaults come from
+# Graham at Compute Canada, running SLURM. Other options can
+# be found in the library of snippets,
+# `_includes/snippets_library`. To use one, replace options
+# below with those in `_config_options.yml` from the
+# library. E.g, to customise for Cirrus at EPCC, running
+# PBS, we could replace the options below with those from
+# 
+# _includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
+# 
+# If your cluster is not represented in the library, please
+# copy an existing folder, rename it, and customize for your
+# installation. Remember to keep the leading slash on the
+# `snippets` variable below!
+
+snippets: "/snippets_library/EPCC_Cirrus_pbs"
+
+local:
+  prompt: "[user@laptop ~]$"
+
+remote:
+  name: "Cirrus"
+  login: "login.cirrus.ac.uk"
+  host: "cirrus-login0"
+  node: "r1i0n32"
+  location: "EPCC, The University of Edinburgh"
+  homedir: "/lustre/home/tc001/lola"
+  prompt: "[yourUsername@cirrus-login0 ~]$"
+
+sched:
+  name: "PBS Pro"
+  submit:
+    name: "qsub"
+    options: "-A tc001 -q R387726"
+    iopt: ""
+  status: "qstat"
+  flag:
+    user: "-u yourUsername"
+    interactive: "-IVl select=1:ncpus=1"
+    name: "-N"
+    histdetail: "-f"
+    time: "-l"
+  del: "qdel"
+  interactive: "qsub"
+  info: "pbsnodes -a"
+  comment: "#PBS"
+  hist: "qstat -x"
+
+# Interactive queue names, one or more as a list
+workshop_interactive_queues:
+  - debug
+  - testing
