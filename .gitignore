@@ -1,15 +1,25 @@
+# files
 *.pyc
 *~
 .DS_Store
+.Rproj.user
+.Rhistory
+.RData
+.*history
 .ipynb_checkpoints
-.jekyll-cache
 .sass-cache
-__pycache__
-_site
+Gemfile.lock
 files/*.gtf
 files/*.fb
 files/*.fastq
 files/*.tsv
-Gemfile.lock
+
+# folders
+.bundle/
+.vendor/
+.docker-vendor/
+.jekyll-cache/
+__pycache__
+_site
 scratch/
 

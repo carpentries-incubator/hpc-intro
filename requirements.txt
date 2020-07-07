@@ -1,0 +1,4 @@
+PyYAML
+beautifulsoup4
+git_root
+codespell

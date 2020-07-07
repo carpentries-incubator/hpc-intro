@@ -1,28 +1,18 @@
-# dist: trusty  # Ubuntu 14.04
 language: python
-python: "3.6"
-branches:
-  only:
-  - gh-pages
-  - /.*/
-before_install:
-  - sudo apt-get update -y
-  - rvm default
-  - gem install bundler
-  - bundle install
+python:
+  - "3.6"
+
+# command to install dependencies
 install:
-  - pip install pyyaml
+  - pip install -r requirements.txt  
+    # per https://docs.travis-ci.com/user/installing-dependencies/  
+
+# run tests
+before_script:
+  - "python bin/_travis.py"  
 script:
-  - make lesson-check
-  - make lesson-check-all
-  - make --always-make site
-jobs:
-  include:
-    - stage: spelling
-      # The default before_install step is slow
-      before_install:
-      # Use codespell for spell checking
-      install:
-        pip install codespell
-      script: codespell --skip="assets,*.svg,bin" --quiet-level=2  -L "rouge,dropse,namd,hist"
-    - stage: check_and_build
+  - python bin/workshop_check.py .
+  - python -m unittest bin/_test/bs4test.py
+  - python bin/lesson_check.py .
+  - codespell --skip="assets,*.svg,bin" --quiet-level=2  -L "rouge,dropse,namd,hist"
+
