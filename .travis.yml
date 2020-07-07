@@ -4,6 +4,7 @@ before_install:
   - sudo apt-get install python3-setuptools python3-pip
   - rvm install 2.5.8
   - rvm 2.5.8 do ruby -S gem install bundle
+  - bundle config build.nokogiri --use-system-libraries
 install:
   - sudo -H pip3 install --upgrade pyyaml
 script:
