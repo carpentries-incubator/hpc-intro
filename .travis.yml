@@ -2,17 +2,14 @@ before_install:
   - sudo apt-get update -y
   - sudo apt-get install libgit2-dev libudunits2-dev automake
   - sudo apt-get install python3-setuptools python3-pip
-  - rvm install 2.5.3
-  - rvm 2.5.3 do ruby -S gem install bundle
-  - R -q -e 'install.packages(c("remotes", "curl"))'
-  - R -q -e 'remotes::install_github("hadley/requirements")'
+  - rvm install 2.5.8
+  - rvm 2.5.8 do ruby -S gem install bundle
 install:
   - sudo -H pip3 install --upgrade pyyaml
 script:
   - bundle install
   - make lesson-check-all
   - make --always-make site
-
 
 # Header
 language: r
@@ -24,12 +21,6 @@ branches:
   only:
   - gh-pages
   - /.*/
-
-#env
-env:
-  global:
-  - _R_CHECK_FORCE_SUGGESTS_=false
-  #- MAKEFLAGS="-j 2"
 
 # Add spellchecking for PRs
 jobs:
