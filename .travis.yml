@@ -12,7 +12,7 @@ script:
   - make --always-make site
 
 # Header
-language: r
+language: generic
 sudo: false
 cache: packages
 latex: false
@@ -29,9 +29,7 @@ jobs:
       language: python
       sudo: true
       python: "3.6"
-      # The default before_install step is slow
-      before_install:
-      # Use codespell for spell checking
+      before_install: # The default before_install step is slow
       install:
         sudo pip install codespell
       script: codespell --skip="assets,fig,*.svg,AUTHORS,.mailmap" --quiet-level=2 --ignore-words-list="dropse,hist,keyserver,namd,rouge"
