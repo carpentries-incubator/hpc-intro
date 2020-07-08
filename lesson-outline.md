@@ -5,7 +5,7 @@ title: Introduction to HPC Lesson Outline
 
 ## How to use this outline
 
-The following list of items is meant as a guide on what content should go where in this repo. This should work as a guide where you can contribute. If a bullet point is prefixed by a file name, this is the lesson where the listed content should go into. This document is meant as a concept map converted into a flow learning goals and questions.
+The following list of items is meant as a guide on what content should go where in this repo. This should work as a guide where you can contribute. If a bullet point is prefixed by a file name, this is the lesson where the listed content should go into. This document is meant as a concept map converted into a flow of learning goals and questions.
 
 ## Using a Compute Cluster for Research
 
@@ -47,7 +47,7 @@ The following list of items is meant as a guide on what content should go where 
 * [15-Filesystems and Storage]: This topic didn't get fleshed out in the call. But objectives likely include items from PStein's [Shared Filesystem lesson](https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/01-04-shared-filesystem.md):
     * Understand the difference between a local and shared/network filesystem
     * Learn about high performance / scratch Filesystems
-    * Raise the attention that misuse (intentional or not) of a common file system neatively affects all users very quickly.
+    * Raise the attention that misuse (intentional or not) of a common file system negatively affects all users very quickly.
     * Possible tools: echo $TEMP, ls -al /tmp, df, quota
 
 * [15-transferring-files.md: Transferring Files](_episodes/15-transferring-files.md)
