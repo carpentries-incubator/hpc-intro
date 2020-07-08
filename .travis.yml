@@ -14,7 +14,6 @@ script:
 
 # Header
 language: generic
-sudo: false
 cache: packages
 latex: false
 
@@ -28,7 +27,6 @@ jobs:
   include:
     - stage: spelling
       language: python
-      sudo: true
       python: "3.6"
       before_install: # The default before_install step is slow
       install:
