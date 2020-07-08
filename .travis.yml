@@ -1,21 +1,27 @@
-# dist: trusty  # Ubuntu 14.04
+# https://travis-ci.org/github/hpc-carpentry/hpc-intro
 language: python
+
 python: "3.6"
+
 branches:
   only:
   - gh-pages
   - /.*/
+
 before_install:
   - sudo apt-get update -y
   - rvm default
   - gem install bundler
   - bundle install
+
 install:
   - pip install pyyaml
+
 script:
   - make lesson-check
   - make lesson-check-all
   - make --always-make site
+
 jobs:
   include:
     - stage: spelling
