@@ -1,7 +1,9 @@
-# https://travis-ci.org/github/hpc-carpentry/hpc-intro
-language: python
+# Travis-CI config for https://github.com/hpc-carpentry/hpc-intro
+# Results at https://travis-ci.org/github/hpc-carpentry/hpc-intro
 
-python: "3.6"
+dist: xenial
+language: python
+python: 3.7
 
 branches:
   only:
@@ -11,7 +13,7 @@ branches:
 before_install:
   - sudo apt-get update -y
   - rvm default
-  - gem install bundler
+  - gem install bundler jekyll json kramdown
   - bundle install
 
 install:
@@ -22,11 +24,12 @@ script:
 
 jobs:
   include:
-    - stage: spelling
-      # The default before_install step is slow
-      before_install:
-      # Use codespell for spell checking
+    - stage: "Check for typos and spelling mistakes"
       install:
         pip install codespell
-      script: codespell --skip="assets,*.svg,bin" --quiet-level=2  -L "rouge,dropse,namd,hist"
-    - stage: check_and_build
+      script:
+        codespell --skip="assets,*.svg,bin" --quiet-level=2  -L "rouge,dropse,namd,hist"
+    - stage: "Check consistency of style"
+      script:
+        make lesson-check-all
+    - stage: "Build the site"

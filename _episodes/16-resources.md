@@ -253,5 +253,3 @@ manner possible, use the `-9` flag, i.e., `kill -9 73083`. It's recommended to k
 `-9` first: this sends the process a "terminate" signal (`SIGTERM`), giving it the chance to clean
 up child processes and exit cleanly. However, if a process just isn't responding, use `-9` to
 terminate it instantly (`SIGKILL`).
-
-{% include links.md %}

@@ -218,5 +218,3 @@ transfer earlier.
 > >    of high throughput and low latency (making the most of your time and network connection).
 > {: .solution}
 {: .challenge}
-
-{% include links.md %}

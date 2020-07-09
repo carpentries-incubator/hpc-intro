@@ -140,6 +140,8 @@ exclude:
   - Makefile
   - bin/
   - .Rproj.user/
+  - .vendor/
+  - .docker-vendor/
 
 # Turn on built-in syntax highlighting.
 highlighter: rouge

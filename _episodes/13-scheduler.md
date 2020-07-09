@@ -321,5 +321,3 @@ handle. A good example of this might be building a genome index for alignment wi
 tasks as a one-off with `{{ site.sched.interactive }}`.
 
 {% include {{ site.snippets }}/13/interactive_example.snip %}
-
-{% include links.md %}
