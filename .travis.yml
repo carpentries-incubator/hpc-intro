@@ -27,6 +27,7 @@ jobs:
         - sudo apt-get update -y
         - rvm default
         - gem install bundler jekyll json kramdown
+        - bundle config build.nokogiri --use-system-libraries
         - bundle install
       install:
         pip install pyyaml
