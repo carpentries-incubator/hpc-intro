@@ -45,7 +45,7 @@ software library available for it to work.
 
 Environment modules are the solution to these problems.
 A *module* is a self-contained description of a software package - 
-it contains the settings required to run a software packace 
+it contains the settings required to run a software package 
 and, usually, encodes required dependencies on other software packages.
 
 There are a number of different environment module implementations commonly
@@ -58,7 +58,7 @@ of subcommands you can use `module -h` or `module help`. As for all commands, yo
 access the full help on the *man* pages with `man module`.
 
 On login you may start out with a default set of modules loaded or you may start out
-with an empty environment, this depends on the setup of the system you are using.
+with an empty environment; this depends on the setup of the system you are using.
 
 ### Listing currently loaded modules
 
