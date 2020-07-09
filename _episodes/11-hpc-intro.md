@@ -81,7 +81,7 @@ remote resource.
 The server itself has no direct display or input methods attached to it. But most importantly, it 
 has much more storage, memory and compute capacity than your laptop will ever have. In any case,
 you need a local device (laptop, workstation, mobile phone or tablet) to interact with this remote 
-machine, people typically call 'a server'. 
+machine, which people typically call 'a server'. 
 
 ## When one server is not enough
 
@@ -93,11 +93,11 @@ file="/fig/serverrack-openclipartorg-psteinb-basedon-ericlemerdy.svg" alt="A rac
 caption="" %}
 
 The methodology of providing the input data, communicating options and flags as well as retrieving
-the results is quite opposite to using a plain laptop. Moreover, using a GUI style interface is 
+the results is quite different to using a plain laptop. Moreover, using a GUI style interface is 
 often discarded in favor of using the command line. This imposes a double paradigm shift for 
 prospect users:
 
-1. they work with the command line (not a GUI style user interface)
+1. they work with the command line (not a GUI-style user interface)
 2. they work with a distributed set of computers (called nodes)
 
 > ## I've never used a server, have I?

@@ -5,7 +5,7 @@ root: .
 
 This workshop is an introduction to using high-performance computing systems effectively. We
 obviously can't cover every case or give an exhaustive course on parallel programming in just two
-days' of teaching time. Instead, this workshop is intended to give students a good introduction and
+days' teaching time. Instead, this workshop is intended to give students a good introduction and
 overview of the tools available and how to use them effectively.
 
 By the end of this workshop, students will know how to:

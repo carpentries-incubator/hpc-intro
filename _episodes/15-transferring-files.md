@@ -170,7 +170,7 @@ before we transfer the data to improve our transfer efficiency. Sometimes we wil
 archiving with *compression* to reduce the amount of data we have to transfer and so speed up
 the transfer.
 
-The most common archiving command you will use on (Linux) HPC cluster is `tar`. `tar` can be used
+The most common archiving command you will use on a (Linux) HPC cluster is `tar`. `tar` can be used
 to combine files into a single archive file and, optionally, compress. For example, to collect
 all files contained inside `output_data` into an archive file called `output_data.tar` we would use:
 

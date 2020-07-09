@@ -198,7 +198,7 @@ But what about more important changes, such as the number of cores and memory fo
 thing that is absolutely critical when working on an HPC system is specifying the resources 
 required to run a job. This allows the scheduler to find the right time and place to schedule our 
 job. If you do not specify requirements (such as the amount of time you need), you will likely be
-stuck with your site's default resources, which is probably not what we want.
+stuck with your site's default resources, which is probably not what you want.
 
 The following are several key resource requests:
 

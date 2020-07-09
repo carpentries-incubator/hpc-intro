@@ -45,7 +45,7 @@ software library available for it to work.
 
 Environment modules are the solution to these problems.
 A *module* is a self-contained description of a software package - 
-it contains the settings required to run a software packace 
+it contains the settings required to run a software package 
 and, usually, encodes required dependencies on other software packages.
 
 There are a number of different environment module implementations commonly
@@ -58,7 +58,7 @@ of subcommands you can use `module -h` or `module help`. As for all commands, yo
 access the full help on the *man* pages with `man module`.
 
 On login you may start out with a default set of modules loaded or you may start out
-with an empty environment, this depends on the setup of the system you are using.
+with an empty environment; this depends on the setup of the system you are using.
 
 ### Listing currently loaded modules
 
@@ -133,7 +133,7 @@ it added a directory to the beginning of our `$PATH`. Let's examine what's there
 
 {% include {{ site.snippets }}/14/ls_dir_output.snip %}
 
-Taking this to it's conclusion, `module load` will add software to your `$PATH`. It "loads"
+Taking this to its conclusion, `module load` will add software to your `$PATH`. It "loads"
 software. A special note on this - depending on which version of the `module` program that is
 installed at your site, `module load` will also load required software dependencies.
 
@@ -247,6 +247,7 @@ Command: seq       common transformation of FASTA/Q
          randbase  choose a random base from hets
          cutN      cut sequence at long N
          listhet   extract the position of each het
+         hpc       homopolyer-compressed sequence
 ```
 {: .output}
 
