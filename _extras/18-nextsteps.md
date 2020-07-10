@@ -113,5 +113,3 @@ and this will differ from individual to individual!
 > You could also investigate the variation in performance as you run multiple copies on a node.
 > At what point does the hardware become overloaded?
 {: .challenge}
-
-

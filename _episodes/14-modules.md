@@ -252,5 +252,3 @@ Command: seq       common transformation of FASTA/Q
 {: .output}
 
 We've successfully built our first piece of software on the cluster!
-
-{% include links.md %}

@@ -251,5 +251,3 @@ same time:
 > an SSH connection. If you can connect via SSH over the normal port, you will be able to transfer
 > files.
 {: .callout}
-
-{% include links.md %}
