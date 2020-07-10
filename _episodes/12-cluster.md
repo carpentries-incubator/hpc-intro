@@ -35,7 +35,7 @@ and storage elements, designed and exclusively used for compute intensive work. 
 of the computing systems on the [Top-500](https://www.top500.org) list are HPC systems. HPC systems
 are uniquely identifed with names and exist in specific, fixed locations on Earth. The word
 "cluster" is often used for an HPC computing center where a collection HPC systems which share
-common networking and storage and are tightly intergrated to support common compute intensive tasks.
+common networking and storage and are tightly integrated to support common compute intensive tasks.
 
 
 ## Logging in
