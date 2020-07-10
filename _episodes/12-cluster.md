@@ -29,7 +29,9 @@ Brazil, Zimbabwe and Japan may manage those resources as its own internal cloud 
 company may also utilize commercial cloud resources provided by Amazon or Google. Cloud resources
 may refer to machines performing relatively simple compute tasks such as serving websites, providing
 shared storage, providing webservices (such as e-mail or social media platforms), as well as more
-traditional compute intensive tasks such as running a simulation. An *HPC system* on the other hand,
+traditional compute intensive tasks such as running a simulation.
+
+An *HPC system* on the other hand,
 is a term used to describe individual computing systems, typically with many, monolithic processing
 and storage elements, designed and exclusively used for compute intensive work. For example, all
 of the computing systems on the [Top-500](https://www.top500.org) list are HPC systems. HPC systems
