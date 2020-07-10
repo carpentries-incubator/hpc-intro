@@ -18,16 +18,25 @@ keypoints:
 
 ## What is an HPC system?
 
-The words "cloud", "cluster", and "high-performance computing" are used a lot in different contexts
-and with varying degrees of correctness. So what do they mean exactly? And more importantly, how do
-we use them for our work?
+The words "cloud", "cluster", and the phrase "high-performance computing" or "HPC" are used a
+lot in different contexts and with various related meanings. So what do they mean? And more
+importantly, how do we use them in our work?
 
-The *cloud* is a generic term commonly used to refer to remote computing resources of any kind --
-that is, any computers that you use but are not right in front of you. Cloud can refer to
-machines serving websites, providing shared storage, providing webservices (such as e-mail or social
-media platforms), as well as more traditional "compute" resources. An *HPC system* on the other hand,
-is a term used to describe a network of computers. The computers in a cluster typically share a common
-purpose, and are used to accomplish tasks that might otherwise be too big for any one computer.
+The *cloud* is a generic term commonly used to refer to computing resources that are
+a) *provisioned* to users on demand or as needed and b) represent real or *virtual* resources
+that may be located anywhere on Earth. For example, a large company with computing resources in
+Brazil, Zimbabwe and Japan may manage those resources as its own internal cloud and that same
+company may also utilize commercial cloud resources provided by Amazon or Google. Cloud resources
+may refer to machines performing relatively simple compute tasks such as serving websites, providing
+shared storage, providing webservices (such as e-mail or social media platforms), as well as more
+traditional compute intensive tasks such as running a simulation. An *HPC system* on the other hand,
+is a term used to describe individual computing systems, typically with many, monolithic processing
+and storage elements, designed and exclusively used for compute intensive work. For example, all
+of the computing systems on the [Top-500](https://www.top500.org) list are HPC systems. HPC systems
+are uniquely identifed with names and exist in specific, fixed locations on Earth. The word
+"cluster" is often used for an HPC computing center where a collection HPC systems which share
+common networking and storage and are tightly intergrated to support common compute intensive tasks.
+
 
 ## Logging in
 
