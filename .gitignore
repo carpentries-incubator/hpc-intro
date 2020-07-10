@@ -12,4 +12,4 @@ files/*.fastq
 files/*.tsv
 Gemfile.lock
 scratch/
-
+.vendor
