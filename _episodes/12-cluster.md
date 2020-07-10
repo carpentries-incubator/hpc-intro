@@ -25,9 +25,9 @@ importantly, how do we use them in our work?
 The *cloud* is a generic term commonly used to refer to computing resources that are
 a) *provisioned* to users on demand or as needed and b) represent real or *virtual* resources
 that may be located anywhere on Earth. For example, a large company with computing resources in
-Brazil, Zimbabwe and Japan may manage those resources as its own internal cloud and that same
+Brazil, Zimbabwe and Japan may manage those resources as its own *internal* cloud and that same
 company may also utilize commercial cloud resources provided by Amazon or Google. Cloud resources
-may refer to machines performing relatively simple compute tasks such as serving websites, providing
+may refer to machines performing relatively simple tasks such as serving websites, providing
 shared storage, providing webservices (such as e-mail or social media platforms), as well as more
 traditional compute intensive tasks such as running a simulation.
 
