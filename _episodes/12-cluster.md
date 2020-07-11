@@ -31,13 +31,17 @@ may refer to machines performing relatively simple tasks such as serving website
 shared storage, providing webservices (such as e-mail or social media platforms), as well as more
 traditional compute intensive tasks such as running a simulation.
 
-An *HPC system* on the other hand,
-is a term used to describe individual computing systems, typically with many, monolithic processing
-and storage elements, designed and exclusively used for compute intensive work. For example, all
-of the computing systems on the [Top-500](https://www.top500.org) list are HPC systems. HPC systems
-are uniquely identifed with names and exist in specific, fixed locations on Earth. The word
-"cluster" is often used for an HPC computing center where a collection HPC systems which share
-common networking and storage and are tightly integrated to support common compute intensive tasks.
+The term *HPC system*, on the other hand, describes a stand-alone resource for computationally
+intensive workloads. They are typically comprised of a multitude of independent processing and storage
+elements, designed to handle high volumes of data and/or large numbers of floating-point operations
+([FLOPS](https://en.wikipedia.org/wiki/FLOPS)) with the highest possible performance. For example, all
+of the machines on the [Top-500](https://www.top500.org) list are HPC systems. To support these constraints,
+an HPC resource must exist in a specific, fixed location: networking cables can only stretch so far, and
+electrical and optical signals can travel only so fast.
+
+The word "cluster" is often used for small to moderate scale HPC resources less impressive than the Top
+500. Clusters are often maintained in computing centers that support several such systems, all sharing
+common networking and storage to support common compute intensive tasks.
 
 
 ## Logging in
