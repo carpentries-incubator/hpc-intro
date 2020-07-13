@@ -29,7 +29,6 @@ remote:
   name: "ruth"
   login: "ruth.nist.gov"
   host: "ruth"
-  node: "r001"
   location: "National Institute of Standards and Technology"
   homedir: "/users"
   prompt: "501 ruth%"
@@ -37,6 +36,7 @@ remote:
 sched:
   name: "SLURM"
   user: "yourUsername"
+  node: "r001"
   submit:
     name: "sbatch"
     options: ""
