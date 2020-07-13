@@ -109,23 +109,7 @@ info about a specific job, we change command slightly.
 ```
 {: .bash}
 
-It will show a lot of info, in fact, every single piece of info collected on your job by the
-scheduler. It may be useful to redirect this information to `less` to make it easier to view (use
-the left and right arrow keys to scroll through fields).
-
-```
-{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965 | less
-```
-{: .bash}
-
-Some interesting fields include the following:
-
-* **Hostname**: Where did your job run?
-* **MaxRSS**: What was the maximum amount of memory used?
-* **Elapsed**: How long did the job take?
-* **State**: What is the job currently doing/what happened to it?
-* **MaxDiskRead**: Amount of data read from disk.
-* **MaxDiskWrite**: Amount of data written to disk.
+{% include {{ site.snippets }}/16/job_info.snip %}
 
 ## Measuring the statistics of currently running tasks
 
@@ -224,7 +208,7 @@ Note that this will only show processes from our current session. To show all pr
 {: .bash}
 
 ```
-USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+USER     PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 auser  67780  0.0  0.0 149140  1724 pts/81   R+   13:51   0:00 ps ux
 auser  73083  0.0  0.0 142392  2136 ?        S    12:50   0:00 sshd: auser@pts/81
 auser  73087  0.0  0.0 114636  3312 pts/81   Ss   12:50   0:00 -bash
