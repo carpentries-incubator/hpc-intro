@@ -39,7 +39,8 @@ of the machines on the [Top-500](https://www.top500.org) list are HPC systems. T
 an HPC resource must exist in a specific, fixed location: networking cables can only stretch so far, and
 electrical and optical signals can travel only so fast.
 
-The word "cluster" is often used for small to moderate scale HPC resources less impressive than the Top
+The word "cluster" is often used for small to moderate scale HPC resources less impressive than the [Top-
+500](https://www.top500.org). Clusters are often maintained in computing centers that support several such systems, all sharing
 500. Clusters are often maintained in computing centers that support several such systems, all sharing
 common networking and storage to support common compute intensive tasks.
 
