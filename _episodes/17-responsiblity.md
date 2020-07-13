@@ -178,7 +178,8 @@ transfer earlier.
 > long it will take to transfer your data.
 >
 > Say you have a "data" folder containing 10,000 or so files, a healthy mix of small and large
-> ASCII and binary data. Which of the following would be the best way to transfer them to {{ site.remote.name }}?
+> ASCII and binary data. Which of the following would be the best way to transfer them to
+> {{ site.remote.name }}?
 >
 > 1. ```
 >    {{ site.local.prompt }} scp -r data yourUsername@{{ site.remote.login }}:~/

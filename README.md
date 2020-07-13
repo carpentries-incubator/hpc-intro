@@ -13,8 +13,8 @@ writer, and then reviewed by the rest of the group once complete.
 
 ## Using this material
 
-1. Follow the instructions found in the [Software Carpentry example lesson source](https://github.com/carpentries/lesson-example/)
-   to create a repository for your lesson.
+1. Follow the instructions found in the [Software Carpentry example lesson source](
+   https://github.com/carpentries/lesson-example/) to create a repository for your lesson.
 2. Edit [_config.yml](_config.yml) to modify the configuration options for the HPC system you
    will be using in the section titled `Workshop specific values`. These options set such things
    as the address of the host to login to, definitions of the command prompt, scheduler names.
@@ -30,9 +30,9 @@ writer, and then reviewed by the rest of the group once complete.
    2. Code snippets are placed in subdirectories that are named according to the episode they
       appear in. For example, if the snippet is for episode 12, then it will be in a 
       subdirectory called `12`.
-   3. In the episodes source, snippets are included using [Liquid](https://shopify.github.io/liquid/)
-      scripting  `include` statements. For example, the first snippet in episode 12 is included using 
-      `{% include /snippets/12/info.snip %}`.
+   3. In the episodes source, snippets are included using [Liquid](
+      https://shopify.github.io/liquid/) scripting  `include` statements. For example, the first
+      snippet in episode 12 is included using `{% include /snippets/12/info.snip %}`.
 
 Please contribute any configurations you create for your local systems back into the 
 HPC Carpentry snippets library.
@@ -53,9 +53,10 @@ Software Carpentry lessons are generally episodic, with one clear concept for ea
 An episode is just a markdown file that lives under the `_episodes` folder. Here is a link to a
 [markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) with most
 markdown syntax. Additionally, the Software Carpentry lesson template uses several extra bits of
-formatting- see here for a [full guide](https://carpentries.github.io/lesson-example/04-formatting/index.html).
-The most significant change is the addition of a YAML header that adds metadata (key questions,
-lesson teaching times, etc.) and special syntax for code blocks, exercises, and the like.
+formatting- see here for a [full guide](
+https://carpentries.github.io/lesson-example/04-formatting/index.html). The most significant change
+is the addition of a YAML header that adds metadata (key questions, lesson teaching times, etc.)
+and special syntax for code blocks, exercises, and the like.
 
 Episode names should be prefixed with a number of their section plus the number of their episode
 within that section. This is important because the Software Carpentry lesson template will auto-post

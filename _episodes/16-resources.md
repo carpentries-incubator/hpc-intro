@@ -148,7 +148,7 @@ Some interesting fields include the following:
 > > {: .bash}
 > {: .solution}
 {: .challenge}
-  
+
 We can also check on stuff running on the login node right now the same way (so it's 
 not necessary to `ssh` to a node for this example).
 
