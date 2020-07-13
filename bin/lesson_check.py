@@ -357,8 +357,18 @@ class CheckBase:
         """Check the raw text of the lesson body."""
 
         if self.args.line_lengths:
-            over = [i for (i, l, n) in self.lines if (
-                n > MAX_LINE_LEN) and (not l.startswith('!'))]
+            over = [i for (i, l, n) in self.lines if (n > MAX_LINE_LEN)
+                    and (not l.startswith('!'))
+                    and (not l.startswith('http'))
+                    and (not l.startswith('> http'))
+                    and (not l.startswith('> > http'))
+                    and (not l.startswith('{%'))
+                    and (not l.startswith('> {%'))
+                    and (not l.startswith('> > {%'))
+                    and (not l.startswith('{{'))
+                    and (not l.startswith('> {{'))
+                    and (not l.startswith('> > {{'))
+            ]
             self.reporter.check(not over,
                                 self.filename,
                                 'Line(s) too long: {0}',
