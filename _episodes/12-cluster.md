@@ -41,7 +41,6 @@ electrical and optical signals can travel only so fast.
 
 The word "cluster" is often used for small to moderate scale HPC resources less impressive than the [Top-
 500](https://www.top500.org). Clusters are often maintained in computing centers that support several such systems, all sharing
-500. Clusters are often maintained in computing centers that support several such systems, all sharing
 common networking and storage to support common compute intensive tasks.
 
 
