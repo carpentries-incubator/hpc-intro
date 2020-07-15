@@ -143,7 +143,7 @@ Some interesting fields include the following:
 > > ## Solution
 > >
 > > ```
-> > {{ site.remote.prompt }} ssh {{ site.remote.node }}
+> > {{ site.remote.prompt }} ssh {{ site.sched.node }}
 > > ```
 > > {: .bash}
 > {: .solution}
