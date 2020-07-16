@@ -223,13 +223,8 @@ Note that this will only show processes from our current session. To show all pr
 ```
 {: .bash}
 
-```
-USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-auser  67780  0.0  0.0 149140  1724 pts/81   R+   13:51   0:00 ps ux
-auser  73083  0.0  0.0 142392  2136 ?        S    12:50   0:00 sshd: auser@pts/81
-auser  73087  0.0  0.0 114636  3312 pts/81   Ss   12:50   0:00 -bash
-```
-{: .output}
+{% include {{ site.snippets }}/16/ps_output.snip %}
+
 
 This is useful for identifying which processes are doing what.
 
