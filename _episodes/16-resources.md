@@ -13,7 +13,7 @@ keypoints:
 ---
 
 We now know virtually everything we need to know about getting stuff on a cluster. We can log on,
-submit different types of jobs, use preinstalled software, and install and use software of our own.
+submit different types of jobs, use pre-installed software, and install and use software of our own.
 What we need to do now is use the systems effectively.
 
 ## Estimating required resources using the scheduler
@@ -29,7 +29,7 @@ then ask the scheduler how many resources it used.
 
 A good rule of thumb is to ask the scheduler for more time and memory than you expect your job to
 need. This ensures that minor fluctuations in run time or memory use will not result in your job
-being canceled by the scheduler. Recommendations for how much extra to ask for vary but 10% is 
+being cancelled by the scheduler. Recommendations for how much extra to ask for vary but 10% is 
 probably the minimum, with 20-30% being more typical. Keep in mind that if you ask for too much,
 your job may not run even though enough resources are available, because the scheduler will be
 waiting to match what you asked for.
@@ -102,7 +102,7 @@ get statistics about our job.
 {% include {{ site.snippets }}/16/stat_output.snip %}
 
 This shows all the jobs we ran recently (note that there are multiple entries per job). To get
-detailed info about a job, we change command slightly.
+info about a specific job, we change command slightly.
 
 ```
 {{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965
