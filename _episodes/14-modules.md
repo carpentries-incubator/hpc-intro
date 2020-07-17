@@ -85,7 +85,7 @@ To see available software modules, use `module avail`
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/14/module_avail.snip %}
+{% include {{ site.snippets }}/14/available-modules.snip %}
 
 ## Loading and unloading software
 
@@ -102,13 +102,13 @@ so we can use it to tell us where a particular piece of software is stored.
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/14/which_missing.snip %}
+{% include {{ site.snippets }}/14/missing-python.snip %}
 
 We can load the `python3` command with `module load`:
 
-{% include {{ site.snippets }}/14/load_python.snip %}
+{% include {{ site.snippets }}/14/module-load-python.snip %}
 
-{% include {{ site.snippets }}/14/which_python.snip %}
+{% include {{ site.snippets }}/14/python-executable-dir.snip %}
 
 So, what just happened?
 
@@ -123,21 +123,21 @@ variables we can print it out using `echo`.
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/14/path.snip %}
+{% include {{ site.snippets }}/14/python-module-path.snip %}
 
 You'll notice a similarity to the output of the `which` command. In this case, there's only one
 difference: the different directory at the beginning. When we ran the `module load` command,
 it added a directory to the beginning of our `$PATH`. Let's examine what's there:
 
-{% include {{ site.snippets }}/14/ls_dir.snip %}
+{% include {{ site.snippets }}/14/python-ls-dir-command.snip %}
 
-{% include {{ site.snippets }}/14/ls_dir_output.snip %}
+{% include {{ site.snippets }}/14/python-ls-dir-output.snip %}
 
 Taking this to its conclusion, `module load` will add software to your `$PATH`. It "loads"
 software. A special note on this - depending on which version of the `module` program that is
 installed at your site, `module load` will also load required software dependencies.
 
-{% include {{ site.snippets }}/14/depend_demo.snip %}
+{% include {{ site.snippets }}/14/software-dependencies.snip %}
 
 ## Software versioning
 
@@ -154,9 +154,9 @@ Let's examine the output of `module avail` more closely.
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/14/module_avail.snip %}
+{% include {{ site.snippets }}/14/available-modules.snip %}
 
-{% include {{ site.snippets }}/14/gcc_example.snip %}
+{% include {{ site.snippets }}/14/wrong-gcc-version.snip %}
 
 > ## Using software modules in scripts
 >
