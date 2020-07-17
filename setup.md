@@ -111,7 +111,7 @@ Git for Windows comes with SSH preinstalled: you do not have to do anything.
 
 > ## GUI Support
 >
-> If you know that the software you will be running requires a graphical user interface, please
+> If you know that the software you will be running on the cluster requires a graphical user interface (a GUI window needs to open for the application to run properly), please
 > install [MobaXterm](http://mobaxterm.mobatek.net) Home Edition.
 {: .discussion}
 
@@ -128,4 +128,3 @@ macOS comes with SSH pre-installed: you do not have to do anything.
 ### Linux
 
 Linux comes with SSH and X window support preinstalled: you do not have to do anything.
-
