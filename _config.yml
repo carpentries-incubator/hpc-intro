@@ -19,46 +19,43 @@
 # copy an existing folder, rename it, and customize for your
 # installation. Remember to keep the leading slash on the
 # `snippets` variable below!
-
-snippets: "/snippets_library/ComputeCanada_Graham_slurm"
+# UCL, University College London: Myriad + SGE
+snippets: "/snippets_library/UCL_Myriad_sge"
 
 local:
   prompt: "[user@laptop ~]$"
 
 remote:
-  name: "Graham"
-  login: "graham.computecanada.ca"
-  host: "gra-login1"
-  node: "aci-377"
-  location: "University of Waterloo"
+  name: "Myriad"
+  login: "myriad.rc.ucl.ac.uk"
+  node: node-d00a-001
+  location: "University College London"
   homedir: "/home"
-  prompt: "[yourUsername@gra-login1 ~]$"
+  prompt: "[yourUsername@login12 ~]$ "
 
 sched:
-  name: "SLURM"
-  user: "yourUsername"
+  name: "SGE"
   submit:
-    name: "sbatch"
+    name: "qsub"
     options: ""
-  status: "squeue"
+    iopt: ""
+  status: "qstat"
   flag:
     user: "-u yourUsername"
-    interactive: ""
-    histdetail: "-l -j"
-    name: "-J"
-    time: "-t"
-    bash: ""
-  del: "scancel"
-  interactive: "srun"
-  info: "sinfo"
-  comment: "#SBATCH"
-  hist: "sacct -u yourUsername"
+    interactive: "-l mem=512M,h_rt=2:00:00"
+    name: "-N"
+    histdetail: "-j"
+    time: "-l h_rt="
+  del: "qdel"
+  interactive: "qrsh"
+  info: "qhost"
+  comment: "#$ "
+  hist: "jobhist"
 
 # Interactive queue names, one or more as a list
 workshop_interactive_queues:
   - debug
   - testing
-
 #------------------------------------------------------------
 # Values for this lesson
 #------------------------------------------------------------
