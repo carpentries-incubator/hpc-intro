@@ -3,7 +3,7 @@ which modules we currently have loaded in our environment. ([ANSYS](https://www.
 an engineering simulation product.)
 
 ```
-{{ site.host_prompt }} module load ansys
+{{ site.remote.prompt }} module load ansys
 ```
 {: .bash}
 
@@ -20,7 +20,7 @@ Myriad does not.
 Let's load the `giflib` module:
 
 ```
-{{ site.host_prompt }} module load giflib
+{{ site.remote.prompt }} module load giflib
 ```
 {: .bash}
 
@@ -34,9 +34,9 @@ Here, we see that the `giflib` module itself also has a dependency, `gcc-libs`. 
 first, then load `giflib`, and then finally load `ansys`.
 
 ```
-{{ site.host_prompt }} module load gcc-libs/4.9.2
-{{ site.host_prompt }} module load giflib/5.1.1
-{{ site.host_prompt }} module load ansys
+{{ site.remote.prompt }} module load gcc-libs/4.9.2
+{{ site.remote.prompt }} module load giflib/5.1.1
+{{ site.remote.prompt }} module load ansys
 ```
 {: .bash}
 
@@ -56,8 +56,8 @@ this will also unload the modules it depends on. Currently this is not the case 
 If we wanted to unload everything at once (all modules), we could run `module purge` (unloads everything).
 
 ```
-{{ site.host_prompt }} module purge
-{{ site.host_prompt }} module list
+{{ site.remote.prompt }} module purge
+{{ site.remote.prompt }} module list
 ```
 {: .bash}
 

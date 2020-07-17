@@ -1,20 +1,37 @@
 # UCL, University College London: Myriad + SGE
-host_name: "Myriad"
-host_login: "myriad.rc.ucl.ac.uk"
-host_location: "University College London"
-host_homedir: "/home"
-host_prompt: "[yourUsername@login12 ~]$ "
-local_prompt: "[user@laptop ~]$"
-sched_name: "SGE"
-sched_submit: "qsub"
-sched_submit_options: ""
-sched_status: "qstat"
-sched_flag_user: "-u yourUsername"
-sched_del: "qdel"
-sched_interactive: "qrsh"
-sched_flag_interactive: "-l mem=512M,h_rt=2:00:00"
-sched_info: "qhost"
-sched_comment: "#$ "
-sched_flag_name: "-N"
-sched_hist: "jobhist"
-sched_flag_histdetail: "-j"
+snippets: "/snippets_library/UCL_Myriad_sge"
+
+local:
+  prompt: "[user@laptop ~]$"
+
+remote:
+  name: "Myriad"
+  login: "myriad.rc.ucl.ac.uk"
+  node: node-d00a-001
+  location: "University College London"
+  homedir: "/home"
+  prompt: "[yourUsername@login12 ~]$ "
+
+sched:
+  name: "SGE"
+  submit:
+    name: "qsub"
+    options: ""
+    iopt: ""
+  status: "qstat"
+  flag:
+    user: "-u yourUsername"
+    interactive: "-l mem=512M,h_rt=2:00:00"
+    name: "-N"
+    histdetail: "-j"
+    time: "-l h_rt="
+  del: "qdel"
+  interactive: "qrsh"
+  info: "qhost"
+  comment: "#$ "
+  hist: "jobhist"
+
+# Interactive queue names, one or more as a list
+workshop_interactive_queues:
+  - debug
+  - testing

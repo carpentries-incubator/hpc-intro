@@ -2,7 +2,7 @@ To be more specific, you can specify the particular software you want.
 e.g.
 
 ```
-{{ site.host_prompt }} module avail stata
+{{ site.remote.prompt }} module avail stata
 ```
 {: .bash}
  
@@ -20,7 +20,7 @@ is the correct one for our purposes.
 Let's see which versions we have access to.
 
 ```
-{{ site.host_prompt }} module avail matlab
+{{ site.remote.prompt }} module avail matlab
 ```
 {: .bash}
 
@@ -39,7 +39,7 @@ This indicates that it is the default (i.e. which would be loaded if we type `mo
 In this case, we don't see this, so we will have to load matlab and see what we get.
 
 ```
-{{ site.host_prompt }} module load matlab
+{{ site.remote.prompt }} module load matlab
 ```
 {: .bash}
 
@@ -58,8 +58,8 @@ As we saw in the earlier example, there are one or more dependencies.
 Suppose we decide to load an earlier version of Matlab, e.g. r2017a/9.2.
 
 ```
-{{ site.host_prompt }} module purge
-{{ site.host_prompt }} module list
+{{ site.remote.prompt }} module purge
+{{ site.remote.prompt }} module list
 ```
 {: .bash}
 
@@ -69,7 +69,7 @@ No Modulefiles Currently Loaded.
 {: .output}
 
 ```
-{{ site.host_prompt }} module load matlab/full/r2017a/9.2
+{{ site.remote.prompt }} module load matlab/full/r2017a/9.2
 ```
 {: .bash}
 
@@ -80,8 +80,8 @@ matlab/full/r2017a/9.2(96):ERROR:102: Tcl command execution failed: prereq gcc-l
 {: .output}
 
 ```
-{{ site.host_prompt }} module load gcc-libs/4.9.2
-{{ site.host_prompt }} module load matlab/full/r2017a/9.2
+{{ site.remote.prompt }} module load gcc-libs/4.9.2
+{{ site.remote.prompt }} module load matlab/full/r2017a/9.2
 ```
 {: .bash}
 
@@ -92,8 +92,8 @@ matlab/full/r2017a/9.2(97):ERROR:102: Tcl command execution failed: prereq xorg-
 {: .output}
 
 ```
-{{ site.host_prompt }} module load xorg-utils/X11R7.7
-{{ site.host_prompt }} module load matlab/full/r2017a/9.2
+{{ site.remote.prompt }} module load xorg-utils/X11R7.7
+{{ site.remote.prompt }} module load matlab/full/r2017a/9.2
 ```
 {: .bash}
 
@@ -105,7 +105,7 @@ Matlab setup complete type matlab to start Matlab.
 {: .output}
 
 ```
-{{ site.host_prompt }} matlab -nodisplay -nosplash -nodesktop
+{{ site.remote.prompt }} matlab -nodisplay -nosplash -nodesktop
 ```
 {: .bash}
 
@@ -128,7 +128,7 @@ Currently, we have loaded `matlab/full/r2017a/9.2`. Let's try also loading
 `matlab/full/r2015b/8.6`:
 
 ```
-{{ site.host_prompt }} module load matlab/full/r2015b/8.6
+{{ site.remote.prompt }} module load matlab/full/r2015b/8.6
 ```
 {: .bash}
 
@@ -142,22 +142,22 @@ As we can see, we get an error message about conflicts.
 If we do indeed wish to load version r2015b/8.6, we can say
 
 ```
-{{ site.host_prompt }} module unload matlab/full/r2017a/9.2
-{{ site.host_prompt }} module load matlab/full/r2015b/8.6
+{{ site.remote.prompt }} module unload matlab/full/r2017a/9.2
+{{ site.remote.prompt }} module load matlab/full/r2015b/8.6
 ```
 {: .bash}
 
 or, in one step:
 
 ```
-{{ site.host_prompt }} module swap matlab matlab/full/r2015b/8.6
+{{ site.remote.prompt }} module swap matlab matlab/full/r2015b/8.6
 ```
 {: .bash}
 
 Check that this module has been loaded:
 
 ```
-{{ site.host_prompt }} module list
+{{ site.remote.prompt }} module list
 ```
 {: .bash}
 
