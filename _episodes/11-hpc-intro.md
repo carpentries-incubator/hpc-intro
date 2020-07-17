@@ -46,7 +46,7 @@ In all these cases, what is needed is access to more computers than can be used 
 ## A standard Laptop for standard tasks
 
 Today, people coding or analysing data typically work with laptops.
- 
+
 {% include figure.html url="" max-width="20%" file="/fig/200px-laptop-openclipartorg-aoguerrero.svg"
  alt="A standard laptop" caption="" %}
 

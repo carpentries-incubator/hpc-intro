@@ -111,11 +111,11 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 > ```
 > {: .bash}
 >
-> The `a` (archive) option preserves file timestamps and permissions among other things; the `v` (verbose)
-> option gives verbose output to help monitor the transfer; the `z` (compression) option compresses
-> the file during transit to reduce size and transfer time; and the `P` (partial/progress) option
-> preserves partially transferred files in case of an interruption and also displays the progress
-> of the transfer.
+> The `a` (archive) option preserves file timestamps and permissions among other things; the `v`
+> (verbose) option gives verbose output to help monitor the transfer; the `z` (compression) option
+> compresses the file during transit to reduce size and transfer time; and the `P`
+> (partial/progress) option preserves partially transferred files in case of an interruption and
+> also displays the progress of the transfer.
 >
 > To recursively copy a directory, we can use the same options:
 >
@@ -185,8 +185,8 @@ The options we used for `tar` are:
 - `-v` - Verbose (print what you are doing!)
 - `-f mydata.tar` - Create the archive in file *output_data.tar*
 
-The tar command allows users to concatenate flags. Instead of typing `tar -c -v -f`, we can use `tar
--cvf`. We can also use the `tar` command to extract the files from the archive once we have
+The tar command allows users to concatenate flags. Instead of typing `tar -c -v -f`, we can use
+`tar -cvf`. We can also use the `tar` command to extract the files from the archive once we have
 transferred it:
 
 ```
@@ -197,11 +197,11 @@ transferred it:
 This will put the data into a directory called `output_data`. Be careful, it will overwrite data
 there if this directory already exists!
 
-Sometimes you may also want to compress the archive to save space and speed up the transfer. However,
-you should be aware that for large amounts of data compressing and un-compressing can take longer
-than transferring the un-compressed data  so you may not want to transfer. To create a compressed
-archive using `tar` we add the `-z` option and add the `.gz` extension to the file to indicate
-it is `gzip`-compressed, e.g.:
+Sometimes you may also want to compress the archive to save space and speed up the transfer.
+However, you should be aware that for large amounts of data compressing and un-compressing can take
+longer than transferring the un-compressed data so you may not want to transfer. To create a
+compressed archive using `tar` we add the `-z` option and add the `.gz` extension to the file to
+indicate it is `gzip`-compressed, e.g.:
 
 ```
 {{ site.local.prompt }} tar -czvf output_data.tar.gz output_data/

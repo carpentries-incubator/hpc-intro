@@ -32,16 +32,17 @@ shared storage, providing webservices (such as e-mail or social media platforms)
 traditional compute intensive tasks such as running a simulation.
 
 The term *HPC system*, on the other hand, describes a stand-alone resource for computationally
-intensive workloads. They are typically comprised of a multitude of independent processing and storage
-elements, designed to handle high volumes of data and/or large numbers of floating-point operations
-([FLOPS](https://en.wikipedia.org/wiki/FLOPS)) with the highest possible performance. For example, all
-of the machines on the [Top-500](https://www.top500.org) list are HPC systems. To support these constraints,
-an HPC resource must exist in a specific, fixed location: networking cables can only stretch so far, and
-electrical and optical signals can travel only so fast.
+intensive workloads. They are typically comprised of a multitude of independent processing and
+storage elements, designed to handle high volumes of data and/or large numbers of floating-point
+operations ([FLOPS](https://en.wikipedia.org/wiki/FLOPS)) with the highest possible performance.
+For example, all of the machines on the [Top-500](https://www.top500.org) list are HPC systems. To
+support these constraints, an HPC resource must exist in a specific, fixed location: networking
+cables can only stretch so far, and electrical and optical signals can travel only so fast.
 
-The word "cluster" is often used for small to moderate scale HPC resources less impressive than the [Top-
-500](https://www.top500.org). Clusters are often maintained in computing centers that support several such systems, all sharing
-common networking and storage to support common compute intensive tasks.
+The word "cluster" is often used for small to moderate scale HPC resources less impressive than the
+[Top-500](https://www.top500.org). Clusters are often maintained in computing centers that support
+several such systems, all sharing common networking and storage to support common compute intensive
+tasks.
 
 
 ## Logging in
@@ -52,27 +53,26 @@ Go ahead and log in to the cluster: {{ site.remote.name }} at {{ site.remote.loc
 ```
 {: .bash}
 
-Remember to replace `yourUsername` with the username supplied by the instructors. You will be asked for
-your password. But watch out, the characters you type are not displayed on the screen.
+Remember to replace `yourUsername` with the username supplied by the instructors. You will be asked
+for your password. But watch out, the characters you type are not displayed on the screen.
 
-You are logging in using a program known as the secure shell or `ssh`. 
-This establishes a temporary encrypted connection between your laptop and `{{ site.remote.login }}`.
-The word before the `@` symbol, e.g. `yourUsername` here, is the user account name that Lola has access 
-permissions for on the cluster. 
+You are logging in using a program known as the secure shell or `ssh`. This establishes a temporary
+encrypted connection between your laptop and `{{ site.remote.login }}`. The word before the `@`
+symbol, e.g. `yourUsername` here, is the user account name that Lola has access permissions for on
+the cluster.
 
 > ## Where do I get this `ssh` from ?
 >
 > On Linux and/or macOS, the `ssh` command line utility is almost always pre-installed. Open a
 > terminal and type `ssh --help` to check if that is the case. 
 > 
-> At the time of writing, the openssh support on Microsoft is still very 
-> [recent](https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/). 
-> Alternatives to this are [putty](http://www.putty.org), 
-> [bitvise SSH](https://www.bitvise.com/ssh-client-download), 
-> [mRemoteNG](https://mremoteng.org/) or [MobaXterm](https://mobaxterm.mobatek.net/). 
-> Download it, install it and open the GUI. The GUI asks for your user name and the destination
-> address or IP of the computer you want to connect to. Once provided, you will be queried for 
-> your password just like in the example above.
+> At the time of writing, the openssh support on Microsoft is still very [recent](
+> https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/).
+> Alternatives to this are [putty](http://www.putty.org), [bitvise
+> SSH](https://www.bitvise.com/ssh-client-download), [mRemoteNG](https://mremoteng.org/) or
+> [MobaXterm](https://mobaxterm.mobatek.net/). Download it, install it and open the GUI. The GUI
+> asks for your user name and the destination address or IP of the computer you want to connect to.
+> Once provided, you will be queried for your password just like in the example above.
 {: .callout}
 
 ## Where are we?
@@ -134,12 +134,12 @@ available throughout the HPC system.
 
 ## What's in a node? 
 
-All of a HPC system's nodes have the same components as your own laptop or desktop: *CPUs* (sometimes
-also called *processors* or *cores*), *memory* (or *RAM*), and *disk* space. CPUs are a computer's
-tool for actually running programs and calculations. Information about a current task is stored in
-the computer's memory. Disk refers to all storage that can be accessed like a file system. This is
-generally storage that can hold data permanently, i.e. data is still there even if the computer has
-been restarted.
+All of a HPC system's nodes have the same components as your own laptop or desktop: *CPUs*
+(sometimes also called *processors* or *cores*), *memory* (or *RAM*), and *disk* space. CPUs are a
+computer's tool for actually running programs and calculations. Information about a current task is
+stored in the computer's memory. Disk refers to all storage that can be accessed like a file
+system. This is generally storage that can hold data permanently, i.e. data is still there even if
+the computer has been restarted.
 
 {% include figure.html url="" max-width="40%" file="/fig/node_anatomy.png" alt="Node anatomy" caption="" %}
 

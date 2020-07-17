@@ -9,7 +9,8 @@ permalink: /reference/
 
 ## Glossary
 
-The following list captures terms that need to be added to this glossary. This is a great way to contribute.
+The following list captures terms that need to be added to this glossary. This is a great way to
+contribute.
 
 {:auto_ids}
 [Accelerator](https://en.wikipedia.org/wiki/Hardware_acceleration)
@@ -38,7 +39,8 @@ The following list captures terms that need to be added to this glossary. This i
 [High availability computing](https://en.wikipedia.org/wiki/High_availability)
 :    *to be defined*
 
-[High performance computing](https://en.wikipedia.org/w/index.php?title=High-performance_computing&redirect=no)
+[High performance computing](
+https://en.wikipedia.org/w/index.php?title=High-performance_computing&redirect=no)
 :    *to be defined*
 
 [Interconnect](https://en.wikipedia.org/wiki/Supercomputer_architecture)
@@ -63,7 +65,8 @@ The following list captures terms that need to be added to this glossary. This i
 :    *to be defined*
 
 [Supercomputer](https://en.wikipedia.org/wiki/Supercomputer)
-:    ... "[a major scientific instrument](https://www.hpcnotes.com/2015/10/essential-analogies-for-hpc-advocate.html)" ...
+:    ... "[a major scientific instrument](
+https://www.hpcnotes.com/2015/10/essential-analogies-for-hpc-advocate.html)" ...
 
 [Workstation](https://en.wikipedia.org/wiki/Workstation)
 :    *to be defined*
