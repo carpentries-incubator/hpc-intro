@@ -46,6 +46,7 @@ sched:
     name: "-N"
     histdetail: "-j"
     time: "-l h_rt="
+    bash: "-l"
   del: "qdel"
   interactive: "qrsh"
   info: "qhost"
