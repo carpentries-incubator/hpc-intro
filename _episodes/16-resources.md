@@ -61,7 +61,7 @@ waiting to match what you asked for.
 > > {: .bash}
 > >
 > > ```
-> > #!/bin/bash
+> > #!/bin/bash {{ site.sched.flag.bash }}
 > > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:10:00
 > >
 > > fastqc $1

@@ -63,7 +63,7 @@ whichever you prefer. Unsure? `nano` is a pretty good, basic choice.
 {: .bash}
 
 ```
-#!/bin/bash
+#!/bin/bash {{ site.sched.flag.bash }}
 
 echo -n "This script is running on "
 hostname
@@ -162,7 +162,7 @@ script:
 {: .bash}
 
 ```
-#!/bin/bash
+#!/bin/bash {{ site.sched.flag.bash }}
 {{ site.sched.comment }} {{ site.sched.flag.name }} new_name
 
 echo -n "This script is running on "
@@ -219,7 +219,7 @@ about how to make sure that you're using resources effectively in a later episod
 > > {: .bash}
 > >
 > > ```
-> > #!/bin/bash
+> > #!/bin/bash {{ site.sched.flag.bash }}
 > > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:01:10
 > >
 > > echo -n "This script is running on "
@@ -250,7 +250,7 @@ minutes.
 {: .bash}
 
 ```
-#!/bin/bash
+#!/bin/bash {{ site.sched.flag.bash }}
 {{ site.sched.comment }} {{ site.sched.flag.time }} 00:00:30
 
 echo -n "This script is running on "
