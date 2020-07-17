@@ -44,6 +44,7 @@ sched:
     name: "-N"
     histdetail: "-f"
     time: "-l"
+    bash: ""
   del: "qdel"
   interactive: "qsub"
   info: "pbsnodes -a"
