@@ -5,5 +5,4 @@
 # Each line is a file pattern followed by one or more owners.
 # The sequence matters: later patterns take precedence.
 
-*       steinbach@scionics.de ckoch5@wisc.edu
-
+*  @psteinb @ChristinaLK @tkphd @megan-guidry @reid-a @mikerenfro @annajiat @colinsauze
