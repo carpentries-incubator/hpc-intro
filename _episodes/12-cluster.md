@@ -93,6 +93,58 @@ notice that the current hostname is also part of our prompt!)
 ```
 {: .output}
 
+> ## What's in your home directory?
+>
+> The system administrators may have configured your home directory with some helpful files,
+> folder, and links (shortcuts) to space reserved for you on other filesystems. Take a look around
+> and see what you can find.
+>
+> Home directory contents vary from user to user. Please discuss any differences you spot with your
+> neighbors.
+>
+> *Hint:* The shell commands `pwd`, `ls`, and `df` may come in handy.
+>
+> > ## Solution
+> >
+> > Use `pwd` to **p**rint the **w**orking **d**irectory path:
+> >
+> > ```
+> > {{ site.remote.prompt }} pwd
+> > ```
+> > {: .bash}
+> >
+> >    The deepest layer should differ: yourUsername is uniquely yours. Are there differences in the
+> >    path at higher levels?
+> >
+> > You can run `ls` to **l**i**s**t the directory contents, though it's possible nothing will show
+> > up (if no files have been provided). To be sure, use the `-a` flag to show hidden files, too.
+> >
+> > ```
+> > {{ site.remote.prompt }} ls -a
+> > ```
+> > {: .bash}
+> >
+> > At a minimum, this will show the current directory as `.`, and the parent directory as `..`.
+> >
+> >    If both of you have empty directories, they will look identical. If you or your neighbor has
+> >    used the system before, there may be differences. What are you working on?
+> >
+> > You can also explore the available filesystems using `df` to show **d**isk **f**ree space.
+> > The `-h` flag renders the sizes in a human-friendly format, i.e., GB instead of B. The **t**ype
+> > flag `-T` shows what kind of filesystem each resource is.
+> >
+> > ```
+> > {{ site.remote.prompt }} df -Th
+> > ```
+> > {: .bash}
+> >
+> >    The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're on the same login
+> >    node (or compute node, later on). Networked filesystems (beegfs, cifs, gpfs, nfs, pvfs) will
+> >    be similar -- but may include yourUserName, depending on how it is [mounted](
+> >    https://en.wikipedia.org/wiki/Mount_(computing)).
+> {: .solution}
+{: .discussion}
+
 ## Nodes
 
 Individual computers that compose a cluster are typically called *nodes* (although you will also
