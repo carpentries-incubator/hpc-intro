@@ -113,8 +113,9 @@ notice that the current hostname is also part of our prompt!)
 > > ```
 > > {: .bash}
 > >
-> >    The deepest layer should differ: {{ site.sched.user }} is uniquely yours. Are there differences in the
-> >    path at higher levels?
+> > > The deepest layer should differ: {{ site.sched.user }} is uniquely yours. Are there
+> > > differences in the path at higher levels?
+> > {: .discussion}
 > >
 > > You can run `ls` to **l**i**s**t the directory contents, though it's possible nothing will show
 > > up (if no files have been provided). To be sure, use the `-a` flag to show hidden files, too.
@@ -126,8 +127,9 @@ notice that the current hostname is also part of our prompt!)
 > >
 > > At a minimum, this will show the current directory as `.`, and the parent directory as `..`.
 > >
-> >    If both of you have empty directories, they will look identical. If you or your neighbor has
-> >    used the system before, there may be differences. What are you working on?
+> > > If both of you have empty directories, they will look identical. If you or your neighbor has
+> > > used the system before, there may be differences. What are you working on?
+> > {: .discussion}
 > >
 > > You can also explore the available filesystems using `df` to show **d**isk **f**ree space.
 > > The `-h` flag renders the sizes in a human-friendly format, i.e., GB instead of B. The **t**ype
@@ -138,10 +140,11 @@ notice that the current hostname is also part of our prompt!)
 > > ```
 > > {: .bash}
 > >
-> >    The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're on the same login
-> >    node (or compute node, later on). Networked filesystems (beegfs, cifs, gpfs, nfs, pvfs) will
-> >    be similar -- but may include yourUserName, depending on how it is [mounted](
-> >    https://en.wikipedia.org/wiki/Mount_(computing)).
+> > > The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're on the same login
+> > > node (or compute node, later on). Networked filesystems (beegfs, cifs, gpfs, nfs, pvfs) will
+> > > be similar -- but may include yourUserName, depending on how it is [mounted](
+> > > https://en.wikipedia.org/wiki/Mount_(computing)).
+> > {: .discussion}
 > {: .solution}
 {: .discussion}
 
