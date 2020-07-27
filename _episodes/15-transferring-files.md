@@ -93,9 +93,18 @@ if we don't care where the file goes.
 To recursively copy a directory, we just add the `-r` (recursive) flag:
 
 ```
-{{ site.local.prompt }} scp -r some-local-folder/ yourUsername@{{ site.remote.login }}:target-directory/
+{{ site.local.prompt }} scp -r some-local-folder yourUsername@{{ site.remote.login }}:target-directory/
 ```
 {: .bash}
+
+This will create the directory 'some-local-folder' on the remote system, 
+and recursively copy all the content from the local to the remote system.
+Existing files on the remote system will not be modified, unless
+there are files from the local system with the same name, in which
+case the remote files will be overwritten.
+
+A trailing slash on the target directory is optional, and has no
+effect for `scp -r`, but is important in other commands, like `rsync`.
 
 > ## A note on `rsync`
 >
@@ -107,7 +116,7 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 > The syntax is similar to `scp`. To transfer *to* another computer with commonly used options:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP path/to/local/file.txt yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}
+> {{ site.local.prompt }} rsync -avzP path/to/local/file.txt yourUsername@{{ site.remote.login }}:directory/path/on/{{ site.remote.name }}/
 > ```
 > {: .bash}
 >
@@ -120,9 +129,16 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 > To recursively copy a directory, we can use the same options:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP path/to/local/dir yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}
+> {{ site.local.prompt }} rsync -avzP path/to/local/dir yourUsername@{{ site.remote.login }}:directory/path/on/{{ site.remote.name }}/
 > ```
 > {: .bash}
+> 
+> As written, this will place the local directory and its contents under the 
+> specified directory on the remote system. If the trailing slash is
+> omitted on the destination, a new directory corresponding to the
+> transferred directory ('dir' in the example) will not be created, 
+> and the contents of the source directory will be copied directly into 
+> the destination directory. 
 > 
 > The `a` (archive) option implies recursion.
 > 
