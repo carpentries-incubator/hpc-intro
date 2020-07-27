@@ -96,7 +96,7 @@ notice that the current hostname is also part of our prompt!)
 > ## What's in your home directory?
 >
 > The system administrators may have configured your home directory with some helpful files,
-> folder, and links (shortcuts) to space reserved for you on other filesystems. Take a look around
+> folders, and links (shortcuts) to space reserved for you on other filesystems. Take a look around
 > and see what you can find.
 >
 > Home directory contents vary from user to user. Please discuss any differences you spot with your
@@ -113,7 +113,7 @@ notice that the current hostname is also part of our prompt!)
 > > ```
 > > {: .bash}
 > >
-> >    The deepest layer should differ: yourUsername is uniquely yours. Are there differences in the
+> >    The deepest layer should differ: {{ site.sched.user }} is uniquely yours. Are there differences in the
 > >    path at higher levels?
 > >
 > > You can run `ls` to **l**i**s**t the directory contents, though it's possible nothing will show
