@@ -1,0 +1,56 @@
+#------------------------------------------------------------
+# SIGMA2 Norway: Sabry Razick SLURM
+#------------------------------------------------------------
+
+# Cluster host and scheduler options: the defaults come from
+# Graham at Compute Canada, running SLURM. Other options can
+# be found in the library of snippets,
+# `_includes/snippets_library`. To use one, replace options
+# below with those in `_config_options.yml` from the
+# library. E.g, to customise for Cirrus at EPCC, running
+# PBS, we could replace the options below with those from
+# 
+# _includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
+# 
+# If your cluster is not represented in the library, please
+# copy an existing folder, rename it, and customize for your
+# installation. Remember to keep the leading slash on the
+# `snippets` variable below!
+
+snippets: "/snippets_library/SIGMA2_Norway_slurm"
+
+local:
+  prompt: "[user@laptop ~]$"
+
+remote:
+  name: "saga"
+  login: "saga.sigma2.no"
+  host: "login-1.SAGA"
+  node: "aci-377"
+  location: "NTNU,Trondheim, Norway"
+  homedir: "/home"
+  prompt: "[yourUsername@login-1.SAGA ~]$"
+
+sched:
+  name: "SLURM"
+  user: "$USER"
+  submit:
+    name: "sbatch"
+    options: ""
+  status: "squeue"
+  flag:
+    user: "-u yourUsername"
+    interactive: ""
+    histdetail: "-l -j"
+    name: "-J"
+    time: "-t"
+  del: "scancel"
+  interactive: "srun"
+  info: "sinfo"
+  comment: "#SBATCH"
+  hist: "sacct -u $USER"
+
+# Interactive queue names, one or more as a list
+workshop_interactive_queues:
+  - normal
+  - devel
