@@ -48,8 +48,9 @@ tasks.
 
 ## Logging in
 The first step in using a cluster is to establish a connection from our laptop to the cluster,
-via the internet. We use a program called the Secure SHell or ssh for this. (make sure you have 
-this program in your laptop and refer the *setup* section for more details).
+via the Internet and/or your organisation's network. We use a program called the 
+Secure SHell (or ssh) client for this. (make sure you have this program in your laptop and 
+refer the *setup* section for more details).
 
 {% include figure.html url="" max-width="50%" file="/fig/connect-to-remote.svg"
  alt="Connect to cluster" caption="" %}
