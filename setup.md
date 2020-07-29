@@ -52,8 +52,8 @@ Once installed, you can open a terminal by running the program Git Bash from the
 >
 > * Install the [Windows Subsystem for
 >   Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
-> * Use the Windows [Powershell][
-https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7
+> * Use the Windows [Powershell](
+https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7)
 > * Read up on [Using a Unix/Linux emulator (Cygwin) or Secure Shell (SSH) client
 >   (Putty)](http://faculty.smu.edu/reynolds/unixtut/windows.html)
 >
