@@ -12,7 +12,8 @@ objectives:
 keypoints:
 - "An HPC system is a set of networked machines."
 - "HPC systems typically provide login nodes and a set of worker nodes."
-- "The resources found on independent (worker) nodes can vary in volume and type (amount of RAM, processor architecture, availability of network mounted file systems, etc.)."
+- "The resources found on independent (worker) nodes can vary in volume and type 
+  (amount of RAM, processor architecture, availability of network mounted file systems, etc.)."
 - "Files saved on one node are available on all nodes."
 ---
 
