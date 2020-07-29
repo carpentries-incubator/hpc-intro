@@ -16,7 +16,7 @@
    viewBox="0 0 128.6682 69.708748"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.4 (unknown)"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="connect-to-remote.svg">
   <defs
      id="defs2">
@@ -5186,13 +5186,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.5950879"
-     inkscape:cx="58.962728"
-     inkscape:cy="87.730313"
+     inkscape:cx="60.216577"
+     inkscape:cy="84.59569"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="2560"
-     inkscape:window-height="1376"
+     inkscape:window-height="1320"
      inkscape:window-x="0"
      inkscape:window-y="27"
      inkscape:window-maximized="1" />
@@ -5386,40 +5386,50 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:9.40296745px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23507418px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="86.353676"
-       y="112.9814"
+       style="font-style:normal;font-weight:normal;font-size:8.4712534px;line-height:79.40008044%;font-family:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.21178134px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="94.675003"
+       y="112.67928"
        id="text4517"
-       transform="scale(0.91037519,1.0984482)"><tspan
+       transform="scale(0.96973654,1.0312079)"><tspan
          sodipodi:role="line"
          id="tspan4515"
-         x="86.353676"
-         y="112.9814"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.26864481px;font-family:Sans;-inkscape-font-specification:'Sans Bold';stroke-width:0.23507418px">Internet</tspan></text>
+         x="94.675003"
+         y="112.67928"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.44950819px;line-height:70.39999962%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:center;text-anchor:middle;stroke-width:0.21178134px">Internet</tspan><tspan
+         sodipodi:role="line"
+         x="94.675003"
+         y="119.40546"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.44950819px;line-height:70.39999962%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:center;text-anchor:middle;stroke-width:0.21178134px"
+         id="tspan8542">or</tspan><tspan
+         sodipodi:role="line"
+         x="94.675003"
+         y="126.13165"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.44950819px;line-height:70.39999962%;font-family:Sans;-inkscape-font-specification:'Sans Bold';text-align:center;text-anchor:middle;stroke-width:0.21178134px"
+         id="tspan8540">network</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:9.4029665px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23507418px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="139.65189"
-       y="127.79908"
+       style="font-style:normal;font-weight:normal;font-size:9.53428173px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23835702px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="137.73207"
+       y="129.0977"
        id="text4517-6"
-       transform="scale(0.9103752,1.0984482)"><tspan
+       transform="scale(0.92180528,1.0848278)"><tspan
          sodipodi:role="line"
          id="tspan4515-7"
-         x="139.65189"
-         y="127.79908"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.26864481px;font-family:Sans;-inkscape-font-specification:'Sans Bold';stroke-width:0.23507418px">Cluster</tspan></text>
+         x="137.73207"
+         y="129.0977"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.35618782px;font-family:Sans;-inkscape-font-specification:'Sans Bold';stroke-width:0.23835702px">Cluster</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:9.4029665px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23507418px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="44.454731"
-       y="130.70767"
+       style="font-style:normal;font-weight:normal;font-size:8.95611572px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.22390291px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="36.834377"
+       y="137.37231"
        id="text4517-6-5"
-       transform="scale(0.91037521,1.0984482)"><tspan
+       transform="scale(0.93244295,1.0724517)"><tspan
          sodipodi:role="line"
          id="tspan4515-7-3"
-         x="44.454731"
-         y="130.70767"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.26864481px;font-family:Sans;-inkscape-font-specification:'Sans Bold';stroke-width:0.23507418px">Laptop</tspan></text>
+         x="36.834377"
+         y="137.37231"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.97074461px;font-family:Sans;-inkscape-font-specification:'Sans Bold';stroke-width:0.22390291px">Laptop</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.30758303;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow2Lstart);marker-mid:url(#Arrow1Lend-2);marker-end:url(#Arrow2Lend)"
        d="m 81.043982,134.73443 c -18.3938,13.38437 -18.3938,13.38437 -18.3938,13.38437"
