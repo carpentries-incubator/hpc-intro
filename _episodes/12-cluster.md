@@ -55,7 +55,6 @@ this program in your laptop and refer the *setup* section for more details).
  alt="Connect to cluster" caption="" %}
 
 
-
 Go ahead and log in to the cluster: {{ site.remote.name }} at {{ site.remote.location }}.
 ```
 {{ site.local.prompt }} ssh yourUsername@{{ site.remote.login }}
