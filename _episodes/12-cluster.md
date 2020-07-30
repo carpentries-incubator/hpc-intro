@@ -12,7 +12,8 @@ objectives:
 keypoints:
 - "An HPC system is a set of networked machines."
 - "HPC systems typically provide login nodes and a set of worker nodes."
-- "The resources found on independent (worker) nodes can vary in volume and type (amount of RAM, processor architecture, availability of network mounted file systems, etc.)."
+- "The resources found on independent (worker) nodes can vary in volume and type 
+  (amount of RAM, processor architecture, availability of network mounted file systems, etc.)."
 - "Files saved on one node are available on all nodes."
 ---
 
@@ -46,6 +47,14 @@ tasks.
 
 
 ## Logging in
+The first step in using a cluster is to establish a connection from our laptop to the cluster,
+via the Internet and/or your organisation's network. We use a program called the 
+Secure SHell (or ssh) client for this. Make sure you have a SSH client installed on your
+laptop. Refer to the [setup]({{ page.root }}/setup) section for more details.
+
+{% include figure.html url="" max-width="50%" file="/fig/connect-to-remote.svg"
+ alt="Connect to cluster" caption="" %}
+
 
 Go ahead and log in to the cluster: {{ site.remote.name }} at {{ site.remote.location }}.
 ```
