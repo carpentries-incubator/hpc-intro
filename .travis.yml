@@ -21,6 +21,8 @@ before_install:
 install:
  pip install codespell pyyaml
 
+script:
+
 env:
   - SITE_CONFIG=""
   - SITE_CONFIG=_includes/snippets_library/ComputeCanada_Graham_slurm/_config_options.yml
