@@ -23,13 +23,6 @@ install:
 
 script:
 
-env:
-  - SITE_CONFIG=""
-  - SITE_CONFIG=_includes/snippets_library/ComputeCanada_Graham_slurm/_config_options.yml
-  - SITE_CONFIG=_includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
-  - SITE_CONFIG=_includes/snippets_library/SIGMA2_Norway_slurm/_config_options.yml
-  - SITE_CONFIG=_includes/snippets_library/UCL_Myriad_sge/_config_options.yml
-
 jobs:
   include:
     - stage: "Check for typos and spelling mistakes"
