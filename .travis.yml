@@ -29,22 +29,12 @@ jobs:
       script:
         codespell --skip="assets,*.svg,bin" --quiet-level=2  -L "rouge,dropse,namd,hist"
     - stage: "Build the site"
+      env:
+        -
+        - SITE_CONFIG=_includes/snippets_library/ComputeCanada_Graham_slurm/_config_options.yml
+        - SITE_CONFIG=_includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
+        - SITE_CONFIG=_includes/snippets_library/SIGMA2_Norway_slurm/_config_options.yml
+        - SITE_CONFIG=_includes/snippets_library/UCL_Myriad_sge/_config_options.yml
       script:
         - make lesson-check-all
         - make --always-make site
-    - stage: "Build the site for Graham"
-      install:
-      script:
-        - make --always-make site SITE_CONFIG=_includes/snippets_library/ComputeCanada_Graham_slurm/_config_options.yml
-    - stage: "Build the site for Cirrus"
-      install:
-      script:
-        - make --always-make site SITE_CONFIG=_includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
-    - stage: "Build the site for SIGMA.2"
-      install:
-      script:
-        - make --always-make site SITE_CONFIG=_includes/snippets_library/SIGMA2_Norway_slurm/_config_options.yml
-    - stage: "Build the site for Myriad"
-      install:
-      script:
-        - make --always-make site SITE_CONFIG=_includes/snippets_library/UCL_Myriad_sge/_config_options.yml
