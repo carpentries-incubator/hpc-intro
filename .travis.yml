@@ -2,8 +2,9 @@
 # Results at https://travis-ci.org/github/hpc-carpentry/hpc-intro
 
 dist: xenial
-language: python
+language: ruby
 python: 3.7
+cache: bundler
 
 branches:
   only:
