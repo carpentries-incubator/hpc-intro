@@ -21,20 +21,22 @@ before_install:
 install:
  pip install codespell pyyaml
 
+env:
+  - SITE_CONFIG=""
+  - SITE_CONFIG=_includes/snippets_library/ComputeCanada_Graham_slurm/_config_options.yml
+  - SITE_CONFIG=_includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
+  - SITE_CONFIG=_includes/snippets_library/SIGMA2_Norway_slurm/_config_options.yml
+  - SITE_CONFIG=_includes/snippets_library/UCL_Myriad_sge/_config_options.yml
+
 jobs:
   include:
     - stage: "Check for typos and spelling mistakes"
+      env: SITE_CONFIG=""
       before_install:
         # Skip the default 'before_install', which we don't need to check spelling
       script:
         codespell --skip="assets,*.svg,bin" --quiet-level=2  -L "rouge,dropse,namd,hist"
     - stage: "Build the site"
-      env:
-        -
-        - SITE_CONFIG=_includes/snippets_library/ComputeCanada_Graham_slurm/_config_options.yml
-        - SITE_CONFIG=_includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
-        - SITE_CONFIG=_includes/snippets_library/SIGMA2_Norway_slurm/_config_options.yml
-        - SITE_CONFIG=_includes/snippets_library/UCL_Myriad_sge/_config_options.yml
       script:
         - make lesson-check-all
         - make --always-make site
