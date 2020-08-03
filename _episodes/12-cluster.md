@@ -183,7 +183,7 @@ For example, we can view all of the worker nodes with the `{{ site.sched.info }}
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/12/info.snip %}
+{% include {{ site.snippets }}/12/queue-info.snip %}
 
 There are also specialized machines used for managing disk storage, user authentication, and other
 infrastructure-related tasks. Although we do not typically logon to or interact with these machines
@@ -261,7 +261,7 @@ the computer has been restarted.
 > {: .solution}
 {: .challenge}
 
-{% include {{ site.snippets }}/12/explore.snip %}
+{% include {{ site.snippets }}/12/specific-node-info.snip %}
 
 > ## Compare Your Computer, the Head Node and the Worker Node
 >

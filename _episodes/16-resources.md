@@ -99,7 +99,7 @@ get statistics about our job.
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/16/stat_output.snip %}
+{% include {{ site.snippets }}/16/account-history.snip %}
 
 This shows all the jobs we ran recently (note that there are multiple entries per job). To get
 info about a specific job, we change command slightly.
@@ -162,7 +162,7 @@ like the following (`Ctrl + c` to exit):
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/16/top_output.snip %}
+{% include {{ site.snippets }}/16/monitor-processes-top.snip %}
 
 Overview of the most important fields:
 
@@ -190,7 +190,7 @@ memory.
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/16/free_output.snip %}
+{% include {{ site.snippets }}/16/system-memory-free.snip %}
 
 The key fields here are total, used, and available - which represent the amount of memory that the
 machine has in total, how much is currently being used, and how much is still available. When a

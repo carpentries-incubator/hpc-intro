@@ -98,7 +98,7 @@ to the scheduler, we use the `{{ site.sched.submit.name }}` command.
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/13/submit_output.snip %}
+{% include {{ site.snippets }}/13/basic-job-script.snip %}
 
 And that's all we need to do to submit a job. Our work is done -- now the scheduler takes over and
 tries to run the job for us. While the job is waiting to run, it goes into a list of jobs called 
@@ -110,7 +110,7 @@ the *queue*. To check on our job's status, we check the queue using the command
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/13/statu_output.snip %}
+{% include {{ site.snippets }}/13/basic-job-status.snip %}
 
 The best way to check our job's status is with `{{ site.sched.status }}`. Of course, running 
 `{{ site.sched.status }}` repeatedly to check on things can be a little tiresome. To see a real-time
@@ -179,7 +179,7 @@ and monitor it:
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/13/statu_name_output.snip %}
+{% include {{ site.snippets }}/13/job-with-name-status.snip %}
 
 Fantastic, we've successfully changed the name of our job!
 
@@ -202,7 +202,7 @@ stuck with your site's default resources, which is probably not what you want.
 
 The following are several key resource requests:
 
-{% include {{ site.snippets }}/13/stat_options.snip %}
+{% include {{ site.snippets }}/13/option-flags-list.snip %}
 
 Note that just *requesting* these resources does not make your job run faster! We'll talk more 
 about how to make sure that you're using resources effectively in a later episode of this lesson.
@@ -238,7 +238,7 @@ about how to make sure that you're using resources effectively in a later episod
 > {: .solution}
 {: .challenge}
 
-{% include {{ site.snippets }}/13/env_challenge.snip %}
+{% include {{ site.snippets }}/13/print-sched-variables.snip %}
 
 Resource requests are typically binding. If you exceed them, your job will be killed. Let's use
 walltime as an example. We will request 30 seconds of walltime, and attempt to run a job for two
@@ -269,9 +269,9 @@ Submit the job and wait for it to finish. Once it is has finished, check the log
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/13/long_job_cat.snip %}
+{% include {{ site.snippets }}/13/runtime-exceeded-job.snip %}
 
-{% include {{ site.snippets }}/13/long_job_err.snip %}
+{% include {{ site.snippets }}/13/runtime-exceeded-output.snip %}
 
 Our job was killed for exceeding the amount of resources it requested. Although this appears harsh,
 this is actually a feature. Strict adherence to resource requests allows the scheduler to find the
@@ -294,7 +294,7 @@ to change the walltime so that it runs long enough for you to cancel it before i
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/13/del_job_output1.snip %}
+{% include {{ site.snippets }}/13/terminate-job-begin.snip %}
 
 Now cancel the job with its job number (printed in your terminal). A clean return of your command
 prompt indicates that the request to cancel the job was successful.
@@ -306,9 +306,9 @@ prompt indicates that the request to cancel the job was successful.
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/13/del_job_output2.snip %}
+{% include {{ site.snippets }}/13/terminate-job-cancel.snip %}
 
-{% include {{ site.snippets }}/13/del_multiple_challenge.snip %}
+{% include {{ site.snippets }}/13/terminate-multiple-jobs.snip %}
 
 ## Other types of jobs
 
@@ -321,4 +321,4 @@ handle. A good example of this might be building a genome index for alignment wi
 [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml). Fortunately, we can run these types of
 tasks as a one-off with `{{ site.sched.interactive }}`.
 
-{% include {{ site.snippets }}/13/interactive_example.snip %}
+{% include {{ site.snippets }}/13/using-nodes-interactively.snip %}
