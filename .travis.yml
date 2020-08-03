@@ -2,8 +2,9 @@
 # Results at https://travis-ci.org/github/hpc-carpentry/hpc-intro
 
 dist: xenial
-language: python
+language: ruby
 python: 3.7
+cache: bundler
 
 branches:
   only:
@@ -11,27 +12,42 @@ branches:
   - /.*/
 
 before_install:
+  - sudo apt-get update -y
+  - rvm default
+  - gem install bundler jekyll json kramdown
+  - bundle config build.nokogiri --use-system-libraries
+  - bundle install
+
 install:
+ pip install codespell pyyaml
+
 script:
 
 jobs:
   include:
     - stage: "Check for typos and spelling mistakes"
-      before_install: # Don't need everything to build the site
-      install:
-        pip install codespell
+      env: SITE_CONFIG=""
+      before_install:
+        # Skip the default 'before_install', which we don't need to check spelling
       script:
         codespell --skip="assets,*.svg,bin" --quiet-level=2  -L "rouge,dropse,namd,hist"
     - stage: "Build the site"
-      before_install: 
-        - sudo apt-get update -y
-        - rvm default
-        - gem install bundler jekyll json kramdown
-        - bundle config build.nokogiri --use-system-libraries
-        - bundle install
-      install:
-        pip install pyyaml
       script:
         - make lesson-check-all
         - make --always-make site
-
+    - stage: "Build the site for Graham"
+      install:
+      script:
+        - make --always-make site SITE_CONFIG=_includes/snippets_library/ComputeCanada_Graham_slurm/_config_options.yml
+    - stage: "Build the site for Cirrus"
+      install:
+      script:
+        - make --always-make site SITE_CONFIG=_includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
+    - stage: "Build the site for SIGMA.2"
+      install:
+      script:
+        - make --always-make site SITE_CONFIG=_includes/snippets_library/SIGMA2_Norway_slurm/_config_options.yml
+    - stage: "Build the site for Myriad"
+      install:
+      script:
+        - make --always-make site SITE_CONFIG=_includes/snippets_library/UCL_Myriad_sge/_config_options.yml
