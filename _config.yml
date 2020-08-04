@@ -20,23 +20,23 @@
 # installation. Remember to keep the leading slash on the
 # `snippets` variable below!
 
-snippets: "/snippets_library/NIST_CTCMS_slurm"
+snippets: "/snippets_library/ComputeCanada_Graham_slurm"
 
 local:
   prompt: "[user@laptop ~]$"
 
 remote:
-  name: "ruth"
-  login: "ruth.nist.gov"
-  host: "ruth"
-  location: "National Institute of Standards and Technology"
-  homedir: "/users"
-  prompt: "501 ruth%"
+  name: "Graham"
+  login: "graham.computecanada.ca"
+  host: "gra-login1"
+  node: "aci-377"
+  location: "University of Waterloo"
+  homedir: "/home"
+  prompt: "[yourUsername@gra-login1 ~]$"
 
 sched:
   name: "SLURM"
   user: "yourUsername"
-  node: "r001"
   submit:
     name: "sbatch"
     options: ""
@@ -55,8 +55,8 @@ sched:
 
 # Interactive queue names, one or more as a list
 workshop_interactive_queues:
-  - fast
-  - serial
+  - debug
+  - testing
 
 #------------------------------------------------------------
 # Values for this lesson
