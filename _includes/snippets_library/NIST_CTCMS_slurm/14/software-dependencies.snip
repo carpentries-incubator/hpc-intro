@@ -1,0 +1,84 @@
+To demonstrate, let's use `module list`. `module list` shows all loaded software modules.
+
+```
+{{ site.remote.prompt }} module list
+```
+{: .bash}
+
+```
+Currently Loaded Modules:
+  1) nixpkgs/.16.09  (H,S)   3) gcccore/.5.4.0    (H)   5) intel/2016.4  (t)   7) StdEnv/2016.4 (S)
+  2) icc/.2016.4.258 (H)     4) ifort/.2016.4.258 (H)   6) openmpi/2.1.1 (m)   8) python/3.5.2  (t)
+
+  Where:
+   S:  Module is Sticky, requires --force to unload or purge
+   m:  MPI implementations / Implémentations MPI
+   t:  Tools for development / Outils de développement
+   H:             Hidden Module
+```
+{: .output}
+
+```
+{{ site.remote.prompt }} module load beast
+{{ site.remote.prompt }} module list
+```
+{: .bash}
+
+```
+Currently Loaded Modules:
+  1) nixpkgs/.16.09    (H,S)   5) intel/2016.4  (t)   9) java/1.8.0_121   (t)
+  2) icc/.2016.4.258   (H)     6) openmpi/2.1.1 (m)  10) beagle-lib/2.1.2 (bio)
+  3) gcccore/.5.4.0    (H)     7) StdEnv/2016.4 (S)  11) beast/2.4.0      (chem)
+  4) ifort/.2016.4.258 (H)     8) python/3.5.2  (t)
+
+  Where:
+   S:     Module is Sticky, requires --force to unload or purge
+   bio:   Bioinformatic libraries/apps / Logiciels de bioinformatique
+   m:     MPI implementations / Implémentations MPI
+   t:     Tools for development / Outils de développement
+   chem:  Chemistry libraries/apps / Logiciels de chimie
+   H:                Hidden Module
+```
+{: .output}
+
+So in this case, loading the `beast` module (a bioinformatics software package), also loaded
+`java/1.8.0_121` and `beagle-lib/2.1.2` as well. Let's try unloading the `beast` package.
+
+```
+{{ site.remote.prompt }} module unload beast
+{{ site.remote.prompt }} module list
+```
+{: .bash}
+
+```
+Currently Loaded Modules:
+  1) nixpkgs/.16.09  (H,S)   3) gcccore/.5.4.0    (H)   5) intel/2016.4  (t)   7) StdEnv/2016.4 (S)
+  2) icc/.2016.4.258 (H)     4) ifort/.2016.4.258 (H)   6) openmpi/2.1.1 (m)   8) python/3.5.2  (t)
+
+  Where:
+   S:  Module is Sticky, requires --force to unload or purge
+   m:  MPI implementations / Implémentations MPI
+   t:  Tools for development / Outils de développement
+   H:             Hidden Module
+```
+{: .output}
+
+So using `module unload` "un-loads" a module along with its dependencies. If we wanted to unload
+everything at once, we could run `module purge` (unloads everything).
+
+```
+{{ site.remote.prompt }} module purge
+```
+{: .bash}
+
+```
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) StdEnv/2016.4    3) icc/.2016.4.258   5) ifort/.2016.4.258   7) imkl/11.3.4.258
+  2) nixpkgs/.16.09   4) gcccore/.5.4.0    6) intel/2016.4        8) openmpi/2.1.1
+```
+{: .output}
+
+Note that `module purge` is informative. It lets us know that all but a default set of packages 
+have been unloaded (and how to actually unload these if we truly so desired).
