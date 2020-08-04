@@ -16,7 +16,7 @@ before_install:
   - rvm default
   - gem install bundler jekyll json kramdown
   - bundle config build.nokogiri --use-system-libraries
-  - bundle install
+  - bundle install --jobs=2 --quiet
 
 install:
   pip install codespell pyyaml
