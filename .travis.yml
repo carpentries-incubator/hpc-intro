@@ -31,7 +31,7 @@ jobs:
         # Skip the default 'before_install', which we don't need to check spelling
       script:
         codespell --skip="assets,*.svg,bin" --quiet-level=2  -L "rouge,dropse,namd,hist"
-    - stage: "Build the site"
+    - stage: "Build the site (default)"
       script:
         - make lesson-check-all
         - make --always-make site
