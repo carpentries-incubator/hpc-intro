@@ -51,3 +51,7 @@ jobs:
       install:
       script:
         - make --always-make site SITE_CONFIG=_includes/snippets_library/UCL_Myriad_sge/_config_options.yml
+    - stage: "Build the site for CTCMS"
+      install:
+      script:
+        - make --always-make site SITE_CONFIG=_includes/snippets_library/NIST_CTCMS_slurm/_config_options.yml
