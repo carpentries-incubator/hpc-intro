@@ -16,7 +16,7 @@ before_install:
   - rvm default
   - gem install bundler jekyll json kramdown
   - bundle config build.nokogiri --use-system-libraries
-  - bundle install --jobs=2 --quiet
+  - bundle install --jobs=2
 
 install:
   pip install codespell pyyaml
@@ -37,22 +37,12 @@ jobs:
     - stage: "Build the library of sites"
       install:
       script:
-        - echo " === Build the site for Graham ==="
-        - export SITE_CONFIG=_includes/snippets_library/ComputeCanada_Graham_slurm/_config_options.yml
-        - make --always-make site
+        - make --always-make site SITE_CONFIG=_includes/snippets_library/ComputeCanada_Graham_slurm/_config_options.yml
 
-        - echo " === Build the site for Cirrus ==="
-        - export SITE_CONFIG=_includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
-        - make --always-make site
+        - make --always-make site SITE_CONFIG=_includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
 
-        - echo " === Build the site for CTCMS ==="
-        - export SITE_CONFIG=_includes/snippets_library/NIST_CTCMS_slurm/_config_options.yml
-        - make --always-make site
+        - make --always-make site SITE_CONFIG=_includes/snippets_library/NIST_CTCMS_slurm/_config_options.yml
 
-        - echo " === Build the site for SIGMA.2 ==="
-        - export SITE_CONFIG=_includes/snippets_library/Norway_SIGMA2_SAGA_slurm/_config_options.yml
-        - make --always-make site
+        - make --always-make site SITE_CONFIG=_includes/snippets_library/Norway_SIGMA2_SAGA_slurm/_config_options.yml
 
-        - echo " === Build the site for Myriad ==="
-        - export SITE_CONFIG=_includes/snippets_library/UCL_Myriad_sge/_config_options.yml
-        - make --always-make site
+        - make --always-make site SITE_CONFIG=_includes/snippets_library/UCL_Myriad_sge/_config_options.yml
