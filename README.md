@@ -20,9 +20,9 @@ writer, and then reviewed by the rest of the group once complete.
    as the address of the host to login to, definitions of the command prompt, scheduler names.
    The default is the setup for the Graham Compute Canada cluster hosted at the University
    of Waterloo which uses the SLURM scheduler. Other examples can be found in the
-   [_extras/snippets_library/](_extras/snippets_library/) directory.
+   [_includes/snippets_library/](_includes/snippets_library/) directory.
 3. Create the required host-specific code snippets in subdirectories in
-   [_includes/snippets](_includes/snippets). These snippets provide inputs and outputs that 
+   [_includes/snippets_library](_includes/snippets_library). These snippets provide inputs and outputs that 
    are host-specific and that are included automatically when the lesson website is built.
    1. Code snippets are in files named `snippet_name.snip` and are included automatically
       when the lesson is built. For example, if the `snippet_name` was `login_output`,
