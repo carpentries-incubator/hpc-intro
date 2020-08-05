@@ -93,7 +93,7 @@ file="/fig/serverrack-openclipartorg-psteinb-basedon-ericlemerdy.svg" alt="A rac
 caption="" %}
 
 The methodology of providing the input data, communicating options and flags as well as retrieving
-the results is quite different to using a plain laptop. Moreover, using a GUI style interface is 
+the results is quite different to using a plain laptop. Moreover, using a graphical interface is 
 often discarded in favor of using the command line. This imposes a double paradigm shift for 
 prospect users:
 
@@ -104,6 +104,29 @@ prospect users:
 > 
 > Take a minute and think about which of your daily interactions with a computer may require a 
 > remote server or even cluster to provide you with results. 
-{: .discussion }
+>
+> > ## Some Ideas
+> > 
+> > - Checking email: your computer (possibly in your pocket) contacts a remote machine,
+> >   authenticates, and downloads a list of new messages; it also uploads changes to message
+> >   status, such as whether you read, marked as junk, or deleted the message. Since yours is
+> >   not the only account, the mail server is probably one of many in a data center.
+> > - Searching for a phrase online involves comparing your search term against a massive database
+> >   of all known sites, looking for matches. This "query" operation can be straightforward, but
+> >   building that database is a [monumental task](https://en.wikipedia.org/wiki/MapReduce)!
+> >   Servers are involved at every step. 
+> > - Searching for directions on a mapping website involves connecting your (A) starting and 
+> >   (B) end points by [traversing a graph](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
+> >   in search of the "shortest" path by distance, time, expense, or another metric. Converting
+> >   a map into the right form is relatively simple, but calculating all the possible routes 
+> >   between A and B is expensive. 
+> >
+> > Checking email is serial: your machine connects to one server and exchanges data. Searching
+> > by querying the database for your search term (or endpoints) is also serial, in that one machine
+> > receives your query and returns the result. However, assembling and storing the full database
+> > is far beyond the capability of any one machine. Therefore, these functions are served in
+> > parallel by a large, ["hyperscale"](https://en.wikipedia.org/wiki/Hyperscale_computing)
+> > collection of servers working together.
+{: .challenge }
 
 {% include links.md %}
