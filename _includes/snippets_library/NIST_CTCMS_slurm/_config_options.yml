@@ -1,0 +1,56 @@
+#------------------------------------------------------------
+# NIST CTCMS slurm
+#------------------------------------------------------------
+
+# Cluster host and scheduler options: the defaults come from
+# Graham at Compute Canada, running SLURM. Other options can
+# be found in the library of snippets,
+# `_includes/snippets_library`. To use one, replace options
+# below with those in `_config_options.yml` from the
+# library. E.g, to customise for Cirrus at EPCC, running
+# PBS, we could replace the options below with those from
+# 
+# _includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
+# 
+# If your cluster is not represented in the library, please
+# copy an existing folder, rename it, and customize for your
+# installation. Remember to keep the leading slash on the
+# `snippets` variable below!
+
+snippets: "/snippets_library/NIST_CTCMS_slurm"
+
+local:
+  prompt: "[user@laptop ~]$"
+
+remote:
+  name: "ruth"
+  login: "ruth.nist.gov"
+  host: "ruth"
+  node: "r001"
+  location: "National Institute of Standards and Technology"
+  homedir: "/users"
+  prompt: "501 ruth%"
+
+sched:
+  name: "SLURM"
+  user: "yourUsername"
+  submit:
+    name: "sbatch"
+    options: ""
+  status: "squeue"
+  flag:
+    user: "-u yourUsername"
+    interactive: ""
+    histdetail: "-l -j"
+    name: "-J"
+    time: "-t"
+  del: "scancel"
+  interactive: "srun"
+  info: "sinfo"
+  comment: "#SBATCH"
+  hist: "sacct -u yourUsername"
+
+# Interactive queue names, one or more as a list
+workshop_interactive_queues:
+  - fast
+  - serial

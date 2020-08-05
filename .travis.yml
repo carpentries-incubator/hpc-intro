@@ -1,6 +1,6 @@
 # Travis-CI config for https://github.com/hpc-carpentry/hpc-intro
 # Results at https://travis-ci.org/github/hpc-carpentry/hpc-intro
-
+---
 dist: xenial
 language: ruby
 python: 3.7
@@ -8,18 +8,18 @@ cache: bundler
 
 branches:
   only:
-  - gh-pages
-  - /.*/
+    - gh-pages
+    - /.*/
 
 before_install:
   - sudo apt-get update -y
   - rvm default
   - gem install bundler jekyll json kramdown
   - bundle config build.nokogiri --use-system-libraries
-  - bundle install
+  - bundle install --jobs=2
 
 install:
- pip install codespell pyyaml
+  pip install codespell pyyaml
 
 script:
 
@@ -27,27 +27,22 @@ jobs:
   include:
     - stage: "Check for typos and spelling mistakes"
       env: SITE_CONFIG=""
-      before_install:
-        # Skip the default 'before_install', which we don't need to check spelling
+      before_install:  # Skip the default 'before_install', which we don't need to check spelling
       script:
         codespell --skip="assets,*.svg,bin" --quiet-level=2  -L "rouge,dropse,namd,hist"
     - stage: "Build the site (default)"
       script:
         - make lesson-check-all
         - make --always-make site
-    - stage: "Build the site for Graham"
+    - stage: "Build the library of sites"
       install:
       script:
         - make --always-make site SITE_CONFIG=_includes/snippets_library/ComputeCanada_Graham_slurm/_config_options.yml
-    - stage: "Build the site for Cirrus"
-      install:
-      script:
+
         - make --always-make site SITE_CONFIG=_includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
-    - stage: "Build the site for SIGMA.2"
-      install:
-      script:
+
+        - make --always-make site SITE_CONFIG=_includes/snippets_library/NIST_CTCMS_slurm/_config_options.yml
+
         - make --always-make site SITE_CONFIG=_includes/snippets_library/Norway_SIGMA2_SAGA_slurm/_config_options.yml
-    - stage: "Build the site for Myriad"
-      install:
-      script:
+
         - make --always-make site SITE_CONFIG=_includes/snippets_library/UCL_Myriad_sge/_config_options.yml
