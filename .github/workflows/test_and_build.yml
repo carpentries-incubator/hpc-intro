@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - gh-pages
+      - github_actions
 
 jobs:
   spellcheck:
