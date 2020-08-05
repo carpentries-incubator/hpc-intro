@@ -2,8 +2,7 @@
 
 This lesson is focused on teaching the basics of high-performance computing (HPC).
 
-[![Build Status](https://travis-ci.com/tkphd/hpc-intro.svg?branch=gh-pages)](
-https://travis-ci.com/tkphd/hpc-intro)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fhpc-carpentry%2Fhpc-intro%2Fbadge%3Fref%3Dgh-pages&style=flat)](https://actions-badge.atrox.dev/hpc-carpentry/hpc-intro/goto?ref=gh-pages)
 
 ## Topic breakdown and todo list
 
@@ -15,15 +14,12 @@ writer, and then reviewed by the rest of the group once complete.
 
 1. Follow the instructions found in the [Software Carpentry example lesson source](
    https://github.com/carpentries/lesson-example/) to create a repository for your lesson.
-2. Edit [_config.yml](_config.yml) to modify the configuration options for the HPC system you
-   will be using in the section titled `Workshop specific values`. These options set such things
-   as the address of the host to login to, definitions of the command prompt, scheduler names.
-   The default is the setup for the Graham Compute Canada cluster hosted at the University
-   of Waterloo which uses the SLURM scheduler. Other examples can be found in the
-   [_includes/snippets_library/](_includes/snippets_library/) directory.
-3. Create the required host-specific code snippets in subdirectories in
-   [_includes/snippets_library](_includes/snippets_library). These snippets provide inputs and outputs that 
-   are host-specific and that are included automatically when the lesson website is built.
+
+2. Create the required host-specific code snippets as a subdirectory of
+   [_includes/snippets_library](_includes/snippets_library). These snippets provide inputs and
+   outputs that are host-specific and that are included automatically when the lesson website is
+   built.
+    
    1. Code snippets are in files named `snippet_name.snip` and are included automatically
       when the lesson is built. For example, if the `snippet_name` was `login_output`,
       then the snippet file would be called `login_output.snip`.
@@ -33,6 +29,16 @@ writer, and then reviewed by the rest of the group once complete.
    3. In the episodes source, snippets are included using [Liquid](
       https://shopify.github.io/liquid/) scripting  `include` statements. For example, the first
       snippet in episode 12 is included using `{% include /snippets/12/info.snip %}`.
+      
+3. Edit `_config_settings.yml` in your snippets folder. These options set such things as the address
+   of the host to login to, definitions of the command prompt, and scheduler names.
+   
+4. Add your snippet directory name to the GitHub Actions configuration file,
+   [.github/workflows/test_and_build.yml](.github/workflows/test_and_build.yml).
+
+5. To test your build, please set the environment variable `SITE_CONFIG` to the relative path of
+   the configuration file in your snippets folder:
+   `export SITE_CONFIG=_includes/snippets_library/Site_Cluster_scheduler/_config_options.yml`.
 
 Please contribute any configurations you create for your local systems back into the 
 HPC Carpentry snippets library.
