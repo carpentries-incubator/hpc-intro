@@ -72,11 +72,12 @@ exclusively not in the same room as you are.
 {% include figure.html url="" max-width="20%" file="/fig/servers-openclipartorg-ericlemerdy.svg" 
 alt="A rack half full with servers" caption="" %}
 
-Note here, that a server is mostly a noisy computer mounted into a rack cabinet which in turn 
-resides in a data center. The internet made it possible that these data centers do not require to 
-be nearby your laptop. What people call **the cloud** is mostly a web-service where you can rent 
-such servers by providing your credit card details and by clicking together the specs of this 
-remote resource.
+Note here, that a server is mostly a noisy computer mounted into a rack cabinet which in turn
+resides in a data center. The internet made it possible that these data centers do not require to be
+nearby your laptop. What people call **the cloud** is mostly a web-service where you can rent such
+servers by providing your credit card details and requesting remote resources that satisfy your
+requirements. This is often handled through an online, browser-based interface listing the various
+machines available and their capacities in terms of processing power, memory, and storage.
 
 The server itself has no direct display or input methods attached to it. But most importantly, it 
 has much more storage, memory and compute capacity than your laptop will ever have. In any case,
