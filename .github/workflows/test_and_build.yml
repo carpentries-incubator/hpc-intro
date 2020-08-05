@@ -47,7 +47,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        SITE_CONFIG: [ComputeCanada_Graham_slurm, EPCC_Cirrus_pbs, Norway_SIGMA2_SAGA_slurm, UCL_Myriad_sge]
+        SITE_CONFIG:
+          - ComputeCanada_Graham_slurm
+          - EPCC_Cirrus_pbs
+          - NIST_CTCMS_slurm
+          - Norway_SIGMA2_SAGA_slurm
+          - UCL_Myriad_sge
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-ruby@v1
