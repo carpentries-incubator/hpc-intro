@@ -63,11 +63,13 @@ alt="Schematic of how a computer works" caption="" %}
 
 ## When tasks take too long
 
-When the task to solve become heavy on computations, the operations are typically out-sourced 
-from the local laptop or desktop to elsewhere. Take for example the task to find the directions for
-your next business trip. The capabilities of your laptop are typically not enough to calculate 
-that route spontaneously. So you use website, which in turn runs on a server that is almost 
-exclusively not in the same room as you are.
+When the task to solve becomes heavy on computations, the operations are typically out-sourced from
+the local laptop or desktop to elsewhere. Take for example the task to find the directions for your
+next vacation. The capabilities of your laptop are typically not enough to calculate that route
+spontaneously: [finding the shortest path](https://en.wikipedia.org/wiki/Dijkstra's_algorithm)
+through a network runs on the order of (*v* log *v*) time, where *v* (vertices) represents the
+number of intersections in your map. Instead of doing this yourself, you use a website, which in
+turn runs on a server, that is almost definitely not in the same room as you are.
 
 {% include figure.html url="" max-width="20%" file="/fig/servers-openclipartorg-ericlemerdy.svg" 
 alt="A rack half full with servers" caption="" %}
@@ -87,19 +89,20 @@ machine, which people typically call 'a server'.
 ## When one server is not enough
 
 If the computational task or analysis to complete is daunting for a single server, larger 
-agglomerations of servers are used. These go by the name of clusters or super computers.
+agglomerations of servers are used. These go by the name of "clusters" or "super computers".
 
 {% include figure.html url="" max-width="20%" 
 file="/fig/serverrack-openclipartorg-psteinb-basedon-ericlemerdy.svg" alt="A rack with servers"
 caption="" %}
 
-The methodology of providing the input data, communicating options and flags as well as retrieving
-the results is quite different to using a plain laptop. Moreover, using a graphical interface is 
-often discarded in favor of using the command line. This imposes a double paradigm shift for 
-prospect users:
+The methodology of providing the input data, configuring the program options, and retrieving the
+results is quite different to using a plain laptop. Moreover, using a graphical interface is often
+discarded in favor of using the command line. This imposes a double paradigm shift for prospective
+users asked to
 
-1. they work with the command line (not a GUI-style user interface)
-2. they work with a distributed set of computers (called nodes)
+1. work with the command line interface (CLI), rather than a graphical user interface (GUI)
+2. work with a distributed set of computers (called nodes) rather than the machine attached to their
+   keyboard & mouse
 
 > ## I've never used a server, have I?
 > 
