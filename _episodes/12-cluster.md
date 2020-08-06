@@ -63,11 +63,12 @@ Go ahead and log in to the cluster: {{ site.remote.name }} at {{ site.remote.loc
 {: .bash}
 
 Remember to replace `yourUsername` with the username supplied by the instructors. You may be asked
-for your password. Watch out: the characters you type are not displayed on the screen.
+for your password. Watch out: the characters you type after the password prompt are not displayed on
+the screen. Normal output will resume once you press `Enter`.
 
 You are logging in using a program known as the secure shell or `ssh`. This establishes a temporary
 encrypted connection between your laptop and `{{ site.remote.login }}`. The word before the `@`
-symbol, e.g. `yourUsername` here, is the user account name that you permission to use on the
+symbol, e.g. `yourUsername` here, is the user account name that you have permission to use on the
 cluster.
 
 
