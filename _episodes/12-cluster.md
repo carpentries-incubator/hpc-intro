@@ -58,16 +58,16 @@ laptop. Refer to the [setup]({{ page.root }}/setup) section for more details.
 
 Go ahead and log in to the cluster: {{ site.remote.name }} at {{ site.remote.location }}.
 ```
-{{ site.local.prompt }} ssh yourUsername@{{ site.remote.login }}
+{{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
 ```
 {: .bash}
 
-Remember to replace `yourUsername` with the username supplied by the instructors. You will be asked
+Remember to replace `{{ site.remote.user }}` with the username supplied by the instructors. You will be asked
 for your password. But watch out, the characters you type are not displayed on the screen.
 
 You are logging in using a program known as the secure shell or `ssh`. This establishes a temporary
 encrypted connection between your laptop and `{{ site.remote.login }}`. The word before the `@`
-symbol, e.g. `yourUsername` here, is the user account name that Lola has access permissions for on
+symbol, e.g. `{{ site.remote.user }}` here, is the user account name that Lola has access permissions for on
 the cluster.
 
 > ## Where do I get this `ssh` from ?
@@ -122,7 +122,7 @@ notice that the current hostname is also part of our prompt!)
 > > ```
 > > {: .bash}
 > >
-> > > The deepest layer should differ: {{ site.sched.user }} is uniquely yours. Are there
+> > > The deepest layer should differ: {{ site.remote.user }} is uniquely yours. Are there
 > > > differences in the path at higher levels?
 > > {: .discussion}
 > >
@@ -245,7 +245,7 @@ the computer has been restarted.
 > > ## Solution
 > >
 > > ```
-> > {{ site.local.prompt }} ssh yourUsername@{{ site.remote.login }}
+> > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
 > > {{ site.remote.prompt }} nproc --all
 > > {{ site.remote.prompt }} free -m
 > > ```

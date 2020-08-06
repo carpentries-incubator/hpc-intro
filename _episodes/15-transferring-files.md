@@ -37,7 +37,7 @@ a little complex for new users, but we'll break it down.
 
 To transfer *to* another computer:
 ```
-{{ site.local.prompt }} scp path/to/local/file.txt yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}
+{{ site.local.prompt }} scp path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.login }}:path/on/{{ site.remote.name }}
 ```
 {: .bash}
 
@@ -64,7 +64,7 @@ To transfer *to* another computer:
 > > Now, transfer it to {{ site.remote.name }}:
 > >
 > > ```
-> > {{ site.local.prompt }} scp calling-card.txt yourUsername@{{ site.remote.login }}:~/
+> > {{ site.local.prompt }} scp calling-card.txt {{ site.remote.user }}@{{ site.remote.login }}:~/
 > > ```
 > > {: .bash}
 > >
@@ -77,7 +77,7 @@ To transfer *to* another computer:
 
 To download *from* another computer:
 ```
-{{ site.local.prompt }} scp yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
+{{ site.local.prompt }} scp {{ site.remote.user }}@{{ site.remote.login }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
 ```
 {: .bash}
 
@@ -86,14 +86,14 @@ after the `:` is relative to our home directory. We can simply just add a `:` an
 if we don't care where the file goes.
 
 ```
-{{ site.local.prompt }} scp local-file.txt yourUsername@{{ site.remote.login }}:
+{{ site.local.prompt }} scp local-file.txt {{ site.remote.user }}@{{ site.remote.login }}:
 ```
 {: .bash}
 
 To recursively copy a directory, we just add the `-r` (recursive) flag:
 
 ```
-{{ site.local.prompt }} scp -r some-local-folder yourUsername@{{ site.remote.login }}:target-directory/
+{{ site.local.prompt }} scp -r some-local-folder {{ site.remote.user }}@{{ site.remote.login }}:target-directory/
 ```
 {: .bash}
 
@@ -116,7 +116,7 @@ effect for `scp -r`, but is important in other commands, like `rsync`.
 > The syntax is similar to `scp`. To transfer *to* another computer with commonly used options:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP path/to/local/file.txt yourUsername@{{ site.remote.login }}:directory/path/on/{{ site.remote.name }}/
+> {{ site.local.prompt }} rsync -avzP path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.login }}:directory/path/on/{{ site.remote.name }}/
 > ```
 > {: .bash}
 >
@@ -129,7 +129,7 @@ effect for `scp -r`, but is important in other commands, like `rsync`.
 > To recursively copy a directory, we can use the same options:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP path/to/local/dir yourUsername@{{ site.remote.login }}:directory/path/on/{{ site.remote.name }}/
+> {{ site.local.prompt }} rsync -avzP path/to/local/dir {{ site.remote.user }}@{{ site.remote.login }}:directory/path/on/{{ site.remote.name }}/
 > ```
 > {: .bash}
 > 
@@ -145,7 +145,7 @@ effect for `scp -r`, but is important in other commands, like `rsync`.
 > To download a file, we simply change the source and destination:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP yourUsername@{{ site.remote.login }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
+> {{ site.local.prompt }} rsync -avzP {{ site.remote.user }}@{{ site.remote.login }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
 > ```
 > {: .bash}
 {: .callout}
