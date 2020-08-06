@@ -122,7 +122,7 @@ notice that the current hostname is also part of our prompt!)
 > > ```
 > > {: .bash}
 > >
-> > > The deepest layer should differ: {{ site.sched.user }} is uniquely yours. Are there
+> > > The deepest layer should differ: {{ site.remote.user }} is uniquely yours. Are there
 > > > differences in the path at higher levels?
 > > {: .discussion}
 > >
