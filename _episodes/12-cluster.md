@@ -268,24 +268,6 @@ it is more common for nodes to connect to a shared, remote fileserver or cluster
 > different systems and nodes?
 {: .discussion}
 
-> ## Units and Language
-> 
-> A computer's memory and disk are measured in units called *Bytes* (one Byte is 8 bits). 
-> As today's files and memory have grown to be large given historic standards, volumes are 
-> noted using the [SI](https://en.wikipedia.org/wiki/International_System_of_Units) prefixes. 
-> So 1000 Bytes is a Kilobyte (kB), 1000 Kilobytes is a Megabyte (MB), 1000 Megabytes is a 
-> Gigabyte (GB), etc. 
-> 
-> History and common language have however mixed this notation with a different meaning. When
-> people say "Kilobyte", they mean 1024 Bytes instead. In that spirit, a Megabyte is 1024
-> Kilobytes.
->
-> To address this ambiguity, the [International System of
-> Quantities](https://en.wikipedia.org/wiki/International_System_of_Quantities) standardizes the
-> *binary* prefixes (with base of 2<sup>10</sup>=1024) by the prefixes Kibi (ki), Mibi (Mi), Gibi
-> (Gi), etc. For more details, see [here](https://en.wikipedia.org/wiki/Binary_prefix)
-{: .callout}
-
 > ## Differences Between Nodes
 >
 > Many HPC clusters have a variety of nodes optimized for particular workloads. Some nodes
