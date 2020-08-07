@@ -36,9 +36,12 @@ jobs:
         gem install bundler jekyll json kramdown
         bundle config set path '.vendor/bundle'
         bundle config build.nokogiri --use-system-libraries
-    - name: "Check lesson"
+    - name: "Check lesson for warnings"
       run: |
         make lesson-check-all
+    - name: "Check lesson for errors"
+      run: |
+        make lesson-check
     - name: "Check build"
       run: |
         make --always-make site
