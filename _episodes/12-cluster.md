@@ -139,10 +139,14 @@ node*, *login node*, *landing pad*, or *submit node*. A login node serves as an 
 cluster. As a gateway, it is well suited for uploading and downloading files, setting up software,
 and running quick tests. It should never be used for doing actual work.
 
-> Dedicated Transfer Nodes
+> ## Dedicated Transfer Nodes
 >
-> If you want to transfer larger amounts of data to or from the cluster, some systems offer dedicated nodes for data transfers only. The motivation for this lies in the fact, that larger data transfers should not obstruct operation of the login node for anybody else. 
-> Check with your cluster's documentation or its support team, if such a transfer node is available. As a rule of thumb, consider all transfers of a volume larger than 500MB to 1GB as large. But these numbers change, e.g. depending on the network connection of yourself and of your cluster or other factors.
+> If you want to transfer larger amounts of data to or from the cluster, some systems offer
+> dedicated nodes for data transfers only. The motivation for this lies in the fact, that larger
+> data transfers should not obstruct operation of the login node for anybody else. Check with your
+> cluster's documentation or its support team, if such a transfer node is available. As a rule of
+> thumb, consider all transfers of a volume larger than 500MB to 1GB as large. But these numbers
+> change, e.g. depending on the network connection of yourself and of your cluster or other factors.
 {.callout}
 
 The real work on a cluster gets done by the *worker* (or *compute*) *nodes*. Worker nodes come in
