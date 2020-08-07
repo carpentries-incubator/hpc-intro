@@ -17,8 +17,8 @@ rack6i       up 30-00:00:0      2   idle r[059-060]
 rack6        up 30-00:00:0      1 drain* r057
 rack6        up 30-00:00:0      1  down* r053
 rack6        up 30-00:00:0      5  alloc r[052,054-056,058]
-fast         up   12:00:00      1   idle r001
-serial       up 14-00:00:0      1   idle r002
+{{ site.sched.queue.testing }}         up   12:00:00      1   idle r001
+{{ site.sched.queue.debug }}       up 14-00:00:0      1   idle r002
 gpu          up 7-00:00:00      3   idle rgpu,rgpu[4-5]
 gpu          up 7-00:00:00      2   down rgpu[2-3]
 ```
