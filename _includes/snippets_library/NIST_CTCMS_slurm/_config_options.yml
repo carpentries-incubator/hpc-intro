@@ -36,7 +36,10 @@ sched:
   name: "SLURM"
   submit:
     name: "sbatch"
-    options: ""
+    options: "--partition=serial"
+  queue:
+    debug: "serial"
+    testing: "fast"
   status: "squeue"
   flag:
     user: "-u yourUsername"
@@ -49,8 +52,3 @@ sched:
   info: "sinfo"
   comment: "#SBATCH"
   hist: "sacct -u yourUsername"
-
-# Interactive queue names, one or more as a list
-workshop_interactive_queues:
-  - fast
-  - serial

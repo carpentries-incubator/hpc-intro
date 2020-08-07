@@ -40,6 +40,9 @@ sched:
   submit:
     name: "sbatch"
     options: ""
+  queue:
+    debug: "debug"
+    testing: "testing"
   status: "squeue"
   flag:
     user: "-u yourUsername"
@@ -52,11 +55,6 @@ sched:
   info: "sinfo"
   comment: "#SBATCH"
   hist: "sacct -u yourUsername"
-
-# Interactive queue names, one or more as a list
-workshop_interactive_queues:
-  - debug
-  - testing
 
 #------------------------------------------------------------
 # Values for this lesson
