@@ -33,7 +33,7 @@ jobs:
       run: |
         # Need this library for nokogiri
         sudo apt-get install libxslt1-dev    
-        gem install bundler
+        gem install bundler json
         bundle config set path '.vendor/bundle'
         bundle config build.nokogiri --use-system-libraries
         bundle install
