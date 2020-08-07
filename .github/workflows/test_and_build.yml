@@ -33,9 +33,10 @@ jobs:
       run: |
         # Need this library for nokogiri
         sudo apt-get install libxslt1-dev    
-        gem install bundler jekyll json kramdown
+        gem install bundler json kramdown
         bundle config set path '.vendor/bundle'
         bundle config build.nokogiri --use-system-libraries
+        bundle install
     - name: "Check lesson for warnings"
       run: |
         make lesson-check-all
@@ -65,9 +66,10 @@ jobs:
       run: |
         # Need this library for nokogiri
         sudo apt-get install libxslt1-dev    
-        gem install bundler jekyll json kramdown
+        gem install bundler
         bundle config set path '.vendor/bundle'
         bundle config build.nokogiri --use-system-libraries
+        bundle install
     - name: Check build ${{matrix.SITE_CONFIG}}
       run: |
         make --always-make site SITE_CONFIG=_includes/snippets_library/${{matrix.SITE_CONFIG}}/_config_options.yml
