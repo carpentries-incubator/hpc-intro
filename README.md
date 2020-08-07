@@ -19,7 +19,7 @@ writer, and then reviewed by the rest of the group once complete.
    [_includes/snippets_library](_includes/snippets_library). These snippets provide inputs and
    outputs that are host-specific and that are included automatically when the lesson website is
    built.
-    
+
    1. Code snippets are in files named `snippet_name.snip` and are included automatically
       when the lesson is built. For example, if the `snippet_name` was `login_output`,
       then the snippet file would be called `login_output.snip`.
@@ -29,10 +29,10 @@ writer, and then reviewed by the rest of the group once complete.
    3. In the episodes source, snippets are included using [Liquid](
       https://shopify.github.io/liquid/) scripting  `include` statements. For example, the first
       snippet in episode 12 is included using `{% include /snippets/12/info.snip %}`.
-      
+
 3. Edit `_config_settings.yml` in your snippets folder. These options set such things as the address
    of the host to login to, definitions of the command prompt, and scheduler names.
-   
+
 4. Add your snippet directory name to the GitHub Actions configuration file,
    [.github/workflows/test_and_build.yml](.github/workflows/test_and_build.yml).
 
