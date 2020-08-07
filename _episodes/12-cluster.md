@@ -147,7 +147,7 @@ and running quick tests. It should never be used for doing actual work.
 > cluster's documentation or its support team, if such a transfer node is available. As a rule of
 > thumb, consider all transfers of a volume larger than 500MB to 1GB as large. But these numbers
 > change, e.g. depending on the network connection of yourself and of your cluster or other factors.
-{.callout}
+{: .callout}
 
 The real work on a cluster gets done by the *worker* (or *compute*) *nodes*. Worker nodes come in
 many shapes and sizes, but generally are dedicated to long or hard tasks that require a lot of
