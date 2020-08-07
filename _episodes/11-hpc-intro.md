@@ -131,6 +131,7 @@ users asked to
 > > is far beyond the capability of any one machine. Therefore, these functions are served in
 > > parallel by a large, ["hyperscale"](https://en.wikipedia.org/wiki/Hyperscale_computing)
 > > collection of servers working together.
+> {: .solution}
 {: .challenge }
 
 {% include links.md %}
