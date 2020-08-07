@@ -28,7 +28,7 @@ By the end of this workshop, students will know how to:
 {: .prereq}
 
 > ## For Instructors
-
+>
 > If you are teaching this lesson in a workshop, please see the 
 > [Instructor notes](guide/).
 {: .callout}
