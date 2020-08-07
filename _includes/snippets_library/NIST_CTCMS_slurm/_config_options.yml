@@ -36,7 +36,7 @@ sched:
   name: "SLURM"
   submit:
     name: "sbatch"
-    options: ""
+    options: "--partition=serial"
   status: "squeue"
   flag:
     user: "-u yourUsername"
