@@ -19,8 +19,8 @@ By the end of this workshop, students will know how to:
 >
 > To get started, follow the directions in the "[Setup](setup/)" tab to 
 > download data to your computer and follow any installation instructions.
->
->
+{: .callout}
+
 > ## Prerequisites
 >
 > Command line experience is necessary for this lesson. We recommend the participants to go through
