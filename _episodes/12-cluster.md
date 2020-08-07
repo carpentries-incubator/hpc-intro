@@ -33,7 +33,7 @@ shared storage, providing webservices (such as e-mail or social media platforms)
 traditional compute intensive tasks such as running a simulation.
 
 The term *HPC system*, on the other hand, describes a stand-alone resource for computationally
-intensive workloads. They are typically comprised of a multitude of independent processing and
+intensive workloads. They are typically comprised of a multitude of integrated processing and
 storage elements, designed to handle high volumes of data and/or large numbers of floating-point
 operations ([FLOPS](https://en.wikipedia.org/wiki/FLOPS)) with the highest possible performance.
 For example, all of the machines on the [Top-500](https://www.top500.org) list are HPC systems. To
@@ -62,27 +62,15 @@ Go ahead and log in to the cluster: {{ site.remote.name }} at {{ site.remote.loc
 ```
 {: .bash}
 
-Remember to replace `{{ site.remote.user }}` with the username supplied by the instructors. You will be asked
-for your password. But watch out, the characters you type are not displayed on the screen.
+Remember to replace `{{ site.remote.user }}` with the username supplied by the instructors. You may be asked
+for your password. Watch out: the characters you type after the password prompt are not displayed on
+the screen. Normal output will resume once you press `Enter`.
 
 You are logging in using a program known as the secure shell or `ssh`. This establishes a temporary
 encrypted connection between your laptop and `{{ site.remote.login }}`. The word before the `@`
-symbol, e.g. `{{ site.remote.user }}` here, is the user account name that Lola has access permissions for on
-the cluster.
+symbol, e.g. `{{ site.remote.user }}` here, is the user account name that you have permission to use on the
+cluster.
 
-> ## Where do I get this `ssh` from ?
->
-> On Linux and/or macOS, the `ssh` command line utility is almost always pre-installed. Open a
-> terminal and type `ssh --help` to check if that is the case. 
-> 
-> At the time of writing, the openssh support on Microsoft is still very [recent](
-> https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/).
-> Alternatives to this are [putty](http://www.putty.org), [bitvise
-> SSH](https://www.bitvise.com/ssh-client-download), [mRemoteNG](https://mremoteng.org/) or
-> [MobaXterm](https://mobaxterm.mobatek.net/). Download it, install it and open the GUI. The GUI
-> asks for your user name and the destination address or IP of the computer you want to connect to.
-> Once provided, you will be queried for your password just like in the example above.
-{: .callout}
 
 ## Where are we?
 
@@ -111,7 +99,7 @@ notice that the current hostname is also part of our prompt!)
 > Home directory contents vary from user to user. Please discuss any differences you spot with your
 > neighbors.
 >
-> *Hint:* The shell commands `pwd`, `ls`, and `df` may come in handy.
+> *Hint:* The shell commands `pwd` and `ls` may come in handy.
 >
 > > ## Solution
 > >
@@ -139,21 +127,6 @@ notice that the current hostname is also part of our prompt!)
 > > > If both of you have empty directories, they will look identical. If you or your neighbor has
 > > > used the system before, there may be differences. What are you working on?
 > > {: .discussion}
-> >
-> > You can also explore the available filesystems using `df` to show **d**isk **f**ree space.
-> > The `-h` flag renders the sizes in a human-friendly format, i.e., GB instead of B. The **t**ype
-> > flag `-T` shows what kind of filesystem each resource is.
-> >
-> > ```
-> > {{ site.remote.prompt }} df -Th
-> > ```
-> > {: .bash}
-> >
-> > > The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're on the same login
-> > > node (or compute node, later on). Networked filesystems (beegfs, cifs, gpfs, nfs, pvfs) will
-> > > be similar -- but may include yourUserName, depending on how it is [mounted](
-> > > https://en.wikipedia.org/wiki/Mount_(computing)).
-> > {: .discussion}
 > {: .solution}
 {: .discussion}
 
@@ -162,19 +135,18 @@ notice that the current hostname is also part of our prompt!)
 Individual computers that compose a cluster are typically called *nodes* (although you will also
 hear people call them *servers*, *computers* and *machines*). On a cluster, there are different
 types of nodes for different types of tasks. The node where you are right now is called the *head
-node*, *login node* or *submit node*. A login node serves as an access point to the cluster. As a
-gateway, it is well suited for uploading and downloading files, setting up software, and running
-quick tests. It should never be used for doing actual work.
+node*, *login node*, *landing pad*, or *submit node*. A login node serves as an access point to the
+cluster. As a gateway, it is well suited for uploading and downloading files, setting up software,
+and running quick tests. It should never be used for doing actual work.
 
 The real work on a cluster gets done by the *worker* (or *compute*) *nodes*. Worker nodes come in
 many shapes and sizes, but generally are dedicated to long or hard tasks that require a lot of
 computational resources.
 
 All interaction with the worker nodes is handled by a specialized piece of software called a
-scheduler (the scheduler used in this lesson is called {{ site.workshop_shed_name }}). We'll
-learn more about how to use the scheduler to submit jobs next, but for now, it can also tell us
-more information about the worker
-nodes.
+scheduler (the scheduler used in this lesson is called {{ site.workshop.sched.name }}). We'll learn
+more about how to use the scheduler to submit jobs next, but for now, it can also tell us more
+information about the worker nodes.
 
 For example, we can view all of the worker nodes with the `{{ site.sched.info }}` command.
 
@@ -190,26 +162,30 @@ infrastructure-related tasks. Although we do not typically logon to or interact 
 directly, they enable a number of key features like ensuring our user account and files are
 available throughout the HPC system.
 
-> ## Shared file systems
->
-> This is an important point to remember: files saved on one node (computer) are often available
-> everywhere on the cluster!
-{: .callout}
-
 ## What's in a node? 
 
-All of a HPC system's nodes have the same components as your own laptop or desktop: *CPUs*
+All of the nodes in an HPC system have the same components as your own laptop or desktop: *CPUs*
 (sometimes also called *processors* or *cores*), *memory* (or *RAM*), and *disk* space. CPUs are a
 computer's tool for actually running programs and calculations. Information about a current task is
-stored in the computer's memory. Disk refers to all storage that can be accessed like a file
-system. This is generally storage that can hold data permanently, i.e. data is still there even if
-the computer has been restarted.
+stored in the computer's memory. Disk refers to all storage that can be accessed like a file system.
+This is generally storage that can hold data permanently, i.e. data is still there even if the
+computer has been restarted. While this storage can be local (a hard drive installed inside of it),
+it is more common for nodes to connect to a shared, remote fileserver or cluster of servers.
 
 {% include figure.html url="" max-width="40%" file="/fig/node_anatomy.png" alt="Node anatomy" caption="" %}
 
 > ## Explore Your Computer
 >
 > Try to find out the number of CPUs and amount of memory available on your personal computer.
+>
+> Note that, if you're logged in to the remote computer cluster, you need to log out first. To
+> do so, type `Ctrl+d` or `exit`:
+>
+> ```
+> {{ site.remote.prompt }} exit
+> {{ site.local.prompt }}
+> ```
+> {: .bash}
 >
 > > ## Solution
 > >
@@ -258,6 +234,27 @@ the computer has been restarted.
 > > {{ site.remote.prompt }} less /proc/meminfo
 > > ```
 > > {: .bash}
+> >
+> > You can also explore the available filesystems using `df` to show **d**isk **f**ree space.
+> > The `-h` flag renders the sizes in a human-friendly format, i.e., GB instead of B. The **t**ype
+> > flag `-T` shows what kind of filesystem each resource is.
+> >
+> > ```
+> > {{ site.remote.prompt }} df -Th
+> > ```
+> > {: .bash}
+> >
+> > > The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're on the same login
+> > > node (or compute node, later on). Networked filesystems (beegfs, cifs, gpfs, nfs, pvfs) will
+> > > be similar -- but may include yourUserName, depending on how it is [mounted](
+> > > https://en.wikipedia.org/wiki/Mount_(computing)).
+> > {: .discussion}
+> > 
+> > > ## Shared file systems
+> > > 
+> > > This is an important point to remember: files saved on one node (computer) are often available
+> > > everywhere on the cluster!
+> > {: .callout}
 > {: .solution}
 {: .challenge}
 
@@ -271,24 +268,6 @@ the computer has been restarted.
 > What implications do you think the differences might have on running your research work on the
 > different systems and nodes?
 {: .discussion}
-
-> ## Units and Language
-> 
-> A computer's memory and disk are measured in units called *Bytes* (one Byte is 8 bits). 
-> As today's files and memory have grown to be large given historic standards, volumes are 
-> noted using the [SI](https://en.wikipedia.org/wiki/International_System_of_Units) prefixes. 
-> So 1000 Bytes is a Kilobyte (kB), 1000 Kilobytes is a Megabyte (MB), 1000 Megabytes is a 
-> Gigabyte (GB), etc. 
-> 
-> History and common language have however mixed this notation with a different meaning. When
-> people say "Kilobyte", they mean 1024 Bytes instead. In that spirit, a Megabyte is 1024
-> Kilobytes.
->
-> To address this ambiguity, the [International System of
-> Quantities](https://en.wikipedia.org/wiki/International_System_of_Quantities) standardizes the
-> *binary* prefixes (with base of 2<sup>10</sup>=1024) by the prefixes Kibi (ki), Mibi (Mi), Gibi
-> (Gi), etc. For more details, see [here](https://en.wikipedia.org/wiki/Binary_prefix)
-{: .callout}
 
 > ## Differences Between Nodes
 >
