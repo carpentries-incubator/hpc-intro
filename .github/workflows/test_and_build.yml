@@ -36,6 +36,7 @@ jobs:
         gem install bundler
         bundle config set path '.vendor/bundle'
         bundle config build.nokogiri --use-system-libraries
+        bundle install
     - name: "Check lesson for warnings"
       run: |
         make lesson-check-all
@@ -68,6 +69,7 @@ jobs:
         gem install bundler
         bundle config set path '.vendor/bundle'
         bundle config build.nokogiri --use-system-libraries
+        bundle install
     - name: Check build ${{matrix.SITE_CONFIG}}
       run: |
         make --always-make site SITE_CONFIG=_includes/snippets_library/${{matrix.SITE_CONFIG}}/_config_options.yml
