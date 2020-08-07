@@ -25,17 +25,17 @@ By the end of this workshop, students will know how to:
 >
 > Command line experience is necessary for this lesson. We recommend the participants to go through
 > [shell-novice](https://swcarpentry.github.io/shell-novice/), if new to the command line (also known as terminal or shell).
-> {: .prereq}
+{: .prereq}
 
 > ## For Instructors
 
 > If you are teaching this lesson in a workshop, please see the 
 > [Instructor notes](guide/).
-> {: .callout}
+{: .callout}
 
 > ## Note
 > 
 > - This is the draft HPC Carpentry release. Comments and feedback are welcome.
 > - Link to [hpc-shell](https://hpc-carpentry.github.io/hpc-shell/) when that is complete.
-> {: .callout}
+{: .callout}
 
