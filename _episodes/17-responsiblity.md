@@ -182,25 +182,25 @@ transfer earlier.
 > {{ site.remote.name }}?
 >
 > 1. ```
->    {{ site.local.prompt }} scp -r data yourUsername@{{ site.remote.login }}:~/
+>    {{ site.local.prompt }} scp -r data {{ site.remote.user }}@{{ site.remote.login }}:~/
 >    ```
 >    {: .bash}
 > 2. ```
->    {{ site.local.prompt }} rsync -ra data yourUsername@{{ site.remote.login }}:~/
+>    {{ site.local.prompt }} rsync -ra data {{ site.remote.user }}@{{ site.remote.login }}:~/
 >    ```
 >    {: .bash}
 > 3. ```
->    {{ site.local.prompt }} rsync -raz data yourUsername@{{ site.remote.login }}:~/
+>    {{ site.local.prompt }} rsync -raz data {{ site.remote.user }}@{{ site.remote.login }}:~/
 >    ```
 >    {: .bash}
 > 4. ```
 >    {{ site.local.prompt }} tar -cvf data.tar data
->    {{ site.local.prompt }} rsync -raz data.tar yourUsername@{{ site.remote.login }}:~/
+>    {{ site.local.prompt }} rsync -raz data.tar {{ site.remote.user }}@{{ site.remote.login }}:~/
 >    ```
 >    {: .bash}
 > 5. ```
 >    {{ site.local.prompt }} tar -cvzf data.tar.gz data
->    {{ site.local.prompt }} rsync -ra data.tar.gz yourUsername@{{ site.remote.login }}:~/
+>    {{ site.local.prompt }} rsync -ra data.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:~/
 >    ```
 >    {: .bash}
 >

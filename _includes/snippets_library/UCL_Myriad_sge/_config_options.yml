@@ -10,6 +10,7 @@ remote:
   node: node-d00a-001
   location: "University College London"
   homedir: "/home"
+  user: "yourUsername"
   prompt: "[yourUsername@login12 ~]$ "
 
 sched:

@@ -29,11 +29,11 @@ remote:
   node: "aci-377"
   location: "University of Waterloo"
   homedir: "/home"
+  user: "yourUsername"
   prompt: "[yourUsername@gra-login1 ~]$"
 
 sched:
   name: "SLURM"
-  user: "yourUsername"
   submit:
     name: "sbatch"
     options: ""

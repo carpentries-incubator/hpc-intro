@@ -29,11 +29,11 @@ remote:
   node: "r001"
   location: "National Institute of Standards and Technology"
   homedir: "/users"
+  user: "yourUsername"
   prompt: "501 ruth%"
 
 sched:
   name: "SLURM"
-  user: "yourUsername"
   submit:
     name: "sbatch"
     options: ""

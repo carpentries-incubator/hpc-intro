@@ -29,11 +29,11 @@ remote:
   node: "aci-377"
   location: "NTNU,Trondheim, Norway"
   homedir: "/home"
+  user: "$USER"
   prompt: "[yourUsername@login-1.SAGA ~]$"
 
 sched:
   name: "SLURM"
-  user: "$USER"
   submit:
     name: "sbatch"
     options: ""

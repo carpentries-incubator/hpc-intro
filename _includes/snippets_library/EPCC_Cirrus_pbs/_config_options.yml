@@ -29,6 +29,7 @@ remote:
   node: "r1i0n32"
   location: "EPCC, The University of Edinburgh"
   homedir: "/lustre/home/tc001/lola"
+  user: "yourUsername"
   prompt: "[yourUsername@cirrus-login0 ~]$"
 
 sched:
