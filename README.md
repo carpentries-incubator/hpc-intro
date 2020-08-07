@@ -36,9 +36,9 @@ writer, and then reviewed by the rest of the group once complete.
 4. Add your snippet directory name to the GitHub Actions configuration file,
    [.github/workflows/test_and_build.yml](.github/workflows/test_and_build.yml).
 
-5. To test your build, please set the environment variable `SITE_CONFIG` to the relative path of
+5. To test your build, please set the environment variable `HPC_JEKYLL_CONFIG` to the relative path of
    the configuration file in your snippets folder:
-   `export SITE_CONFIG=_includes/snippets_library/Site_Cluster_scheduler/_config_options.yml`.
+   `export HPC_JEKYLL_CONFIG=_includes/snippets_library/Site_Cluster_scheduler/_config_options.yml`.
 
 Please contribute any configurations you create for your local systems back into the 
 HPC Carpentry snippets library.

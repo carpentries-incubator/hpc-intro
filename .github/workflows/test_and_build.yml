@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        SITE_CONFIG:
+        HPC_JEKYLL_CONFIG:
           - ComputeCanada_Graham_slurm
           - EPCC_Cirrus_pbs
           - NIST_CTCMS_slurm
@@ -70,6 +70,6 @@ jobs:
         bundle config set path '.vendor/bundle'
         bundle config build.nokogiri --use-system-libraries
         bundle install
-    - name: Check build ${{matrix.SITE_CONFIG}}
+    - name: Check build ${{matrix.HPC_JEKYLL_CONFIG}}
       run: |
-        make --always-make site SITE_CONFIG=_includes/snippets_library/${{matrix.SITE_CONFIG}}/_config_options.yml
+        make --always-make site HPC_JEKYLL_CONFIG=_includes/snippets_library/${{matrix.HPC_JEKYLL_CONFIG}}/_config_options.yml
