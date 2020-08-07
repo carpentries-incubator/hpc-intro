@@ -49,9 +49,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-ath
-        )
-
-
-if __name__ == '__main__':
-    main()
