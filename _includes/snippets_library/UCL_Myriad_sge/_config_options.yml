@@ -31,8 +31,3 @@ sched:
   info: "qhost"
   comment: "#$ "
   hist: "jobhist"
-
-# Interactive queue names, one or more as a list
-workshop_interactive_queues:
-  - debug
-  - testing

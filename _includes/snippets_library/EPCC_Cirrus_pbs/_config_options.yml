@@ -38,6 +38,9 @@ sched:
     name: "qsub"
     options: "-A tc001 -q R387726"
     iopt: ""
+  queue:
+    debug: "standard"
+    testing: "standard"
   status: "qstat"
   flag:
     user: "-u yourUsername"
@@ -50,8 +53,3 @@ sched:
   info: "pbsnodes -a"
   comment: "#PBS"
   hist: "qstat -x"
-
-# Interactive queue names, one or more as a list
-workshop_interactive_queues:
-  - debug
-  - testing
