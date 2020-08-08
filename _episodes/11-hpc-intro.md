@@ -17,7 +17,7 @@ keypoints:
   Bash."
 ---
 
-Frequently, research problems that use computing can outgrow capabilities of the desktop or laptop computer where
+Frequently, research problems that use computing can outgrow the capabilities of the desktop or laptop computer where
 they started:
 
 * A statistics student wants to cross-validate a model. This involves running the model 1000
