@@ -68,7 +68,7 @@ the screen. Normal output will resume once you press `Enter`.
 
 You are logging in using a program known as the secure shell or `ssh`. This establishes a temporary
 encrypted connection between your laptop and `{{ site.remote.login }}`. The word before the `@`
-symbol, e.g. `{{ site.remote.user }}` here, is the user account name that you have permission to use on the
+symbol, e.g., `{{ site.remote.user }}` here, is the user account name that you have permission to use on the
 cluster.
 
 
@@ -146,7 +146,7 @@ and running quick tests. It should never be used for doing actual work.
 > data transfers should not obstruct operation of the login node for anybody else. Check with your
 > cluster's documentation or its support team, if such a transfer node is available. As a rule of
 > thumb, consider all transfers of a volume larger than 500MB to 1GB as large. But these numbers
-> change, e.g. depending on the network connection of yourself and of your cluster or other factors.
+> change, e.g., depending on the network connection of yourself and of your cluster or other factors.
 {: .callout}
 
 The real work on a cluster gets done by the *worker* (or *compute*) *nodes*. Worker nodes come in
