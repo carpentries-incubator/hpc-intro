@@ -18,11 +18,12 @@ when starting a job. To submit a job that uses 2 CPUs for instance, we could use
 command:
 
 ```
-{{ site.remote.prompt }} {{ site.sched.interactive }} -c 2 echo "This job will use 2 CPUs."
+{{ site.remote.prompt }} {{ site.sched.interactive }} -n 2 echo "This job will use 2 CPUs."
 ```
 {: .bash}
 
 ```
+This job will use 2 CPUs.
 This job will use 2 CPUs.
 ```
 {: .output}
