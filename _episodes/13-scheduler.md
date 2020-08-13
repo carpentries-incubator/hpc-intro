@@ -57,8 +57,9 @@ run as a test. The landing pad will have a number of terminal-based text editors
 whichever you prefer. Unsure? `nano` is a pretty good, basic choice.
 
 ```
-{{ site.remote.prompt }} cat example-job.sh
+{{ site.remote.prompt }} nano example-job.sh
 {{ site.remote.prompt }} chmod +x example-job.sh
+{{ site.remote.prompt }} cat example-job.sh
 ```
 {: .bash}
 
