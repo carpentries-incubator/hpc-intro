@@ -166,6 +166,24 @@ Let's examine the output of `module avail` more closely.
 >
 > > ## Solution
 > >
+> > ```
+> > {{ site.remote.prompt }} nano python-module.sh
+> > {{ site.remote.prompt }} cat python-module.sh
+> > ```
+> > {: .bash}
 > >
+> > ```
+> > #!/bin/bash
+> > 
+> > module load python3
+> > 
+> > python3 --version
+> > ```
+> > {: .output}
+> > 
+> > ```
+> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} python-module.sh
+> > ```
+> > {: .bash}
 > {: .solution}
 {: .challenge}
