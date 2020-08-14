@@ -13,8 +13,8 @@ keypoints:
 - "You can edit your `.bashrc` file to automatically load a software package."
 ---
 
-On a high-performance computing system, it is often the case that no software is loaded by default.
-If we want to use a software package, we will need to "load" it ourselves.
+On a high-performance computing system, it is seldom the case that the software we want to use is
+available when we log in. It is installed, but we will need to "load" it before it can run.
 
 Before we start using individual software packages, however, we should understand the reasoning
 behind this approach. The three biggest factors are:
