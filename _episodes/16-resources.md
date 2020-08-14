@@ -18,19 +18,27 @@ What we need to do now is use the systems effectively.
 
 ## Estimating required resources using the scheduler
 
-Although we covered requesting resources from the scheduler earlier, how do we know how much and
-what type of resources we will need in the first place?
+Although we covered requesting resources from the scheduler earlier, how do we know what type of
+resources the software will need in the first place, and the extent of its demand for each?
 
-Answer: we don't. Not until we've tried it ourselves at least once. We'll need to benchmark our job
-and experiment with it before we know how much it needs in the way of resources.
+Unless the developers or prior users have provided some idea, we don't. Not until we've tried it
+ourselves at least once. We'll need to benchmark our job and experiment with it before we know how
+how great its demand for system resources.
 
-The most effective way of figuring out how much resources a job needs is to submit a test job, and
-then ask the scheduler how many resources it used.
+> ## Read the docs
+>
+> Most HPC facilities maintain documentation as a wiki, website, or a document sent along when
+> you register for an account. Take a look at these resources, and search for the software of
+> interest: somebody might have written up guidance for getting the most out of it.
+{: .discussion}
+
+The most effective way of figuring out the resources required for a job to run successfully needs is
+to submit a test job, and then ask the scheduler about its impact.
 
 A good rule of thumb is to ask the scheduler for more time and memory than you expect your job to
 need. This ensures that minor fluctuations in run time or memory use will not result in your job
 being cancelled by the scheduler. Recommendations for how much extra to ask for vary but 10% is 
-probably the minimum, with 20-30% being more typical. Keep in mind that if you ask for too much,
+probably the minimum, with 20% to 30% being more typical. Keep in mind that if you ask for too much,
 your job may not run even though enough resources are available, because the scheduler will be
 waiting to match what you asked for.
 
