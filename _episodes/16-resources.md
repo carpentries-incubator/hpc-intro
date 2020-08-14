@@ -33,14 +33,14 @@ how great its demand for system resources.
 {: .discussion}
 
 The most effective way of figuring out the resources required for a job to run successfully needs is
-to submit a test job, and then ask the scheduler about its impact.
+to submit a test job, and then ask the scheduler about its impact using `{{ site.sched.hist }}`.
 
-A good rule of thumb is to ask the scheduler for more time and memory than you expect your job to
-need. This ensures that minor fluctuations in run time or memory use will not result in your job
-being cancelled by the scheduler. Recommendations for how much extra to ask for vary but 10% is 
-probably the minimum, with 20% to 30% being more typical. Keep in mind that if you ask for too much,
-your job may not run even though enough resources are available, because the scheduler will be
-waiting to match what you asked for.
+You can use this knowledge to set up the next job with a close estimate of its load on the system. A
+good general rule is to ask the scheduler for 20% to 30% more time and memory than you expect the
+job to need. This ensures that minor fluctuations in run time or memory use will not result in your
+job being cancelled by the scheduler. Keep in mind that if you ask for too much, your job may not
+run even though enough resources are available, because the scheduler will be waiting to match what
+you asked for.
 
 > ## Benchmarking `fastqc`
 >
