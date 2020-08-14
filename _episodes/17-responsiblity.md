@@ -107,16 +107,14 @@ avoid this issue.
 
 ## Have a backup plan
 
-Although many HPC systems keep backups, it does not always cover all the file systems available
-and may only be for disaster recovery purposes (*i.e.* for restoring the whole file system if lost
-rather than an individual file or directory you have deleted by mistake). Your data on the
-system is primarily your responsibility and you should ensure you have secure copies of data
-that are critical to your work.
+Although many HPC systems keep backups, it does not always cover all the file systems available and
+may only be for disaster recovery purposes (*i.e.* for restoring the whole file system if lost
+rather than an individual file or directory you have deleted by mistake). Protecting critical data
+from corruption or deletion is primarily your responsibility: keep your own backup copies.
 
-Version control systems (such as Git) often have free, cloud-based offerings (e.g. Github, Gitlab)
-that are generally used for storing source code. Even if you are not writing your own 
-programs, these can be very useful for storing job scripts, analysis scripts and small
-input files. 
+Version control systems (such as Git) often have free, cloud-based offerings (e.g., GitHub and
+GitLab) that are generally used for storing source code. Even if you are not writing your own
+programs, these can be very useful for storing job scripts, analysis scripts and small input files.
 
 For larger amounts of data, you should make sure you have a robust system in place for taking
 copies of critical data off the HPC system wherever possible to backed-up storage. Tools such
