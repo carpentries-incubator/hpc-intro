@@ -198,25 +198,6 @@ Overview of the most important fields:
 dashboard in your terminal. Unfortunately, it is not always available. If this is the case,
 *politely* ask your system administrators to install it for you.
 
-### Check memory load with `free`
-
-Another useful tool is the `free -h` command. This will show the currently used/free amount of
-memory.
-
-```
-{{ site.remote.prompt }} free -h
-```
-{: .bash}
-
-{% include {{ site.snippets }}/16/system-memory-free.snip %}
-
-The key fields here are total, used, and available - which represent the amount of memory that the
-machine has in total, how much is currently being used, and how much is still available. When a
-computer runs out of memory it will attempt to use "swap" space on your hard drive instead. Swap
-space is very slow to access - a computer may appear to "freeze" if it runs out of memory and 
-begins using swap. However, compute nodes on HPC systems usually have swap space disabled so when
-they run out of memory you usually get an "Out Of Memory (OOM)" error instead.
-
 ### `ps `
 
 To show all processes from your current session, type `ps`.
@@ -251,24 +232,3 @@ Note that this will only show processes from our current session. To show all pr
 
 
 This is useful for identifying which processes are doing what.
-
-## Killing processes
-
-To kill all of a certain type of process, you can run `killall commandName`. For example,
-
-```
-{{ site.remote.prompt }} killall rsession
-```
-{: .bash}
-
-would kill all `rsession` processes created by RStudio. Note that you can only kill
-your own processes.
-
-You can also kill processes by their PIDs. For example, your `ssh` connection to the server is
-listed above with PID 73083. If you wish to close that connection forcibly, you could `kill 73083`.
-
-Sometimes, killing a process does not work instantly. To kill the process in the most aggressive
-manner possible, use the `-9` flag, i.e., `kill -9 73083`. It's recommended to kill using without
-`-9` first: this sends the process a "terminate" signal (`SIGTERM`), giving it the chance to clean
-up child processes and exit cleanly. However, if a process just isn't responding, use `-9` to
-terminate it instantly (`SIGKILL`).
