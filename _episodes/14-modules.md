@@ -60,6 +60,17 @@ access the full help on the *man* pages with `man module`.
 On login you may start out with a default set of modules loaded or you may start out
 with an empty environment; this depends on the setup of the system you are using.
 
+### Listing available modules
+
+To see available software modules, use `module avail`
+
+```
+{{ site.remote.prompt }} module avail
+```
+{: .bash}
+
+{% include {{ site.snippets }}/14/available-modules.snip %}
+
 ### Listing currently loaded modules
 
 You can use the `module list` command to see which modules you currently have loaded
@@ -75,17 +86,6 @@ so
 No Modulefiles Currently Loaded.
 ```
 {: .output}
-
-### Listing available modules
-
-To see available software modules, use `module avail`
-
-```
-{{ site.remote.prompt }} module avail
-```
-{: .bash}
-
-{% include {{ site.snippets }}/14/available-modules.snip %}
 
 ## Loading and unloading software
 
