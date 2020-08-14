@@ -25,32 +25,39 @@ one time varies from system to system but it is unlikely you will ever be the on
 or using such a system.
 
 The widespread usage of scheduling systems where users submit jobs on HPC resources is a natural
-outcome of the shared nature of these resources. There are other things you, as an upstanding member of the community, need to consider.
+outcome of the shared nature of these resources. There are other things you, as an upstanding member
+of the community, need to consider.
 
 ## Be kind to the login nodes
 
-The login node is often very busy managing lots of users logged in, creating and editing files and
-compiling software! It doesn’t have any extra space to run computational work.
+The login node is often busy managing all of the logged in users, creating and editing files and
+compiling software. If the machine runs out of memory or processing capacity, it will become very
+slow and unusable for everyone. While the machine is meant to be used, be sure to do so responsibly
+&endash; in ways that will not adversely impact other users' experience.
 
-Don’t run jobs on the login node (though quick tests are generally fine). A “quick test” is
-generally anything that uses less than 5 minutes of time. If you use too much resource then other
-users on the login node will start to be affected - their login sessions will start to run slowly
-and may even freeze or hang.
+The login node is the right place to test out a workflow, e.g., making sure your script runs in the
+way you expect. It's also a good place to run code in a debugging environment, such as `gdb`,
+`valgrind`, or `pdb`, provided those tasks have reasonably light demands on resources.
 
 > ## Login nodes are a shared resource
 >
-> Remember, the login node is shared with all other users and your actions could cause
-> issues for other people. Think carefully about the potential implications of issuing
-> commands that may use large amounts of resource.
+> Remember, the login node is shared with all other users and your actions could cause issues for
+> other people. Think carefully about the potential implications of issuing commands that may use
+> large amounts of resource.
+>
+> Unsure? Ask your friendly systems administrator ("sysadmin") if the thing you're contemplating is
+> suitable for the login node, or if there's another mechanism to get it done safely.
 {: .callout}
 
-You can always use the commands `top` and `ps ux` to list the processes you are running on a login
-node and the amount of CPU and memory they are using. The `kill` command can be used along
-with the *PID* to terminate any processes that are using large amounts of resource.
+You can always use the commands `top` and `ps ux` to list the processes that are running on the
+login node along with the amount of CPU and memory they are using. If this check reveals that the
+login node is somewhat idle, you can safely use it for your non-routine processing task. If
+something goes wrong -- the process takes too long, or doesn't respond -- you can use the `kill`
+command along with the *PID* to terminate the process.
 
 > ## Login Node Etiquette
 > 
-> Which of these commands would probably be okay to run on the login node?
+> Which of these commands would be a routine task to run on the login node?
 >
 > 1. `python physics_sim.py`
 > 2. `make`
@@ -62,17 +69,17 @@ with the *PID* to terminate any processes that are using large amounts of resour
 > >
 > > Building software, creating directories, and unpacking software are common and acceptable
 > > tasks for the login node: options #2 (`make`), #3 (`mkdir`), and #5 (`tar`) are probably OK.
-> > Note that script names do not always reflect their contents: before launching #3, please
+> > Note that script names do not always reflect their contents: before launching #3, please 
 > > `less create_directories.sh` and make sure it's not a Trojan horse.
 > > 
-> > Running resource-intensive applications is frowned upon. Unless you have cleared it with
-> > the system administrators, do not run #1 (`python`) or #4 (custom MD code).
+> > Running resource-intensive applications is frowned upon. Unless you are sure it will not affect
+> > other users, do not run jobs like #1 (`python`) or #4 (custom MD code). If you're unsure, ask
+> > your friendly sysadmin for advice.
 > {: .solution}
 {: .challenge}
 
 If you experience performance issues with a login node you should report it to the system
-staff (usually via the helpdesk) for them to investigate. You can use the `top` command
-to see which users are using which resources.
+staff (usually via the helpdesk) for them to investigate.
 
 ## Test before scaling
 
