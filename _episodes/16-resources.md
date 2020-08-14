@@ -51,12 +51,22 @@ you asked for.
 > ```
 > {: .bash}
 > 
-> The `fastqc` command is provided by the `fastqc` module. You'll need to figure out a good amount
-> of resources to allocate for this first "test run". You might also want to have the scheduler 
-> email you to tell you when the job is done.
+> You'll need to figure out a good amount of resources to allocate for this first "test run". You
+> might also want to have the scheduler email you to tell you when the job is done.
 >
 > *Hint:* The job only needs 1 CPU and not too much memory or time. The trick is figuring out just 
 > how much you'll need!
+>
+> > ## Is `fastqc` available?
+> > 
+> > You might need to load the *fastqc* module before `fastqc` will be available. Unsure?
+> > Run
+> > 
+> > ```
+> > {{ site.remote.prompt }} which fastqc
+> > ```
+> > {: .bash}
+> {: .discuss}
 >
 > > ## Solution
 > >
