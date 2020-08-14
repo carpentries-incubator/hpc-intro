@@ -17,17 +17,15 @@ keypoints:
 - "Plan and test large data transfers."
 - "It is often best to convert many files to a single archive file before transferring."
 - "Again, don't run stuff on the login node."
-- "Don't be a bad person and run stuff on the login node."
 ---
 
 One of the major differences between using remote HPC resources and your own system (e.g. your
-laptop) is that they are a shared resource. How many users the resource is shared between at any
+laptop) is that remote resources are shared. How many users the resource is shared between at any
 one time varies from system to system but it is unlikely you will ever be the only user logged into
 or using such a system.
 
-We have already mentioned one of the consequences of this shared nature of the resources: the
-scheduling system where you submit your jobs, but there are other things you need to consider in
-order to be a considerate HPC citizen, to protect your critical data and to transfer data
+The widespread usage of scheduling systems where users submit jobs on HPC resources is a natural
+outcome of the shared nature of these resources. There are other things you, as an upstanding member of the community, need to consider.
 
 ## Be kind to the login nodes
 
