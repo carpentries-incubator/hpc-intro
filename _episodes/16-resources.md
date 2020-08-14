@@ -173,7 +173,7 @@ not necessary to `ssh` to a node for this example).
 ### Monitor system processes with `top`
 
 The most reliable way to check current system stats is with `top`. Some sample output might look
-like the following (`Ctrl + c` to exit):
+like the following (type `q` to exit `top`):
 
 ```
 {{ site.remote.prompt }} top
