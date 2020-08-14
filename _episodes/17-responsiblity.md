@@ -169,7 +169,7 @@ transferred and where the data is going. Some of the key issues to be aware of a
 As mentioned above, if you have related data that consists of a large number of small files it
 is strongly recommended to pack the files into a larger *archive* file for long term storage and
 transfer. A single large file makes more efficient use of the file system and is easier to move,
-copy and transfer because significantly fewer meta-data operations are required. Archive files can
+copy and transfer because significantly fewer metadata operations are required. Archive files can
 be created using tools like `tar` and `zip`. We have already met `tar` when we talked about data
 transfer earlier. 
 
@@ -214,7 +214,7 @@ transfer earlier.
 > > 3. `rsync -raz` adds compression, which will save some bandwidth. If you have a strong CPU at
 > >    both ends of the line, and you're on a slow network, this is a good choice.
 > > 4. This command first uses `tar` to merge everything into a single file, then `rsync -z` to 
-> >    transfer it with compression. With this large *number* of files, latency per-file can hamper
+> >    transfer it with compression. With this large *number* of files, metadata overhead can hamper
 > >    your transfer, so this is a good idea.
 > > 5. This command uses `tar -z` to compress the archive, then `rsync` to transfer it. This may 
 > >    perform similarly to #4, but in most cases (for large datasets), it's the best combination
