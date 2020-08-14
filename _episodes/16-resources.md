@@ -66,7 +66,7 @@ you asked for.
 > > {{ site.remote.prompt }} which fastqc
 > > ```
 > > {: .bash}
-> {: .discuss}
+> {: .discussion}
 >
 > > ## Solution
 > >
