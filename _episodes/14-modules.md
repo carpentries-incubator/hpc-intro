@@ -211,7 +211,7 @@ for parallelism -- this is a common tool on HPC systems.
 > typically has its own copy of all the local variables.
 {: .callout}
 
-MPI jobs cannot generally be run as stand-alone exectuables.
+MPI jobs cannot generally be run as stand-alone executables.
 Instead, they should be started with the `mpirun` command, which
 ensures that the appropriate run-time support for parallelism
 is included. 
@@ -231,7 +231,7 @@ these points fall inside the unit circle. On average, pi/4 of the
 randomly-selected points should fall in the circle, so pi can
 be estimated from 4*f, where f is the observed fraction of points
 that fall in the circle. Because each sample is independent, this
-algorithm is easly implemented in parallel.
+algorithm is easily implemented in parallel.
 
 We have provided a Python implementation, which uses MPI and Numpy.
 
