@@ -30,7 +30,7 @@ writer, and then reviewed by the rest of the group once complete.
       https://shopify.github.io/liquid/) scripting  `include` statements. For example, the first
       snippet in episode 12 is included using `{% include /snippets/12/info.snip %}`.
 
-3. Edit `_config_settings.yml` in your snippets folder. These options set such things as the address
+3. Edit `_config_options.yml` in your snippets folder. These options set such things as the address
    of the host to login to, definitions of the command prompt, and scheduler names.
 
 4. Add your snippet directory name to the GitHub Actions configuration file,
