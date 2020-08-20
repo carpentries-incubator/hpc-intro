@@ -49,8 +49,6 @@ sched:
     histdetail: "-f"
     time: "-l"
     queue: "-q"
-    nodes: "-l nodes="
-    tasks: "-l ppn="
   del: "qdel"
   interactive: "qsub"
   info: "pbsnodes -a"

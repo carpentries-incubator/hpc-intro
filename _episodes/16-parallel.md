@@ -81,8 +81,7 @@ Create a submission file, requesting more than one task on a single node:
 #!/bin/bash
 {{ site.sched.comment }} {{ site.sched.flag.name }} parallel-example
 {{ site.sched.comment }} {{ site.sched.flag.queue }} {{ site.sched.queue.testing }}
-{{ site.sched.comment }} {{ site.sched.flag.nodes }} 1
-{{ site.sched.comment }} {{ site.sched.flag.tasks }} 4
+{% include {{ site.snippets }}/pll/four-tasks.snip %}
 module load python3
 mpirun ./pi.py
 ```
