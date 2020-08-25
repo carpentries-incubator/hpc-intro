@@ -57,8 +57,9 @@ run as a test. The landing pad will have a number of terminal-based text editors
 whichever you prefer. Unsure? `nano` is a pretty good, basic choice.
 
 ```
-{{ site.remote.prompt }} cat example-job.sh
+{{ site.remote.prompt }} nano example-job.sh
 {{ site.remote.prompt }} chmod +x example-job.sh
+{{ site.remote.prompt }} cat example-job.sh
 ```
 {: .bash}
 
@@ -190,6 +191,18 @@ Fantastic, we've successfully changed the name of our job!
 > manual page for `{{ site.sched.submit.name }}`, can you set up our test job to send you an email
 > when it finishes?
 >
+> > ## Hint
+> >
+> > You can use the *manual pages* for {{ site.sched.name }} utilities to find more about their
+> > capabilities. On the command line, these are accessed through the `man` utility: run 
+> > `man <program-name>`. You can find the same information online by searching 
+> > "man <program-name>".
+> >
+> > ```
+> > {{ site.remote.prompt }} man {{ site.sched.submit.name }}
+> > ```
+> > : .bash}
+> {: .solution}
 {: .challenge}
 
 ### Resource requests
