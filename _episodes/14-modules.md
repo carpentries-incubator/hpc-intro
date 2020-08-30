@@ -187,3 +187,4 @@ Let's examine the output of `module avail` more closely.
 > > {: .bash}
 > {: .solution}
 {: .challenge}
+

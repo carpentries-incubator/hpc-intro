@@ -48,6 +48,7 @@ sched:
     name: "-N"
     histdetail: "-f"
     time: "-l"
+    queue: "-q"
   del: "qdel"
   interactive: "qsub"
   info: "pbsnodes -a"

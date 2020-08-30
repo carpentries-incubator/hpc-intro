@@ -47,6 +47,7 @@ sched:
     histdetail: "-l -j"
     name: "-J"
     time: "-t"
+    queue: "-p"
   del: "scancel"
   interactive: "srun"
   info: "sinfo"

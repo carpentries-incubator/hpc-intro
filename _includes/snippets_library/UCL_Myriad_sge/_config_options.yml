@@ -26,6 +26,7 @@ sched:
     name: "-N"
     histdetail: "-j"
     time: "-l h_rt="
+    queue: "-q"
   del: "qdel"
   interactive: "qrsh"
   info: "qhost"
