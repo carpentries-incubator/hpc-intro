@@ -117,7 +117,7 @@ get statistics about our job.
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/16/account-history.snip %}
+{% include {{ site.snippets }}/resources/account-history.snip %}
 
 This shows all the jobs we ran recently (note that there are multiple entries per job). To get
 info about a specific job, we change command slightly.
@@ -180,7 +180,7 @@ like the following (type `q` to exit `top`):
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/16/monitor-processes-top.snip %}
+{% include {{ site.snippets }}/resources/monitor-processes-top.snip %}
 
 Overview of the most important fields:
 
