@@ -90,8 +90,7 @@ can be found via the applications menu or the search bar.
 
 ### Special cases
 
-If none of the options above address your circumstances, try an online search for: `Unix shell [your
-computer model] [your operating system]`.
+If none of the options above address your circumstances, try an online search for: `Unix shell [your operating system]`.
 
 ## SSH for Secure Connections
 
