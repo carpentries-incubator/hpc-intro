@@ -10,8 +10,8 @@ at least downloaded) beforehand.
 
 > ## Bash and SSH
 >
-> This lesson requires a terminal application (`bash`) with the ability to securely connect to a
-> remote machine (`ssh`).
+> This lesson requires a terminal application (`bash`, `zsh`, or others) with the
+> ability to securely connect to a remote machine (`ssh`).
 {: .prereq}
 
 ## Where to type commands: How to open a new shell
@@ -35,7 +35,7 @@ Once installed, you can open a terminal by running the program Git Bash from the
 
 #### Reference
 
-* [Git for Windows](https://git-for-windows.github.io/) &ndash; *Recommended*
+* [Git for Windows](https://gitforwindows.org/) &ndash; *Recommended*
 * [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
   &ndash; advanced option for Windows 10
 
@@ -67,9 +67,7 @@ https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remotin
 
 ### macOS
 
-For a Mac computer running macOS Mojave or earlier releases, the default Unix Shell is Bash. For a
-Mac computer running macOS Catalina or later releases, the default Unix Shell is Zsh. Your default
-shell is available via the Terminal program within your Utilities folder.
+On macOS, the default Unix Shell is accessible by running the Terminal program from the `/Application/Utilities` folder in Finder.
 
 To open Terminal, try one or both of the following:
 
@@ -78,10 +76,6 @@ To open Terminal, try one or both of the following:
 * Use the Mac ‘Spotlight’ computer search function. Search for: `Terminal` and press
   <kbd>Return</kbd>.
 
-To check if your machine is set up to use something other than Bash, type `echo $SHELL` in your
-terminal window. If your machine is set up to use something other than Bash, you can run it by
-typing `bash`.
-
 #### Reference 
 
 [How to Use Terminal on a
@@ -89,16 +83,14 @@ Mac](http://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608
 
 ### Linux
 
-The default Unix Shell for Linux operating systems is usually Bash. On most versions of Linux, it
+On most versions of Linux, the default Unix Shell
 is accessible by running the [(Gnome) Terminal](https://help.gnome.org/users/gnome-terminal/stable/)
 or [(KDE) Konsole](https://konsole.kde.org/) or [xterm](https://en.wikipedia.org/wiki/Xterm), which
-can be found via the applications menu or the search bar. If your machine is set up to use something
-other than Bash, you can run it by opening a terminal and typing `bash`.
+can be found via the applications menu or the search bar.
 
 ### Special cases
 
-If none of the options above address your circumstances, try an online search for: `Unix shell [your
-computer model] [your operating system]`.
+If none of the options above address your circumstances, try an online search for: `Unix shell [your operating system]`.
 
 ## SSH for Secure Connections
 
