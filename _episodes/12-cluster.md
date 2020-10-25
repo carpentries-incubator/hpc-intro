@@ -144,7 +144,7 @@ and running quick tests. It should never be used for doing actual work.
 > If you want to transfer larger amounts of data to or from the cluster, some systems offer
 > dedicated nodes for data transfers only. The motivation for this lies in the fact that larger
 > data transfers should not obstruct operation of the login node for anybody else. Check with your
-> cluster's documentation or its support team, if such a transfer node is available. As a rule of
+> cluster's documentation or its support team if such a transfer node is available. As a rule of
 > thumb, consider all transfers of a volume larger than 500MB to 1GB as large. But these numbers
 > change, e.g., depending on the network connection of yourself and of your cluster or other factors.
 {: .callout}
