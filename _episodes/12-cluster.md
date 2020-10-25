@@ -165,7 +165,7 @@ For example, we can view all of the worker nodes with the `{{ site.sched.info }}
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/12/queue-info.snip %}
+{% include {{ site.snippets }}/cluster/queue-info.snip %}
 
 There are also specialized machines used for managing disk storage, user authentication, and other
 infrastructure-related tasks. Although we do not typically logon to or interact with these machines
@@ -268,7 +268,7 @@ it is more common for nodes to connect to a shared, remote fileserver or cluster
 > {: .solution}
 {: .challenge}
 
-{% include {{ site.snippets }}/12/specific-node-info.snip %}
+{% include {{ site.snippets }}/cluster/specific-node-info.snip %}
 
 > ## Compare Your Computer, the Head Node and the Worker Node
 >

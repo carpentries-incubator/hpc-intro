@@ -1,5 +1,5 @@
 ---
-title: "Why Use a Cluster?"
+title: "Why use a Cluster?"
 teaching: 15
 exercises: 5
 questions:
@@ -11,27 +11,25 @@ objectives:
 keypoints:
 - "High Performance Computing (HPC) typically involves connecting to very large computing systems
   elsewhere in the world."
-- "These other systems can be used to do work that would either be impossible or much slower or
+- "These other systems can be used to do work that would either be impossible or much slower on
   smaller systems."
 - "The standard method of interacting with such systems is via a command line interface called
   Bash."
 ---
 
-Frequently, research problems that use computing can outgrow the desktop or laptop computer where
+Frequently, research problems that use computing can outgrow the capabilities of the desktop or laptop computer where
 they started:
 
-* A statistics student wants to cross-validate their model. This involves running the model 1000
-  times -- but each run takes an hour. Running on their laptop will take over a month!
+* A statistics student wants to cross-validate a model. This involves running the model 1000
+  times -- but each run takes an hour. Running the model on a laptop will take over a month!
 
 * A genomics researcher has been using small datasets of sequence data, but soon will be receiving
   a new type of sequencing data that is 10 times as large. It's already challenging to open the
-  datasets on their computer -- analyzing these larger datasets will probably crash it.
+  datasets on a computer -- analyzing these larger datasets will probably crash it.
 
-* An engineer is using a fluid dynamics package that has an option to run in parallel. So far, they
-  haven't used this option on their desktop, but in going from 2D to 3D simulations, simulation 
-  time has more than tripled and it might be useful to take advantage of that feature.
+* An engineer is using a fluid dynamics package that has an option to run in parallel. So far, this option was not utilized on a desktop. In going from 2D to 3D simulations, the simulation time has more than tripled. It might be useful to take advantage of that option or feature.
 
-In all these cases, what is needed is access to more computers than can be used at the same time.
+In all these cases, access to more computers is needed. Those computers should be usable at the same time.
 
 > ## And what do you do?
 > 
@@ -57,7 +55,7 @@ Let's dissect what resources programs running on a laptop require:
 
 Schematically, this can be reduced to the following:
 
-{% include figure.html max-width="30%" file="/fig/Simple_Von_Neumann_Architecture.svg" 
+{% include figure.html url="" max-width="30%" file="/fig/Simple_Von_Neumann_Architecture.svg" 
 alt="Schematic of how a computer works" caption="" %}
 
 
@@ -125,8 +123,8 @@ users asked to
 > >   a map into the right form is relatively simple, but calculating all the possible routes 
 > >   between A and B is expensive. 
 > >
-> > Checking email is serial: your machine connects to one server and exchanges data. Searching
-> > by querying the database for your search term (or endpoints) is also serial, in that one machine
+> > Checking email could be serial: your machine connects to one server and exchanges data. Searching
+> > by querying the database for your search term (or endpoints) could also be serial, in that one machine
 > > receives your query and returns the result. However, assembling and storing the full database
 > > is far beyond the capability of any one machine. Therefore, these functions are served in
 > > parallel by a large, ["hyperscale"](https://en.wikipedia.org/wiki/Hyperscale_computing)

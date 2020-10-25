@@ -13,8 +13,8 @@ keypoints:
 - "You can edit your `.bashrc` file to automatically load a software package."
 ---
 
-On a high-performance computing system, it is often the case that no software is loaded by default.
-If we want to use a software package, we will need to "load" it ourselves.
+On a high-performance computing system, it is seldom the case that the software we want to use is
+available when we log in. It is installed, but we will need to "load" it before it can run.
 
 Before we start using individual software packages, however, we should understand the reasoning
 behind this approach. The three biggest factors are:
@@ -60,6 +60,17 @@ access the full help on the *man* pages with `man module`.
 On login you may start out with a default set of modules loaded or you may start out
 with an empty environment; this depends on the setup of the system you are using.
 
+### Listing available modules
+
+To see available software modules, use `module avail`
+
+```
+{{ site.remote.prompt }} module avail
+```
+{: .bash}
+
+{% include {{ site.snippets }}/modules/available-modules.snip %}
+
 ### Listing currently loaded modules
 
 You can use the `module list` command to see which modules you currently have loaded
@@ -76,17 +87,6 @@ No Modulefiles Currently Loaded.
 ```
 {: .output}
 
-### Listing available modules
-
-To see available software modules, use `module avail`
-
-```
-{{ site.remote.prompt }} module avail
-```
-{: .bash}
-
-{% include {{ site.snippets }}/14/available-modules.snip %}
-
 ## Loading and unloading software
 
 To load a software module, use `module load`.
@@ -102,13 +102,13 @@ so we can use it to tell us where a particular piece of software is stored.
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/14/missing-python.snip %}
+{% include {{ site.snippets }}/modules/missing-python.snip %}
 
 We can load the `python3` command with `module load`:
 
-{% include {{ site.snippets }}/14/module-load-python.snip %}
+{% include {{ site.snippets }}/modules/module-load-python.snip %}
 
-{% include {{ site.snippets }}/14/python-executable-dir.snip %}
+{% include {{ site.snippets }}/modules/python-executable-dir.snip %}
 
 So, what just happened?
 
@@ -123,21 +123,21 @@ variables we can print it out using `echo`.
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/14/python-module-path.snip %}
+{% include {{ site.snippets }}/modules/python-module-path.snip %}
 
 You'll notice a similarity to the output of the `which` command. In this case, there's only one
 difference: the different directory at the beginning. When we ran the `module load` command,
 it added a directory to the beginning of our `$PATH`. Let's examine what's there:
 
-{% include {{ site.snippets }}/14/python-ls-dir-command.snip %}
+{% include {{ site.snippets }}/modules/python-ls-dir-command.snip %}
 
-{% include {{ site.snippets }}/14/python-ls-dir-output.snip %}
+{% include {{ site.snippets }}/modules/python-ls-dir-output.snip %}
 
 Taking this to its conclusion, `module load` will add software to your `$PATH`. It "loads"
 software. A special note on this - depending on which version of the `module` program that is
 installed at your site, `module load` will also load required software dependencies.
 
-{% include {{ site.snippets }}/14/software-dependencies.snip %}
+{% include {{ site.snippets }}/modules/software-dependencies.snip %}
 
 ## Software versioning
 
@@ -154,9 +154,9 @@ Let's examine the output of `module avail` more closely.
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/14/available-modules.snip %}
+{% include {{ site.snippets }}/modules/available-modules.snip %}
 
-{% include {{ site.snippets }}/14/wrong-gcc-version.snip %}
+{% include {{ site.snippets }}/modules/wrong-gcc-version.snip %}
 
 > ## Using software modules in scripts
 >
@@ -166,89 +166,25 @@ Let's examine the output of `module avail` more closely.
 >
 > > ## Solution
 > >
+> > ```
+> > {{ site.remote.prompt }} nano python-module.sh
+> > {{ site.remote.prompt }} cat python-module.sh
+> > ```
+> > {: .bash}
 > >
+> > ```
+> > #!/bin/bash
+> > 
+> > module load python3
+> > 
+> > python3 --version
+> > ```
+> > {: .output}
+> > 
+> > ```
+> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} python-module.sh
+> > ```
+> > {: .bash}
 > {: .solution}
 {: .challenge}
 
-## Installing software of our own
-
-Most HPC clusters have a pretty large set of preinstalled software. Nonetheless, it's unlikely that
-all of the software we'll need will be available. Sooner or later, we'll need to install some
-software of our own.
-
-Though software installation differs from package to package, the general process is the same:
-download the software, read the installation instructions (important!), install dependencies,
-compile, then start using our software.
-
-As an example we will install the bioinformatics toolkit `seqtk`. We'll first need to obtain the
-source code from GitHub using `git`.
-
-```
-{{ site.remote.prompt }} git clone https://github.com/lh3/seqtk.git
-```
-{: .bash}
-
-```
-Cloning into 'seqtk'...
-remote: Enumerating objects: 14, done.
-remote: Counting objects: 100% (14/14), done.
-remote: Compressing objects: 100% (10/10), done.
-remote: Total 353 (delta 7), reused 11 (delta 4), pack-reused 339
-Receiving objects: 100% (353/353), 169.79 KiB | 5.48 MiB/s, done.
-Resolving deltas: 100% (202/202), done.
-```
-{: .output}
-
-Now, using the instructions in the `README.md` file, all we need to do to complete the install is
-to `cd` into the `seqtk` folder and run the command `make`.
-
-```
-{{ site.remote.prompt }} cd seqtk
-{{ site.remote.prompt }} less README.md
-{{ site.remote.prompt }} make
-```
-{: .bash}
-
-```
-gcc -g -Wall -O2 -Wno-unused-function seqtk.c -o seqtk -lz -lm
-seqtk.c: In function ‘stk_comp’:
-seqtk.c:400:16: warning: variable ‘lc’ set but not used [-Wunused-but-set-variable]
-    int la, lb, lc, na, nb, nc, cnt[11];
-                ^
-```
-{: .output}
-
-It's done! Now all we need to do to use the program is invoke it like any other program.
-
-```
-{{ site.remote.prompt }} ./seqtk
-```
-{: .bash}
-
-```
-Usage:   seqtk <command> <arguments>
-Version: 1.2-r101-dirty
-
-Command: seq       common transformation of FASTA/Q
-         comp      get the nucleotide composition of FASTA/Q
-         sample    subsample sequences
-         subseq    extract subsequences from FASTA/Q
-         fqchk     fastq QC (base/quality summary)
-         mergepe   interleave two PE FASTA/Q files
-         trimfq    trim FASTQ using the Phred algorithm
-
-         hety      regional heterozygosity
-         gc        identify high- or low-GC regions
-         mutfa     point mutate FASTA at specified positions
-         mergefa   merge two FASTA/Q files
-         famask    apply a X-coded FASTA to a source FASTA
-         dropse    drop unpaired from interleaved PE FASTA/Q
-         rename    rename sequence names
-         randbase  choose a random base from hets
-         cutN      cut sequence at long N
-         listhet   extract the position of each het
-         hpc       homopolyer-compressed sequence
-```
-{: .output}
-
-We've successfully built our first piece of software on the cluster!

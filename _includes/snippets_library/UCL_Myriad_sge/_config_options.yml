@@ -26,13 +26,9 @@ sched:
     name: "-N"
     histdetail: "-j"
     time: "-l h_rt="
+    queue: "-q"
   del: "qdel"
   interactive: "qrsh"
   info: "qhost"
   comment: "#$ "
   hist: "jobhist"
-
-# Interactive queue names, one or more as a list
-workshop_interactive_queues:
-  - debug
-  - testing

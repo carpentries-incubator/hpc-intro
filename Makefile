@@ -7,7 +7,7 @@ export SHELL = /bin/bash
 # Settings
 MAKEFILES=Makefile $(wildcard *.mk)
 JEKYLL=bundle config set path '.vendor/bundle' && bundle install && bundle update && bundle exec jekyll
-SITE_CONFIG?=
+HPC_JEKYLL_CONFIG?=
 PARSER=bin/markdown_ast.rb
 DST=_site
 
@@ -46,11 +46,11 @@ endif
 
 ## * serve            : render website and run a local server
 serve : lesson-md
-	${JEKYLL} serve --config _config.yml,${SITE_CONFIG}
+	${JEKYLL} serve --config _config.yml,${HPC_JEKYLL_CONFIG}
 
 ## * site             : build website but do not run a server
 site : lesson-md
-	${JEKYLL} build --config _config.yml,${SITE_CONFIG}
+	${JEKYLL} build --config _config.yml,${HPC_JEKYLL_CONFIG}
 
 ## * docker-serve     : use Docker to serve the site
 docker-serve :

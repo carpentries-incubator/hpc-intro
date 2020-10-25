@@ -1,0 +1,16 @@
+```
+      JobID    JobName  Partition    Account  AllocCPUS      State ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+212339         hostname     {{ site.sched.queue.debug }}       root          2  COMPLETED      0:0 
+212340         hostname     {{ site.sched.queue.debug }}       root          2  COMPLETED      0:0 
+212341              env     {{ site.sched.queue.debug }}       root          2  COMPLETED      0:0 
+212342           mpirun       {{ site.sched.queue.testing }}       root          2  COMPLETED      0:0 
+212343           mpirun       {{ site.sched.queue.testing }}       root          2  COMPLETED      0:0 
+212344              cpi       {{ site.sched.queue.testing }}       root          2  COMPLETED      0:0 
+212345              cpi       {{ site.sched.queue.testing }}       root          2  COMPLETED      0:0 
+212346             bash       {{ site.sched.queue.testing }}       root          2  COMPLETED      0:0 
+212346.0           bash                  root          2  COMPLETED      0:0 
+212346.1            cpi                  root          2  COMPLETED      0:0 
+212347              cpi       {{ site.sched.queue.testing }}       root          2     FAILED      1:0 
+```
+{: .output}

@@ -17,42 +17,49 @@ keypoints:
 - "Plan and test large data transfers."
 - "It is often best to convert many files to a single archive file before transferring."
 - "Again, don't run stuff on the login node."
-- "Don't be a bad person and run stuff on the login node."
 ---
 
 One of the major differences between using remote HPC resources and your own system (e.g. your
-laptop) is that they are a shared resource. How many users the resource is shared between at any
+laptop) is that remote resources are shared. How many users the resource is shared between at any
 one time varies from system to system but it is unlikely you will ever be the only user logged into
 or using such a system.
 
-We have already mentioned one of the consequences of this shared nature of the resources: the
-scheduling system where you submit your jobs, but there are other things you need to consider in
-order to be a considerate HPC citizen, to protect your critical data and to transfer data
+The widespread usage of scheduling systems where users submit jobs on HPC resources is a natural
+outcome of the shared nature of these resources. There are other things you, as an upstanding member
+of the community, need to consider.
 
 ## Be kind to the login nodes
 
-The login node is often very busy managing lots of users logged in, creating and editing files and
-compiling software! It doesn’t have any extra space to run computational work.
+The login node is often busy managing all of the logged in users, creating and editing files and
+compiling software. If the machine runs out of memory or processing capacity, it will become very
+slow and unusable for everyone. While the machine is meant to be used, be sure to do so responsibly
+&endash; in ways that will not adversely impact other users' experience.
 
-Don’t run jobs on the login node (though quick tests are generally fine). A “quick test” is
-generally anything that uses less than 5 minutes of time. If you use too much resource then other
-users on the login node will start to be affected - their login sessions will start to run slowly
-and may even freeze or hang.
+Login nodes are always the right place to launch jobs. Cluster policies vary, but they may also be
+used for proving out workflows, and in some cases, may host advanced cluster-specific debugging or
+development tools. The cluster may have modules that need to be loaded, possibly in a certain order,
+and paths or library versions that differ from your laptop, and doing an interactive test run on the
+head node is a quick and reliable way to discover and fix these issues.
 
 > ## Login nodes are a shared resource
 >
-> Remember, the login node is shared with all other users and your actions could cause
-> issues for other people. Think carefully about the potential implications of issuing
-> commands that may use large amounts of resource.
+> Remember, the login node is shared with all other users and your actions could cause issues for
+> other people. Think carefully about the potential implications of issuing commands that may use
+> large amounts of resource.
+>
+> Unsure? Ask your friendly systems administrator ("sysadmin") if the thing you're contemplating is
+> suitable for the login node, or if there's another mechanism to get it done safely.
 {: .callout}
 
-You can always use the commands `top` and `ps ux` to list the processes you are running on a login
-node and the amount of CPU and memory they are using. The `kill` command can be used along
-with the *PID* to terminate any processes that are using large amounts of resource.
+You can always use the commands `top` and `ps ux` to list the processes that are running on the
+login node along with the amount of CPU and memory they are using. If this check reveals that the
+login node is somewhat idle, you can safely use it for your non-routine processing task. If
+something goes wrong &endash; the process takes too long, or doesn't respond &endash; you can use
+the `kill` command along with the *PID* to terminate the process.
 
 > ## Login Node Etiquette
 > 
-> Which of these commands would probably be okay to run on the login node?
+> Which of these commands would be a routine task to run on the login node?
 >
 > 1. `python physics_sim.py`
 > 2. `make`
@@ -64,28 +71,27 @@ with the *PID* to terminate any processes that are using large amounts of resour
 > >
 > > Building software, creating directories, and unpacking software are common and acceptable
 > > tasks for the login node: options #2 (`make`), #3 (`mkdir`), and #5 (`tar`) are probably OK.
-> > Note that script names do not always reflect their contents: before launching #3, please
+> > Note that script names do not always reflect their contents: before launching #3, please 
 > > `less create_directories.sh` and make sure it's not a Trojan horse.
 > > 
-> > Running resource-intensive applications is frowned upon. Unless you have cleared it with
-> > the system administrators, do not run #1 (`python`) or #4 (custom MD code).
+> > Running resource-intensive applications is frowned upon. Unless you are sure it will not affect
+> > other users, do not run jobs like #1 (`python`) or #4 (custom MD code). If you're unsure, ask
+> > your friendly sysadmin for advice.
 > {: .solution}
 {: .challenge}
 
 If you experience performance issues with a login node you should report it to the system
-staff (usually via the helpdesk) for them to investigate. You can use the `top` command
-to see which users are using which resources.
+staff (usually via the helpdesk) for them to investigate.
 
 ## Test before scaling
 
-Remember that you are generally charged for usage on shared systems. A simple mistake in a 
-job script can end up costing a large amount of resource budget. Imagine a job script with 
-a mistake that makes it sit doing nothing for 24 hours on 1000 cores or one where you have
-requested 2000 cores by mistake and only use 100 of them! This problem can be compounded 
-when people write scripts that automate job submission (for example, when running the same
-calculation or analysis over lots of different input).  When this happens it hurts both you
-(as you waste lots of charged resource) and other users (who are blocked from accessing the
-idle compute nodes).
+Remember that you are generally charged for usage on shared systems. A simple mistake in a job
+script can end up costing a large amount of resource budget. Imagine a job script with a mistake
+that makes it sit doing nothing for 24 hours on 1000 cores or one where you have requested 2000
+cores by mistake and only use 100 of them! This problem can be compounded when people write scripts
+that automate job submission (for example, when running the same calculation or analysis over lots
+of different parameters or files). When this happens it hurts both you (as you waste lots of charged
+resource) and other users (who are blocked from accessing the idle compute nodes).
 
 On very busy resources you may wait many days in a queue for your job to fail within 10 seconds
 of starting due to a trivial typo in the job script. This is extremely frustrating! Most
@@ -103,16 +109,14 @@ avoid this issue.
 
 ## Have a backup plan
 
-Although many HPC systems keep backups, it does not always cover all the file systems available
-and may only be for disaster recovery purposes (*i.e.* for restoring the whole file system if lost
-rather than an individual file or directory you have deleted by mistake). Your data on the
-system is primarily your responsibility and you should ensure you have secure copies of data
-that are critical to your work.
+Although many HPC systems keep backups, it does not always cover all the file systems available and
+may only be for disaster recovery purposes (*i.e.* for restoring the whole file system if lost
+rather than an individual file or directory you have deleted by mistake). Protecting critical data
+from corruption or deletion is primarily your responsibility: keep your own backup copies.
 
-Version control systems (such as Git) often have free, cloud-based offerings (e.g. Github, Gitlab)
-that are generally used for storing source code. Even if you are not writing your own 
-programs, these can be very useful for storing job scripts, analysis scripts and small
-input files. 
+Version control systems (such as Git) often have free, cloud-based offerings (e.g., GitHub and
+GitLab) that are generally used for storing source code. Even if you are not writing your own
+programs, these can be very useful for storing job scripts, analysis scripts and small input files.
 
 For larger amounts of data, you should make sure you have a robust system in place for taking
 copies of critical data off the HPC system wherever possible to backed-up storage. Tools such
@@ -167,7 +171,7 @@ transferred and where the data is going. Some of the key issues to be aware of a
 As mentioned above, if you have related data that consists of a large number of small files it
 is strongly recommended to pack the files into a larger *archive* file for long term storage and
 transfer. A single large file makes more efficient use of the file system and is easier to move,
-copy and transfer because significantly fewer meta-data operations are required. Archive files can
+copy and transfer because significantly fewer metadata operations are required. Archive files can
 be created using tools like `tar` and `zip`. We have already met `tar` when we talked about data
 transfer earlier. 
 
@@ -212,7 +216,7 @@ transfer earlier.
 > > 3. `rsync -raz` adds compression, which will save some bandwidth. If you have a strong CPU at
 > >    both ends of the line, and you're on a slow network, this is a good choice.
 > > 4. This command first uses `tar` to merge everything into a single file, then `rsync -z` to 
-> >    transfer it with compression. With this large *number* of files, latency per-file can hamper
+> >    transfer it with compression. With this large *number* of files, metadata overhead can hamper
 > >    your transfer, so this is a good idea.
 > > 5. This command uses `tar -z` to compress the archive, then `rsync` to transfer it. This may 
 > >    perform similarly to #4, but in most cases (for large datasets), it's the best combination

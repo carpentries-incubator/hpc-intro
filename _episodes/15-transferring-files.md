@@ -202,7 +202,11 @@ The options we used for `tar` are:
 - `-f mydata.tar` - Create the archive in file *output_data.tar*
 
 The tar command allows users to concatenate flags. Instead of typing `tar -c -v -f`, we can use
-`tar -cvf`. We can also use the `tar` command to extract the files from the archive once we have
+`tar -cvf`. 
+
+The `tar` command can also be used to interrogate and unpack archive files. The `-t` argument 
+("**t**able of contents") lists the contents of the referred-to file without unpacking it.  
+The `-x` ("e**x**tract") flag unpacks the referred-to file.  To unpack the file after we have 
 transferred it:
 
 ```
@@ -225,8 +229,8 @@ indicate it is `gzip`-compressed, e.g.:
 {: .bash}
 
 The `tar` command is used to extract the files from the archive in exactly the same way as for
-uncompressed data as `tar` recognizes it is compressed and un-compresses and extracts at the 
-same time:
+uncompressed data. The `tar` command recognizes that the data is compressed, and automatically 
+selects the correct decompression algorithm at the time of extraction:
 
 ```
 {{ site.local.prompt }} tar -xvf output_data.tar.gz

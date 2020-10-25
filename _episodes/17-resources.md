@@ -18,21 +18,29 @@ What we need to do now is use the systems effectively.
 
 ## Estimating required resources using the scheduler
 
-Although we covered requesting resources from the scheduler earlier, how do we know how much and
-what type of resources we will need in the first place?
+Although we covered requesting resources from the scheduler earlier, how do we know what type of
+resources the software will need in the first place, and the extent of its demand for each?
 
-Answer: we don't. Not until we've tried it ourselves at least once. We'll need to benchmark our job
-and experiment with it before we know how much it needs in the way of resources.
+Unless the developers or prior users have provided some idea, we don't. Not until we've tried it
+ourselves at least once. We'll need to benchmark our job and experiment with it before we know how
+how great its demand for system resources.
 
-The most effective way of figuring out how much resources a job needs is to submit a test job, and
-then ask the scheduler how many resources it used.
+> ## Read the docs
+>
+> Most HPC facilities maintain documentation as a wiki, website, or a document sent along when
+> you register for an account. Take a look at these resources, and search for the software of
+> interest: somebody might have written up guidance for getting the most out of it.
+{: .discussion}
 
-A good rule of thumb is to ask the scheduler for more time and memory than you expect your job to
-need. This ensures that minor fluctuations in run time or memory use will not result in your job
-being cancelled by the scheduler. Recommendations for how much extra to ask for vary but 10% is 
-probably the minimum, with 20-30% being more typical. Keep in mind that if you ask for too much,
-your job may not run even though enough resources are available, because the scheduler will be
-waiting to match what you asked for.
+The most effective way of figuring out the resources required for a job to run successfully needs is
+to submit a test job, and then ask the scheduler about its impact using `{{ site.sched.hist }}`.
+
+You can use this knowledge to set up the next job with a close estimate of its load on the system. A
+good general rule is to ask the scheduler for 20% to 30% more time and memory than you expect the
+job to need. This ensures that minor fluctuations in run time or memory use will not result in your
+job being cancelled by the scheduler. Keep in mind that if you ask for too much, your job may not
+run even though enough resources are available, because the scheduler will be waiting to match what
+you asked for.
 
 > ## Benchmarking `fastqc`
 >
@@ -43,12 +51,22 @@ waiting to match what you asked for.
 > ```
 > {: .bash}
 > 
-> The `fastqc` command is provided by the `fastqc` module. You'll need to figure out a good amount
-> of resources to allocate for this first "test run". You might also want to have the scheduler 
-> email you to tell you when the job is done.
+> You'll need to figure out a good amount of resources to allocate for this first "test run". You
+> might also want to have the scheduler email you to tell you when the job is done.
 >
 > *Hint:* The job only needs 1 CPU and not too much memory or time. The trick is figuring out just 
 > how much you'll need!
+>
+> > ## Is `fastqc` available?
+> > 
+> > You might need to load the *fastqc* module before `fastqc` will be available. Unsure?
+> > Run
+> > 
+> > ```
+> > {{ site.remote.prompt }} which fastqc
+> > ```
+> > {: .bash}
+> {: .discussion}
 >
 > > ## Solution
 > >
@@ -99,7 +117,7 @@ get statistics about our job.
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/16/account-history.snip %}
+{% include {{ site.snippets }}/resources/account-history.snip %}
 
 This shows all the jobs we ran recently (note that there are multiple entries per job). To get
 info about a specific job, we change command slightly.
@@ -155,14 +173,14 @@ not necessary to `ssh` to a node for this example).
 ### Monitor system processes with `top`
 
 The most reliable way to check current system stats is with `top`. Some sample output might look
-like the following (`Ctrl + c` to exit):
+like the following (type `q` to exit `top`):
 
 ```
 {{ site.remote.prompt }} top
 ```
 {: .bash}
 
-{% include {{ site.snippets }}/16/monitor-processes-top.snip %}
+{% include {{ site.snippets }}/resources/monitor-processes-top.snip %}
 
 Overview of the most important fields:
 
@@ -179,25 +197,6 @@ Overview of the most important fields:
 `htop` provides a [curses]()-based overlay for `top`, producing a better-organized and "prettier"
 dashboard in your terminal. Unfortunately, it is not always available. If this is the case,
 *politely* ask your system administrators to install it for you.
-
-### Check memory load with `free`
-
-Another useful tool is the `free -h` command. This will show the currently used/free amount of
-memory.
-
-```
-{{ site.remote.prompt }} free -h
-```
-{: .bash}
-
-{% include {{ site.snippets }}/16/system-memory-free.snip %}
-
-The key fields here are total, used, and available - which represent the amount of memory that the
-machine has in total, how much is currently being used, and how much is still available. When a
-computer runs out of memory it will attempt to use "swap" space on your hard drive instead. Swap
-space is very slow to access - a computer may appear to "freeze" if it runs out of memory and 
-begins using swap. However, compute nodes on HPC systems usually have swap space disabled so when
-they run out of memory you usually get an "Out Of Memory (OOM)" error instead.
 
 ### `ps `
 
@@ -233,24 +232,3 @@ Note that this will only show processes from our current session. To show all pr
 
 
 This is useful for identifying which processes are doing what.
-
-## Killing processes
-
-To kill all of a certain type of process, you can run `killall commandName`. For example,
-
-```
-{{ site.remote.prompt }} killall rsession
-```
-{: .bash}
-
-would kill all `rsession` processes created by RStudio. Note that you can only kill
-your own processes.
-
-You can also kill processes by their PIDs. For example, your `ssh` connection to the server is
-listed above with PID 73083. If you wish to close that connection forcibly, you could `kill 73083`.
-
-Sometimes, killing a process does not work instantly. To kill the process in the most aggressive
-manner possible, use the `-9` flag, i.e., `kill -9 73083`. It's recommended to kill using without
-`-9` first: this sends the process a "terminate" signal (`SIGTERM`), giving it the chance to clean
-up child processes and exit cleanly. However, if a process just isn't responding, use `-9` to
-terminate it instantly (`SIGKILL`).
