@@ -68,7 +68,7 @@ sched:
 # "dc":  Data Carpentry
 # "lc":  Library Carpentry
 # "cp":  Carpentries (e.g., instructor traning)
-carpentry: "swc"
+carpentry: "incubator"
 
 # Overall title for pages.
 title: "Introduction to High-Performance Computing"
