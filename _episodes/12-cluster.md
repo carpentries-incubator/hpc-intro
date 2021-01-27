@@ -68,7 +68,7 @@ the screen. Normal output will resume once you press `Enter`.
 
 You are logging in using a program known as the secure shell or `ssh`. This establishes a temporary
 encrypted connection between your laptop and `{{ site.remote.login }}`. The word before the `@`
-symbol, e.g. `{{ site.remote.user }}` here, is the user account name that you have permission to use on the
+symbol, e.g., `{{ site.remote.user }}` here, is the user account name that you have permission to use on the
 cluster.
 
 
@@ -138,6 +138,16 @@ types of nodes for different types of tasks. The node where you are right now is
 node*, *login node*, *landing pad*, or *submit node*. A login node serves as an access point to the
 cluster. As a gateway, it is well suited for uploading and downloading files, setting up software,
 and running quick tests. It should never be used for doing actual work.
+
+> ## Dedicated Transfer Nodes
+>
+> If you want to transfer larger amounts of data to or from the cluster, some systems offer
+> dedicated nodes for data transfers only. The motivation for this lies in the fact that larger
+> data transfers should not obstruct operation of the login node for anybody else. Check with your
+> cluster's documentation or its support team if such a transfer node is available. As a rule of
+> thumb, consider all transfers of a volume larger than 500MB to 1GB as large. But these numbers
+> change, e.g., depending on the network connection of yourself and of your cluster or other factors.
+{: .callout}
 
 The real work on a cluster gets done by the *worker* (or *compute*) *nodes*. Worker nodes come in
 many shapes and sizes, but generally are dedicated to long or hard tasks that require a lot of
