@@ -174,7 +174,7 @@ Hit "Quickconnect" to connect. You should see your remote files appear on the ri
 screen. You can drag-and-drop files between the left (local) and right (remote) sides of the screen
 to transfer files. 
 
-Finally, if you need to move large files (typically larger than a gigabyte) from one remote computer to another remote computer, using `scp` or `rsync` between the two as this will likely be more efficient than using Filezilla (or related services).
+Finally, if you need to move large files (typically larger than a gigabyte) from one remote computer to another remote computer, SSH in to the computer hosting the files and use `scp` or `rsync` to transfer over to the other. This will be more efficient than using FileZilla (or related applications) that would copy from the source to your local machine, then to the destination machine.
 
 ## Archiving files
 
