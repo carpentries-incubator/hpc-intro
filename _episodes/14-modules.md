@@ -10,7 +10,6 @@ keypoints:
 - "Load software with `module load softwareName`"
 - "Unload software with `module purge`"
 - "The module system handles software versioning and package conflicts for you automatically."
-- "You can edit your `.bashrc` file to automatically load a software package."
 ---
 
 On a high-performance computing system, it is seldom the case that the software we want to use is
