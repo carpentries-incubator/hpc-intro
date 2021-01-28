@@ -30,6 +30,26 @@ files using the following command:
 ```
 {: .bash}
 
+> # Receive-Only Firewalls
+>
+> Some computer clusters are behind firewalls set to only allow transfers initiated from the
+> *outside*. This means that the `wget` command will fail, as an address outside the firewall is
+> unreachable from the inside. To get around this, run the `wget` command from your local
+> machine to download the file, then use the `scp` command (just below here) to upload it to the
+> cluster. 
+>
+> > # Solution
+> >
+> > ```
+> > {{ site.local.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/bash-lesson.tar.gz
+> > {{ site.local.prompt }} scp bash-lesson.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:path/on/{{ site.remote.name }}
+> > ```
+> > {: .bash}
+> >
+> {: .solution}
+{: .callout}
+
+
 ## Transferring single files and folders with scp
 
 To copy a single file to or from the cluster, we can use `scp` ("secure copy"). The syntax can be
