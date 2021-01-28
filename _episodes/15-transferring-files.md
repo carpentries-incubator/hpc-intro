@@ -172,7 +172,9 @@ To connect to the cluster, we'll just need to enter our credentials at the top o
 
 Hit "Quickconnect" to connect. You should see your remote files appear on the right hand side of the
 screen. You can drag-and-drop files between the left (local) and right (remote) sides of the screen
-to transfer files.
+to transfer files. 
+
+Finally, if you need to move large files (typically larger than a gigabyte) from one remote computer to another remote computer, using scp or rsync between the two remote computers will be more efficient than using Filezilla to move the file to your computer first and then to the second remote computer.
 
 ## Archiving files
 
