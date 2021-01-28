@@ -76,8 +76,8 @@ front-end, such as PuTTY or MobaXterm, you will set these arguments before click
 the terminal, you'll write something like `ssh userName@hostname`, where the "@" symbol is used to
 separate the two parts of a single argument.
 
-Go ahead and log in to the cluster using your username and the remote computer you can reach from
-the outside world, {{ site.remote.location }}.
+Go ahead and open your terminal or graphical SSH client, then log in to the cluster using your
+username and the remote computer you can reach from the outside world, {{ site.remote.location }}.
 
 ```
 {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
