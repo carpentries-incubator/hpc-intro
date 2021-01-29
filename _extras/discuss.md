@@ -1,5 +1,5 @@
 ---
-title: "Bootstrapping your use of HPC"
+title: "Taking Your Next Steps"
 teaching: 10
 exercises: 60
 questions:
