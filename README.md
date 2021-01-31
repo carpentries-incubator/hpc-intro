@@ -46,12 +46,67 @@ NOTE: This is *not* Carpentries boilerplate! Please read carefully.
 7. Add your snippet directory name to the GitHub Actions configuration file,
    [.github/workflows/test_and_build.yml](.github/workflows/test_and_build.yml).
 
-8. Check out a new branch, commit your changes, and push to your fork of the repository. If you're
-   comfortable sharing, please file a Pull Request against our [upstream repo](
-   https://github.com/carpentries-incubator/hpc-intro). We would love to have your site config for
-   the Library.
+8. Check out a new branch(`git checkout -b new_branch_name`), commit your changes, and push to your
+   fork of the repository. If you're comfortable sharing, please file a Pull Request against our
+   [upstream repo]( https://github.com/carpentries-incubator/hpc-intro). We would love to have your
+   site config for the Library.
    
-9. *TODO:* Document deploying the site-specific branch on GitHub (and maybe GitLab).
+9. To maintain compatibility, please *do not* merge your new branch into your fork's `gh-pages`
+   branch. Instead, wait until your pull request has been merged upstream, then pull down the
+   upstream version. Otherwise, your repository will *diverge* from ours, and pull requests you make
+   in the future will probably not be accepted.
+   
+## Deploying a Customized Lesson
+
+The steps above will help you port the default HPC Intro lesson to your specific cluster, but the
+changes will only be visible on your local machine. To build a website for a specific workshop or
+instance of the lesson, you'll want to make a stand-alone copy.
+
+### Template Your Customized Repository
+
+This will let you create an exact duplicate of your fork. Without this, GitHub won't let you create
+a second fork of a repository on the same account.
+
+1. On GitHub, go to your repository's **Settings**.
+2. Under the repository name, check the "Template Repository" box.
+3. Go to the **Code** tab.
+4. Click the new button to **Use This Template**.
+5. Fill in a name, like `yyyy-mm-dd-hpc-intro`.
+6. Check the **Include all branches** box.
+7. Go!
+
+### Merge Your Customized Branch
+
+If your snippets are already included in the snippet library, skip this step.
+
+1. On GitHub, find the drop-down menu of branches. It should be all the way to the left of the "Use
+   This Template" button.
+2. From the list, select the branch containing your site customization.
+3. There should be a bar above the list of repository contents with the branch name, stating "This
+   branch is *x* commits ahead, *y* commits behind `gh-pages`" or similar. To the right of that,
+   click the button to **Create Pull Request**.
+4. Make sure that the source and destination repositories at the top of the new PR are *both* your
+   current duplicate of hpc-intro, not the upstream.
+5. Create the pull request, then click the **Merge** button. You can delete the customization branch
+   when it's done.
+
+### Modify `_config.yml`
+
+GitHub builds sites using the top-level [`_config.yml`](_config.yml), only, but you want the values
+set in the snippet library. 
+
+1. Open a copy of your `_includes/snippet_library/Institution_Cluster_scheduler/_config_options.yml`.
+2. On GitHub, open the top-level `_config.yml` for editing.
+3. Copy your `_config_options.yml`, overwriting the values under the **SITE specific configuration**
+   section of the top-level `_config.yml`. Leave the rest as-is.
+4. Commit the change.
+5. Back on the **Code** tab, there should be a timer icon, a green check, or a red x next to the
+   latest commit hash. If it's a timer, the site is building; give it time.
+6. If the symbol is a red x, something went wrong. Click it to open the build log, and attempt to
+   correct the error. Follow GitHub's troubleshooting guide, and double-check the values in
+   `_config.yml` ar ecorrect and complete.
+7. Once you see a green check, your website will be available for viewing at 
+   `https://your-github-account.github.io/name-of-the-repository`.
 
 
 ## Lesson Outlines
