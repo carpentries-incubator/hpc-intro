@@ -32,3 +32,14 @@ sched:
   info: "qhost"
   comment: "#$ "
   hist: "jobhist"
+
+episode_order:
+  - 11-hpc-intro
+  - 12-cluster
+  - 13-scheduler
+  - 14-modules
+  - 15-transferring-files
+  - 16-parallel
+  - 17-resources
+  - 18-responsibility
+
