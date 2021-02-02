@@ -30,7 +30,9 @@ NOTE: This is *not* Carpentries boilerplate! Please read carefully.
      snippet in episode 12 is included using `{% include /snippets/12/info.snip %}`.
 
 3. Edit `_config_options.yml` in your snippets folder. These options set such things as the address
-   of the host to login to, definitions of the command prompt, and scheduler names.
+   of the host to login to, definitions of the command prompt, and scheduler names. You can also 
+   change the order of the episodes, or omit episodes, by editing the configuration block 
+   under `episode_names` in this file.
 
 4. Set the environment variable `HPC_JEKYLL_CONFIG` to the relative path of the configuration file
    in your snippets folder:
@@ -114,7 +116,8 @@ set in the snippet library.
 The following list of items is meant as a guide on what content should go where in this repo. This
 should work as a guide where you can contribute. If a bullet point is prefixed by a file name, this
 is the lesson where the listed content should go into. This document is meant as a concept map
-converted into a flow of learning goals and questions.
+converted into a flow of learning goals and questions. Note, again, that it is possible, when 
+building your actual lesson, to re-order these files, or omit one or more of them.
 
 * Prelude
     * User profiles (academic and/or commercial) of cluster users
