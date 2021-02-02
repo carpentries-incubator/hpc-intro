@@ -3,7 +3,7 @@ title: "Transferring files"
 teaching: 30
 exercises: 10
 questions:
-- "How do I upload/download files to the cluster?"
+- "How do I transfer files to (and from) the cluster?"
 objectives:
 - "Be able to transfer files to and from a computing cluster."
 keypoints:
@@ -16,21 +16,70 @@ Computing with a remote computer offers very limited use if we cannot get files 
 cluster. There are several options for transferring data between computing resources, from command
 line options to GUI programs, which we will cover here.
 
-## Download files from the internet using wget
+## Download files from the Internet
 
 One of the most straightforward ways to download files is to use `wget`. Any file that can be
-downloaded in your web browser with an accessible link can be downloaded using `wget`. This is a
-quick way to download datasets or source code.
+downloaded in your web browser through a direct link can be downloaded using `wget`. This is a quick
+way to download datasets or source code.
 
-The syntax is: `wget https://some/link/to/a/file.tar.gz`. For example, download the lesson sample
-files using the following command:
+The syntax is: `wget https://some/link/to/a/file`. Try it out by downloading some material
+we'll use later on, from a terminal on your local machine.
 
 ```
-{{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/bash-lesson.tar.gz
+{{ site.local.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 ```
 {: .bash}
 
-> # Receive-Only Firewalls
+> ## `tar.gz`?
+>
+> This is an archive file format, just like `.zip`, commonly used and supported by default on Linux,
+> which is the operating system the majority of HPC cluster machines run. You may also see the
+> extension `.tgz`, which is exactly the same. We'll talk more about "tarballs," since "tar-dot-g-z"
+> is a mouthful, later on.
+{: .discussion}
+
+## Transferring single files and folders with scp
+
+To copy a single file to or from the cluster, we can use `scp` ("secure copy"). The syntax can be
+a little complex for new users, but we'll break it down.
+
+To *upload to* another computer:
+
+```
+{{ site.local.prompt }} scp path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}
+```
+{: .bash}
+
+To *download from* another computer:
+
+```
+{{ site.local.prompt }} scp {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}/file.txt path/to/local/
+```
+{: .bash}
+
+Note that everything after the `:` is relative to our home directory on the remote computer. We can
+leave it at that if we don't care where the file goes.
+
+```
+{{ site.local.prompt }} scp local-file.txt {{ site.remote.user }}@{{ site.remote.login }}:
+```
+{: .bash}
+
+> ## Upload a file
+>
+> Copy the file you just downloaded from the Internet to your home directory on 
+> {{ site.remote.name }}. 
+>
+> > # Solution
+> >
+> > ```
+> > {{ site.local.prompt }} scp hpc-intro-data.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:~/
+> > ```
+> > {: .bash}
+> {: .solution}
+{: .challenge}
+
+> ## Why not download on {{ site.remote.name }} directly?
 >
 > Some computer clusters are behind firewalls set to only allow transfers initiated from the
 > *outside*. This means that the `wget` command will fail, as an address outside the firewall is
@@ -38,93 +87,53 @@ files using the following command:
 > machine to download the file, then use the `scp` command (just below here) to upload it to the
 > cluster. 
 >
-> > # Solution
+> > # `wget` from {{ site.remote.login }}
 > >
-> > ```
-> > {{ site.local.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/bash-lesson.tar.gz
-> > {{ site.local.prompt }} scp bash-lesson.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:path/on/{{ site.remote.name }}
-> > ```
-> > {: .bash}
+> > Try downloading the file directly. Note that it may well fail, and that's OK!
 > >
-> {: .solution}
-{: .callout}
-
-
-## Transferring single files and folders with scp
-
-To copy a single file to or from the cluster, we can use `scp` ("secure copy"). The syntax can be
-a little complex for new users, but we'll break it down.
-
-To transfer *to* another computer:
-```
-{{ site.local.prompt }} scp path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.login }}:path/on/{{ site.remote.name }}
-```
-{: .bash}
-
-> ## Transfer a file
->
-> Create a "calling card" with your name and email address, then transfer it to your home directory
-> on {{ site.remote.name }}.
->
-> > ## Solution
-> > 
-> > Create a file like this, with your name (or an alias) and top-level domain:
+> > > # Commands
+> > >
+> > > ```
+> > > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
+> > > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
+> > > ```
+> > > {: .bash}
+> > {: .solution}
 > >
-> > ```
-> > {{ site.local.prompt }} cat calling-card.txt
-> > ```
-> > {: .bash}
-> >
-> > ```
-> > Your Name
-> > Your.Address@institution.tld
-> > ```
-> > {: .output}
-> >
-> > Now, transfer it to {{ site.remote.name }}:
-> >
-> > ```
-> > {{ site.local.prompt }} scp calling-card.txt {{ site.remote.user }}@{{ site.remote.login }}:~/
-> > ```
-> > {: .bash}
-> >
-> > ```
-> > calling-card.txt                                                 100%   37     7.6 KB/s   00:00
-> > ```
-> > {: .output}
-> {: .solution}
-{: .challenge}
+> > Did it work? If not, what does the terminal output tell you about what happened?
+> {: .challenge}
+{: .discussion}
 
-To download *from* another computer:
-```
-{{ site.local.prompt }} scp {{ site.remote.user }}@{{ site.remote.login }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
-```
-{: .bash}
-
-Note that we can simplify doing this by shortening our paths. On the remote computer, everything
-after the `:` is relative to our home directory. We can simply just add a `:` and leave it at that
-if we don't care where the file goes.
-
-```
-{{ site.local.prompt }} scp local-file.txt {{ site.remote.user }}@{{ site.remote.login }}:
-```
-{: .bash}
-
-To recursively copy a directory, we just add the `-r` (recursive) flag (caution: this recursive option will multiply the number of files, often quickly):
+To copy a whole directory, we add the `-r` flag, for "**r**ecursive": copy the item
+specified, and every item below it, and every item below those... until it reaches the
+bottom of the directory tree rooted at the folder name you provided.
 
 ```
 {{ site.local.prompt }} scp -r some-local-folder {{ site.remote.user }}@{{ site.remote.login }}:target-directory/
 ```
 {: .bash}
 
-This will create the directory 'some-local-folder' on the remote system, 
-and recursively copy all the content from the local to the remote system.
-Existing files on the remote system will not be modified, unless
-there are files from the local system with the same name, in which
-case the remote files will be overwritten.
+> Caution: For a large directory &mdash; either in size or number of files &mdash; copying
+> with `-r` can take a long time to complete.
+{: .warning}
 
-A trailing slash on the target directory is optional, and has no
-effect for `scp -r`, but is important in other commands, like `rsync`.
+
+## What's in a `/`?
+
+When using `scp`, you may have noticed that a `:` *always* follows the remote computer name;
+sometimes a `/` follows that, and sometimes not, and sometines there's a final `/`. On Linux
+computers, `/` is the ***root*** directory, the location where the entire filesystem (and others
+attached to it) is anchored. A path starting with a `/` is called *absolute*, since there can be
+nothing above the root `/`. A path that does not start with `/` is called *relative*, since it is
+not anchored to the root.
+
+If you want to upload a file to a location inside your home directory -- which is often the case --
+then you don't need a leading `/`. After the `:`, start writing the sequence of folders that lead to
+the final storage location for the file or, as mentioned above, provide nothing if your home
+directory *is* the destination.
+
+A trailing slash on the target directory is optional, and has no effect for `scp -r`, but is
+important in other commands, like `rsync`.
 
 > ## A note on `rsync`
 >
@@ -153,12 +162,10 @@ effect for `scp -r`, but is important in other commands, like `rsync`.
 > ```
 > {: .bash}
 > 
-> As written, this will place the local directory and its contents under the 
-> specified directory on the remote system. If the trailing slash is
-> omitted on the destination, a new directory corresponding to the
-> transferred directory ('dir' in the example) will not be created, 
-> and the contents of the source directory will be copied directly into 
-> the destination directory. 
+> As written, this will place the local directory and its contents under the specified directory on
+> the remote system. If the trailing slash is omitted on the destination, a new directory
+> corresponding to the transferred directory ('dir' in the example) will not be created, and the
+> contents of the source directory will be copied directly into the destination directory.
 > 
 > The `a` (archive) option implies recursion.
 > 
@@ -168,6 +175,35 @@ effect for `scp -r`, but is important in other commands, like `rsync`.
 > {{ site.local.prompt }} rsync -avzP {{ site.remote.user }}@{{ site.remote.login }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
 > ```
 > {: .bash}
+{: .callout}
+
+> ## A note on ports
+>
+> All file transfers using the above methods use SSH to encrypt data sent through the network. So,
+> if you can connect via SSH, you will be able to transfer files. By default, SSH uses network port
+> 22. If a custom SSH port is in use, you will have to specify it using the appropriate flag, often
+> `-p`, `-P`, or `--port`. Check `--help` or the `man` page if you're unsure.
+>
+> > # Rsync port
+> >
+> > Say we have to connect `rsync` through port 768 instead of 22. How would we modify this command?
+> >
+> > ```
+> > {{ site.local.prompt }} rsync test.txt {{ site.remote.user }}@{{ site.remote.login }}:
+> > ```
+> > {: .bash}
+> >
+> > > # Solution
+> > >
+> > > ```
+> > > {{ site.local.prompt }} rsync --help | grep port
+> > >      --port=PORT             specify double-colon alternate port number
+> > > See http://rsync.samba.org/ for updates, bug reports, and answers
+> > > {{ site.local.prompt }} rsync --port=768 test.txt {{ site.remote.user }}@{{ site.remote.login }}:
+> > > ```
+> > > {: .bash}
+> > {: .solution}
+> {: .challenge}
 {: .callout}
 
 ## Transferring files interactively with FileZilla
@@ -194,7 +230,11 @@ Hit "Quickconnect" to connect. You should see your remote files appear on the ri
 screen. You can drag-and-drop files between the left (local) and right (remote) sides of the screen
 to transfer files. 
 
-Finally, if you need to move large files (typically larger than a gigabyte) from one remote computer to another remote computer, SSH in to the computer hosting the files and use `scp` or `rsync` to transfer over to the other. This will be more efficient than using FileZilla (or related applications) that would copy from the source to your local machine, then to the destination machine.
+Finally, if you need to move large files (typically larger than a gigabyte) from one remote computer
+to another remote computer, SSH in to the computer hosting the files and use `scp` or `rsync` to
+transfer over to the other. This will be more efficient than using FileZilla (or related
+applications) that would copy from the source to your local machine, then to the destination
+machine.
 
 ## Archiving files
 
@@ -206,70 +246,141 @@ transfers to a large degree.
 The solution to this problem is to *archive* multiple files into smaller numbers of larger files
 before we transfer the data to improve our transfer efficiency. Sometimes we will combine 
 archiving with *compression* to reduce the amount of data we have to transfer and so speed up
-the transfer.
+the transfer. 
 
 The most common archiving command you will use on a (Linux) HPC cluster is `tar`. `tar` can be used
-to combine files into a single archive file and, optionally, compress. For example, to collect
-all files contained inside `output_data` into an archive file called `output_data.tar` we would use:
+to combine files into a single archive file and, optionally, compress it.
+
+Let's start with the file we downloaded from the lesson site, `hpc-lesson-data.tar.gz`. The "gz"
+part stands for *gzip*, which is a compression library. Reading this file name, it appears somebody
+took a folder named "hpc-lesson-data," wrapped up all its contents in a single file with `tar`, then
+compressed that archive with `gzip` to save space. Let's check using `tar` with the `-t` flag, which
+prints the "**t**able of contents" without unpacking the file, on the remote computer.
 
 ```
-{{ site.local.prompt }} tar -cvf output_data.tar output_data/
-```
-{: .bash}
-
-The options we used for `tar` are:
-
-- `-c` - Create new archive
-- `-v` - Verbose (print what you are doing!)
-- `-f mydata.tar` - Create the archive in file *output_data.tar*
-
-The tar command allows users to concatenate flags. Instead of typing `tar -c -v -f`, we can use
-`tar -cvf`. 
-
-The `tar` command can also be used to interrogate and unpack archive files. The `-t` argument 
-("**t**able of contents") lists the contents of the referred-to file without unpacking it.  
-The `-x` ("e**x**tract") flag unpacks the referred-to file.  To unpack the file after we have 
-transferred it:
-
-```
-{{ site.local.prompt }} tar -xvf output_data.tar
-```
-{: .bash}
-
-This will put the data into a directory called `output_data`. Be careful, it will overwrite data
-there if this directory already exists!
-
-Sometimes you may also want to compress the archive to save space and speed up the transfer.
-However, you should be aware that for large amounts of data compressing and un-compressing can take
-longer than transferring the un-compressed data so you may not want to transfer. To create a
-compressed archive using `tar` we add the `-z` option and add the `.gz` extension to the file to
-indicate it is `gzip`-compressed, e.g.:
-
-```
-{{ site.local.prompt }} tar -czvf output_data.tar.gz output_data/
+{{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
+{{ site.remote.prompt }} tar -tf hpc-lesson-data.tar.gz
+hpc-intro-data/
+hpc-intro-data/north-pacific-gyre/
+hpc-intro-data/north-pacific-gyre/NENE01971Z.txt
+hpc-intro-data/north-pacific-gyre/goostats
+hpc-intro-data/north-pacific-gyre/goodiff
+hpc-intro-data/north-pacific-gyre/NENE02040B.txt
+hpc-intro-data/north-pacific-gyre/NENE01978B.txt
+hpc-intro-data/north-pacific-gyre/NENE02043B.txt
+hpc-intro-data/north-pacific-gyre/NENE02018B.txt
+hpc-intro-data/north-pacific-gyre/NENE01843A.txt
+hpc-intro-data/north-pacific-gyre/NENE01978A.txt
+hpc-intro-data/north-pacific-gyre/NENE01751B.txt
+hpc-intro-data/north-pacific-gyre/NENE01736A.txt
+hpc-intro-data/north-pacific-gyre/NENE01812A.txt
+hpc-intro-data/north-pacific-gyre/NENE02043A.txt
+hpc-intro-data/north-pacific-gyre/NENE01729B.txt
+hpc-intro-data/north-pacific-gyre/NENE02040A.txt
+hpc-intro-data/north-pacific-gyre/NENE01843B.txt
+hpc-intro-data/north-pacific-gyre/NENE01751A.txt
+hpc-intro-data/north-pacific-gyre/NENE01729A.txt
+hpc-intro-data/north-pacific-gyre/NENE02040Z.txt
 ```
 {: .bash}
 
-The `tar` command is used to extract the files from the archive in exactly the same way as for
-uncompressed data. The `tar` command recognizes that the data is compressed, and automatically 
-selects the correct decompression algorithm at the time of extraction:
+This shows a folder containing another folder, which contains a bunch of files. If you've taken The
+Carpentries' Shell lesson recently, these might look familiar. Let's see about that compression,
+using `du` for "**d**isk **u**sage".
 
 ```
-{{ site.local.prompt }} tar -xvf output_data.tar.gz
+{{ site.remote.prompt }} du -sh hpc-lesson-data.tar.gz
+36K     hpc-intro-data.tar.gz
 ```
 {: .bash}
 
-> ## Transferring files
+> If the filesystem block size is larger than 36 KB, you'll see a larger number: files cannot be
+> smaller than one block.
+{: .callout}
+
+Now let's unpack the archive. We'll run `tar` with a few common flags:
+
+- `-x` to e**x**tract the archive
+- `-v` for **v**erbose output
+- `-z` for g**z**ip compression
+- `-f` for the file to be unpacked
+
+When it's done, check the directory size with `du` and compare.
+
+> ## Extract the Archive
 >
-> Using one of the above methods, try transferring files to and from the cluster. Which method do
-> you like the best?
-{: .discussion}
+> Using the four flags above, unpack the lesson data using `tar`.
+> Then, check the size of the whole unpacked directory using `du`.
+>
+> Hint: `tar` lets you concatenate flags.
+>
+> > # Commands
+> >
+> > ```
+> > {{ site.remote.prompt }} tar -xvzf hpc-lesson-data.tar.gz
+> > ```
+> > {: .bash}
+> > 
+> > ```
+> > hpc-intro-data/
+> > hpc-intro-data/north-pacific-gyre/
+> > hpc-intro-data/north-pacific-gyre/NENE01971Z.txt
+> > hpc-intro-data/north-pacific-gyre/goostats
+> > hpc-intro-data/north-pacific-gyre/goodiff
+> > hpc-intro-data/north-pacific-gyre/NENE02040B.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01978B.txt
+> > hpc-intro-data/north-pacific-gyre/NENE02043B.txt
+> > hpc-intro-data/north-pacific-gyre/NENE02018B.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01843A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01978A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01751B.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01736A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01812A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE02043A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01729B.txt
+> > hpc-intro-data/north-pacific-gyre/NENE02040A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01843B.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01751A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01729A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE02040Z.txt
+> > ```
+> > {: .output}
+> > 
+> > Note that we did not type out `-x -v -z -f`, thanks to the flag concatenation,
+> > though the command works identically either way.
+> >
+> > ```
+> > {{ site.remote.prompt }} du -sh hpc-lesson-data
+> > 144K    hpc-intro-data
+> > ```
+> > {: .bash}
+> {: .solution}
+>
+> > # Was the data compressed?
+> > 
+> > Text files compress nicely: the "tarball" is one-quarter the total size of the raw data!
+> {: .discussion}
+{: .challenge}
+
+If you want to reverse the process &mdash; compressing raw data instead of extracting it &mdash;
+set a `c` flag instead of `x`, set the archive filename, then provide a directory to compress.
+
+> # Re-compress the data
+>
+> > # Command
+> > ```
+> > {{ site.local.prompt }} tar -cvzf compressed_data.tar.gz hpc-intro-data
+> > ```
+> > {: .bash}
+> {: .solution}
+{: .challenge}
+
 
 > ## Working with Windows
 >
-> When you transfer files to from a Windows system to a Unix system (Mac, Linux, BSD, Solaris, etc.)
-> this can cause problems. Windows encodes its files slightly different than Unix, and adds an extra
-> character to every line.
+> When you transfer text files to from a Windows system to a Unix system (Mac, Linux, BSD, Solaris,
+> etc.) this can cause problems. Windows encodes its files slightly different than Unix, and adds an
+> extra character to every line.
 > 
 > On a Unix system, every line in a file ends with a `\n` (newline). On Windows, every line in a
 > file ends with a `\r\n` (carriage return + newline). This causes problems sometimes.
@@ -284,12 +395,4 @@ selects the correct decompression algorithm at the time of extraction:
 > 
 > To convert the file, just run `dos2unix filename`. (Conversely, to convert back to Windows format,
 > you can run `unix2dos filename`.)
-{: .callout}
-
-> ## A note on ports
->
-> All file transfers using the above methods use encrypted communication over port 22. This is the
-> same connection method used by SSH. In fact, all file transfers using these methods occur through
-> an SSH connection. If you can connect via SSH over the normal port, you will be able to transfer
-> files.
 {: .callout}
