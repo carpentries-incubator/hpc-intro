@@ -18,7 +18,7 @@ performance of computational tasks.
 
 ## Running the Parallel Job
 
-We will run an example that uses the Message Passing Interface (MPI) for parallelism --
+We will run an example that uses the Message Passing Interface (MPI) for parallelism &mdash;
 this is a common tool on HPC systems.
 
 > ## What is MPI?
