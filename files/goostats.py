@@ -9,7 +9,6 @@ from mpi4py import MPI
 import numpy as np
 import os
 import sys
-
 l10n.setlocale(l10n.LC_ALL, "")
 
 # Declare an MPI Communicator for the parallel processes to talk through
@@ -21,18 +20,6 @@ cpus = comm.Get_size()
 # Find out the index ("rank") of *this* process
 rank = comm.Get_rank()
 
-# Guard against improper invocations of the program
-
-usage_string = "Usage:\n    mpirun -np {} {} directory_name"
-
-if len(sys.argv) != 2 or sys.argv[1] == "--help":
-    if rank == 0:
-        print(usage_string.format(cpus, sys.argv[0]))
-    sys.exit()
-
-path = sys.argv[1]
-
-# Define helper functions
 
 def list_assay_files(path):
     """
@@ -53,11 +40,26 @@ def list_assay_files(path):
 
     return valid_names
 
+
 def partition_files(list_of_files, number_of_parts):
     """
     Split the provided list of files into a number of roughly-equal parts
     """
     return np.array_split(list_of_files, number_of_parts)
+
+
+def get_local_file_names(path):
+    if rank == 0:
+        # Let only one MPI process scan the directory for files.
+        all_files = list_assay_files(path)
+        partitions = partition_files(all_files, cpus)
+    else:
+        partitions = []
+
+    # Every rank gets its own chunk of the list of assay files.
+    # This function is *blocking*: no rank returns until all are able to.
+    return comm.scatter(partitions, root = 0)
+
 
 def extract_concentrations(goo_file):
     """
@@ -69,6 +71,21 @@ def extract_concentrations(goo_file):
         return None
     return concentrations
 
+
+def get_assay_results(files):
+    # Every rank reads their private list of files into NumPy arrays
+    concentrations = []
+    for f in files:
+        result = extract_concentrations(f)
+        if result is not None:
+            concentrations.append(result)
+
+    print("Rank {} crunched data from {} files.".format(comm.Get_rank(), len(concentrations)))
+
+    # Convert list of NumPy arrays into a 2-D NumPy array
+    return np.array(concentrations)
+
+
 # "Main" program
 
 if __name__ == '__main__':
@@ -79,31 +96,25 @@ if __name__ == '__main__':
     ranks, called 'cpus', from the MPI calls at the top of the module.
     """
 
-    if rank == 0:
-        # Let only one MPI process scan the directory for files.
-        all_files = list_assay_files(path)
-        partitions = partition_files(all_files, cpus)
-    else:
-        partitions = []
+    # Guard against improper invocations of the program
 
-    # Every rank gets its own chunk of the list of assay files.
-    # This function is *blocking*: no rank returns until all are able to.
-    files = comm.scatter(partitions, root = 0)
+    usage_string = "Usage:\n    mpirun -np {} {} directory_name"
 
-    # Every rank reads their private list of files into NumPy arrays
-    concentrations = []
-    for f in files:
-        result = extract_concentrations(f)
-        if result is not None:
-            concentrations.append(result)
+    if len(sys.argv) != 2 or sys.argv[1] == "--help":
+        if rank == 0:
+            print(usage_string.format(cpus, sys.argv[0]))
+            sys.exit()
 
-    # Create a 2-D NumPy array from the list of NumPy arrays
-    concentrations = np.array(concentrations)
+    # Distribute assay files in the specified directory to the parallel ranks
+    path = sys.argv[1]
+    files = get_local_file_names(path)
+
+    # Read local set of files into NumPy array -- ignoring partial results
+    concentrations = get_assay_results(files)
 
     # Calculate the total number of valid assay results from local numbers
-    valid_results = len(concentrations)
-    print("Rank {} crunched data from {} files.".format(rank, valid_results))
-    valid_results = comm.reduce(valid_results)
+    valid_results = len(concentrations) # local
+    valid_results = comm.reduce(valid_results) # global
 
     # For each protein, collect the mean, min, and max values from all files
     assay_avg = np.sum(concentrations, axis=0).tolist()
@@ -115,12 +126,11 @@ if __name__ == '__main__':
         assay_min[i] = comm.reduce(assay_min[i], op=MPI.MIN)
         assay_max[i] = comm.reduce(assay_max[i], op=MPI.MAX)
 
-
     # Generate the global report using Rank 0, only
     if rank == 0:
         assay_avg = np.divide(assay_avg, valid_results)
-        run_type = "serial" if cpus<2 else "mpi"
-        with open("{}-{}.csv".format(run_type, path), "w") as csv:
+        csv_name = "{}.csv".format(path.rstrip("/")) # prevent "path/.csv", which would be a hidden file
+        with open(csv_name, "w") as csv:
             print("mean,min,max", file=csv)
             for a, n, x in zip(assay_avg, assay_min, assay_max):
                 print("{},{},{}".format(a, n, x), file=csv)

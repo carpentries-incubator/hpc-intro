@@ -12,105 +12,135 @@ keypoints:
 - "The smaller your job, the faster it will schedule."
 ---
 
-We now know virtually everything we need to know about getting stuff on a cluster. We can log on,
-submit different types of jobs, use pre-installed software, and install and use software of our own.
-What we need to do now is use the systems effectively.
+We've touched on all the skills you need to interact with an HPC cluster: logging in over
+SSH, loading software modules, submitting parallel jobs, and finding the output. Let's
+exercise the latter steps, and learn about estimating resource usage and why it might
+matter.
 
-## Estimating required resources using the scheduler
+## Back to the Data
 
-Although we covered requesting resources from the scheduler earlier, how do we know what type of
-resources the software will need in the first place, and the extent of its demand for each?
+Nelle Nemo is a biologist studying gelatinous marine life in the region of the [North
+Pacific Gyre]( https://en.wikipedia.org/wiki/North_Pacific_Gyre). She has sampled 1,520
+creatures, and has run them through assay machines to determine the levels of 300
+important proteins in each specimen. The machines generated a report for each assay with
+300 rows that correspond to the measured concentration of each protein.
 
-Unless the developers or prior users have provided some idea, we don't. Not until we've tried it
-ourselves at least once. We'll need to benchmark our job and experiment with it before we know how
-how great its demand for system resources.
+Nelle wants to gather a basic understanding of the protein concentrations by computing the
+means and ranges for each, across the entire dataset. From the summary of [collective MPI
+functions](https://mpi4py.readthedocs.io/en/stable/overview.html#collective-communications)
+where she previously learned about Scatter and Gather, Nelle notices this line:
 
-> ## Read the docs
+> Global reduction operations such as sum, maximum, minimum, etc.
+
+Intrigued, Nelle reads the documentation (and checks out some tutorials), finally coming
+up with a parallel Python program to crunch the numbers. You can get it here: 
+<{{ site.url }}{{ site.baseurl }}/files/goostats.py>
+
+> ## Get `goostats.py`
 >
-> Most HPC facilities maintain documentation as a wiki, website, or a document sent along when
-> you register for an account. Take a look at these resources, and search for the software of
-> interest: somebody might have written up guidance for getting the most out of it.
-{: .discussion}
-
-The most effective way of figuring out the resources required for a job to run successfully needs is
-to submit a test job, and then ask the scheduler about its impact using `{{ site.sched.hist }}`.
-
-You can use this knowledge to set up the next job with a close estimate of its load on the system. A
-good general rule is to ask the scheduler for 20% to 30% more time and memory than you expect the
-job to need. This ensures that minor fluctuations in run time or memory use will not result in your
-job being cancelled by the scheduler. Keep in mind that if you ask for too much, your job may not
-run even though enough resources are available, because the scheduler will be waiting to match what
-you asked for.
-
-> ## Benchmarking `fastqc`
+> Please download `goostats.py` and transfer it to {{ site.remote.name }}.
 >
-> Create a job that runs the following command in the same directory as the `.fastq` files
-> 
-> ```
-> {{site.remote.prompt }} fastqc name_of_fastq_file
-> ```
-> {: .bash}
-> 
-> You'll need to figure out a good amount of resources to allocate for this first "test run". You
-> might also want to have the scheduler email you to tell you when the job is done.
->
-> *Hint:* The job only needs 1 CPU and not too much memory or time. The trick is figuring out just 
-> how much you'll need!
->
-> > ## Is `fastqc` available?
+> > # Commands
 > > 
-> > You might need to load the *fastqc* module before `fastqc` will be available. Unsure?
-> > Run
-> > 
-> > ```
-> > {{ site.remote.prompt }} which fastqc
-> > ```
-> > {: .bash}
-> {: .discussion}
->
-> > ## Solution
-> >
-> > First, write the {{ site.sched.name }} script to run `fastqc` on the
-> > file supplied at the command-line.
-> >
-> > ```
-> > {{ site.remote.prompt }} cat fastqc-job.sh
-> > ```
-> > {: .bash}
-> >
-> > ```
-> > #!/bin/bash
-> > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:10:00
-> >
-> > fastqc $1
-> > ```
-> >
-> > Now, create and run a script to launch a job for each `.fastq` file.
-> >
-> > ```
-> > {{ site.remote.prompt }} cat fastqc-launcher.sh
-> > ```
-> > {: .bash}
-> >
-> > ```
-> > for f in *.fastq
-> > do
-> >     {{ site.sched.submit.name }} {{ site.sched.submit.options }} fastqc-job.sh $f
-> > done 
-> > ```
-> > {: .output}
-> >
-> > ```
-> > {{ site.remote.prompt }} chmod +x fastqc-launcher.sh
-> > {{ site.remote.prompt }} ./fastqc-launcher.sh
-> > ```
-> > {: .bash}
+> > 1. Download directly on {{ site.remote.name }}:
+> >    ```
+> >    {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/goostats.py
+> >    ```
+> >    {: .bash}
+> > 2. Download locally, then upload through the firewall:
+> >    ```
+> >    {{ site.local.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/goostats.py
+> >    {{ site.local.prompt }} scp goostats.py {{ site.remote.user }}@{{ site.remote.login }}:~/
+> >    ```
+> >    {: .bash}
 > {: .solution}
 {: .challenge}
 
-Once the job completes (note that it takes much less time than expected), we can query the scheduler
-to see how long our job took and what resources were used. We will use `{{ site.sched.hist }}` to
-get statistics about our job.
+Nelle's program takes a folder path as input. It finds all the valid files in that folder,
+distributing roughly equal numbers of files to all the parallel processes. All at once,
+the processes load their assigned files into NumPy arrays, then compute the protein
+statistics for the datasets known locally. Finally, a trio of MPI Reduce operations
+computes the stats for all 300 proteins across all datasets, using the local stats
+reported by each MPI process.
+
+> ## How's it work?
+>
+> Take a look inside `goostats.py`. Can you identify the subroutine that performs each of
+> these tasks? How does the program guard against invalid assay files?
+>
+> *Hint:* Start from the "main" function, defined toward the end of the file.
+>
+> > # Solution
+> >
+> > The subroutines are defined roughly in order, with some small extra helpers.
+> > 
+> > 1. The program gets the path to scan by reading the first command line argument,
+> >    provided by the system as the second item in the `argv` list, or, `argv[1]`.
+> > 2. The `get_local_file_names` function has rank 0 scan through the directory and
+> >    build a list of files matching Nelle's naming scheme. Files ending with "Z" are
+> >    excluded. It then uses NumPy to divide that list into a number of roughly-equal
+> >    pieces, one for each rank. All processes then participate in a call to the MPI
+> >    Scatter function, which simultaneously sends each rank its own private list of
+> >    files. Rank 0 even sends one to itself.
+> > 3. Each rank calls `get_assay_results` to read the contents of each file into a NumPy
+> >    array. If the array contains 300 numbers, it gets saved in the list of results.
+> > 4. Each rank then calls one of three NumPy functions on the list of returned results.
+> >    These functions apply the specified operation to the rows, i.e. files, to report
+> >    300-element NumPy arrays of computed values.
+> > 5. Since MPI Reduce has no option to compute an average, the sum is used instead,
+> >    followed by division by the total number of values.
+> > 6. After the Reduce operations complete, the root process (rank 0) holds the average,
+> >    minimum, and maximum concentrations of the 300 proteins from all the valid reports
+> >    in the specified folder. It stores these in a comma-separated value file,
+> >    which is given the folder name with a "csv" extension.
+> {: .solution}
+{: .discussion}
+
+After running `goostats.py`, Nelle will have a single CSV file summarizing the entire
+dataset. She has some ideas to expand the analysis, perhaps computing the standard
+deviation as well.
+
+Nelle is concerned about the runtime and memory footprint of the program. While it
+processes the test folder in less than a second, processing all 1,520 files, and doing
+more work for each one as she has planned, could be disastrous for her laptop. What about
+the cluster?
+
+## Estimating required resources using the scheduler
+
+Although we covered requesting resources from the scheduler earlier, how do we know what
+type of resources the software will need in the first place, and the extent of its demand
+for each?
+
+Unless the developers or prior users have provided some idea, we don't. Not until we've
+tried it ourselves at least once. We'll need to benchmark our job and experiment with it
+before we know how how great its demand for system resources.
+
+> ## Read the docs
+>
+> Most HPC facilities maintain documentation as a wiki, website, or a document sent along
+> when you register for an account. Take a look at these resources, and search for the
+> software of interest: somebody might have written up guidance for getting the most out
+> of it.
+{: .discussion}
+
+The most effective way of figuring out the resources required for a job to run
+successfully needs is to submit a test job, and then ask the scheduler about its impact
+using `{{ site.sched.hist }}`.
+
+You can use this knowledge to set up the next job with a close estimate of its load on the
+system. A good general rule is to ask the scheduler for 20% to 30% more time and memory
+than you expect the job to need. This ensures that minor fluctuations in run time or
+memory use will not result in your job being cancelled by the scheduler. Keep in mind that
+if you ask for too much, your job may not run even though enough resources are available,
+because the scheduler will be waiting to match what you asked for.
+
+
+
+## Stats
+
+Once the job completes (note that it takes much less time than expected), we can query the
+scheduler to see how long our job took and what resources were used. We will use `{{
+site.sched.hist }}` to get statistics about our job.
 
 ```
 {{ site.remote.prompt }} {{ site.sched.hist }}
@@ -119,17 +149,17 @@ get statistics about our job.
 
 {% include {{ site.snippets }}/resources/account-history.snip %}
 
-This shows all the jobs we ran recently (note that there are multiple entries per job). To get
-info about a specific job, we change command slightly.
+This shows all the jobs we ran recently (note that there are multiple entries per job). To
+get info about a specific job, we change command slightly.
 
 ```
 {{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965
 ```
 {: .bash}
 
-It will show a lot of info, in fact, every single piece of info collected on your job by the
-scheduler. It may be useful to redirect this information to `less` to make it easier to view (use
-the left and right arrow keys to scroll through fields).
+It will show a lot of info, in fact, every single piece of info collected on your job by
+the scheduler. It may be useful to redirect this information to `less` to make it easier
+to view (use the left and right arrow keys to scroll through fields).
 
 ```
 {{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965 | less
@@ -149,9 +179,9 @@ Some interesting fields include the following:
 
 > ## Connecting to Nodes
 >
-> Typically, clusters allow users to connect directly to compute nodes from the head 
-> node. This is useful to check on a running job and see how it's doing, but is not
-> a recommended practice in general, because it bypasses the resource manager.
+> Typically, clusters allow users to connect directly to compute nodes from the head node.
+> This is useful to check on a running job and see how it's doing, but is not a
+> recommended practice in general, because it bypasses the resource manager.
 >
 > If you need to do this, check where a job is running with `{{ site.sched.status }}`, then
 > run `ssh nodename`.
@@ -167,13 +197,13 @@ Some interesting fields include the following:
 > {: .solution}
 {: .challenge}
 
-We can also check on stuff running on the login node right now the same way (so it's 
-not necessary to `ssh` to a node for this example).
+We can also check on stuff running on the login node right now the same way (so it's not
+necessary to `ssh` to a node for this example).
 
 ### Monitor system processes with `top`
 
-The most reliable way to check current system stats is with `top`. Some sample output might look
-like the following (type `q` to exit `top`):
+The most reliable way to check current system stats is with `top`. Some sample output
+might look like the following (type `q` to exit `top`):
 
 ```
 {{ site.remote.prompt }} top
@@ -194,9 +224,10 @@ Overview of the most important fields:
   twice the normal rate.
 * `COMMAND`: What command was used to launch a process?
 
-`htop` provides a [curses]()-based overlay for `top`, producing a better-organized and "prettier"
-dashboard in your terminal. Unfortunately, it is not always available. If this is the case,
-*politely* ask your system administrators to install it for you.
+`htop` provides a [curses]()-based overlay for `top`, producing a better-organized and
+"prettier" dashboard in your terminal. Unfortunately, it is not always available. If this
+is the case, ask your system administrators to install it for you. Don't be shy, they're
+here to help!
 
 ### `ps `
 
@@ -214,8 +245,9 @@ To show all processes from your current session, type `ps`.
 ```
 {: .output}
 
-Note that this will only show processes from our current session. To show all processes you own
-(regardless of whether they are part of your current session or not), you can use `ps ux`.
+Note that this will only show processes from our current session. To show all processes
+you own (regardless of whether they are part of your current session or not), you can use
+`ps ux`.
 
 ```
 {{ site.remote.prompt }} ps ux
