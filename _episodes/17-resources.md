@@ -16,7 +16,7 @@ We've touched on all the skills you need to interact with an HPC cluster: loggin
 SSH, loading software modules, submitting parallel jobs, and finding the output. Let's
 learn about estimating resource usage and why it might matter.
 
-## Estimating required resources using the scheduler
+## Back to the Data
 
 Although we covered requesting resources from the scheduler earlier with the &#960; code, how
 do we know what type of resources the software will need in the first place, and its

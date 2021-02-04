@@ -47,6 +47,20 @@ def partition_files(list_of_files, number_of_parts):
     """
     return np.array_split(list_of_files, number_of_parts)
 
+
+def get_local_file_names(path):
+    if rank == 0:
+        # Let only one MPI process scan the directory for files.
+        all_files = list_assay_files(path)
+        partitions = partition_files(all_files, cpus)
+    else:
+        partitions = []
+
+    # Every rank gets its own chunk of the list of assay files.
+    # This function is *blocking*: no rank returns until all are able to.
+    return comm.scatter(partitions, root = 0)
+
+
 def extract_concentrations(goo_file):
     """
     Read file `goo_file` into NumPy array.
@@ -56,6 +70,20 @@ def extract_concentrations(goo_file):
     if len(concentrations) != 300:
         return None
     return concentrations
+
+
+def get_assay_results(files):
+    # Every rank reads their private list of files into NumPy arrays
+    concentrations = []
+    for f in files:
+        result = extract_concentrations(f)
+        if result is not None:
+            concentrations.append(result)
+
+    print("Rank {} crunched data from {} files.".format(comm.Get_rank(), len(concentrations)))
+
+    # Convert list of NumPy arrays into a 2-D NumPy array
+    return np.array(concentrations)
 
 
 # "Main" program
