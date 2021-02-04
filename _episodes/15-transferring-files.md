@@ -185,7 +185,6 @@ important in other commands, like `rsync`.
 > `-p`, `-P`, or `--port`. Check `--help` or the `man` page if you're unsure.
 >
 > > ## Rsync port
-> > # Rsync port
 > >
 > > Say we have to connect `rsync` through port 768 instead of 22. How would we modify this command?
 > >
@@ -306,7 +305,6 @@ Now let's unpack the archive. We'll run `tar` with a few common flags:
 - `-v` for **v**erbose output
 - `-z` for g**z**ip compression
 - `-f` for the file to be unpacked
-<<<<<<< HEAD
 
 When it's done, check the directory size with `du` and compare.
 
@@ -373,80 +371,6 @@ set a `c` flag instead of `x`, set the archive filename, then provide a director
 ```
 {: .bash}
 
-=======
-
-When it's done, check the directory size with `du` and compare.
-
-> ## Extract the Archive
->
-> Using the four flags above, unpack the lesson data using `tar`.
-> Then, check the size of the whole unpacked directory using `du`.
->
-> Hint: `tar` lets you concatenate flags.
->
-> > # Commands
-> >
-> > ```
-> > {{ site.remote.prompt }} tar -xvzf hpc-lesson-data.tar.gz
-> > ```
-> > {: .bash}
-> > 
-> > ```
-> > hpc-intro-data/
-> > hpc-intro-data/north-pacific-gyre/
-> > hpc-intro-data/north-pacific-gyre/NENE01971Z.txt
-> > hpc-intro-data/north-pacific-gyre/goostats
-> > hpc-intro-data/north-pacific-gyre/goodiff
-> > hpc-intro-data/north-pacific-gyre/NENE02040B.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01978B.txt
-> > hpc-intro-data/north-pacific-gyre/NENE02043B.txt
-> > hpc-intro-data/north-pacific-gyre/NENE02018B.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01843A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01978A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01751B.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01736A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01812A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE02043A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01729B.txt
-> > hpc-intro-data/north-pacific-gyre/NENE02040A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01843B.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01751A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01729A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE02040Z.txt
-> > ```
-> > {: .output}
-> > 
-> > Note that we did not type out `-x -v -z -f`, thanks to the flag concatenation,
-> > though the command works identically either way.
-> >
-> > ```
-> > {{ site.remote.prompt }} du -sh hpc-lesson-data
-> > 144K    hpc-intro-data
-> > ```
-> > {: .bash}
-> {: .solution}
->
-> > # Was the data compressed?
-> > 
-> > Text files compress nicely: the "tarball" is one-quarter the total size of the raw data!
-> {: .discussion}
-{: .challenge}
-
-If you want to reverse the process &mdash; compressing raw data instead of extracting it &mdash;
-set a `c` flag instead of `x`, set the archive filename, then provide a directory to compress.
-
-> # Re-compress the data
->
-> > # Command
-> > ```
-> > {{ site.local.prompt }} tar -cvzf compressed_data.tar.gz hpc-intro-data
-> > ```
-> > {: .bash}
-> {: .solution}
-{: .challenge}
-
-
->>>>>>> rework Ep. 15 to use Nelle Nemo tarball rather than fastqc zip
 > ## Working with Windows
 >
 > When you transfer text files to from a Windows system to a Unix system (Mac, Linux, BSD, Solaris,
