@@ -70,7 +70,7 @@ leave it at that if we don't care where the file goes.
 > Copy the file you just downloaded from the Internet to your home directory on 
 > {{ site.remote.name }}. 
 >
-> > # Solution
+> > ## Solution
 > >
 > > ```
 > > {{ site.local.prompt }} scp hpc-intro-data.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:~/
@@ -87,11 +87,11 @@ leave it at that if we don't care where the file goes.
 > machine to download the file, then use the `scp` command (just below here) to upload it to the
 > cluster. 
 >
-> > # `wget` from {{ site.remote.login }}
+> > ## `wget` from {{ site.remote.login }}
 > >
 > > Try downloading the file directly. Note that it may well fail, and that's OK!
 > >
-> > > # Commands
+> > > ## Commands
 > > >
 > > > ```
 > > > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
@@ -184,7 +184,7 @@ important in other commands, like `rsync`.
 > 22. If a custom SSH port is in use, you will have to specify it using the appropriate flag, often
 > `-p`, `-P`, or `--port`. Check `--help` or the `man` page if you're unsure.
 >
-> > # Rsync port
+> > ## Rsync port
 > >
 > > Say we have to connect `rsync` through port 768 instead of 22. How would we modify this command?
 > >
@@ -193,7 +193,7 @@ important in other commands, like `rsync`.
 > > ```
 > > {: .bash}
 > >
-> > > # Solution
+> > > ## Solution
 > > >
 > > > ```
 > > > {{ site.local.prompt }} rsync --help | grep port
@@ -314,7 +314,7 @@ When it's done, check the directory size with `du` and compare.
 >
 > Hint: `tar` lets you concatenate flags.
 >
-> > # Commands
+> > ## Commands
 > >
 > > ```
 > > {{ site.remote.prompt }} tar -xvzf hpc-lesson-data.tar.gz
@@ -356,25 +356,19 @@ When it's done, check the directory size with `du` and compare.
 > > {: .bash}
 > {: .solution}
 >
-> > # Was the data compressed?
+> > ## Was the data compressed?
 > > 
 > > Text files compress nicely: the "tarball" is one-quarter the total size of the raw data!
 > {: .discussion}
 {: .challenge}
 
 If you want to reverse the process &mdash; compressing raw data instead of extracting it &mdash;
-set a `c` flag instead of `x`, set the archive filename, then provide a directory to compress.
+set a `c` flag instead of `x`, set the archive filename, then provide a directory to compress:
 
-> # Re-compress the data
->
-> > # Command
-> > ```
-> > {{ site.local.prompt }} tar -cvzf compressed_data.tar.gz hpc-intro-data
-> > ```
-> > {: .bash}
-> {: .solution}
-{: .challenge}
-
+```
+{{ site.local.prompt }} tar -cvzf compressed_data.tar.gz hpc-intro-data
+```
+{: .bash}
 
 > ## Working with Windows
 >
