@@ -121,7 +121,7 @@ bottom of the directory tree rooted at the folder name you provided.
 ## What's in a `/`?
 
 When using `scp`, you may have noticed that a `:` *always* follows the remote computer name;
-sometimes a `/` follows that, and sometimes not, and sometines there's a final `/`. On Linux
+sometimes a `/` follows that, and sometimes not, and sometimes there's a final `/`. On Linux
 computers, `/` is the ***root*** directory, the location where the entire filesystem (and others
 attached to it) is anchored. A path starting with a `/` is called *absolute*, since there can be
 nothing above the root `/`. A path that does not start with `/` is called *relative*, since it is
