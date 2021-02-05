@@ -37,7 +37,7 @@ researchers to prevent software versioning issues from affecting their results.
 Dependencies are where a particular software package (or even a particular version)
 depends on having access to another software package (or even a particular version of
 another software package). For example, the VASP materials science software may 
-depend on having a particular version of the FFTW (Fastest Fourer Transform in the West)
+depend on having a particular version of the FFTW (Fastest Fourier Transform in the West)
 software library available for it to work.
 
 ## Environment modules
