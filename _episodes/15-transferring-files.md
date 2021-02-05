@@ -255,7 +255,8 @@ Let's start with the file we downloaded from the lesson site, `hpc-lesson-data.t
 part stands for *gzip*, which is a compression library. Reading this file name, it appears somebody
 took a folder named "hpc-lesson-data," wrapped up all its contents in a single file with `tar`, then
 compressed that archive with `gzip` to save space. Let's check using `tar` with the `-t` flag, which
-prints the "**t**able of contents" without unpacking the file, on the remote computer.
+prints the "**t**able of contents" without unpacking the file, specified by `-f <filename>`, on the
+remote computer. Note that you can concatenate the two flags, instead of writing `-t -f` separately.
 
 ```
 {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
