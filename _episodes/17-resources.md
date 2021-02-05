@@ -1,7 +1,7 @@
 ---
 title: "Using resources effectively"
-teaching: 15
-exercises: 10
+teaching: 10
+exercises: 30
 questions:
 - "How do we monitor our jobs?"
 - "How can I get my jobs scheduled more easily?" 
@@ -30,7 +30,8 @@ means and ranges for each, across the entire dataset. From the summary of [colle
 functions](https://mpi4py.readthedocs.io/en/stable/overview.html#collective-communications)
 where she previously learned about Scatter and Gather, Nelle notices this line:
 
-> Global reduction operations such as sum, maximum, minimum, etc.
+> * Global reduction operations such as sum, maximum, minimum, etc.
+{: .quotation}
 
 Intrigued, Nelle reads the documentation (and checks out some tutorials), finally coming
 up with a parallel Python program to crunch the numbers. You can get it here: 
@@ -40,7 +41,7 @@ up with a parallel Python program to crunch the numbers. You can get it here:
 >
 > Please download `goostats.py` and transfer it to {{ site.remote.name }}.
 >
-> > # Commands
+> > ## Commands
 > > 
 > > 1. Download directly on {{ site.remote.name }}:
 > >    ```
@@ -70,12 +71,12 @@ reported by each MPI process.
 >
 > *Hint:* Start from the "main" function, defined toward the end of the file.
 >
-> > # Solution
+> > ## Solution
 > >
 > > The subroutines are defined roughly in order, with some small extra helpers.
 > > 
 > > 1. The program gets the path to scan by reading the first command line argument,
-> >    provided by the system as the second item in the `argv` list, or, `argv[1]`.
+> >    provided by the system as the second item in the `argv` list, or `argv[1]`.
 > > 2. The `get_local_file_names` function has rank 0 scan through the directory and
 > >    build a list of files matching Nelle's naming scheme. Files ending with "Z" are
 > >    excluded. It then uses NumPy to divide that list into a number of roughly-equal
@@ -100,40 +101,65 @@ After running `goostats.py`, Nelle will have a single CSV file summarizing the e
 dataset. She has some ideas to expand the analysis, perhaps computing the standard
 deviation as well.
 
-Nelle is concerned about the runtime and memory footprint of the program. While it
-processes the test folder in less than a second, processing all 1,520 files, and doing
-more work for each one as she has planned, could be disastrous for her laptop. What about
-the cluster?
+Nelle is concerned about the resource requirements of the program. While it processes the
+test folder in less than a second, processing all 1,520 files, and doing more work for
+each one as she has planned, could be disastrous for her laptop. We can estimate the
+memory footprint, since the number of values is known ahead of time. Assuming
+double-precision numbers, the entire dataset by itself has a memory footprint of (1520
+files &times; 300 numbers per file &times; 64 bits per number) &#247; (8 bits per
+byte &times; 1024&sup2; bytes per MB) = 3.5 MB. Even if Python keeps dozens of copies
+in memory at once, memory won't be a problem. The runtime, on the other hand, can be
+extremely difficult to estimate, especially as Nelle adds features. Perhaps of greater
+concern is the fact that the program opens thousands of files, almost all at once. Even
+with a local solid-state hard drive, reading data will probably take longer than crunching
+the numbers. On a networked filesystem, this could create a real problem.
 
 ## Estimating required resources using the scheduler
 
-Although we covered requesting resources from the scheduler earlier, how do we know what
-type of resources the software will need in the first place, and the extent of its demand
-for each?
+Although we covered requesting resources from the scheduler earlier with the π code, how
+do we know what type of resources the software will need in the first place, and its
+demand for each? In general, unless the software documentation or user testimonials
+provide some idea, we don't up front how much memory or compute time a program will need.
 
-Unless the developers or prior users have provided some idea, we don't. Not until we've
-tried it ourselves at least once. We'll need to benchmark our job and experiment with it
-before we know how how great its demand for system resources.
-
-> ## Read the docs
+> ## Read the Documentation
 >
-> Most HPC facilities maintain documentation as a wiki, website, or a document sent along
+> Most HPC facilities maintain documentation as a wiki, a website, or a document sent along
 > when you register for an account. Take a look at these resources, and search for the
-> software of interest: somebody might have written up guidance for getting the most out
-> of it.
-{: .discussion}
+> software you plan to use: somebody might have written up guidance for getting the most
+> out of it.
+{: .callout}
 
-The most effective way of figuring out the resources required for a job to run
-successfully needs is to submit a test job, and then ask the scheduler about its impact
-using `{{ site.sched.hist }}`.
+A convenient way of figuring out the resources required for a job to run successfully is
+to submit a test job, and then ask the scheduler about its impact using `{{
+site.sched.hist }}`. You can use this knowledge to set up the next job with a closer
+estimate of its load on the system. A good general rule is to ask the scheduler for 20% to
+30% more time and memory than you expect the job to need. This ensures that minor
+fluctuations in run time or memory use will not result in your job being cancelled by the
+scheduler. Keep in mind that if you ask for too much, your job may not run even though
+enough resources are available, because the scheduler will be waiting for other people's
+jobs to finish and free up the resources needed to match what you asked for.
 
-You can use this knowledge to set up the next job with a close estimate of its load on the
-system. A good general rule is to ask the scheduler for 20% to 30% more time and memory
-than you expect the job to need. This ensures that minor fluctuations in run time or
-memory use will not result in your job being cancelled by the scheduler. Keep in mind that
-if you ask for too much, your job may not run even though enough resources are available,
-because the scheduler will be waiting to match what you asked for.
 
+```
+{{ site.remote.prompt }} nano parallel-goostats.sh
+{{ site.remote.prompt }} cat parallel-goostats.sh
+```
+{: .bash}
+
+```
+#!/bin/bash
+{{ site.sched.comment }} {{ site.sched.flag.name }} parallel-goostats
+{{ site.sched.comment }} {{ site.sched.flag.queue }} {{ site.sched.queue.testing }}
+{% include {{ site.snippets }}/parallel/four-tasks.snip %}
+module load python3
+mpirun ./goostats.py hpc-intro-data/north-pacific-gyre
+```
+{: .output}
+
+```
+{{ site.remote.prompt }} {{ site.sched.submit.name }} parallel-goostats.sh
+```
+{: .bash}
 
 
 ## Stats
@@ -224,12 +250,13 @@ Overview of the most important fields:
   twice the normal rate.
 * `COMMAND`: What command was used to launch a process?
 
-`htop` provides a [curses]()-based overlay for `top`, producing a better-organized and
-"prettier" dashboard in your terminal. Unfortunately, it is not always available. If this
-is the case, ask your system administrators to install it for you. Don't be shy, they're
-here to help!
+`htop` provides an overlay for `top` using [curses](
+https://en.wikipedia.org/wiki/Curses_(programming_library)), producing a better-organized
+and "prettier" dashboard in your terminal. Unfortunately, it is not always available. If
+this is the case, ask your system administrators to install it for you. Don't be shy,
+they're here to help!
 
-### `ps `
+### `ps`
 
 To show all processes from your current session, type `ps`.
 
@@ -261,6 +288,5 @@ you own (regardless of whether they are part of your current session or not), yo
 {{ site.remote.user }}  73087  0.0  0.0 114636  3312 pts/81   Ss   12:50   0:00 -bash
 ```
 {: .output}
-
 
 This is useful for identifying which processes are doing what.
