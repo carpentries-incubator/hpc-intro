@@ -1,7 +1,7 @@
 ---
 title: "Running a parallel job"
-teaching: 10
-exercises: 5
+teaching: 30
+exercises: 30
 questions:
 - "How do we execute a task in parallel?"
 objectives:

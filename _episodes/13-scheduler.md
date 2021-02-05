@@ -1,5 +1,5 @@
 ---
-title: "Scheduling jobs"
+title: "Working with the scheduler"
 teaching: 45
 exercises: 30
 questions:

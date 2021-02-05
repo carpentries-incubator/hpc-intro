@@ -7,7 +7,7 @@ questions:
 - "What can I expect to learn from this course?"
 objectives:
 - "Be able to describe what an HPC system is"
-- "Identify how an HPC system could benefit you."  
+- "Identify how an HPC system could benefit you."
 keypoints:
 - "High Performance Computing (HPC) typically involves connecting to very large computing systems
   elsewhere in the world."

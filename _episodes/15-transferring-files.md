@@ -1,7 +1,7 @@
 ---
-title: "Transferring files"
-teaching: 30
-exercises: 10
+title: "Transferring files with remote computers"
+teaching: 15
+exercises: 15
 questions:
 - "How do I transfer files to (and from) the cluster?"
 objectives:
