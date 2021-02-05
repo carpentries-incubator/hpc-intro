@@ -25,7 +25,7 @@ several dozen cores so it finishes in a few hours.
 
 ## Maria Newton
  
-As new PhD student, Maria is given a task to select parameters for their simulation. They need to
+As a new PhD student, Maria is given a task to select parameters for their simulation. They need to
 run a set of calculations on several thousand combinations of parameters. One calculation takes
 several minutes. They set up the problem on their laptop but quickly realise that it would take more
 than a month to complete the task. They are told to use local HPC but they are not sure how this
