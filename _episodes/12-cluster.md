@@ -278,7 +278,7 @@ it is more common for nodes to connect to a shared, remote fileserver or cluster
 > >
 > > > The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're on the same login
 > > > node (or compute node, later on). Networked filesystems (beegfs, cifs, gpfs, nfs, pvfs) will
-> > > be similar -- but may include yourUserName, depending on how it is [mounted](
+> > > be similar &mdash; but may include yourUserName, depending on how it is [mounted](
 > > > https://en.wikipedia.org/wiki/Mount_(computing)).
 > > {: .discussion}
 > > 

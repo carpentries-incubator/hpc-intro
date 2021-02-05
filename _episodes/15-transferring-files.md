@@ -127,7 +127,7 @@ attached to it) is anchored. A path starting with a `/` is called *absolute*, si
 nothing above the root `/`. A path that does not start with `/` is called *relative*, since it is
 not anchored to the root.
 
-If you want to upload a file to a location inside your home directory -- which is often the case --
+If you want to upload a file to a location inside your home directory &mdash; which is often the case &mdash;
 then you don't need a leading `/`. After the `:`, start writing the sequence of folders that lead to
 the final storage location for the file or, as mentioned above, provide nothing if your home
 directory *is* the destination.
