@@ -160,7 +160,7 @@ transferred and where the data is going. Some of the key issues to be aware of a
 - **Network speed**: Data transfer performance can be limited by network speed. More importantly
   it is limited by the slowest section of the network between source and destination. If you are
   transferring to your laptop/workstation, this is likely to be its connection (either via LAN or 
-  wifi).
+  WiFi).
 - **Firewall speed**: Most modern networks are protected by some form of firewall that filters
   out malicious traffic. This filtering has some overhead and can result in a reduction in data
   transfer performance. The needs of a general purpose network that hosts email/web-servers and

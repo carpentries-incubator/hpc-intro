@@ -29,7 +29,7 @@ that may be located anywhere on Earth. For example, a large company with computi
 Brazil, Zimbabwe and Japan may manage those resources as its own *internal* cloud and that same
 company may also utilize commercial cloud resources provided by Amazon or Google. Cloud resources
 may refer to machines performing relatively simple tasks such as serving websites, providing
-shared storage, providing webservices (such as e-mail or social media platforms), as well as more
+shared storage, providing web services (such as e-mail or social media platforms), as well as more
 traditional compute intensive tasks such as running a simulation.
 
 The term *HPC system*, on the other hand, describes a stand-alone resource for computationally

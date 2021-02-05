@@ -35,7 +35,7 @@ MPI jobs cannot generally be run as stand-alone executables. Instead, they shoul
 started with the `mpirun` command, which ensures that the appropriate run-time support for
 parallelism is included.
 
-On its own, `mpirun` can take many arguments specifying how many machines will partcipate
+On its own, `mpirun` can take many arguments specifying how many machines will participate
 in the process. In the context of our queuing system, however, we do not need to specify
 this information, the `mpirun` command will obtain it from the queuing system, by
 examining the environment variables set when the job is launched.
