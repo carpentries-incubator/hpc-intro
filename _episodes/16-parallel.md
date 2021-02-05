@@ -110,14 +110,14 @@ resources.
 Create a submission file, requesting more than one task on a single node:
 
 ```
-{{ site.remote.prompt }} nano parallel-example.sh
-{{ site.remote.prompt }} cat parallel-example.sh
+{{ site.remote.prompt }} nano parallel-pi.sh
+{{ site.remote.prompt }} cat parallel-pi.sh
 ```
 {: .bash}
 
 ```
 #!/bin/bash
-{{ site.sched.comment }} {{ site.sched.flag.name }} parallel-example
+{{ site.sched.comment }} {{ site.sched.flag.name }} parallel-pi
 {{ site.sched.comment }} {{ site.sched.flag.queue }} {{ site.sched.queue.testing }}
 {% include {{ site.snippets }}/parallel/four-tasks.snip %}
 module load python3
@@ -129,12 +129,13 @@ Then submit your job. We will use the batch file to set the options,
 rather than the command line.
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} parallel-example.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} parallel-pi.sh
 ```
 {: .bash}
 
 As before, use the status commands to check when your job runs. Use `ls` to locate the
 output file, and examine it. Is it what you expected?
 
-* How good is the value for π?
+* How good is the value for &#960;?
 * How much memory did it need?
+* How much of that memory was used on each node?
