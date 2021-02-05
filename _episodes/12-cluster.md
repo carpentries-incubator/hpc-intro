@@ -62,7 +62,7 @@ have already taken The Carpentries' courses on the UNIX Shell or Version Control
 CLI on your local machine somewhat extensively. The only leap to be made here is to open a CLI on a
 *remote* machine, while taking some precautions so that other folks on the network can't see (or
 change) the commands you're running or the results the remote machine sends back. We will use the
-Secure SHell protocol (or SSH) to opens an encrypted network connection between two machines,
+Secure SHell protocol (or SSH) to open an encrypted network connection between two machines,
 allowing you to send & receive text and data without having to worry about prying eyes.
 
 {% include figure.html url="" max-width="50%" file="/fig/connect-to-remote.svg"
@@ -84,7 +84,7 @@ username and the remote computer you can reach from the outside world, {{ site.r
 ```
 {: .bash}
 
-Remember to replace `{{ site.remote.user }}` with the your username or the one supplied by the
+Remember to replace `{{ site.remote.user }}` with your username or the one supplied by the
 instructors. You may be asked for your password. Watch out: the characters you type after the
 password prompt are not displayed on the screen. Normal output will resume once you press `Enter`.
 
