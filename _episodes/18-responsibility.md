@@ -33,7 +33,7 @@ of the community, need to consider.
 The login node is often busy managing all of the logged in users, creating and editing files and
 compiling software. If the machine runs out of memory or processing capacity, it will become very
 slow and unusable for everyone. While the machine is meant to be used, be sure to do so responsibly
-&endash; in ways that will not adversely impact other users' experience.
+&emdash; in ways that will not adversely impact other users' experience.
 
 Login nodes are always the right place to launch jobs. Cluster policies vary, but they may also be
 used for proving out workflows, and in some cases, may host advanced cluster-specific debugging or
@@ -54,7 +54,7 @@ head node is a quick and reliable way to discover and fix these issues.
 You can always use the commands `top` and `ps ux` to list the processes that are running on the
 login node along with the amount of CPU and memory they are using. If this check reveals that the
 login node is somewhat idle, you can safely use it for your non-routine processing task. If
-something goes wrong &endash; the process takes too long, or doesn't respond &endash; you can use
+something goes wrong &emdash; the process takes too long, or doesn't respond &emdash; you can use
 the `kill` command along with the *PID* to terminate the process.
 
 > ## Login Node Etiquette
@@ -210,7 +210,9 @@ transfer earlier.
 >
 > > ## Solution
 > >
-> > 1. `scp` will recursively copy the directory. This works, but without compression.
+> > 1. `scp` will recursively copy the directory. This works, but requires lots of metadata operations,
+> >     and might not compress the data during the transfer, since compression is controlled by both the
+> >     remote ssh server and the local scp program.
 > > 2. `rsync -ra` works like `scp -r`, but preserves file information like creation times. This is
 > >    marginally better.
 > > 3. `rsync -raz` adds compression, which will save some bandwidth. If you have a strong CPU at
