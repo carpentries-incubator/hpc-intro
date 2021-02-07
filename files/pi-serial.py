@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Parallel example code for estimating the value of π.
+"""Serial example code for estimating the value of π.
 
 We can estimate the value of π by a stochastic algorithm. Consider a
 circle of radius 1, inside a square that bounds it, with vertices at
@@ -70,7 +70,7 @@ if __name__ == '__main__':
 
     # accuracy is calculated as a percent difference from a known estimate
     # of π.
-    pi_specific = np.float32(3.1415926535897932384626433832795028841971693993)
+    pi_specific = np.float32(3.141592653589793238462643383279502884197169)
     accuracy = 100*(1-my_pi/pi_specific)
 
     # Uncomment either summary format for verbose or terse output
