@@ -45,18 +45,13 @@ def inside_circle(total_count):
 if __name__ == '__main__':
     """Main executable.
 
-    Rank 0 divides the data arrays among the ranks (including itself),
-    then each rank independently runs the 'inside_circle' function with
-    its share of the samples. The disparate results are then aggregated
-    via the 'gather' operation, and then the estimate for π is
-    computed.
+    This function runs the 'inside_circle' function with a defined number
+    of samples. The disparate results are then aggregated via the 'gather'
+    operation, and then the estimate for π is computed.
 
     An estimate of the required memory, elapsed calculation time, and
     accuracy of calculating π are also computed.
     """
-
-    # normal Python code runs on 1 core (serial)
-    cores = 1
 
     if len(sys.argv) > 1:
         n_samples = int(sys.argv[1])
@@ -82,5 +77,5 @@ if __name__ == '__main__':
     # Uncomment either summary format for verbose or terse output
     # summary = "{:d} core(s), {:d} samples, {:f} MiB memory, {:f} seconds, {:f}% error"
     summary = "{:d},{:d},{:f},{:f},{:f}"
-    print(summary.format(cores, n_samples, memory_required, elapsed_time,
+    print(summary.format(1, n_samples, memory_required, elapsed_time,
                          accuracy))
