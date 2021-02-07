@@ -46,8 +46,7 @@ if __name__ == '__main__':
     """Main executable.
 
     This function runs the 'inside_circle' function with a defined number
-    of samples. The disparate results are then aggregated via the 'gather'
-    operation, and then the estimate for π is computed.
+    of samples. The results are then used to estimate π.
 
     An estimate of the required memory, elapsed calculation time, and
     accuracy of calculating π are also computed.
