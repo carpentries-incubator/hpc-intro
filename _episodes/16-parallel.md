@@ -27,7 +27,7 @@ this is a common tool on HPC systems.
 > communicate with each other. Typically, a single executable is run multiple times,
 > possibly on different machines, and the MPI tools are used to inform each instance of
 > the executable about how many instances there are, which instance it is. MPI also
-> provides communication tools to allow communication and coordination between instances.
+> provides tools to allow communication and coordination between instances.
 > An MPI instance typically has its own copy of all the local variables.
 {: .callout}
 
