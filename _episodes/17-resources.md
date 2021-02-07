@@ -82,11 +82,10 @@ Some interesting fields include the following:
 
 ## Measuring the system load from currently running tasks
 
-Some clusters allow users to connect directly to compute nodes from the head node.
+Typically, clusters allow users to connect directly to compute nodes from the head node.
 This is useful to check on a running job and see how it's doing, but is not a
 recommended practice in general, because it bypasses the resource manager.
-As a compromize, other clusters allow users to connect directy to compute nodes from the head node,
-but only while the user has a job running on the compute node.
+To reduce the risk of interfering with other users, some clusters will only allow you to connect to nodes on which you have running jobs.
 Let's practice by taking a look at what's running on the login node right now.
 
 ### Monitor system processes with `top`
