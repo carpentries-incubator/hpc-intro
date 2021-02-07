@@ -29,7 +29,16 @@ they started:
 
 * An engineer is using a fluid dynamics package that has an option to run in parallel. So far, this option was not utilized on a desktop. In going from 2D to 3D simulations, the simulation time has more than tripled. It might be useful to take advantage of that option or feature.
 
-In all these cases, access to more computers is needed. Those computers should be usable at the same time.
+In the cross-validation example, final results are calculated after all 1000 models have run, but typically only one model is run at a time (in **serial**) on the laptop.
+Since each of the 1000 runs is independent of all others, and given enough computers, it's theoretically possible to run them all at once (in **parallel**).
+
+In the genomics example, the calculations required might be impossible to parallelize, but a computer with **more memory** would be required to analyze the much larger future data set.
+
+In the fluid dynamics example, the calculations in each region of the simulation are largely independent of calculations in other regions of the simulation.
+It's possible to run each region's calculations simultaneously (in **parallel**), communicate selected results to adjacent regions as needed, and repeat the calculations to converge on a final set of results.
+In moving from a 2D to a 3D model, **both the amount of data and the amount of calculations increases greatly**, and it's theoretically possible to distribute the calculations across multiple computers communicating over a shared network.
+
+In all these cases, access to more (and larger) computers is needed. Those computers should be usable at the same time, **solving many researchers' problems in parallel**.
 
 > ## And what do you do?
 > 
