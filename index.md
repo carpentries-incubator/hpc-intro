@@ -17,7 +17,7 @@ By the end of this workshop, students will know how to:
 
 > ## Getting Started
 >
-> To get started, follow the directions in the "[Setup](https://hpc-carpentry.github.io/hpc-intro/setup.html)" tab to 
+> To get started, follow the directions in the "[Setup]({{ page.root }}/setup.html)" tab to 
 > download data to your computer and follow any installation instructions.
 {: .callout}
 
@@ -29,13 +29,12 @@ By the end of this workshop, students will know how to:
 
 > ## For Instructors
 >
-> If you are teaching this lesson in a workshop, please see the 
+> If you are teaching this lesson in a workshop, please see the
 > [Instructor notes](guide/).
 {: .callout}
 
 > ## Note
-> 
+>
 > - This is the draft HPC Carpentry release. Comments and feedback are welcome.
 > - Link to [hpc-shell](https://hpc-carpentry.github.io/hpc-shell/) when that is complete.
 {: .callout}
-
