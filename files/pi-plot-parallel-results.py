@@ -26,11 +26,12 @@ accuracy = data[:, 4]
 
 data_serial = np.genfromtxt(serial_file, delimiter=',')
 n_samples_serial = data_serial[:, 1]
-baseline_row = int(np.argwhere(n_samples_serial==n_samples))-1
+baseline_row = int(np.argwhere(n_samples_serial==n_samples))
 baseline_values = data_serial[baseline_row, :]
 
 serial_time = data_serial[baseline_row, 3]
 speedup = serial_time/elapsed_time
+print("Serial time: {}, speedup: {}".format(serial_time, speedup))
 
 plot_dict = { 'Elapsed time (s)': elapsed_time,
               'Speedup factor': speedup, }
