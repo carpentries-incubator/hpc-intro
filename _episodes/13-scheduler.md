@@ -1,5 +1,5 @@
 ---
-title: "Scheduling jobs"
+title: "Working with the scheduler"
 teaching: 45
 exercises: 30
 questions:
@@ -141,7 +141,7 @@ to the scheduler, we use the `{{ site.sched.submit.name }}` command.
 
 {% include {{ site.snippets }}/scheduler/basic-job-script.snip %}
 
-And that's all we need to do to submit a job. Our work is done -- now the scheduler takes over and
+And that's all we need to do to submit a job. Our work is done &mdash; now the scheduler takes over and
 tries to run the job for us. While the job is waiting to run, it goes into a list of jobs called 
 the *queue*. To check on our job's status, we check the queue using the command
 `{{ site.sched.status }} {{ site.sched.flag.user }}`.
@@ -171,7 +171,7 @@ from the queue. Press `Ctrl-C` when you want to stop the `watch` command.
 
 > ## Where's the output?
 >
-> On the login node, this script printed output to the terminal -- but when we exit `watch`,
+> On the login node, this script printed output to the terminal &mdash; but when we exit `watch`,
 > there's nothing. Where'd it go?
 >
 > Cluster job output is typically redirected to a file in the directory you launched it from.
@@ -257,12 +257,18 @@ The following are several key resource requests:
 
 {% include {{ site.snippets }}/scheduler/option-flags-list.snip %}
 
-Note that just *requesting* these resources does not make your job run faster! We'll talk more 
+Note that just *requesting* these resources does not make your job run faster, nor does it 
+necessarily mean that you will consume all of these resources. It only means that these are
+made available to you.  Your job may end up using less memory, or less time, or fewer tasks
+or nodes, than you have requested, and it will still run.
+
+It's best if your requests accurately reflect your job's requirements.  We'll talk more 
 about how to make sure that you're using resources effectively in a later episode of this lesson.
 
 > ## Submitting resource requests
 >
-> Submit a job that will use 1 full node and 1 minute of walltime.
+> Modify our `hostname` script so that it runs for a minute, then submit a job for it on
+> the cluster.
 >
 > > ## Solution
 > >
@@ -273,7 +279,7 @@ about how to make sure that you're using resources effectively in a later episod
 > >
 > > ```
 > > #!/bin/bash
-> > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:01:10
+> > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:01:15
 > >
 > > echo -n "This script is running on "
 > > sleep 60 # time in seconds
