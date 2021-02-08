@@ -262,7 +262,8 @@ about how to make sure that you're using resources effectively in a later episod
 
 > ## Submitting resource requests
 >
-> Submit a job that will use 1 full node and 1 minute of walltime.
+> Modify our `hostname` script so that it runs for a minute, then submit a job for it on
+> the cluster.
 >
 > > ## Solution
 > >
@@ -273,7 +274,7 @@ about how to make sure that you're using resources effectively in a later episod
 > >
 > > ```
 > > #!/bin/bash
-> > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:01:10
+> > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:01:15
 > >
 > > echo -n "This script is running on "
 > > sleep 60 # time in seconds
