@@ -29,7 +29,7 @@ that may be located anywhere on Earth. For example, a large company with computi
 Brazil, Zimbabwe and Japan may manage those resources as its own *internal* cloud and that same
 company may also utilize commercial cloud resources provided by Amazon or Google. Cloud resources
 may refer to machines performing relatively simple tasks such as serving websites, providing
-shared storage, providing webservices (such as e-mail or social media platforms), as well as more
+shared storage, providing web services (such as e-mail or social media platforms), as well as more
 traditional compute intensive tasks such as running a simulation.
 
 The term *HPC system*, on the other hand, describes a stand-alone resource for computationally
@@ -62,7 +62,7 @@ have already taken The Carpentries' courses on the UNIX Shell or Version Control
 CLI on your local machine somewhat extensively. The only leap to be made here is to open a CLI on a
 *remote* machine, while taking some precautions so that other folks on the network can't see (or
 change) the commands you're running or the results the remote machine sends back. We will use the
-Secure SHell protocol (or SSH) to opens an encrypted network connection between two machines,
+Secure SHell protocol (or SSH) to open an encrypted network connection between two machines,
 allowing you to send & receive text and data without having to worry about prying eyes.
 
 {% include figure.html url="" max-width="50%" file="/fig/connect-to-remote.svg"
@@ -84,7 +84,7 @@ username and the remote computer you can reach from the outside world, {{ site.r
 ```
 {: .bash}
 
-Remember to replace `{{ site.remote.user }}` with the your username or the one supplied by the
+Remember to replace `{{ site.remote.user }}` with your username or the one supplied by the
 instructors. You may be asked for your password. Watch out: the characters you type after the
 password prompt are not displayed on the screen. Normal output will resume once you press `Enter`.
 
@@ -278,7 +278,7 @@ it is more common for nodes to connect to a shared, remote fileserver or cluster
 > >
 > > > The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're on the same login
 > > > node (or compute node, later on). Networked filesystems (beegfs, cifs, gpfs, nfs, pvfs) will
-> > > be similar -- but may include yourUserName, depending on how it is [mounted](
+> > > be similar &mdash; but may include yourUserName, depending on how it is [mounted](
 > > > https://en.wikipedia.org/wiki/Mount_(computing)).
 > > {: .discussion}
 > > 
