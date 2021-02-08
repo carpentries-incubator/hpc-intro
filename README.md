@@ -1,9 +1,9 @@
-# Intro to HPC 
+# Intro to HPC
 
 This lesson teaches the basics of interacting with high-performance computing (HPC) clusters
 through the command line
 
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fhpc-carpentry%2Fhpc-intro%2Fbadge%3Fref%3Dgh-pages&style=flat)](https://actions-badge.atrox.dev/hpc-carpentry/hpc-intro/goto?ref=gh-pages)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fcarpentries-incubator%2Fhpc-intro%2Fbadge%3Fref%3Dgh-pages&style=flat)](https://actions-badge.atrox.dev/carpentries-incubator/hpc-intro/goto?ref=gh-pages)
 
 ## Using this material
 
@@ -17,21 +17,21 @@ NOTE: This is *not* Carpentries boilerplate! Please read carefully.
 2. For easier portability, we use snippets of text and code to capture inputs and outputs that are
    host- or site-specific and cannot be scripted. These are stored in a library,
    [_includes/snippets_library](_includes/snippets_library), with subdirectories matching the
-   pattern `InstitutionName_ClusterName_scheduler`. If your cluster is not already present, 
+   pattern `InstitutionName_ClusterName_scheduler`. If your cluster is not already present,
    please copy (`cp -r`) the *closest match* as a new folder under `snippets_library`.
 
    - We have placed snippets in files with the `.snip` extension, to make tracking easier. These
      files contain Markdown-formatted text, and will render to HTML when the lesson is built.
    - Code snippets are placed in subdirectories that are named according to the episode they
-     appear in. For example, if the snippet is for episode 12, then it will be in a 
+     appear in. For example, if the snippet is for episode 12, then it will be in a
      subdirectory called `12`.
    - In the episodes source, snippets are included using [Liquid](
      https://shopify.github.io/liquid/) scripting  `include` statements. For example, the first
      snippet in episode 12 is included using `{% include /snippets/12/info.snip %}`.
 
 3. Edit `_config_options.yml` in your snippets folder. These options set such things as the address
-   of the host to login to, definitions of the command prompt, and scheduler names. You can also 
-   change the order of the episodes, or omit episodes, by editing the configuration block 
+   of the host to login to, definitions of the command prompt, and scheduler names. You can also
+   change the order of the episodes, or omit episodes, by editing the configuration block
    under `episode_names` in this file.
 
 4. Set the environment variable `HPC_JEKYLL_CONFIG` to the relative path of the configuration file
@@ -41,7 +41,7 @@ NOTE: This is *not* Carpentries boilerplate! Please read carefully.
 5. Preview the lesson locally, by running `make serve`. You can then view the website in your
    browser, following the links in the output (usually, <https://localhost:4000>). Pages will be
    automatically regenerated every time you write to them.
-   
+
 6. If there are discrepancies in the output, edit the snippet file containing it, or create a new
    one and customize.
 
@@ -52,12 +52,12 @@ NOTE: This is *not* Carpentries boilerplate! Please read carefully.
    fork of the repository. If you're comfortable sharing, please file a Pull Request against our
    [upstream repo]( https://github.com/carpentries-incubator/hpc-intro). We would love to have your
    site config for the Library.
-   
+
 9. To maintain compatibility, please *do not* merge your new branch into your fork's `gh-pages`
    branch. Instead, wait until your pull request has been merged upstream, then pull down the
    upstream version. Otherwise, your repository will *diverge* from ours, and pull requests you make
    in the future will probably not be accepted.
-   
+
 ## Deploying a Customized Lesson
 
 The steps above will help you port the default HPC Intro lesson to your specific cluster, but the
@@ -95,7 +95,7 @@ If your snippets are already included in the snippet library, skip this step.
 ### Modify `_config.yml`
 
 GitHub builds sites using the top-level [`_config.yml`](_config.yml), only, but you want the values
-set in the snippet library. 
+set in the snippet library.
 
 1. Open a copy of your `_includes/snippet_library/Institution_Cluster_scheduler/_config_options.yml`.
 2. On GitHub, open the top-level `_config.yml` for editing.
@@ -107,7 +107,7 @@ set in the snippet library.
 6. If the symbol is a red x, something went wrong. Click it to open the build log, and attempt to
    correct the error. Follow GitHub's troubleshooting guide, and double-check the values in
    `_config.yml` ar ecorrect and complete.
-7. Once you see a green check, your website will be available for viewing at 
+7. Once you see a green check, your website will be available for viewing at
    `https://your-github-account.github.io/name-of-the-repository`.
 
 
@@ -116,7 +116,7 @@ set in the snippet library.
 The following list of items is meant as a guide on what content should go where in this repo. This
 should work as a guide where you can contribute. If a bullet point is prefixed by a file name, this
 is the lesson where the listed content should go into. This document is meant as a concept map
-converted into a flow of learning goals and questions. Note, again, that it is possible, when 
+converted into a flow of learning goals and questions. Note, again, that it is possible, when
 building your actual lesson, to re-order these files, or omit one or more of them.
 
 * Prelude
@@ -149,8 +149,8 @@ building your actual lesson, to re-order these files, or omit one or more of the
     * Inspect the output and error files of your jobs.
     * Potential tools: shell script, `sbatch`, `squeue -u`, `watch`, `-N`, `-n`, `-c`, `--mem`,
       `--time`, `scancel`, `srun`, `--x11 --pty`,
-    * Extras: `--mail-user`, `--mail-type`, 
-    * Remove? `watch` 
+    * Extras: `--mail-user`, `--mail-type`,
+    * Remove? `watch`
     * Later lessons? `-N` `-n` `-c`
 
 * [14-modules.md: Accessing Software](_episodes/14-modules.md)
@@ -160,7 +160,7 @@ building your actual lesson, to re-order these files, or omit one or more of the
     * Objectives: how to load and use a software package.
     * Tools: `module avail`, `module load`, `which`, `echo $PATH`, `module list`, `module unload`,
       `module purge`, `.bashrc`, `.bash_profile`, `git clone`, `make`
-    * Remove: `make`, `git clone`, 
+    * Remove: `make`, `git clone`,
     * Extras: `.bashrc`, `.bash_profile`
 
 * [15-transferring-files.md: Transferring Files](_episodes/15-transferring-files.md)
@@ -170,9 +170,9 @@ building your actual lesson, to re-order these files, or omit one or more of the
       one archive)
     * Know what tools can be used for file transfers, and transfer modes (binary vs text)
     * Objective: Be able to transfer files to and from a computing cluster.
-    * Tools: `wget`, `scp`, `rsync` (callout), `mkdir`, FileZilla, 
+    * Tools: `wget`, `scp`, `rsync` (callout), `mkdir`, FileZilla,
     * Remove: `dos2unix`, `unix2dos`,
-    * Bonus: `gzip`, `tar`, `dos2unix`, `cat`, `unix2dos`, `sftp`, `pwd`, `lpwd`, `put`, `get`, 
+    * Bonus: `gzip`, `tar`, `dos2unix`, `cat`, `unix2dos`, `sftp`, `pwd`, `lpwd`, `put`, `get`,
     * Later:
 
 * [16-resources.md: Using Resources Effectively](_episodes/16-resources.md)
@@ -188,7 +188,7 @@ building your actual lesson, to re-order these files, or omit one or more of the
 
 * Playing friendly in the cluster (psteinb: the following is very tricky as it is site dependent, I
   personally would like to see it in
-  [_extras](https://github.com/hpc-carpentry/hpc-intro/tree/gh-pages/_extras))
+  [_extras]({{https://github.com/carpentries-incubator/hpc-intro}}/tree/gh-pages/_extras))
 	* Understanding resource utilisation
 	* Profiling code - time, size, etc.
 	* Getting system stats
