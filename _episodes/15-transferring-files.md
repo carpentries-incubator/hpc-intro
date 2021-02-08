@@ -110,7 +110,7 @@ if we don't care where the file goes.
 ```
 {: .bash}
 
-To recursively copy a directory, we just add the `-r` (recursive) flag:
+To recursively copy a directory, we just add the `-r` (recursive) flag (caution: this recursive option will multiply the number of files, often quickly):
 
 ```
 {{ site.local.prompt }} scp -r some-local-folder {{ site.remote.user }}@{{ site.remote.login }}:target-directory/
