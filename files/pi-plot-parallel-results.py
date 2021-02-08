@@ -44,7 +44,7 @@ for label in plot_dict:
     plt.ylabel(label)
     plt.title('MPI π calculator results ({:d} samples)'.format(int(n_samples)))
     if (label == 'Speedup factor'):
-        for proportion in [0.5, 0.75, 0.9, 0.95]:
+        for proportion in [0.5, 0.75, 0.9, 0.95, 0.99]:
             amdahl_cores = np.arange(cores.max())+1
             amdahl_speedup = 1.0/((1-proportion)+proportion/amdahl_cores)
             plt.plot(amdahl_cores, amdahl_speedup,
