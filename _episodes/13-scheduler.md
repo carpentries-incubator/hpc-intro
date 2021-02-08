@@ -257,7 +257,12 @@ The following are several key resource requests:
 
 {% include {{ site.snippets }}/scheduler/option-flags-list.snip %}
 
-Note that just *requesting* these resources does not make your job run faster! We'll talk more 
+Note that just *requesting* these resources does not make your job run faster, nor does it 
+necessarily mean that you will consume all of these resources. It only means that these are
+made available to you.  Your job may end up using less memory, or less time, or fewer tasks
+or nodes, than you have requested, and it will still run.
+
+It's best if your requests accurately reflect your job's requirements.  We'll talk more 
 about how to make sure that you're using resources effectively in a later episode of this lesson.
 
 > ## Submitting resource requests
