@@ -262,7 +262,7 @@ necessarily mean that you will consume all of these resources. It only means tha
 made available to you.  Your job may end up using less memory, or less time, or fewer tasks
 or nodes, than you have requested, and it will still run.
 
-It's best if your requests acurately reflect your job's requirements.  We'll talk more 
+It's best if your requests accurately reflect your job's requirements.  We'll talk more 
 about how to make sure that you're using resources effectively in a later episode of this lesson.
 
 > ## Submitting resource requests
