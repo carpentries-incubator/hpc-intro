@@ -120,18 +120,19 @@ converted into a flow of learning goals and questions. Note, again, that it is p
 building your actual lesson, to re-order these files, or omit one or more of them.
 
 * Prelude
-    * User profiles (academic and/or commercial) of cluster users
+    * [User profiles](
+      https://github.com/carpentries-incubator/hpc-intro/blob/gh-pages/_extras/learner-profiles.md)
+      (academic and/or commercial) of cluster users
     * Narrative introduction
 
-* [11-hpc-intro.md: Intro to Cluster Computing](_episodes/11-hpc-intro.md): Fundamentals of
-  clusters and their resources resources (brief, concentrate on the concepts not details like
-  interconnect type etc)
+1. [Why use a cluster?](_episodes/11-hpc-intro.md) (20 minutes)
+    * Brief, concentrate on the concepts not details like interconnect type, etc.
     * Be able to describe what a compute cluster (HPC/HTC system) is
     * Explain how a cluster differs from a laptop, desktop, cloud, or "server"
     * Identify how an compute cluster could benefit you.
     * Jargon busting
 
-* [12-cluster.md: Accessing the Cluster](_episodes/12-cluster.md)
+2. [Working on a remote HPC system](_episodes/12-cluster.md) (35 minutes)
     * Understand the purpose of using a terminal program and SSH
     * Learn the basics of working on a remote system
     * Know the differences of between login and compute nodes
@@ -139,11 +140,7 @@ building your actual lesson, to re-order these files, or omit one or more of the
       hostname command on a compute node of the cluster.
     * Potential tools: `ssh`, `ls`, `hostname`, `logout`, `nproc`, `free`, `scp`, `man`, `wget`
 
-* [13-scheduler.md: Working with the Scheduler](_episodes/13-scheduler.md): Lesson will cover Slurm
-  by default, other schedulers are planned. From
-  [hpc-in-a-day](https://github.com/psteinb/hpc-in-a-day) we know that material comprising Slurm,
-  PBS and LSF is possible, but hard already as e.g. PBS doesn't support direct dispatching as
-  `srun`.
+3. [Working with the scheduler](_episodes/13-scheduler.md) (1 hour 15 minutes)
     * Know how to submit a program and batch scrip to the cluster (interactive & batch)
     * Use the batch system command line tools to monitor the execution of your job.
     * Inspect the output and error files of your jobs.
@@ -153,7 +150,7 @@ building your actual lesson, to re-order these files, or omit one or more of the
     * Remove? `watch`
     * Later lessons? `-N` `-n` `-c`
 
-* [14-modules.md: Accessing Software](_episodes/14-modules.md)
+4. [Accessing software via Modules](_episodes/14-modules.md) (45 minutes)
     * Understand the runtime environment at login
     * Learn how software modules can modify your environment
     * Learn how modules prevent problems and promote reproducibility
@@ -163,7 +160,7 @@ building your actual lesson, to re-order these files, or omit one or more of the
     * Remove: `make`, `git clone`,
     * Extras: `.bashrc`, `.bash_profile`
 
-* [15-transferring-files.md: Transferring Files](_episodes/15-transferring-files.md)
+5. [Transferring files with remote computers](_episodes/15-transferring-files.md) (30 minutes)
     * Understand the (cognitive) limitations that remote systems don't necessarily have local
       Finder/Explorer windows
     * Be mindful of network and speed restrictions (e.g. cannot push from cluster; many files vs
@@ -175,13 +172,23 @@ building your actual lesson, to re-order these files, or omit one or more of the
     * Bonus: `gzip`, `tar`, `dos2unix`, `cat`, `unix2dos`, `sftp`, `pwd`, `lpwd`, `put`, `get`,
     * Later:
 
-* [16-resources.md: Using Resources Effectively](_episodes/16-resources.md)
+6. [Running a parallel job](_episodes/16-parallel.md) (1 hour)
+    * Introduce message passing and MPI as the fundamental engine of parallel software
+    * Walk through a simple Python program for estimation of &#960;
+    * Use [mpi4py](https://mpi4py.readthedocs.io) to parallelize the program
+    * Write job submission scripts & run the job on a cluster node
+    * Tools: `nano`, `sbatch`, `squeue`
+
+7. [Using resources effectively](_episodes/17-resources.md) (40 minutes)
     * Understand how to look up job statistics
     * Learn how to use job statistics to understand the health of your jobs
     * Learn some very basic techniques to monitor / profile code execution.
     * Understand job size and resource request implications.
     * Tools: `fastqc`, `sacct`, `ssh`, `top`, `free`, `ps`, `kill`, `killall` (note that some of
       these may not be appropriate on shared systems)
+
+8. [Using shared resources responsibly](_episodes/18-responsibility.md) (20 minutes)
+    * Discuss the ways some activities can affect everyone else on the system
 
 
 ### Nascent lesson ideas
@@ -190,7 +197,7 @@ building your actual lesson, to re-order these files, or omit one or more of the
   personally would like to see it in
   [_extras]({{https://github.com/carpentries-incubator/hpc-intro}}/tree/gh-pages/_extras))
 	* Understanding resource utilisation
-	* Profiling code - time, size, etc.
+	* Profiling code &mdash; time, size, etc.
 	* Getting system stats
 	* Consequences of going over
 
