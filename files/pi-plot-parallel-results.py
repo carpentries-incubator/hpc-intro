@@ -3,6 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
+import locale
 
 try:
     parallel_file = sys.argv[1]
@@ -16,6 +17,8 @@ except IndexError:
     print("you did not specify a serial timing file")
     print("Usage: {} parallel_file serial_file".format(sys.argv[0]))
     sys.exit(1)
+
+locale.setlocale(locale.LC_ALL, "")
 
 data = np.genfromtxt(parallel_file, delimiter=',')
 cores = data[:, 0]
@@ -42,7 +45,7 @@ for label in plot_dict:
     plt.plot(cores, value, 's')
     plt.xlabel('Number of cores')
     plt.ylabel(label)
-    plt.title('MPI π calculator results ({:d} samples)'.format(int(n_samples)))
+    plt.title('MPI π calculator results ({:n} samples)'.format(int(n_samples)))
     if (label == 'Speedup factor'):
         for proportion in [0.5, 0.75, 0.9, 0.95, 0.99]:
             amdahl_cores = np.arange(cores.max())+1
