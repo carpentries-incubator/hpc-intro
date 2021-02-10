@@ -3,8 +3,9 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows, calc, backgrounds, positioning}
 
-\newcommand\dataline[4]{
-    \draw [line width=#1 mm] (#2) to [#4] (#3);
+\newcommand\dataline[5]{
+    \draw [line width=#1 mm, color=gray] (#3) to [#5] (#4);
+    \draw [line width=#2 mm, color=blue] (#3) to [#5] (#4);
 }
 
 \tikzstyle{background} = [fill=green!5!white,draw=green!75!black,very thick]
@@ -33,13 +34,15 @@
         \node[network,anchor=south] (node 1 nic) at ($(switch.north)+(0, 2cm)$)      {node 1 network card, 56 Gb/s interface,\\ receives 20 Gb/s bandwidth};
         \node[network,anchor=north] (node 2 nic) at ($(switch.south)+(0,-2cm)$)      {node 2 network card, 56 Gb/s interface,\\ receives 20 Gb/s bandwidth};
 
-        \draw[line width=1.2mm, out=90, in=260] (disk 1.east) to node[above,rotate=70] {4 ms} (raid);
-        \dataline{1.2}{disk 2.east}{raid}{out=90,in=270}
-        \dataline{1.2}{disk N.east}{raid}{out=90,in=280}
-        \dataline{6.3}{raid}{nic}{}
-        \draw[line width=5.6mm] (nic) to node[above]{0.004 ms} (switch);
-        \dataline{5.6}{switch}{node 1 nic}{}
-        \dataline{5.6}{switch}{node 2 nic}{}
+        \draw[line width=1.2mm, out=90, in=260, color=gray] (disk 1.east) to (raid);
+        \draw[line width=0.4mm, out=90, in=260, color=blue] (disk 1.east) to node[above,rotate=70,color=black] {4 ms} (raid);
+        \dataline{1.2}{0.4}{disk 2.east}{raid}{out=90,in=270}
+        \dataline{1.2}{0.4}{disk N.east}{raid}{out=90,in=280}
+        \dataline{5.6}{4.0}{raid}{nic}{}
+        \draw[line width=5.6mm, color=gray] (nic) to (switch);
+        \draw[line width=4.0mm, color=blue] (nic) to node[above,color=black]{0.004 ms} (switch);
+        \dataline{4.0}{2.0}{switch}{node 1 nic}{}
+        \dataline{4.0}{2.0}{switch}{node 2 nic}{}
 
         \node[titlebox] (server) at ($(raid.north)+(0cm, 1cm)$) {\textbf{Server}};
 
