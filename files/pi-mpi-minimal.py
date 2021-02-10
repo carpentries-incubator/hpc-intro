@@ -5,8 +5,8 @@ import datetime
 from mpi4py import MPI
 
 def inside_circle(total_count):
-    x = np.float32(np.random.uniform(size=total_count))
-    y = np.float32(np.random.uniform(size=total_count))
+    x = np.float64(np.random.uniform(size=total_count))
+    y = np.float64(np.random.uniform(size=total_count))
     radii = np.sqrt(x*x + y*y)
     count = len(radii[np.where(radii<=1.0)])
     return count

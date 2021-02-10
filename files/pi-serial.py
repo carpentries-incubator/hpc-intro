@@ -32,8 +32,8 @@ def inside_circle(total_count):
     which lie inside the unit circle.
     """
 
-    x = np.float32(np.random.uniform(size=total_count))
-    y = np.float32(np.random.uniform(size=total_count))
+    x = np.float64(np.random.uniform(size=total_count))
+    y = np.float64(np.random.uniform(size=total_count))
 
     radii = np.sqrt(x*x + y*y)
 
@@ -65,12 +65,12 @@ if __name__ == '__main__':
 
     # Memory required is dominated by the size of x, y, and radii from
     # inside_circle(), calculated in MiB
-    size_of_float = np.dtype(np.float32).itemsize
+    size_of_float = np.dtype(np.float64).itemsize
     memory_required = 3 * n_samples * size_of_float / (1024**2)
 
     # accuracy is calculated as a percent difference from a known estimate
     # of π.
-    pi_specific = np.float32(3.141592653589793238462643383279502884197169)
+    pi_specific = np.pi
     accuracy = 100*(1-my_pi/pi_specific)
 
     # Uncomment either summary format for verbose or terse output
