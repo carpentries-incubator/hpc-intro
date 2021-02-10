@@ -80,14 +80,18 @@ clearly. Press "q" to exit the pager program (`less`).
 >
 > This relatively simple program exercises four important concepts:
 >
-> * COMM_WORLD: the default MPI Communicator, providing a channel for all the processes
->   involved in this `mpirun` to exchange information with one another.
-> * Scatter: an MPI operation wherein the process running on one rank sends a piece of
->   information (value, array, or object) to all others on the given comm.
-> * Gather: the inverse of Scatter, one rank receives a piece of information from all
->   others on the given comm.
-> * Conditional Output: since every rank is running the *same code*, the general `print`
->   statements are wrapped in a conditional so that only one rank does it.
+> * COMM_WORLD: the default MPI Communicator, providing a channel for all the
+>   processes involved in this `mpirun` to exchange information with one
+>   another.
+> * Scatter: A collective operation in which an array of data on one MPI rank
+>   is divided up, with separate portions being sent out to the partner ranks.
+>   Each partner rank receives data from the matching index of the host array.
+> * Gather: The inverse of scatter. One rank populates a local array, with the
+>   array element at each index assigned the value provided by the
+>   corresponding partner rank &mdash; including the host's own value.
+> * Conditional Output: since every rank is running the *same code*, the
+>   general `print` statements are wrapped in a conditional so that only one
+>   rank does it.
 >
 {: .discussion}
 
