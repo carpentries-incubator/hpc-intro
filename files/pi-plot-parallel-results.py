@@ -20,14 +20,14 @@ except IndexError:
 
 locale.setlocale(locale.LC_ALL, "")
 
-data = np.genfromtxt(parallel_file, delimiter=',')
+data = np.loadtxt(parallel_file, delimiter=',', skiprows=1)
 cores = data[:, 0]
 n_samples = data[0, 1]
 memory_required = data[:, 2]
 elapsed_time = data[:, 3]
 accuracy = data[:, 4]
 
-data_serial = np.genfromtxt(serial_file, delimiter=',')
+data_serial = np.loadtxt(serial_file, delimiter=',', skiprows=1)
 n_samples_serial = data_serial[:, 1]
 baseline_row = int(np.argwhere(n_samples_serial==n_samples))
 baseline_values = data_serial[baseline_row, :]

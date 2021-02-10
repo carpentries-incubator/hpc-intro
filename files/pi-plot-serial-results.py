@@ -11,7 +11,7 @@ except IndexError:
     print("Usage: {} serial_file".format(sys.argv[0]))
     sys.exit(1)
 
-data = np.genfromtxt(serial_file, delimiter=',')
+data = np.loadtxt(serial_file, delimiter=',', skiprows=1)
 cores = data[0, 0]
 n_samples = data[:, 1]
 memory_required = data[:, 2]
