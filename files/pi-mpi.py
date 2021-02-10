@@ -83,7 +83,7 @@ if __name__ == '__main__':
         # Rank zero builds two arrays with one entry for each rank:
         # one for the number of samples they should run, and
         # one to store the count info each rank returns.
-        partitions = [ int(n_samples / cpus) for item in range(cpus)]
+        partitions = [ int(n_samples / cpus) ] * cpus
         counts = [ int(0) ] * cpus
     else:
         partitions = None
