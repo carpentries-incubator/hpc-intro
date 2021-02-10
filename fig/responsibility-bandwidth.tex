@@ -1,5 +1,5 @@
 \documentclass{standalone}
-\usepackage{amsmath}
+\usepackage{amsmath, graphicx, siunitx}
 \usepackage{tikz}
 \usetikzlibrary{arrows, calc, backgrounds, positioning}
 
@@ -11,10 +11,10 @@
 \tikzstyle{background} = [fill=green!5!white,draw=green!75!black,very thick]
 \tikzstyle{titlebox} = [fill=green!75!black,text=black,rounded corners]
 
-\tikzstyle{disk}       = [rectangle,draw=black!50,fill=black!20,align=left,rotate=90]
-\tikzstyle{controller} = [rectangle,draw=red!80,fill=red!20,align=left]
-\tikzstyle{network}    = [rectangle,draw=blue!80,fill=blue!20,align=left]
-\tikzstyle{switch}     = [rectangle,draw=green!80,fill=green!20,align=left]
+\tikzstyle{disk}       = [rectangle,fill=black!20,align=left,rotate=90,inner sep=0]
+\tikzstyle{controller} = [rectangle,fill=red!20,align=left,inner sep=0]
+\tikzstyle{network}    = [rectangle,fill=blue!20,align=left,inner sep=0]
+\tikzstyle{switch}     = [rectangle,fill=green!20,align=left,inner sep=0]
 
 % Network latency is 0.004 ms
 %  Disk   latency is 4     ms
@@ -24,30 +24,66 @@
 
 \begin{document}
     \begin{tikzpicture}
-        \node[controller]           (raid)                                           {RAID controller, 63 Gb/s interface,\\ forwards 40 Gb/s bandwidth};
-        \node[disk,anchor=north]    (disk 1)     at ($(raid.south)+(-4cm, -13.8cm)$) {SSD 1, 12 Gb/s interface,\\ sends 4 Gb/s bandwidth,\\ 4 ms latency};
-        \node[disk]                 (disk 2)     at ($(disk 1) + (2cm, 0)$)          {SSD 2, 12 Gb/s interface,\\ sends 4 Gb/s bandwidth,\\ 4 ms latency};
-        \node                       (dots)       at ($(disk 2) + (1.5cm, 0)$)        {$\cdots$};
-        \node[disk]                 (disk N)     at ($(dots) + (+1.5cm, 0)$)         {SSD $N$, 12 Gb/s interface,\\ sends 4 Gb/s bandwidth,\\ 4 ms latency};
-        \node[network]              (nic)        [right=of raid]                     {network card, 56 Gb/s interface,\\ forwards 40 Gb/s bandwidth};
-        \node[switch,anchor=west]   (switch)     at ($(nic.east) + (2cm, 0)$)        {network switch, 56 Gb/s interfaces,\\ forwards 40 Gb/s bandwidth,\\ 0.004 ms latency};
-        \node[network,anchor=south] (node 1 nic) at ($(switch.north)+(0, 2cm)$)      {node 1 network card, 56 Gb/s interface,\\ receives 20 Gb/s bandwidth};
-        \node[network,anchor=north] (node 2 nic) at ($(switch.south)+(0,-2cm)$)      {node 2 network card, 56 Gb/s interface,\\ receives 20 Gb/s bandwidth};
+        \node[controller]           (raid)                                        {RAID controller:\\ 63 Gb/s interface,\\ forwards 40 Gb/s};
+        \node[disk,anchor=north]    (disk 1)     at ($(raid.south)+(-1in, -3cm)$) {\begin{minipage}{2.7cm}
+                                                                                       SSD 1:\\
+                                                                                       12 Gb/s interface,\\
+                                                                                       sends 4 Gb/s,\\
+                                                                                       \SI{4}{\milli\second} latency
+                                                                                   \end{minipage}
+                                                                                   \begin{minipage}{1cm}
+                                                                                       \includegraphics[height=\textwidth,angle=90,origin=c]{maze-medium}
+                                                                                   \end{minipage}};
+        \node[disk]                 (disk 2)     at ($(disk 1) + (2cm, 0)$)       {\begin{minipage}{2.7cm}
+                                                                                       SSD 2:\\
+                                                                                       12 Gb/s interface,\\
+                                                                                       sends 4 Gb/s,\\
+                                                                                       \SI{4}{\milli\second} latency
+                                                                                   \end{minipage}
+                                                                                   \begin{minipage}{1cm}
+                                                                                       \includegraphics[height=\textwidth,angle=270,origin=c]{maze-medium}
+                                                                                   \end{minipage}};
+        \node                       (dots)       at ($(disk 2) + (1.5cm, 0)$)     {$\cdots$};
+        \node[disk]                 (disk N)     at ($(dots) + (+1.5cm, 0)$)      {\begin{minipage}{2.7cm}
+                                                                                       SSD $N$:\\
+                                                                                       12 Gb/s interface,\\
+                                                                                       sends 4 Gb/s,\\
+                                                                                       \SI{4}{\milli\second} latency
+                                                                                   \end{minipage}
+                                                                                   \begin{minipage}{1cm}
+                                                                                       \includegraphics[height=\textwidth,angle=90,origin=c]{maze-medium-mirror}
+                                                                                   \end{minipage}};
+        \node[network]              (nic)        [right=of raid]                  {\begin{minipage}{2.7cm}
+                                                                                       network card:\\
+                                                                                       56 Gb/s interface,\\
+                                                                                       forwards 40 Gb/s
+                                                                                   \end{minipage}
+                                                                                   \begin{minipage}{1cm}
+                                                                                       \includegraphics[height=\textwidth,angle=90,origin=c]{maze-small}
+                                                                                   \end{minipage}};
+        \node[switch,anchor=west]   (switch)     [right=of nic]                   {network switch:\\
+                                                                                   56 Gb/s interfaces,\\
+                                                                                   forwards 40 Gb/s,\\
+                                                                                   \SI{0.004}{\milli\second} latency};
+        \node[network,anchor=south] (node 1 nic) [above=of switch]                {node 1 network card:\\
+                                                                                   56 Gb/s interface,\\
+                                                                                   receives 20 Gb/s};
+        \node[network,anchor=north] (node 2 nic) [below=of switch]                {node 2 network card:\\
+                                                                                   56 Gb/s interface,\\
+                                                                                   receives 20 Gb/s};
 
-        \draw[line width=1.2mm, out=90, in=260, color=gray] (disk 1.east) to (raid);
-        \draw[line width=0.4mm, out=90, in=260, color=blue] (disk 1.east) to node[above,rotate=70,color=black] {4 ms} (raid);
+        \node[titlebox] (server) at ($(raid.north)+(2cm, 0.5cm)$) {\textbf{Server}};
+
+        \dataline{1.2}{0.4}{disk 1.east}{raid}{out=90,in=260};
         \dataline{1.2}{0.4}{disk 2.east}{raid}{out=90,in=270}
         \dataline{1.2}{0.4}{disk N.east}{raid}{out=90,in=280}
         \dataline{5.6}{4.0}{raid}{nic}{}
-        \draw[line width=5.6mm, color=gray] (nic) to (switch);
-        \draw[line width=4.0mm, color=blue] (nic) to node[above,color=black]{0.004 ms} (switch);
+        \dataline{5.6}{4.0}{nic}{switch}{}
         \dataline{4.0}{2.0}{switch}{node 1 nic}{}
         \dataline{4.0}{2.0}{switch}{node 2 nic}{}
 
-        \node[titlebox] (server) at ($(raid.north)+(0cm, 1cm)$) {\textbf{Server}};
-
         \begin{pgfonlayer}{background}
-		    \draw [background] ($(server.west)+(-4cm, 0)$) rectangle ($(nic.east)+(0cm, -16.8cm)$);
+		    \draw [background] ($(nic.north east)+(0, 0.35cm)$) rectangle ($(disk 1.north west)$);
         \end{pgfonlayer}
     \end{tikzpicture}
 \end{document}
