@@ -10,6 +10,7 @@ overview of the tools available and how to use them effectively.
 
 By the end of this workshop, students will know how to:
 
+* Know when to use a cluster
 * Use the UNIX shell (also known as terminal or command line) to operate a computer, connect to a cluster, and write simple shell
   scripts.
 * Submit and manage jobs on a cluster using a scheduler, transfer files, and use software through
