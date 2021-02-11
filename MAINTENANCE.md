@@ -11,7 +11,7 @@ These are described below.
 
 ### Github:
 
-#### Carpentries-Incubator
+#### Carpentries-Incubator Project
 
 HPC-Intro is currently on [GitHub][hpc-intro].  You need a github
 account to contribute.  In addition, in order to get write access to
@@ -21,7 +21,7 @@ Maintainers team, which lives inside the "carpentries-incubator"
 
 See also the instructions for [contributing](CONTRIBUTING.md).
 
-#### HPC-Carpentry
+#### HPC-Carpentry Project
 
 There is also an HPC Carpentry [Github project][project-github], which
 has other HPC-related lessons repos in its scope, and separate teams
@@ -58,13 +58,26 @@ your e-mail. I don't recall how to join the lists, my recollection is
 that anyone can participate in "discuss-hpc", but "maintainers-hpc" is
 by invitation?
 
+
+## Site Operation
+
+### DOIs for Releases 
+
+There is a web-hook that calls out to [Zenodo][zenodo] to create
+a Digital Object Identifier (DOI) whenever an actual release
+is generated on the site.  The Zenodo account is owned by 
+Peter Steinbach.
+
+
+
+
 [hpc-intro]: https://github.com/carpentries-incubator/hpc-intro
 [incubator-base]: https://github.com/carpentries-incubator
 [project-github]: https://github.com/hpc-carpentry
 [coord-repo]: https://github.com/hpc-carpentry/coordination
-[mainsite-repo]: http://https://github.com/hpc-carpentry/hpc-carpentry.org
+[mainsite-repo]: https://github.com/hpc-carpentry/hpc-carpentry.org
 [swc-slack]: https://swcarpentry.slack.com
 [hpc-slack]: https://swcarpentry.slack.com/#hpc-carpentry
 [slakc-invite]: https://swc-slack-invite.herokuapp.com
 [topicbox]: https://carpentries.topicbox.com
-
+[zenodo]: https://zenodo.org/
