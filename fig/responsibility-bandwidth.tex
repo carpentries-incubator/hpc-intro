@@ -32,7 +32,7 @@
                                                                                        \SI{4}{\milli\second} latency
                                                                                    \end{minipage}
                                                                                    \begin{minipage}{1cm}
-                                                                                       \includegraphics[height=\textwidth,angle=90,origin=c]{maze-medium}
+                                                                                       \includegraphics[height=\textwidth,angle=90,origin=c]{maze-tortuous}
                                                                                    \end{minipage}};
         \node[disk]                 (disk 2)     at ($(disk 1) + (2cm, 0)$)       {\begin{minipage}{2.7cm}
                                                                                        SSD 2:\\
@@ -41,7 +41,7 @@
                                                                                        \SI{4}{\milli\second} latency
                                                                                    \end{minipage}
                                                                                    \begin{minipage}{1cm}
-                                                                                       \includegraphics[height=\textwidth,angle=270,origin=c]{maze-medium}
+                                                                                       \includegraphics[height=\textwidth,angle=270,origin=c]{maze-tortuous}
                                                                                    \end{minipage}};
         \node                       (dots)       at ($(disk 2) + (1.5cm, 0)$)     {$\cdots$};
         \node[disk]                 (disk N)     at ($(dots) + (+1.5cm, 0)$)      {\begin{minipage}{2.7cm}
@@ -51,7 +51,7 @@
                                                                                        \SI{4}{\milli\second} latency
                                                                                    \end{minipage}
                                                                                    \begin{minipage}{1cm}
-                                                                                       \includegraphics[height=\textwidth,angle=90,origin=c]{maze-medium-mirror}
+                                                                                       \includegraphics[height=\textwidth,angle=90,origin=c]{maze-tortuous-mirror}
                                                                                    \end{minipage}};
         \node[network]              (nic)        [right=of raid]                  {\begin{minipage}{2.7cm}
                                                                                        network card:\\
@@ -59,7 +59,7 @@
                                                                                        forwards 40 Gb/s
                                                                                    \end{minipage}
                                                                                    \begin{minipage}{1cm}
-                                                                                       \includegraphics[height=\textwidth,angle=90,origin=c]{maze-small}
+                                                                                       \includegraphics[height=\textwidth,angle=90,origin=c]{maze-direct}
                                                                                    \end{minipage}};
         \node[switch,anchor=west]   (switch)     [right=of nic]                   {network switch:\\
                                                                                    56 Gb/s interfaces,\\
