@@ -82,7 +82,7 @@ that can arise at build-time.
 
 You can locally preview some of the tests by providing 
 arguments to the `make` command that you run in the top-level
-directory.  In particular, `make check-lesson-all` checks
+directory.  In particular, `make lesson-check-all` checks
 a number of important things, like the existence of files
 with appropriate metadata.  The actual checks are executed
 by the Python script in `bin/lesson_check.py`, which can be
