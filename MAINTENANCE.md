@@ -1,3 +1,8 @@
+---
+layout: page
+title: Maintenance
+---
+
 # Site Structure and Maintnence
 
 This site depends strongly on github infrastructure, and 
