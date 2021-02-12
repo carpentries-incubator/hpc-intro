@@ -144,13 +144,13 @@ Run the script again with a few different values for the number of samples, and
 see how the memory required changes:
 
 ```
-$ python pi-serial-minimized.py 1000
+$ python pi-serial.py 1000
 Pi: 3.144, memory: 0.02288818359375 MiB
-$ python pi-serial-minimized.py 2000
+$ python pi-serial.py 2000
 Pi: 3.18, memory: 0.0457763671875 MiB
-$ python pi-serial-minimized.py 1000000
+$ python pi-serial.py 1000000
 Pi: 3.140944, memory: 22.88818359375 MiB
-$ python pi-serial-minimized.py 100000000
+$ python pi-serial.py 100000000
 Pi: 3.14182724, memory: 2288.818359375 MiB
 ```
 
@@ -207,11 +207,11 @@ Run the script again with a few different values for the number of samples, and
 see how the solution time changes:
 
 ```
-$ python pi-serial-minimized.py 1000000
+$ python pi-serial.py 1000000
 Pi: 3.141108, memory: 22.88818359375 MiB, time: 0.037298 s
-python pi-serial-minimized.py 10000000
+python pi-serial.py 10000000
 Pi: 3.141774, memory: 228.8818359375 MiB, time: 0.346355 s
-python pi-serial-minimized.py 100000000
+python pi-serial.py 100000000
 Pi: 3.1413742, memory: 2288.818359375 MiB, time: 4.030354 s
 ```
 
@@ -222,6 +222,22 @@ number of samples, since the elapsed time is affected by other programs
 running on the computer at the same time.
 But if the script is the most computationally-intensive process running at the
 time, its calculations are the largest influence on the elapsed time.
+
+Now that we've developed our initial script to estimate &#960;, we can see
+that as we increase the number of samples:
+
+1. The estimate of &#960; tends to become more accurate
+2. The amount of memory required scales approximately linearly
+3. The amount of time to calculate scales approximately linearly
+
+If we needed to add additional samples for more accuracy, we could imagine
+a script could easily exceed the amount of memory in our computer, and also
+require enormous amounts of time to calculate on a single CPU.
+To get around the memory constraint and the amount of time required, we
+need to modify the script to use multiple CPUs for the calculations.
+In the largest problem scales, we could use multiple CPUs in multiple compute
+nodes, distributing the memory requirements across all the nodes used to
+calculate the solution.
 
 ## Running the Parallel Job
 
