@@ -41,7 +41,6 @@ In the Python script, we start by importing the `numpy` module for calculating
 the results, and the `sys` module to process command-line parameters:
 
 ```
-#!/usr/bin/env python3
 import numpy as np
 import sys
 ```
@@ -75,7 +74,6 @@ if __name__ == '__main__':
 The entire Python script is:
 
 ```
-#!/usr/bin/env python3
 import numpy as np
 import sys
 
@@ -140,6 +138,28 @@ units of [mebibytes](https://en.wikipedia.org/wiki/Byte#Multiple-byte_units).
 The third line prints both the estimate of &#960; and the estimated amount of
 memory used by the script.
 
+The updated Python script is:
+
+```
+import numpy as np
+import sys
+
+def inside_circle(total_count):
+    x = np.random.uniform(size=total_count)
+    y = np.random.uniform(size=total_count)
+    radii = np.sqrt(x*x + y*y)
+    count = len(radii[np.where(radii<=1.0)])
+    return count
+
+if __name__ == '__main__':
+    n_samples = int(sys.argv[1])
+    counts = inside_circle(n_samples)
+    my_pi = 4.0 * counts / n_samples
+    size_of_float = np.dtype(np.float64).itemsize
+    memory_required = 3 * n_samples * size_of_float / (1024**2)
+    print("Pi: {}, memory: {} MiB".format(my_pi, memory_required))
+```
+
 Run the script again with a few different values for the number of samples, and
 see how the memory required changes:
 
@@ -203,6 +223,32 @@ And finally, modify the `print` statement with the following:
 print("Pi: {}, memory: {} MiB, time: {} s".format(my_pi, memory_required, elapsed_time))
 ```
 
+The final Python script for the serial solution is:
+
+```
+import numpy as np
+import sys
+import datetime
+
+def inside_circle(total_count):
+    x = np.random.uniform(size=total_count)
+    y = np.random.uniform(size=total_count)
+    radii = np.sqrt(x*x + y*y)
+    count = len(radii[np.where(radii<=1.0)])
+    return count
+
+if __name__ == '__main__':
+    n_samples = int(sys.argv[1])
+    start_time = datetime.datetime.now()
+    counts = inside_circle(n_samples)
+    my_pi = 4.0 * counts / n_samples
+    end_time = datetime.datetime.now()
+    elapsed_time = (end_time - start_time).total_seconds()
+    size_of_float = np.dtype(np.float64).itemsize
+    memory_required = 3 * n_samples * size_of_float / (1024**2)
+    print("Pi: {}, memory: {} MiB, time: {} s".format(my_pi, memory_required, elapsed_time))
+```
+
 Run the script again with a few different values for the number of samples, and
 see how the solution time changes:
 
@@ -226,9 +272,9 @@ time, its calculations are the largest influence on the elapsed time.
 Now that we've developed our initial script to estimate &#960;, we can see
 that as we increase the number of samples:
 
-1. The estimate of &#960; tends to become more accurate
-2. The amount of memory required scales approximately linearly
-3. The amount of time to calculate scales approximately linearly
+1. The estimate of &#960; tends to become more accurate.
+2. The amount of memory required scales approximately linearly.
+3. The amount of time to calculate scales approximately linearly.
 
 If we needed to add additional samples for more accuracy, we could imagine
 a script could easily exceed the amount of memory in our computer, and also
