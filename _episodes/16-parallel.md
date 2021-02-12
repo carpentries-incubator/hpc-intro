@@ -93,12 +93,69 @@ if __name__ == '__main__':
     print(my_pi)
 ```
 
-If we run the Python script with a command-line parameter, as in `python pi-serial.py 1024`, we should see the script print its estimate of &#960;:
+If we run the Python script with a command-line parameter, as in
+`python pi-serial.py 1024`, we should see the script print its estimate of
+&#960;:
 
 ```
 $ python pi-serial.py 1024
 3.10546875
 ```
+
+## Measuring Performance of the Serial Solution
+
+The stochastic method used to estimate &#960; should converge on the true
+value as the number of random points increases.
+But as the number of points increases, creating the variables `x`, `y`, and
+`radii` requires more time and more memory.
+Eventuially, the memory required may exceed what's available on our local
+laptop or desktop, or the time required may be too long to meet a deadline.
+So we'd like to take some measurements of how much memory and time the script
+requires, and later take the same measurements after creating a parallel
+version of the script to see the benefits of parallelizing the calculations
+required.
+
+### Estimating Memory Requirements
+
+Since the largest variables in the script are `x`, `y`, and `radii`, each
+containing `n_samples` points, we'll modify the script to calculate their
+total memory required.
+Each point in `x`, `y`, or `radii` is stored as a NumPy `float64`, we can
+use the NumPy's [`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html)
+function to calculate the size of a `float64`.
+
+Replace the `print(my_pi)` line with the following:
+
+```
+size_of_float = np.dtype(np.float64).itemsize
+memory_required = 3 * n_samples * size_of_float / (1024**2)
+print("Pi: {}, memory: {} MiB".format(my_pi, memory_required))
+```
+
+The first line calculates the bytes of memory required for a single `float64`
+value using the `dtype`function.
+The second line estimates the total amount of memory required to store three
+variables containing `n_samples` `float64` values, converting the value into
+units of [mebibytes](https://en.wikipedia.org/wiki/Byte#Multiple-byte_units).
+The third line prints both the estimate of &#960; and the estimated amount of
+memory used by the script.
+
+Run the script again with a few different values for the number of samples, and
+see how the memory required changes:
+
+```
+$ python pi-serial-minimized.py 1000
+Pi: 3.144, memory: 0.02288818359375 MiB
+$ python pi-serial-minimized.py 2000
+Pi: 3.18, memory: 0.0457763671875 MiB
+$ python pi-serial-minimized.py 1000000
+Pi: 3.140944, memory: 22.88818359375 MiB
+$ python pi-serial-minimized.py 100000000
+Pi: 3.14182724, memory: 2288.818359375 MiB
+```
+
+**(Add notes here about memory requirements scaling linearly with the number of
+samples used.)**
 
 ## Running the Parallel Job
 
