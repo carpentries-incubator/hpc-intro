@@ -1,7 +1,3 @@
----
-layout: page
-title: "Maintenance"
----
 
 # Site Structure and Maintnence
 
@@ -88,10 +84,10 @@ with appropriate metadata.  The actual checks are executed
 by the Python script in `bin/lesson_check.py`, which can be
 examined for important clues.
 
-Some files are "boilerplate" files, and should be exempt
-from checks.  These are listed in `bin/lesson_initialize.py`,
-and can be important when making structural changes to the
-repo.
+You can control what sorts of checks a file will be subject
+to by selecting a `checker` type in the list of 
+regular-expression matches assinged to `CHECKERS` near
+the bottom of `bin/lesson_check.py`. 
 
 
 [hpc-intro]: https://github.com/carpentries-incubator/hpc-intro

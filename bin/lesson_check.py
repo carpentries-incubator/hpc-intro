@@ -310,7 +310,6 @@ def check_fileset(source_dir, reporter, filenames_present):
 
 def create_checker(args, filename, info):
     """Create appropriate checker for file."""
-
     for (pat, cls) in CHECKERS:
         if pat.search(filename):
             return cls(args, filename, **info)
@@ -555,6 +554,7 @@ class CheckGeneric(CheckBase):
 
 CHECKERS = [
     (re.compile(r'CONTRIBUTING\.md'), CheckNonJekyll),
+    (re.compile(r'MAINTENANCE\.md'), CheckNonJekyll),
     (re.compile(r'README\.md'), CheckNonJekyll),
     (re.compile(r'index\.md'), CheckIndex),
     (re.compile(r'reference\.md'), CheckReference),
