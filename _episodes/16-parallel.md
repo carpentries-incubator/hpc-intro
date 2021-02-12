@@ -356,7 +356,7 @@ clearly. Press "q" to exit the pager program (`less`).
 >
 {: .discussion}
 
-In general, achieving a better estimate of π requires a greater number of points. Take a
+In general, achieving a better estimate of &#960; requires a greater number of points. Take a
 closer look at `inside_circle`: should we expect to get high accuracy on a single
 machine?
 
