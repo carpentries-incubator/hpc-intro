@@ -78,6 +78,6 @@ Peter Steinbach.
 [mainsite-repo]: https://github.com/hpc-carpentry/hpc-carpentry.org
 [swc-slack]: https://swcarpentry.slack.com
 [hpc-slack]: https://swcarpentry.slack.com/#hpc-carpentry
-[slakc-invite]: https://swc-slack-invite.herokuapp.com
+[slack-invite]: https://swc-slack-invite.herokuapp.com
 [topicbox]: https://carpentries.topicbox.com
 [zenodo]: https://zenodo.org/
