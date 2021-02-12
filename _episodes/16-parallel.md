@@ -154,8 +154,74 @@ $ python pi-serial-minimized.py 100000000
 Pi: 3.14182724, memory: 2288.818359375 MiB
 ```
 
-**(Add notes here about memory requirements scaling linearly with the number of
-samples used.)**
+Here we can see that the estimated amount of memory required scales linearly
+with the number of samples used.
+In practice, there is some memory required for other parts of the script,
+but the `x`, `y`, and `radii` variables are by far the largest influence
+on the memory required.
+
+### Estimating Calculation Time
+
+Most of the calculations required to estimate &#960; are in the
+`inside_circle` function:
+
+1. Generating `n_samples` random values for `x` and `y`.
+2. Calculating `n_samples` values of `radii` from `x` and `y`.
+3. Counting how many values in `radii` are under 1.0.
+
+There's also one multiplication operation and one division operation required
+to convert the `counts` value to the final estimate of &#960; in the main
+function.
+
+A simple way to measure the calculation time is to use Python's `datetime`
+module to store the computer's current date and time before and after the
+calculations, and calculate the difference between those times.
+
+To add the time measurement to the script, add the following line below the
+`import sys` line:
+
+```
+import datetime
+```
+
+Then, add the following line immediately above the line calculating `counts`:
+
+```
+start_time = datetime.datetime.now()
+```
+
+Add the following two lines immediately below the line calculating `counts`:
+
+```
+end_time = datetime.datetime.now()
+elapsed_time = (end_time - start_time).total_seconds()
+```
+
+And finally, modify the `print` statement with the following:
+
+```
+print("Pi: {}, memory: {} MiB, time: {} s".format(my_pi, memory_required, elapsed_time))
+```
+
+Run the script again with a few different values for the number of samples, and
+see how the solution time changes:
+
+```
+$ python pi-serial-minimized.py 1000000
+Pi: 3.141108, memory: 22.88818359375 MiB, time: 0.037298 s
+python pi-serial-minimized.py 10000000
+Pi: 3.141774, memory: 228.8818359375 MiB, time: 0.346355 s
+python pi-serial-minimized.py 100000000
+Pi: 3.1413742, memory: 2288.818359375 MiB, time: 4.030354 s
+```
+
+Here we can see that the amount of time required scales approximately linearly
+with the number of samples used.
+There could be some variation in additional runs of the script with the same
+number of samples, since the elapsed time is affected by other programs
+running on the computer at the same time.
+But if the script is the most computationally-intensive process running at the
+time, its calculations are the largest influence on the elapsed time.
 
 ## Running the Parallel Job
 
