@@ -86,7 +86,7 @@ examined for important clues.
 
 You can control what sorts of checks a file will be subject
 to by selecting a `checker` type in the list of 
-regular-expression matches assinged to `CHECKERS` near
+regular-expression matches assigned to `CHECKERS` near
 the bottom of `bin/lesson_check.py`. 
 
 
