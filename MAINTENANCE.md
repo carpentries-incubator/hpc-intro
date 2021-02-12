@@ -1,3 +1,7 @@
+---
+layout: page
+title: "Maintenance"
+---
 
 # Site Structure and Maintnence
 
