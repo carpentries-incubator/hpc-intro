@@ -1,7 +1,3 @@
----
-layout: page
-title: Maintenance
----
 
 # Site Structure and Maintnence
 
@@ -74,6 +70,24 @@ is generated on the site.  The Zenodo account is owned by
 Peter Steinbach.
 
 
+### Continuous Integration
+
+The high-level lesson structure is described reasonably well
+in the [README](README.md) file, but there are some subtleties
+that can arise at build-time. 
+
+You can locally preview some of the tests by providing 
+arguments to the `make` command that you run in the top-level
+directory.  In particular, `make check-lesson-all` checks
+a number of important things, like the existence of files
+with appropriate metadata.  The actual checks are executed
+by the Python script in `bin/lesson_check.py`, which can be
+examined for important clues.
+
+Some files are "boilerplate" files, and should be exempt
+from checks.  These are listed in `bin/lesson_initialize.py`,
+and can be important when making structural changes to the
+repo.
 
 
 [hpc-intro]: https://github.com/carpentries-incubator/hpc-intro
