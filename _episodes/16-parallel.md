@@ -16,6 +16,90 @@ We now have the tools we need to run a multi-processor job. This is a very impor
 aspect of HPC systems, as parallelism is one of the primary tools we have to improve the
 performance of computational tasks.
 
+Our example implements a stochastic algorithm for estimating the value of
+&#960;, the ratio of the circumference to the diameter of a circle.
+The program generates a large number of random points on a 1&times;1 square
+centered on (&frac12;,&frac12;), and checks how many of these points fall
+inside the unit circle.
+On average, &#960;/4 of the randomly-selected points should fall in the
+circle, so &#960; can be estimated from 4*f*, where *f* is the observed
+fraction of points that fall in the circle.
+Because each sample is independent, this algorithm is easily implemented
+in parallel.
+
+## A Serial Solution to the Problem
+
+We start from a Python script using concepts taught in Software Carpentry's
+[Programming with Python](https://swcarpentry.github.io/python-novice-inflammation/)
+workshops.
+We want to allow the user to specify how many random points should be used
+to calculate &#960; through a command-line parameter.
+This script will only use a single CPU for its entire run, so it's classified
+as a serial process.
+
+In the Python script, we start by importing the `numpy` module for calculating
+the results, and the `sys` module to process command-line parameters:
+
+```
+#!/usr/bin/env python3
+import numpy as np
+import sys
+```
+
+We define a Python function `inside_circle` that accepts a single parameter
+for the number of random points used to calculate &#960;.
+It creates `x` and `y` arrays of random values on the interval [0,1), then
+counts how many of those (x,y) coordinates are within a distance 1.0 from
+the origin:
+
+```
+def inside_circle(total_count):
+    x = np.random.uniform(size=total_count)
+    y = np.random.uniform(size=total_count)
+    radii = np.sqrt(x*x + y*y)
+    count = len(radii[np.where(radii<=1.0)])
+    return count
+```
+
+Next, we create a main function to call the `inside_circle` function and
+calculate &#960; from its returned result:
+
+```
+if __name__ == '__main__':
+    n_samples = int(sys.argv[1])
+    counts = inside_circle(n_samples)
+    my_pi = 4.0 * counts / n_samples
+    print(my_pi)
+```
+
+The entire Python script is:
+
+```
+#!/usr/bin/env python3
+import numpy as np
+import sys
+
+def inside_circle(total_count):
+    x = np.random.uniform(size=total_count)
+    y = np.random.uniform(size=total_count)
+    radii = np.sqrt(x*x + y*y)
+    count = len(radii[np.where(radii<=1.0)])
+    return count
+
+if __name__ == '__main__':
+    n_samples = int(sys.argv[1])
+    counts = inside_circle(n_samples)
+    my_pi = 4.0 * counts / n_samples
+    print(my_pi)
+```
+
+If we run the Python script with a command-line parameter, as in `python pi-serial.py 1024`, we should see the script print its estimate of &#960;:
+
+```
+$ python pi-serial.py 1024
+3.10546875
+```
+
 ## Running the Parallel Job
 
 We will run an example that uses the Message Passing Interface (MPI) for parallelism &mdash;
@@ -39,14 +123,6 @@ On its own, `mpirun` can take many arguments specifying how many machines will p
 in the process. In the context of our queuing system, however, we do not need to specify
 this information, the `mpirun` command will obtain it from the queuing system, by
 examining the environment variables set when the job is launched.
-
-Our example implements a stochastic algorithm for estimating the value of &#960;, the
-ratio of the circumference to the diameter of a circle. The program generates a large
-number of random points on a 1&times;1 square centered on (&frac12;,&frac12;), and checks
-how many of these points fall inside the unit circle. On average, &#960;/4 of the
-randomly-selected points should fall in the circle, so &#960; can be estimated from 4*f*,
-where *f* is the observed fraction of points that fall in the circle. Because each sample
-is independent, this algorithm is easily implemented in parallel.
 
 We have provided a Python implementation, which uses MPI and NumPy, a popular library for
 efficient numerical operations.
