@@ -181,7 +181,7 @@ Here we can see that the estimated amount of memory required scales linearly
 with the number of samples used.
 In practice, there is some memory required for other parts of the script,
 but the `x`, `y`, and `radii` variables are by far the largest influence
-on the memory required.
+on the total amount of memory required.
 
 ### Estimating Calculation Time
 
@@ -294,8 +294,8 @@ Sampling 400,000,000 points consumes 8.94 GiB of memory,
 and if your machine has less RAM than that, it will grind to a halt.
 If you have 16 GiB installed, you won't quite make it to 750,000,000 points.
 
-Even with sufficient memory for additional samples,
-we could require enormous amounts of time to calculate on a single CPU.
+Even with sufficient memory for necessary variables,
+a script could require enormous amounts of time to calculate on a single CPU.
 To reduce the amount of time required,
 we need to modify the script to use multiple CPUs for the calculations.
 In the largest problem scales,
@@ -329,14 +329,20 @@ examining the environment variables set when the job is launched.
 
 > ## What changes are needed for an MPI version of the &#960; calculator?
 >
-> We need to import the `MPI` object from the Python module `mpi4py` by adding
+> First, we need to import the `MPI` object from the Python module `mpi4py`
+> by adding an `from mpi4py import MPI` line immediately below the
+> `import datetime` line.
 >
-> The "main" function performs the overhead and accounting work
-> required to subdivide the total number of points to be sampled and *partitioning* the
-> total workload among the various parallel processors available. At the end, all the
-> workers report back to a "rank 0," which prints out the result.
+> Second, we need to modify the "main" function to perform the overhead and
+> accounting work required to:
+> 
+> * subdivide the total number of points to be sampled,
+> * *partition* the total workload among the various parallel processors
+>   available,
+> * have each parallel process report the results of its workload back
+>   to the "rank 0" process, which prints out the result.
 >
-> This relatively simple program exercises four important concepts:
+> The modifications to the serial script demonstrate four important concepts:
 >
 > * COMM_WORLD: the default MPI Communicator, providing a channel for all the
 >   processes involved in this `mpirun` to exchange information with one
@@ -348,8 +354,8 @@ examining the environment variables set when the job is launched.
 >   array element at each index assigned the value provided by the
 >   corresponding partner rank &mdash; including the host's own value.
 > * Conditional Output: since every rank is running the *same code*, the
->   general `print` statements are wrapped in a conditional so that only one
->   rank does it.
+>   partitioning, the final calculations, and the `print` statement are
+>   wrapped in a conditional so that only one rank performs these operations.
 >
 {: .discussion}
 
