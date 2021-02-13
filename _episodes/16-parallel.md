@@ -47,9 +47,12 @@ import sys
 
 We define a Python function `inside_circle` that accepts a single parameter
 for the number of random points used to calculate &#960;.
-It creates `x` and `y` arrays of random values on the interval [0,1), then
-counts how many of those (x,y) coordinates are within a distance 1.0 from
-the origin:
+It randomly samples points with both *x* and *y* on the half-open interval
+[0, 1).
+It then computes their distances from the origin (i.e., radii), and returns
+those values.
+All of this is done using *vectors* of double-precision (64-bit)
+floating-point values.
 
 ```
 def inside_circle(total_count):
