@@ -129,15 +129,15 @@ Replace the `print(my_pi)` line with the following:
 
 ```
 size_of_float = np.dtype(np.float64).itemsize
-memory_required = 3 * n_samples * size_of_float / (1024**2)
-print("Pi: {}, memory: {} MiB".format(my_pi, memory_required))
+memory_required = 3 * n_samples * size_of_float / (1024**3)
+print("Pi: {}, memory: {} GiB".format(my_pi, memory_required))
 ```
 
 The first line calculates the bytes of memory required for a single `float64`
 value using the `dtype`function.
 The second line estimates the total amount of memory required to store three
 variables containing `n_samples` `float64` values, converting the value into
-units of [mebibytes](https://en.wikipedia.org/wiki/Byte#Multiple-byte_units).
+units of [gibibytes](https://en.wikipedia.org/wiki/Byte#Multiple-byte_units).
 The third line prints both the estimate of &#960; and the estimated amount of
 memory used by the script.
 
@@ -159,8 +159,8 @@ if __name__ == '__main__':
     counts = inside_circle(n_samples)
     my_pi = 4.0 * counts / n_samples
     size_of_float = np.dtype(np.float64).itemsize
-    memory_required = 3 * n_samples * size_of_float / (1024**2)
-    print("Pi: {}, memory: {} MiB".format(my_pi, memory_required))
+    memory_required = 3 * n_samples * size_of_float / (1024**3)
+    print("Pi: {}, memory: {} GiB".format(my_pi, memory_required))
 ```
 
 Run the script again with a few different values for the number of samples, and
@@ -168,13 +168,13 @@ see how the memory required changes:
 
 ```
 $ python pi-serial.py 1000
-Pi: 3.144, memory: 0.02288818359375 MiB
+Pi: 3.144, memory: 2.2351741790771484e-05 GiB
 $ python pi-serial.py 2000
-Pi: 3.18, memory: 0.0457763671875 MiB
+Pi: 3.18, memory: 4.470348358154297e-05 GiB
 $ python pi-serial.py 1000000
-Pi: 3.140944, memory: 22.88818359375 MiB
+Pi: 3.140944, memory: 0.022351741790771484 GiB
 $ python pi-serial.py 100000000
-Pi: 3.14182724, memory: 2288.818359375 MiB
+Pi: 3.14182724, memory: 2.2351741790771484 GiB
 ```
 
 Here we can see that the estimated amount of memory required scales linearly
@@ -223,7 +223,7 @@ elapsed_time = (end_time - start_time).total_seconds()
 And finally, modify the `print` statement with the following:
 
 ```
-print("Pi: {}, memory: {} MiB, time: {} s".format(my_pi, memory_required, elapsed_time))
+print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
 ```
 
 The final Python script for the serial solution is:
@@ -248,8 +248,8 @@ if __name__ == '__main__':
     end_time = datetime.datetime.now()
     elapsed_time = (end_time - start_time).total_seconds()
     size_of_float = np.dtype(np.float64).itemsize
-    memory_required = 3 * n_samples * size_of_float / (1024**2)
-    print("Pi: {}, memory: {} MiB, time: {} s".format(my_pi, memory_required, elapsed_time))
+    memory_required = 3 * n_samples * size_of_float / (1024**3)
+    print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
 ```
 
 Run the script again with a few different values for the number of samples, and
@@ -257,11 +257,11 @@ see how the solution time changes:
 
 ```
 $ python pi-serial.py 1000000
-Pi: 3.141108, memory: 22.88818359375 MiB, time: 0.037298 s
-python pi-serial.py 10000000
-Pi: 3.141774, memory: 228.8818359375 MiB, time: 0.346355 s
-python pi-serial.py 100000000
-Pi: 3.1413742, memory: 2288.818359375 MiB, time: 4.030354 s
+Pi: 3.139612, memory: 0.022351741790771484 GiB, time: 0.034872 s
+$ python pi-serial.py 10000000
+Pi: 3.1425492, memory: 0.22351741790771484 GiB, time: 0.351212 s
+$ python pi-serial.py 100000000
+Pi: 3.14146608, memory: 2.2351741790771484 GiB, time: 3.735195 s
 ```
 
 Here we can see that the amount of time required scales approximately linearly
@@ -279,13 +279,28 @@ that as we increase the number of samples:
 2. The amount of memory required scales approximately linearly.
 3. The amount of time to calculate scales approximately linearly.
 
-If we needed to add additional samples for more accuracy, we could imagine
-a script could easily exceed the amount of memory in our computer, and also
-require enormous amounts of time to calculate on a single CPU.
-To get around the memory constraint and the amount of time required, we
-need to modify the script to use multiple CPUs for the calculations.
-In the largest problem scales, we could use multiple CPUs in multiple compute
-nodes, distributing the memory requirements across all the nodes used to
+In general, achieving a better estimate of &#960; requires a greater number of
+points.
+Take a closer look at `inside_circle`: should we expect to get high accuracy
+on a single machine?
+
+Probably not.
+The function allocates three arrays of size *N* equal to the number of points
+belonging to this process.
+Using 64-bit floating point numbers, the memory footprint of these arrays can
+get quite large.
+Each 100,000,000 points sampled consumes 2.24 GiB of memory.
+Sampling 400,000,000 points consumes 8.94 GiB of memory,
+and if your machine has less RAM than that, it will grind to a halt.
+If you have 16 GiB installed, you won't quite make it to 750,000,000 points.
+
+Even with sufficient memory for additional samples,
+we could require enormous amounts of time to calculate on a single CPU.
+To reduce the amount of time required,
+we need to modify the script to use multiple CPUs for the calculations.
+In the largest problem scales,
+we could use multiple CPUs in multiple compute nodes,
+distributing the memory requirements across all the nodes used to
 calculate the solution.
 
 ## Running the Parallel Job
@@ -312,32 +327,11 @@ in the process. In the context of our queuing system, however, we do not need to
 this information, the `mpirun` command will obtain it from the queuing system, by
 examining the environment variables set when the job is launched.
 
-We have provided a Python implementation, which uses MPI and NumPy, a popular library for
-efficient numerical operations.
-
-Download the Python executable using the following command:
-
-```
-{{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/pi.py
-```
-{: .bash}
-
-Let's take a quick look inside the file. It is richly commented, and should explain itself
-clearly. Press "q" to exit the pager program (`less`).
-
-```
-{{ site.remote.prompt }} less pi.py
-```
-{: .bash}
-
-> ## What's `pi.py` doing?
+> ## What changes are needed for an MPI version of the &#960; calculator?
 >
-> One subroutine, `inside_circle`, does all the work. It randomly samples points with both
-> *x* and *y* on the half-open interval [0, 1). It then computes their distances from the
-> origin (i.e., radii), and returns those values. All of this is done using *vectors* of
-> single-precision (32-bit) floating-point values.
+> We need to import the `MPI` object from the Python module `mpi4py` by adding
 >
-> The implicitly defined "main" function performs the overhead and accounting work
+> The "main" function performs the overhead and accounting work
 > required to subdivide the total number of points to be sampled and *partitioning* the
 > total workload among the various parallel processors available. At the end, all the
 > workers report back to a "rank 0," which prints out the result.
@@ -358,17 +352,6 @@ clearly. Press "q" to exit the pager program (`less`).
 >   rank does it.
 >
 {: .discussion}
-
-In general, achieving a better estimate of &#960; requires a greater number of points. Take a
-closer look at `inside_circle`: should we expect to get high accuracy on a single
-machine?
-
-Probably not. The function allocates two arrays of size *N* equal to the number of points
-belonging to this process. Using 32-bit floating point numbers, the memory footprint of
-these arrays can get quite large. The default total number &mdash; 8,738,128 &mdash; was
-selected to achieve a 100 MB memory footprint. Pushing this number to a billion yields a
-memory footprint of 11.2 GB: if your machine has less RAM than that, it will grind
-to a halt. If you have 16 GB installed, you won't quite make it to 1&frac12; billion points.
 
 Our purpose here is to exercise the parallel workflow of the cluster, not to optimize the
 program to minimize its memory footprint. Rather than push our local machines to the
