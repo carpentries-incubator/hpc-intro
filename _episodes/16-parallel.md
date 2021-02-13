@@ -340,7 +340,8 @@ examining the environment variables set when the job is launched.
 > * *partition* the total workload among the various parallel processors
 >   available,
 > * have each parallel process report the results of its workload back
->   to the "rank 0" process, which prints out the result.
+>   to the "rank 0" process,
+>   which does the final calculations and prints out the result.
 >
 > The modifications to the serial script demonstrate four important concepts:
 >
@@ -357,7 +358,114 @@ examining the environment variables set when the job is launched.
 >   partitioning, the final calculations, and the `print` statement are
 >   wrapped in a conditional so that only one rank performs these operations.
 >
+> We add the lines:
+> 
+> ```
+> comm = MPI.COMM_WORLD
+> cpus = comm.Get_size()
+> rank = comm.Get_rank()
+> ```
+> 
+> immediately before the `n_samples` line to set up the MPI environment for
+> each process.
+> 
+> We replace the `start_time` and `counts` lines with the lines:
+> 
+> ```
+> if rank == 0:
+>   start_time = datetime.datetime.now()
+>   partitions = [ int(n_samples / cpus) ] * cpus
+>   counts = [ int(0) ] * cpus
+> else:
+>   partitions = None
+>   counts = None
+> ```
+> 
+> to ensure that only the rank 0 process measures times and coordinates
+> the work to be distributed to all the ranks, and that the other ranks
+> get placeholder values for the `partitions` and `counts` variables.
+>
+> Immediately below these lines, we'll add the following three lines:
+> 
+> ```
+> partition_item = comm.scatter(partitions, root=0)
+> count_item = inside_circle(partition_item)
+> counts = comm.gather(count_item, root=0)
+> ```
+> 
+> to:
+> * distribute the the work among the ranks with `scatter`,
+> * call the `inside_circle` function so each rank can perform its share
+>   of the work,
+> * collect each rank's results into a `counts` variable on rank 0
+> 
+> 
+> Finally, we'll ensure the `my_pi` through `print` lines only run on rank
+> 0 by placing them inside an `if` statement as:
+> 
+> ```
+> if rank == 0:
+>    my_pi = 4.0 * sum(counts) / sum(partitions)
+>    end_time = datetime.datetime.now()
+>    elapsed_time = (end_time - start_time).total_seconds()
+>    size_of_float = np.dtype(np.float64).itemsize
+>    memory_required = 3 * n_samples * size_of_float / (1024**3)
+>    print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
+> ```
+>
+> Illustrations of these steps is shown in the figures below:
+> 
+> {% include figure.html url="" max-width="20%" file="/fig/initialize.png" alt="MPI initialize" caption="" %}
+> 
+> {% include figure.html url="" max-width="20%" file="/fig/scatter.png" alt="MPI scatter" caption="" %}
+> 
+> {% include figure.html url="" max-width="20%" file="/fig/compute.png" alt="MPI compute" caption="" %}
+> 
+> {% include figure.html url="" max-width="20%" file="/fig/gather.png" alt="MPI gather" caption="" %}
+> 
+> {% include figure.html url="" max-width="20%" file="/fig/finalize.png" alt="MPI finalize" caption="" %}
+> 
 {: .discussion}
+
+The resulting MPI Python script is:
+
+```
+import numpy as np
+import sys
+import datetime
+from mpi4py import MPI
+
+def inside_circle(total_count):
+    x = np.random.uniform(size=total_count)
+    y = np.random.uniform(size=total_count)
+    radii = np.sqrt(x*x + y*y)
+    count = len(radii[np.where(radii<=1.0)])
+    return count
+
+if __name__ == '__main__':
+    comm = MPI.COMM_WORLD
+    cpus = comm.Get_size()
+    rank = comm.Get_rank()
+    n_samples = int(sys.argv[1])
+    if rank == 0:
+        start_time = datetime.datetime.now()
+        partitions = [ int(n_samples / cpus) ] * cpus
+        counts = [ int(0) ] * cpus
+    else:
+        partitions = None
+        counts = None
+    partition_item = comm.scatter(partitions, root=0)
+    count_item = inside_circle(partition_item)
+    counts = comm.gather(count_item, root=0)
+
+    if rank == 0:
+        my_pi = 4.0 * sum(counts) / sum(partitions)
+        end_time = datetime.datetime.now()
+        elapsed_time = (end_time - start_time).total_seconds()
+        size_of_float = np.dtype(np.float64).itemsize
+        memory_required = 3 * n_samples * size_of_float / (1024**3)
+        print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
+```
 
 Our purpose here is to exercise the parallel workflow of the cluster, not to optimize the
 program to minimize its memory footprint. Rather than push our local machines to the
