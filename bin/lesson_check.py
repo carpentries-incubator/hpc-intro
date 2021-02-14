@@ -29,6 +29,7 @@ SOURCE_RMD_DIRS = ['_episodes_rmd']
 REQUIRED_FILES = {
     'CODE_OF_CONDUCT.md': True,
     'CONTRIBUTING.md': False,
+    'MAINTENANCE.md': False,
     'LICENSE.md': True,
     'README.md': False,
     os.path.join('_extras', 'discuss.md'): True,
@@ -309,7 +310,6 @@ def check_fileset(source_dir, reporter, filenames_present):
 
 def create_checker(args, filename, info):
     """Create appropriate checker for file."""
-
     for (pat, cls) in CHECKERS:
         if pat.search(filename):
             return cls(args, filename, **info)
@@ -554,6 +554,7 @@ class CheckGeneric(CheckBase):
 
 CHECKERS = [
     (re.compile(r'CONTRIBUTING\.md'), CheckNonJekyll),
+    (re.compile(r'MAINTENANCE\.md'), CheckNonJekyll),
     (re.compile(r'README\.md'), CheckNonJekyll),
     (re.compile(r'index\.md'), CheckIndex),
     (re.compile(r'reference\.md'), CheckReference),
