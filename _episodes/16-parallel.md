@@ -94,7 +94,7 @@ if __name__ == '__main__':
     print(my_pi)
 ```
 
-If we run the Python script with a command-line parameter, as in
+If we run the Python script locally with a command-line parameter, as in
 `python pi-serial.py 1024`, we should see the script print its estimate of
 &#960;:
 
@@ -294,6 +294,50 @@ Sampling 400,000,000 points consumes 8.94 GiB of memory,
 and if your machine has less RAM than that, it will grind to a halt.
 If you have 16 GiB installed, you won't quite make it to 750,000,000 points.
 
+## Running the Serial Job on a Compute Node
+
+Create a submission file, requesting one task on a single node and enough
+memory to prevent the job from running out of memory:
+
+```
+{{ site.remote.prompt }} nano serial-pi.sh
+{{ site.remote.prompt }} cat serial-pi.sh
+```
+{: .bash}
+
+```
+#!/bin/bash
+{{ site.sched.comment }} {{ site.sched.flag.name }} serial-pi
+{{ site.sched.comment }} {{ site.sched.flag.queue }} {{ site.sched.queue.testing }}
+{% include {{ site.snippets }}/parallel/one-task-with-memory.snip %}
+module load python3
+python pi.py 100000000
+```
+{: .output}
+
+Then submit your job. We will use the batch file to set the options,
+rather than the command line.
+
+```
+{{ site.remote.prompt }} {{ site.sched.submit.name }} serial-pi.sh
+```
+{: .bash}
+
+As before, use the status commands to check when your job runs. Use `ls` to locate the
+output file, and examine it. Is it what you expected?
+
+* How good is the value for &#960;?
+* How much memory did it need?
+* How long did the job take to run?
+
+Modify the job script to increase both the number of samples and the amount
+of memory requested (perhaps by a factor of 2, then by a factor of 10),
+and resubmit the job each time.
+
+* How good is the value for &#960;?
+* How much memory did it need?
+* How long did the job take to run?
+
 Even with sufficient memory for necessary variables,
 a script could require enormous amounts of time to calculate on a single CPU.
 To reduce the amount of time required,
@@ -485,7 +529,7 @@ Create a submission file, requesting more than one task on a single node:
 {{ site.sched.comment }} {{ site.sched.flag.queue }} {{ site.sched.queue.testing }}
 {% include {{ site.snippets }}/parallel/four-tasks.snip %}
 module load python3
-mpirun ./pi.py 1431652028
+mpirun python pi.py 100000000
 ```
 {: .output}
 
@@ -502,4 +546,66 @@ output file, and examine it. Is it what you expected?
 
 * How good is the value for &#960;?
 * How much memory did it need?
-* How much of that memory was used on each node?
+* How long did the job take to run?
+
+Modify the job script to increase both the number of samples and the amount
+of memory requested (perhaps by a factor of 2, then by a factor of 10),
+and resubmit the job each time.
+You can also increase the number of CPUs.
+
+* How good is the value for &#960;?
+* How much memory did it need?
+* How long did the job take to run?
+
+## How Much Does MPI Improve Performance?
+
+In theory, by dividing up the &#960; calculations among *n* MPI processes,
+we should see run times reduce by a factor of *n*.
+In practice, some time is required to start the additional MPI processes,
+for the MPI processes to communicate and coordinate, and some types of
+calculations may only be able to run effectively on a single CPU.
+
+Additionally, if the MPI processes operate on different physical CPUs
+in the computer, or across multiple compute nodes, additional time is
+required for communication compared to all processes operating on a
+single CPU.
+
+[Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl's_law) is one way of
+predicting improvements in execution time for a fixed parallel workload.
+If a workload needs 20 hours to complete on a single core,
+and one hour of that time is spent on tasks that cannot be parallelized,
+only the remaining 19 hours could be parallelized.
+Even if an infinite number of cores were used for the parallel parts of
+the workload, the total run time cannot be less than one hour.
+
+In practice, it's common to evaluate the parallelism of an MPI program by
+* running the program across a range of CPU counts,
+* recording the execution time on each run,
+* comparing each execution time to the time when using a single CPU.
+
+The speedup factor *S* is calcuated as the single-CPU execution time divided
+by the multi-CPU execution time.
+For a laptop with 8 cores, the graph of speedup factor versus number of cores
+used shows relatively consistent improvement when using 2, 4, or 8 cores, but
+using additional cores shows a diminishing return.
+
+{% include figure.html url="" max-width="20%" file="/fig/laptop-mpi_Speedup_factor.png" alt="MPI speedup factors on an 8-core laptop" caption="" %}
+
+For a set of HPC nodes containing 28 cores each, the graph of speedup factor
+versus number of cores shows consistent improvements up through three nodes
+and 84 cores, but **worse** performance when adding an a fourth node with an
+additional 28 cores.
+This is due to the amount of communication and coordination required among
+the MPI processes requiring more time than is gained by reducing the amount
+of work each MPI process has to complete.
+
+{% include figure.html url="" max-width="20%" file="/fig/hpc-mpi_Speedup_factor.png" alt="MPI speedup factors on an 8-core laptop" caption="" %}
+
+In practice, MPI speedup factors are influenced by:
+* CPU design,
+* the communication network between compute nodes,
+* the MPI library implementations, and
+* the details of the MPI program itself.
+In an HPC environment, we try to reduce the execution time for all types of
+jobs, and MPI is an extremely common way to combine dozens, hundreds, or
+thousands of CPUs into solving a single problem.
