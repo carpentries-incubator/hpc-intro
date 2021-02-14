@@ -175,6 +175,13 @@ copy and transfer because significantly fewer metadata operations are required. 
 be created using tools like `tar` and `zip`. We have already met `tar` when we talked about data
 transfer earlier. 
 
+{% include figure.html url="" max-width="90%" file="/fig/responsibility-bandwidth.svg" 
+alt="Schematic of network bandwidth"
+caption="<i>Schematic diagram of bandwidth and latency for disk and network I/O.
+Each of the components on the figure is connected by a black line of width
+proportional to the interface bandwidth, and a white line of width
+proportional to the data transferred along that interface.</i>" %}
+
 > ## Consider the best way to transfer data
 >
 > If you are transferring large amounts of data you will need to think about what may affect your
