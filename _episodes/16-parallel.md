@@ -44,6 +44,7 @@ the results, and the `sys` module to process command-line parameters:
 import numpy as np
 import sys
 ```
+{: .python}
 
 We define a Python function `inside_circle` that accepts a single parameter
 for the number of random points used to calculate &#960;.
@@ -62,6 +63,7 @@ def inside_circle(total_count):
     count = len(radii[np.where(radii<=1.0)])
     return count
 ```
+{: .python}
 
 Next, we create a main function to call the `inside_circle` function and
 calculate &#960; from its returned result:
@@ -73,6 +75,7 @@ if __name__ == '__main__':
     my_pi = 4.0 * counts / n_samples
     print(my_pi)
 ```
+{: .python}
 
 The entire Python script is:
 
@@ -93,15 +96,17 @@ if __name__ == '__main__':
     my_pi = 4.0 * counts / n_samples
     print(my_pi)
 ```
+{: .python}
 
 If we run the Python script locally with a command-line parameter, as in
 `python pi-serial.py 1024`, we should see the script print its estimate of
 &#960;:
 
 ```
-$ python pi-serial.py 1024
+{{ site.local.prompt }} python pi-serial.py 1024
 3.10546875
 ```
+{: .bash}
 
 ## Measuring Performance of the Serial Solution
 
@@ -132,6 +137,7 @@ size_of_float = np.dtype(np.float64).itemsize
 memory_required = 3 * n_samples * size_of_float / (1024**3)
 print("Pi: {}, memory: {} GiB".format(my_pi, memory_required))
 ```
+{{: .python }}
 
 The first line calculates the bytes of memory required for a single `float64`
 value using the `dtype`function.
@@ -162,20 +168,22 @@ if __name__ == '__main__':
     memory_required = 3 * n_samples * size_of_float / (1024**3)
     print("Pi: {}, memory: {} GiB".format(my_pi, memory_required))
 ```
+{{: .python }}
 
 Run the script again with a few different values for the number of samples, and
 see how the memory required changes:
 
 ```
-$ python pi-serial.py 1000
+{{ site.local.prompt }} python pi-serial.py 1000
 Pi: 3.144, memory: 2.2351741790771484e-05 GiB
-$ python pi-serial.py 2000
+{{ site.local.prompt }} python pi-serial.py 2000
 Pi: 3.18, memory: 4.470348358154297e-05 GiB
-$ python pi-serial.py 1000000
+{{ site.local.prompt }} python pi-serial.py 1000000
 Pi: 3.140944, memory: 0.022351741790771484 GiB
-$ python pi-serial.py 100000000
+{{ site.local.prompt }} python pi-serial.py 100000000
 Pi: 3.14182724, memory: 2.2351741790771484 GiB
 ```
+{{: .bash }}
 
 Here we can see that the estimated amount of memory required scales linearly
 with the number of samples used.
@@ -206,12 +214,14 @@ To add the time measurement to the script, add the following line below the
 ```
 import datetime
 ```
+{{: .python }}
 
 Then, add the following line immediately above the line calculating `counts`:
 
 ```
 start_time = datetime.datetime.now()
 ```
+{{: .python }}
 
 Add the following two lines immediately below the line calculating `counts`:
 
@@ -219,12 +229,14 @@ Add the following two lines immediately below the line calculating `counts`:
 end_time = datetime.datetime.now()
 elapsed_time = (end_time - start_time).total_seconds()
 ```
+{{: .python }}
 
 And finally, modify the `print` statement with the following:
 
 ```
 print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
 ```
+{{: .python }}
 
 The final Python script for the serial solution is:
 
@@ -251,18 +263,20 @@ if __name__ == '__main__':
     memory_required = 3 * n_samples * size_of_float / (1024**3)
     print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
 ```
+{{: .python }}
 
 Run the script again with a few different values for the number of samples, and
 see how the solution time changes:
 
 ```
-$ python pi-serial.py 1000000
+{{ site.local.prompt }} python pi-serial.py 1000000
 Pi: 3.139612, memory: 0.022351741790771484 GiB, time: 0.034872 s
-$ python pi-serial.py 10000000
+{{ site.local.prompt }} python pi-serial.py 10000000
 Pi: 3.1425492, memory: 0.22351741790771484 GiB, time: 0.351212 s
-$ python pi-serial.py 100000000
+{{ site.local.prompt }} python pi-serial.py 100000000
 Pi: 3.14146608, memory: 2.2351741790771484 GiB, time: 3.735195 s
 ```
+{{: .bash }}
 
 Here we can see that the amount of time required scales approximately linearly
 with the number of samples used.
@@ -410,6 +424,7 @@ comm = MPI.COMM_WORLD
 cpus = comm.Get_size()
 rank = comm.Get_rank()
 ```
+{{: .python }}
 
 immediately before the `n_samples` line to set up the MPI environment for
 each process.
@@ -425,6 +440,7 @@ else:
   partitions = None
   counts = None
 ```
+{{: .python }}
 
 to ensure that only the rank 0 process measures times and coordinates
 the work to be distributed to all the ranks, and that the other ranks
@@ -437,6 +453,7 @@ partition_item = comm.scatter(partitions, root=0)
 count_item = inside_circle(partition_item)
 counts = comm.gather(count_item, root=0)
 ```
+{{: .python }}
 
 to:
 * distribute the the work among the ranks with `scatter`,
@@ -457,6 +474,7 @@ if rank == 0:
    memory_required = 3 * sum(partitions) * size_of_float / (1024**3)
    print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
 ```
+{{: .python }}
 
 Illustrations of these steps is shown in the figures below:
 
@@ -509,6 +527,7 @@ if __name__ == '__main__':
         memory_required = 3 * n_samples * size_of_float / (1024**3)
         print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
 ```
+{{: .python }}
 
 Our purpose here is to exercise the parallel workflow of the cluster, not to optimize the
 program to minimize its memory footprint. Rather than push our local machines to the
