@@ -79,7 +79,8 @@ KNOWN_CODEBLOCKS = {
     'error',
     'output',
     'source',
-    'warning'
+    'warning',
+    'language-python',
 }
 
 # What fields are required in teaching episode metadata?
