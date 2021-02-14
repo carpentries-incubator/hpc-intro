@@ -44,7 +44,7 @@ the results, and the `sys` module to process command-line parameters:
 import numpy as np
 import sys
 ```
-{: .python}
+{: .language-python}
 
 We define a Python function `inside_circle` that accepts a single parameter
 for the number of random points used to calculate &#960;.
@@ -63,7 +63,7 @@ def inside_circle(total_count):
     count = len(radii[np.where(radii<=1.0)])
     return count
 ```
-{: .python}
+{: .language-python}
 
 Next, we create a main function to call the `inside_circle` function and
 calculate &#960; from its returned result:
@@ -75,7 +75,7 @@ if __name__ == '__main__':
     my_pi = 4.0 * counts / n_samples
     print(my_pi)
 ```
-{: .python}
+{: .language-python}
 
 The entire Python script is:
 
@@ -96,7 +96,7 @@ if __name__ == '__main__':
     my_pi = 4.0 * counts / n_samples
     print(my_pi)
 ```
-{: .python}
+{: .language-python}
 
 If we run the Python script locally with a command-line parameter, as in
 `python pi-serial.py 1024`, we should see the script print its estimate of
