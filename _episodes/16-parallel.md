@@ -214,14 +214,14 @@ To add the time measurement to the script, add the following line below the
 ```
 import datetime
 ```
-{{: .python }}
+{{: .language-python }}
 
 Then, add the following line immediately above the line calculating `counts`:
 
 ```
 start_time = datetime.datetime.now()
 ```
-{{: .python }}
+{{: .language-python }}
 
 Add the following two lines immediately below the line calculating `counts`:
 
@@ -229,14 +229,14 @@ Add the following two lines immediately below the line calculating `counts`:
 end_time = datetime.datetime.now()
 elapsed_time = (end_time - start_time).total_seconds()
 ```
-{{: .python }}
+{{: .language-python }}
 
 And finally, modify the `print` statement with the following:
 
 ```
 print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
 ```
-{{: .python }}
+{{: .language-python }}
 
 The final Python script for the serial solution is:
 
@@ -263,7 +263,7 @@ if __name__ == '__main__':
     memory_required = 3 * n_samples * size_of_float / (1024**3)
     print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
 ```
-{{: .python }}
+{{: .language-python }}
 
 Run the script again with a few different values for the number of samples, and
 see how the solution time changes:
@@ -424,7 +424,7 @@ comm = MPI.COMM_WORLD
 cpus = comm.Get_size()
 rank = comm.Get_rank()
 ```
-{{: .python }}
+{{: .language-python }}
 
 immediately before the `n_samples` line to set up the MPI environment for
 each process.
@@ -440,7 +440,7 @@ else:
   partitions = None
   counts = None
 ```
-{{: .python }}
+{{: .language-python }}
 
 to ensure that only the rank 0 process measures times and coordinates
 the work to be distributed to all the ranks, and that the other ranks
@@ -453,7 +453,7 @@ partition_item = comm.scatter(partitions, root=0)
 count_item = inside_circle(partition_item)
 counts = comm.gather(count_item, root=0)
 ```
-{{: .python }}
+{{: .language-python }}
 
 to:
 * distribute the the work among the ranks with `scatter`,
@@ -474,7 +474,7 @@ if rank == 0:
    memory_required = 3 * sum(partitions) * size_of_float / (1024**3)
    print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
 ```
-{{: .python }}
+{{: .language-python }}
 
 Illustrations of these steps is shown in the figures below:
 
@@ -527,7 +527,7 @@ if __name__ == '__main__':
         memory_required = 3 * n_samples * size_of_float / (1024**3)
         print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
 ```
-{{: .python }}
+{{: .language-python }}
 
 Our purpose here is to exercise the parallel workflow of the cluster, not to optimize the
 program to minimize its memory footprint. Rather than push our local machines to the
