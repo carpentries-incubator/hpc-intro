@@ -48,6 +48,8 @@ import sys
 
 We define a Python function `inside_circle` that accepts a single parameter
 for the number of random points used to calculate &#960;.
+See [Programming with Python: Creating Functions](https://swcarpentry.github.io/python-novice-inflammation/08-func/index.html)
+for a review of Python functions.
 It randomly samples points with both *x* and *y* on the half-open interval
 [0, 1).
 It then computes their distances from the origin (i.e., radii), and returns
@@ -66,14 +68,19 @@ def inside_circle(total_count):
 {: .language-python}
 
 Next, we create a main function to call the `inside_circle` function and
-calculate &#960; from its returned result:
+calculate &#960; from its returned result.
+See [Programming with Python: Command-Line Programs](https://swcarpentry.github.io/python-novice-inflammation/12-cmdline/index.html)
+for a review of main functions and command-line parameter processing.
 
 ```
-if __name__ == '__main__':
+def main():
     n_samples = int(sys.argv[1])
     counts = inside_circle(n_samples)
     my_pi = 4.0 * counts / n_samples
     print(my_pi)
+
+if __name__ == '__main__':
+    main()
 ```
 {: .language-python}
 
@@ -90,11 +97,14 @@ def inside_circle(total_count):
     count = len(radii[np.where(radii<=1.0)])
     return count
 
-if __name__ == '__main__':
+def main():
     n_samples = int(sys.argv[1])
     counts = inside_circle(n_samples)
     my_pi = 4.0 * counts / n_samples
     print(my_pi)
+
+if __name__ == '__main__':
+    main()
 ```
 {: .language-python}
 
@@ -160,13 +170,16 @@ def inside_circle(total_count):
     count = len(radii[np.where(radii<=1.0)])
     return count
 
-if __name__ == '__main__':
+def main():
     n_samples = int(sys.argv[1])
     counts = inside_circle(n_samples)
     my_pi = 4.0 * counts / n_samples
     size_of_float = np.dtype(np.float64).itemsize
     memory_required = 3 * n_samples * size_of_float / (1024**3)
     print("Pi: {}, memory: {} GiB".format(my_pi, memory_required))
+
+if __name__ == '__main__':
+    main()
 ```
 {: .language-python}
 
@@ -252,7 +265,7 @@ def inside_circle(total_count):
     count = len(radii[np.where(radii<=1.0)])
     return count
 
-if __name__ == '__main__':
+def main():
     n_samples = int(sys.argv[1])
     start_time = datetime.datetime.now()
     counts = inside_circle(n_samples)
@@ -262,6 +275,9 @@ if __name__ == '__main__':
     size_of_float = np.dtype(np.float64).itemsize
     memory_required = 3 * n_samples * size_of_float / (1024**3)
     print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
+
+if __name__ == '__main__':
+    main()
 ```
 {: .language-python}
 
@@ -503,7 +519,7 @@ def inside_circle(total_count):
     count = len(radii[np.where(radii<=1.0)])
     return count
 
-if __name__ == '__main__':
+def main():
     comm = MPI.COMM_WORLD
     cpus = comm.Get_size()
     rank = comm.Get_rank()
@@ -526,6 +542,9 @@ if __name__ == '__main__':
         size_of_float = np.dtype(np.float64).itemsize
         memory_required = 3 * n_samples * size_of_float / (1024**3)
         print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
+
+if __name__ == '__main__':
+    main()
 ```
 {: .language-python}
 
