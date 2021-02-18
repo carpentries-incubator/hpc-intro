@@ -27,6 +27,10 @@ fraction of points that fall in the circle.
 Because each sample is independent, this algorithm is easily implemented
 in parallel.
 
+{% include figure.html url="" max-width="40%" file="/fig/pi.png"
+ alt="Algorithm for computing pi through random sampling" caption="" %}
+
+
 ## A Serial Solution to the Problem
 
 We start from a Python script using concepts taught in Software Carpentry's
