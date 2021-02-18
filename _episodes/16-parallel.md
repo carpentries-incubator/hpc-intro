@@ -523,7 +523,7 @@ def inside_circle(total_count):
     count = len(radii[np.where(radii<=1.0)])
     return count
 
-def main():
+if __name__ == '__main__':
     comm = MPI.COMM_WORLD
     cpus = comm.Get_size()
     rank = comm.Get_rank()
@@ -538,7 +538,7 @@ def main():
     partition_item = comm.scatter(partitions, root=0)
     count_item = inside_circle(partition_item)
     counts = comm.gather(count_item, root=0)
-
+    
     if rank == 0:
         my_pi = 4.0 * sum(counts) / sum(partitions)
         end_time = datetime.datetime.now()
@@ -547,7 +547,6 @@ def main():
         memory_required = 3 * n_samples * size_of_float / (1024**3)
         print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
 
-if __name__ == '__main__':
     main()
 ```
 {: .language-python}
