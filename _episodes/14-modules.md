@@ -1,5 +1,5 @@
 ---
-title: "Accessing software"
+title: "Accessing software via Modules"
 teaching: 30
 exercises: 15
 questions:
@@ -10,7 +10,6 @@ keypoints:
 - "Load software with `module load softwareName`"
 - "Unload software with `module purge`"
 - "The module system handles software versioning and package conflicts for you automatically."
-- "You can edit your `.bashrc` file to automatically load a software package."
 ---
 
 On a high-performance computing system, it is seldom the case that the software we want to use is
@@ -38,7 +37,7 @@ researchers to prevent software versioning issues from affecting their results.
 Dependencies are where a particular software package (or even a particular version)
 depends on having access to another software package (or even a particular version of
 another software package). For example, the VASP materials science software may 
-depend on having a particular version of the FFTW (Fastest Fourer Transform in the West)
+depend on having a particular version of the FFTW (Fastest Fourier Transform in the West)
 software library available for it to work.
 
 ## Environment modules

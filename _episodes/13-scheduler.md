@@ -1,5 +1,5 @@
 ---
-title: "Scheduling jobs"
+title: "Working with the scheduler"
 teaching: 45
 exercises: 30
 questions:
@@ -39,8 +39,48 @@ alt="Compare a job scheduler to a waiter in a restaurant" caption="" %}
 > compute nodes and the scheduler). Follow their instructions as they lead you through this
 > exercise. You will be emulating how a job scheduling system works on the cluster.
 > 
-> [*notes for the instructor here*](../guide)
-{: .discussion}
+> > ## Instructions
+> >
+> > To do this exercise, you will need about 50-100 pieces of paper or sticky notes.
+> >
+> > 1. Divide the room into groups, with specific roles. 
+> >    * Pick three or four people to be the "scheduler."
+> >    * Select one-third of the room be "users", given several slips of paper (or post-it notes)
+> >       and pens.
+> >    * Have the remaining two thirds of the room be "compute nodes."
+> >    * Have the "users" go to the front of the room (or the back, wherever there's space for them
+> >      to stand) and the "schedulers" stand between the users and "compute nodes" (who should 
+> >      remain at their seats).
+> >
+> > 2. Divide the pieces of paper / sticky notes among the "users" and have them fill out all the
+> >    pages with simple math problems and their name. Tell everyone that these are the jobs that
+> >    need to be done and correspond to their computing research problems.
+> >
+> > 3. Point out that we now have jobs and we have "compute nodes" (the people still sitting down)
+> >    that can solve these problems. How are the jobs going to get to the nodes? The answer is the
+> >    scheduling program that will take the jobs from the users and deliver them to open compute
+> >    nodes.
+> >
+> > 4. Have all the "compute nodes" raise their hands. Have the users "submit" their jobs by handing
+> >    them to the schedulers. Schedulers should then deliver them to "open" (hands-raised) compute
+> >    nodes and collect finished problems and return them to the appropriate user.
+> >
+> > 5. Wait until most of the problems are done and then re-seat everyone.
+> >
+> > > ## Discussion
+> > > 
+> > > A "node" might be unable to solve the assigned problem for a variety of reasons.
+> > > 
+> > > * Ran out of time.
+> > > * Ran out of memory.
+> > > * Ran out of storage space, or could not load an input file or dataset.
+> > > * Doesn't know where to start: nobody "taught" it, i.e., the program can't be loaded.
+> > > * Gets stuck on a hard part: the program has the wrong algorithm, or was never told to load
+> > >   the library containing the right algorithm.
+> > > * Was busy thinking about something else, and didn't get to the problem yet.
+> > {: .discussion}
+> {: .challenge}
+{: .callout}
 
 The scheduler used in this lesson is {{ site.sched.name }}. Although {{ site.sched.name }} is not
 used everywhere, running jobs is quite similar regardless of what software is being used. The exact
@@ -101,7 +141,7 @@ to the scheduler, we use the `{{ site.sched.submit.name }}` command.
 
 {% include {{ site.snippets }}/scheduler/basic-job-script.snip %}
 
-And that's all we need to do to submit a job. Our work is done -- now the scheduler takes over and
+And that's all we need to do to submit a job. Our work is done &mdash; now the scheduler takes over and
 tries to run the job for us. While the job is waiting to run, it goes into a list of jobs called 
 the *queue*. To check on our job's status, we check the queue using the command
 `{{ site.sched.status }} {{ site.sched.flag.user }}`.
@@ -131,7 +171,7 @@ from the queue. Press `Ctrl-C` when you want to stop the `watch` command.
 
 > ## Where's the output?
 >
-> On the login node, this script printed output to the terminal -- but when we exit `watch`,
+> On the login node, this script printed output to the terminal &mdash; but when we exit `watch`,
 > there's nothing. Where'd it go?
 >
 > Cluster job output is typically redirected to a file in the directory you launched it from.
@@ -217,12 +257,18 @@ The following are several key resource requests:
 
 {% include {{ site.snippets }}/scheduler/option-flags-list.snip %}
 
-Note that just *requesting* these resources does not make your job run faster! We'll talk more 
+Note that just *requesting* these resources does not make your job run faster, nor does it 
+necessarily mean that you will consume all of these resources. It only means that these are
+made available to you.  Your job may end up using less memory, or less time, or fewer tasks
+or nodes, than you have requested, and it will still run.
+
+It's best if your requests accurately reflect your job's requirements.  We'll talk more 
 about how to make sure that you're using resources effectively in a later episode of this lesson.
 
 > ## Submitting resource requests
 >
-> Submit a job that will use 1 full node and 1 minute of walltime.
+> Modify our `hostname` script so that it runs for a minute, then submit a job for it on
+> the cluster.
 >
 > > ## Solution
 > >
@@ -233,7 +279,7 @@ about how to make sure that you're using resources effectively in a later episod
 > >
 > > ```
 > > #!/bin/bash
-> > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:01:10
+> > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:01:15
 > >
 > > echo -n "This script is running on "
 > > sleep 60 # time in seconds

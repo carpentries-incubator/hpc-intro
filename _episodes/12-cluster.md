@@ -29,7 +29,7 @@ that may be located anywhere on Earth. For example, a large company with computi
 Brazil, Zimbabwe and Japan may manage those resources as its own *internal* cloud and that same
 company may also utilize commercial cloud resources provided by Amazon or Google. Cloud resources
 may refer to machines performing relatively simple tasks such as serving websites, providing
-shared storage, providing webservices (such as e-mail or social media platforms), as well as more
+shared storage, providing web services (such as e-mail or social media platforms), as well as more
 traditional compute intensive tasks such as running a simulation.
 
 The term *HPC system*, on the other hand, describes a stand-alone resource for computationally
@@ -47,29 +47,46 @@ tasks.
 
 
 ## Logging in
-The first step in using a cluster is to establish a connection from our laptop to the cluster,
-via the Internet and/or your organisation's network. We use a program called the 
-Secure SHell (or ssh) client for this. Make sure you have a SSH client installed on your
-laptop. Refer to the [setup]({{ page.root }}/setup) section for more details.
+
+The first step in using a cluster is to establish a connection from our laptop to the cluster. When
+we are sitting at a computer (or standing, or holding it in our hands or on our wrists), we have
+come to expect a visual display with icons, widgets, and perhaps some windows or applications: a
+graphical user interface, or GUI. Since computer clusters are remote resources that we connect to
+over often slow or laggy interfaces (WiFi and VPNs especially), it is more practical to use a
+command-line interface, or CLI, in which commands and results are transmitted via text, only.
+Anything other than text (images, for example) must be written to disk and opened with a separate
+program. 
+
+If you have ever opened the Windows Command Prompt or macOS Terminal, you have seen a CLI. If you
+have already taken The Carpentries' courses on the UNIX Shell or Version Control, you have used the
+CLI on your local machine somewhat extensively. The only leap to be made here is to open a CLI on a
+*remote* machine, while taking some precautions so that other folks on the network can't see (or
+change) the commands you're running or the results the remote machine sends back. We will use the
+Secure SHell protocol (or SSH) to open an encrypted network connection between two machines,
+allowing you to send & receive text and data without having to worry about prying eyes.
 
 {% include figure.html url="" max-width="50%" file="/fig/connect-to-remote.svg"
  alt="Connect to cluster" caption="" %}
 
+Make sure you have a SSH client installed on your laptop. Refer to the [setup]({{ page.root
+}}/setup) section for more details. SSH clients are usually command-line tools, where you provide
+the remote machine address as the only required argument. If your username on the remote system
+differs from what you use locally, you must provide that as well. If your SSH client has a graphical
+front-end, such as PuTTY or MobaXterm, you will set these arguments before clicking "connect." From
+the terminal, you'll write something like `ssh userName@hostname`, where the "@" symbol is used to
+separate the two parts of a single argument.
 
-Go ahead and log in to the cluster: {{ site.remote.name }} at {{ site.remote.location }}.
+Go ahead and open your terminal or graphical SSH client, then log in to the cluster using your
+username and the remote computer you can reach from the outside world, {{ site.remote.location }}.
+
 ```
 {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
 ```
 {: .bash}
 
-Remember to replace `{{ site.remote.user }}` with the username supplied by the instructors. You may be asked
-for your password. Watch out: the characters you type after the password prompt are not displayed on
-the screen. Normal output will resume once you press `Enter`.
-
-You are logging in using a program known as the secure shell or `ssh`. This establishes a temporary
-encrypted connection between your laptop and `{{ site.remote.login }}`. The word before the `@`
-symbol, e.g. `{{ site.remote.user }}` here, is the user account name that you have permission to use on the
-cluster.
+Remember to replace `{{ site.remote.user }}` with your username or the one supplied by the
+instructors. You may be asked for your password. Watch out: the characters you type after the
+password prompt are not displayed on the screen. Normal output will resume once you press `Enter`.
 
 
 ## Where are we?
@@ -136,8 +153,23 @@ Individual computers that compose a cluster are typically called *nodes* (althou
 hear people call them *servers*, *computers* and *machines*). On a cluster, there are different
 types of nodes for different types of tasks. The node where you are right now is called the *head
 node*, *login node*, *landing pad*, or *submit node*. A login node serves as an access point to the
-cluster. As a gateway, it is well suited for uploading and downloading files, setting up software,
-and running quick tests. It should never be used for doing actual work.
+cluster.
+
+As a gateway, it is well suited for uploading and downloading files, setting up software, and
+running quick tests. Generally speaking, the login node should not be used for time-consuming or
+resource-intensive tasks. You should be alert to this, and check with your site's operators or
+documentation for details of what is and isn't allowed. In these lessons, we will avoid running jobs
+on the head node.
+
+> ## Dedicated Transfer Nodes
+>
+> If you want to transfer larger amounts of data to or from the cluster, some systems offer
+> dedicated nodes for data transfers only. The motivation for this lies in the fact that larger
+> data transfers should not obstruct operation of the login node for anybody else. Check with your
+> cluster's documentation or its support team if such a transfer node is available. As a rule of
+> thumb, consider all transfers of a volume larger than 500MB to 1GB as large. But these numbers
+> change, e.g., depending on the network connection of yourself and of your cluster or other factors.
+{: .callout}
 
 The real work on a cluster gets done by the *worker* (or *compute*) *nodes*. Worker nodes come in
 many shapes and sizes, but generally are dedicated to long or hard tasks that require a lot of
@@ -246,7 +278,7 @@ it is more common for nodes to connect to a shared, remote fileserver or cluster
 > >
 > > > The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're on the same login
 > > > node (or compute node, later on). Networked filesystems (beegfs, cifs, gpfs, nfs, pvfs) will
-> > > be similar -- but may include yourUserName, depending on how it is [mounted](
+> > > be similar &mdash; but may include yourUserName, depending on how it is [mounted](
 > > > https://en.wikipedia.org/wiki/Mount_(computing)).
 > > {: .discussion}
 > > 

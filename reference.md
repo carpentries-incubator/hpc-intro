@@ -1,13 +1,18 @@
 ---
 layout: reference
 permalink: /reference/
+title: Knowledge Base
 ---
 
-## Cheatsheets for Queuing System Quick Reference
+### Is there a quick reference or "cheat sheet" for queuing system commands?
 
-* [SLURM](https://slurm.schedmd.com/pdfs/summary.pdf)
+Sure! Search online, for the one that fits you best, but here's some to start:
 
-## Units and Language
+* [Slurm summary](https://slurm.schedmd.com/pdfs/summary.pdf) from SchedMD
+* [Torque/PBS summary](https://gif.biotech.iastate.edu/torque-pbs-job-management-cheat-sheet) from Iowa State
+* [Translating between Slurm and PBS](https://www.msi.umn.edu/slurm/pbs-conversion) from University of Minnesota
+
+### Units and Language
 
 A computer's memory and disk are measured in units called *Bytes* (one Byte is 8 bits). As today's
 files and memory have grown to be large given historic standards, volumes are noted using the
@@ -22,72 +27,150 @@ https://en.wikipedia.org/wiki/International_System_of_Quantities) standardizes t
 (with base of 2<sup>10</sup>=1024) by the prefixes Kibi (ki), Mibi (Mi), Gibi (Gi), etc. For more
 details, see [here](https://en.wikipedia.org/wiki/Binary_prefix).
 
-## Glossary
+### "No such file or directory" or "symbol 0096" errors
 
-The following list captures terms that need to be added to this glossary. This is a great way to
-contribute.
+`scp` and `rsync` may throw a perplexing error about files that very much do exist. One source of
+these errors is copy-and-paste of command line arguments from Web browsers, where the double-dash
+string `--` is rendered as an em-dash character `—` (or en-dash `–`, or horizontal bar `―`). For
+example, instead of showing the transfer rate in real time, the following command fails mysteriously.
 
-{:auto_ids}
-[Accelerator](https://en.wikipedia.org/wiki/Hardware_acceleration)
-:    *to be defined*
+```
+{{ site.local.prompt }} rsync —progress my_precious_data.txt {{ site.remote.user }}@{{ site.remote.login }}
+rsync: link_stat "/home/{{ site.local.user }}/—progress" failed: No such file or directory (2)
+rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1207) [sender=3.1.3]
+```
+{: .bash}
 
-[Beowulf cluster](https://en.wikipedia.org/wiki/Beowulf_cluster)
-:    *to be defined*
+The correct command, different only by two characters, succeeds:
 
-[Central processing unit](https://en.wikipedia.org/wiki/Central_processing_unit)
-:    *to be defined*
+```
+{{ site.local.prompt }} rsync --progress my_precious_data.txt {{ site.remote.user }}@{{ site.remote.login }}
+```
+{: .bash}
 
-[Cloud computing](https://en.wikipedia.org/wiki/Cloud_computing)
-:    *to be defined*
+We have done our best to wrap all commands in code blocks, which prevents this subtle conversion. If
+you encounter this error, please open an issue or pull request on the lesson repository to help
+others avoid it.
 
-[Cluster](https://en.wikipedia.org/wiki/Computer_cluster)
-:     a collection of computers configured to enable collaboration on a common task by
-      means of purposefully configured hardware (*e.g.*, networking) and software (*e.g.* workload
-      management).
+### Transferring files interactively with `sftp`
 
-[Distributed memory](https://en.wikipedia.org/wiki/Distributed_memory)
-:    *to be defined*
+`scp` is useful, but what if we don't know the exact location of what we want to transfer? Or
+perhaps we're simply not sure which files we want to transfer yet. `sftp` is an interactive way of
+downloading and uploading files. Let's connect to a cluster, using `sftp`- you'll notice it works
+the same way as SSH:
 
-[Grid computing](https://en.wikipedia.org/wiki/Grid_computing)
-:    *to be defined*
+```
+{{ site.local.prompt }} sftp yourUsername@remote.computer.address
+```
+{: .bash}
 
-[High availability computing](https://en.wikipedia.org/wiki/High_availability)
-:    *to be defined*
+This will start what appears to be a bash shell (though our prompt says `sftp>`). However we only
+have access to a limited number of commands. We can see which commands are available with `help`:
 
-[High performance computing](
-https://en.wikipedia.org/w/index.php?title=High-performance_computing&redirect=no)
-:    *to be defined*
+```
+sftp> help
+```
+{: .bash}
+```
+Available commands:
+bye                                Quit sftp
+cd path                            Change remote directory to 'path'
+chgrp grp path                     Change group of file 'path' to 'grp'
+chmod mode path                    Change permissions of file 'path' to 'mode'
+chown own path                     Change owner of file 'path' to 'own'
+df [-hi] [path]                    Display statistics for current directory or
+                                   filesystem containing 'path'
+exit                               Quit sftp
+get [-afPpRr] remote [local]       Download file
+reget [-fPpRr] remote [local]      Resume download file
+reput [-fPpRr] [local] remote      Resume upload file
+help                               Display this help text
+lcd path                           Change local directory to 'path'
+lls [ls-options [path]]            Display local directory listing
+lmkdir path                        Create local directory
+ln [-s] oldpath newpath            Link remote file (-s for symlink)
+lpwd                               Print local working directory
+ls [-1afhlnrSt] [path]             Display remote directory listing
 
-[Interconnect](https://en.wikipedia.org/wiki/Supercomputer_architecture)
-:    *to be defined*
+# omitted further output for clarity
+```
+{: .output}
 
-[Node](https://en.wikipedia.org/wiki/Node_(computer_science))
-:    *to be defined*
+Notice the presence of multiple commands that make mention of local and remote. We are actually
+connected to two computers at once (with two working directories!).
 
-[Parallel](https://en.wikipedia.org/wiki/Parallel_computing)
-:    *to be defined*
+To show our remote working directory:
+```
+sftp> pwd
+```
+{: .bash}
+```
+Remote working directory: /global/home/yourUsername
+```
+{: .output}
 
-[Serial](https://en.wikipedia.org/wiki/Serial_computer)
-:    *to be defined*
+To show our local working directory, we add an `l` in front of the command:
 
-[Server](https://en.wikipedia.org/wiki/Server_(computing))
-:    *to be defined*
+```
+sftp> lpwd
+```
+{: .bash}
+```
+Local working directory: /home/jeff/Documents/teaching/hpc-intro
+```
+{: .output}
 
-[Shared memory](https://en.wikipedia.org/wiki/Shared_memory)
-:    *to be defined*
+The same pattern follows for all other commands:
 
-[Slurm](https://en.wikipedia.org/wiki/Slurm_Workload_Manager)
-:    *to be defined*
+* `ls` shows the contents of our remote directory, while `lls` shows our local directory contents.
+* `cd` changes the remote directory, `lcd` changes the local one.
 
-[Supercomputer](https://en.wikipedia.org/wiki/Supercomputer)
-:    ... "[a major scientific instrument](
-https://www.hpcnotes.com/2015/10/essential-analogies-for-hpc-advocate.html)" ...
+To upload a file, we type `put some-file.txt` (tab-completion works here).
 
-[Workstation](https://en.wikipedia.org/wiki/Workstation)
-:    *to be defined*
+```
+sftp> put config.toml
+```
+{: .bash}
+```
+Uploading config.toml to /global/home/yourUsername/config.toml
+config.toml                                   100%  713     2.4KB/s   00:00 
+```
+{: .output}
 
-[Grid Engine](https://en.wikipedia.org/wiki/Oracle_Grid_Engine)
-:    *to be defined*
+To download a file we type `get some-file.txt`:
 
-[Parallel File System](https://en.wikipedia.org/wiki/Clustered_file_system#Distributed_file_systems)
-:    *to be defined*
+```
+sftp> get config.toml
+```
+{: .bash}
+```
+Fetching /global/home/yourUsername/config.toml to config.toml
+/global/home/yourUsername/config.toml                               100%  713     9.3KB/s   00:00
+```
+{: .output}
+
+And we can recursively put/get files by just adding `-r`. Note that the directory needs to be
+present beforehand.
+
+```
+sftp> mkdir content
+sftp> put -r content/
+```
+{: .bash}
+```
+Uploading content/ to /global/home/yourUsername/content
+Entering content/
+content/scheduler.md              100%   11KB  21.4KB/s   00:00
+content/index.md                  100% 1051     7.2KB/s   00:00
+content/transferring-files.md     100% 6117    36.6KB/s   00:00
+content/.transferring-files.md.sw 100%   24KB  28.4KB/s   00:00
+content/cluster.md                100% 5542    35.0KB/s   00:00
+content/modules.md                100%   17KB 158.0KB/s   00:00
+content/resources.md              100% 1115    29.9KB/s   00:00
+```
+{: .output}
+
+To quit, we type `exit` or `bye`. 
+
+
+{% include links.md %}

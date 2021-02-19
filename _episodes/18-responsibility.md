@@ -33,7 +33,7 @@ of the community, need to consider.
 The login node is often busy managing all of the logged in users, creating and editing files and
 compiling software. If the machine runs out of memory or processing capacity, it will become very
 slow and unusable for everyone. While the machine is meant to be used, be sure to do so responsibly
-&endash; in ways that will not adversely impact other users' experience.
+&emdash; in ways that will not adversely impact other users' experience.
 
 Login nodes are always the right place to launch jobs. Cluster policies vary, but they may also be
 used for proving out workflows, and in some cases, may host advanced cluster-specific debugging or
@@ -54,7 +54,7 @@ head node is a quick and reliable way to discover and fix these issues.
 You can always use the commands `top` and `ps ux` to list the processes that are running on the
 login node along with the amount of CPU and memory they are using. If this check reveals that the
 login node is somewhat idle, you can safely use it for your non-routine processing task. If
-something goes wrong &endash; the process takes too long, or doesn't respond &endash; you can use
+something goes wrong &emdash; the process takes too long, or doesn't respond &emdash; you can use
 the `kill` command along with the *PID* to terminate the process.
 
 > ## Login Node Etiquette
@@ -160,7 +160,7 @@ transferred and where the data is going. Some of the key issues to be aware of a
 - **Network speed**: Data transfer performance can be limited by network speed. More importantly
   it is limited by the slowest section of the network between source and destination. If you are
   transferring to your laptop/workstation, this is likely to be its connection (either via LAN or 
-  wifi).
+  WiFi).
 - **Firewall speed**: Most modern networks are protected by some form of firewall that filters
   out malicious traffic. This filtering has some overhead and can result in a reduction in data
   transfer performance. The needs of a general purpose network that hosts email/web-servers and
@@ -174,6 +174,13 @@ transfer. A single large file makes more efficient use of the file system and is
 copy and transfer because significantly fewer metadata operations are required. Archive files can
 be created using tools like `tar` and `zip`. We have already met `tar` when we talked about data
 transfer earlier. 
+
+{% include figure.html url="" max-width="90%" file="/fig/responsibility-bandwidth.svg" 
+alt="Schematic of network bandwidth"
+caption="<i>Schematic diagram of bandwidth and latency for disk and network I/O.
+Each of the components on the figure is connected by a black line of width
+proportional to the interface bandwidth, and a white line of width
+proportional to the data transferred along that interface.</i>" %}
 
 > ## Consider the best way to transfer data
 >

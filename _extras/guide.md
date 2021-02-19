@@ -1,39 +1,75 @@
 ---
 layout: page
-title: "Instructor Notes"
+title: "Glossary"
 permalink: /guide/
 ---
 
-## Cluster roleplay instructions (from 13-scheduler)
+## Glossary
 
-To do this exercise, you will need about 50-100 pieces of paper or sticky notes.  
+The following list captures terms that need to be added to this glossary. This is a great way to
+contribute.
 
-1. Divide the room into groups, with specific roles. 
- * Pick three-four people to be the "scheduler"
- * Have the remaining one-third of the room be "users", given several slips of 
- paper (or post-it notes) and pens
- * Have the remaining two thirds of the room be "compute nodes"
-Make sure everyone knows what their roles are.  Have the "users" 
-	go to the front of the room (or the back, wherever there's space 
-	for them to stand) and the "schedulers" stand between the users 
-	and "compute nodes" (who should remain at their seats).  
+{:auto_ids}
+[Accelerator](https://en.wikipedia.org/wiki/Hardware_acceleration)
+:    *to be defined*
 
-2. Divide the pieces of paper / sticky notes among the "users" and have them 
-fill out all the pages with simple math problems and their name.  Tell everyone that these 
-are the jobs that need to be done and correspond to their computing research problems.  
+[Beowulf cluster](https://en.wikipedia.org/wiki/Beowulf_cluster)
+:    *to be defined*
 
-3. Point out that we now have jobs and we have "compute nodes" (the people still sitting 
-down) that can solve these problems.  How are the jobs going to get to the nodes?  
-The answer is the scheduling program that will take the jobs from the users and deliver 
-them to open compute nodes.  
+[Central processing unit](https://en.wikipedia.org/wiki/Central_processing_unit)
+:    *to be defined*
 
-4. Have all the "compute nodes" raise their hands.  Have the users "submit" their 
-jobs by handing them to the schedulers.  Schedulers 
-should then deliver them to "open" (hands-raised) compute nodes and collect 
-finished problems and return them to the appropriate user.  
+[Cloud computing](https://en.wikipedia.org/wiki/Cloud_computing)
+:    *to be defined*
 
-5. Wait until most of the problems are done and then re-seat everyone.  
+[Cluster](https://en.wikipedia.org/wiki/Computer_cluster)
+:     a collection of computers configured to enable collaboration on a common task by
+      means of purposefully configured hardware (*e.g.*, networking) and software (*e.g.* workload
+      management).
 
-6. Follow-up discussion: what would happen if a node couldn't solve the math problem?  It 
-might be important to indicate the *resources* that your job needs to run.  Add other 
-parallels that will be coming up in the next section of the lesson.  
+[Distributed memory](https://en.wikipedia.org/wiki/Distributed_memory)
+:    *to be defined*
+
+[Grid computing](https://en.wikipedia.org/wiki/Grid_computing)
+:    *to be defined*
+
+[High availability computing](https://en.wikipedia.org/wiki/High_availability)
+:    *to be defined*
+
+[High performance computing](
+https://en.wikipedia.org/w/index.php?title=High-performance_computing&redirect=no)
+:    *to be defined*
+
+[Interconnect](https://en.wikipedia.org/wiki/Supercomputer_architecture)
+:    *to be defined*
+
+[Node](https://en.wikipedia.org/wiki/Node_(computer_science))
+:    *to be defined*
+
+[Parallel](https://en.wikipedia.org/wiki/Parallel_computing)
+:    *to be defined*
+
+[Serial](https://en.wikipedia.org/wiki/Serial_computer)
+:    *to be defined*
+
+[Server](https://en.wikipedia.org/wiki/Server_(computing))
+:    *to be defined*
+
+[Shared memory](https://en.wikipedia.org/wiki/Shared_memory)
+:    *to be defined*
+
+[Slurm](https://en.wikipedia.org/wiki/Slurm_Workload_Manager)
+:    *to be defined*
+
+[Supercomputer](https://en.wikipedia.org/wiki/Supercomputer)
+:    ... "[a major scientific instrument](
+https://www.hpcnotes.com/2015/10/essential-analogies-for-hpc-advocate.html)" ...
+
+[Workstation](https://en.wikipedia.org/wiki/Workstation)
+:    *to be defined*
+
+[Grid Engine](https://en.wikipedia.org/wiki/Oracle_Grid_Engine)
+:    *to be defined*
+
+[Parallel File System](https://en.wikipedia.org/wiki/Clustered_file_system#Distributed_file_systems)
+:    *to be defined*
