@@ -282,8 +282,8 @@ about how to make sure that you're using resources effectively in a later episod
 > > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:01:15
 > >
 > > echo -n "This script is running on "
-> > hostname
 > > sleep 60 # time in seconds
+> > hostname
 > > echo "This script has finished successfully."
 > > ```
 > > {: .output}
@@ -314,8 +314,8 @@ minutes.
 {{ site.sched.comment }} {{ site.sched.flag.time }} 00:00:30
 
 echo -n "This script is running on ... "
-sleep 120 # time in seconds
 hostname
+sleep 120 # time in seconds
 echo "This script has finished successfully."
 ```
 {: .output}
