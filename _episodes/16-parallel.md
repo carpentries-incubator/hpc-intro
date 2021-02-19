@@ -524,6 +524,7 @@ def inside_circle(total_count):
     return count
 
 def main():
+    # Initialize
     comm = MPI.COMM_WORLD
     cpus = comm.Get_size()
     rank = comm.Get_rank()
@@ -535,10 +536,13 @@ def main():
     else:
         partitions = None
         counts = None
+    # Scatter
     partition_item = comm.scatter(partitions, root=0)
+    # Compute
     count_item = inside_circle(partition_item)
+    # Gather
     counts = comm.gather(count_item, root=0)
-    #
+    # Finalize
     if rank == 0:
         my_pi = 4.0 * sum(counts) / sum(partitions)
         end_time = datetime.datetime.now()
