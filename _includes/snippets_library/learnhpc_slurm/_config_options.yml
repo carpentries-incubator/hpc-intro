@@ -17,7 +17,7 @@
 # installation. Remember to keep the leading slash on the
 # `snippets` variable below!
 
-snippets: "/snippets_library/ComputeCanada_Graham_slurm"
+snippets: "/snippets_library/learnhpc_slurm"
 
 local:
   prompt: "[user@laptop ~]$"
@@ -26,10 +26,11 @@ remote:
   name: "custom.learnhpc.eu"
   login: "login1.custom.learnhpc.eu"
   host: "login1.int.custom.learnhpc.eu"
-  node: "node1.int.fenix2.learnhpc.eu"
+  node: "node1.int.custom.learnhpc.eu"
   location: "Cloud resource"
   homedir: "/home"
   user: "yourUsername"
+  module_python3: "Python"
   prompt: "[yourUsername@login1 ~]$"
 
 sched:

@@ -124,7 +124,7 @@ Create a submission file, requesting more than one task on a single node:
 {{ site.sched.comment }} {{ site.sched.flag.name }} parallel-pi
 {{ site.sched.comment }} {{ site.sched.flag.queue }} {{ site.sched.queue.testing }}
 {% include {{ site.snippets }}/parallel/four-tasks.snip %}
-module load python3
+module load {{ site.remote.module_python3 }}
 mpirun ./pi.py 1431652028
 ```
 {: .output}

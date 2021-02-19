@@ -113,9 +113,10 @@ bottom of the directory tree rooted at the folder name you provided.
 ```
 {: .bash}
 
-> Caution: For a large directory &mdash; either in size or number of files &mdash; copying
+> ## Caution
+> For a large directory &mdash; either in size or number of files &mdash; copying
 > with `-r` can take a long time to complete.
-{: .warning}
+{: .callout}
 
 
 ## What's in a `/`?

@@ -7,78 +7,76 @@ To demonstrate, let's use `module list`. `module list` shows all loaded software
 
 ```
 Currently Loaded Modules:
-  1) nixpkgs/.16.09  (H,S)   3) gcccore/.5.4.0    (H)   5) intel/2016.4  (t)   7) StdEnv/2016.4 (S)
-  2) icc/.2016.4.258 (H)     4) ifort/.2016.4.258 (H)   6) openmpi/2.1.1 (m)   8) python/3.5.2  (t)
-
-  Where:
-   S:  Module is Sticky, requires --force to unload or purge
-   m:  MPI implementations / Implémentations MPI
-   t:  Tools for development / Outils de développement
-   H:             Hidden Module
+  1) GCCcore/9.3.0                 4) GMP/6.2.0-GCCcore-9.3.0
+  2) Tcl/8.6.10-GCCcore-9.3.0      5) libffi/3.3-GCCcore-9.3.0
+  3) SQLite/3.31.1-GCCcore-9.3.0   6) Python/3.8.2-GCCcore-9.3.0
 ```
 {: .output}
 
 ```
-{{ site.remote.prompt }} module load beast
+{{ site.remote.prompt }} module load GROMACS
 {{ site.remote.prompt }} module list
 ```
 {: .bash}
 
 ```
 Currently Loaded Modules:
-  1) nixpkgs/.16.09    (H,S)   5) intel/2016.4  (t)   9) java/1.8.0_121   (t)
-  2) icc/.2016.4.258   (H)     6) openmpi/2.1.1 (m)  10) beagle-lib/2.1.2 (bio)
-  3) gcccore/.5.4.0    (H)     7) StdEnv/2016.4 (S)  11) beast/2.4.0      (chem)
-  4) ifort/.2016.4.258 (H)     8) python/3.5.2  (t)
-
-  Where:
-   S:     Module is Sticky, requires --force to unload or purge
-   bio:   Bioinformatic libraries/apps / Logiciels de bioinformatique
-   m:     MPI implementations / Implémentations MPI
-   t:     Tools for development / Outils de développement
-   chem:  Chemistry libraries/apps / Logiciels de chimie
-   H:                Hidden Module
+  1) GCCcore/9.3.0                    14) libfabric/1.11.0-GCCcore-9.3.0
+  2) Tcl/8.6.10-GCCcore-9.3.0         15) PMIx/3.1.5-GCCcore-9.3.0
+  3) SQLite/3.31.1-GCCcore-9.3.0      16) OpenMPI/4.0.3-GCC-9.3.0
+  4) GMP/6.2.0-GCCcore-9.3.0          17) OpenBLAS/0.3.9-GCC-9.3.0
+  5) libffi/3.3-GCCcore-9.3.0         18) gompi/2020a
+  6) Python/3.8.2-GCCcore-9.3.0       19) FFTW/3.3.8-gompi-2020a
+  7) GCC/9.3.0                        20) ScaLAPACK/2.1.0-gompi-2020a
+  8) numactl/2.0.13-GCCcore-9.3.0     21) foss/2020a
+  9) libxml2/2.9.10-GCCcore-9.3.0     22) pybind11/2.4.3-GCCcore-9.3.0-Python-3.8.2
+ 10) libpciaccess/0.16-GCCcore-9.3.0  23) SciPy-bundle/2020.03-foss-2020a-Python-3.8.2
+ 11) hwloc/2.2.0-GCCcore-9.3.0        24) networkx/2.4-foss-2020a-Python-3.8.2
+ 12) libevent/2.1.11-GCCcore-9.3.0    25) GROMACS/2020.1-foss-2020a-Python-3.8.2
+ 13) UCX/1.8.0-GCCcore-9.3.0
 ```
 {: .output}
 
-So in this case, loading the `beast` module (a bioinformatics software package), also loaded
-`java/1.8.0_121` and `beagle-lib/2.1.2` as well. Let's try unloading the `beast` package.
+So in this case, loading the `GROMACS` module (a bioinformatics software package), also loaded
+`GMP/6.2.0-GCCcore-9.3.0` and `SciPy-bundle/2020.03-foss-2020a-Python-3.8.2` as well. Let's try unloading the `GROMACS` package.
 
 ```
-{{ site.remote.prompt }} module unload beast
+{{ site.remote.prompt }} module unload GROMACS
 {{ site.remote.prompt }} module list
 ```
 {: .bash}
 
 ```
 Currently Loaded Modules:
-  1) nixpkgs/.16.09  (H,S)   3) gcccore/.5.4.0    (H)   5) intel/2016.4  (t)   7) StdEnv/2016.4 (S)
-  2) icc/.2016.4.258 (H)     4) ifort/.2016.4.258 (H)   6) openmpi/2.1.1 (m)   8) python/3.5.2  (t)
-
-  Where:
-   S:  Module is Sticky, requires --force to unload or purge
-   m:  MPI implementations / Implémentations MPI
-   t:  Tools for development / Outils de développement
-   H:             Hidden Module
+  1) GCCcore/9.3.0                    13) UCX/1.8.0-GCCcore-9.3.0
+  2) Tcl/8.6.10-GCCcore-9.3.0         14) libfabric/1.11.0-GCCcore-9.3.0
+  3) SQLite/3.31.1-GCCcore-9.3.0      15) PMIx/3.1.5-GCCcore-9.3.0
+  4) GMP/6.2.0-GCCcore-9.3.0          16) OpenMPI/4.0.3-GCC-9.3.0
+  5) libffi/3.3-GCCcore-9.3.0         17) OpenBLAS/0.3.9-GCC-9.3.0
+  6) Python/3.8.2-GCCcore-9.3.0       18) gompi/2020a
+  7) GCC/9.3.0                        19) FFTW/3.3.8-gompi-2020a
+  8) numactl/2.0.13-GCCcore-9.3.0     20) ScaLAPACK/2.1.0-gompi-2020a
+  9) libxml2/2.9.10-GCCcore-9.3.0     21) foss/2020a
+ 10) libpciaccess/0.16-GCCcore-9.3.0  22) pybind11/2.4.3-GCCcore-9.3.0-Python-3.8.2
+ 11) hwloc/2.2.0-GCCcore-9.3.0        23) SciPy-bundle/2020.03-foss-2020a-Python-3.8.2
+ 12) libevent/2.1.11-GCCcore-9.3.0    24) networkx/2.4-foss-2020a-Python-3.8.2
 ```
 {: .output}
 
-So using `module unload` "un-loads" a module along with its dependencies. If we wanted to unload
+So using `module unload` "un-loads" a module, and depending on how a site is configured
+ it may also unload all of the dependencies (in our case it does not). If we wanted to unload
 everything at once, we could run `module purge` (unloads everything).
 
 ```
 {{ site.remote.prompt }} module purge
+{{ site.remote.prompt }} module list
 ```
 {: .bash}
 
 ```
-The following modules were not unloaded:
-  (Use "module --force purge" to unload all):
-
-  1) StdEnv/2016.4    3) icc/.2016.4.258   5) ifort/.2016.4.258   7) imkl/11.3.4.258
-  2) nixpkgs/.16.09   4) gcccore/.5.4.0    6) intel/2016.4        8) openmpi/2.1.1
+No modules loaded
 ```
 {: .output}
 
-Note that `module purge` is informative. It lets us know that all but a default set of packages 
-have been unloaded (and how to actually unload these if we truly so desired).
+Note that `module purge` is informative. It will also let us know if a default set of "sticky" packages
+cannot be unloaded (and how to actually unload these if we truly so desired).

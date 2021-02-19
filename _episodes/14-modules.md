@@ -174,7 +174,7 @@ Let's examine the output of `module avail` more closely.
 > > ```
 > > #!/bin/bash
 > > 
-> > module load python3
+> > module load {{ site.remote.module_python3 }}
 > > 
 > > python3 --version
 > > ```
