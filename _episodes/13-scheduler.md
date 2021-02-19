@@ -314,8 +314,8 @@ minutes.
 {{ site.sched.comment }} {{ site.sched.flag.time }} 00:00:30
 
 echo -n "This script is running on ... "
-sleep 120 # time in seconds
 hostname
+sleep 120 # time in seconds
 echo "This script has finished successfully."
 ```
 {: .output}

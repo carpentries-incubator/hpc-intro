@@ -1,0 +1,65 @@
+`{{ site.sched.interactive }}` runs a single command on the cluster and then exits. Let's
+demonstrate this by running the `hostname` command with `{{ site.sched.interactive }}`. (We can
+cancel an `{{ site.sched.interactive }}` job with `Ctrl-c`.)
+
+```
+{{ site.remote.prompt }} {{ site.sched.interactive }} hostname
+```
+{: .bash}
+
+```
+gra752
+```
+{: .output}
+
+`{{ site.sched.interactive }}` accepts all of the same options as `{{ site.sched.submit.name }}`.
+However, instead of specifying these in a script, these options are specified on the command-line
+when starting a job. To submit a job that uses 2 CPUs for instance, we could use the following
+command:
+
+```
+{{ site.remote.prompt }} {{ site.sched.interactive }} -n 2 echo "This job will use 2 CPUs."
+```
+{: .bash}
+
+```
+This job will use 2 CPUs.
+This job will use 2 CPUs.
+```
+{: .output}
+
+Typically, the resulting shell environment will be the same as that for
+`{{ site.sched.submit.name }}`.
+
+### Interactive jobs
+
+Sometimes, you will need a lot of resource for interactive use. Perhaps it's our first time running
+an analysis or we are attempting to debug something that went wrong with a previous job.
+Fortunately, {{ site.sched.name }} makes it easy to start an interactive job with `{{
+site.sched.interactive }}`:
+
+```
+{{ site.remote.prompt }} {{ site.sched.interactive }} --pty bash
+```
+{: .bash}
+
+You should be presented with a bash prompt. Note that the prompt will likely change to reflect your
+new location, in this case the compute node we are logged on. You can also verify this with
+`hostname`.
+
+> ## Creating remote graphics
+> 
+> To see graphical output inside your jobs, you need to use X11 forwarding. To connect with this
+> feature enabled, use the `-Y` option when you login with the `ssh` command, e.g., `ssh -Y
+> yourUsername@{{ site.remote.login }}`.
+> 
+> To demonstrate what happens when you create a graphics window on the remote node, use the `xeyes`
+> command. A relatively adorable pair of eyes should pop up (press `Ctrl-C` to stop). If you are
+> using a Mac, you must have installed XQuartz (and restarted your computer) for this to work.
+>
+> If your cluster has the [slurm-spank-x11](https://github.com/hautreux/slurm-spank-x11) plugin
+> installed, you can ensure X11 forwarding within interactive jobs by using the `--x11` option for
+> `{{ site.sched.interactive }}` with the command `{{ site.sched.interactive }} --x11 --pty bash`.
+{: .callout}
+
+When you are done with the interactive job, type `exit` to quit your session.

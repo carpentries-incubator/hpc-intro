@@ -1,0 +1,66 @@
+#------------------------------------------------------------
+# ComputeCanada: Graham + SLURM
+#------------------------------------------------------------
+
+# Cluster host and scheduler options: the defaults come from
+# Graham at Compute Canada, running SLURM. Other options can
+# be found in the library of snippets,
+# `_includes/snippets_library`. To use one, replace options
+# below with those in `_config_options.yml` from the
+# library. E.g, to customise for Cirrus at EPCC, running
+# PBS, we could replace the options below with those from
+# 
+# _includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
+# 
+# If your cluster is not represented in the library, please
+# copy an existing folder, rename it, and customize for your
+# installation. Remember to keep the leading slash on the
+# `snippets` variable below!
+
+snippets: "/snippets_library/ComputeCanada_Graham_slurm"
+
+local:
+  prompt: "[user@laptop ~]$"
+
+remote:
+  name: "custom.learnhpc.eu"
+  login: "login1.custom.learnhpc.eu"
+  host: "login1.int.custom.learnhpc.eu"
+  node: "node1.int.fenix2.learnhpc.eu"
+  location: "Cloud resource"
+  homedir: "/home"
+  user: "yourUsername"
+  prompt: "[yourUsername@login1 ~]$"
+
+sched:
+  name: "SLURM"
+  submit:
+    name: "sbatch"
+    options: ""
+  queue:
+    debug: "cpubase_bycore_b1"
+    testing: "cpubase_bycore_b1"
+  status: "squeue"
+  flag:
+    user: "-u yourUsername"
+    interactive: ""
+    histdetail: "-l -j"
+    name: "-J"
+    time: "-t"
+    queue: "-p"
+  del: "scancel"
+  interactive: "srun"
+  info: "sinfo"
+  comment: "#SBATCH"
+  hist: "sacct -u yourUsername"
+
+episode_order:
+  - 11-hpc-intro
+  - 12-cluster
+  - 13-scheduler
+  - 14-modules
+  - 15-transferring-files
+  - 16-parallel
+  - 17-resources
+  - 18-responsibility
+
