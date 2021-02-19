@@ -241,7 +241,7 @@ Fantastic, we've successfully changed the name of our job!
 > > ```
 > > {{ site.remote.prompt }} man {{ site.sched.submit.name }}
 > > ```
-> > : .bash}
+> > {: .bash}
 > {: .solution}
 {: .challenge}
 
