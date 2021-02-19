@@ -538,7 +538,7 @@ def main():
     partition_item = comm.scatter(partitions, root=0)
     count_item = inside_circle(partition_item)
     counts = comm.gather(count_item, root=0)
-
+    #
     if rank == 0:
         my_pi = 4.0 * sum(counts) / sum(partitions)
         end_time = datetime.datetime.now()
