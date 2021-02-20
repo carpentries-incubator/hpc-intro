@@ -397,12 +397,12 @@ this is a common tool on HPC systems.
 {: .callout}
 
 MPI jobs cannot generally be run as stand-alone executables. Instead, they should be
-started with the `mpirun` command, which ensures that the appropriate run-time support for
+started with the `mpiexec` command, which ensures that the appropriate run-time support for
 parallelism is included.
 
-On its own, `mpirun` can take many arguments specifying how many machines will participate
+On its own, `mpiexec` can take many arguments specifying how many machines will participate
 in the process. In the context of our queuing system, however, we do not need to specify
-this information, the `mpirun` command will obtain it from the queuing system, by
+this information, the `mpiexec` command will obtain it from the queuing system, by
 examining the environment variables set when the job is launched.
 
 > ## What changes are needed for an MPI version of the &#960; calculator?
@@ -424,7 +424,7 @@ examining the environment variables set when the job is launched.
 > The modifications to the serial script demonstrate four important concepts:
 >
 > * COMM_WORLD: the default MPI Communicator, providing a channel for all the
->   processes involved in this `mpirun` to exchange information with one
+>   processes involved in this `mpiexec` to exchange information with one
 >   another.
 > * Scatter: A collective operation in which an array of data on one MPI rank
 >   is divided up, with separate portions being sent out to the partner ranks.
@@ -575,7 +575,7 @@ Create a submission file, requesting more than one task on a single node:
 {{ site.sched.comment }} {{ site.sched.flag.queue }} {{ site.sched.queue.testing }}
 {% include {{ site.snippets }}/parallel/four-tasks.snip %}
 module load python3
-mpirun python pi.py 100000000
+mpiexec python pi.py 100000000
 ```
 {: .output}
 
