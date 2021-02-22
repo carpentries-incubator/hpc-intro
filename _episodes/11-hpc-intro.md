@@ -17,8 +17,6 @@ keypoints:
   Bash."
 ---
 
-## Use cases
-
 Frequently, research problems that use computing can outgrow the capabilities of the desktop or
 laptop computer where they started:
 

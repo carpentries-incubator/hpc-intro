@@ -121,7 +121,7 @@ building your actual lesson, to re-order these files, or omit one or more of the
 
 * Prelude
     * [User profiles](
-      _episodes/11-hpc-intro.md#use-cases)
+      _extras/learner-profiles.md)
       (academic and/or commercial) of cluster users
     * Narrative introduction
 
