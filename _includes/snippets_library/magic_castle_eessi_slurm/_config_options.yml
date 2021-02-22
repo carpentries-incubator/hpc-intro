@@ -1,23 +1,34 @@
 #------------------------------------------------------------
-# ComputeCanada: Graham + SLURM
+# Magic Castle: SLURM + Software Stack from EESSI
 #------------------------------------------------------------
 
 # Cluster host and scheduler options: the defaults come from
-# Graham at Compute Canada, running SLURM. Other options can
-# be found in the library of snippets,
-# `_includes/snippets_library`. To use one, replace options
-# below with those in `_config_options.yml` from the
-# library. E.g, to customise for Cirrus at EPCC, running
-# PBS, we could replace the options below with those from
-# 
-# _includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
-# 
+# Graham at Compute Canada, running SLURM. Other options for
+# other systems can be found in the library of snippets,
+# `_includes/snippets_library`.
+#
+# Please refer to
+# https://github.com/carpentries-incubator/hpc-intro#using-this-material
+# in order to see how to include a specific set of snippets
+# in your lesson and
+# https://github.com/carpentries-incubator/hpc-intro#deploying-a-customized-lesson
+# in order to see how to deploy a specific instance of a lesson.
+#
 # If your cluster is not represented in the library, please
 # copy an existing folder, rename it, and customize for your
 # installation. Remember to keep the leading slash on the
 # `snippets` variable below!
+#
+# For this specific snippet library that uses Magic Castle, you
+# will most likely also need to provide a customised version of
+# the cluster name and domain, which is currently set to
+# "custom.learnhpc.eu".
+# For example, if our cluster was called
+# "cluster.hpc-carpentry.org", we could do this in a
+# single `sed` command from the current directory:
+# sed -i s/custom.learnhpc.eu/cluster.hpc-carpentry.org/g _config_options.yml
 
-snippets: "/snippets_library/learnhpc_slurm"
+snippets: "/snippets_library/magic_castle_eessi_slurm"
 
 local:
   prompt: "[user@laptop ~]$"
@@ -64,4 +75,3 @@ episode_order:
   - 16-parallel
   - 17-resources
   - 18-responsibility
-

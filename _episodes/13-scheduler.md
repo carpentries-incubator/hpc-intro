@@ -316,7 +316,6 @@ minutes.
 echo "This script is running on ... "
 sleep 120 # time in seconds
 hostname
-sleep 120 # time in seconds
 echo "This script has finished successfully."
 ```
 {: .output}
