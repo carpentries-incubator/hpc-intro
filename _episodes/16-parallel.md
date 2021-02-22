@@ -476,11 +476,44 @@ counts = comm.gather(count_item, root=0)
 {: .language-python}
 
 to:
-* distribute the the work among the ranks with `scatter`,
+* distribute the work among the ranks with MPI `scatter`,
 * call the `inside_circle` function so each rank can perform its share
   of the work,
-* collect each rank's results into a `counts` variable on rank 0
+* collect each rank's results into a `counts` variable on rank 0 using MPI
+  `gather`.
 
+Illustrations of these steps are shown below.
+
+---
+
+Setup the MPI environment and initialize local variables &mdash; including the
+vector containing the number of points to generate on each parallel processor:
+
+{% include figure.html url="" max-width="25%" file="/fig/initialize.png" 
+   alt="MPI initialize" caption="" %}
+
+Distribute the number of points from the originating vector to all the parallel
+processors:
+
+{% include figure.html url="" max-width="25%" file="/fig/scatter.png" 
+   alt="MPI scatter" caption="" %}
+
+Perform the computation in parallel:
+
+{% include figure.html url="" max-width="25%" file="/fig/compute.png"
+   alt="MPI compute" caption="" %}
+
+Retrieve counts from all the parallel processes:
+
+{% include figure.html url="" max-width="28%" file="/fig/gather.png"
+   alt="MPI gather" caption="" %}
+
+Print out the report:
+
+{% include figure.html url="" max-width="30%" file="/fig/finalize.png"
+   alt="MPI finalize" caption="" %}
+
+---
 
 Finally, we'll ensure the `my_pi` through `print` lines only run on rank
 0 by placing them inside an `if` statement as:
@@ -495,18 +528,6 @@ if rank == 0:
    print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
 ```
 {: .language-python}
-
-Illustrations of these steps is shown in the figures below:
-
-{% include figure.html url="" max-width="20%" file="/fig/initialize.png" alt="MPI initialize" caption="" %}
-
-{% include figure.html url="" max-width="20%" file="/fig/scatter.png" alt="MPI scatter" caption="" %}
-
-{% include figure.html url="" max-width="20%" file="/fig/compute.png" alt="MPI compute" caption="" %}
-
-{% include figure.html url="" max-width="20%" file="/fig/gather.png" alt="MPI gather" caption="" %}
-
-{% include figure.html url="" max-width="20%" file="/fig/finalize.png" alt="MPI finalize" caption="" %}
 
 The resulting MPI Python script is:
 
