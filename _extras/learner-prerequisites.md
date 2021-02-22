@@ -5,19 +5,20 @@ title: Learner Prerequisites
 This page collects questions that learners can answer in order to judge if they 
 bring all prequisites to the course.
 
-# Required Pre-Knowledge
+## Required Pre-Knowledge
 
-- **Basic Shell** – Navigating directories, Copy/Moving, writing shell scripts, 
-using the environment, using wildcards
+> **Basic Shell** – Navigating directories, Copy/Moving, writing shell scripts, 
+> using the environment, using wildcards
+{: .prereq}
 
-# Pre-Workshop Survey
+## Pre-Workshop Survey
 
 For a motivation of this survey type, see [Greg Wilsons Template in Teaching 
 Tech Together](https://teachtogether.tech/en/index.html#s:checklists-preassess).
 
-## Shell
+### Shell
 
-### Moving Things
+#### Moving Things
 
 You are provided with a directory of `300` files that end with `.log`, `.data` 
 and `.err` at equal proportions. You like to rename all `.log` files to `.out` 
@@ -28,7 +29,7 @@ files. How do you do this?
 3. I am unclear about this, I'd have to consult a colleague or a search engine to do this.
 4. I am not sure what to do.
 
-### Moving around
+#### Moving around
 
 You are on `/bigdata/users/wolfman/projects/study` and want to jump over to 
 `/bigdata/projects/experiments/at-moonlight`.
@@ -38,7 +39,7 @@ You are on `/bigdata/users/wolfman/projects/study` and want to jump over to
 3. I am unclear about this, I'd have to consult a colleague or a search engine to do this.
 4. I am not sure what to do.
 
-### Collaborator Candy
+#### Collaborator Candy
 
 A collaborator provides you an implementation of a state-of-the-art simulation 
 that you need to compare your own predictions to. He tells you: "You can use it 
@@ -51,7 +52,7 @@ You want to execute `sim` on your cluster. How do you set up your shell for this
 3. I am unclear about this, I'd have to consult a colleague or a search engine to do this.
 4. I am not sure what to do.
 
-### Automating All The Things
+#### Automating All The Things
 
 You observe yourself copy and pasting the same sequence of 5 commands for more 
 than three times during a day. You alert yourself that you should write a script 
