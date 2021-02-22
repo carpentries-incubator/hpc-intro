@@ -121,7 +121,7 @@ building your actual lesson, to re-order these files, or omit one or more of the
 
 * Prelude
     * [User profiles](
-      https://github.com/carpentries-incubator/hpc-intro/blob/gh-pages/_extras/learner-profiles.md)
+      _extras/learner-profiles.md)
       (academic and/or commercial) of cluster users
     * Narrative introduction
 
