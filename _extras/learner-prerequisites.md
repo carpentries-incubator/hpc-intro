@@ -57,7 +57,7 @@ You want to execute `sim` on your cluster. How do you set up your shell for this
 You observe yourself copy and pasting the same sequence of 5 commands on the command line for more 
 than three times during a day. You alert yourself that you should write a script 
 for this now. The script requires two input arguments, i.e. two single file locations, 
-to perform it's duty.
+to perform its duty.
 
 1. I can do that. Give me a shell and I'll show you.
 2. I'd need to look up the syntax in a cheatsheet or some old code and I'm good to do this.
