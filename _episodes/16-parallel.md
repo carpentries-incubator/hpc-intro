@@ -41,8 +41,9 @@ to calculate &#960; through a command-line parameter.
 This script will only use a single CPU for its entire run, so it's classified
 as a serial process.
 
-In the Python script, we start by importing the `numpy` module for calculating
-the results, and the `sys` module to process command-line parameters:
+Let's write a Python program, `pi.py`, to estimate &#960; for us.
+Start by importing the `numpy` module for calculating the results, 
+and the `sys` module to process command-line parameters:
 
 ```
 import numpy as np
@@ -74,33 +75,9 @@ def inside_circle(total_count):
 Next, we create a main function to call the `inside_circle` function and
 calculate &#960; from its returned result.
 See [Programming with Python: Command-Line Programs](https://swcarpentry.github.io/python-novice-inflammation/12-cmdline/index.html)
-for a review of main functions and command-line parameter processing.
+for a review of `main` functions and parsing command-line parameters.
 
 ```
-def main():
-    n_samples = int(sys.argv[1])
-    counts = inside_circle(n_samples)
-    my_pi = 4.0 * counts / n_samples
-    print(my_pi)
-
-if __name__ == '__main__':
-    main()
-```
-{: .language-python}
-
-The entire Python script is:
-
-```
-import numpy as np
-import sys
-
-def inside_circle(total_count):
-    x = np.random.uniform(size=total_count)
-    y = np.random.uniform(size=total_count)
-    radii = np.sqrt(x*x + y*y)
-    count = len(radii[np.where(radii<=1.0)])
-    return count
-
 def main():
     n_samples = int(sys.argv[1])
     counts = inside_circle(n_samples)
@@ -138,10 +115,10 @@ required.
 ### Estimating Memory Requirements
 
 Since the largest variables in the script are `x`, `y`, and `radii`, each
-containing `n_samples` points, we'll modify the script to calculate their
+containing `n_samples` points, we'll modify the script to report their
 total memory required.
 Each point in `x`, `y`, or `radii` is stored as a NumPy `float64`, we can
-use the NumPy's [`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html)
+use NumPy's [`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html)
 function to calculate the size of a `float64`.
 
 Replace the `print(my_pi)` line with the following:
@@ -489,34 +466,36 @@ Illustrations of these steps are shown below.
 Setup the MPI environment and initialize local variables &mdash; including the
 vector containing the number of points to generate on each parallel processor:
 
-{% include figure.html url="" max-width="25%" file="/fig/initialize.png" 
+{% include figure.html url="" max-width="50%" file="/fig/initialize.png" 
    alt="MPI initialize" caption="" %}
 
 Distribute the number of points from the originating vector to all the parallel
 processors:
 
-{% include figure.html url="" max-width="25%" file="/fig/scatter.png" 
+{% include figure.html url="" max-width="50%" file="/fig/scatter.png" 
    alt="MPI scatter" caption="" %}
 
 Perform the computation in parallel:
 
-{% include figure.html url="" max-width="25%" file="/fig/compute.png"
+{% include figure.html url="" max-width="50%" file="/fig/compute.png"
    alt="MPI compute" caption="" %}
 
 Retrieve counts from all the parallel processes:
 
-{% include figure.html url="" max-width="28%" file="/fig/gather.png"
+{% include figure.html url="" max-width="50%" file="/fig/gather.png"
    alt="MPI gather" caption="" %}
 
 Print out the report:
 
-{% include figure.html url="" max-width="30%" file="/fig/finalize.png"
+{% include figure.html url="" max-width="50%" file="/fig/finalize.png"
    alt="MPI finalize" caption="" %}
 
 ---
 
 Finally, we'll ensure the `my_pi` through `print` lines only run on rank
-0 by placing them inside an `if` statement as:
+0.
+Otherwise, every parallel processor will print its local value,
+and the report will become hopelessly garbled:
 
 ```
 if rank == 0:
@@ -526,54 +505,6 @@ if rank == 0:
    size_of_float = np.dtype(np.float64).itemsize
    memory_required = 3 * sum(partitions) * size_of_float / (1024**3)
    print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
-```
-{: .language-python}
-
-The resulting MPI Python script is:
-
-```
-import numpy as np
-import sys
-import datetime
-from mpi4py import MPI
-
-def inside_circle(total_count):
-    x = np.random.uniform(size=total_count)
-    y = np.random.uniform(size=total_count)
-    radii = np.sqrt(x*x + y*y)
-    count = len(radii[np.where(radii<=1.0)])
-    return count
-
-def main():
-    # Initialize
-    comm = MPI.COMM_WORLD
-    cpus = comm.Get_size()
-    rank = comm.Get_rank()
-    n_samples = int(sys.argv[1])
-    if rank == 0:
-        start_time = datetime.datetime.now()
-        partitions = [ int(n_samples / cpus) ] * cpus
-        counts = [ int(0) ] * cpus
-    else:
-        partitions = None
-        counts = None
-    # Scatter
-    partition_item = comm.scatter(partitions, root=0)
-    # Compute
-    count_item = inside_circle(partition_item)
-    # Gather
-    counts = comm.gather(count_item, root=0)
-    # Finalize
-    if rank == 0:
-        my_pi = 4.0 * sum(counts) / sum(partitions)
-        end_time = datetime.datetime.now()
-        elapsed_time = (end_time - start_time).total_seconds()
-        size_of_float = np.dtype(np.float64).itemsize
-        memory_required = 3 * n_samples * size_of_float / (1024**3)
-        print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
-
-if __name__ == '__main__':
-    main()
 ```
 {: .language-python}
 
@@ -613,7 +544,7 @@ output file, and examine it. Is it what you expected?
 
 * How good is the value for &#960;?
 * How much memory did it need?
-* How long did the job take to run?
+* How much faster was this run than the serial run with 100000000 points?
 
 Modify the job script to increase both the number of samples and the amount
 of memory requested (perhaps by a factor of 2, then by a factor of 10),
@@ -656,7 +587,7 @@ For a laptop with 8 cores, the graph of speedup factor versus number of cores
 used shows relatively consistent improvement when using 2, 4, or 8 cores, but
 using additional cores shows a diminishing return.
 
-{% include figure.html url="" max-width="20%" file="/fig/laptop-mpi_Speedup_factor.png" alt="MPI speedup factors on an 8-core laptop" caption="" %}
+{% include figure.html url="" max-width="50%" file="/fig/laptop-mpi_Speedup_factor.png" alt="MPI speedup factors on an 8-core laptop" caption="" %}
 
 For a set of HPC nodes containing 28 cores each, the graph of speedup factor
 versus number of cores shows consistent improvements up through three nodes
@@ -666,7 +597,7 @@ This is due to the amount of communication and coordination required among
 the MPI processes requiring more time than is gained by reducing the amount
 of work each MPI process has to complete.
 
-{% include figure.html url="" max-width="20%" file="/fig/hpc-mpi_Speedup_factor.png" alt="MPI speedup factors on an 8-core laptop" caption="" %}
+{% include figure.html url="" max-width="50%" file="/fig/hpc-mpi_Speedup_factor.png" alt="MPI speedup factors on an 8-core laptop" caption="" %}
 
 In practice, MPI speedup factors are influenced by:
 * CPU design,
