@@ -3,7 +3,7 @@ To demonstrate, let's use `module list`. `module list` shows all loaded software
 ```
 {{ site.remote.prompt }} module list
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 Currently Loaded Modules:
@@ -17,7 +17,7 @@ Currently Loaded Modules:
 {{ site.remote.prompt }} module load GROMACS
 {{ site.remote.prompt }} module list
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 Currently Loaded Modules:
@@ -44,7 +44,7 @@ So in this case, loading the `GROMACS` module (a bioinformatics software package
 {{ site.remote.prompt }} module unload GROMACS
 {{ site.remote.prompt }} module list
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 Currently Loaded Modules:
@@ -71,7 +71,7 @@ everything at once, we could run `module purge` (unloads everything).
 {{ site.remote.prompt }} module purge
 {{ site.remote.prompt }} module list
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 No modules loaded
