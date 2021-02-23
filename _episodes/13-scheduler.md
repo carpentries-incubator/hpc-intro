@@ -101,7 +101,7 @@ whichever you prefer. Unsure? `nano` is a pretty good, basic choice.
 {{ site.remote.prompt }} chmod +x example-job.sh
 {{ site.remote.prompt }} cat example-job.sh
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 #!/bin/bash
@@ -120,7 +120,7 @@ hostname
 > > ```
 > > {{ site.remote.prompt }} ./example-job.sh
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > > ```
 > > This script is running on {{ site.remote.host }}
 > > ```
@@ -137,7 +137,7 @@ to the scheduler, we use the `{{ site.sched.submit.name }}` command.
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
 ```
-{: .bash}
+{: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/basic-job-script.snip %}
 
@@ -149,7 +149,7 @@ the *queue*. To check on our job's status, we check the queue using the command
 ```
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
-{: .bash}
+{: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/basic-job-status.snip %}
 
@@ -164,7 +164,7 @@ try using it to monitor another job.
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
 {{ site.remote.prompt }} watch -n 15 {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
-{: .bash}
+{: .language-bash}
 
 You should see an auto-updating display of your job's status. When it finishes, it will disappear
 from the queue. Press `Ctrl-C` when you want to stop the `watch` command.
@@ -200,7 +200,7 @@ script:
 ```
 {{ site.remote.prompt }} cat example-job.sh
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 #!/bin/bash
@@ -218,7 +218,7 @@ and monitor it:
 ```
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
-{: .bash}
+{: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/job-with-name-status.snip %}
 
@@ -241,7 +241,7 @@ Fantastic, we've successfully changed the name of our job!
 > > ```
 > > {{ site.remote.prompt }} man {{ site.sched.submit.name }}
 > > ```
-> > : .bash}
+> > {: .bash}
 > {: .solution}
 {: .challenge}
 
@@ -275,7 +275,7 @@ about how to make sure that you're using resources effectively in a later episod
 > > ```
 > > {{ site.remote.prompt }} cat example-job.sh
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > >
 > > ```
 > > #!/bin/bash
@@ -291,7 +291,7 @@ about how to make sure that you're using resources effectively in a later episod
 > > ```
 > > {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > >
 > > Why are the {{ site.sched.name }} runtime and `sleep` time not identical?
 > {: .solution}
@@ -306,7 +306,7 @@ minutes.
 ```
 {{ site.remote.prompt }} cat example-job.sh
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 #!/bin/bash
@@ -326,7 +326,7 @@ Submit the job and wait for it to finish. Once it is has finished, check the log
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
 {{ site.remote.prompt }} watch -n 15 {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
-{: .bash}
+{: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/runtime-exceeded-job.snip %}
 
@@ -351,7 +351,7 @@ to change the walltime so that it runs long enough for you to cancel it before i
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
-{: .bash}
+{: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/terminate-job-begin.snip %}
 
@@ -363,7 +363,7 @@ prompt indicates that the request to cancel the job was successful.
 # ... Note that it might take a minute for the job to disappear from the queue ...
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
-{: .bash}
+{: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/terminate-job-cancel.snip %}
 

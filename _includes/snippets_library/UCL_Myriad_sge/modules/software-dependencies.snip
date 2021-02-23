@@ -5,7 +5,7 @@ an engineering simulation product.)
 ```
 {{ site.remote.prompt }} module load ansys
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 ansys/2019.r3(73):ERROR:151: Module 'ansys/2019.r3' depends on one of the module(s) 'giflib/5.1.1'
@@ -22,7 +22,7 @@ Let's load the `giflib` module:
 ```
 {{ site.remote.prompt }} module load giflib
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 giflib/5.1.1(18):ERROR:151: Module 'giflib/5.1.1' depends on one of the module(s) 'gcc-libs/4.9.2'
@@ -38,7 +38,7 @@ first, then load `giflib`, and then finally load `ansys`.
 {{ site.remote.prompt }} module load giflib/5.1.1
 {{ site.remote.prompt }} module load ansys
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 ~/Scratch/.config is configured
@@ -59,7 +59,7 @@ If we wanted to unload everything at once (all modules), we could run `module pu
 {{ site.remote.prompt }} module purge
 {{ site.remote.prompt }} module list
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 No Modulefiles Currently Loaded.

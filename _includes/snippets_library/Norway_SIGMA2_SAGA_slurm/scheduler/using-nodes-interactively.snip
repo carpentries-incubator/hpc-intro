@@ -4,7 +4,7 @@
 ```
 {{ site.host_prompt }} srun hostname
 ```
-{: .bash}
+{: .language-bash}
 ```
 gra752
 ```
@@ -17,7 +17,7 @@ uses 2 CPUs for instance, we could use the following command:
 ```
 {{ site.host_prompt }} srun -n 2 echo "This job will use 2 CPUs."
 ```
-{: .bash}
+{: .language-bash}
 ```
 This job will use 2 CPUs.
 This job will use 2 CPUs.
@@ -35,7 +35,7 @@ Fortunately, SLURM makes it easy to start an interactive job with `srun`:
 ```
 {{ site.host_prompt }} srun --pty bash
 ```
-{: .bash}
+{: .language-bash}
 
 You should be presented with a bash prompt. Note that the prompt will likely change to reflect your
 new location, in this case the compute node we are logged on. You can also verify this with

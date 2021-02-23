@@ -66,7 +66,7 @@ To see available software modules, use `module avail`
 ```
 {{ site.remote.prompt }} module avail
 ```
-{: .bash}
+{: .language-bash}
 
 {% include {{ site.snippets }}/modules/available-modules.snip %}
 
@@ -79,7 +79,7 @@ so
 ```
 {{ site.remote.prompt }} module list
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 No Modulefiles Currently Loaded.
@@ -99,7 +99,7 @@ so we can use it to tell us where a particular piece of software is stored.
 ```
 {{ site.remote.prompt }} which python3
 ```
-{: .bash}
+{: .language-bash}
 
 {% include {{ site.snippets }}/modules/missing-python.snip %}
 
@@ -120,7 +120,7 @@ variables we can print it out using `echo`.
 ```
 {{ site.remote.prompt }} echo $PATH
 ```
-{: .bash}
+{: .language-bash}
 
 {% include {{ site.snippets }}/modules/python-module-path.snip %}
 
@@ -151,7 +151,7 @@ Let's examine the output of `module avail` more closely.
 ```
 {{ site.remote.prompt }} module avail
 ```
-{: .bash}
+{: .language-bash}
 
 {% include {{ site.snippets }}/modules/available-modules.snip %}
 
@@ -169,7 +169,7 @@ Let's examine the output of `module avail` more closely.
 > > {{ site.remote.prompt }} nano python-module.sh
 > > {{ site.remote.prompt }} cat python-module.sh
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > >
 > > ```
 > > #!/bin/bash
@@ -183,7 +183,7 @@ Let's examine the output of `module avail` more closely.
 > > ```
 > > {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} python-module.sh
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > {: .solution}
 {: .challenge}
 
