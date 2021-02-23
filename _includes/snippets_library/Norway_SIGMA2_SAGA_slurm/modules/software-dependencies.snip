@@ -3,7 +3,7 @@ To demonstrate, let's use `module list`. `module list` shows all loaded software
 ```
 {{ site.host_prompt }} module list
 ```
-{: .bash}
+{: .language-bash}
 ```
 
 Currently Loaded Modules:
@@ -21,7 +21,7 @@ Currently Loaded Modules:
 {{ site.host_prompt }} module load Beast/2.5.2-GCC-8.2.0-2.31.1
 {{ site.host_prompt }} module list
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 Currently Loaded Modules:
@@ -43,7 +43,7 @@ So in this case, loading the `beast` module (a bioinformatics software package),
 {{ site.host_prompt }} module unload Beast/2.5.2-GCC-8.2.0-2.31.1
 {{ site.host_prompt }} module list
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 Currently Loaded Modules:
@@ -64,7 +64,7 @@ If we wanted to unload everything at once, we could run `module purge` (unloads 
 ```
 {{ site.host_prompt }} module purge
 ```
-{: .bash}
+{: .language-bash}
 ```
 The following modules were not unloaded:
   (Use "module --force purge" to unload all):
