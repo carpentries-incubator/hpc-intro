@@ -28,7 +28,7 @@ we'll use later on, from a terminal on your local machine.
 ```
 {{ site.local.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 ```
-{: .bash}
+{: .language-bash}
 
 > ## `tar.gz`?
 >
@@ -48,14 +48,14 @@ To *upload to* another computer:
 ```
 {{ site.local.prompt }} scp path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}
 ```
-{: .bash}
+{: .language-bash}
 
 To *download from* another computer:
 
 ```
 {{ site.local.prompt }} scp {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}/file.txt path/to/local/
 ```
-{: .bash}
+{: .language-bash}
 
 Note that everything after the `:` is relative to our home directory on the remote computer. We can
 leave it at that if we don't care where the file goes.
@@ -63,7 +63,7 @@ leave it at that if we don't care where the file goes.
 ```
 {{ site.local.prompt }} scp local-file.txt {{ site.remote.user }}@{{ site.remote.login }}:
 ```
-{: .bash}
+{: .language-bash}
 
 > ## Upload a file
 >
@@ -75,7 +75,7 @@ leave it at that if we don't care where the file goes.
 > > ```
 > > {{ site.local.prompt }} scp hpc-intro-data.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:~/
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > {: .solution}
 {: .challenge}
 
@@ -97,7 +97,7 @@ leave it at that if we don't care where the file goes.
 > > > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
 > > > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 > > > ```
-> > > {: .bash}
+> > > {: .language-bash}
 > > {: .solution}
 > >
 > > Did it work? If not, what does the terminal output tell you about what happened?
@@ -111,7 +111,7 @@ bottom of the directory tree rooted at the folder name you provided.
 ```
 {{ site.local.prompt }} scp -r some-local-folder {{ site.remote.user }}@{{ site.remote.login }}:target-directory/
 ```
-{: .bash}
+{: .language-bash}
 
 > ## Caution
 > For a large directory &mdash; either in size or number of files &mdash; copying
@@ -148,7 +148,7 @@ important in other commands, like `rsync`.
 > ```
 > {{ site.local.prompt }} rsync -avzP path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.login }}:directory/path/on/{{ site.remote.name }}/
 > ```
-> {: .bash}
+> {: .language-bash}
 >
 > The `a` (archive) option preserves file timestamps and permissions among other things; the `v`
 > (verbose) option gives verbose output to help monitor the transfer; the `z` (compression) option
@@ -161,7 +161,7 @@ important in other commands, like `rsync`.
 > ```
 > {{ site.local.prompt }} rsync -avzP path/to/local/dir {{ site.remote.user }}@{{ site.remote.login }}:directory/path/on/{{ site.remote.name }}/
 > ```
-> {: .bash}
+> {: .language-bash}
 > 
 > As written, this will place the local directory and its contents under the specified directory on
 > the remote system. If the trailing slash is omitted on the destination, a new directory
@@ -175,7 +175,7 @@ important in other commands, like `rsync`.
 > ```
 > {{ site.local.prompt }} rsync -avzP {{ site.remote.user }}@{{ site.remote.login }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
 > ```
-> {: .bash}
+> {: .language-bash}
 {: .callout}
 
 > ## A note on ports
@@ -192,7 +192,7 @@ important in other commands, like `rsync`.
 > > ```
 > > {{ site.local.prompt }} rsync test.txt {{ site.remote.user }}@{{ site.remote.login }}:
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > >
 > > > ## Solution
 > > >
@@ -202,7 +202,7 @@ important in other commands, like `rsync`.
 > > > See http://rsync.samba.org/ for updates, bug reports, and answers
 > > > {{ site.local.prompt }} rsync --port=768 test.txt {{ site.remote.user }}@{{ site.remote.login }}:
 > > > ```
-> > > {: .bash}
+> > > {: .language-bash}
 > > {: .solution}
 > {: .challenge}
 {: .callout}
@@ -284,7 +284,7 @@ hpc-intro-data/north-pacific-gyre/NENE01751A.txt
 hpc-intro-data/north-pacific-gyre/NENE01729A.txt
 hpc-intro-data/north-pacific-gyre/NENE02040Z.txt
 ```
-{: .bash}
+{: .language-bash}
 
 This shows a folder containing another folder, which contains a bunch of files. If you've taken The
 Carpentries' Shell lesson recently, these might look familiar. Let's see about that compression,
@@ -294,7 +294,7 @@ using `du` for "**d**isk **u**sage".
 {{ site.remote.prompt }} du -sh hpc-lesson-data.tar.gz
 36K     hpc-intro-data.tar.gz
 ```
-{: .bash}
+{: .language-bash}
 
 > If the filesystem block size is larger than 36 KB, you'll see a larger number: files cannot be
 > smaller than one block.
@@ -321,7 +321,7 @@ When it's done, check the directory size with `du` and compare.
 > > ```
 > > {{ site.remote.prompt }} tar -xvzf hpc-lesson-data.tar.gz
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > > 
 > > ```
 > > hpc-intro-data/
@@ -355,7 +355,7 @@ When it's done, check the directory size with `du` and compare.
 > > {{ site.remote.prompt }} du -sh hpc-lesson-data
 > > 144K    hpc-intro-data
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > {: .solution}
 >
 > > ## Was the data compressed?
@@ -370,7 +370,7 @@ set a `c` flag instead of `x`, set the archive filename, then provide a director
 ```
 {{ site.local.prompt }} tar -cvzf compressed_data.tar.gz hpc-intro-data
 ```
-{: .bash}
+{: .language-bash}
 
 > ## Working with Windows
 >

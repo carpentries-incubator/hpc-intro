@@ -10,7 +10,7 @@ we type `module load gcc`, this is the copy that will be loaded.
 {{ site.remote.prompt }} module load gcc
 {{ site.remote.prompt }} gcc --version
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 gcc (GCC) 6.2.0
@@ -28,7 +28,7 @@ To load a non-default module, we need to make add the version number after the `
 ```
 {{ site.remote.prompt }} module load gcc/7.2.0
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 gcc/7.2.0(17):ERROR:150: Module 'gcc/7.2.0' conflicts with the currently loaded module(s) 'gcc/6.2.0'
@@ -45,7 +45,7 @@ default version before we load the new version.
 {{ site.remote.prompt }} module load gcc/7.2.0
 {{ site.remote.prompt }} gcc --version
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 gcc (GCC) 7.2.0
@@ -67,7 +67,7 @@ rather than unloading one version before loading another. The equivalent of the 
 {{ site.remote.prompt }} module swap gcc gcc/7.2.0
 {{ site.remote.prompt }} gcc --version
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 gcc (GCC) 6.2.0

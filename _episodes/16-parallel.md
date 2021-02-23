@@ -56,7 +56,7 @@ Download the Python executable using the following command:
 ```
 {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/pi.py
 ```
-{: .bash}
+{: .language-bash}
 
 Let's take a quick look inside the file. It is richly commented, and should explain itself
 clearly. Press "q" to exit the pager program (`less`).
@@ -64,7 +64,7 @@ clearly. Press "q" to exit the pager program (`less`).
 ```
 {{ site.remote.prompt }} less pi.py
 ```
-{: .bash}
+{: .language-bash}
 
 > ## What's `pi.py` doing?
 >
@@ -117,7 +117,7 @@ Create a submission file, requesting more than one task on a single node:
 {{ site.remote.prompt }} nano parallel-pi.sh
 {{ site.remote.prompt }} cat parallel-pi.sh
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 #!/bin/bash
@@ -135,7 +135,7 @@ rather than the command line.
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} parallel-pi.sh
 ```
-{: .bash}
+{: .language-bash}
 
 As before, use the status commands to check when your job runs. Use `ls` to locate the
 output file, and examine it. Is it what you expected?

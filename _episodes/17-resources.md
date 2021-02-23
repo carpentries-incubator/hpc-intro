@@ -50,7 +50,7 @@ see how long our job took and what resources were used. We will use `{{ site.sch
 ```
 {{ site.remote.prompt }} {{ site.sched.hist }}
 ```
-{: .bash}
+{: .language-bash}
 
 {% include {{ site.snippets }}/resources/account-history.snip %}
 
@@ -60,7 +60,7 @@ get info about a specific job, we change command slightly.
 ```
 {{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965
 ```
-{: .bash}
+{: .language-bash}
 
 It will show a lot of info, in fact, every single piece of info collected on your job by
 the scheduler. It may be useful to redirect this information to `less` to make it easier
@@ -69,7 +69,7 @@ to view (use the left and right arrow keys to scroll through fields).
 ```
 {{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965 | less
 ```
-{: .bash}
+{: .language-bash}
 
 Some interesting fields include the following:
 
@@ -96,7 +96,7 @@ might look like the following (type `q` to exit `top`):
 ```
 {{ site.remote.prompt }} top
 ```
-{: .bash}
+{: .language-bash}
 
 {% include {{ site.snippets }}/resources/monitor-processes-top.snip %}
 
@@ -121,7 +121,7 @@ they're here to help!
 ```
 {{ site.remote.prompt }} htop
 ```
-{: .bash}
+{: .language-bash}
 
 
 ### `ps`
@@ -131,7 +131,7 @@ To show all processes from your current session, type `ps`.
 ```
 {{ site.remote.prompt }} ps
 ```
-{: .bash}
+{: .language-bash}
 
 ```
   PID TTY          TIME CMD
@@ -147,7 +147,7 @@ you own (regardless of whether they are part of your current session or not), yo
 ```
 {{ site.remote.prompt }} ps ux
 ```
-{: .bash}
+{: .language-bash}
 
 ```
     USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND

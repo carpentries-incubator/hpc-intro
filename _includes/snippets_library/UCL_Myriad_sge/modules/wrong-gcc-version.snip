@@ -4,7 +4,7 @@ e.g.
 ```
 {{ site.remote.prompt }} module avail stata
 ```
-{: .bash}
+{: .language-bash}
  
 ```
 ------------------------------------- /shared/ucl/apps/modulefiles/applications --------------------------------------
@@ -22,7 +22,7 @@ Let's see which versions we have access to.
 ```
 {{ site.remote.prompt }} module avail matlab
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 ------------------------------------- /shared/ucl/apps/modulefiles/applications --------------------------------------
@@ -41,7 +41,7 @@ In this case, we don't see this, so we will have to load matlab and see what we 
 ```
 {{ site.remote.prompt }} module load matlab
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 matlab/full/r2019b/9.7(99):ERROR:151: Module 'matlab/full/r2019b/9.7' depends on one of the module(s) 'gcc-libs/4.9.2'
@@ -61,7 +61,7 @@ Suppose we decide to load an earlier version of Matlab, e.g. r2017a/9.2.
 {{ site.remote.prompt }} module purge
 {{ site.remote.prompt }} module list
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 No Modulefiles Currently Loaded.
@@ -71,7 +71,7 @@ No Modulefiles Currently Loaded.
 ```
 {{ site.remote.prompt }} module load matlab/full/r2017a/9.2
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 matlab/full/r2017a/9.2(96):ERROR:151: Module 'matlab/full/r2017a/9.2' depends on one of the module(s) 'gcc-libs/4.9.2'
@@ -83,7 +83,7 @@ matlab/full/r2017a/9.2(96):ERROR:102: Tcl command execution failed: prereq gcc-l
 {{ site.remote.prompt }} module load gcc-libs/4.9.2
 {{ site.remote.prompt }} module load matlab/full/r2017a/9.2
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 matlab/full/r2017a/9.2(97):ERROR:151: Module 'matlab/full/r2017a/9.2' depends on one of the module(s) 'xorg-utils/X11R7.7'
@@ -95,7 +95,7 @@ matlab/full/r2017a/9.2(97):ERROR:102: Tcl command execution failed: prereq xorg-
 {{ site.remote.prompt }} module load xorg-utils/X11R7.7
 {{ site.remote.prompt }} module load matlab/full/r2017a/9.2
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 ~/.matlab is a symbolic link pointing to /home/yourUsername/Scratch/.matlab
@@ -107,7 +107,7 @@ Matlab setup complete type matlab to start Matlab.
 ```
 {{ site.remote.prompt }} matlab -nodisplay -nosplash -nodesktop
 ```
-{: .bash}
+{: .language-bash}
 
 ```
                                                < M A T L A B (R) >
@@ -130,7 +130,7 @@ Currently, we have loaded `matlab/full/r2017a/9.2`. Let's try also loading
 ```
 {{ site.remote.prompt }} module load matlab/full/r2015b/8.6
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 matlab/full/r2015b/8.6(108):ERROR:150: Module 'matlab/full/r2015b/8.6' conflicts with the currently loaded module(s) 'matlab/full/r2017a/9.2'
@@ -145,21 +145,21 @@ If we do indeed wish to load version r2015b/8.6, we can say
 {{ site.remote.prompt }} module unload matlab/full/r2017a/9.2
 {{ site.remote.prompt }} module load matlab/full/r2015b/8.6
 ```
-{: .bash}
+{: .language-bash}
 
 or, in one step:
 
 ```
 {{ site.remote.prompt }} module swap matlab matlab/full/r2015b/8.6
 ```
-{: .bash}
+{: .language-bash}
 
 Check that this module has been loaded:
 
 ```
 {{ site.remote.prompt }} module list
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 Currently Loaded Modulefiles:
