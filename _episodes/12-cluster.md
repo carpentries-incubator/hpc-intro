@@ -82,7 +82,7 @@ username and the remote computer you can reach from the outside world, {{ site.r
 ```
 {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
 ```
-{: .bash}
+{: .language-bash}
 
 Remember to replace `{{ site.remote.user }}` with your username or the one supplied by the
 instructors. You may be asked for your password. Watch out: the characters you type after the
@@ -100,7 +100,7 @@ notice that the current hostname is also part of our prompt!)
 ```
 {{ site.remote.prompt }} hostname
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 {{ site.remote.host }}
@@ -125,7 +125,7 @@ notice that the current hostname is also part of our prompt!)
 > > ```
 > > {{ site.remote.prompt }} pwd
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > >
 > > > The deepest layer should differ: {{ site.remote.user }} is uniquely yours. Are there
 > > > differences in the path at higher levels?
@@ -137,7 +137,7 @@ notice that the current hostname is also part of our prompt!)
 > > ```
 > > {{ site.remote.prompt }} ls -a
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > >
 > > At a minimum, this will show the current directory as `.`, and the parent directory as `..`.
 > >
@@ -185,7 +185,7 @@ For example, we can view all of the worker nodes with the `{{ site.sched.info }}
 ```
 {{ site.remote.prompt }} {{ site.sched.info }}
 ```
-{: .bash}
+{: .language-bash}
 
 {% include {{ site.snippets }}/cluster/queue-info.snip %}
 
@@ -217,7 +217,7 @@ it is more common for nodes to connect to a shared, remote fileserver or cluster
 > {{ site.remote.prompt }} exit
 > {{ site.local.prompt }}
 > ```
-> {: .bash}
+> {: .language-bash}
 >
 > > ## Solution
 > >
@@ -229,20 +229,20 @@ it is more common for nodes to connect to a shared, remote fileserver or cluster
 > >   {{ site.local.prompt }} nproc --all
 > >   {{ site.local.prompt }} free -m
 > >   ```
-> >   {: .bash}
+> >   {: .language-bash}
 > >
 > > * Read from `/proc`
 > >   ```
 > >   {{ site.local.prompt }} cat /proc/cpuinfo
 > >   {{ site.local.prompt }} cat /proc/meminfo
 > >   ```
-> >   {: .bash}
+> >   {: .language-bash}
 > >
 > > * Run system monitor
 > >   ```
 > >   {{ site.local.prompt }} htop
 > >   ```
-> >   {: .bash}
+> >   {: .language-bash}
 > {: .solution}
 {: .challenge}
 
@@ -257,7 +257,7 @@ it is more common for nodes to connect to a shared, remote fileserver or cluster
 > > {{ site.remote.prompt }} nproc --all
 > > {{ site.remote.prompt }} free -m
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > >
 > > You can get more information about the processors using `lscpu`,
 > > and a lot of detail about the memory by reading the file `/proc/meminfo`:
@@ -265,7 +265,7 @@ it is more common for nodes to connect to a shared, remote fileserver or cluster
 > > ```
 > > {{ site.remote.prompt }} less /proc/meminfo
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > >
 > > You can also explore the available filesystems using `df` to show **d**isk **f**ree space.
 > > The `-h` flag renders the sizes in a human-friendly format, i.e., GB instead of B. The **t**ype
@@ -274,7 +274,7 @@ it is more common for nodes to connect to a shared, remote fileserver or cluster
 > > ```
 > > {{ site.remote.prompt }} df -Th
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > >
 > > > The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're on the same login
 > > > node (or compute node, later on). Networked filesystems (beegfs, cifs, gpfs, nfs, pvfs) will

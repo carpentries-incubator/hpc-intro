@@ -115,7 +115,7 @@ and this will differ from individual to individual!
 >   -evalue 0.0001 -word_size 7  -max_target_seqs 10 -num_threads 1 \
 >   -out output_seq_0.blast -outfmt "6 std stitle staxids sscinames"
 >   ```
->   {: .bash}
+>   {: .language-bash}
 >
 >   where the `\` character tells `bash` that the command continues on the next line. Note that
 >   there will be no output from this alignment if it works correctly).

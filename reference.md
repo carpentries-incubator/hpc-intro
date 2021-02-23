@@ -39,14 +39,14 @@ example, instead of showing the transfer rate in real time, the following comman
 rsync: link_stat "/home/{{ site.local.user }}/—progress" failed: No such file or directory (2)
 rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1207) [sender=3.1.3]
 ```
-{: .bash}
+{: .language-bash}
 
 The correct command, different only by two characters, succeeds:
 
 ```
 {{ site.local.prompt }} rsync --progress my_precious_data.txt {{ site.remote.user }}@{{ site.remote.login }}
 ```
-{: .bash}
+{: .language-bash}
 
 We have done our best to wrap all commands in code blocks, which prevents this subtle conversion. If
 you encounter this error, please open an issue or pull request on the lesson repository to help
@@ -62,7 +62,7 @@ the same way as SSH:
 ```
 {{ site.local.prompt }} sftp yourUsername@remote.computer.address
 ```
-{: .bash}
+{: .language-bash}
 
 This will start what appears to be a bash shell (though our prompt says `sftp>`). However we only
 have access to a limited number of commands. We can see which commands are available with `help`:
@@ -70,7 +70,7 @@ have access to a limited number of commands. We can see which commands are avail
 ```
 sftp> help
 ```
-{: .bash}
+{: .language-bash}
 ```
 Available commands:
 bye                                Quit sftp
@@ -103,7 +103,7 @@ To show our remote working directory:
 ```
 sftp> pwd
 ```
-{: .bash}
+{: .language-bash}
 ```
 Remote working directory: /global/home/yourUsername
 ```
@@ -114,7 +114,7 @@ To show our local working directory, we add an `l` in front of the command:
 ```
 sftp> lpwd
 ```
-{: .bash}
+{: .language-bash}
 ```
 Local working directory: /home/jeff/Documents/teaching/hpc-intro
 ```
@@ -130,7 +130,7 @@ To upload a file, we type `put some-file.txt` (tab-completion works here).
 ```
 sftp> put config.toml
 ```
-{: .bash}
+{: .language-bash}
 ```
 Uploading config.toml to /global/home/yourUsername/config.toml
 config.toml                                   100%  713     2.4KB/s   00:00 
@@ -142,7 +142,7 @@ To download a file we type `get some-file.txt`:
 ```
 sftp> get config.toml
 ```
-{: .bash}
+{: .language-bash}
 ```
 Fetching /global/home/yourUsername/config.toml to config.toml
 /global/home/yourUsername/config.toml                               100%  713     9.3KB/s   00:00
@@ -156,7 +156,7 @@ present beforehand.
 sftp> mkdir content
 sftp> put -r content/
 ```
-{: .bash}
+{: .language-bash}
 ```
 Uploading content/ to /global/home/yourUsername/content
 Entering content/
