@@ -519,7 +519,7 @@ Create a submission file, requesting more than one task on a single node:
 {{ site.remote.prompt }} nano parallel-pi.sh
 {{ site.remote.prompt }} cat parallel-pi.sh
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 #!/bin/bash
@@ -537,7 +537,7 @@ rather than the command line.
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} parallel-pi.sh
 ```
-{: .bash}
+{: .language-bash}
 
 As before, use the status commands to check when your job runs. Use `ls` to locate the
 output file, and examine it. Is it what you expected?
@@ -587,7 +587,8 @@ For a laptop with 8 cores, the graph of speedup factor versus number of cores
 used shows relatively consistent improvement when using 2, 4, or 8 cores, but
 using additional cores shows a diminishing return.
 
-{% include figure.html url="" max-width="50%" file="/fig/laptop-mpi_Speedup_factor.png" alt="MPI speedup factors on an 8-core laptop" caption="" %}
+{% include figure.html url="" max-width="50%" file="/fig/laptop-mpi_Speedup_factor.png"
+   alt="MPI speedup factors on an 8-core laptop" caption="" %}
 
 For a set of HPC nodes containing 28 cores each, the graph of speedup factor
 versus number of cores shows consistent improvements up through three nodes
@@ -597,7 +598,8 @@ This is due to the amount of communication and coordination required among
 the MPI processes requiring more time than is gained by reducing the amount
 of work each MPI process has to complete.
 
-{% include figure.html url="" max-width="50%" file="/fig/hpc-mpi_Speedup_factor.png" alt="MPI speedup factors on an 8-core laptop" caption="" %}
+{% include figure.html url="" max-width="50%" file="/fig/hpc-mpi_Speedup_factor.png"
+   alt="MPI speedup factors on an 8-core laptop" caption="" %}
 
 In practice, MPI speedup factors are influenced by:
 * CPU design,

@@ -5,7 +5,7 @@ cancel an `{{ site.sched.interactive }}` job with `Ctrl-c`.)
 ```
 {{ site.remote.prompt }} {{ site.sched.interactive }} hostname
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 gra752
@@ -20,7 +20,7 @@ command:
 ```
 {{ site.remote.prompt }} {{ site.sched.interactive }} -n 2 echo "This job will use 2 CPUs."
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 This job will use 2 CPUs.
@@ -41,7 +41,7 @@ site.sched.interactive }}`:
 ```
 {{ site.remote.prompt }} {{ site.sched.interactive }} --pty bash
 ```
-{: .bash}
+{: .language-bash}
 
 You should be presented with a bash prompt. Note that the prompt will likely change to reflect your
 new location, in this case the compute node we are logged on. You can also verify this with
