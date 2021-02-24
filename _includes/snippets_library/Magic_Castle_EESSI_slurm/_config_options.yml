@@ -1,0 +1,80 @@
+#------------------------------------------------------------
+# Magic Castle: SLURM + Software Stack from EESSI
+#------------------------------------------------------------
+
+# Cluster host and scheduler options: the defaults come from
+# Graham at Compute Canada, running SLURM. Other options for
+# other systems can be found in the library of snippets,
+# `_includes/snippets_library`.
+#
+# Please refer to
+# https://github.com/carpentries-incubator/hpc-intro#using-this-material
+# in order to see how to include a specific set of snippets
+# in your lesson and
+# https://github.com/carpentries-incubator/hpc-intro#deploying-a-customized-lesson
+# in order to see how to deploy a specific instance of a lesson.
+#
+# If your cluster is not represented in the library, please
+# copy an existing folder, rename it, and customize for your
+# installation. Remember to keep the leading slash on the
+# `snippets` variable below!
+#
+# For this specific snippet library that uses Magic Castle (
+# https://github.com/ComputeCanada/magic_castle/tree/master/docs#magic-castle-documentation
+# ) with the EESSI (https://eessi.github.io/docs/) software
+# stack you will most likely also need to provide a customised
+# version of the cluster name and domain, which is currently
+# set to
+# "custom.learnhpc.eu".
+# For example, if our cluster was called
+# "cluster.hpc-carpentry.org", we could do this in a
+# single `sed` command from the current directory:
+# sed -i s/custom.learnhpc.eu/cluster.hpc-carpentry.org/g _config_options.yml
+
+snippets: "/snippets_library/Magic_Castle_EESSI_slurm"
+
+local:
+  prompt: "[user@laptop ~]$"
+
+remote:
+  name: "custom.learnhpc.eu"
+  login: "login1.custom.learnhpc.eu"
+  host: "login1.int.custom.learnhpc.eu"
+  node: "node1.int.custom.learnhpc.eu"
+  location: "Cloud resource"
+  homedir: "/home"
+  user: "yourUsername"
+  module_python3: "Python"
+  prompt: "[yourUsername@login1 ~]$"
+
+sched:
+  name: "SLURM"
+  submit:
+    name: "sbatch"
+    options: ""
+  queue:
+    debug: "cpubase_bycore_b1"
+    testing: "cpubase_bycore_b1"
+  status: "squeue"
+  flag:
+    user: "-u yourUsername"
+    interactive: ""
+    histdetail: "-l -j"
+    name: "-J"
+    time: "-t"
+    queue: "-p"
+  del: "scancel"
+  interactive: "srun"
+  info: "sinfo"
+  comment: "#SBATCH"
+  hist: "sacct -u yourUsername"
+
+episode_order:
+  - 11-hpc-intro
+  - 12-cluster
+  - 13-scheduler
+  - 14-modules
+  - 15-transferring-files
+  - 16-parallel
+  - 17-resources
+  - 18-responsibility
