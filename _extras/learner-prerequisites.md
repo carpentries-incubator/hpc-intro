@@ -13,15 +13,15 @@ bring all prerequisites to the course.
 
 ## Pre-Workshop Survey
 
-For a motivation of this survey type, see [Greg Wilsons Template in Teaching 
+For a motivation of this survey type, see Greg Wilson's template in [Teaching 
 Tech Together](https://teachtogether.tech/en/index.html#s:checklists-preassess).
 
 ### Shell
 
 #### Moving Things
 
-You are provided with a directory of `300` files that end with `.log`, `.data` 
-and `.err` at equal proportions. You like to rename all `.log` files to `.out` 
+You are provided with a directory of 300 files that end with `.log`, `.data` 
+and `.err` at equal proportions. You want to rename all `.log` files to `.out` 
 files. How do you do this?
 
 1. I can do that. Give me a shell and I'll show you.
@@ -49,8 +49,10 @@ A collaborator provides you an implementation of a state-of-the-art simulation
 that you need to compare your own predictions to. He tells you: "You can use it
 on the command line right away. Unpack the file I sent you and use the `sim`
 executable in the `bin/` folder from it. The rest is explained in the output of
-the `--help` flag." You want to execute `sim` on your cluster. How do you set
-up your shell for this?
+the `--help` flag." 
+
+You want to use this new program on your cluster, starting with reading the
+"help" message from the `sim` executable.
 
 1. I can do that. Give me a shell and I'll show you.
 2. I'd need to look up the syntax in a cheatsheet or some old code and I'm good
@@ -61,10 +63,11 @@ up your shell for this?
 
 #### Automating All The Things
 
-You observe yourself copy and pasting the same sequence of 5 commands on the
-command line for more than three times during a day. You alert yourself that
-you should write a script for this now. The script requires two input
-arguments, i.e. two single file locations, to perform its duty.
+You notice that you've been copying & pasting the same sequence of 5 shell
+commands more than a few times during the day. It occurs to you that capturing
+the workflow in a shell script would simplify the task and make it more
+repeatable. The script would take two arguments, i.e. the file to read data
+from and a new filename to write the processed results into.
 
 1. I can do that. Give me a shell and I'll show you.
 2. I'd need to look up the syntax in a cheatsheet or some old code and I'm good
