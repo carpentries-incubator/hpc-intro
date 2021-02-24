@@ -317,12 +317,7 @@ memory to prevent the job from running out of memory:
 {: .bash}
 
 ```
-#!/bin/bash
-{{ site.sched.comment }} {{ site.sched.flag.name }} serial-pi
-{{ site.sched.comment }} {{ site.sched.flag.queue }} {{ site.sched.queue.testing }}
-{% include {{ site.snippets }}/parallel/one-task-with-memory.snip %}
-module load python3
-python pi.py 100000000
+{% include {{ site.snippets }}/parallel/one-task-with-memory-jobscript.snip %}
 ```
 {: .output}
 
@@ -373,14 +368,22 @@ this is a common tool on HPC systems.
 > An MPI instance typically has its own copy of all the local variables.
 {: .callout}
 
-MPI jobs cannot generally be run as stand-alone executables. Instead, they should be
-started with the `mpiexec` command, which ensures that the appropriate run-time support for
+While MPI jobs can generally be run as stand-alone executables, in order for them to
+run in parallel they must use an MPI *run-time system*, which is a specific
+implementation of the MPI *standard*. To do this, they should be
+started via a command such as `mpiexec` (or `mpirun`, or `srun`, etc. depending on the
+MPI run-time you need to use), which ensures that the appropriate run-time support for
 parallelism is included.
 
-On its own, `mpiexec` can take many arguments specifying how many machines will participate
-in the process. In the context of our queuing system, however, we do not need to specify
-this information, the `mpiexec` command will obtain it from the queuing system, by
-examining the environment variables set when the job is launched.
+> ## MPI run-time arguments
+>
+> On their own, commands such as `mpiexec` can take many arguments specifying how many
+> machines will participate in the execution, and you might need these if you would
+> like to run an MPI program on your laptop (for example). In the context of a queuing
+> system, however, it is frequently the case that we do not need to specify
+> this information as the MPI run-time will have been configured to obtain it from the
+> queuing system, by examining the environment variables set when the job is launched.
+{: .callout}
 
 > ## What changes are needed for an MPI version of the &#960; calculator?
 >
@@ -507,6 +510,8 @@ if rank == 0:
    print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
 ```
 {: .language-python}
+A fully commented version of the final MPI parallel python code is available
+[here](/files/pi-mpi.py).
 
 Our purpose here is to exercise the parallel workflow of the cluster, not to optimize the
 program to minimize its memory footprint. Rather than push our local machines to the
@@ -522,12 +527,7 @@ Create a submission file, requesting more than one task on a single node:
 {: .language-bash}
 
 ```
-#!/bin/bash
-{{ site.sched.comment }} {{ site.sched.flag.name }} parallel-pi
-{{ site.sched.comment }} {{ site.sched.flag.queue }} {{ site.sched.queue.testing }}
-{% include {{ site.snippets }}/parallel/four-tasks.snip %}
-module load python3
-mpiexec python pi.py 100000000
+{% include {{ site.snippets }}/parallel/four-tasks-jobscript.snip %}
 ```
 {: .output}
 
@@ -569,7 +569,7 @@ required for communication compared to all processes operating on a
 single CPU.
 
 [Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl's_law) is one way of
-predicting improvements in execution time for a fixed parallel workload.
+predicting improvements in execution time for a **fixed** parallel workload.
 If a workload needs 20 hours to complete on a single core,
 and one hour of that time is spent on tasks that cannot be parallelized,
 only the remaining 19 hours could be parallelized.
@@ -581,7 +581,7 @@ In practice, it's common to evaluate the parallelism of an MPI program by
 * recording the execution time on each run,
 * comparing each execution time to the time when using a single CPU.
 
-The speedup factor *S* is calcuated as the single-CPU execution time divided
+The speedup factor *S* is calculated as the single-CPU execution time divided
 by the multi-CPU execution time.
 For a laptop with 8 cores, the graph of speedup factor versus number of cores
 used shows relatively consistent improvement when using 2, 4, or 8 cores, but
@@ -592,11 +592,12 @@ using additional cores shows a diminishing return.
 
 For a set of HPC nodes containing 28 cores each, the graph of speedup factor
 versus number of cores shows consistent improvements up through three nodes
-and 84 cores, but **worse** performance when adding an a fourth node with an
+and 84 cores, but **worse** performance when adding a fourth node with an
 additional 28 cores.
 This is due to the amount of communication and coordination required among
 the MPI processes requiring more time than is gained by reducing the amount
-of work each MPI process has to complete.
+of work each MPI process has to complete. This communication overhead is not included
+in Amdahl's Law.
 
 {% include figure.html url="" max-width="50%" file="/fig/hpc-mpi_Speedup_factor.png"
    alt="MPI speedup factors on an 8-core laptop" caption="" %}
