@@ -57,6 +57,7 @@ jobs:
           - NIST_CTCMS_slurm
           - Norway_SIGMA2_SAGA_slurm
           - UCL_Myriad_sge
+          - Magic_Castle_EESSI_slurm
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-ruby@v1
