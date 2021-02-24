@@ -378,9 +378,9 @@ parallelism is included.
 > ## MPI run-time arguments
 >
 > On their own, commands such as `mpiexec` can take many arguments specifying how many
-> machines will participate in the execution, and you might need these if you would to
-> run an MPI program on your laptop (for example). In the context of a queuing system,
-> however, it is frequently the case that we do not need to specify
+> machines will participate in the execution, and you might need these if you would
+> like to run an MPI program on your laptop (for example). In the context of a queuing
+> system, however, it is frequently the case that we do not need to specify
 > this information as the MPI run-time will have been configured to obtain it from the
 > queuing system, by examining the environment variables set when the job is launched.
 {: .callout}
