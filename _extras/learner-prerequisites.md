@@ -5,23 +5,24 @@ title: Learner Prerequisites
 This page collects questions that learners can answer in order to judge if they
 bring all prerequisites to the course.
 
-## Required Pre-Knowledge
-
-> **Basic Shell** – Navigating directories, Copy/Moving, writing shell scripts, 
-> using the environment, using wildcards
+> ## Required Pre-Knowledge
+>
+> **Basic Shell** &mdash; Navigating directories, Copy/Moving, writing shell
+> scripts, using the environment, using wildcards.
 {: .prereq}
 
 ## Pre-Workshop Survey
 
-For a motivation of this survey type, see Greg Wilson's template in [Teaching 
-Tech Together](https://teachtogether.tech/en/index.html#s:checklists-preassess).
+For a motivation of this survey type, see Greg Wilson's template in [Teaching
+Tech Together](
+https://teachtogether.tech/en/index.html#s:checklists-preassess).
 
 ### Shell
 
 #### Moving Things
 
-You are provided with a directory of 300 files that end with `.log`, `.data` 
-and `.err` at equal proportions. You want to rename all `.log` files to `.out` 
+You are provided with a directory of 300 files that end with `.log`, `.data`
+and `.err` at equal proportions. You want to rename all `.log` files to `.out`
 files. How do you do this?
 
 1. I can do that. Give me a shell and I'll show you.
