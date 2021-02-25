@@ -18,6 +18,9 @@ __version__ = '0.3'
 # Where to look for source Markdown files.
 SOURCE_DIRS = ['', '_episodes', '_extras']
 
+# Where to look for snippet files (which should be Markdown syntax)
+SNIPPET_DIR = os.path.join('_includes', 'snippets_library')
+
 # Where to look for source Rmd files.
 SOURCE_RMD_DIRS = ['_episodes_rmd']
 
@@ -270,6 +273,13 @@ def read_all_markdown(source_dir, parser):
             data = read_markdown(parser, filename)
             if data:
                 result[filename] = data
+
+    # Also read our snippets
+    snippet_pattern = os.path.join(SNIPPET_DIR, '**/*.snip')
+    for filename in glob.glob(snippet_pattern, recursive=True):
+        data = read_markdown(parser, filename)
+        if data:
+            result[filename] = data
     return result
 
 
@@ -558,7 +568,8 @@ CHECKERS = [
     (re.compile(r'index\.md'), CheckIndex),
     (re.compile(r'reference\.md'), CheckReference),
     (re.compile(r'_episodes/.*\.md'), CheckEpisode),
-    (re.compile(r'.*\.md'), CheckGeneric)
+    (re.compile(r'.*\.md'), CheckGeneric),
+    (re.compile(r'.*\.snip'), CheckNonJekyll)
 ]
 
 
