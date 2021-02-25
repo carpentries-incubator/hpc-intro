@@ -607,6 +607,7 @@ In practice, MPI speedup factors are influenced by:
 * the communication network between compute nodes,
 * the MPI library implementations, and
 * the details of the MPI program itself.
+
 In an HPC environment, we try to reduce the execution time for all types of
 jobs, and MPI is an extremely common way to combine dozens, hundreds, or
 thousands of CPUs into solving a single problem.
