@@ -476,6 +476,8 @@ class CheckBase:
 
 class CheckNonJekyll(CheckBase):
     """Check a file that isn't translated by Jekyll."""
+    def __init__(self, args, filename, metadata, metadata_len, text, lines, doc):
+        super().__init__(args, filename, metadata, metadata_len, text, lines, doc)
 
     def check_metadata(self):
         self.reporter.check(self.metadata is None,
