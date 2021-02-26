@@ -104,7 +104,7 @@ whichever you prefer. Unsure? `nano` is a pretty good, basic choice.
 {: .language-bash}
 
 ```
-#!/bin/bash
+{{ site.remote.bash_shebang }}
 
 echo -n "This script is running on "
 hostname
@@ -187,7 +187,7 @@ resources we must customize our job script.
 
 Comments in UNIX shell scripts (denoted by `#`) are typically ignored, but there are exceptions.
 For instance the special `#!` comment at the beginning of scripts specifies what program should be
-used to run it (you'll typically see `#!/bin/bash`). Schedulers like {{ site.sched.name }} also
+used to run it (you'll typically see `{{ site.local.bash_shebang }}`). Schedulers like {{ site.sched.name }} also
 have a special comment used to denote special scheduler-specific options. Though these comments
 differ from scheduler to scheduler, {{ site.sched.name }}'s special comment is 
 `{{ site.sched.comment }}`. Anything following the `{{ site.sched.comment }}` comment is interpreted
@@ -203,7 +203,7 @@ script:
 {: .language-bash}
 
 ```
-#!/bin/bash
+{{ site.remote.bash_shebang }}
 {{ site.sched.comment }} {{ site.sched.flag.name }} new_name
 
 echo -n "This script is running on "
@@ -241,7 +241,7 @@ Fantastic, we've successfully changed the name of our job!
 > > ```
 > > {{ site.remote.prompt }} man {{ site.sched.submit.name }}
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > {: .solution}
 {: .challenge}
 
@@ -278,7 +278,7 @@ about how to make sure that you're using resources effectively in a later episod
 > > {: .language-bash}
 > >
 > > ```
-> > #!/bin/bash
+> > {{ site.remote.bash_shebang }}
 > > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:01:15
 > >
 > > echo -n "This script is running on "
@@ -309,7 +309,7 @@ minutes.
 {: .language-bash}
 
 ```
-#!/bin/bash
+{{ site.remote.bash_shebang }}
 {{ site.sched.comment }} {{ site.sched.flag.name }} long_job
 {{ site.sched.comment }} {{ site.sched.flag.time }} 00:00:30
 

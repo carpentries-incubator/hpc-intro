@@ -97,7 +97,7 @@ If we run the Python script locally with a command-line parameter, as in
 {{ site.local.prompt }} python pi-serial.py 1024
 3.10546875
 ```
-{: .bash}
+{: .language-bash}
 
 ## Measuring Performance of the Serial Solution
 
@@ -314,7 +314,7 @@ memory to prevent the job from running out of memory:
 {{ site.remote.prompt }} nano serial-pi.sh
 {{ site.remote.prompt }} cat serial-pi.sh
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 {% include {{ site.snippets }}/parallel/one-task-with-memory-jobscript.snip %}
@@ -327,7 +327,7 @@ rather than the command line.
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} serial-pi.sh
 ```
-{: .bash}
+{: .language-bash}
 
 As before, use the status commands to check when your job runs. Use `ls` to locate the
 output file, and examine it. Is it what you expected?

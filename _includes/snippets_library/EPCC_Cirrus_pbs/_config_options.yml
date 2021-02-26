@@ -21,6 +21,7 @@ snippets: "/snippets_library/EPCC_Cirrus_pbs"
 
 local:
   prompt: "[user@laptop ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
 
 remote:
   name: "Cirrus"
@@ -31,6 +32,7 @@ remote:
   homedir: "/lustre/home/tc001/lola"
   user: "yourUsername"
   prompt: "[yourUsername@cirrus-login0 ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
 
 sched:
   name: "PBS Pro"

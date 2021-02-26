@@ -21,6 +21,7 @@ snippets: "/snippets_library/NIST_CTCMS_slurm"
 
 local:
   prompt: "[user@laptop ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
 
 remote:
   name: "ruth"
@@ -31,6 +32,7 @@ remote:
   homedir: "/users"
   user: "yourUsername"
   prompt: "501 ruth%"
+  bash_shebang: "#!/usr/bin/env bash"
 
 sched:
   name: "SLURM"
