@@ -68,7 +68,8 @@ request on the lesson repository to help others avoid it.
 `scp` is useful, but what if we don't know the exact location of what we want
 to transfer? Or perhaps we're simply not sure which files we want to transfer
 yet. `sftp` is an interactive way of downloading and uploading files. Let's
-connect to a cluster, using `sftp` &mdash; you'll notice it works the same way as SSH:
+connect to a cluster, using `sftp` &mdash; you'll notice it works the same way
+as SSH:
 
 ```
 {{ site.local.prompt }} sftp yourUsername@remote.computer.address

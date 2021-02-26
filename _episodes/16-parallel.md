@@ -12,9 +12,9 @@ keypoints:
 - "The queuing system facilitates executing parallel tasks."
 ---
 
-We now have the tools we need to run a multi-processor job. This is a very important
-aspect of HPC systems, as parallelism is one of the primary tools we have to improve the
-performance of computational tasks.
+We now have the tools we need to run a multi-processor job. This is a very
+important aspect of HPC systems, as parallelism is one of the primary tools we
+have to improve the performance of computational tasks.
 
 Our example implements a stochastic algorithm for estimating the value of
 &#960;, the ratio of the circumference to the diameter of a circle.
@@ -34,8 +34,8 @@ in parallel.
 ## A Serial Solution to the Problem
 
 We start from a Python script using concepts taught in Software Carpentry's
-[Programming with Python](https://swcarpentry.github.io/python-novice-inflammation/)
-workshops.
+[Programming with Python](
+https://swcarpentry.github.io/python-novice-inflammation/) workshops.
 We want to allow the user to specify how many random points should be used
 to calculate &#960; through a command-line parameter.
 This script will only use a single CPU for its entire run, so it's classified
@@ -53,7 +53,8 @@ import sys
 
 We define a Python function `inside_circle` that accepts a single parameter
 for the number of random points used to calculate &#960;.
-See [Programming with Python: Creating Functions](https://swcarpentry.github.io/python-novice-inflammation/08-func/index.html)
+See [Programming with Python: Creating Functions](
+https://swcarpentry.github.io/python-novice-inflammation/08-func/index.html)
 for a review of Python functions.
 It randomly samples points with both *x* and *y* on the half-open interval
 [0, 1).
@@ -74,7 +75,8 @@ def inside_circle(total_count):
 
 Next, we create a main function to call the `inside_circle` function and
 calculate &#960; from its returned result.
-See [Programming with Python: Command-Line Programs](https://swcarpentry.github.io/python-novice-inflammation/12-cmdline/index.html)
+See [Programming with Python: Command-Line Programs](
+https://swcarpentry.github.io/python-novice-inflammation/12-cmdline/index.html)
 for a review of `main` functions and parsing command-line parameters.
 
 ```
@@ -118,7 +120,8 @@ Since the largest variables in the script are `x`, `y`, and `radii`, each
 containing `n_samples` points, we'll modify the script to report their
 total memory required.
 Each point in `x`, `y`, or `radii` is stored as a NumPy `float64`, we can
-use NumPy's [`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html)
+use NumPy's [`dtype`](
+https://numpy.org/doc/stable/reference/generated/numpy.dtype.html)
 function to calculate the size of a `float64`.
 
 Replace the `print(my_pi)` line with the following:
@@ -164,8 +167,8 @@ if __name__ == '__main__':
 ```
 {: .language-python}
 
-Run the script again with a few different values for the number of samples, and
-see how the memory required changes:
+Run the script again with a few different values for the number of samples,
+and see how the memory required changes:
 
 ```
 {{ site.local.prompt }} python pi-serial.py 1000
@@ -228,7 +231,8 @@ elapsed_time = (end_time - start_time).total_seconds()
 And finally, modify the `print` statement with the following:
 
 ```
-print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
+print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required,
+                                                  elapsed_time))
 ```
 {: .language-python}
 
@@ -255,15 +259,16 @@ def main():
     elapsed_time = (end_time - start_time).total_seconds()
     size_of_float = np.dtype(np.float64).itemsize
     memory_required = 3 * n_samples * size_of_float / (1024**3)
-    print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
+    print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required,
+                                                      elapsed_time))
 
 if __name__ == '__main__':
     main()
 ```
 {: .language-python}
 
-Run the script again with a few different values for the number of samples, and
-see how the solution time changes:
+Run the script again with a few different values for the number of samples,
+and see how the solution time changes:
 
 ```
 {{ site.local.prompt }} python pi-serial.py 1000000
@@ -329,8 +334,8 @@ rather than the command line.
 ```
 {: .language-bash}
 
-As before, use the status commands to check when your job runs. Use `ls` to locate the
-output file, and examine it. Is it what you expected?
+As before, use the status commands to check when your job runs.
+Use `ls` to locate the output file, and examine it. Is it what you expected?
 
 * How good is the value for &#960;?
 * How much memory did it need?
@@ -355,41 +360,46 @@ calculate the solution.
 
 ## Running the Parallel Job
 
-We will run an example that uses the Message Passing Interface (MPI) for parallelism &mdash;
-this is a common tool on HPC systems.
+We will run an example that uses the Message Passing Interface (MPI) for
+parallelism &mdash; this is a common tool on HPC systems.
 
 > ## What is MPI?
 > 
-> The Message Passing Interface is a set of tools which allow multiple parallel jobs to
-> communicate with each other. Typically, a single executable is run multiple times,
-> possibly on different machines, and the MPI tools are used to inform each instance of
-> the executable about how many instances there are, which instance it is. MPI also
-> provides tools to allow communication and coordination between instances.
+> The Message Passing Interface is a set of tools which allow multiple parallel
+> jobs to communicate with each other.
+> Typically, a single executable is run multiple times, possibly on different
+> machines, and the MPI tools are used to inform each instance of the
+> executable about how many instances there are, which instance it is.
+> MPI also provides tools to allow communication and coordination between
+> instances.
 > An MPI instance typically has its own copy of all the local variables.
 {: .callout}
 
-While MPI jobs can generally be run as stand-alone executables, in order for them to
-run in parallel they must use an MPI *run-time system*, which is a specific
-implementation of the MPI *standard*. To do this, they should be
-started via a command such as `mpiexec` (or `mpirun`, or `srun`, etc. depending on the
-MPI run-time you need to use), which ensures that the appropriate run-time support for
-parallelism is included.
+While MPI jobs can generally be run as stand-alone executables, in order for
+them to run in parallel they must use an MPI *run-time system*, which is a
+specific implementation of the MPI *standard*.
+To do this, they should be started via a command such as `mpiexec` (or
+`mpirun`, or `srun`, etc. depending on the MPI run-time you need to use),
+which will ensure that the appropriate run-time support for parallelism is
+included.
 
 > ## MPI run-time arguments
 >
-> On their own, commands such as `mpiexec` can take many arguments specifying how many
-> machines will participate in the execution, and you might need these if you would
-> like to run an MPI program on your laptop (for example). In the context of a queuing
-> system, however, it is frequently the case that we do not need to specify
-> this information as the MPI run-time will have been configured to obtain it from the
-> queuing system, by examining the environment variables set when the job is launched.
+> On their own, commands such as `mpiexec` can take many arguments specifying
+> how many machines will participate in the execution,
+> and you might need these if you would like to run an MPI program on your
+> laptop (for example).
+> In the context of a queuing system, however, it is frequently the case that
+> we do not need to specify this information as the MPI run-time will have been
+> configured to obtain it from the queuing system,
+> by examining the environment variables set when the job is launched.
 {: .callout}
 
 > ## What changes are needed for an MPI version of the &#960; calculator?
 >
-> First, we need to import the `MPI` object from the Python module `mpi4py`
-> by adding an `from mpi4py import MPI` line immediately below the
-> `import datetime` line.
+> First, we need to import the `MPI` object from the Python module `mpi4py` by
+> adding an `from mpi4py import MPI` line immediately below the `import
+> datetime` line.
 >
 > Second, we need to modify the "main" function to perform the overhead and
 > accounting work required to:
@@ -409,8 +419,8 @@ parallelism is included.
 > * Scatter: A collective operation in which an array of data on one MPI rank
 >   is divided up, with separate portions being sent out to the partner ranks.
 >   Each partner rank receives data from the matching index of the host array.
-> * Gather: The inverse of scatter. One rank populates a local array, with the
->   array element at each index assigned the value provided by the
+> * Gather: The inverse of scatter. One rank populates a local array,
+>   with the array element at each index assigned the value provided by the
 >   corresponding partner rank &mdash; including the host's own value.
 > * Conditional Output: since every rank is running the *same code*, the
 >   partitioning, the final calculations, and the `print` statement are
@@ -442,8 +452,8 @@ else:
 ```
 {: .language-python}
 
-to ensure that only the rank 0 process measures times and coordinates
-the work to be distributed to all the ranks, and that the other ranks
+This ensures that only the rank 0 process measures times and coordinates
+the work to be distributed to all the ranks, while the other ranks
 get placeholder values for the `partitions` and `counts` variables.
 
 Immediately below these lines, we'll add the following three lines:
@@ -469,34 +479,38 @@ Illustrations of these steps are shown below.
 Setup the MPI environment and initialize local variables &mdash; including the
 vector containing the number of points to generate on each parallel processor:
 
-{% include figure.html url="" max-width="50%" file="/fig/initialize.png" 
-   alt="MPI initialize" caption="" %}
+{% include figure.html url="" caption="" max-width="50%"
+   file="/fig/initialize.png" 
+   alt="MPI initialize" %}
 
 Distribute the number of points from the originating vector to all the parallel
 processors:
 
-{% include figure.html url="" max-width="50%" file="/fig/scatter.png" 
-   alt="MPI scatter" caption="" %}
+{% include figure.html url="" caption="" max-width="50%" 
+   file="/fig/scatter.png"
+   alt="MPI scatter" %}
 
 Perform the computation in parallel:
 
-{% include figure.html url="" max-width="50%" file="/fig/compute.png"
-   alt="MPI compute" caption="" %}
+{% include figure.html url="" caption="" max-width="50%"
+   file="/fig/compute.png"
+   alt="MPI compute" %}
 
 Retrieve counts from all the parallel processes:
 
-{% include figure.html url="" max-width="50%" file="/fig/gather.png"
-   alt="MPI gather" caption="" %}
+{% include figure.html url="" caption="" max-width="50%"
+   file="/fig/gather.png"
+   alt="MPI gather" %}
 
 Print out the report:
 
-{% include figure.html url="" max-width="50%" file="/fig/finalize.png"
-   alt="MPI finalize" caption="" %}
+{% include figure.html url="" caption="" max-width="50%"
+   file="/fig/finalize.png"
+   alt="MPI finalize" %}
 
 ---
 
-Finally, we'll ensure the `my_pi` through `print` lines only run on rank
-0.
+Finally, we'll ensure the `my_pi` through `print` lines only run on rank 0.
 Otherwise, every parallel processor will print its local value,
 and the report will become hopelessly garbled:
 
@@ -507,16 +521,18 @@ if rank == 0:
    elapsed_time = (end_time - start_time).total_seconds()
    size_of_float = np.dtype(np.float64).itemsize
    memory_required = 3 * sum(partitions) * size_of_float / (1024**3)
-   print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required, elapsed_time))
+   print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required,
+                                                            elapsed_time))
 ```
 {: .language-python}
+
 A fully commented version of the final MPI parallel python code is available
 [here](/files/pi-mpi.py).
 
-Our purpose here is to exercise the parallel workflow of the cluster, not to optimize the
-program to minimize its memory footprint. Rather than push our local machines to the
-breaking point (or, worse, the login node), let's give it to a cluster node with more
-resources. 
+Our purpose here is to exercise the parallel workflow of the cluster, not to
+optimize the program to minimize its memory footprint.
+Rather than push our local machines to the breaking point (or, worse, the login
+node), let's give it to a cluster node with more resources.
 
 Create a submission file, requesting more than one task on a single node:
 
@@ -539,8 +555,9 @@ rather than the command line.
 ```
 {: .language-bash}
 
-As before, use the status commands to check when your job runs. Use `ls` to locate the
-output file, and examine it. Is it what you expected?
+As before, use the status commands to check when your job runs.
+Use `ls` to locate the output file, and examine it.
+Is it what you expected?
 
 * How good is the value for &#960;?
 * How much memory did it need?
@@ -587,8 +604,9 @@ For a laptop with 8 cores, the graph of speedup factor versus number of cores
 used shows relatively consistent improvement when using 2, 4, or 8 cores, but
 using additional cores shows a diminishing return.
 
-{% include figure.html url="" max-width="50%" file="/fig/laptop-mpi_Speedup_factor.png"
-   alt="MPI speedup factors on an 8-core laptop" caption="" %}
+{% include figure.html url="" caption="" max-width="50%"
+   file="/fig/laptop-mpi_Speedup_factor.png"
+   alt="MPI speedup factors on an 8-core laptop" %}
 
 For a set of HPC nodes containing 28 cores each, the graph of speedup factor
 versus number of cores shows consistent improvements up through three nodes
@@ -596,11 +614,12 @@ and 84 cores, but **worse** performance when adding a fourth node with an
 additional 28 cores.
 This is due to the amount of communication and coordination required among
 the MPI processes requiring more time than is gained by reducing the amount
-of work each MPI process has to complete. This communication overhead is not included
-in Amdahl's Law.
+of work each MPI process has to complete. This communication overhead is not
+included in Amdahl's Law.
 
-{% include figure.html url="" max-width="50%" file="/fig/hpc-mpi_Speedup_factor.png"
-   alt="MPI speedup factors on an 8-core laptop" caption="" %}
+{% include figure.html url="" max-width="50%" caption=""
+   file="/fig/hpc-mpi_Speedup_factor.png"
+   alt="MPI speedup factors on an 8-core laptop" %}
 
 In practice, MPI speedup factors are influenced by:
 * CPU design,
@@ -611,3 +630,5 @@ In practice, MPI speedup factors are influenced by:
 In an HPC environment, we try to reduce the execution time for all types of
 jobs, and MPI is an extremely common way to combine dozens, hundreds, or
 thousands of CPUs into solving a single problem.
+
+{% include links.md %}
