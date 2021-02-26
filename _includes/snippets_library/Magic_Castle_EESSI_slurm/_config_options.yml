@@ -35,6 +35,7 @@ snippets: "/snippets_library/Magic_Castle_EESSI_slurm"
 
 local:
   prompt: "[user@laptop ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
 
 remote:
   name: "custom.learnhpc.eu"
@@ -46,6 +47,7 @@ remote:
   user: "yourUsername"
   module_python3: "Python"
   prompt: "[yourUsername@login1 ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
 
 sched:
   name: "SLURM"

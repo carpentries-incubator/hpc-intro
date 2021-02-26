@@ -21,6 +21,7 @@ snippets: "/snippets_library/ComputeCanada_Graham_slurm"
 
 local:
   prompt: "[user@laptop ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
 
 remote:
   name: "Graham"
@@ -31,6 +32,7 @@ remote:
   homedir: "/home"
   user: "yourUsername"
   prompt: "[yourUsername@gra-login1 ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
 
 sched:
   name: "SLURM"

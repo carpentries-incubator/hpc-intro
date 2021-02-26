@@ -12,6 +12,7 @@ remote:
   homedir: "/home"
   user: "yourUsername"
   prompt: "[yourUsername@login12 ~]$ "
+  bash_shebang: "#!/bin/bash -l"
 
 sched:
   name: "SGE"
@@ -32,6 +33,7 @@ sched:
   info: "qhost"
   comment: "#$ "
   hist: "jobhist"
+  bash_shebang: "#!/bin/bash -l"
 
 episode_order:
   - 11-hpc-intro
