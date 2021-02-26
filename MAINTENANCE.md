@@ -41,10 +41,10 @@ The main Carpentries Slack channel is reachable at
 trigger in invitation from [here][slack-invite].
 
 You can go directly to the HPC Carpentry sub-channel at
-[#hpc-carpentry][hpc-slack]. These are the things to bookmark — once
-you go there, the Slack engine redirects you to particular views, so
-cutting/pasting URLs out of the browser's location bar is likely to be
-disappointing.
+[#hpc-carpentry][hpc-slack]. These are the things to bookmark &mdash;
+once you go there, the Slack engine redirects you to particular views,
+so copying and pasting URLs out of the browser's location bar is
+likely to be disappointing.
 
 Members of existing swcarpentry Slack channels can find the channel by
 typing "hpc-carpentry" into the Slack search box.
