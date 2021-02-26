@@ -249,9 +249,9 @@ Fantastic, we've successfully changed the name of our job!
 > ## Setting up email notifications
 > 
 > Jobs on an HPC system might run for days or even weeks. We probably have
-> better things to do than constantly check on the status of our job with `{{
-> site.sched.status }}`. Looking at the manual page for `{{
-> site.sched.submit.name }}`, can you set up our test job to send you an email
+> better things to do than constantly check on the status of our job with 
+> `{{ site.sched.status }}`. Looking at the manual page for 
+> `{{ site.sched.submit.name }}`, can you set up our test job to send you an email
 > when it finishes?
 >
 > > ## Hint
