@@ -67,7 +67,7 @@ safely use it for your non-routine processing task. If something goes wrong
 `kill` command along with the *PID* to terminate the process.
 
 > ## Login Node Etiquette
-> 
+>
 > Which of these commands would be a routine task to run on the login node?
 >
 > 1. `python physics_sim.py`
@@ -75,15 +75,15 @@ safely use it for your non-routine processing task. If something goes wrong
 > 3. `create_directories.sh`
 > 4. `molecular_dynamics_2`
 > 5. `tar -xzf R-3.3.0.tar.gz`
-> 
+>
 > > ## Solution
 > >
 > > Building software, creating directories, and unpacking software are common
-> > and acceptable > tasks for the login node: options #2 (`make`), #3 
+> > and acceptable > tasks for the login node: options #2 (`make`), #3
 > > (`mkdir`), and #5 (`tar`) are probably OK. Note that script names do not
-> > always reflect their contents: before launching #3, please 
+> > always reflect their contents: before launching #3, please
 > > `less create_directories.sh` and make sure it's not a Trojan horse.
-> > 
+> >
 > > Running resource-intensive applications is frowned upon. Unless you are
 > > sure it will not affect other users, do not run jobs like #1 (`python`)
 > > or #4 (custom MD code). If you're unsure, ask your friendly sysadmin for
@@ -200,8 +200,8 @@ because significantly fewer metadata operations are required. Archive files can
 be created using tools like `tar` and `zip`. We have already met `tar` when we
 talked about data transfer earlier.
 
-{% include figure.html url="" max-width="90%" 
-   file="/fig/responsibility-bandwidth.svg" 
+{% include figure.html url="" max-width="90%"
+   file="/fig/responsibility-bandwidth.svg"
    alt="Schematic of network bandwidth"
    caption="<i>Schematic diagram of bandwidth and latency for disk and network
    I/O. Each of the components on the figure is connected by a black line of

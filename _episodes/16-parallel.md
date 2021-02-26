@@ -27,9 +27,9 @@ fraction of points that fall in the circle.
 Because each sample is independent, this algorithm is easily implemented
 in parallel.
 
-{% include figure.html url="" max-width="40%" file="/fig/pi.png"
- alt="Algorithm for computing pi through random sampling" caption="" %}
-
+{% include figure.html url="" caption="" max-width="40%"
+   file="/fig/pi.png"
+   alt="Algorithm for computing pi through random sampling" %}
 
 ## A Serial Solution to the Problem
 
@@ -42,7 +42,7 @@ This script will only use a single CPU for its entire run, so it's classified
 as a serial process.
 
 Let's write a Python program, `pi.py`, to estimate &#960; for us.
-Start by importing the `numpy` module for calculating the results, 
+Start by importing the `numpy` module for calculating the results,
 and the `sys` module to process command-line parameters:
 
 ```
@@ -194,8 +194,8 @@ Most of the calculations required to estimate &#960; are in the
 `inside_circle` function:
 
 1. Generating `n_samples` random values for `x` and `y`.
-2. Calculating `n_samples` values of `radii` from `x` and `y`.
-3. Counting how many values in `radii` are under 1.0.
+1. Calculating `n_samples` values of `radii` from `x` and `y`.
+1. Counting how many values in `radii` are under 1.0.
 
 There's also one multiplication operation and one division operation required
 to convert the `counts` value to the final estimate of &#960; in the main
@@ -292,8 +292,8 @@ Now that we've developed our initial script to estimate &#960;, we can see
 that as we increase the number of samples:
 
 1. The estimate of &#960; tends to become more accurate.
-2. The amount of memory required scales approximately linearly.
-3. The amount of time to calculate scales approximately linearly.
+1. The amount of memory required scales approximately linearly.
+1. The amount of time to calculate scales approximately linearly.
 
 In general, achieving a better estimate of &#960; requires a greater number of
 points.
@@ -321,10 +321,7 @@ memory to prevent the job from running out of memory:
 ```
 {: .language-bash}
 
-```
 {% include {{ site.snippets }}/parallel/one-task-with-memory-jobscript.snip %}
-```
-{: .output}
 
 Then submit your job. We will use the batch file to set the options,
 rather than the command line.
@@ -364,7 +361,7 @@ We will run an example that uses the Message Passing Interface (MPI) for
 parallelism &mdash; this is a common tool on HPC systems.
 
 > ## What is MPI?
-> 
+>
 > The Message Passing Interface is a set of tools which allow multiple parallel
 > jobs to communicate with each other.
 > Typically, a single executable is run multiple times, possibly on different
@@ -403,7 +400,7 @@ included.
 >
 > Second, we need to modify the "main" function to perform the overhead and
 > accounting work required to:
-> 
+>
 > * subdivide the total number of points to be sampled,
 > * *partition* the total workload among the various parallel processors
 >   available,
@@ -456,7 +453,15 @@ This ensures that only the rank 0 process measures times and coordinates
 the work to be distributed to all the ranks, while the other ranks
 get placeholder values for the `partitions` and `counts` variables.
 
-Immediately below these lines, we'll add the following three lines:
+Immediately below these lines, let's
+
+* distribute the work among the ranks with MPI `scatter`,
+* call the `inside_circle` function so each rank can perform its share
+  of the work,
+* collect each rank's results into a `counts` variable on rank 0 using MPI
+  `gather`.
+
+by adding the following three lines:
 
 ```
 partition_item = comm.scatter(partitions, root=0)
@@ -464,13 +469,6 @@ count_item = inside_circle(partition_item)
 counts = comm.gather(count_item, root=0)
 ```
 {: .language-python}
-
-to:
-* distribute the work among the ranks with MPI `scatter`,
-* call the `inside_circle` function so each rank can perform its share
-  of the work,
-* collect each rank's results into a `counts` variable on rank 0 using MPI
-  `gather`.
 
 Illustrations of these steps are shown below.
 
@@ -480,13 +478,13 @@ Setup the MPI environment and initialize local variables &mdash; including the
 vector containing the number of points to generate on each parallel processor:
 
 {% include figure.html url="" caption="" max-width="50%"
-   file="/fig/initialize.png" 
+   file="/fig/initialize.png"
    alt="MPI initialize" %}
 
 Distribute the number of points from the originating vector to all the parallel
 processors:
 
-{% include figure.html url="" caption="" max-width="50%" 
+{% include figure.html url="" caption="" max-width="50%"
    file="/fig/scatter.png"
    alt="MPI scatter" %}
 
@@ -594,6 +592,7 @@ Even if an infinite number of cores were used for the parallel parts of
 the workload, the total run time cannot be less than one hour.
 
 In practice, it's common to evaluate the parallelism of an MPI program by
+
 * running the program across a range of CPU counts,
 * recording the execution time on each run,
 * comparing each execution time to the time when using a single CPU.
@@ -617,11 +616,12 @@ the MPI processes requiring more time than is gained by reducing the amount
 of work each MPI process has to complete. This communication overhead is not
 included in Amdahl's Law.
 
-{% include figure.html url="" max-width="50%" caption=""
+{% include figure.html url="" caption="" max-width="50%"
    file="/fig/hpc-mpi_Speedup_factor.png"
    alt="MPI speedup factors on an 8-core laptop" %}
 
 In practice, MPI speedup factors are influenced by:
+
 * CPU design,
 * the communication network between compute nodes,
 * the MPI library implementations, and

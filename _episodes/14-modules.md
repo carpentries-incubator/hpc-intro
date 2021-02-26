@@ -185,13 +185,13 @@ Let's examine the output of `module avail` more closely.
 > >
 > > ```
 > > {{ site.remote.bash_shebang }}
-> > 
+> >
 > > module load {{ site.remote.module_python3 }}
-> > 
+> >
 > > python3 --version
 > > ```
 > > {: .output}
-> > 
+> >
 > > ```
 > > {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} python-module.sh
 > > ```

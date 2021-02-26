@@ -4,7 +4,7 @@ teaching: 10
 exercises: 30
 questions:
 - "How do we monitor our jobs?"
-- "How can I get my jobs scheduled more easily?" 
+- "How can I get my jobs scheduled more easily?"
 objectives:
 - "Understand how to look up job statistics and profile code."
 - "Understand job size implications."
@@ -128,7 +128,6 @@ install it for you. Don't be shy, they're here to help!
 {{ site.remote.prompt }} htop
 ```
 {: .language-bash}
-
 
 ### `ps`
 

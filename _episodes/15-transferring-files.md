@@ -126,7 +126,6 @@ provided.
 > copying with `-r` can take a long time to complete.
 {: .callout}
 
-
 ## What's in a `/`?
 
 When using `scp`, you may have noticed that a `:` *always* follows the remote
@@ -175,15 +174,15 @@ A trailing slash on the target directory is optional, and has no effect for
 > {{ site.local.prompt }} rsync -avzP path/to/local/dir {{ site.remote.user }}@{{ site.remote.login }}:directory/path/on/{{ site.remote.name }}/
 > ```
 > {: .language-bash}
-> 
+>
 > As written, this will place the local directory and its contents under the
 > specified directory on the remote system. If the trailing slash is omitted on
 > the destination, a new directory corresponding to the transferred directory
 > ('dir' in the example) will not be created, and the contents of the source
 > directory will be copied directly into the destination directory.
-> 
+>
 > The `a` (archive) option implies recursion.
-> 
+>
 > To download a file, we simply change the source and destination:
 >
 > ```
@@ -279,7 +278,7 @@ named "hpc-lesson-data," wrapped up all its contents in a single file with
 `tar`, then compressed that archive with `gzip` to save space. Let's check
 using `tar` with the `-t` flag, which prints the "**t**able of contents"
 without unpacking the file, specified by `-f <filename>`, on the remote
-computer. Note that you can concatenate the two flags, instead of writing 
+computer. Note that you can concatenate the two flags, instead of writing
 `-t -f` separately.
 
 ```
@@ -328,10 +327,10 @@ familiar. Let's see about that compression, using `du` for "**d**isk
 
 Now let's unpack the archive. We'll run `tar` with a few common flags:
 
-- `-x` to e**x**tract the archive
-- `-v` for **v**erbose output
-- `-z` for g**z**ip compression
-- `-f` for the file to be unpacked
+* `-x` to e**x**tract the archive
+* `-v` for **v**erbose output
+* `-z` for g**z**ip compression
+* `-f` for the file to be unpacked
 
 When it's done, check the directory size with `du` and compare.
 
@@ -348,7 +347,7 @@ When it's done, check the directory size with `du` and compare.
 > > {{ site.remote.prompt }} tar -xvzf hpc-lesson-data.tar.gz
 > > ```
 > > {: .language-bash}
-> > 
+> >
 > > ```
 > > hpc-intro-data/
 > > hpc-intro-data/north-pacific-gyre/
@@ -373,7 +372,7 @@ When it's done, check the directory size with `du` and compare.
 > > hpc-intro-data/north-pacific-gyre/NENE02040Z.txt
 > > ```
 > > {: .output}
-> > 
+> >
 > > Note that we did not type out `-x -v -z -f`, thanks to the flag
 > > concatenation, though the command works identically either way.
 > >
@@ -385,7 +384,7 @@ When it's done, check the directory size with `du` and compare.
 > {: .solution}
 >
 > > ## Was the data compressed?
-> > 
+> >
 > > Text files compress nicely: the "tarball" is one-quarter the total size of
 > > the raw data!
 > {: .discussion}
@@ -405,19 +404,19 @@ then provide a directory to compress:
 > When you transfer text files to from a Windows system to a Unix system (Mac,
 > Linux, BSD, Solaris, etc.) this can cause problems. Windows encodes its files
 > slightly different than Unix, and adds an extra character to every line.
-> 
+>
 > On a Unix system, every line in a file ends with a `\n` (newline). On
 > Windows, every line in a file ends with a `\r\n` (carriage return + newline).
 > This causes problems sometimes.
-> 
+>
 > Though most modern programming languages and software handles this correctly,
 > in some rare instances, you may run into an issue. The solution is to convert
 > a file from Windows to Unix encoding with the `dos2unix` command.
-> 
+>
 > You can identify if a file has Windows line endings with `cat -A filename`. A
 > file with Windows line endings will have `^M$` at the end of every line. A
 > file with Unix line endings will have `$` at the end of a line.
-> 
+>
 > To convert the file, just run `dos2unix filename`. (Conversely, to convert
 > back to Windows format, you can run `unix2dos filename`.)
 {: .callout}

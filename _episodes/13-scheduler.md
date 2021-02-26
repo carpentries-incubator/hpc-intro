@@ -38,18 +38,18 @@ why sometimes your job do not start instantly as in your laptop.
    alt="Compare a job scheduler to a waiter in a restaurant" %}
 
 > ## Job scheduling roleplay (optional)
-> 
+>
 > Your instructor will divide you into groups taking on different roles in the
 > cluster (users, compute nodes and the scheduler). Follow their instructions
 > as they lead you through this exercise. You will be emulating how a job
 > scheduling system works on the cluster.
-> 
+>
 > > ## Instructions
 > >
 > > To do this exercise, you will need about 50-100 pieces of paper or sticky
 > > notes.
 > >
-> > 1. Divide the room into groups, with specific roles. 
+> > 1. Divide the room into groups, with specific roles.
 > >    * Pick three or four people to be the "scheduler."
 > >    * Select one-third of the room be "users", given several slips of paper
 > >      (or post-it notes) and pens.
@@ -58,29 +58,29 @@ why sometimes your job do not start instantly as in your laptop.
 > >      there's space for them to stand) and the "schedulers" stand between
 > >      the users and "compute nodes" (who should remain at their seats).
 > >
-> > 2. Divide the pieces of paper / sticky notes among the "users" and have
-> >    them fill out all the pages with simple math problems and their name. 
+> > 1. Divide the pieces of paper / sticky notes among the "users" and have
+> >    them fill out all the pages with simple math problems and their name.
 > >    Tell everyone that these are the jobs that need to be done and
 > >    correspond to their computing research problems.
 > >
-> > 3. Point out that we now have jobs and we have "compute nodes" (the people
+> > 1. Point out that we now have jobs and we have "compute nodes" (the people
 > >    still sitting down) that can solve these problems. How are the jobs
 > >    going to get to the nodes? The answer is the scheduling program that
 > >    will take the jobs from the users and deliver them to open compute
 > >    nodes.
 > >
-> > 4. Have all the "compute nodes" raise their hands. Have the users "submit"
+> > 1. Have all the "compute nodes" raise their hands. Have the users "submit"
 > >    their jobs by handing them to the schedulers. Schedulers should then
 > >    deliver them to "open" (hands-raised) compute nodes and collect finished
 > >    problems and return them to the appropriate user.
 > >
-> > 5. Wait until most of the problems are done and then re-seat everyone.
+> > 1. Wait until most of the problems are done and then re-seat everyone.
 > >
 > > > ## Discussion
-> > > 
+> > >
 > > > A "node" might be unable to solve the assigned problem for a variety of
 > > > reasons.
-> > > 
+> > >
 > > > * Ran out of time.
 > > > * Ran out of memory.
 > > > * Ran out of storage space, or could not load an input file or dataset.
@@ -88,13 +88,13 @@ why sometimes your job do not start instantly as in your laptop.
 > > >   can't be loaded.
 > > > * Gets stuck on a hard part: the program has the wrong algorithm, or was
 > > >   never told to load the library containing the right algorithm.
-> > > * Was busy thinking about something else, and didn't get to the problem 
+> > > * Was busy thinking about something else, and didn't get to the problem
 > > >   yet.
 > > {: .discussion}
 > {: .challenge}
 {: .callout}
 
-The scheduler used in this lesson is {{ site.sched.name }}. Although 
+The scheduler used in this lesson is {{ site.sched.name }}. Although
 {{ site.sched.name }} is not used everywhere, running jobs is quite similar
 regardless of what software is being used. The exact syntax might change, but
 the concepts remain the same.
@@ -127,7 +127,7 @@ hostname
 {: .output}
 
 > ## Creating our test job
-> 
+>
 > Run the script. Does it execute on the cluster or just our login node?
 >
 > > ## Solution
@@ -140,7 +140,7 @@ hostname
 > > This script is running on {{ site.remote.host }}
 > > ```
 > > {: .output}
-> > 
+> >
 > > This job runs on the login node.
 > {: .solution}
 {: .challenge}
@@ -160,7 +160,7 @@ site.sched.submit.name }}` command.
 And that's all we need to do to submit a job. Our work is done &mdash; now the
 scheduler takes over and tries to run the job for us. While the job is waiting
 to run, it goes into a list of jobs called the *queue*. To check on our job's
-status, we check the queue using the command 
+status, we check the queue using the command
 `{{ site.sched.status }} {{ site.sched.flag.user }}`.
 
 ```
@@ -210,7 +210,7 @@ there are exceptions. For instance the special `#!` comment at the beginning of
 scripts specifies what program should be used to run it (you'll typically see
 `{{ site.local.bash_shebang }}`). Schedulers like {{ site.sched.name }} also
 have a special comment used to denote special scheduler-specific options.
-Though these comments differ from scheduler to scheduler, 
+Though these comments differ from scheduler to scheduler,
 {{ site.sched.name }}'s special comment is `{{ site.sched.comment }}`. Anything
 following the `{{ site.sched.comment }}` comment is interpreted as an
 instruction to the scheduler.
@@ -247,10 +247,10 @@ Submit the job and monitor its status:
 Fantastic, we've successfully changed the name of our job!
 
 > ## Setting up email notifications
-> 
+>
 > Jobs on an HPC system might run for days or even weeks. We probably have
-> better things to do than constantly check on the status of our job with 
-> `{{ site.sched.status }}`. Looking at the manual page for 
+> better things to do than constantly check on the status of our job with
+> `{{ site.sched.status }}`. Looking at the manual page for
 > `{{ site.sched.submit.name }}`, can you set up our test job to send you an email
 > when it finishes?
 >
@@ -402,7 +402,7 @@ successful.
 
 ## Other types of jobs
 
-Up to this point, we've focused on running jobs in batch mode. 
+Up to this point, we've focused on running jobs in batch mode.
 {{ site.sched.name }} also provides the ability to start an interactive session.
 
 There are very frequently tasks that need to be done interactively. Creating an

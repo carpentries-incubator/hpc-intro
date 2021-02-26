@@ -51,7 +51,6 @@ impressive than the [Top-500](https://www.top500.org). Clusters are often
 maintained in computing centers that support several such systems, all sharing
 common networking and storage to support common compute intensive tasks.
 
-
 ## Logging in
 
 The first step in using a cluster is to establish a connection from our laptop
@@ -102,7 +101,6 @@ supplied by the instructors. You may be asked for your password. Watch out: the
 characters you type after the password prompt are not displayed on the screen.
 Normal output will resume once you press `Enter`.
 
-
 ## Where are we?
 
 Very often, many users are tempted to think of a high-performance computing
@@ -138,7 +136,7 @@ may also notice that the current hostname is also part of our prompt!)
 > > The deepest layer should differ: {{ site.remote.user }} is uniquely yours.
 > > Are there differences in the path at higher levels?
 > >
-> > If both of you have empty directories, they will look identical. If you 
+> > If both of you have empty directories, they will look identical. If you
 > > or your neighbor has used the system before, there may be differences. What
 > > are you working on?
 > {: .discussion}
@@ -199,7 +197,7 @@ Worker nodes come in many shapes and sizes, but generally are dedicated to long
 or hard tasks that require a lot of computational resources.
 
 All interaction with the worker nodes is handled by a specialized piece of
-software called a scheduler (the scheduler used in this lesson is called 
+software called a scheduler (the scheduler used in this lesson is called
 {{ site.workshop.sched.name }}). We'll learn more about how to use the
 scheduler to submit jobs next, but for now, it can also tell us more
 information about the worker nodes.
@@ -220,7 +218,7 @@ typically logon to or interact with these machines directly, they enable a
 number of key features like ensuring our user account and files are available
 throughout the HPC system.
 
-## What's in a node? 
+## What's in a node?
 
 All of the nodes in an HPC system have the same components as your own laptop
 or desktop: *CPUs* (sometimes also called *processors* or *cores*), *memory*
@@ -315,9 +313,9 @@ connect to a shared, remote fileserver or cluster of servers.
 > > > {{ site.remote.user }}, depending on how it is [mounted](
 > > > https://en.wikipedia.org/wiki/Mount_(computing)).
 > > {: .discussion}
-> > 
+> >
 > > > ## Shared file systems
-> > > 
+> > >
 > > > This is an important point to remember: files saved on one node
 > > > (computer) are often available everywhere on the cluster!
 > > {: .callout}
