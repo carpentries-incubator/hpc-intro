@@ -187,7 +187,7 @@ resources we must customize our job script.
 
 Comments in UNIX shell scripts (denoted by `#`) are typically ignored, but there are exceptions.
 For instance the special `#!` comment at the beginning of scripts specifies what program should be
-used to run it (you'll typically see `{{ site.local.bash_prompt }}`). Schedulers like {{ site.sched.name }} also
+used to run it (you'll typically see `{{ site.local.bash_shebang }}`). Schedulers like {{ site.sched.name }} also
 have a special comment used to denote special scheduler-specific options. Though these comments
 differ from scheduler to scheduler, {{ site.sched.name }}'s special comment is 
 `{{ site.sched.comment }}`. Anything following the `{{ site.sched.comment }}` comment is interpreted
