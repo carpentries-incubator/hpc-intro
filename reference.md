@@ -4,9 +4,9 @@ permalink: /reference/
 title: Knowledge Base
 ---
 
-### Is there a quick reference or "cheat sheet" for queuing system commands?
+### Quick reference or "cheat sheets" for queuing system commands
 
-Sure! Search online, for the one that fits you best, but here's some to start:
+Search online for the one that fits you best, but here's some to start:
 
 * [Slurm summary](https://slurm.schedmd.com/pdfs/summary.pdf) from SchedMD
 * [Torque/PBS summary](
@@ -186,6 +186,5 @@ content/resources.md              100% 1115    29.9KB/s   00:00
 {: .output}
 
 To quit, we type `exit` or `bye`.
-
 
 {% include links.md %}

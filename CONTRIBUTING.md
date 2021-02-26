@@ -24,12 +24,12 @@ introduce yourself and to meet some of our community members.
    email][email]. However, we will be able to respond more quickly if you use
    one of the other methods described below.
 
-2. If you have a [GitHub][github] account, or are willing to [create
+1. If you have a [GitHub][github] account, or are willing to [create
    one][github-join], but do not know how to use Git, you can report problems
    or suggest improvements by [creating an issue][issues]. This allows us to
    assign the item to someone and to respond to it in a threaded discussion.
 
-3. If you are comfortable with Git, and would like to add or change material,
+1. If you are comfortable with Git, and would like to add or change material,
    you can submit a pull request (PR). Instructions for doing this are
    [included below](#using-github).
 
@@ -39,18 +39,18 @@ introduce yourself and to meet some of our community members.
    <https://github.com/carpentries-incubator/hpc-intro>, which can be viewed at
    <https://carpentries-incubator.github.io/hpc-intro>.
 
-2. If you wish to change the example lesson, please work in
+1. If you wish to change the example lesson, please work in
    <https://github.com/carpentries/lesson-example>, which documents the format
    of our lessons and can be viewed at
    <https://carpentries.github.io/lesson-example>.
 
-3. If you wish to change the template used for workshop websites, please work
+1. If you wish to change the template used for workshop websites, please work
    in <https://github.com/carpentries/workshop-template>. The home page of that
    repository explains how to set up workshop websites, while the extra pages
    in <https://carpentries.github.io/workshop-template> provide more background
    on our design choices.
 
-4. If you wish to change CSS style files, tools, or HTML boilerplate for
+1. If you wish to change CSS style files, tools, or HTML boilerplate for
    lessons or workshops stored in `_includes` or `_layouts`, please work in
    <https://github.com/carpentries/styles>.
 
@@ -93,16 +93,16 @@ maintainers are community volunteers and have final say over what gets merged
 into the lesson. To use the web interface for contributing to a lesson:
 
 1. Fork the originating repository to your GitHub profile.
-2. Within your version of the forked repository, move to the `gh-pages` branch
+1. Within your version of the forked repository, move to the `gh-pages` branch
    and create a new branch for each significant change being made.
-3. Navigate to the file(s) you wish to change within the new branches and make
+1. Navigate to the file(s) you wish to change within the new branches and make
    revisions as required.
-4. Commit all changed files within the appropriate branches.
-5. Create individual pull requests from each of your changed branches to the
+1. Commit all changed files within the appropriate branches.
+1. Create individual pull requests from each of your changed branches to the
    `gh-pages` branch within the originating repository.
-6. If you receive feedback, make changes using your issue-specific branches of
+1. If you receive feedback, make changes using your issue-specific branches of
    the forked repository and the pull requests will update automatically.
-7. Repeat as needed until all feedback has been addressed.
+1. Repeat as needed until all feedback has been addressed.
 
 When starting work, please make sure your clone of the originating `gh-pages`
 branch is up-to-date before creating your own revision-specific branch(es) from

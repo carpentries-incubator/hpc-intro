@@ -67,7 +67,7 @@ individual to individual!
 > settings on {{ site.remote.name }} for a typical biomolecular system. This
 > will involve:
 >
-> - Downloading the input file for GROMACS from 
+> - Downloading the input file for GROMACS from
 >   [{{ site.url }}{{site.baseurl }}/files/ion-channel.tpr](
 >   {{ site.url }}{{site.baseurl }}/files/ion-channel.tpr)
 > - Writing a job submission script to run GROMACS on {{ site.remote.name }}
@@ -79,7 +79,7 @@ individual to individual!
 >
 > If you want to explore further than this initial task then there are a number
 > of different interesting ways to do this. For example:
-> 
+>
 > - Vary the number of threads used per process
 > - Reduce the number of cores used per node
 > - Allow the calculation to use Symmetric Mutithreading (SMT) if enabled

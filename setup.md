@@ -36,7 +36,7 @@ have already received instructions on how to install Git for Windows.
 Once installed, you can open a terminal by running the program Git Bash from
 the Windows start menu.
 
-#### Reference
+#### Shell Programs for Windows
 
 * [Git for Windows](https://gitforwindows.org/) &mdash; *Recommended*
 * [Windows Subsystem for Linux](
@@ -54,7 +54,7 @@ the Windows start menu.
 > using PuTTY, using the Windows 10 command-line tool, or installing and using
 > a Unix/Linux emulator.
 >
-> For advanced users, you may choose one of the following alternatives: 
+> For advanced users, you may choose one of the following alternatives:
 >
 > * Install the [Windows Subsystem for
 >   Linux][microsoft-wsl]
@@ -83,9 +83,7 @@ To open Terminal, try one or both of the following:
 * Use the Mac ‘Spotlight’ computer search function. Search for: `Terminal` and
   press <kbd>Return</kbd>.
 
-#### Reference 
-
-[How to Use Terminal on a Mac][mac-terminal]
+For an introduction, see [How to Use Terminal on a Mac][mac-terminal].
 
 ### Linux
 
@@ -105,11 +103,11 @@ for: `Unix shell [your operating system]`.
 All students should have an SSH client installed. SSH is a tool that allows us
 to connect to and use a remote computer as our own.
 
-### Windows
+### SSH for Windows
 
 Git for Windows comes with SSH preinstalled: you do not have to do anything.
 
-> ## GUI Support
+> ## GUI Support for Windows
 >
 > If you know that the software you will be running on the cluster requires a
 > graphical user interface (a GUI window needs to open for the application to
@@ -117,17 +115,17 @@ Git for Windows comes with SSH preinstalled: you do not have to do anything.
 > Edition.
 {: .discussion}
 
-### macOS
+### SSH for macOS
 
-macOS comes with SSH pre-installed: you do not have to do anything. 
+macOS comes with SSH pre-installed: you do not have to do anything.
 
-> ## GUI Support
+> ## GUI Support for macOS
 >
 > If you know that the software you will be running requires a graphical user
 > interface, please install [XQuartz](www.xquartz.org).
 {: .discussion}
 
-### Linux
+### SSH for Linux
 
 Linux comes with SSH and X window support preinstalled: you do not have to do
 anything.

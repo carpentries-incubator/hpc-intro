@@ -34,7 +34,7 @@ There is also a [repo][mainsite-repo] for the main website covering
 all HPC-Carpentry activities. This is intended to be the "front door"
 of the HPC Carpentry community.
 
-### Slack:
+### Slack
 
 The main Carpentries Slack channel is reachable at
 [swcarpentry.slack.com][swc-slack]. To become a member, you can
@@ -49,8 +49,7 @@ likely to be disappointing.
 Members of existing swcarpentry Slack channels can find the channel by
 typing "hpc-carpentry" into the Slack search box.
 
-
-### E-mail:
+### E-mail
 
 The top-level site is on The Carpentries' [Topicbox][topicbox]. There
 are two HPC-specific lists, "discuss-hpc" and "maintainers-hpc". These
@@ -58,15 +57,13 @@ mailing lists are public: you may join any that catch your interest.
 The system does not use passwords; log-ins are via a verification code
 sent to your e-mail.
 
-
 ## Site Operation
 
-### DOIs for Releases 
+### DOIs for Releases
 
 There is a web-hook that calls out to [Zenodo][zenodo] to create a
 Digital Object Identifier (DOI) whenever a release is generated on the
 GitHub repo. The Zenodo account is owned by Peter Steinbach (@psteinb).
-
 
 ### Continuous Integration
 
