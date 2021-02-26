@@ -49,12 +49,12 @@ change to reflect your new location, in this case the compute node we are
 logged on. You can also verify this with `hostname`.
 
 > ## Creating remote graphics
-> 
+>
 > To see graphical output inside your jobs, you need to use X11 forwarding. To
 > connect with this feature enabled, use the `-Y` option when you login with
 > the `ssh` command, e.g.,
 > `ssh -Y {{ site.remote.user }} @{{ site.remote.login }}`.
-> 
+>
 > To demonstrate what happens when you create a graphics window on the remote
 > node, use the `xeyes` command. A relatively adorable pair of eyes should pop
 > up (press `Ctrl-C` to stop). If you are using a Mac, you must have installed
