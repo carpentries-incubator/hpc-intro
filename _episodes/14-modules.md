@@ -172,7 +172,7 @@ Let's examine the output of `module avail` more closely.
 > > {: .language-bash}
 > >
 > > ```
-> > {{ site.remote.bash_prompt }}
+> > {{ site.remote.bash_shebang }}
 > > 
 > > module load {{ site.remote.module_python3 }}
 > > 

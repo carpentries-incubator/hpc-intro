@@ -104,7 +104,7 @@ whichever you prefer. Unsure? `nano` is a pretty good, basic choice.
 {: .language-bash}
 
 ```
-{{ site.remote.bash_prompt }}
+{{ site.remote.bash_shebang }}
 
 echo -n "This script is running on "
 hostname
@@ -203,7 +203,7 @@ script:
 {: .language-bash}
 
 ```
-{{ site.remote.bash_prompt }}
+{{ site.remote.bash_shebang }}
 {{ site.sched.comment }} {{ site.sched.flag.name }} new_name
 
 echo -n "This script is running on "
@@ -278,7 +278,7 @@ about how to make sure that you're using resources effectively in a later episod
 > > {: .language-bash}
 > >
 > > ```
-> > {{ site.remote.bash_prompt }}
+> > {{ site.remote.bash_shebang }}
 > > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:01:15
 > >
 > > echo -n "This script is running on "
@@ -309,7 +309,7 @@ minutes.
 {: .language-bash}
 
 ```
-{{ site.remote.bash_prompt }}
+{{ site.remote.bash_shebang }}
 {{ site.sched.comment }} {{ site.sched.flag.name }} long_job
 {{ site.sched.comment }} {{ site.sched.flag.time }} 00:00:30
 
