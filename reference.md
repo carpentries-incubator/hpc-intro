@@ -4,40 +4,51 @@ permalink: /reference/
 title: Knowledge Base
 ---
 
-### Is there a quick reference or "cheat sheet" for queuing system commands?
+### Quick reference or "cheat sheets" for queuing system commands
 
-Sure! Search online, for the one that fits you best, but here's some to start:
+Search online for the one that fits you best, but here's some to start:
 
 * [Slurm summary](https://slurm.schedmd.com/pdfs/summary.pdf) from SchedMD
-* [Torque/PBS summary](https://gif.biotech.iastate.edu/torque-pbs-job-management-cheat-sheet) from Iowa State
-* [Translating between Slurm and PBS](https://www.msi.umn.edu/slurm/pbs-conversion) from University of Minnesota
+* [Torque/PBS summary](
+  https://gif.biotech.iastate.edu/torque-pbs-job-management-cheat-sheet)
+  from Iowa State
+* [Translating between Slurm and PBS](
+  https://www.msi.umn.edu/slurm/pbs-conversion) from University of Minnesota
 
 ### Units and Language
 
-A computer's memory and disk are measured in units called *Bytes* (one Byte is 8 bits). As today's
-files and memory have grown to be large given historic standards, volumes are noted using the
-[SI](https://en.wikipedia.org/wiki/International_System_of_Units) prefixes. So 1000 Bytes is a
-Kilobyte (kB), 1000 Kilobytes is a Megabyte (MB), 1000 Megabytes is a Gigabyte (GB), etc.
+A computer's memory and disk are measured in units called *Bytes* (one Byte is
+8 bits). As today's files and memory have grown to be large given historic
+standards, volumes are noted using the
+[SI](https://en.wikipedia.org/wiki/International_System_of_Units) prefixes. So
+1000 Bytes is a Kilobyte (kB), 1000 Kilobytes is a Megabyte (MB), 1000
+Megabytes is a Gigabyte (GB), etc.
 
-History and common language have however mixed this notation with a different meaning. When people
-say "Kilobyte", they mean 1024 Bytes instead. In that spirit, a Megabyte is 1024 Kilobytes.
+History and common language have however mixed this notation with a different
+meaning. When people say "Kilobyte", they mean 1024 Bytes instead. In that
+spirit, a Megabyte is 1024 Kilobytes.
 
 To address this ambiguity, the [International System of Quantities](
-https://en.wikipedia.org/wiki/International_System_of_Quantities) standardizes the *binary* prefixes
-(with base of 2<sup>10</sup>=1024) by the prefixes Kibi (ki), Mibi (Mi), Gibi (Gi), etc. For more
-details, see [here](https://en.wikipedia.org/wiki/Binary_prefix).
+https://en.wikipedia.org/wiki/International_System_of_Quantities) standardizes
+the *binary* prefixes (with base of 2<sup>10</sup>=1024) by the prefixes Kibi
+(ki), Mebi (Mi), Gibi (Gi), etc. For more details, see
+[here](https://en.wikipedia.org/wiki/Binary_prefix).
 
 ### "No such file or directory" or "symbol 0096" errors
 
-`scp` and `rsync` may throw a perplexing error about files that very much do exist. One source of
-these errors is copy-and-paste of command line arguments from Web browsers, where the double-dash
-string `--` is rendered as an em-dash character `—` (or en-dash `–`, or horizontal bar `―`). For
-example, instead of showing the transfer rate in real time, the following command fails mysteriously.
+`scp` and `rsync` may throw a perplexing error about files that very much do
+exist. One source of these errors is copy-and-paste of command line arguments
+from Web browsers, where the double-dash string `--` is rendered as an em-dash
+character "&mdash;" (or en-dash "&mdash;", or horizontal bar `―`). For example,
+instead of showing the transfer rate in real time, the following command fails
+mysteriously.
 
 ```
 {{ site.local.prompt }} rsync —progress my_precious_data.txt {{ site.remote.user }}@{{ site.remote.login }}
-rsync: link_stat "/home/{{ site.local.user }}/—progress" failed: No such file or directory (2)
-rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1207) [sender=3.1.3]
+rsync: link_stat "/home/{{ site.local.user }}/—progress" failed:
+No such file or directory (2)
+rsync error: some files/attrs were not transferred (see previous errors)
+(code 23) at main.c(1207) [sender=3.1.3]
 ```
 {: .language-bash}
 
@@ -48,24 +59,26 @@ The correct command, different only by two characters, succeeds:
 ```
 {: .language-bash}
 
-We have done our best to wrap all commands in code blocks, which prevents this subtle conversion. If
-you encounter this error, please open an issue or pull request on the lesson repository to help
-others avoid it.
+We have done our best to wrap all commands in code blocks, which prevents this
+subtle conversion. If you encounter this error, please open an issue or pull
+request on the lesson repository to help others avoid it.
 
 ### Transferring files interactively with `sftp`
 
-`scp` is useful, but what if we don't know the exact location of what we want to transfer? Or
-perhaps we're simply not sure which files we want to transfer yet. `sftp` is an interactive way of
-downloading and uploading files. Let's connect to a cluster, using `sftp`- you'll notice it works
-the same way as SSH:
+`scp` is useful, but what if we don't know the exact location of what we want
+to transfer? Or perhaps we're simply not sure which files we want to transfer
+yet. `sftp` is an interactive way of downloading and uploading files. Let's
+connect to a cluster, using `sftp` &mdash; you'll notice it works the same way
+as SSH:
 
 ```
 {{ site.local.prompt }} sftp yourUsername@remote.computer.address
 ```
 {: .language-bash}
 
-This will start what appears to be a bash shell (though our prompt says `sftp>`). However we only
-have access to a limited number of commands. We can see which commands are available with `help`:
+This will start what appears to be a bash shell (though our prompt says
+`sftp>`). However we only have access to a limited number of commands. We can
+see which commands are available with `help`:
 
 ```
 sftp> help
@@ -96,8 +109,9 @@ ls [-1afhlnrSt] [path]             Display remote directory listing
 ```
 {: .output}
 
-Notice the presence of multiple commands that make mention of local and remote. We are actually
-connected to two computers at once (with two working directories!).
+Notice the presence of multiple commands that make mention of local and remote.
+We are actually connected to two computers at once (with two working
+directories!).
 
 To show our remote working directory:
 ```
@@ -122,7 +136,8 @@ Local working directory: /home/jeff/Documents/teaching/hpc-intro
 
 The same pattern follows for all other commands:
 
-* `ls` shows the contents of our remote directory, while `lls` shows our local directory contents.
+* `ls` shows the contents of our remote directory, while `lls` shows our local
+  directory contents.
 * `cd` changes the remote directory, `lcd` changes the local one.
 
 To upload a file, we type `put some-file.txt` (tab-completion works here).
@@ -133,7 +148,7 @@ sftp> put config.toml
 {: .language-bash}
 ```
 Uploading config.toml to /global/home/yourUsername/config.toml
-config.toml                                   100%  713     2.4KB/s   00:00 
+config.toml                                  100%  713     2.4KB/s   00:00
 ```
 {: .output}
 
@@ -145,12 +160,12 @@ sftp> get config.toml
 {: .language-bash}
 ```
 Fetching /global/home/yourUsername/config.toml to config.toml
-/global/home/yourUsername/config.toml                               100%  713     9.3KB/s   00:00
+/global/home/yourUsername/config.toml        100%  713     9.3KB/s   00:00
 ```
 {: .output}
 
-And we can recursively put/get files by just adding `-r`. Note that the directory needs to be
-present beforehand.
+And we can recursively put/get files by just adding `-r`. Note that the
+directory needs to be present beforehand.
 
 ```
 sftp> mkdir content
@@ -170,7 +185,6 @@ content/resources.md              100% 1115    29.9KB/s   00:00
 ```
 {: .output}
 
-To quit, we type `exit` or `bye`. 
-
+To quit, we type `exit` or `bye`.
 
 {% include links.md %}

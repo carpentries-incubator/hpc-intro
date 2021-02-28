@@ -1,4 +1,5 @@
-To demonstrate, let's use `module list`. `module list` shows all loaded software modules.
+To demonstrate, let's use `module list`. `module list` shows all loaded
+software modules.
 
 ```
 {{ site.remote.prompt }} module list
@@ -29,16 +30,18 @@ Currently Loaded Modules:
   6) Python/3.8.2-GCCcore-9.3.0       19) FFTW/3.3.8-gompi-2020a
   7) GCC/9.3.0                        20) ScaLAPACK/2.1.0-gompi-2020a
   8) numactl/2.0.13-GCCcore-9.3.0     21) foss/2020a
-  9) libxml2/2.9.10-GCCcore-9.3.0     22) pybind11/2.4.3-GCCcore-9.3.0-Python-3.8.2
- 10) libpciaccess/0.16-GCCcore-9.3.0  23) SciPy-bundle/2020.03-foss-2020a-Python-3.8.2
- 11) hwloc/2.2.0-GCCcore-9.3.0        24) networkx/2.4-foss-2020a-Python-3.8.2
- 12) libevent/2.1.11-GCCcore-9.3.0    25) GROMACS/2020.1-foss-2020a-Python-3.8.2
+  9) libxml2/2.9.10-GCCcore-9.3.0     22) pybind11/2.4.3-GCCcore-9.3.0-Pytho...
+ 10) libpciaccess/0.16-GCCcore-9.3.0  23) SciPy-bundle/2020.03-foss-2020a-Py...
+ 11) hwloc/2.2.0-GCCcore-9.3.0        24) networkx/2.4-foss-2020a-Python-3.8...
+ 12) libevent/2.1.11-GCCcore-9.3.0    25) GROMACS/2020.1-foss-2020a-Python-3...
  13) UCX/1.8.0-GCCcore-9.3.0
 ```
 {: .output}
 
-So in this case, loading the `GROMACS` module (a bioinformatics software package), also loaded
-`GMP/6.2.0-GCCcore-9.3.0` and `SciPy-bundle/2020.03-foss-2020a-Python-3.8.2` as well. Let's try unloading the `GROMACS` package.
+So in this case, loading the `GROMACS` module (a bioinformatics software
+package), also loaded `GMP/6.2.0-GCCcore-9.3.0` and
+`SciPy-bundle/2020.03-foss-2020a-Python-3.8.2` as well. Let's try unloading the
+`GROMACS` package.
 
 ```
 {{ site.remote.prompt }} module unload GROMACS
@@ -57,15 +60,16 @@ Currently Loaded Modules:
   7) GCC/9.3.0                        19) FFTW/3.3.8-gompi-2020a
   8) numactl/2.0.13-GCCcore-9.3.0     20) ScaLAPACK/2.1.0-gompi-2020a
   9) libxml2/2.9.10-GCCcore-9.3.0     21) foss/2020a
- 10) libpciaccess/0.16-GCCcore-9.3.0  22) pybind11/2.4.3-GCCcore-9.3.0-Python-3.8.2
- 11) hwloc/2.2.0-GCCcore-9.3.0        23) SciPy-bundle/2020.03-foss-2020a-Python-3.8.2
+ 10) libpciaccess/0.16-GCCcore-9.3.0  22) pybind11/2.4.3-GCCcore-9.3.0-Pytho...
+ 11) hwloc/2.2.0-GCCcore-9.3.0        23) SciPy-bundle/2020.03-foss-2020a-Py...
  12) libevent/2.1.11-GCCcore-9.3.0    24) networkx/2.4-foss-2020a-Python-3.8.2
 ```
 {: .output}
 
-So using `module unload` "un-loads" a module, and depending on how a site is configured
- it may also unload all of the dependencies (in our case it does not). If we wanted to unload
-everything at once, we could run `module purge` (unloads everything).
+So using `module unload` "un-loads" a module, and depending on how a site is
+ configured it may also unload all of the dependencies (in our case it does
+ not). If we wanted to unload everything at once, we could run `module purge`
+ (unloads everything).
 
 ```
 {{ site.remote.prompt }} module purge
@@ -78,5 +82,6 @@ No modules loaded
 ```
 {: .output}
 
-Note that `module purge` is informative. It will also let us know if a default set of "sticky" packages
-cannot be unloaded (and how to actually unload these if we truly so desired).
+Note that `module purge` is informative. It will also let us know if a default
+set of "sticky" packages cannot be unloaded (and how to actually unload these
+if we truly so desired).

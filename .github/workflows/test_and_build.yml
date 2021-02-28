@@ -37,6 +37,9 @@ jobs:
         bundle config set path '.vendor/bundle'
         bundle config build.nokogiri --use-system-libraries
         bundle install
+    - name: "Lint episode markdown"
+      run: |
+        find _episodes -name \*.md -exec bundle exec mdl -r MD001,MD003,MD005,MD006,MD007,MD008,MD009,MD010,MD011,MD012,MD015,MD016,MD017,MD018,MD019,MD020,MD021,MD022,MD023,MD025,MD035,MD036,MD037,MD038,MD039,MD046 {} \;
     - name: "Check lesson for warnings"
       run: |
         make lesson-check-all
@@ -74,3 +77,6 @@ jobs:
     - name: Check build ${{matrix.HPC_JEKYLL_CONFIG}}
       run: |
         make --always-make site HPC_JEKYLL_CONFIG=_includes/snippets_library/${{matrix.HPC_JEKYLL_CONFIG}}/_config_options.yml
+    - name: "Lint snippet markdown"
+      run: |
+        find _includes/snippets_library/${{matrix.HPC_JEKYLL_CONFIG}} -name \*.snip -exec bundle exec mdl -r MD001,MD003,MD005,MD006,MD007,MD008,MD009,MD010,MD011,MD012,MD015,MD016,MD017,MD018,MD019,MD020,MD021,MD022,MD023,MD025,MD035,MD036,MD037,MD038,MD039,MD046 {} \;

@@ -114,7 +114,7 @@ BREAK_METADATA_FIELDS = {
 
 # How long are lines allowed to be?
 # Please keep this in sync with .editorconfig!
-MAX_LINE_LEN = 100
+MAX_LINE_LEN = 79
 
 
 def main():
@@ -168,7 +168,7 @@ def parse_args():
                         default=False,
                         action="store_true",
                         dest='permissive',
-                        help='Do not raise an error even if issues are detected')
+                        help='Do not raise an error even if there are issues')
 
     args, extras = parser.parse_known_args()
     require(args.parser is not None,
@@ -371,8 +371,13 @@ class CheckBase:
         """Check the raw text of the lesson body."""
 
         if self.args.line_lengths:
-            over = [i for (i, l, n) in self.lines if (
-                n > MAX_LINE_LEN) and (not l.startswith('!'))]
+            code = '^[> ]*{{' # regular expression for [> > > ]{{ site... }}
+            link = '^[[].+[]]:' # regex for [link-abbrv]: address
+            over = [i for (i, l, n) in self.lines if (n > MAX_LINE_LEN) and
+                                                  (not l.startswith('!')) and
+                                                  (not re.search(code, l)) and
+                                                  (not re.search(link, l)) and
+                                                  (not l.startswith('http'))]
             self.reporter.check(not over,
                                 self.filename,
                                 'Line(s) too long: {0}',
