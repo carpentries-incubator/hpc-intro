@@ -20,7 +20,7 @@ jobs:
         pip3 install codespell
     - name: Check spelling
       run: |
-        codespell --skip="assets,*.svg,bin" --quiet-level=2  -L "rouge,dropse,namd,hist"
+        make spellcheck
 
   check_lesson_and_build_default:
     runs-on: ubuntu-latest
