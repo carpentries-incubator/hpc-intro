@@ -97,7 +97,7 @@ workshop-check :
 ## III. Commands specific to lesson websites
 ## =================================================
 
-.PHONY : lesson-check lesson-md lesson-files lesson-fixme
+.PHONY : lesson-check lesson-md lesson-files lesson-fixme spellcheck
 
 # RMarkdown files
 RMD_SRC = $(wildcard _episodes_rmd/??-*.Rmd)
@@ -151,6 +151,10 @@ lesson-files :
 ## * lesson-fixme     : show FIXME markers embedded in source files
 lesson-fixme :
 	@fgrep -i -n FIXME ${MARKDOWN_SRC} || true
+
+## spellcheck
+spellcheck:
+	codespell --skip="assets,*.svg,.vendor" --quiet-level=2  -L "dropse,hist,namd,rouge"
 
 ##
 ## IV. Auxililary (plumbing) commands
