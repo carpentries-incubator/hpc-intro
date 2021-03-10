@@ -540,10 +540,7 @@ Create a submission file, requesting more than one task on a single node:
 ```
 {: .language-bash}
 
-```
 {% include {{ site.snippets }}/parallel/four-tasks-jobscript.snip %}
-```
-{: .output}
 
 Then submit your job. We will use the batch file to set the options,
 rather than the command line.
