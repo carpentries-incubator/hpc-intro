@@ -164,7 +164,23 @@ amounts of data off HPC systems at some point (this is more often in
 transferring data off than onto systems but the advice below applies in either
 case). Data transfer speed may be limited by many different factors so the best
 data transfer mechanism to use depends on the type of data being transferred
-and where the data is going. Some of the key issues to be aware of are:
+and where the data is going. 
+
+The components between your data's source and destination have 
+varying levels of performance, and in particular, may have 
+different capabilities with respect to **bandwidth** and **latency**.
+
+**Bandwidth** is generally the raw amount of data per unit time a
+device is capable of transmitting or receiving. It's a common
+and generally well-understood metric.
+
+**Latency** is a bit more subtle. For data transfers, it may be thought
+of as the amount of time it takes to get data out of storage and into
+a transmittable form. Latency issues are the reason it's advisable
+to execute data transfers by moving a small number of large 
+files, rather than the converse.
+
+Some of the key components and their associated issues are:
 
 - **Disk speed**: File systems on HPC systems are often highly parallel,
   consisting of a very large number of high performance disk drives. This
