@@ -204,9 +204,10 @@ talked about data transfer earlier.
    file="/fig/responsibility-bandwidth.svg"
    alt="Schematic of network bandwidth"
    caption="<i>Schematic diagram of bandwidth and latency for disk and network
-   I/O. Each of the components on the figure is connected by a black line of
-   width proportional to the interface bandwidth, and a white line of width
-   proportional to the data transferred along that interface.</i>" %}
+   I/O. Each of the components on the figure is connected by a blue line of
+   width proportional to the interface bandwidth. The small mazes at the
+   link points illustrate the latency of the link, with more tortuous
+   mazes indicating higher latency.</i>" %}
 
 > ## Consider the best way to transfer data
 >
