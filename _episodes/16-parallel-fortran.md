@@ -334,11 +334,11 @@ included.
 
 > ## What changes are needed for an MPI version of the &#960; calculator?
 >
-> First, we need to import the `MPI` object from the Python module `mpi4py` by
-> adding an `from mpi4py import MPI` line immediately below the `import
-> datetime` line.
+> First, we need to import use the `MPI` module by
+> adding an `USE MPI` line immediately below the `PROGRAM
+> pi` line.
 >
-> Second, we need to modify the "main" function to perform the overhead and
+> Second, we need to modify the program to perform the overhead and
 > accounting work required to:
 >
 > * subdivide the total number of points to be sampled,
@@ -350,28 +350,35 @@ included.
 >
 > The modifications to the serial script demonstrate four important concepts:
 >
-> * COMM_WORLD: the default MPI Communicator, providing a channel for all the
+> * MPI_COMM_WORLD: the default MPI Communicator, providing a channel for all the
 >   processes involved in this `mpiexec` to exchange information with one
 >   another.
-> * Scatter: A collective operation in which an array of data on one MPI rank
->   is divided up, with separate portions being sent out to the partner ranks.
->   Each partner rank receives data from the matching index of the host array.
-> * Gather: The inverse of scatter. One rank populates a local array,
->   with the array element at each index assigned the value provided by the
->   corresponding partner rank &mdash; including the host's own value.
+> * MPI_REDUCE: One rank collects all the results
 > * Conditional Output: since every rank is running the *same code*, the
 >   partitioning, the final calculations, and the `print` statement are
 >   wrapped in a conditional so that only one rank performs these operations.
 {: .discussion}
 
-We add the lines:
+
+We modify the variable declaration lines to become
+```
+INTEGER(kind=8), PARAMETER :: n_samples = 100000000
+INTEGER(kind=8) :: counter, my_counter, my_n_samples
+REAL(kind=8) :: pi_estimate
+REAL(kind=8) :: execution_time, start, finish
+INTEGER(kind=4) :: ierr, myid, nprocs
+```
+{: .language-fortran}
+
+Below the line `INTEGER(kind=4) :: ierr, myid, nprocs`,we add the lines:
 
 ```
-comm = MPI.COMM_WORLD
-cpus = comm.Get_size()
-rank = comm.Get_rank()
+! Initialize MPI
+CALL MPI_INIT(ierr)
+CALL MPI_COMM_RANK(MPI_COMM_WORLD, myid, ierr)
+CALL MPI_COMM_SIZE(MPI_COMM_WORLD, nprocs, ierr)
 ```
-{: .language-python}
+{: .language-fortran}
 
 immediately before the `n_samples` line to set up the MPI environment for
 each process.
@@ -379,36 +386,19 @@ each process.
 We replace the `start_time` and `counts` lines with the lines:
 
 ```
-if rank == 0:
-  start_time = datetime.datetime.now()
-  partitions = [ int(n_samples / cpus) ] * cpus
-  counts = [ int(0) ] * cpus
-else:
-  partitions = None
-  counts = None
+  IF ( myid .ne. 0 ) THEN
+    my_n_samples = n_samples/nprocs
+  ELSE
+    start = MPI_WTIME()
+    my_n_samples = n_samples - ( (nprocs-1)*(n_samples/nprocs) )
+  ENDIF
 ```
-{: .language-python}
+{: .language-fortran}
 
-This ensures that only the rank 0 process measures times and coordinates
-the work to be distributed to all the ranks, while the other ranks
-get placeholder values for the `partitions` and `counts` variables.
+This ensures that the rank 0 process measures times and does the
+the residual work that has been left after distribution to all the ranks.
 
-Immediately below these lines, let's
 
-* distribute the work among the ranks with MPI `scatter`,
-* call the `inside_circle` function so each rank can perform its share
-  of the work,
-* collect each rank's results into a `counts` variable on rank 0 using MPI
-  `gather`.
-
-by adding the following three lines:
-
-```
-partition_item = comm.scatter(partitions, root=0)
-count_item = inside_circle(partition_item)
-counts = comm.gather(count_item, root=0)
-```
-{: .language-python}
 
 Illustrations of these steps are shown below.
 
@@ -448,27 +438,25 @@ Print out the report:
 
 ---
 
-Finally, we'll ensure the `my_pi` through `print` lines only run on rank 0.
+Finally, we'll ensure the `Print` line only runs on rank 0.
 Otherwise, every parallel processor will print its local value,
 and the report will become hopelessly garbled:
 
 ```
-if rank == 0:
-   my_pi = 4.0 * sum(counts) / sum(partitions)
-   end_time = datetime.datetime.now()
-   elapsed_time = (end_time - start_time).total_seconds()
-   size_of_float = np.dtype(np.float64).itemsize
-   memory_required = 3 * sum(partitions) * size_of_float / (1024**3)
-   print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required,
-                                                            elapsed_time))
+  IF(myid .eq. 0) THEN
+    pi_estimate = 4.0*REAL( counter, kind(8))/REAL(n_samples,kind(8))
+    finish = MPI_WTIME()
+    execution_time = finish-start
+    PRINT *,'Estimate of pi is ',pi_estimate,' elapsed time ',execution_time,' s.'
+  ENDIF
+  CALL MPI_FINALIZE(ierr)
 ```
-{: .language-python}
+{: .language-fortran}
 
-A fully commented version of the final MPI parallel python code is available
+A final commented version of MPI parallel Fortran code is available
 [here](/files/pi-mpi.f90).
 
-Our purpose here is to exercise the parallel workflow of the cluster, not to
-optimize the program to minimize its memory footprint.
+Our purpose here is to exercise the parallel workflow of the cluster.
 Rather than push our local machines to the breaking point (or, worse, the login
 node), let's give it to a cluster node with more resources.
 
@@ -495,7 +483,6 @@ Use `ls` to locate the output file, and examine it.
 Is it what you expected?
 
 * How good is the value for &#960;?
-* How much memory did it need?
 * How much faster was this run than the serial run with 100000000 points?
 
 Modify the job script to increase both the number of samples requested 
