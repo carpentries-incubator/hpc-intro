@@ -87,6 +87,7 @@ KNOWN_CODEBLOCKS = {
     'language-c',
     'language-chapel',
     'language-cpp',
+    'language-d',
     'language-fortran',
     'language-go',
     'language-java',
@@ -102,8 +103,8 @@ KNOWN_CODEBLOCKS = {
     'language-shell',
     'language-sql',
     'output',
-    'python'
-    'source',
+    'python',
+    'source'
 }
 
 # What fields are required in teaching episode metadata?
