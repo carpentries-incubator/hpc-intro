@@ -80,19 +80,31 @@ KNOWN_BLOCKQUOTES = {
 
 # What kinds of code fragments are allowed?
 KNOWN_CODEBLOCKS = {
+    'bash',
     'error',
-    'output',
-    'source',
-    'language-bash',
     'html',
+    'language-bash',
+    'language-c',
+    'language-chapel',
+    'language-cpp',
+    'language-d',
+    'language-fortran',
+    'language-go',
+    'language-java',
+    'language-julia',
+    'language-lua',
     'language-make',
     'language-matlab',
+    'language-perl',
     'language-python',
     'language-r',
+    'language-rust',
+    'language-scala',
     'language-shell',
     'language-sql',
-    'bash',
-    'python'
+    'output',
+    'python',
+    'source'
 }
 
 # What fields are required in teaching episode metadata?
