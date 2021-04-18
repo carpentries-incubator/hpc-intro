@@ -91,6 +91,17 @@ KNOWN_CODEBLOCKS = {
     'language-r',
     'language-shell',
     'language-sql',
+    'language-fortran',
+    'language-c',
+    'language-cpp',
+    'language-java',
+    'language-scala',
+    'language-go',
+    'language-chapel',
+    'language-julia',
+    'language-rust',
+    'language-perl',
+    'language-lua',
     'bash',
     'python'
 }
