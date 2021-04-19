@@ -73,6 +73,16 @@ def inside_circle(total_count):
 ```
 {: .language-python}
 
+> ## Random Number Generation
+> 
+> For simplicity, random numbers are generated using regular functions, if
+> a high quality random numbers are needed in parallel applications, one should
+> use libraries such as [SPRNG](http://sprng.org/) and 
+> [Kmath-random](https://www.r-ccs.riken.jp/labs/lpnctrt/projects/kmath-random/).
+> * Discuss why generating high quality random numbers in parallel might be 
+> difficult.
+{: .discussion }
+
 Next, we create a main function to call the `inside_circle` function and
 calculate &#960; from its returned result.
 See [Programming with Python: Command-Line Programs](
