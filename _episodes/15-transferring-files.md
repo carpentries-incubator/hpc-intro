@@ -19,7 +19,7 @@ cover here.
 
 ## Download files from the Internet
 
-One of the most straightforward ways to download files is to use `curl`.  Any 
+One of the most straightforward ways to download files is to use `curl`. Any
 file that can be downloaded in your web browser through a direct link can be
 downloaded using `curl -O`. This is a quick way to download datasets or source
 code. Another command similar to `curl -O` is `wget`, which you may use instead
