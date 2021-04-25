@@ -19,16 +19,17 @@ cover here.
 
 ## Download files from the Internet
 
-One of the most straightforward ways to download files is to use `wget`. Any
+One of the most straightforward ways to download files is to use `curl`.  Any 
 file that can be downloaded in your web browser through a direct link can be
-downloaded using `wget`. This is a quick way to download datasets or source
-code.
+downloaded using `curl -O`. This is a quick way to download datasets or source
+code. Another command similar to `curl -O` is `wget`, which you may use instead
+if it is available in your shell environment.
 
-The syntax is: `wget https://some/link/to/a/file`. Try it out by downloading
+The syntax is: `curl -O https://some/link/to/a/file`. Try it out by downloading
 some material we'll use later on, from a terminal on your local machine.
 
 ```
-{{ site.local.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
+{{ site.local.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 ```
 {: .language-bash}
 
@@ -85,13 +86,13 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > ## Why not download on {{ site.remote.name }} directly?
 >
 > Some computer clusters are behind firewalls set to only allow transfers
-> initiated from the *outside*. This means that the `wget` command will fail,
+> initiated from the *outside*. This means that the `curl` command will fail,
 > as an address outside the firewall is unreachable from the inside. To get
-> around this, run the `wget` command from your local machine to download the
+> around this, run the `curl` command from your local machine to download the
 > file, then use the `scp` command (just below here) to upload it to the
 > cluster.
 >
-> > ## `wget` from {{ site.remote.login }}
+> > ## `curl -O` from {{ site.remote.login }}
 > >
 > > Try downloading the file directly. Note that it may well fail, and that's
 > > OK!
@@ -100,7 +101,7 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > > >
 > > > ```
 > > > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
-> > > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
+> > > {{ site.remote.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 > > > ```
 > > > {: .language-bash}
 > > {: .solution}
