@@ -180,7 +180,7 @@ Pi: 3.140944, memory: 0.022351741790771484 GiB
 {{ site.local.prompt }} python pi-serial.py 100000000
 Pi: 3.14182724, memory: 2.2351741790771484 GiB
 ```
-{: .bash }
+{: .language-bash }
 
 Here we can see that the estimated amount of memory required scales linearly
 with the number of samples used.
@@ -278,7 +278,7 @@ Pi: 3.1425492, memory: 0.22351741790771484 GiB, time: 0.351212 s
 {{ site.local.prompt }} python pi-serial.py 100000000
 Pi: 3.14146608, memory: 2.2351741790771484 GiB, time: 3.735195 s
 ```
-{: .bash }
+{: .language-bash }
 
 Here we can see that the amount of time required scales approximately linearly
 with the number of samples used.

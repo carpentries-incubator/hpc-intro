@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Check lesson files and their contents.
 """
@@ -32,20 +30,20 @@ SOURCE_RMD_DIRS = ['_episodes_rmd']
 # specially. This list must include all the Markdown files listed in the
 # 'bin/initialize' script.
 REQUIRED_FILES = {
-    '%/CODE_OF_CONDUCT.md': True,
-    '%/CONTRIBUTING.md': False,
-    '%/LICENSE.md': True,
-    '%/MAINTENANCE.md': False,
-    '%/README.md': False,
-    '%/_extras/discuss.md': True,
-    '%/_extras/guide.md': True,
-    '%/index.md': True,
-    '%/reference.md': True,
-    '%/setup.md': True,
+    'CODE_OF_CONDUCT.md': True,
+    'CONTRIBUTING.md': False,
+    'LICENSE.md': True,
+    'MAINTENANCE.md': False,
+    'README.md': False,
+    os.path.join('_extras', 'discuss.md'): True,
+    os.path.join('_extras', 'guide.md'): True,
+    'index.md': True,
+    'reference.md': True,
+    'setup.md': True,
 }
 
 # Episode filename pattern.
-P_EPISODE_FILENAME = re.compile(r'/_episodes/(\d\d)-[-\w]+.md$')
+P_EPISODE_FILENAME = re.compile(r'(\d\d)-[-\w]+.md$')
 
 # Pattern to match lines ending with whitespace.
 P_TRAILING_WHITESPACE = re.compile(r'\s+$')
@@ -79,20 +77,12 @@ KNOWN_BLOCKQUOTES = {
 }
 
 # What kinds of code fragments are allowed?
+# We allow all 'language-*' code blocks below
 KNOWN_CODEBLOCKS = {
     'error',
     'output',
     'source',
-    'language-bash',
-    'html',
-    'language-make',
-    'language-matlab',
-    'language-python',
-    'language-r',
-    'language-shell',
-    'language-sql',
-    'bash',
-    'python'
+    'warning'
 }
 
 # What fields are required in teaching episode metadata?
@@ -122,9 +112,15 @@ def main():
 
     args = parse_args()
     args.reporter = Reporter()
-    check_config(args.reporter, args.source_dir)
+    life_cycle = check_config(args.reporter, args.source_dir)
+    # pre-alpha lessons should report without error
+    if life_cycle == "pre-alpha":
+        args.permissive = True
     check_source_rmd(args.reporter, args.source_dir, args.parser)
-    args.references = read_references(args.reporter, args.reference_path)
+
+    args.references = {}
+    if not using_remote_theme(args.source_dir):
+        args.references = read_references(args.reporter, args.reference_path)
 
     docs = read_all_markdown(args.source_dir, args.parser)
     check_fileset(args.source_dir, args.reporter, list(docs.keys()))
@@ -168,7 +164,7 @@ def parse_args():
                         default=False,
                         action="store_true",
                         dest='permissive',
-                        help='Do not raise an error even if there are issues')
+                        help='Do not raise an error even if issues are detected')
 
     args, extras = parser.parse_known_args()
     require(args.parser is not None,
@@ -178,6 +174,10 @@ def parse_args():
 
     return args
 
+def using_remote_theme(source_dir):
+    config_file = os.path.join(source_dir, '_config.yml')
+    config = load_yaml(config_file)
+    return 'remote_theme' in config
 
 def check_config(reporter, source_dir):
     """Check configuration file."""
@@ -199,6 +199,9 @@ def check_config(reporter, source_dir):
         reporter.check(defaults in config.get('defaults', []),
                    'configuration',
                    '"root" not set to "." in configuration')
+    if 'life_cycle' not in config:
+        config['life_cycle'] = None
+    return config['life_cycle']
 
 def check_source_rmd(reporter, source_dir, parser):
     """Check that Rmd episode files include `source: Rmd`"""
@@ -225,7 +228,7 @@ def read_references(reporter, ref_path):
     result = {}
     urls_seen = set()
 
-    with open(ref_path, 'r') as reader:
+    with open(ref_path, 'r', encoding='utf-8') as reader:
         for (num, line) in enumerate(reader, 1):
 
             if P_INTERNAL_INCLUDE_LINK.search(line): continue
@@ -287,17 +290,20 @@ def check_fileset(source_dir, reporter, filenames_present):
     """Are all required files present? Are extraneous files present?"""
 
     # Check files with predictable names.
-    required = [p.replace('%', source_dir) for p in REQUIRED_FILES]
+    required = [os.path.join(source_dir, p) for p in REQUIRED_FILES]
     missing = set(required) - set(filenames_present)
     for m in missing:
         reporter.add(None, 'Missing required file {0}', m)
 
-    # Check episode files' names.
+    # Check names of episode files.
     seen = []
     for filename in filenames_present:
         if '_episodes' not in filename:
             continue
-        m = P_EPISODE_FILENAME.search(filename)
+
+        # split path to check episode name
+        base_name = os.path.basename(filename)
+        m = P_EPISODE_FILENAME.search(base_name)
         if m and m.group(1):
             seen.append(m.group(1))
         else:
@@ -409,7 +415,8 @@ class CheckBase:
 
         for node in self.find_all(self.doc, {'type': 'codeblock'}):
             cls = self.get_val(node, 'attr', 'class')
-            self.reporter.check(cls in KNOWN_CODEBLOCKS,
+            self.reporter.check(cls is not None and (cls in KNOWN_CODEBLOCKS
+                                             or cls.startswith('language-')),
                                 (self.filename, self.get_loc(node)),
                                 'Unknown or missing code block type {0}',
                                 cls)
@@ -481,8 +488,6 @@ class CheckBase:
 
 class CheckNonJekyll(CheckBase):
     """Check a file that isn't translated by Jekyll."""
-    def __init__(self, args, filename, metadata, metadata_len, text, lines, doc):
-        super().__init__(args, filename, metadata, metadata_len, text, lines, doc)
 
     def check_metadata(self):
         self.reporter.check(self.metadata is None,
@@ -511,7 +516,8 @@ class CheckEpisode(CheckBase):
         """Run extra tests."""
 
         super().check()
-        self.check_reference_inclusion()
+        if not using_remote_theme():
+            self.check_reference_inclusion()
 
     def check_metadata(self):
         super().check_metadata()
@@ -551,6 +557,11 @@ class CheckEpisode(CheckBase):
         require(last_line,
                 'No non-empty lines in {0}'.format(self.filename))
 
+        include_filename = os.path.split(self.args.reference_path)[-1]
+        if include_filename not in last_line:
+            self.reporter.add(self.filename,
+                              'episode does not include "{0}"',
+                              include_filename)
 
 
 class CheckReference(CheckBase):
@@ -574,7 +585,7 @@ CHECKERS = [
     (re.compile(r'README\.md'), CheckNonJekyll),
     (re.compile(r'index\.md'), CheckIndex),
     (re.compile(r'reference\.md'), CheckReference),
-    (re.compile(r'_episodes/.*\.md'), CheckEpisode),
+    (re.compile(os.path.join('_episodes', '*\.md')), CheckEpisode),
     (re.compile(r'.*\.md'), CheckGeneric),
     (re.compile(r'.*\.snip'), CheckNonJekyll)
 ]
