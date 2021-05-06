@@ -64,9 +64,9 @@ All of this is done using *vectors* of double-precision (64-bit)
 floating-point values.
 
 ```
-def inside_circle(total_count):
-    x = np.random.uniform(size=total_count)
-    y = np.random.uniform(size=total_count)
+def inside_circle(samples):
+    x = np.random.uniform(size=samples)
+    y = np.random.uniform(size=samples)
     radii = np.sqrt(x*x + y*y)
     count = len(radii[np.where(radii<=1.0)])
     return count
