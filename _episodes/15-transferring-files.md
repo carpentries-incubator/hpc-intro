@@ -7,7 +7,7 @@ questions:
 objectives:
 - "Be able to transfer files to and from a computing cluster."
 keypoints:
-- "`wget` downloads a file from the internet."
+- "`wget` and `curl -O` download a file from the internet."
 - "`scp` transfer files to and from your computer."
 - "You can use an SFTP client like FileZilla to transfer files through a GUI."
 ---
@@ -19,18 +19,26 @@ cover here.
 
 ## Download files from the Internet
 
-One of the most straightforward ways to download files is to use `wget`. Any
-file that can be downloaded in your web browser through a direct link can be
-downloaded using `wget`. This is a quick way to download datasets or source
-code.
+One of the most straightforward ways to download files is to use either `curl`
+or `wget`, one of these is usually installed in most Linux shells, on Mac OS
+terminal and in GitBash. Any file that can be downloaded in your web browser 
+through a direct link can be downloaded using `curl -O` or `wget`. This is a 
+quick way to download datasets or source code. 
 
-The syntax is: `wget https://some/link/to/a/file`. Try it out by downloading
+The syntax for these commands is: `curl -O https://some/link/to/a/file` 
+and `wget https://some/link/to/a/file`. Try it out by downloading
 some material we'll use later on, from a terminal on your local machine.
 
+```
+{{ site.local.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
+```
+{: .language-bash}
+or
 ```
 {{ site.local.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 ```
 {: .language-bash}
+
 
 > ## `tar.gz`?
 >
@@ -85,14 +93,16 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > ## Why not download on {{ site.remote.name }} directly?
 >
 > Some computer clusters are behind firewalls set to only allow transfers
-> initiated from the *outside*. This means that the `wget` command will fail,
+> initiated from the *outside*. This means that the `curl` command will fail,
 > as an address outside the firewall is unreachable from the inside. To get
-> around this, run the `wget` command from your local machine to download the
-> file, then use the `scp` command (just below here) to upload it to the
-> cluster.
+> around this, run the `curl` or `wget` command from your local machine to 
+> download the file, then use the `scp` command (just below here) to upload
+> it to the cluster.
 >
+> > ## `curl -O` from {{ site.remote.login }}
+> > or
 > > ## `wget` from {{ site.remote.login }}
-> >
+> > 
 > > Try downloading the file directly. Note that it may well fail, and that's
 > > OK!
 > >
@@ -100,6 +110,8 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > > >
 > > > ```
 > > > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
+> > > {{ site.remote.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
+> > > or
 > > > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 > > > ```
 > > > {: .language-bash}
