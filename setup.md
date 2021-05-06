@@ -14,7 +14,7 @@ recommend that these tools are installed (or at least downloaded) beforehand.
 > the ability to securely connect to a remote machine (`ssh`).
 {: .prereq}
 
-## Where to type commands: How to open a new shell
+## Where to Type Commands: How to Open a New Shell
 
 The shell is a program that enables us to send commands to the computer and
 receive output. It is also referred to as the terminal or command line.
@@ -93,7 +93,7 @@ On most versions of Linux, the default Unix Shell is accessible by running the
 [xterm](https://en.wikipedia.org/wiki/Xterm), which can be found via the
 applications menu or the search bar.
 
-### Special cases
+### Special Cases
 
 If none of the options above address your circumstances, try an online search
 for: `Unix shell [your operating system]`.
