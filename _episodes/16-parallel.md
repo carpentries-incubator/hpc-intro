@@ -200,7 +200,7 @@ Pi: 3.1425492, time: 0.351212 s
 {{ site.local.prompt }} python pi-serial.py 100000000
 Pi: 3.14146608, time: 3.735195 s
 ```
-{: .bash }
+{: .language-bash }
 
 Here we can see that the amount of time required scales approximately linearly
 with the number of samples used.
