@@ -32,7 +32,7 @@ resources is a natural outcome of the shared nature of these resources. There
 are other things you, as an upstanding member of the community, need to
 consider.
 
-## Be kind to the login nodes
+## Be Kind to the Login Nodes
 
 The login node is often busy managing all of the logged in users, creating and
 editing files and compiling software. If the machine runs out of memory or
@@ -48,7 +48,7 @@ library versions that differ from your laptop, and doing an interactive test
 run on the head node is a quick and reliable way to discover and fix these
 issues.
 
-> ## Login nodes are a shared resource
+> ## Login Nodes Are a Shared Resource
 >
 > Remember, the login node is shared with all other users and your actions
 > could cause issues for other people. Think carefully about the potential
@@ -94,7 +94,7 @@ safely use it for your non-routine processing task. If something goes wrong
 If you experience performance issues with a login node you should report it to
 the system staff (usually via the helpdesk) for them to investigate.
 
-## Test before scaling
+## Test Before Scaling
 
 Remember that you are generally charged for usage on shared systems. A simple
 mistake in a job script can end up costing a large amount of resource budget.
@@ -111,7 +111,7 @@ within 10 seconds of starting due to a trivial typo in the job script. This is
 extremely frustrating! Most systems provide dedicated resources for testing
 that have short wait times to help you avoid this issue.
 
-> ## Test job submission scripts that use large amounts of resources
+> ## Test Job Submission Scripts That Use Large Amounts of Resources
 >
 > Before submitting a large run of jobs, submit one as a test first to make
 > sure everything works as expected.
@@ -120,7 +120,7 @@ that have short wait times to help you avoid this issue.
 > to ensure that the job starts as expected.
 {: .callout}
 
-## Have a backup plan
+## Have a Backup Plan
 
 Although many HPC systems keep backups, it does not always cover all the file
 systems available and may only be for disaster recovery purposes (*i.e.* for
@@ -149,7 +149,7 @@ In all these cases, the helpdesk of the system you are using should be able to
 provide useful guidance on your options for data transfer for the volumes of
 data you will be using.
 
-> ## Your data is your responsibility
+> ## Your Data Is Your Responsibility
 >
 > Make sure you understand what the backup policy is on the file systems on the
 > system you are using and what implications this has for your work if you lose
@@ -157,7 +157,7 @@ data you will be using.
 > transfer data off the system throughout the project.
 {: .callout}
 
-## Transferring data
+## Transferring Data
 
 As mentioned above, many users run into the challenge of transferring large
 amounts of data off HPC systems at some point (this is more often in
@@ -225,7 +225,7 @@ talked about data transfer earlier.
    link points illustrate the latency of the link, with more tortuous
    mazes indicating higher latency.</i>" %}
 
-> ## Consider the best way to transfer data
+> ## Consider the Best Way to Transfer Data
 >
 > If you are transferring large amounts of data you will need to think about
 > what may affect your transfer performance. It is always useful to run some
