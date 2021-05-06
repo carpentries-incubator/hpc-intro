@@ -16,6 +16,9 @@ __version__ = '0.3'
 # Where to look for source Markdown files.
 SOURCE_DIRS = ['', '_episodes', '_extras']
 
+# Where to look for snippet files (which should be Markdown syntax)
+SNIPPET_DIR = os.path.join('_includes', 'snippets_library')
+
 # Where to look for source Rmd files.
 SOURCE_RMD_DIRS = ['_episodes_rmd']
 
@@ -30,6 +33,7 @@ REQUIRED_FILES = {
     'CODE_OF_CONDUCT.md': True,
     'CONTRIBUTING.md': False,
     'LICENSE.md': True,
+    'MAINTENANCE.md': False,
     'README.md': False,
     os.path.join('_extras', 'discuss.md'): True,
     os.path.join('_extras', 'guide.md'): True,
@@ -59,6 +63,7 @@ P_INTERNAL_INCLUDE_LINK = re.compile(r'^{% include ([^ ]*) %}$')
 # What kinds of blockquotes are allowed?
 KNOWN_BLOCKQUOTES = {
     'callout',
+    'caution',
     'challenge',
     'checklist',
     'discussion',
@@ -67,22 +72,17 @@ KNOWN_BLOCKQUOTES = {
     'prereq',
     'quotation',
     'solution',
-    'testimonial'
+    'testimonial',
+    'warning'
 }
 
 # What kinds of code fragments are allowed?
+# We allow all 'language-*' code blocks below
 KNOWN_CODEBLOCKS = {
     'error',
     'output',
     'source',
-    'language-bash',
-    'html',
-    'language-make',
-    'language-matlab',
-    'language-python',
-    'language-r',
-    'language-shell',
-    'language-sql'
+    'warning'
 }
 
 # What fields are required in teaching episode metadata?
@@ -104,7 +104,7 @@ BREAK_METADATA_FIELDS = {
 
 # How long are lines allowed to be?
 # Please keep this in sync with .editorconfig!
-MAX_LINE_LEN = 100
+MAX_LINE_LEN = 79
 
 
 def main():
@@ -112,9 +112,15 @@ def main():
 
     args = parse_args()
     args.reporter = Reporter()
-    check_config(args.reporter, args.source_dir)
+    life_cycle = check_config(args.reporter, args.source_dir)
+    # pre-alpha lessons should report without error
+    if life_cycle == "pre-alpha":
+        args.permissive = True
     check_source_rmd(args.reporter, args.source_dir, args.parser)
-    args.references = read_references(args.reporter, args.reference_path)
+
+    args.references = {}
+    if not using_remote_theme(args.source_dir):
+        args.references = read_references(args.reporter, args.reference_path)
 
     docs = read_all_markdown(args.source_dir, args.parser)
     check_fileset(args.source_dir, args.reporter, list(docs.keys()))
@@ -168,6 +174,10 @@ def parse_args():
 
     return args
 
+def using_remote_theme(source_dir):
+    config_file = os.path.join(source_dir, '_config.yml')
+    config = load_yaml(config_file)
+    return 'remote_theme' in config
 
 def check_config(reporter, source_dir):
     """Check configuration file."""
@@ -189,6 +199,9 @@ def check_config(reporter, source_dir):
         reporter.check(defaults in config.get('defaults', []),
                    'configuration',
                    '"root" not set to "." in configuration')
+    if 'life_cycle' not in config:
+        config['life_cycle'] = None
+    return config['life_cycle']
 
 def check_source_rmd(reporter, source_dir, parser):
     """Check that Rmd episode files include `source: Rmd`"""
@@ -215,7 +228,7 @@ def read_references(reporter, ref_path):
     result = {}
     urls_seen = set()
 
-    with open(ref_path, 'r') as reader:
+    with open(ref_path, 'r', encoding='utf-8') as reader:
         for (num, line) in enumerate(reader, 1):
 
             if P_INTERNAL_INCLUDE_LINK.search(line): continue
@@ -263,6 +276,13 @@ def read_all_markdown(source_dir, parser):
             data = read_markdown(parser, filename)
             if data:
                 result[filename] = data
+
+    # Also read our snippets
+    snippet_pattern = os.path.join(SNIPPET_DIR, '**/*.snip')
+    for filename in glob.glob(snippet_pattern, recursive=True):
+        data = read_markdown(parser, filename)
+        if data:
+            result[filename] = data
     return result
 
 
@@ -275,7 +295,7 @@ def check_fileset(source_dir, reporter, filenames_present):
     for m in missing:
         reporter.add(None, 'Missing required file {0}', m)
 
-    # Check episode files' names.
+    # Check names of episode files.
     seen = []
     for filename in filenames_present:
         if '_episodes' not in filename:
@@ -357,12 +377,13 @@ class CheckBase:
         """Check the raw text of the lesson body."""
 
         if self.args.line_lengths:
-            over = [i for (i, l, n) in self.lines if (n > MAX_LINE_LEN)
-                    and (not l.startswith('!'))
-                    and (not 'http' in l)
-                    and (not '{%' in l)
-                    and (not '{{' in l)
-            ]
+            code = '^[> ]*{{' # regular expression for [> > > ]{{ site... }}
+            link = '^[[].+[]]:' # regex for [link-abbrv]: address
+            over = [i for (i, l, n) in self.lines if (n > MAX_LINE_LEN) and
+                                                  (not l.startswith('!')) and
+                                                  (not re.search(code, l)) and
+                                                  (not re.search(link, l)) and
+                                                  (not l.startswith('http'))]
             self.reporter.check(not over,
                                 self.filename,
                                 'Line(s) too long: {0}',
@@ -394,7 +415,8 @@ class CheckBase:
 
         for node in self.find_all(self.doc, {'type': 'codeblock'}):
             cls = self.get_val(node, 'attr', 'class')
-            self.reporter.check(cls in KNOWN_CODEBLOCKS,
+            self.reporter.check(cls is not None and (cls in KNOWN_CODEBLOCKS
+                                             or cls.startswith('language-')),
                                 (self.filename, self.get_loc(node)),
                                 'Unknown or missing code block type {0}',
                                 cls)
@@ -494,7 +516,8 @@ class CheckEpisode(CheckBase):
         """Run extra tests."""
 
         super().check()
-        self.check_reference_inclusion()
+        if not using_remote_theme():
+            self.check_reference_inclusion()
 
     def check_metadata(self):
         super().check_metadata()
@@ -558,11 +581,13 @@ class CheckGeneric(CheckBase):
 
 CHECKERS = [
     (re.compile(r'CONTRIBUTING\.md'), CheckNonJekyll),
+    (re.compile(r'MAINTENANCE\.md'), CheckNonJekyll),
     (re.compile(r'README\.md'), CheckNonJekyll),
     (re.compile(r'index\.md'), CheckIndex),
     (re.compile(r'reference\.md'), CheckReference),
     (re.compile(os.path.join('_episodes', '*\.md')), CheckEpisode),
-    (re.compile(r'.*\.md'), CheckGeneric)
+    (re.compile(r'.*\.md'), CheckGeneric),
+    (re.compile(r'.*\.snip'), CheckNonJekyll)
 ]
 
 

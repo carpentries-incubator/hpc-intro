@@ -55,8 +55,8 @@ def inside_circle(total_count):
     print("Rank {} generating {:n} samples on host {}.".format(
             rank, total_count, host_name))
 
-    x = np.float32(np.random.uniform(size=total_count))
-    y = np.float32(np.random.uniform(size=total_count))
+    x = np.float64(np.random.uniform(size=total_count))
+    y = np.float64(np.random.uniform(size=total_count))
 
     radii = np.sqrt(x*x + y*y)
 
@@ -110,15 +110,16 @@ if __name__ == '__main__':
 
     count_item = inside_circle(partition_item)
 
-    # All ranks participate in the "gather" operation, which sums the
-    # rank's count_items into the total "counts".
+    # All ranks participate in the "gather" operation, which creates an array
+    # of all the rank's count_items on rank zero.
 
     counts = comm.gather(count_item, root=0)
 
     if rank == 0:
-        # Only rank zero writes the result, although it's known to all.
+        # Only rank zero has the entire array of results, so only it can
+        # compute and print the final answer.
         my_pi = 4.0 * sum(counts) / n_samples
-        size_of_float = np.dtype(np.float32).itemsize
+        size_of_float = np.dtype(np.float64).itemsize
         run_type = "serial" if cpus == 1 else "mpi"
         print("[{:>8} version] required memory {:.1f} MB".format(
             run_type, 3 * n_samples * size_of_float / (1024**2)))

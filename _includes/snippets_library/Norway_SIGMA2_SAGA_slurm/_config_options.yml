@@ -21,6 +21,7 @@ snippets: "/snippets_library/Norway_SIGMA2_SAGA_slurm"
 
 local:
   prompt: "[user@laptop ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
 
 remote:
   name: "saga"
@@ -31,6 +32,7 @@ remote:
   homedir: "/home"
   user: "$USER"
   prompt: "[yourUsername@login-1.SAGA ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
 
 sched:
   name: "SLURM"

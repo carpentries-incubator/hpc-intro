@@ -1,11 +1,12 @@
 > ## Job environment variables
 >
-> When {{ site.sched.name }} runs a job, it sets a number of environment variables for the job. One of these will
-> let us check what directory our job script was submitted from. The `PBS_O_WORKDIR` variable is
-> set to the directory from which our job was submitted.
+> When {{ site.sched.name }} runs a job, it sets a number of environment
+> variables for the job. One of these will let us check what directory our job
+> script was submitted from. The `PBS_O_WORKDIR` variable is set to the
+> directory from which our job was submitted.
 >
-> Using the `PBS_O_WORKDIR` variable, modify your job so that it prints out the location
-> from which the job was submitted.
+> Using the `PBS_O_WORKDIR` variable, modify your job so that it prints out the
+> location from which the job was submitted.
 >
 > > ## Solution
 > >
@@ -13,12 +14,12 @@
 > > {{ site.remote.prompt }} nano example-job.sh
 > > {{ site.remote.prompt }} cat example-job.sh
 > > ```
-> > {: .bash}
+> > {: .language-bash}
 > >
 > > ```
-> > #!/bin/bash
+> > {{ site.remote.bash_shebang }}
 > > #PBS -l 00:00:30
-> > 
+> >
 > > echo -n "This script is running on "
 > > hostname
 > >

@@ -1,0 +1,13 @@
+```
+{{ site.remote.bash_shebang }}
+{{ site.sched.comment }} {{ site.sched.flag.name }} parallel-pi
+{{ site.sched.comment }} {{ site.sched.flag.queue }} {{ site.sched.queue.testing }}
+{{ site.sched.comment }} -l nodes=1:ppn=4:mem=3G
+
+# Load the computing environment we need
+module load python3
+
+# Execute the task
+mpiexec python pi.py 100000000
+```
+{: .language-bash}
