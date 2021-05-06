@@ -32,7 +32,7 @@ files. How do you do this?
    to do this.
 1. I am not sure what to do.
 
-#### Moving around
+#### Moving Around
 
 You are on `/bigdata/users/wolfman/projects/study` and want to jump over to
 `/bigdata/projects/experiments/at-moonlight` on the command line.
@@ -62,7 +62,7 @@ You want to use this new program on your cluster, starting with reading the
    to do this.
 1. I am not sure what to do.
 
-#### Automating All The Things
+#### Automating All the Things
 
 You notice that you've been copying & pasting the same sequence of 5 shell
 commands more than a few times during the day. It occurs to you that capturing
