@@ -1,9 +1,9 @@
 #------------------------------------------------------------
-# ComputeCanada: Graham + SLURM
+# ComputeCanada: Graham + Slurm
 #------------------------------------------------------------
 
 # Cluster host and scheduler options: the defaults come from
-# Graham at Compute Canada, running SLURM. Other options can
+# Graham at Compute Canada, running Slurm. Other options can
 # be found in the library of snippets,
 # `_includes/snippets_library`. To use one, replace options
 # below with those in `_config_options.yml` from the
@@ -35,7 +35,7 @@ remote:
   bash_shebang: "#!/usr/bin/env bash"
 
 sched:
-  name: "SLURM"
+  name: "Slurm"
   submit:
     name: "sbatch"
     options: ""

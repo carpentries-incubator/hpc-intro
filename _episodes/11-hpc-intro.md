@@ -60,7 +60,7 @@ problems in parallel**.
 > * How could more computing help you do more or better research?
 {: .discussion }
 
-## A standard Laptop for standard tasks
+## A Standard Laptop for Standard Tasks
 
 Today, people coding or analysing data typically work with laptops.
 
@@ -82,7 +82,7 @@ Schematically, this can be reduced to the following:
    file="/fig/Simple_Von_Neumann_Architecture.svg"
    alt="Schematic of how a computer works" caption="" %}
 
-## When tasks take too long
+## When Tasks Take Too Long
 
 When the task to solve becomes heavy on computations, the operations are
 typically out-sourced from the local laptop or desktop to elsewhere. Take for
@@ -114,7 +114,7 @@ your laptop will ever have. In any case, you need a local device (laptop,
 workstation, mobile phone or tablet) to interact with this remote machine,
 which people typically call 'a server'.
 
-## When one server is not enough
+## When One Server Is Not Enough
 
 If the computational task or analysis to complete is daunting for a single
 server, larger agglomerations of servers are used. These go by the name of
@@ -135,7 +135,7 @@ to
 1. work with a distributed set of computers (called nodes) rather than the
    machine attached to their keyboard & mouse
 
-> ## I've never used a server, have I?
+> ## I've Never Used a Server, Have I?
 >
 > Take a minute and think about which of your daily interactions with a
 > computer may require a remote server or even cluster to provide you with
