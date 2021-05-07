@@ -151,7 +151,7 @@ there is a distinction between running the job through the scheduler and just
 site.sched.submit.name }}` command.
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %} {{ site.sched.submit.options }}{% endif %}example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
 ```
 {: .language-bash}
 
@@ -179,7 +179,7 @@ interval to a more reasonable value, for example 15 seconds, with the `-n 15`
 parameter. Let's try using it to monitor another job.
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %} {{ site.sched.submit.options }}{% endif %}example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
 {{ site.remote.prompt }} watch -n 15 {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .language-bash}
@@ -237,7 +237,7 @@ echo "This script has finished successfully."
 Submit the job and monitor its status:
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %} {{ site.sched.submit.options }}{% endif %}example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .language-bash}
@@ -315,7 +315,7 @@ later episode of this lesson.
 > > {: .output}
 > >
 > > ```
-> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %} {{ site.sched.submit.options }}{% endif %}example-job.sh
+> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
 > > ```
 > > {: .language-bash}
 > >
@@ -350,7 +350,7 @@ Submit the job and wait for it to finish. Once it is has finished, check the
 log file.
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %} {{ site.sched.submit.options }}{% endif %}example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
 {{ site.remote.prompt }} watch -n 15 {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .language-bash}
@@ -378,7 +378,7 @@ its job number (remember to change the walltime so that it runs long enough for
 you to cancel it before it is killed!).
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %} {{ site.sched.submit.options }}{% endif %}example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .language-bash}
