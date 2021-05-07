@@ -4,7 +4,7 @@ permalink: /reference/
 title: Knowledge Base
 ---
 
-### Quick reference or "cheat sheets" for queuing system commands
+### Quick Reference or "Cheat Sheets" for Queuing System Commands
 
 Search online for the one that fits you best, but here's some to start:
 
@@ -34,7 +34,7 @@ the *binary* prefixes (with base of 2<sup>10</sup>=1024) by the prefixes Kibi
 (ki), Mebi (Mi), Gibi (Gi), etc. For more details, see
 [here](https://en.wikipedia.org/wiki/Binary_prefix).
 
-### "No such file or directory" or "symbol 0096" errors
+### "No such file or directory" or "symbol 0096" Errors
 
 `scp` and `rsync` may throw a perplexing error about files that very much do
 exist. One source of these errors is copy-and-paste of command line arguments
@@ -63,7 +63,7 @@ We have done our best to wrap all commands in code blocks, which prevents this
 subtle conversion. If you encounter this error, please open an issue or pull
 request on the lesson repository to help others avoid it.
 
-### Transferring files interactively with `sftp`
+### Transferring Files Interactively With `sftp`
 
 `scp` is useful, but what if we don't know the exact location of what we want
 to transfer? Or perhaps we're simply not sure which files we want to transfer

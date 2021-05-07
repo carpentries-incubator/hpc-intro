@@ -17,7 +17,7 @@ logging in over SSH, loading software modules, submitting parallel jobs, and
 finding the output. Let's learn about estimating resource usage and why it
 might matter.
 
-## Estimating required resources using the scheduler
+## Estimating Required Resources Using the Scheduler
 
 Although we covered requesting resources from the scheduler earlier with the
 &#960; code, how do we know what type of resources the software will need in
@@ -84,7 +84,7 @@ Some interesting fields include the following:
 * **MaxDiskRead**: Amount of data read from disk.
 * **MaxDiskWrite**: Amount of data written to disk.
 
-## Measuring the system load from currently running tasks
+## Measuring the System Load From Currently Running Tasks
 
 Typically, clusters allow users to connect directly to compute nodes from the
 head node. This is useful to check on a running job and see how it's doing, but
@@ -93,7 +93,7 @@ manager. To reduce the risk of interfering with other users, some clusters will
 only allow you to connect to nodes on which you have running jobs. Let's
 practice by taking a look at what's running on the login node right now.
 
-### Monitor system processes with `top`
+### Monitor System Processes With `top`
 
 The most reliable way to check current system stats is with `top`. Some sample
 output might look like the following (type `q` to exit `top`):

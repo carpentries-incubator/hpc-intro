@@ -20,7 +20,7 @@ keypoints:
 - "If in doubt, request more resources than you will need."
 ---
 
-## Job scheduler
+## Job Scheduler
 
 An HPC system might have thousands of nodes and thousands of users. How do we
 decide who gets what and when? How do we ensure that a task is run with the
@@ -37,7 +37,7 @@ why sometimes your job do not start instantly as in your laptop.
    file="/fig/restaurant_queue_manager.svg"
    alt="Compare a job scheduler to a waiter in a restaurant" %}
 
-> ## Job scheduling roleplay (optional)
+> ## Job Scheduling Roleplay (Optional)
 >
 > Your instructor will divide you into groups taking on different roles in the
 > cluster (users, compute nodes and the scheduler). Follow their instructions
@@ -99,7 +99,7 @@ The scheduler used in this lesson is {{ site.sched.name }}. Although
 regardless of what software is being used. The exact syntax might change, but
 the concepts remain the same.
 
-## Running a batch job
+## Running a Batch Job
 
 The most basic use of the scheduler is to run a command non-interactively. Any
 command (or series of commands) that you want to run on the cluster is called a
@@ -126,7 +126,7 @@ hostname
 ```
 {: .output}
 
-> ## Creating our test job
+> ## Creating Our Test Job
 >
 > Run the script. Does it execute on the cluster or just our login node?
 >
@@ -188,7 +188,7 @@ You should see an auto-updating display of your job's status. When it finishes,
 it will disappear from the queue. Press `Ctrl-c` when you want to stop the
 `watch` command.
 
-> ## Where's the output?
+> ## Where's the Output?
 >
 > On the login node, this script printed output to the terminal &mdash; but
 > when we exit `watch`, there's nothing. Where'd it go?
@@ -197,7 +197,7 @@ it will disappear from the queue. Press `Ctrl-c` when you want to stop the
 > launched it from. Use `ls` to find and read the file.
 {: .discussion}
 
-## Customising a job
+## Customising a Job
 
 The job we just ran used all of the scheduler's default options. In a
 real-world scenario, that's probably not what we want. The default options
@@ -246,7 +246,7 @@ Submit the job and monitor its status:
 
 Fantastic, we've successfully changed the name of our job!
 
-> ## Setting up email notifications
+> ## Setting up Email Notifications
 >
 > Jobs on an HPC system might run for days or even weeks. We probably have
 > better things to do than constantly check on the status of our job with
@@ -268,7 +268,7 @@ Fantastic, we've successfully changed the name of our job!
 > {: .solution}
 {: .challenge}
 
-### Resource requests
+### Resource Requests
 
 But what about more important changes, such as the number of cores and memory
 for our jobs? One thing that is absolutely critical when working on an HPC
@@ -291,7 +291,7 @@ It's best if your requests accurately reflect your job's requirements. We'll
 talk more about how to make sure that you're using resources effectively in a
 later episode of this lesson.
 
-> ## Submitting resource requests
+> ## Submitting Resource Requests
 >
 > Modify our `hostname` script so that it runs for a minute, then submit a job
 > for it on the cluster.
@@ -370,7 +370,7 @@ jobs on the node will be unaffected. This means that one user cannot mess up
 the experience of others, the only jobs affected by a mistake in scheduling
 will be their own.
 
-## Cancelling a job
+## Cancelling a Job
 
 Sometimes we'll make a mistake and need to cancel a job. This can be done with
 the `{{ site.sched.del }}` command. Let's submit a job and then cancel it using
@@ -400,7 +400,7 @@ successful.
 
 {% include {{ site.snippets }}/scheduler/terminate-multiple-jobs.snip %}
 
-## Other types of jobs
+## Other Types of Jobs
 
 Up to this point, we've focused on running jobs in batch mode.
 {{ site.sched.name }} also provides the ability to start an interactive session.
