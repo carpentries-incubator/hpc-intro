@@ -35,7 +35,7 @@ of the desktop or laptop computer where they started:
   computer with **more memory** would be required to analyze the much larger
   future data set.
 * An engineer is using a fluid dynamics package that has an option to run in
-  parallel. So far, this option was not utilized on a desktop. In going from 2D
+  parallel. So far, this option was not used on a desktop. In going from 2D
   to 3D simulations, the simulation time has more than tripled. It might be
   useful to take advantage of that option or feature. In this research problem,
   the calculations in each region of the simulation are largely independent of
