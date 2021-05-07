@@ -14,11 +14,11 @@ keypoints:
 - "HPC systems typically provide login nodes and a set of worker nodes."
 - "The resources found on independent (worker) nodes can vary in volume and
   type (amount of RAM, processor architecture, availability of network mounted
-  file systems, etc.)."
+  filesystems, etc.)."
 - "Files saved on one node are available on all nodes."
 ---
 
-## What is an HPC system?
+## What Is an HPC System?
 
 The words "cloud", "cluster", and the phrase "high-performance computing" or
 "HPC" are used a lot in different contexts and with various related meanings.
@@ -51,7 +51,7 @@ impressive than the [Top-500](https://www.top500.org). Clusters are often
 maintained in computing centers that support several such systems, all sharing
 common networking and storage to support common compute intensive tasks.
 
-## Logging in
+## Logging In
 
 The first step in using a cluster is to establish a connection from our laptop
 to the cluster. When we are sitting at a computer (or standing, or holding it
@@ -101,7 +101,7 @@ supplied by the instructors. You may be asked for your password. Watch out: the
 characters you type after the password prompt are not displayed on the screen.
 Normal output will resume once you press `Enter`.
 
-## Where are we?
+## Where Are We?
 
 Very often, many users are tempted to think of a high-performance computing
 installation as one giant, magical machine. Sometimes, people will assume that
@@ -120,7 +120,7 @@ may also notice that the current hostname is also part of our prompt!)
 ```
 {: .output}
 
-> ## What's in your home directory?
+> ## What's in Your Home Directory?
 >
 > The system administrators may have configured your home directory with some
 > helpful files, folders, and links (shortcuts) to space reserved for you on
@@ -131,7 +131,7 @@ may also notice that the current hostname is also part of our prompt!)
 > Home directory contents vary from user to user. Please discuss any
 > differences you spot with your neighbors:
 >
-> > ## It's a beautiful day in the neighborhood
+> > ## It's a Beautiful Day in the Neighborhood
 > >
 > > The deepest layer should differ: {{ site.remote.user }} is uniquely yours.
 > > Are there differences in the path at higher levels?
@@ -218,7 +218,7 @@ typically logon to or interact with these machines directly, they enable a
 number of key features like ensuring our user account and files are available
 throughout the HPC system.
 
-## What's in a node?
+## What's in a Node?
 
 All of the nodes in an HPC system have the same components as your own laptop
 or desktop: *CPUs* (sometimes also called *processors* or *cores*), *memory*
@@ -276,7 +276,7 @@ connect to a shared, remote fileserver or cluster of servers.
 > {: .solution}
 {: .challenge}
 
-> ## Explore The Head Node
+> ## Explore the Head Node
 >
 > Now compare the resources of your computer with those of the head node.
 >
@@ -314,7 +314,7 @@ connect to a shared, remote fileserver or cluster of servers.
 > > > https://en.wikipedia.org/wiki/Mount_(computing)).
 > > {: .discussion}
 > >
-> > > ## Shared file systems
+> > > ## Shared Filesystems
 > > >
 > > > This is an important point to remember: files saved on one node
 > > > (computer) are often available everywhere on the cluster!

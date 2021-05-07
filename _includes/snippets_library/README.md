@@ -1,4 +1,4 @@
-# HPC Carpentriy Snippets Library
+# HPC Carpentry Snippets Library
 
 This directory contains snippets of code and output that are specific
 to a particular site. For example, when the lesson shows the status

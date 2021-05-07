@@ -45,7 +45,7 @@ materials science software may depend on having a particular version of the
 FFTW (Fastest Fourier Transform in the West) software library available for it
 to work.
 
-## Environment modules
+## Environment Modules
 
 Environment modules are the solution to these problems. A *module* is a
 self-contained description of a software package &mdash; it contains the
@@ -66,7 +66,7 @@ On login you may start out with a default set of modules loaded or you may
 start out with an empty environment; this depends on the setup of the system
 you are using.
 
-### Listing available modules
+### Listing Available Modules
 
 To see available software modules, use `module avail`:
 
@@ -77,7 +77,7 @@ To see available software modules, use `module avail`:
 
 {% include {{ site.snippets }}/modules/available-modules.snip %}
 
-### Listing currently loaded modules
+### Listing Currently Loaded Modules
 
 You can use the `module list` command to see which modules you currently have
 loaded in your environment. If you have no modules loaded, you will see a
@@ -93,7 +93,7 @@ No Modulefiles Currently Loaded.
 ```
 {: .output}
 
-## Loading and unloading software
+## Loading and Unloading Software
 
 To load a software module, use `module load`. In this example we will use
 Python 3.
@@ -147,7 +147,7 @@ required software dependencies.
 
 {% include {{ site.snippets }}/modules/software-dependencies.snip %}
 
-## Software versioning
+## Software Versioning
 
 So far, we've learned how to load and unload software packages. This is very
 useful. However, we have not yet addressed the issue of software versioning. At
@@ -168,7 +168,7 @@ Let's examine the output of `module avail` more closely.
 
 {% include {{ site.snippets }}/modules/wrong-gcc-version.snip %}
 
-> ## Using software modules in scripts
+> ## Using Software Modules in Scripts
 >
 > Create a job that is able to run `python3 --version`. Remember, no software
 > is loaded by default! Running a job is just like logging on to the system
