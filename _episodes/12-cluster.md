@@ -5,7 +5,7 @@ exercises: 10
 questions:
 - "What is an HPC system?"
 - "How does an HPC system work?"
-- "How do I log on to a remote HPC system?"
+- "How do I log in to a remote HPC system?"
 objectives:
 - "Connect to a remote HPC system."
 - "Understand the general HPC system architecture."
