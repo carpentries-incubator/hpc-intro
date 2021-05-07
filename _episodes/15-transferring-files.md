@@ -17,7 +17,7 @@ to or from the cluster. There are several options for transferring data between
 computing resources, from command line options to GUI programs, which we will
 cover here.
 
-## Download files from the Internet
+## Download Files From the Internet
 
 One of the most straightforward ways to download files is to use either `curl`
 or `wget`, one of these is usually installed in most Linux shells, on Mac OS
@@ -49,7 +49,7 @@ or
 > mouthful, later on.
 {: .discussion}
 
-## Transferring single files and folders with scp
+## Transferring Single Files and Folders With `scp`
 
 To copy a single file to or from the cluster, we can use `scp` ("secure copy").
 The syntax can be a little complex for new users, but we'll break it down.
@@ -76,7 +76,7 @@ remote computer. We can leave it at that if we don't care where the file goes.
 ```
 {: .language-bash}
 
-> ## Upload a file
+> ## Upload a File
 >
 > Copy the file you just downloaded from the Internet to your home directory on
 > {{ site.remote.name }}.
@@ -90,7 +90,7 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > {: .solution}
 {: .challenge}
 
-> ## Why not download on {{ site.remote.name }} directly?
+> ## Why Not Download on {{ site.remote.name }} Directly?
 >
 > Some computer clusters are behind firewalls set to only allow transfers
 > initiated from the *outside*. This means that the `curl` command will fail,
@@ -157,7 +157,7 @@ directory *is* the destination.
 A trailing slash on the target directory is optional, and has no effect for
 `scp -r`, but is important in other commands, like `rsync`.
 
-> ## A note on `rsync`
+> ## A Note on `rsync`
 >
 > As you gain experience with transferring files, you may find the `scp`
 > command limiting. The [rsync](https://rsync.samba.org/) utility provides
@@ -203,7 +203,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > {: .language-bash}
 {: .callout}
 
-> ## A note on ports
+> ## A Note on Ports
 >
 > All file transfers using the above methods use SSH to encrypt data sent
 > through the network. So, if you can connect via SSH, you will be able to
@@ -211,7 +211,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > in use, you will have to specify it using the appropriate flag, often `-p`,
 > `-P`, or `--port`. Check `--help` or the `man` page if you're unsure.
 >
-> > ## Rsync port
+> > ## Rsync Port
 > >
 > > Say we have to connect `rsync` through port 768 instead of 22. How would we
 > > modify this command?
@@ -234,7 +234,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > {: .challenge}
 {: .callout}
 
-## Transferring files interactively with FileZilla
+## Transferring Files Interactively with FileZilla
 
 FileZilla is a cross-platform client for downloading and uploading files to and
 from a remote computer. It is absolutely fool-proof and always works quite
@@ -267,7 +267,7 @@ will be more efficient than using FileZilla (or related applications) that
 would copy from the source to your local machine, then to the destination
 machine.
 
-## Archiving files
+## Archiving Files
 
 One of the biggest challenges we often face when transferring data between
 remote HPC systems is that of large numbers of files. There is an overhead to
@@ -331,7 +331,7 @@ familiar. Let's see about that compression, using `du` for "**d**isk
 ```
 {: .language-bash}
 
-> ## Files occupy at least one "block"
+> ## Files Occupy at Least One "Block"
 >
 > If the filesystem block size is larger than 36 KB, you'll see a larger
 > number: files cannot be smaller than one block.
@@ -395,7 +395,7 @@ When it's done, check the directory size with `du` and compare.
 > > {: .language-bash}
 > {: .solution}
 >
-> > ## Was the data compressed?
+> > ## Was the Data Compressed?
 > >
 > > Text files compress nicely: the "tarball" is one-quarter the total size of
 > > the raw data!
