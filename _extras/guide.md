@@ -19,7 +19,7 @@ is a great way to contribute.
 [Central processing unit](https://en.wikipedia.org/wiki/CPU)
 :     or simply *processor* is the (hardware) component of a computer that
       executes the instructions supplied by a program (software). Most modern
-      desktop computers have multi-core processors *e.g.* devices with 2 CPUs
+      desktop computers have multi-core processors, e.g. devices with 2 CPUs
       are called dual-core, with 4 cores are called quad-core and so on. Each
       **core** is a separate physical implementation of the electronic
       circuitry required to execute instructions.
@@ -29,8 +29,8 @@ is a great way to contribute.
 
 [Cluster](https://en.wikipedia.org/wiki/Computer_cluster)
 :     a collection of computers configured to enable collaboration on a common
-      task by means of purposefully configured hardware (*e.g.*, networking)
-      and software (*e.g.* workload management).
+      task by means of purposefully configured hardware (e.g., networking)
+      and software (e.g. workload management).
 
 [Distributed memory](https://en.wikipedia.org/wiki/Distributed_memory)
 :    *to be defined*

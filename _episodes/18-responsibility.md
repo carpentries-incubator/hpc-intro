@@ -123,7 +123,7 @@ that have short wait times to help you avoid this issue.
 ## Have a Backup Plan
 
 Although many HPC systems keep backups, it does not always cover all the file
-systems available and may only be for disaster recovery purposes (*i.e.* for
+systems available and may only be for disaster recovery purposes (i.e. for
 restoring the whole file system if lost rather than an individual file or
 directory you have deleted by mistake). Protecting critical data from
 corruption or deletion is primarily your responsibility: keep your own backup
