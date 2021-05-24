@@ -193,7 +193,7 @@ Let's examine the output of `module avail` more closely.
 > > {: .output}
 > >
 > > ```
-> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} python-module.sh
+> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}python-module.sh
 > > ```
 > > {: .language-bash}
 > {: .solution}

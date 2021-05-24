@@ -5,7 +5,7 @@ exercises: 10
 questions:
 - "What is an HPC system?"
 - "How does an HPC system work?"
-- "How do I log on to a remote HPC system?"
+- "How do I log in to a remote HPC system?"
 objectives:
 - "Connect to a remote HPC system."
 - "Understand the general HPC system architecture."
@@ -29,7 +29,7 @@ that are a) *provisioned* to users on demand or as needed and b) represent real
 or *virtual* resources that may be located anywhere on Earth. For example, a
 large company with computing resources in Brazil, Zimbabwe and Japan may manage
 those resources as its own *internal* cloud and that same company may also
-utilize commercial cloud resources provided by Amazon or Google. Cloud
+use commercial cloud resources provided by Amazon or Google. Cloud
 resources may refer to machines performing relatively simple tasks such as
 serving websites, providing shared storage, providing web services (such as
 e-mail or social media platforms), as well as more traditional compute
