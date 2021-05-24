@@ -36,7 +36,7 @@ NOTE: This is *not* Carpentries boilerplate! Please read carefully.
      `{% include /snippets/12/info.snip %}`.
 
 1. Edit `_config_options.yml` in your snippets folder. These options set such
-   things as the address of the host to login to, definitions of the command
+   things as the address of the host to log in to, definitions of the command
    prompt, and scheduler names. You can also change the order of the episodes,
    or omit episodes, by editing the configuration block under `episode_names`
    in this file.
