@@ -47,22 +47,22 @@ to work.
 
 ## Environment Modules
 
-Environment modules are the solution to these problems. A *module* is a
+Environment Modules are the solution to these problems. A *Module* is a
 self-contained description of a software package &mdash; it contains the
 settings required to run a software package and, usually, encodes required
 dependencies on other software packages.
 
-There are a number of different environment module implementations commonly
+There are a number of different Environment Module implementations commonly
 used on HPC systems: the two most common are *TCL modules* and *Lmod*. Both of
 these use similar syntax and the concepts are the same so learning to use one
 will allow you to use whichever is installed on the system you are using. In
 both implementations the `module` command is used to interact with environment
-modules. An additional subcommand is usually added to the command to specify
+Modules. An additional subcommand is usually added to the command to specify
 what you want to do. For a list of subcommands you can use `module -h` or
 `module help`. As for all commands, you can access the full help on the *man*
 pages with `man module`.
 
-On login you may start out with a default set of modules loaded or you may
+On login you may start out with a default set of Modules loaded or you may
 start out with an empty environment; this depends on the setup of the system
 you are using.
 
@@ -79,8 +79,8 @@ To see available software modules, use `module avail`:
 
 ### Listing Currently Loaded Modules
 
-You can use the `module list` command to see which modules you currently have
-loaded in your environment. If you have no modules loaded, you will see a
+You can use the `module list` command to see which Modules you currently have
+loaded in your environment. If you have no Modules loaded, you will see a
 message telling you so
 
 ```
@@ -95,7 +95,7 @@ No Modulefiles Currently Loaded.
 
 ## Loading and Unloading Software
 
-To load a software module, use `module load`. In this example we will use
+To load a software Module, use `module load`. In this example we will use
 Python 3.
 
 Initially, Python 3 is not loaded. We can test this by using the `which`
@@ -172,7 +172,7 @@ Let's examine the output of `module avail` more closely.
 >
 > Create a job that is able to run `python3 --version`. Remember, no software
 > is loaded by default! Running a job is just like logging on to the system
-> (you should not assume a module loaded on the login node is loaded on a
+> (you should not assume a Module loaded on the login node is loaded on a
 > compute node).
 >
 > > ## Solution
