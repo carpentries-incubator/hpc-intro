@@ -74,13 +74,15 @@ def inside_circle(total_count):
 {: .language-python}
 
 > ## Random Number Generation
-> 
-> For simplicity, random numbers are generated using regular functions, if
-> a high quality random numbers are needed in parallel applications, one should
-> use libraries such as [SPRNG](http://sprng.org/) and 
-> [Kmath-random](https://www.r-ccs.riken.jp/labs/lpnctrt/projects/kmath-random/).
-> * Discuss why generating high quality random numbers in parallel might be 
-> difficult.
+> In the preceding code, random numbers are conveniently generated using the 
+> built-in capabilities of NumPy. In general, random-number generation is 
+> difficult to do well, it's easy to accidentally introduce correlations into 
+> the generated sequence. 
+> * Discuss why generating high quality random numbers might be difficult.
+> * Is the quality of random numbers generated sufficient for estimating &#960; 
+> in this implementation?
+> * Can you find information online on standards bodies that assess algorithms 
+> that generate high quality pseudo random numbers?
 {: .discussion }
 
 Next, we create a main function to call the `inside_circle` function and
@@ -110,6 +112,18 @@ If we run the Python script locally with a command-line parameter, as in
 3.10546875
 ```
 {: .language-bash}
+
+> ## Random Number Generation
+> In the preceding code, random numbers are conveniently generated using the
+> built-in capabilities of NumPy. In general, random-number generation is
+> difficult to do well, it's easy to accidentally introduce correlations into
+> the generated sequence.
+> * Discuss why generating high quality random numbers might be difficult.
+> * Is the quality of random numbers generated sufficient for estimating &#960;
+> in this implementation?
+> * Can you find information online on standards bodies that assess algorithms
+> that generate high quality pseudo random numbers?
+{: .discussion }
 
 ## Measuring Performance of the Serial Solution
 
