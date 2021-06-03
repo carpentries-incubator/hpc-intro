@@ -73,18 +73,6 @@ def inside_circle(total_count):
 ```
 {: .language-python}
 
-> ## Random Number Generation
-> In the preceding code, random numbers are conveniently generated using the 
-> built-in capabilities of NumPy. In general, random-number generation is 
-> difficult to do well, it's easy to accidentally introduce correlations into 
-> the generated sequence. 
-> * Discuss why generating high quality random numbers might be difficult.
-> * Is the quality of random numbers generated sufficient for estimating &#960; 
-> in this implementation?
-> * Can you find information online on standards bodies that assess algorithms 
-> that generate high quality pseudo random numbers?
-{: .discussion }
-
 Next, we create a main function to call the `inside_circle` function and
 calculate &#960; from its returned result.
 See [Programming with Python: Command-Line Programs](
