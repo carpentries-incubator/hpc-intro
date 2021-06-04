@@ -109,8 +109,16 @@ If we run the Python script locally with a command-line parameter, as in
 > * Discuss why generating high quality random numbers might be difficult.
 > * Is the quality of random numbers generated sufficient for estimating &#960;
 > in this implementation?
-> * Can you find information online on standards bodies that assess algorithms
-> that generate high quality pseudo random numbers?
+> > ## Solution
+> > * Computers are deterministic and produce pseudo random numbers using
+> > an algorithm.  The choice of algorithm and its parameters determines 
+> > how random the generated numbers are.  Pseudo random number generation 
+> > algorithms usually produce a sequence numbers taking the previous output 
+> > as an input for generating the next number. At some point the sequence of
+> > pseudo random numbers will repeat, so care is required to make sure the 
+> > repetition period is long and that the generated numbers have statistical 
+> > properties similar to those of true random numbers.
+> > * Yes.
 {: .discussion }
 
 ## Measuring Performance of the Serial Solution
