@@ -410,25 +410,31 @@ Setup the MPI environment and initialize local variables &mdash; including the
 vector containing the number of points to generate on each parallel processor:
 
 {% include figure.html url="" caption="" max-width="50%"
-   file="/fig/initialize.png"
+   file="/fig/initialize.svg"
    alt="MPI initialize" %}
+
+Calculate work each process should compute in parallel:
+
+{% include figure.html url="" caption="" max-width="50%"
+   file="/fig/calculatework.svg"
+   alt="Calculate work of each process" %}
 
 Perform the computation in parallel:
 
 {% include figure.html url="" caption="" max-width="50%"
-   file="/fig/compute.png"
+   file="/fig/compute.svg"
    alt="MPI compute" %}
 
 Retrieve counts from all the parallel processes:
 
 {% include figure.html url="" caption="" max-width="50%"
-   file="/fig/gather.png"
+   file="/fig/reduce.svg"
    alt="MPI reduce" %}
 
 Print out the report:
 
 {% include figure.html url="" caption="" max-width="50%"
-   file="/fig/finalize.png"
+   file="/fig/finalize.svg"
    alt="MPI finalize" %}
 
 ---
