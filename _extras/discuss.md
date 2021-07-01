@@ -22,7 +22,7 @@ This session is designed to give you the opportunity to explore these questions
 and issues. The instructors and helpers on the course will be on hand to answer
 your questions and discuss next steps with you.
 
-> ## Potential discussions
+> ## Potential Discussions
 >
 > Things you could discuss with the instructors and helpers could include:
 >
@@ -33,7 +33,7 @@ your questions and discuss next steps with you.
 >   local expertise
 {: .callout}
 
-## Options for this session
+## Options for This Session
 
 There are a number of different options for practical work during this session.
 The challenges below include: exploring your own work; an extended example
@@ -44,7 +44,7 @@ described above) then please feel free to do this. The idea of the session is
 to help you bootstrap your use of advanced computing and this will differ from
 individual to individual!
 
-> ## Exploring your work using HPC
+> ## Exploring Your Work Using HPC
 >
 > If you have a practical example of something from your area of work that you
 > would like help with getting up and running on an HPC system or exploring the
@@ -52,7 +52,7 @@ individual to individual!
 > this with us and ask questions (both technical and non-technical).
 {: .challenge}
 
-> ## Exploring the performance of GROMACS
+> ## Exploring the Performance of GROMACS
 >
 > [GROMACS](http://www.gromacs.org) is a world-leading biomolecular modelling
 > package that is heavily used on HPC systems around the world. Choosing the
@@ -87,7 +87,7 @@ individual to individual!
 > Please ask for more information on these options from a helper!
 {: .challenge}
 
-> ## Running many serial BLAST+ analyses in parallel
+> ## Running Many Serial BLAST+ Analyses in Parallel
 >
 > [BLAST+](
 https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)

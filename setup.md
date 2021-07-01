@@ -14,7 +14,7 @@ recommend that these tools are installed (or at least downloaded) beforehand.
 > the ability to securely connect to a remote machine (`ssh`).
 {: .prereq}
 
-## Where to type commands: How to open a new shell
+## Where to Type Commands: How to Open a New Shell
 
 The shell is a program that enables us to send commands to the computer and
 receive output. It is also referred to as the terminal or command line.
@@ -93,7 +93,7 @@ On most versions of Linux, the default Unix Shell is accessible by running the
 [xterm](https://en.wikipedia.org/wiki/Xterm), which can be found via the
 applications menu or the search bar.
 
-### Special cases
+### Special Cases
 
 If none of the options above address your circumstances, try an online search
 for: `Unix shell [your operating system]`.
@@ -111,7 +111,7 @@ Git for Windows comes with SSH preinstalled: you do not have to do anything.
 >
 > If you know that the software you will be running on the cluster requires a
 > graphical user interface (a GUI window needs to open for the application to
-> run properly), please install [MobaXterm](http://mobaxterm.mobatek.net) Home
+> run properly), please install [MobaXterm](https://mobaxterm.mobatek.net) Home
 > Edition.
 {: .discussion}
 
@@ -122,7 +122,7 @@ macOS comes with SSH pre-installed: you do not have to do anything.
 > ## GUI Support for macOS
 >
 > If you know that the software you will be running requires a graphical user
-> interface, please install [XQuartz](www.xquartz.org).
+> interface, please install [XQuartz](https://www.xquartz.org).
 {: .discussion}
 
 ### SSH for Linux
@@ -131,7 +131,7 @@ Linux comes with SSH and X window support preinstalled: you do not have to do
 anything.
 
 <!-- links -->
-[mac-terminal]: http://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608274/
+[mac-terminal]: https://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608274/
 [microsoft-wsl]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
 [microsoft-powershell]: https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7
-[unix-emulator]: http://faculty.smu.edu/reynolds/unixtut/windows.html
+[unix-emulator]: https://faculty.smu.edu/reynolds/unixtut/windows.html
