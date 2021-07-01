@@ -371,8 +371,10 @@ each process.
 
 
 Immediately below these lines, let's distribute the work among the ranks
-with a calculation, that uses integer division and then distributes the 
-remaining work piece by piece
+as evenly as possible with a calculation, that uses integer division, 
+` n_samples//size` and then distributes the remaining work piece by piece 
+by checking whether the remainder is greater than the rank using 
+`N % size > rank`
 * collect each rank's results into a `counts` variable on rank 0 using MPI
   `reduce`.
 
