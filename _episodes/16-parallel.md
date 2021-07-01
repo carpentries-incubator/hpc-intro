@@ -101,6 +101,30 @@ If we run the Python script locally with a command-line parameter, as in
 ```
 {: .language-bash}
 
+> ## Random Number Generation
+>
+> In the preceding code, random numbers are conveniently generated using the
+> built-in capabilities of NumPy. In general, random-number generation is
+> difficult to do well, it's easy to accidentally introduce correlations into
+> the generated sequence.
+> * Discuss why generating high quality random numbers might be difficult.
+> * Is the quality of random numbers generated sufficient for estimating &#960;
+> in this implementation?
+> 
+> > ## Solution
+> >
+> > * Computers are deterministic and produce pseudo random numbers using
+> > an algorithm.  The choice of algorithm and its parameters determines 
+> > how random the generated numbers are.  Pseudo random number generation 
+> > algorithms usually produce a sequence numbers taking the previous output 
+> > as an input for generating the next number. At some point the sequence of
+> > pseudo random numbers will repeat, so care is required to make sure the 
+> > repetition period is long and that the generated numbers have statistical 
+> > properties similar to those of true random numbers.
+> > * Yes.
+> {: .solution }
+{: .discussion }
+
 ## Measuring Performance of the Serial Solution
 
 The stochastic method used to estimate &#960; should converge on the true
