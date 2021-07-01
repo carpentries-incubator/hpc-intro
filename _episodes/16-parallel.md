@@ -493,7 +493,7 @@ You can also increase the number of CPUs.
 * How good is the value for &#960;?
 * How long did the job take to run?
 
-## How Much Does Distributed Memory Parallelism Improve Performance?
+## How Much Does MPI Improve Performance?
 
 In theory, by dividing up the &#960; calculations among *n* MPI processes,
 we should see run times reduce by a factor of *n*.
