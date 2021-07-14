@@ -1,0 +1,6 @@
+workshop_host: "Mahuika"
+workshop_host_id: "NeSI_Mahuika"
+workshop_host_login: "mahuika"
+workshop_host_prompt: "[yourUsername@mahuika01 ~]$ "
+workshop_host_homedir: "/home"
+workshop_sched_id: "NeSIMahuika_slurm"

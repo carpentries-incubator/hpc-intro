@@ -1,0 +1,8 @@
+#------------------------------------------------------------
+# Values specific to use by New Zealand eScience Infrastructure
+#------------------------------------------------------------
+
+workshop_host_location: "NIWA Data Center in Wellington"
+login_methods: 
+  - windows-wsl
+  - windows-moba
