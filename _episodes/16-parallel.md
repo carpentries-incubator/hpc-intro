@@ -101,6 +101,30 @@ If we run the Python script locally with a command-line parameter, as in
 ```
 {: .language-bash}
 
+> ## Random Number Generation
+>
+> In the preceding code, random numbers are conveniently generated using the
+> built-in capabilities of NumPy. In general, random-number generation is
+> difficult to do well, it's easy to accidentally introduce correlations into
+> the generated sequence.
+> * Discuss why generating high quality random numbers might be difficult.
+> * Is the quality of random numbers generated sufficient for estimating &#960;
+> in this implementation?
+> 
+> > ## Solution
+> >
+> > * Computers are deterministic and produce pseudo random numbers using
+> > an algorithm.  The choice of algorithm and its parameters determines 
+> > how random the generated numbers are.  Pseudo random number generation 
+> > algorithms usually produce a sequence numbers taking the previous output 
+> > as an input for generating the next number. At some point the sequence of
+> > pseudo random numbers will repeat, so care is required to make sure the 
+> > repetition period is long and that the generated numbers have statistical 
+> > properties similar to those of true random numbers.
+> > * Yes.
+> {: .solution }
+{: .discussion }
+
 ## Measuring Performance of the Serial Solution
 
 The stochastic method used to estimate &#960; should converge on the true
@@ -380,7 +404,7 @@ To do this, they should be started via a command such as `mpiexec` (or
 which will ensure that the appropriate run-time support for parallelism is
 included.
 
-> ## MPI run-time arguments
+> ## MPI Runtime Arguments
 >
 > On their own, commands such as `mpiexec` can take many arguments specifying
 > how many machines will participate in the execution,
@@ -392,7 +416,7 @@ included.
 > by examining the environment variables set when the job is launched.
 {: .callout}
 
-> ## What changes are needed for an MPI version of the &#960; calculator?
+> ## What Changes Are Needed for an MPI Version of the &#960; Calculator?
 >
 > First, we need to import the `MPI` object from the Python module `mpi4py` by
 > adding an `from mpi4py import MPI` line immediately below the `import
