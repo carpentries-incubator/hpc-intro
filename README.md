@@ -1,3 +1,13 @@
+# NeSI
+
+Run this.
+
+```
+HPC_JEKYLL_CONFIG=_includes/snippets_library/NeSI_Mahuika_slurm/_config_options.yml make serve
+```
+---
+
+
 # Intro to HPC
 
 This lesson teaches the basics of interacting with high-performance computing
