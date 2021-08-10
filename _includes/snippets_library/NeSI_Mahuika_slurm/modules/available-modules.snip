@@ -1,26 +1,33 @@
 ```
----------------- MPI-dependent avx2 modules -----------------
- abinit/8.2.2     (chem)           ncl/6.4.0
- abyss/1.9.0      (bio)            ncview/2.1.7        (vis)
- boost-mpi/1.60.0 (t)              plumed/2.3.0        (chem)
- cdo/1.7.2        (geo)            pnetcdf/1.8.1       (io)
- lammps/20170331                   quantumespresso/6.0 (chem)
- mrbayes/3.2.6            (bio)    ray/2.3.1           (bio)
-
+-----------------/opt/nesi/CS400_centos7_bdw/modules/all ------------------
+   ABAQUS/6.14.2                               LMDB/0.9.24-GCCcore-9.2.0         (D)
+   ABAQUS/2017                                 Loki/0.1.7-gimkl-2017a
+   ABAQUS/2018                                 lp_solve/5.5.2.5-gimkl-2017a
+   ABAQUS/2019                                 lp_solve/5.5.2.5-gimkl-2018b
+   ABAQUS/2020                                 lp_solve/5.5.2.5-gimkl-2020a      (D)
+   ABAQUS/2021              (D)                LZO/2.10-GCCcore-7.4.0
+   ABySS/2.0.2-gimkl-2017a                     LZO/2.10-GCCcore-9.2.0            (D)
+   ABySS/2.2.5-gimpi-2020a  (D)                M4/1.4.18-GCCcore-7.4.0
+   ACTC/1.1-GCCcore-9.2.0                      MAFFT/7.310-gimkl-2017a
+   ADAM/0.30.0                                 MAFFT/7.429-gimkl-2018b
+   AdapterRemoval/2.3.1-GCCcore-7.4.0          MAFFT/7.429-gimkl-2020a           (D)
+   Advisor/2020_update1                        MAGMA/1.07b-GCCcore-9.2.0
+   AGE/2017-GCC-7.4.0-serial                   MAGMA/1.08-GCCcore-9.2.0          (D)
 
 [removed most of the output here for clarity]
 
-   t:        Tools for development / Outils de développement
-   vis:      Visualisation software / Logiciels de visualisation
-   chem:     Chemistry libraries/apps / Logiciels de chimie
-   geo:      Geography libraries/apps / Logiciels de géographie
-   phys:     Physics libraries/apps / Logiciels de physique
-   Aliases:  Aliases exist: foo/1.2.3 (1.2) means that
-             "module load foo/1.2" will load foo/1.2.3
-   D:        Default Module
+----------------------------------- /cm/local/modulefiles -----------------------------------
+   cluster-tools/8.0    freeipmi/1.5.5     module-git     openmpi/mlnx/gcc/64/2.1.2a1
+   cmd                  gcc/6.3.0          module-info    shared
+   cuda-dcgm/1.3.3.1    ipmitool/1.8.18    null
+   dot                  lua/5.3.4          openldap
+
+  Where:
+   D:  Default Module
 
 Use "module spider" to find all possible modules.
-Use "module keyword key1 key2 ..." to search for all possible modules matching
-any of the "keys".
+Use "module keyword key1 key2 ..." to search for all possible modules matching any of the
+"keys".
+
 ```
 {: .output}
