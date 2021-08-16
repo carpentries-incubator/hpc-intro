@@ -2,6 +2,7 @@
 Login and troubleshooting instructions for NeSI Jupyter Services. 
 
 >**WARNING**- We **do not recommend** using Internet Explorer to access [NeSI JupyterHub](https://jupyter.nesi.org.nz/hub/login)
+{: .callout}
 
 1. Follow [https://jupyter.nesi.org.nz/hub/login](https://jupyter.nesi.org.nz/hub/login)
 2. <p>Enter NeSI username, HPC password and 6 digit second factor token<br><p align="center"><img src="/img/Login_jupyterhubNeSI.png" alt="drawing" width="700"/></p></p>
