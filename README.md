@@ -2,7 +2,7 @@
 
 Run this.
 
-```
+```bash
 HPC_JEKYLL_CONFIG=_includes/snippets_library/NeSI_Mahuika_slurm/_config_options.yml make serve
 ```
 ---
