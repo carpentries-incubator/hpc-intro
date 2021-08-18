@@ -14,7 +14,7 @@ keypoints:
 - "These other systems can be used to do work that would either be impossible
   or much slower on smaller systems."
 - "The standard method of interacting with such systems is via a command line
-  interface called Bash."
+  interface."
 ---
 
 Frequently, research problems that use computing can outgrow the capabilities
