@@ -80,8 +80,16 @@ To see available software modules, use `module avail`:
 ### Listing Currently Loaded Modules
 
 You can use the `module list` command to see which modules you currently have
-loaded in your environment. If you have no modules loaded, you will see a
-message telling you so
+loaded in your environment. On {{ site.remote.name }} you will have a few default modules loaded when you login.  
+
+```
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+{% include {{ site.snippets }}/modules/module-list-default.snip %}
+
+If you have no modules loaded you will see a message telling you so
 
 ```
 {{ site.remote.prompt }} module list
@@ -89,7 +97,8 @@ message telling you so
 {: .language-bash}
 
 ```
-No Modulefiles Currently Loaded.
+No modules loaded
+
 ```
 {: .output}
 
