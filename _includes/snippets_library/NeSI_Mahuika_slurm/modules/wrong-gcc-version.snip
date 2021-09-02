@@ -5,75 +5,70 @@ are many different versions: `GCC/5.4.0`, `GCC/6.3.0` through `GCC/9.2.0`.
 How do we load each copy and which copy is the default?
 
 In this case, `GCC/9.2.0` has a `(D)` next to it. This indicates that it is the
-default &mdash; if we type `module load gcc`, this is the copy that will be
+default &mdash; if we type `module load GCC`, this is the copy that will be
 loaded.
 
 ```
-{{ site.remote.prompt }} module load gcc
+{{ site.remote.prompt }} module load GCC
 {{ site.remote.prompt }} gcc --version
 ```
 {: .language-bash}
 
 ```
-Lmod is automatically replacing "intel/2016.4" with "gcc/5.4.0".
+gcc (GCC) 9.2.0
+Copyright (C) 2019 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+{: .output}
 
-Due to MODULEPATH changes, the following have been reloaded:
-  1) openmpi/2.1.1
+So how do we load the non-default copy of a software package? In this case, the
+only change we need to make is be more specific about the module we are
+loading. There are many other GCC versions.  To load a
+non-default module, the only change we need to make to our `module load`
+command is to add the version number after the `/`.
 
+```
+{{ site.remote.prompt }} module load GCC/5.4.0
+```
+{: .language-bash}
+
+```
+The following have been reloaded with a version change:
+  1) GCC/9.2.0 => GCC/5.4.0     2) GCCcore/9.2.0 => GCCcore/5.4.0     3) binutils/2.32-GCCcore-9.2.0 => binutils/2.26-GCCcore-5.4.0
+
+```
+{: .output}
+
+Notice how the module command has swapped out versions of the GCC module as well as it's dependencies. This is quite helpful as it reconciles all of the software requirements with one command.
+And now we test which version we are using:
+
+```
+{{ site.remote.prompt }} gcc --version
+```
+{: .language-bash}
+
+```
 gcc (GCC) 5.4.0
 Copyright (C) 2015 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
+
 {: .output}
 
-Note that three things happened: the default copy of GCC was loaded (version
-5.4.0), the Intel compilers (which conflict with GCC) were unloaded, and
-software that is dependent on compiler (OpenMPI) was reloaded. The `module`
-system turned what might be a super-complex operation into a single command.
-
-So how do we load the non-default copy of a software package? In this case, the
-only change we need to make is be more specific about the module we are
-loading. There are two GCC modules: `gcc/5.4.0` and `gcc/4.8.5`. To load a
-non-default module, the only change we need to make to our `module load`
-command is to leave in the version number after the `/`.
+We are now left with only those module required to do our work for this project.
 
 ```
-{{ site.remote.prompt }} module load gcc/4.8.5
-{{ site.remote.prompt }} gcc --version
+{{ site.remote.prompt }} module list
 ```
+
 {: .language-bash}
 
 ```
-Inactive Modules:
-  1) openmpi
+Currently Loaded Modules:
+  1) XALT/minimal   3) NeSI                      (S)   5) GCCcore/5.4.0                 7) GCC/5.4.0
+  2) slurm          4) zlib/1.2.11-GCCcore-9.2.0       6) binutils/2.26-GCCcore-5.4.0
+  ```
 
-The following have been reloaded with a version change:
-  1) gcc/5.4.0 => gcc/4.8.5
-
-gcc (GCC) 4.8.5
-Copyright (C) 2015 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-```
-{: .output}
-
-We now have successfully switched from GCC 5.4.0 to GCC 4.8.5. It is also
-important to note that there was no compatible OpenMPI module available for GCC
-4.8.5. Because of this, the `module` program has "inactivated" the module. All
-this means for us is that if we re-load GCC 5.4.0, `module` will remember
-OpenMPI used to be loaded and load that module as well.
-
-```
-{{ site.remote.prompt }} module load gcc/5.4.0
-```
-{: .language-bash}
-
-```
-Activating Modules:
-  1) openmpi/2.1.1
-
-The following have been reloaded with a version change:
-  1) gcc/4.8.5 => gcc/5.4.0
-```
-{: .output}
+  {: .output}

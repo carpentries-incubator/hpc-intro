@@ -62,10 +62,6 @@ what you want to do. For a list of subcommands you can use `module -h` or
 `module help`. As for all commands, you can access the full help on the *man*
 pages with `man module`.
 
-On login you may start out with a default set of modules loaded or you may
-start out with an empty environment; this depends on the setup of the system
-you are using.
-
 ### Listing Available Modules
 
 To see available software modules, use `module avail`:
@@ -140,19 +136,17 @@ variables we can print it out using `echo`.
 
 {% include {{ site.snippets }}/modules/python-module-path.snip %}
 
-You'll notice a similarity to the output of the `which` command. In this case,
-there's only one difference: the different directory at the beginning. When we
-ran the `module load` command, it added a directory to the beginning of our
-`$PATH`. Let's examine what's there:
+You'll notice a similarity to the output of the `which` command. However, in this case,
+there are a lot more directories at the beginning. When we
+ran the `module load` command, it added many directories to the beginning of our
+`$PATH`. The path to NeSI XALT utility will normally show up first.  This helps us track software usage, but the more important directory is the second one: `/opt/nesi/CS400_centos7_bdw/Python/3.8.2-gimkl-2020a/bin` Let's examine what's there:
 
 {% include {{ site.snippets }}/modules/python-ls-dir-command.snip %}
 
 {% include {{ site.snippets }}/modules/python-ls-dir-output.snip %}
 
 Taking this to its conclusion, `module load` will add software to your `$PATH`.
-It "loads" software. A special note on this - depending on which version of the
-`module` program that is installed at your site, `module load` will also load
-required software dependencies.
+It "loads" software, not only that but it also loads software dependencies.  That is, the software that the application you load requires to run. 
 
 {% include {{ site.snippets }}/modules/software-dependencies.snip %}
 
@@ -195,7 +189,7 @@ Let's examine the output of `module avail` more closely.
 > > ```
 > > {{ site.remote.bash_shebang }}
 > >
-> > module load {{ site.remote.module_python3 }}
+> > module load Python
 > >
 > > python3 --version
 > > ```
