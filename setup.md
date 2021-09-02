@@ -5,23 +5,21 @@ root: .
 ---
 
 
-# BIOSCI701-NeSI_Jupyter_Login
-Login and troubleshooting instructions for NeSI Jupyter Services. 
+## NeSI JupyterHub Login
 
->**WARNING**- We **do not recommend** using Internet Explorer to access [NeSI JupyterHub](https://jupyter.nesi.org.nz/hub/login)
-{: .callout}
+The easiest method for accessing the NeSI cluster is to use our JupyterHub service.  Below are the 
+login and troubleshooting instructions for NeSI JupyterHub:
 
-1. Follow [https://jupyter.nesi.org.nz/hub/login](https://jupyter.nesi.org.nz/hub/login)
-2. <p>Enter NeSI username, HPC password and 6 digit second factor token<br><p align="center"><img src="/img/Login_jupyterhubNeSI.png" alt="drawing" width="700"/></p></p>
-3. <p>Choose server options as below OR as required for the session
->Project code should be in the form **abc12345** (select from drop down list), Number of CPUs and memory size will remain unchanged. However, select the appropriate **Wall time** based on the projected length of a session
+1. Follow this link: [https://jupyter.nesi.org.nz](https://jupyter.nesi.org.nz)
+2. <p>Enter your NeSI username, HPC password your 6 digit second factor token<br><p align="center"><img src="/img/Login_jupyterhubNeSI.png" alt="drawing" width="700"/></p></p>
+3. <p>Choose server options: the session project code should be *NeSI Training (nesi99991)*, Number of CPUs and memory size will remain unchanged. However, select the appropriate **Wall time** based on the projected length of a session <p align="center"><br><img src="/img/ServerOptions_jupyterhubNeSI.png" alt="drawing" width="700"/></p>
+4. <p>From Jupyter Launcher screen, choose Terminal (highlighted in red box) <br><p align="center"><img src="/img/jupyterLauncher.png" alt="drawing" size="700"/></p></p>
 
-<p align="center"><br><img src="/img/ServerOptions_jupyterhubNeSI.png" alt="drawing" width="700"/></p></p>
-## Where to Type Commands: How to Open a New Shell
+<br>
 
-4. <p>Jupyter Launcher screen
+## Alternatives to JupyterHub
 
- <br><p align="center"><img src="/img/jupyterLauncher.png" alt="drawing" size="700"/></p></p>
+
 Some computers include a default Unix Shell program. The steps below describe
 some methods for identifying and opening a Unix Shell program if you already
 have one installed. There are also options for identifying and downloading a
