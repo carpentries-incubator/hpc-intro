@@ -21,7 +21,7 @@ remote:
   homedir: "/home"
   user: "yourUsername"
   prompt: "[yourUsername@mahuika ~]$"
-  bash_shebang: "#!/usr/bin/env bash"
+  bash_shebang: "#!/bin/bash -e"
 
 sched:
   name: "SLURM"
