@@ -113,7 +113,6 @@ is a pretty good, basic choice.
 
 ```
 {{ site.remote.prompt }} nano example-job.sh
-{{ site.remote.prompt }} chmod +x example-job.sh
 {{ site.remote.prompt }} cat example-job.sh
 ```
 {: .language-bash}
@@ -133,7 +132,7 @@ hostname
 > > ## Solution
 > >
 > > ```
-> > {{ site.remote.prompt }} ./example-job.sh
+> > {{ site.remote.prompt }} bash example-job.sh
 > > ```
 > > {: .language-bash}
 > > ```
