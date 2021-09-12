@@ -34,8 +34,7 @@ intensive tasks such as running a simulation.
 *HPC*, *High Performance Computer*, *High Performance Computing* or *Supercomputer* are all general terms for a large or powerful computing resource.
 
 
-*Cluster* is a more specific term describing a type of supercomputer comprised of multiple smaller computers (nodes) working together. Almost all
-supercomputers are clusters.
+*Cluster* is a more specific term describing a type of supercomputer comprised of multiple smaller computers (nodes) working together. Almost all supercomputers are clusters.
 
 ## Logging In
 
