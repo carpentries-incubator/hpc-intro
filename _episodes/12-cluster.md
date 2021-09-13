@@ -219,7 +219,7 @@ connect to a shared, remote fileserver or cluster of servers.
    file="/fig/node_anatomy.png"
    alt="Node anatomy" caption="" %}
 
-> ## Explore Your Computer
+<!-- > ## Explore Your Computer
 >
 > Try to find out the number of CPUs and amount of memory available on your
 > personal computer.
@@ -307,7 +307,7 @@ connect to a shared, remote fileserver or cluster of servers.
 > {: .solution}
 {: .challenge}
 
-{% include {{ site.snippets }}/cluster/specific-node-info.snip %}
+{% include {{ site.snippets }}/cluster/specific-node-info.snip %} -->
 
 > ## Compare Your Computer, the Head Node and the Worker Node
 >
