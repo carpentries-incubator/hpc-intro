@@ -48,7 +48,6 @@ episode_order:
   - 12-cluster
   - 13-scheduler
   - 14-modules
-  - 16-parallel
   - 17-resources
   - 18-responsibility
 
