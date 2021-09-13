@@ -84,6 +84,34 @@ Some interesting fields include the following:
 * **MaxDiskRead**: Amount of data read from disk.
 * **MaxDiskWrite**: Amount of data written to disk.
 
+> ## `nn_seff`
+>
+> For convenince, we have provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA). 
+>
+> > ## Solution
+> >
+> > ```
+> > {{ site.remote.prompt }} nn_seff <jobid>
+> > ```
+> > {: .language-bash}
+> > ```
+> > Job ID: 22278992
+> > Cluster: mahuika
+> > User/Group: username/username
+> > State: TIMEOUT (exit code 0)
+> > Cores: 1
+> > Tasks: 1
+> > Nodes: 1
+> > Job Wall-time:  100.33%  00:15:03 of 00:15:00 time limit
+> > CPU Efficiency: 0.55%  00:00:05 of 00:15:03 core-walltime
+> > Mem Efficiency: 0.20%  2.09 MB of 1.00 GB
+> > ```
+> > {: .output}
+> >
+> > If you were to submit this same job again what resources would you request?
+> {: .solution}
+{: .challenge}
+
 <!-- ## Measuring the System Load From Currently Running Tasks
 
 Typically, clusters allow users to connect directly to compute nodes from the
