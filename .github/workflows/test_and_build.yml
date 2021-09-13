@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - gh-pages-nesi
+      - aut_2021_09_14
 
 jobs:
   spellcheck:
