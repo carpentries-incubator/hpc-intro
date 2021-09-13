@@ -29,7 +29,6 @@ In a web browser, navigate to [https://jupyter.nesi.org.nz](https://jupyter.nesi
 **Best For:** Jobs using < 4 CPUs and < 128GB
 **Advantages:** Interactive, file explorer, no local setup required.
 #### Jupyter and SBATCH
-
 ![Terminal](/fig/UsingJupyterHub3.svg)
 In a web browser, navigate to [https://jupyter.nesi.org.nz](https://jupyter.nesi.org.nz, select the resource requirements *for your session* (should only need minimal memory and CPU).  Jobs scripts are submitted using the `sbatch` command (non-interactive).
 **Best For:** New Users, Windows Users.
