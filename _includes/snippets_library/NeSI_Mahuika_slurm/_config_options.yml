@@ -45,8 +45,8 @@ sched:
   hist: "sacct"
 
 episode_order:
-  - 02-filedir
   - 12-cluster
+  - 02-filedir
   - 14-modules
   - 13-scheduler
   - 17-resources

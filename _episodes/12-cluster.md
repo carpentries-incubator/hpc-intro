@@ -104,51 +104,6 @@ may also notice that the current hostname is also part of our prompt!)
 {{ site.remote.host }}
 ```
 {: .output}
-
-> ## What's in Your Home Directory?
->
-> The system administrators may have configured your home directory with some
-> helpful files, folders, and links (shortcuts) to space reserved for you on
-> other filesystems. Take a look around and see what you can find.
->
-> *Hint:* The shell commands `pwd` and `ls` may come in handy.
->
-> Home directory contents vary from user to user. Please discuss any
-> differences you spot with your neighbors:
->
-> > ## It's a Beautiful Day in the Neighborhood
-> >
-> > The deepest layer should differ: {{ site.remote.user }} is uniquely yours.
-> > Are there differences in the path at higher levels?
-> >
-> > If both of you have empty directories, they will look identical. If you
-> > or your neighbor has used the system before, there may be differences. What
-> > are you working on?
-> {: .discussion}
->
-> > ## Solution
-> >
-> > Use `pwd` to **p**rint the **w**orking **d**irectory path:
-> >
-> > ```
-> > {{ site.remote.prompt }} pwd
-> > ```
-> > {: .language-bash}
-> >
-> > You can run `ls` to **l**i**s**t the directory contents, though it's
-> > possible nothing will show up (if no files have been provided). To be sure,
-> > use the `-a` flag to show hidden files, too.
-> >
-> > ```
-> > {{ site.remote.prompt }} ls -a
-> > ```
-> > {: .language-bash}
-> >
-> > At a minimum, this will show the current directory as `.`, and the parent
-> > directory as `..`.
-> {: .solution}
-{: .discussion}
-
 ## Nodes
 
 Individual computers that compose a cluster are typically called *nodes*

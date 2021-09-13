@@ -34,6 +34,25 @@ which hold information,
 and directories (also called 'folders'),
 which hold files or other directories.
 
+In the NeSI file system you will have access to several different locations.
+
+### Home Directory
+User-specific files such as configuration files, environment setup, source code, etc.
+| Location      | Storage | Files | Backup | Access Speed
+| -- | -- | -- | -- | -- | 
+| `/home/<username>`  | 2GB | 1,000,000 | Daily | Normal
+
+### Project Directory
+Persistent project-related data, project-related software, etc.
+| Location      | Storage | Files | Backup | Access Speed
+| -- | -- | -- | -- | -- | 
+| `/nesi/project/<projectcode>`  | 100GB | 100,000 | Daily | Normal
+### Nobackup Directory
+Persistent project-related data, project-related software, etc.
+| Location      | Storage | Files | Backup | Access Speed
+| -- | -- | -- | -- | -- | 
+| `/nesi/nobackup/<projectcode>`  | 10TB | 1,000,000 | None | Fast
+
 Several commands are frequently used to create, inspect, rename, and delete files and directories.
 To start exploring them, we'll go to our open shell window.
 
@@ -50,59 +69,31 @@ $ pwd
 {: .language-bash}
 
 ~~~
-/Users/nelle
+/home/usr123
 ~~~
 {: .output}
 
-Here,
-the computer's response is `/Users/nelle`,
-which is Nelle's **home directory**:
-
-> ## Home Directory Variation
->
-> The home directory path will look different on different operating systems.
-> On Linux, it may look like `/home/nelle`,
-> and on Windows, it will be similar to `C:\Documents and Settings\nelle` or
-> `C:\Users\nelle`.
-> (Note that it may look slightly different for different versions of Windows.)
-> In future examples, we've used Mac output as the default - Linux and Windows
-> output may differ slightly but should be generally similar.
-{: .callout}
->
 > We will also assume that your `pwd` command returns your user's home directory.
 > If `pwd` returns something different, you may need to navigate there using `cd`
-> or some commands in this lesson will not work as written.
-> See [Exploring Other Directories](#exploring-other-directories) for more details
-> on the `cd` command.
+
 
 To understand what a 'home directory' is,
-let's have a look at how the file system as a whole is organized.  For the
-sake of this example, we'll be
-illustrating the filesystem on our scientist Nelle's computer.  After this
-illustration, you'll be learning commands to explore your own filesystem,
-which will be constructed in a similar way, but not be exactly identical.
+let's have a look at how the file system as a whole is organized.
 
-On Nelle's computer, the filesystem looks like this:
+The NeSI filesystem looks like this:
 
 ![The file system is made up of a root directory that contains sub-directories
-titled bin, data, users, and tmp](../fig/filesystem.svg)
+titled home, nesi, and system files](../fig/NesiFiletree.svg)
 
 At the top is the **root directory**
 that holds everything else.
 We refer to it using a slash character, `/`, on its own;
-this character is the leading slash in `/Users/nelle`.
+this character is the leading slash in `/home/usr12`.
 
-Inside that directory are several other directories:
-`bin` (which is where some built-in programs are stored),
-`data` (for miscellaneous data files),
-`Users` (where users' personal directories are located),
-`tmp` (for temporary files that don't need to be stored long-term),
-and so on.
-
-We know that our current working directory `/Users/nelle` is stored inside `/Users`
-because `/Users` is the first part of its name.
+We know that our current working directory `/home/usr12` is stored inside `/home`
+because `/home` is the first part of its name.
 Similarly,
-we know that `/Users` is stored inside the root directory `/`
+we know that `/home` is stored inside the root directory `/`
 because its name begins with `/`.
 
 > ## Slashes
@@ -112,35 +103,6 @@ because its name begins with `/`.
 > it refers to the root directory. When it appears *inside* a path,
 > it's just a separator.
 {: .callout}
-
-Underneath `/Users`,
-we find one directory for each user with an account on Nelle's machine,
-her colleagues *imhotep* and *larry*.
-
-![Like other directories, home directories are sub-directories underneath
-"/Users" like "/Users/imhotep", "/Users/larry" or
-"/Users/nelle"](../fig/home-directories.svg)
-
-The user *imhotep*'s files are stored in `/Users/imhotep`,
-user *larry*'s in `/Users/larry`,
-and Nelle's in `/Users/nelle`.  Because Nelle is the user in our
-examples here, therefore we get `/Users/nelle` as our home directory.
-Typically, when you open a new command prompt, you will be in
-your home directory to start.
-
-Now let's learn the command that will let us see the contents of our
-own filesystem.  We can see what's in our home directory by running `ls`:
-
-~~~
-$ ls
-~~~
-{: .language-bash}
-
-~~~
-Applications Documents    Library      Music        Public
-Desktop      Downloads    Movies       Pictures
-~~~
-{: .output}
 
 (Again, your results may be slightly different depending on your operating
 system and how you have customized your filesystem.)
@@ -157,22 +119,6 @@ by adding a marker to file and directory names to indicate what they are:
 Depending on your default options,
 the shell might also use colors to indicate whether each entry is a file or
 directory.
-
-~~~
-$ ls -F
-~~~
-{: .language-bash}
-
-~~~
-Applications/ Documents/    Library/      Music/        Public/
-Desktop/      Downloads/    Movies/       Pictures/
-~~~
-{: .output}
-
-Here,
-we can see that our home directory contains only **sub-directories**.
-Any names in our output that don't have a classification symbol
-are plain old **files**.
 
 > ## Clearing your terminal
 >
@@ -331,10 +277,10 @@ To **quit** the `man` pages, press <kbd>Q</kbd>.
 ### Exploring Other Directories
 
 Not only can we use `ls` on the current working directory, but we can use it to list the contents of a different directory.  Let's take a
-look at our `Desktop` directory by running `ls -F Desktop`,
+look at our `project` directory by running `ls /nesi/project/nesi99999`,
 i.e.,
-the command `ls` with the `-F` **option** and the [**argument**][Arguments]  `Desktop`.
-The argument `Desktop` tells `ls` that
+the command `ls` with the `-F` **option** and the [**argument**][Arguments]  `/nesi/project/nesi99999`.
+The argument `/nesi/project/nesi99999` tells `ls` that
 we want a listing of something other than our current working directory:
 
 ~~~
@@ -347,44 +293,12 @@ shell-lesson-data/
 ~~~
 {: .output}
 
-Note that if a directory named `Desktop` does not exist in your current working directory,
-this command will return an error. Typically, a `Desktop` directory exists in your
-home directory, which we assume is the current working directory of your bash shell.
-
-Your output should be a list of all the files and sub-directories in your
-Desktop directory, including the `shell-lesson-data` directory you downloaded at
-the [setup for this lesson]({{ page.root }}{% link setup.md %}).
-On many systems,
-the command line Desktop directory is the same as your GUI Desktop.
-Take a look at your Desktop to confirm that your output is accurate.
-
 As you may now see, using a bash shell is strongly dependent on the idea that
 your files are organized in a hierarchical file system.
 Organizing things hierarchically in this way helps us keep track of our work:
 it's possible to put hundreds of files in our home directory,
 just as it's possible to pile hundreds of printed papers on our desk,
 but it's a self-defeating strategy.
-
-Now that we know the `shell-lesson-data` directory is located in our Desktop directory, we
-can do two things.
-
-First, we can look at its contents, using the same strategy as before, passing
-a directory name to `ls`:
-
-~~~
-$ ls -F Desktop/shell-lesson-data
-~~~
-{: .language-bash}
-
-~~~
-creatures/          molecules/          notes.txt           solar.pdf
-data/               north-pacific-gyre/ pizza.cfg           writing/
-~~~
-{: .output}
-
-Second, we can actually change our location to a different directory, so
-we are no longer located in
-our home directory.
 
 The command to change locations is `cd` followed by a
 directory name to change our working directory.
@@ -394,21 +308,22 @@ the command doesn't change the directory;
 it changes the shell's idea of what directory we are in.
 The `cd` command is akin to double clicking a folder in a graphical interface to get into a folder.
 
-Let's say we want to move to the `data` directory we saw above. We can
+Let's say we want to move to the `project` directory we saw above. We can
 use the following series of commands to get there:
 
 ~~~
-$ cd Desktop
-$ cd shell-lesson-data
-$ cd data
+$ cd /
+$ cd nesi
+$ cd project
+$ cd nesi99999
 ~~~
 {: .language-bash}
 
-These commands will move us from our home directory into our Desktop directory, then into
-the `shell-lesson-data` directory, then into the `data` directory. You will notice that `cd` doesn't print anything. This is normal. Many shell commands will not output anything to the screen when successfully executed. But if we run `pwd` after it, we can see that we are now
-in `/Users/nelle/Desktop/shell-lesson-data/data`.
+These commands will move us from our home directory into the root directory, then into
+the `nesi` directory, then into the `project` directory then finally into the directory with your project code. You will notice that `cd` doesn't print anything. This is normal. Many shell commands will not output anything to the screen when successfully executed. But if we run `pwd` after it, we can see that we are now
+in `/nesi/project/nesi99999`.
 If we run `ls -F` without arguments now,
-it lists the contents of `/Users/nelle/Desktop/shell-lesson-data/data`,
+it lists the contents of `/nesi/project/nesi99999`,
 because that's where we now are:
 
 ~~~
@@ -417,36 +332,13 @@ $ pwd
 {: .language-bash}
 
 ~~~
-/Users/nelle/Desktop/shell-lesson-data/data
-~~~
-{: .output}
-
-~~~
-$ ls -F
-~~~
-{: .language-bash}
-
-~~~
-amino-acids.txt   elements/     pdb/	        salmon.txt
-animals.txt       morse.txt     planets.txt     sunspot.txt
+/nesi/project/nesi99999
 ~~~
 {: .output}
 
 We now know how to go down the directory tree (i.e. how to go into a subdirectory),
 but how do we go up (i.e. how do we leave a directory and go into its parent directory)?
 We might try the following:
-
-~~~
-$ cd shell-lesson-data
-~~~
-{: .language-bash}
-
-~~~
--bash: cd: shell-lesson-data: No such file or directory
-~~~
-{: .error}
-
-But we get an error! Why is this?
 
 With our methods so far,
 `cd` can only see sub-directories inside your current directory. There are
@@ -466,7 +358,7 @@ $ cd ..
 or more succinctly,
 the **parent** of the current directory.
 Sure enough,
-if we run `pwd` after running `cd ..`, we're back in `/Users/nelle/Desktop/shell-lesson-data`:
+if we run `pwd` after running `cd ..`, we're back in `/nesi/project`:
 
 ~~~
 $ pwd
@@ -474,27 +366,16 @@ $ pwd
 {: .language-bash}
 
 ~~~
-/Users/nelle/Desktop/shell-lesson-data
+/nesi/project
 ~~~
 {: .output}
 
 The special directory `..` doesn't usually show up when we run `ls`. If we want
 to display it, we can add the `-a` option to `ls -F`:
 
-~~~
-$ ls -F -a
-~~~
-{: .language-bash}
-
-~~~
-./   .bash_profile  data/       north-pacific-gyre/  pizza.cfg  thesis/
-../  creatures/     molecules/  notes.txt            solar.pdf  writing/
-~~~
-{: .output}
-
 `-a` stands for 'show all';
 it forces `ls` to show us file and directory names that begin with `.`,
-such as `..` (which, if we're in `/Users/nelle`, refers to the `/Users` directory).
+such as `..` (which, if we're in `/nesi/project`, refers to the `/nesi` directory).
 As you can see,
 it also displays another special directory that's just called `.`,
 which means 'the current working directory'.
@@ -534,19 +415,19 @@ $ pwd
 {: .language-bash}
 
 ~~~
-/Users/nelle
+/home/usr123
 ~~~
 {: .output}
 
 It turns out that `cd` without an argument will return you to your home directory,
 which is great if you've gotten lost in your own filesystem.
 
-Let's try returning to the `data` directory from before. Last time, we used
+Let's try returning to the `project` directory from before. Last time, we used
 three commands, but we can actually string together the list of directories
-to move to `data` in one step:
+to move to `project` in one step:
 
 ~~~
-$ cd Desktop/shell-lesson-data/data
+$ cd /nesi/project/<projectcode>
 ~~~
 {: .language-bash}
 
@@ -567,34 +448,12 @@ leading slash. The leading `/` tells the computer to follow the path from
 the root of the file system, so it always refers to exactly one directory,
 no matter where we are when we run the command.
 
-This allows us to move to our `shell-lesson-data` directory from anywhere on
-the filesystem (including from inside `data`). To find the absolute path
-we're looking for, we can use `pwd` and then extract the piece we need
-to move to `shell-lesson-data`.
-
-~~~
-$ pwd
-~~~
-{: .language-bash}
-
-~~~
-/Users/nelle/Desktop/shell-lesson-data/data
-~~~
-{: .output}
-
-~~~
-$ cd /Users/nelle/Desktop/shell-lesson-data
-~~~
-{: .language-bash}
-
-Run `pwd` and `ls -F` to ensure that we're in the directory we expect.
-
 > ## Two More Shortcuts
 >
 > The shell interprets a tilde (`~`) character at the start of a path to
 > mean "the current user's home directory". For example, if Nelle's home
-> directory is `/Users/nelle`, then `~/data` is equivalent to
-> `/Users/nelle/data`. This only works if it is the first character in the
+> directory is `/home/nelle`, then `~/data` is equivalent to
+> `/home/nelle/`. This only works if it is the first character in the
 > path: `here/there/~/elsewhere` is *not* `here/there/Users/nelle/elsewhere`.
 >
 > Another shortcut is the `-` (dash) character. `cd` will translate `-` into
@@ -606,30 +465,9 @@ Run `pwd` and `ls -F` to ensure that we're in the directory we expect.
 > The difference between `cd ..` and `cd -` is
 > that the former brings you *up*, while the latter brings you *back*.
 >
-> ----
-> Try it!
-> First navigate to `~/Desktop/shell-lesson-data` (you should already be there).
-> ~~~
-> $ cd ~/Desktop/shell-lesson-data
-> ~~~
-> {: .language-bash}
->
-> Then `cd` into the `creatures` directory
-> ~~~
-> $ cd creatures
-> ~~~
-> {: .language-bash}
->
-> Now if you run
-> ~~~
-> $ cd -
-> ~~~
-> {: .language-bash}
-> you'll see you're back in `~/Desktop/shell-lesson-data`.
-> Run `cd -` again and you're back in `~/Desktop/shell-lesson-data/creatures`
 {: .callout}
 
-> ## Absolute vs Relative Paths
+<!-- > ## Absolute vs Relative Paths
 >
 > Starting from `/Users/amanda/data`,
 > which of the following commands could Amanda use to navigate to her home directory,
@@ -703,16 +541,16 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 >
 > 1.  `ls pwd`
 > 2.  `ls -r -F`
-> 3.  `ls -r -F /Users/backup`
+> 3.  `ls -r -F /Users/backup` -->
 >
-> > ## Solution
+<!-- > > ## Solution
 > >  1. No: `pwd` is not the name of a directory.
 > >  2. Yes: `ls` without directory argument lists files and directories
 > >     in the current directory.
 > >  3. Yes: uses the absolute path explicitly.
 > {: .solution}
 {: .challenge}
-
+ -->
 
 ## General Syntax of a Shell Command
 We have now encountered commands, options, and arguments,
@@ -740,9 +578,9 @@ Each part is separated by spaces: if you omit the space
 between `ls` and `-F` the shell will look for a command called `ls-F`, which
 doesn't exist. Also, capitalization can be important.
 For example, `ls -s` will display the size of files and directories alongside the names,
-while `ls -S` will sort the files and directories by size, as shown below:
+while `ls -S` will sort the files and directories by size.
 
-~~~
+<!-- ~~~
 $ ls -s Desktop/shell-lesson-data/data
 total 116
  4 amino-acids.txt   4 animals.txt   4 morse.txt  12 planets.txt  76 sunspot.txt
@@ -842,4 +680,4 @@ and so on.
 This is called **tab completion**,
 and we will see it in many other tools as we go on.
 
-[Arguments]: https://swcarpentry.github.io/shell-novice/reference.html#argument
+[Arguments]: https://swcarpentry.github.io/shell-novice/reference.html#argument -->
