@@ -1,11 +1,14 @@
-* `--ntasks=<ntasks>` or `-n <ntasks>`: How many CPU cores does your job need,
+* `--cpus-per-task=<ntasks>` or `-c <ntasks>`: How many CPU cores does your job need,
+  in total?
+
+* `--ntasks=<ntasks>` or `-n <ntasks>`: How many tasks does your job need,
   in total?
 
 * `--time <days-hours:minutes:seconds>` or `-t <days-hours:minutes:seconds>`:
   How much real-world time (walltime) will your job take to run? The `<days>`
   part can be omitted.
 
-* `--mem=<megabytes>`: How much memory on a node does your job need in
+* `--mem=<megabytes>` or `--mem-per-cpu=<megabytes>`: How much memory on a node does your job need in
   megabytes? You can also specify gigabytes using by adding a little "g"
   afterwards (example: `--mem=5g`)
 
