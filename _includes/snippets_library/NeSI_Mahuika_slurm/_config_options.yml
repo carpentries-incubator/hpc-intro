@@ -45,6 +45,7 @@ sched:
   hist: "sacct"
 
 episode_order:
+  - 02-filedir
   - 12-cluster
   - 14-modules
   - 13-scheduler
@@ -80,7 +81,7 @@ life_cycle: "alpha"
 kind: "lesson"
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
-start_time: 0
+start_time: 540
 
 # Magic to make URLs resolve both locally and on GitHub. Please don't change.
 repository: <USERNAME>/<PROJECT>
