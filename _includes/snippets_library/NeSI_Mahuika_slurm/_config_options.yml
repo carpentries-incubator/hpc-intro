@@ -46,8 +46,8 @@ sched:
 
 episode_order:
   - 12-cluster
-  - 13-scheduler
   - 14-modules
+  - 13-scheduler
   - 17-resources
   - 18-responsibility
 
