@@ -13,7 +13,8 @@ keypoints:
   computing systems elsewhere in the world."
 - "These other systems can be used to do work that would either be impossible
   or much slower on smaller systems."
-- "The standard method of interacting with such systems is via a command line."
+- "The standard method of interacting with such systems is via a command line
+  interface."
 ---
 
 Frequently, research problems that use computing can outgrow the capabilities
