@@ -1,42 +1,19 @@
----
-layout: page
-title: Setup
-root: .
----
+# BIOSCI701-NeSI_Jupyter_Login
+Login and troubleshooting instructions for NeSI Jupyter Services. 
 
+>**WARNING**- We **do not recommend** using Internet Explorer to accss [NeSI JupyterHub](https://jupyter.nesi.org.nz/hub/login)
 
-## NeSI JupyterHub Login
+1. Follow https://jupyter.nesi.org.nz/hub/login
+2. <p>Enter NeSI username (same as UoA UPI), HPC password and 6 digit second factor token<br><p align="center"><img src="/img/Login_jupyterhubNeSI.png" alt="drawing" width="700"/></p></p>
+3. <p>Choose server options as below OR as required for the session
+>Project code should be **uoa03265** (select from drop down list), Number of CPUs and memory size will remain unchanged. However, select the approriate **Wall time** based on the projected length of a session
 
-The easiest method for accessing the NeSI cluster is to use our JupyterHub service.  Below are the 
-login and troubleshooting instructions for NeSI JupyterHub:
+<p align="center"><br><img src="/img/ServerOptions_jupyterhubNeSI.png" alt="drawing" width="700"/></p></p>
+## Where to Type Commands: How to Open a New Shell
 
-1. Follow this link: [https://jupyter.nesi.org.nz](https://jupyter.nesi.org.nz)
-2. Enter your NeSI username, HPC password your 6 digit second factor token ![Login](/img/Login_jupyterhubNeSI.png)
-3. Choose server options: the session project code should be *NeSI Training (nesi99991)*, Number of CPUs and memory size will remain unchanged. However, select the appropriate **Wall time** based on the projected length of a session ![Options](/img/ServerOptions_jupyterhubNeSI.png)
-4. From Jupyter Launcher screen, choose Terminal (highlighted in red box) ![Terminal](/img/jupyterLauncher.png)
+4. <p>Jupyter Launcher screen
 
-<br>
-
-## Cluster Access
-#### SSH and SBATCH
-![Terminal](/fig/UsingJupyterHub1.svg)
-From your local computer, using an SSH client to connect to a shell session (interactive), running on the NeSI login Node. Jobs scripts are submitted using the `sbatch` command (non-interactive).
-**Best For:** Users familiar with command line, Linux/Mac users.
-**Advantages:** Most flexible.
-#### Jupyter for Interactive work.
-![Terminal](/fig/UsingJupyterHub2.svg)
-In a web browser, navigate to [https://jupyter.nesi.org.nz](https://jupyter.nesi.org.nz), select the resource requirements *for your job*. Jobs are run interactively. 
-**Best For:** Jobs using < 4 CPUs and < 128GB
-**Advantages:** Interactive, file explorer, no local setup required.
-#### Jupyter and SBATCH
-![Terminal](/fig/UsingJupyterHub3.svg)
-In a web browser, navigate to [https://jupyter.nesi.org.nz](https://jupyter.nesi.org.nz), select the resource requirements *for your session* (should only need minimal memory and CPU).  Jobs scripts are submitted using the `sbatch` command (non-interactive).
-**Best For:** New Users, Windows Users.
-**Advantages:** File explorer, no local setup required.
-
-## Alternatives to JupyterHub
-
-
+ <br><p align="center"><img src="/img/jupyterLauncher.png" alt="drawing" size="700"/></p></p>
 Some computers include a default Unix Shell program. The steps below describe
 some methods for identifying and opening a Unix Shell program if you already
 have one installed. There are also options for identifying and downloading a
