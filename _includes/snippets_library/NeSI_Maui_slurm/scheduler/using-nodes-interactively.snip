@@ -19,7 +19,7 @@ these options are specified on the command-line when starting a job. To submit
 a job that uses 2 CPUs for instance, we could use the following command:
 
 ```
-{{ site.remote.prompt }} {{ site.sched.interactive }} -n 2 echo "This job will use 2 CPUs."
+{{ site.remote.prompt }} {{ site.sched.interactive }} --ntasks 2 echo "This job will use 2 CPUs."
 ```
 {: .language-bash}
 
