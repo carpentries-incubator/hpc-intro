@@ -2,10 +2,9 @@
 
 Our main branches are:
 
-origin/gh-pages                 <-Do not use, this is for fetching changes from upstream
-origin/gh-pages-upstream-compat <- This is used for changes we want to share with community
-origin/gh-pages-nesi            <- Our NeSI specific lessons, not compatible with upstream
-
+* origin/gh-pages                 <-Do not use, this is for fetching changes from upstream
+* origin/gh-pages-upstream-compat <- This is used for changes we want to share with community
+* origin/gh-pages-nesi            <- Our NeSI specific lessons, not compatible with upstream
 
 To test locally, make your changes and run this. 
 
