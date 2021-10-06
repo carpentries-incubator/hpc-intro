@@ -21,7 +21,7 @@ remote:
   homedir: "/home"
   user: "yourUsername"
   prompt: "[yourUsername@mahuika ~]$"
-  bash_shebang: "#!/usr/bin/env bash"
+  bash_shebang: "#!/bin/bash -e"
 
 sched:
   name: "SLURM"
@@ -45,12 +45,10 @@ sched:
   hist: "sacct"
 
 episode_order:
-  - 11-hpc-intro
   - 12-cluster
-  - 13-scheduler
+  - 02-filedir
   - 14-modules
-  - 15-transferring-files
-  - 16-parallel
+  - 13-scheduler
   - 17-resources
   - 18-responsibility
 
@@ -83,7 +81,7 @@ life_cycle: "alpha"
 kind: "lesson"
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
-start_time: 0
+start_time: 540
 
 # Magic to make URLs resolve both locally and on GitHub. Please don't change.
 repository: <USERNAME>/<PROJECT>
