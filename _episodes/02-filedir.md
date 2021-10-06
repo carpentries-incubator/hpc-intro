@@ -75,6 +75,7 @@ $ pwd
 
 > We will also assume that your `pwd` command returns your user's home directory.
 > If `pwd` returns something different, you may need to navigate there using `cd`
+{: .callout}
 
 
 To understand what a 'home directory' is,
