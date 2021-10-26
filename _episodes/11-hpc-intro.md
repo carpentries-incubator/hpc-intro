@@ -9,12 +9,12 @@ objectives:
 - "Be able to describe what an HPC system is"
 - "Identify how an HPC system could benefit you."
 keypoints:
-- "High Performance Computing (HPC) typically involves connecting to very large
-  computing systems elsewhere in the world."
+- "High Performance Computing (HPC) typically involves connecting to large
+  computing system in another place.
 - "These other systems can be used to do work that would either be impossible
   or much slower on smaller systems."
 - "The standard method of interacting with such systems is via a command line
-  interface called Bash."
+  interface."
 ---
 
 Frequently, research problems that use computing can outgrow the capabilities
@@ -83,38 +83,6 @@ Schematically, this can be reduced to the following:
    alt="Schematic of how a computer works" caption="" %}
 
 ## When Tasks Take Too Long
-
-When the task to solve becomes heavy on computations, the operations are
-typically out-sourced from the local laptop or desktop to elsewhere. Take for
-example the task to find the directions for your next vacation. The
-capabilities of your laptop are typically not enough to calculate that route
-spontaneously: [finding the shortest path](
-https://en.wikipedia.org/wiki/Dijkstra's_algorithm) through a network runs on
-the order of (*v* log *v*) time, where *v* (vertices) represents the number of
-intersections in your map. Instead of doing this yourself, you use a website,
-which in turn runs on a server, that is almost definitely not in the same room
-as you are.
-
-{% include figure.html url="" max-width="20%"
-   file="/fig/servers-openclipartorg-ericlemerdy.svg"
-   alt="A rack half full with servers" caption="" %}
-
-Note here, that a server is mostly a noisy computer mounted into a rack cabinet
-which in turn resides in a data center. The internet made it possible that
-these data centers do not require to be nearby your laptop. What people call
-**the cloud** is mostly a web-service where you can rent such servers by
-providing your credit card details and requesting remote resources that satisfy
-your requirements. This is often handled through an online, browser-based
-interface listing the various machines available and their capacities in terms
-of processing power, memory, and storage.
-
-The server itself has no direct display or input methods attached to it. But
-most importantly, it has much more storage, memory and compute capacity than
-your laptop will ever have. In any case, you need a local device (laptop,
-workstation, mobile phone or tablet) to interact with this remote machine,
-which people typically call 'a server'.
-
-## When One Server Is Not Enough
 
 If the computational task or analysis to complete is daunting for a single
 server, larger agglomerations of servers are used. These go by the name of
