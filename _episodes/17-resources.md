@@ -9,7 +9,7 @@ objectives:
 - "Understand how to look up job statistics and profile code."
 - "Understand job size implications."
 keypoints:
-- "The smaller your job, the faster it will schedule."
+- "The smaller your job (time, CPUs, memory, etc), the faster it will schedule."
 ---
 
 We've touched on all the skills you need to interact with an HPC cluster:
@@ -84,6 +84,34 @@ Some interesting fields include the following:
 * **MaxDiskRead**: Amount of data read from disk.
 * **MaxDiskWrite**: Amount of data written to disk.
 
+> ## `nn_seff`
+>
+> For convenince, we have provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA). 
+>
+> > ## Solution
+> >
+> > ```
+> > {{ site.remote.prompt }} nn_seff <jobid>
+> > ```
+> > {: .language-bash}
+> > ```
+> > Job ID: 22278992
+> > Cluster: mahuika
+> > User/Group: username/username
+> > State: TIMEOUT (exit code 0)
+> > Cores: 1
+> > Tasks: 1
+> > Nodes: 1
+> > Job Wall-time:  100.33%  00:15:03 of 00:15:00 time limit
+> > CPU Efficiency: 0.55%  00:00:05 of 00:15:03 core-walltime
+> > Mem Efficiency: 0.20%  2.09 MB of 1.00 GB
+> > ```
+> > {: .output}
+> >
+> > If you were to submit this same job again what resources would you request?
+> {: .solution}
+{: .challenge}
+
 ## Measuring the System Load From Currently Running Tasks
 
 Typically, clusters allow users to connect directly to compute nodes from the
@@ -93,13 +121,13 @@ manager. To reduce the risk of interfering with other users, some clusters will
 only allow you to connect to nodes on which you have running jobs. Let's
 practice by taking a look at what's running on the login node right now.
 
-### Monitor System Processes With `top`
+### Monitor System Processes With `htop`
 
-The most reliable way to check current system stats is with `top`. Some sample
-output might look like the following (type `q` to exit `top`):
+The most reliable way to check current system stats is with `htop`. Some sample
+output might look like the following (type `q` to exit `htop`):
 
 ```
-{{ site.remote.prompt }} top
+{{ site.remote.prompt }} htop
 ```
 {: .language-bash}
 
@@ -118,18 +146,14 @@ Overview of the most important fields:
   accumulate time at twice the normal rate.
 * `COMMAND`: What command was used to launch a process?
 
-`htop` provides an overlay for `top` using [curses](
-https://en.wikipedia.org/wiki/Curses_(programming_library)), producing a
-better-organized and "prettier" dashboard in your terminal. Unfortunately, it
-is not always available. If this is the case, ask your system administrators to
-install it for you. Don't be shy, they're here to help!
+If `htop` isn't available on your system `top` provides a similar (but less pretty) function.
 
 ```
 {{ site.remote.prompt }} htop
 ```
 {: .language-bash}
 
-### `ps`
+<!-- ### `ps`
 
 To show all processes from your current session, type `ps`.
 
@@ -162,6 +186,6 @@ or not), you can use `ps ux`.
 ```
 {: .output}
 
-This is useful for identifying which processes are doing what.
+This is useful for identifying which processes are doing what. -->
 
 {% include links.md %}
