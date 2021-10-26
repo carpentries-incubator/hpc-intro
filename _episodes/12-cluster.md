@@ -24,32 +24,17 @@ The words "cloud", "cluster", and the phrase "high-performance computing" or
 "HPC" are used a lot in different contexts and with various related meanings.
 So what do they mean? And more importantly, how do we use them in our work?
 
-The *cloud* is a generic term commonly used to refer to computing resources
-that are a) *provisioned* to users on demand or as needed and b) represent real
-or *virtual* resources that may be located anywhere on Earth. For example, a
-large company with computing resources in Brazil, Zimbabwe and Japan may manage
-those resources as its own *internal* cloud and that same company may also
-use commercial cloud resources provided by Amazon or Google. Cloud
-resources may refer to machines performing relatively simple tasks such as
+The *cloud* refers to computing resources
+that are provisioned to users on demand or as needed.
+Cloud resources may refer to machines performing relatively simple tasks such as
 serving websites, providing shared storage, providing web services (such as
 e-mail or social media platforms), as well as more traditional compute
 intensive tasks such as running a simulation.
 
-The term *HPC system*, on the other hand, describes a stand-alone resource for
-computationally intensive workloads. They are typically comprised of a
-multitude of integrated processing and storage elements, designed to handle
-high volumes of data and/or large numbers of floating-point operations
-([FLOPS](https://en.wikipedia.org/wiki/FLOPS)) with the highest possible
-performance. For example, all of the machines on the
-[Top-500](https://www.top500.org) list are HPC systems. To support these
-constraints, an HPC resource must exist in a specific, fixed location:
-networking cables can only stretch so far, and electrical and optical signals
-can travel only so fast.
+*HPC*, *High Performance Computer*, *High Performance Computing* or *Supercomputer* are all general terms for a large or powerful computing resource.
 
-The word "cluster" is often used for small to moderate scale HPC resources less
-impressive than the [Top-500](https://www.top500.org). Clusters are often
-maintained in computing centers that support several such systems, all sharing
-common networking and storage to support common compute intensive tasks.
+
+*Cluster* is a more specific term describing a type of supercomputer comprised of multiple smaller computers (nodes) working together. Almost all supercomputers are clusters.
 
 ## Logging In
 
@@ -119,51 +104,6 @@ may also notice that the current hostname is also part of our prompt!)
 {{ site.remote.host }}
 ```
 {: .output}
-
-> ## What's in Your Home Directory?
->
-> The system administrators may have configured your home directory with some
-> helpful files, folders, and links (shortcuts) to space reserved for you on
-> other filesystems. Take a look around and see what you can find.
->
-> *Hint:* The shell commands `pwd` and `ls` may come in handy.
->
-> Home directory contents vary from user to user. Please discuss any
-> differences you spot with your neighbors:
->
-> > ## It's a Beautiful Day in the Neighborhood
-> >
-> > The deepest layer should differ: {{ site.remote.user }} is uniquely yours.
-> > Are there differences in the path at higher levels?
-> >
-> > If both of you have empty directories, they will look identical. If you
-> > or your neighbor has used the system before, there may be differences. What
-> > are you working on?
-> {: .discussion}
->
-> > ## Solution
-> >
-> > Use `pwd` to **p**rint the **w**orking **d**irectory path:
-> >
-> > ```
-> > {{ site.remote.prompt }} pwd
-> > ```
-> > {: .language-bash}
-> >
-> > You can run `ls` to **l**i**s**t the directory contents, though it's
-> > possible nothing will show up (if no files have been provided). To be sure,
-> > use the `-a` flag to show hidden files, too.
-> >
-> > ```
-> > {{ site.remote.prompt }} ls -a
-> > ```
-> > {: .language-bash}
-> >
-> > At a minimum, this will show the current directory as `.`, and the parent
-> > directory as `..`.
-> {: .solution}
-{: .discussion}
-
 ## Nodes
 
 Individual computers that compose a cluster are typically called *nodes*
@@ -234,7 +174,7 @@ connect to a shared, remote fileserver or cluster of servers.
    file="/fig/node_anatomy.png"
    alt="Node anatomy" caption="" %}
 
-> ## Explore Your Computer
+<!-- > ## Explore Your Computer
 >
 > Try to find out the number of CPUs and amount of memory available on your
 > personal computer.
@@ -322,7 +262,7 @@ connect to a shared, remote fileserver or cluster of servers.
 > {: .solution}
 {: .challenge}
 
-{% include {{ site.snippets }}/cluster/specific-node-info.snip %}
+{% include {{ site.snippets }}/cluster/specific-node-info.snip %} -->
 
 > ## Compare Your Computer, the Head Node and the Worker Node
 >
