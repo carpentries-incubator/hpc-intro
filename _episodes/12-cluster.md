@@ -198,7 +198,7 @@ or hard tasks that require a lot of computational resources.
 
 All interaction with the worker nodes is handled by a specialized piece of
 software called a scheduler (the scheduler used in this lesson is called
-{{ site.workshop.sched.name }}). We'll learn more about how to use the
+{{ site.sched.name }}). We'll learn more about how to use the
 scheduler to submit jobs next, but for now, it can also tell us more
 information about the worker nodes.
 
