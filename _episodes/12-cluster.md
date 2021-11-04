@@ -11,8 +11,8 @@ objectives:
 - "Understand the general HPC system architecture."
 keypoints:
 - "An HPC system is a set of networked machines."
-- "HPC systems typically provide login nodes and a set of worker nodes."
-- "The resources found on independent (worker) nodes can vary in volume and
+- "HPC systems typically provide login nodes and a set of compute nodes."
+- "The resources found on independent (compute) nodes can vary in volume and
   type (amount of RAM, processor architecture, availability of network mounted
   filesystems, etc.)."
 - "Files saved on one node are available on all nodes."
@@ -24,185 +24,44 @@ The words "cloud", "cluster", and the phrase "high-performance computing" or
 "HPC" are used a lot in different contexts and with various related meanings.
 So what do they mean? And more importantly, how do we use them in our work?
 
-The *cloud* is a generic term commonly used to refer to computing resources
-that are a) *provisioned* to users on demand or as needed and b) represent real
-or *virtual* resources that may be located anywhere on Earth. For example, a
-large company with computing resources in Brazil, Zimbabwe and Japan may manage
-those resources as its own *internal* cloud and that same company may also
-use commercial cloud resources provided by Amazon or Google. Cloud
-resources may refer to machines performing relatively simple tasks such as
+The *cloud* refers to computing resources
+that are provisioned to users on demand or as needed.
+Cloud resources may refer to machines performing relatively simple tasks such as
 serving websites, providing shared storage, providing web services (such as
 e-mail or social media platforms), as well as more traditional compute
 intensive tasks such as running a simulation.
 
-The term *HPC system*, on the other hand, describes a stand-alone resource for
-computationally intensive workloads. They are typically comprised of a
-multitude of integrated processing and storage elements, designed to handle
-high volumes of data and/or large numbers of floating-point operations
-([FLOPS](https://en.wikipedia.org/wiki/FLOPS)) with the highest possible
-performance. For example, all of the machines on the
-[Top-500](https://www.top500.org) list are HPC systems. To support these
-constraints, an HPC resource must exist in a specific, fixed location:
-networking cables can only stretch so far, and electrical and optical signals
-can travel only so fast.
+*HPC*, *High Performance Computer*, *High Performance Computing* or *Supercomputer* are all general terms for a large or powerful computing resource.
 
-The word "cluster" is often used for small to moderate scale HPC resources less
-impressive than the [Top-500](https://www.top500.org). Clusters are often
-maintained in computing centers that support several such systems, all sharing
-common networking and storage to support common compute intensive tasks.
 
-## Logging In
-
-The first step in using a cluster is to establish a connection from our laptop
-to the cluster. When we are sitting at a computer (or standing, or holding it
-in our hands or on our wrists), we have come to expect a visual display with
-icons, widgets, and perhaps some windows or applications: a graphical user
-interface, or GUI. Since computer clusters are remote resources that we connect
-to over often slow or laggy interfaces (WiFi and VPNs especially), it is more
-practical to use a command-line interface, or CLI, in which commands and
-results are transmitted via text, only. Anything other than text (images, for
-example) must be written to disk and opened with a separate program.
-
-If you have ever opened the Windows Command Prompt or macOS Terminal, you have
-seen a CLI. If you have already taken The Carpentries' courses on the UNIX
-Shell or Version Control, you have used the CLI on your local machine somewhat
-extensively. The only leap to be made here is to open a CLI on a *remote*
-machine, while taking some precautions so that other folks on the network can't
-see (or change) the commands you're running or the results the remote machine
-sends back. We will use the Secure SHell protocol (or SSH) to open an encrypted
-network connection between two machines, allowing you to send & receive text
-and data without having to worry about prying eyes.
-
-{% include figure.html url="" max-width="50%"
-   file="/fig/connect-to-remote.svg"
-   alt="Connect to cluster" caption="" %}
-
-Make sure you have a SSH client installed on your laptop. Refer to the
-[setup]({{ page.root }}/setup) section for more details. SSH clients are
-usually command-line tools, where you provide the remote machine address as the
-only required argument. If your username on the remote system differs from what
-you use locally, you must provide that as well. If your SSH client has a
-graphical front-end, such as PuTTY or MobaXterm, you will set these arguments
-before clicking "connect." From the terminal, you'll write something like `ssh
-userName@hostname`, where the "@" symbol is used to separate the two parts of a
-single argument.
-
-Go ahead and open your terminal or graphical SSH client, then log in to the
-cluster using your username and the remote computer you can reach from the
-outside world, {{ site.remote.location }}.
-
-```
-{{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
-```
-{: .language-bash}
-
-Remember to replace `{{ site.remote.user }}` with your username or the one
-supplied by the instructors. You may be asked for your password. Watch out: the
-characters you type after the password prompt are not displayed on the screen.
-Normal output will resume once you press `Enter`.
-
-## Where Are We?
-
-Very often, many users are tempted to think of a high-performance computing
-installation as one giant, magical machine. Sometimes, people will assume that
-the computer they've logged onto is the entire computing cluster. So what's
-really happening? What computer have we logged on to? The name of the current
-computer we are logged onto can be checked with the `hostname` command. (You
-may also notice that the current hostname is also part of our prompt!)
-
-```
-{{ site.remote.prompt }} hostname
-```
-{: .language-bash}
-
-```
-{{ site.remote.host }}
-```
-{: .output}
-
-> ## What's in Your Home Directory?
->
-> The system administrators may have configured your home directory with some
-> helpful files, folders, and links (shortcuts) to space reserved for you on
-> other filesystems. Take a look around and see what you can find.
->
-> *Hint:* The shell commands `pwd` and `ls` may come in handy.
->
-> Home directory contents vary from user to user. Please discuss any
-> differences you spot with your neighbors:
->
-> > ## It's a Beautiful Day in the Neighborhood
-> >
-> > The deepest layer should differ: {{ site.remote.user }} is uniquely yours.
-> > Are there differences in the path at higher levels?
-> >
-> > If both of you have empty directories, they will look identical. If you
-> > or your neighbor has used the system before, there may be differences. What
-> > are you working on?
-> {: .discussion}
->
-> > ## Solution
-> >
-> > Use `pwd` to **p**rint the **w**orking **d**irectory path:
-> >
-> > ```
-> > {{ site.remote.prompt }} pwd
-> > ```
-> > {: .language-bash}
-> >
-> > You can run `ls` to **l**i**s**t the directory contents, though it's
-> > possible nothing will show up (if no files have been provided). To be sure,
-> > use the `-a` flag to show hidden files, too.
-> >
-> > ```
-> > {{ site.remote.prompt }} ls -a
-> > ```
-> > {: .language-bash}
-> >
-> > At a minimum, this will show the current directory as `.`, and the parent
-> > directory as `..`.
-> {: .solution}
-{: .discussion}
+*Cluster* is a more specific term describing a type of supercomputer comprised of multiple smaller computers (nodes) working together. Almost all supercomputers are clusters.
 
 ## Nodes
 
 Individual computers that compose a cluster are typically called *nodes*
 (although you will also hear people call them *servers*, *computers* and
-*machines*). On a cluster, there are different types of nodes for different
-types of tasks. The node where you are right now is called the *head node*,
-*login node*, *landing pad*, or *submit node*. A login node serves as an access
-point to the cluster.
+*hosts*). On a cluster, there are different types of nodes for different
+types of tasks. The node where you are right now will be dofferent depending on 
+how you accessed the cluster.  Most of you (using JupyterHub) will be on an interactive *compute node*. 
+This is beacuse Jupyter sessions are running as a job.  If you are using SSH to connect to the cluster, you will be on a
+*login node*. Both Jupyter and login nodes serve as an access point to the cluster.
 
-As a gateway, it is well suited for uploading and downloading files, setting up
-software, and running quick tests. Generally speaking, the login node should
-not be used for time-consuming or resource-intensive tasks. You should be alert
-to this, and check with your site's operators or documentation for details of
-what is and isn't allowed. In these lessons, we will avoid running jobs on the
-head node.
+As an access point, bothe the login node and Jupyter are well suited for uploading and downloading files, setting up
+software, and running quick tests. Generally speaking, the login node *should
+not* be used for time-consuming or resource-intensive tasks.   In other words, do not run jobs directly on the login node.  We will learn how to properly run jobs on the cluster in an upcoming lesson.
 
-> ## Dedicated Transfer Nodes
->
-> If you want to transfer larger amounts of data to or from the cluster, some
-> systems offer dedicated nodes for data transfers only. The motivation for
-> this lies in the fact that larger data transfers should not obstruct
-> operation of the login node for anybody else. Check with your cluster's
-> documentation or its support team if such a transfer node is available. As a
-> rule of thumb, consider all transfers of a volume larger than 500 MB to 1 GB
-> as large. But these numbers change, e.g., depending on the network connection
-> of yourself and of your cluster or other factors.
-{: .callout}
 
-The real work on a cluster gets done by the *worker* (or *compute*) *nodes*.
-Worker nodes come in many shapes and sizes, but generally are dedicated to long
+The real work on a cluster gets done by the *compute* *nodes*.
+Compute nodes come in many shapes and sizes, but generally are dedicated to long
 or hard tasks that require a lot of computational resources.
 
-All interaction with the worker nodes is handled by a specialized piece of
+All interaction with the compute nodes is handled by a specialized piece of
 software called a scheduler (the scheduler used in this lesson is called
 {{ site.workshop.sched.name }}). We'll learn more about how to use the
 scheduler to submit jobs next, but for now, it can also tell us more
-information about the worker nodes.
+information about the compute nodes.
 
-For example, we can view all of the worker nodes by running the command
+For example, we can view all of the compute nodes by running the command
 `{{ site.sched.info }}`.
 
 ```
@@ -212,12 +71,12 @@ For example, we can view all of the worker nodes by running the command
 
 {% include {{ site.snippets }}/cluster/queue-info.snip %}
 
-There are also specialized machines used for managing disk storage, user
-authentication, and other infrastructure-related tasks. Although we do not
-typically logon to or interact with these machines directly, they enable a
-number of key features like ensuring our user account and files are available
-throughout the HPC system.
-
+> ## Dedicated Transfer Nodes
+>
+> If you want to transfer larger amounts of data to or from the cluster, NeSI
+> offers dedicated transfer nodes using the Globus service.  More infromation on using Globus for large data transfer to and from the 
+> cluster can be found here: [Globus Transfer Service](https://support.nesi.org.nz/hc/en-gb/sections/360000040596)
+{: .callout}
 ## What's in a Node?
 
 All of the nodes in an HPC system have the same components as your own laptop
@@ -228,13 +87,13 @@ computer's memory. Disk refers to all storage that can be accessed like a file
 system. This is generally storage that can hold data permanently, i.e. data is
 still there even if the computer has been restarted. While this storage can be
 local (a hard drive installed inside of it), it is more common for nodes to
-connect to a shared, remote fileserver or cluster of servers.
+connect to a shared, remote fileserver or cluster of servers.  You will learn more about disk storage in an upcoming lesson.
 
 {% include figure.html url="" max-width="40%"
    file="/fig/node_anatomy.png"
    alt="Node anatomy" caption="" %}
 
-> ## Explore Your Computer
+<!-- > ## Explore Your Computer
 >
 > Try to find out the number of CPUs and amount of memory available on your
 > personal computer.
@@ -322,17 +181,7 @@ connect to a shared, remote fileserver or cluster of servers.
 > {: .solution}
 {: .challenge}
 
-{% include {{ site.snippets }}/cluster/specific-node-info.snip %}
-
-> ## Compare Your Computer, the Head Node and the Worker Node
->
-> Compare your laptop's number of processors and memory with the numbers you
-> see on the cluster head node and worker node. Discuss the differences with
-> your neighbor.
->
-> What implications do you think the differences might have on running your
-> research work on the different systems and nodes?
-{: .discussion}
+{% include {{ site.snippets }}/cluster/specific-node-info.snip %} -->
 
 > ## Differences Between Nodes
 >
@@ -340,8 +189,5 @@ connect to a shared, remote fileserver or cluster of servers.
 > Some nodes may have larger amount of memory, or specialized resources such as
 > Graphical Processing Units (GPUs).
 {: .callout}
-
-With all of this in mind, we will now cover how to talk to the cluster's
-scheduler, and use it to start running our scripts and programs!
 
 {% include links.md %}
