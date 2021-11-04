@@ -24,7 +24,7 @@ remote:
   bash_shebang: "#!/bin/bash -e"
 
 sched:
-  name: "SLURM"
+  name: "Slurm"
   submit:
     name: "sbatch"
     options: ""
