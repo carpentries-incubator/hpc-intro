@@ -11,8 +11,8 @@ objectives:
 - "Understand the general HPC system architecture."
 keypoints:
 - "An HPC system is a set of networked machines."
-- "HPC systems typically provide login nodes and a set of worker nodes."
-- "The resources found on independent (worker) nodes can vary in volume and
+- "HPC systems typically provide login nodes and a set of compute nodes."
+- "The resources found on independent (compute) nodes can vary in volume and
   type (amount of RAM, processor architecture, availability of network mounted
   filesystems, etc.)."
 - "Files saved on one node are available on all nodes."
@@ -36,63 +36,32 @@ intensive tasks such as running a simulation.
 
 *Cluster* is a more specific term describing a type of supercomputer comprised of multiple smaller computers (nodes) working together. Almost all supercomputers are clusters.
 
-## Where Are We?
-
-Very often, many users are tempted to think of a high-performance computing
-installation as one giant, magical machine. Sometimes, people will assume that
-the computer they've logged onto is the entire computing cluster. So what's
-really happening? What computer have we logged on to? The name of the current
-computer we are logged onto can be checked with the `hostname` command. (You
-may also notice that the current hostname is also part of our prompt!)
-
-```
-{{ site.remote.prompt }} hostname
-```
-{: .language-bash}
-
-```
-{{ site.remote.host }}
-```
-{: .output}
 ## Nodes
 
 Individual computers that compose a cluster are typically called *nodes*
 (although you will also hear people call them *servers*, *computers* and
-*machines*). On a cluster, there are different types of nodes for different
-types of tasks. The node where you are right now is called the *head node*,
-*login node*, *landing pad*, or *submit node*. A login node serves as an access
-point to the cluster.
+*hosts*). On a cluster, there are different types of nodes for different
+types of tasks. The node where you are right now will be dofferent depending on 
+how you accessed the cluster.  Most of you (using JupyterHub) will be on an interactive *compute node*. 
+This is beacuse Jupyter sessions are running as a job.  If you are using SSH to connect to the cluster, you will be on a
+*login node*. Both Jupyter and login nodes serve as an access point to the cluster.
 
-As a gateway, it is well suited for uploading and downloading files, setting up
-software, and running quick tests. Generally speaking, the login node should
-not be used for time-consuming or resource-intensive tasks. You should be alert
-to this, and check with your site's operators or documentation for details of
-what is and isn't allowed. In these lessons, we will avoid running jobs on the
-head node.
+As an access point, bothe the login node and Jupyter are well suited for uploading and downloading files, setting up
+software, and running quick tests. Generally speaking, the login node *should
+not* be used for time-consuming or resource-intensive tasks.   In other words, do not run jobs directly on the login node.  We will learn how to properly run jobs on the cluster in an upcoming lesson.
 
-> ## Dedicated Transfer Nodes
->
-> If you want to transfer larger amounts of data to or from the cluster, some
-> systems offer dedicated nodes for data transfers only. The motivation for
-> this lies in the fact that larger data transfers should not obstruct
-> operation of the login node for anybody else. Check with your cluster's
-> documentation or its support team if such a transfer node is available. As a
-> rule of thumb, consider all transfers of a volume larger than 500 MB to 1 GB
-> as large. But these numbers change, e.g., depending on the network connection
-> of yourself and of your cluster or other factors.
-{: .callout}
 
-The real work on a cluster gets done by the *worker* (or *compute*) *nodes*.
-Worker nodes come in many shapes and sizes, but generally are dedicated to long
+The real work on a cluster gets done by the *compute* *nodes*.
+Compute nodes come in many shapes and sizes, but generally are dedicated to long
 or hard tasks that require a lot of computational resources.
 
-All interaction with the worker nodes is handled by a specialized piece of
+All interaction with the compute nodes is handled by a specialized piece of
 software called a scheduler (the scheduler used in this lesson is called
 {{ site.workshop.sched.name }}). We'll learn more about how to use the
 scheduler to submit jobs next, but for now, it can also tell us more
-information about the worker nodes.
+information about the compute nodes.
 
-For example, we can view all of the worker nodes by running the command
+For example, we can view all of the compute nodes by running the command
 `{{ site.sched.info }}`.
 
 ```
@@ -102,12 +71,12 @@ For example, we can view all of the worker nodes by running the command
 
 {% include {{ site.snippets }}/cluster/queue-info.snip %}
 
-There are also specialized machines used for managing disk storage, user
-authentication, and other infrastructure-related tasks. Although we do not
-typically logon to or interact with these machines directly, they enable a
-number of key features like ensuring our user account and files are available
-throughout the HPC system.
-
+> ## Dedicated Transfer Nodes
+>
+> If you want to transfer larger amounts of data to or from the cluster, NeSI
+> offers dedicated transfer nodes using the Globus service.  More infromation on using Globus for large data transfer to and from the 
+> cluster can be found here: [Globus Transfer Service](https://support.nesi.org.nz/hc/en-gb/sections/360000040596)
+{: .callout}
 ## What's in a Node?
 
 All of the nodes in an HPC system have the same components as your own laptop
@@ -118,7 +87,7 @@ computer's memory. Disk refers to all storage that can be accessed like a file
 system. This is generally storage that can hold data permanently, i.e. data is
 still there even if the computer has been restarted. While this storage can be
 local (a hard drive installed inside of it), it is more common for nodes to
-connect to a shared, remote fileserver or cluster of servers.
+connect to a shared, remote fileserver or cluster of servers.  You will learn more about disk storage in an upcoming lesson.
 
 {% include figure.html url="" max-width="40%"
    file="/fig/node_anatomy.png"
@@ -214,24 +183,11 @@ connect to a shared, remote fileserver or cluster of servers.
 
 {% include {{ site.snippets }}/cluster/specific-node-info.snip %} -->
 
-> ## Compare Your Computer, the Head Node and the Worker Node
->
-> Compare your laptop's number of processors and memory with the numbers you
-> see on the cluster head node and worker node. Discuss the differences with
-> your neighbor.
->
-> What implications do you think the differences might have on running your
-> research work on the different systems and nodes?
-{: .discussion}
-
 > ## Differences Between Nodes
 >
 > Many HPC clusters have a variety of nodes optimized for particular workloads.
 > Some nodes may have larger amount of memory, or specialized resources such as
 > Graphical Processing Units (GPUs).
 {: .callout}
-
-With all of this in mind, we will now cover how to talk to the cluster's
-scheduler, and use it to start running our scripts and programs!
 
 {% include links.md %}
