@@ -39,14 +39,14 @@ intensive tasks such as running a simulation.
 ## Nodes
 
 Individual computers that compose a cluster are typically called *nodes*
-(although you will also hear people call them *servers*, *computers* and
+(although you will also hear people call them *servers*, *computers* or
 *hosts*). On a cluster, there are different types of nodes for different
-types of tasks. The node where you are right now will be dofferent depending on 
+types of tasks. The node where you are now will be different depending on 
 how you accessed the cluster.  Most of you (using JupyterHub) will be on an interactive *compute node*. 
-This is beacuse Jupyter sessions are running as a job.  If you are using SSH to connect to the cluster, you will be on a
-*login node*. Both Jupyter and login nodes serve as an access point to the cluster.
+This is because Jupyter sessions are launched as a job.  If you are using SSH to connect to the cluster, you will be on a
+*login node*. Both JupyterHub and SSH login nodes serve as an access point to the cluster.
 
-As an access point, bothe the login node and Jupyter are well suited for uploading and downloading files, setting up
+As access points, both the login node and JupyterHub are well suited for uploading and downloading files, setting up
 software, and running quick tests. Generally speaking, the login node *should
 not* be used for time-consuming or resource-intensive tasks.   In other words, do not run jobs directly on the login node.  We will learn how to properly run jobs on the cluster in an upcoming lesson.
 
@@ -57,8 +57,8 @@ or hard tasks that require a lot of computational resources.
 
 All interaction with the compute nodes is handled by a specialized piece of
 software called a scheduler (the scheduler used in this lesson is called
-{{ site.workshop.sched.name }}). We'll learn more about how to use the
-scheduler to submit jobs next, but for now, it can also tell us more
+{{ site.sched.name }}). We'll learn more about how to use the {{ site.sched.name }}
+scheduler to submit jobs in an upcoming lesson, but for now, it can also tell us more
 information about the compute nodes.
 
 For example, we can view all of the compute nodes by running the command
@@ -71,12 +71,6 @@ For example, we can view all of the compute nodes by running the command
 
 {% include {{ site.snippets }}/cluster/queue-info.snip %}
 
-> ## Dedicated Transfer Nodes
->
-> If you want to transfer larger amounts of data to or from the cluster, NeSI
-> offers dedicated transfer nodes using the Globus service.  More infromation on using Globus for large data transfer to and from the 
-> cluster can be found here: [Globus Transfer Service](https://support.nesi.org.nz/hc/en-gb/sections/360000040596)
-{: .callout}
 ## What's in a Node?
 
 All of the nodes in an HPC system have the same components as your own laptop
@@ -188,6 +182,12 @@ connect to a shared, remote fileserver or cluster of servers.  You will learn mo
 > Many HPC clusters have a variety of nodes optimized for particular workloads.
 > Some nodes may have larger amount of memory, or specialized resources such as
 > Graphical Processing Units (GPUs).
+{: .callout}
+> ## Dedicated Transfer Nodes
+>
+> If you want to transfer larger amounts of data to or from the cluster, NeSI
+> offers dedicated transfer nodes using the Globus service.  More infromation on using Globus for large data transfer to and from the 
+> cluster can be found here: [Globus Transfer Service](https://support.nesi.org.nz/hc/en-gb/sections/360000040596)
 {: .callout}
 
 {% include links.md %}
