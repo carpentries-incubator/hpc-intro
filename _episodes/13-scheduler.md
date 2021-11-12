@@ -19,7 +19,6 @@ keypoints:
 - "A job is just a shell script."
 - "If in doubt, request more resources than you will need."
 ---
-
 ## Job Scheduler
 
 An HPC system might have thousands of nodes and thousands of users. How do we
@@ -37,31 +36,65 @@ why sometimes your job do not start instantly as in your laptop.
    file="/fig/restaurant_queue_manager.svg"
    alt="Compare a job scheduler to a waiter in a restaurant" %}
 
-## Running a Batch Job
 
-The most basic use of the scheduler is to run a command non-interactively. Any
+
+## Interactive vs Batch
+
+Sofar, whenever we have entered a command into our terminals, we have received the response immediately in the same terminal, this is said to be an _interactive session_.
+
+??Diagram??
+
+This is all well for doing small tasks, but what if we want to do several things one after another without without waiting in-between? Or what if we want to repeat the same series of command again later?
+
+This is where _batch processing_ becomes useful, this is where instead of entering commands directly to the terminal we write them down in a text file or _script_. Then, the script can be _executed_ by calling it with `bash`.
+
+??Diagram??
+
+Lets try this now, create and open a new file in your current directory called `example-job.sh`.
+(If you prefer another text editor than nano, feel free to use that), and enter the following.
+
+
+<!-- The most basic use of the scheduler is to run a command non-interactively. Any
 command (or series of commands) that you want to run on the cluster is called a
 *job*, and the process of using a scheduler to run the job is called *batch job
-submission*.
-
-In this case, the job we want to run is just a shell script. Let's create a
-demo shell script to run as a test. The landing pad will have a number of
-terminal-based text editors installed. Use whichever you prefer. Unsure? `nano`
-is a pretty good, basic choice.
+submission*. -->
 
 ```
 {{ site.remote.prompt }} nano example-job.sh
-{{ site.remote.prompt }} cat example-job.sh
 ```
 {: .language-bash}
+
+?? I dont like introducing comments here. Must be better place.
+
 
 ```
 {{ site.remote.bash_shebang }}
 
-echo -n "This script is running on "
-hostname
+# This is a comment. 
+# Anything after a '#' is not read by the interpreter.
+echo "This script is running on $HOSTNAME"
+date
+```
+{: .language-bash}
+
+> ## Shebang
+>
+> Say something about shebang
+{: .callout}
+
+We can now run this script using
+{{ site.remote.prompt }} bash example-job.sh
+```
+{: .language-bash}
+
+{{ site.remote.bash_shebang }}
+
+This script is running on {{ site.remote.host }}
+{{ site.time }}
 ```
 {: .output}
+
+You will get the output printed to your terminal as if you had just run it.
 
 > ## Creating Our Test Job
 >
@@ -87,12 +120,64 @@ there is a distinction between running the job through the scheduler and just
 "running it". To submit this job to the scheduler, we use the `{{
 site.sched.submit.name }}` command.
 
+## Scheduled Batch Job
+
+Up until now the scheduler has not been involved, our batch scripts were run directly on the login node (or equivalent).
+
+Lets first take a copy of our batch script.
+
+```
+cp example-job.sh example-job.sl
+```
+> ## File Extensions
+>
+> A files extension in this case does not in any way affect how a script is read,
+> it is just another part of the name used to remind users what type of file it is.
+> Some common file extensions
+> `.sh`: **Sh**ell Script.
+> `.sl`: **Sl**urm Script, a shell script that includes a *slurm header* and is indented to be run using slurm.
+> `.out`: Commonly used to indicate the file contains the std**out** of some process.
+> `.err`: Same as `.out` but for std**err**.
+{: .callout}
+
+One of the key ways a scheduler allows us to be more efficient with resources, is by taking into account additional 'real world' factors that are not easily determined by looking at a piece of code, things like estimated runtime, memory requirements, number of CPUs required. We can provide that extra information by adding a _slurm header_ to our script.
+
+```
+{{ site.remote.bash_shebang }}
+
+# This is a comment. 
+# Anything after a '#' is not read by the interpreter.
+echo "This script is running on $HOSTNAME"
+date
+```
+{: .language-bash}
+
+?? Diagram, slurm anatomy ??
+
+> ## Comments
+>
+> Comments in UNIX shell scripts (denoted by `#`) are ignored by the bash interpreter.
+> Why is it that we start our slurm parameters with `#` if it is going to be ignored?
+> > Commented lines are ignored by the bash interpreter, but they are _not_ ignored by slurm.
+> > The `{{ site.sched.comment }}` parameters are read by slurm when we _submit_ the job. When the job starts,
+> > the bash interpreter will ignore all lines starting with `#`.
+> >
+> > This is very similar to the _shebang_ mentioned earlier,
+> > when you run your script, the system looks at the `#!`, then uses the program at the subsequent
+> > path to interpret the script, in our case `/bin/bash` (the program 'bash' found in the 'bin' directory).
+> {: .solution}
+{: .challenge}
+
+
+Then rather than running our script with `bash` we _submit_ it to the scheduler using the command `sbatch` (**S**lurm **batch**).
+
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
 ```
 {: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/basic-job-script.snip %}
+
 
 And that's all we need to do to submit a job. Our work is done &mdash; now the
 scheduler takes over and tries to run the job for us. While the job is waiting
@@ -133,55 +218,6 @@ it will disappear from the queue. Press `Ctrl-c` when you want to stop the
 > Cluster job output is typically redirected to a file in the directory you
 > launched it from. Use `ls` to find and read the file.
 {: .discussion}
-
-## Customising a Job
-
-The job we just ran used all of the scheduler's default options. In a
-real-world scenario, that's probably not what we want. The default options
-represent a reasonable minimum. Chances are, we will need more cores, more
-memory, more time, among other special considerations. To get access to these
-resources we must customize our job script.
-
-Comments in UNIX shell scripts (denoted by `#`) are typically ignored, but
-there are exceptions. For instance the special `#!` comment at the beginning of
-scripts specifies what program should be used to run it (you'll typically see
-`{{ site.local.bash_shebang }}`). Schedulers like {{ site.sched.name }} also
-have a special comment used to denote special scheduler-specific options.
-Though these comments differ from scheduler to scheduler,
-{{ site.sched.name }}'s special comment is `{{ site.sched.comment }}`. Anything
-following the `{{ site.sched.comment }}` comment is interpreted as an
-instruction to the scheduler.
-
-Let's illustrate this by example. By default, a job's name is the name of the
-script, but the `{{ site.sched.flag.name }}` option can be used to change the
-name of a job. Add an option to the script:
-
-```
-{{ site.remote.prompt }} cat example-job.sh
-```
-{: .language-bash}
-
-```
-{{ site.remote.bash_shebang }}
-{{ site.sched.comment }} {{ site.sched.flag.name }} new_name
-
-echo -n "This script is running on "
-hostname
-echo "This script has finished successfully."
-```
-{: .output}
-
-Submit the job and monitor its status:
-
-```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
-{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
-```
-{: .language-bash}
-
-{% include {{ site.snippets }}/scheduler/job-with-name-status.snip %}
-
-Fantastic, we've successfully changed the name of our job!
 
 > ## Setting up Email Notifications
 >
