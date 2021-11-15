@@ -74,11 +74,3 @@ Create anchor for each one of the episodes.
 {% endfor %}
 
 {% include links.md %}
-
-
-<!-- 
-{% for post in site.snippets %}
-{{ post.path | inspect }}
-{% endfor %} -->
-
-<!-- {% include {{ site.snippets }}/scheduler/runtime-exceeded-output.snip %} -->
