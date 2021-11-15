@@ -94,23 +94,6 @@ safely use it for your non-routine processing task. If something goes wrong
 If you experience performance issues with a login node you should report it to
 the system staff (usually via the helpdesk) for them to investigate.
 
-## Test Before Scaling
-
-Remember that you are generally charged for usage on shared systems. A simple
-mistake in a job script can end up costing a large amount of resource budget.
-Imagine a job script with a mistake that makes it sit doing nothing for 24
-hours on 1000 cores or one where you have requested 2000 cores by mistake and
-only use 100 of them! This problem can be compounded when people write scripts
-that automate job submission (for example, when running the same calculation or
-analysis over lots of different parameters or files). When this happens it
-hurts both you (as you waste lots of charged resource) and other users (who are
-blocked from accessing the idle compute nodes).
-
-On very busy resources you may wait many days in a queue for your job to fail
-within 10 seconds of starting due to a trivial typo in the job script. This is
-extremely frustrating! Most systems provide dedicated resources for testing
-that have short wait times to help you avoid this issue.
-
 > ## Test Job Submission Scripts That Use Large Amounts of Resources
 >
 > Before submitting a large run of jobs, submit one as a test first to make
