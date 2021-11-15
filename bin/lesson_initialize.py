@@ -20,6 +20,7 @@ BOILERPLATE = (
     '_extras/discuss.md',
     '_extras/figures.md',
     '_extras/guide.md',
+    '_extras/command-history.md',
     'aio.md',
     'index.md',
     'reference.md',
