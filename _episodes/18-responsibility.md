@@ -5,20 +5,12 @@ exercises: 5
 questions:
 - "How can I be a responsible user?"
 - "How can I protect my data?"
-- "How can I best get large amounts of data off an HPC system?"
 objectives:
 - "Learn how to be a considerate shared system citizen."
 - "Understand how to protect your critical data."
-- "Appreciate the challenges with transferring large amounts of data off HPC
-  systems."
-- "Understand how to convert many files to a single archive file using tar."
 keypoints:
 - "Be careful how you use the login node."
 - "Your data on the system is your responsibility."
-- "Plan and test large data transfers."
-- "It is often best to convert many files to a single archive file before
-  transferring."
-- "Again, don't run stuff on the login node."
 ---
 
 One of the major differences between using remote HPC resources and your own
@@ -112,25 +104,13 @@ directory you have deleted by mistake). Protecting critical data from
 corruption or deletion is primarily your responsibility: keep your own backup
 copies.
 
+TODO: Insert info here about nesi data retention policy and backups.
+
 Version control systems (such as Git) often have free, cloud-based offerings
 (e.g., GitHub and GitLab) that are generally used for storing source code. Even
 if you are not writing your own programs, these can be very useful for storing
 job scripts, analysis scripts and small input files.
 
-For larger amounts of data, you should make sure you have a robust system in
-place for taking copies of critical data off the HPC system wherever possible
-to backed-up storage. Tools such as `rsync` can be very useful for this.
-
-Your access to the shared HPC system will generally be time-limited so you
-should ensure you have a plan for transferring your data off the system before
-your access finishes. The time required to transfer large amounts of data
-should not be underestimated and you should ensure you have planned for this
-early enough (ideally, before you even start using the system for your
-research).
-
-In all these cases, the helpdesk of the system you are using should be able to
-provide useful guidance on your options for data transfer for the volumes of
-data you will be using.
 
 > ## Your Data Is Your Responsibility
 >
