@@ -44,18 +44,23 @@ To start exploring them, we'll go to our open shell window.
 First, let's find out where we are by running a command called `pwd`
 (which stands for 'print working directory'). Directories are like *places* — at any time
 while we are using the shell, we are in exactly one place called
-our **current working directory**. Commands mostly read and write files in the
+our **current working directory**. 
+Commands mostly read and write files in the
 current working directory, i.e. 'here', so knowing where you are before running
-a command is important. `pwd` shows you where you are:
+a command is important.
 
-~~~
+```
 {{ site.remote.prompt }} pwd
-~~~
+```
 {: .language-bash}
 
-~~~
+```
 /home/<username>
-~~~
+```
+Those using Jupyter will see something like this instead:
+```
+/home/<username>/.jupyter/jobs/<jupyter-jobid>
+```
 {: .output}
 
 > ## Default directory
@@ -64,12 +69,11 @@ a command is important. `pwd` shows you where you are:
 > If `pwd` returns something different, you will need to navigate to your home directory by running the command `cd`
 {: .callout}
 
-
 To understand what a 'home directory' is,
 let's have a look at how the file system as a whole is organized.
 
 At the top is the **root directory**
-that holds everything else.
+that holds all the files in a filesystem.
 We refer to it using a slash character, `/`, on its own;
 this character is the leading slash in `/home/<username>`.
 
@@ -80,22 +84,79 @@ we know that `/home` is stored inside the root directory `/`
 because its name begins with `/`.
 
 In the NeSI file system you will have access to several different locations.
-### Home Directory
-User-specific files such as configuration files, environment setup, source code, etc.
-| Location      | Storage | Files | Backup | Access Speed
-| -- | -- | -- | -- | -- | 
-| `/home/<username>`  | 2GB | 1,000,000 | Daily | Normal
+#### Home Directory
 
-### Project Directory
+User-specific files such as configuration files, environment setup, source code, etc.
+
+<table style="width: 966px; height: 90px;">
+<tbody>
+<tr>
+<td style="width: 109.453px;"></td>
+<td style="width: 300.703px;">Location</td>
+<td style="width: 167.562px;">Default Storage</td>
+<td style="width: 142.734px;">Default Files</td>
+<td style="width: 89.3594px;">Backup</td>
+<td style="width: 155.188px;">Access Speed</td>
+</tr>
+<tr>
+<td style="width: 109.453px;">Home</td>
+<td style="width: 300.703px;"><code>/home/&lt;username&gt;</code></td>
+<td style="width: 167.562px;">20GB</td>
+<td style="width: 142.734px;">1,000,000</td>
+<td style="width: 89.3594px;">Daily</td>
+<td style="width: 155.188px;">Normal</td>
+</tr>
+</tbody>
+</table>
+
+#### Project Directory
+
 Persistent project-related data, project-related software, etc.
-| Location      | Storage | Files | Backup | Access Speed
-| -- | -- | -- | -- | -- | 
-| `/nesi/project/<projectcode>`  | 100GB | 100,000 | Daily | Normal
-### Nobackup Directory
+
+<table style="width: 966px; height: 90px;">
+<tbody>
+<tr>
+<td style="width: 109.453px;"></td>
+<td style="width: 300.703px;">Location</td>
+<td style="width: 167.562px;">Default Storage</td>
+<td style="width: 142.734px;">Default Files</td>
+<td style="width: 89.3594px;">Backup</td>
+<td style="width: 155.188px;">Access Speed</td>
+</tr>
+<tr>
+<td style="width: 109.453px;">Project</td>
+<td style="width: 300.703px;"><code>/nesi/project/&lt;projectcode&gt;</code></td>
+<td style="width: 167.562px;">100GB</td>
+<td style="width: 142.734px;">100,000</td>
+<td style="width: 89.3594px;">Daily</td>
+<td style="width: 155.188px;">Normal</td>
+</tr>
+</tbody>
+</table>
+
+#### Nobackup Directory
+
 Persistent project-related data, project-related software, etc.
-| Location      | Storage | Files | Backup | Access Speed
-| -- | -- | -- | -- | -- | 
-| `/nesi/nobackup/<projectcode>`  | 10TB | 1,000,000 | None | Fast
+<table style="width: 966px; height: 90px;">
+<tbody>
+<tr>
+<td style="width: 109.453px;"></td>
+<td style="width: 300.703px;">Location</td>
+<td style="width: 167.562px;">Default Storage</td>
+<td style="width: 142.734px;">Default Files</td>
+<td style="width: 89.3594px;">Backup</td>
+<td style="width: 155.188px;">Access Speed</td>
+</tr>
+<tr>
+<td style="width: 109.453px;">Nobackup</td>
+<td style="width: 300.703px;"><code>/nesi/nobackup/&lt;projectcode&gt;</code></td>
+<td style="width: 167.562px;">10TB</td>
+<td style="width: 142.734px;">1,000,000</td>
+<td style="width: 89.3594px;">None</td>
+<td style="width: 155.188px;"></td>
+</tr>
+</tbody>
+</table>
 
 > ## Slashes
 >
@@ -105,14 +166,34 @@ Persistent project-related data, project-related software, etc.
 > it's just a separator.
 {: .callout}
 
-## Moving about
- 
+## Listing the contents of directories
+
 As you may now see, using a bash shell is strongly dependent on the idea that
 your files are organized in a hierarchical file system.
 Organizing things hierarchically in this way helps us keep track of our work:
 it's possible to put hundreds of files in our home directory,
 just as it's possible to pile hundreds of printed papers on our desk,
 but it's a self-defeating strategy.
+
+The command to prints the names of the files and directories is `ls` followed by the desired directories path. 
+However, `ls` can be run without an argument, in which case it will list the contents of the directory you 
+are currently located in.
+
+We will now list the contents of the `project` directory we we will be working from. We can
+use the following command to do this:
+
+```
+{{ site.remote.prompt }} ls /nesi/project/nesi99991
+```
+{: .language-bash}
+
+```
+ resbaz2021
+```
+
+You should see a directory called `resbaz2021`, and possibly several other directories. For the purposes of this workshop you will be working within `/nesi/project/nesi99991/resbaz2021`
+
+## Moving about
 
 The command to change locations is `cd` followed by a
 directory name to change our working directory.
@@ -122,156 +203,125 @@ the command doesn't change the directory;
 it changes the shell's idea of what directory we are in.
 The `cd` command is akin to double clicking a folder in a graphical interface to get into a folder.
 
-We will now move into the`project` directory we saw above (you will need to know your project code). We can
+We will now move into the`project` directory we saw above. We can
 use the following of commands to get there:
 
-~~~
-{{ site.remote.prompt }} cd /nesi/project/<projectcode>
-~~~
+```
+{{ site.remote.prompt }} cd /nesi/project/nesi99991/resbaz2021
+```
 {: .language-bash}
 
-You will notice that `cd` doesn't print anything. This is normal. Many shell commands will not output anything to the screen when successfully executed. But if we run `pwd` after it, we can see that we are now
-in `/nesi/project/<projectcode>`.
+You will notice that `cd` doesn't print anything. This is normal. Many shell commands will not output anything to the screen when successfully executed.
+But if we run `pwd` after it, we can see that we are now
+in `/nesi/project/nesi99991/resbaz2021`.
 
-~~~
+```
 {{ site.remote.prompt }} pwd
-~~~
+```
 {: .language-bash}
 
-~~~
-/nesi/project/nesi99999
-~~~
+```
+/nesi/project/nesi99991/resbaz2021
+```
 {: .output}
 
-`ls` prints the names of the files and directories in the current directory.
-
-~~~
-{{ site.remote.prompt }} ls
-~~~
-{: .language-bash}
-
-~~~
- 
-~~~
-{: .output}
-
-There is a good chance there is nothing in your project directory yet, so lets look somewhere else.
-Similar to the `cd` command `ls` can take an argument
-
-#TODO: Suitable directory to list files in.
-
-These three commands are the basic commands for navigating the filesystem on your computer:
-`pwd`, `ls`, and `cd`. Let's explore some variations on those commands. What happens
-if you type `cd` on its own, without giving
-a directory?
-
-~~~
-$ cd
-~~~
-{: .language-bash}
-
-How can you check what happened? `pwd` gives us the answer!
-
-~~~
-$ pwd
-~~~
-{: .language-bash}
-
-~~~
-/home/usr123
-~~~
-{: .output}
-
-It turns out that `cd` without an argument will return you to your home directory,
-which is great if you've gotten lost in the filesystem.
-
-> ## Two More Shortcuts
->
-> The shell interprets a tilde (`~`) character at the start of a path to
-> mean "the current user's home directory". For example, if Nelle's home
-> directory is `/home/nelle`, then `~/data` is equivalent to
-> `/home/nelle/`. This only works if it is the first character in the
-> path: `here/there/~/elsewhere` is *not* `here/there/Users/nelle/elsewhere`.
->
-> Another shortcut is the `-` (dash) character. `cd` will translate `-` into
-> *the previous directory I was in*, which is faster than having to remember,
-> then type, the full path.  This is a *very* efficient way of moving
-> *back and forth between two directories* -- i.e. if you execute `cd -` twice,
-> you end up back in the starting directory.
->
-> The difference between `cd ..` and `cd -` is
-> that the former brings you *up*, while the latter brings you *back*.
->
-{: .callout}
-
-## Tab completion
-
-TODO: use tab completion to get back to projedct directpry
 ## Creating files
 
-Make a directory using the `mkdir` command followed by the path to the file you want to make.
+As previously mentioned, it is general useful to organise your work in a hierarchical file structure to make managing and finding files easier. It is also is especially important when working within a shared directory with colleagues, such as a project, to minimise the chance of accidentally effecting your colleagues work. So for this workshop you will each make a directory using the `mkdir` command within the workshops directory for you to personally work from.
 
-~~~
-{{ site.remote.prompt }} mkdir filename
-~~~
+```
+{{ site.remote.prompt }} mkdir <username>
+```
 {: .language-bash}
 
-Now lets create a file to go into our new folder.
+## General Syntax of a Shell Command
 
-`nano` is a minimal command line text editor, you will probably have other more convenient means of editing files on the cluster, but being able to use a command line text editor will probably come in handy.
+Now that you have all created your own directory to work from lets use the `ls` command to list contents of `/nesi/project/nesi99991/resbaz2021` again.
 
-Enter the command `nano` followed by a filename, this will create, then open the file. If you are sharing this directory with other people make sure you don't use the same filename as them. 
+We have previously used Shell commands with arguments, however, this time we will also use what are known as **options**, **flags** or **switches**, which is part of the general syntax of not just `ls` but all Shell commands
 
-~~~
-{{ site.remote.prompt }} nano myFile.txt
-~~~
+Consider the command below as a general example of a command,
+which we will dissect into its component parts:
+
+```
+$ ls -l /nesi/project/nesi99991/resbaz2021
+```
 {: .language-bash}
 
-TODO: More about vim.
+![General syntax of a shell command](../fig/shell_command_syntax.svg)
 
-~~~
-{{ site.remote.prompt }} ls
-~~~
-{: .language-bash}
+`ls` is the **command**, with an **option** `-l` and an
+**argument** `/nesi/project/nesi99991/resbaz2021`.
+Options, either start with a single dash (`-`) or two dashes (`--`), and they change the behavior of a command.
+Often options will have a short and long format e.g. `-a` and `--all`
+[Arguments] tell the command what to operate on (e.g. files and directories).
 
-~~~
-directoryname  filename.txt
-~~~
+When you run this command you should see something like this output (though likely with more lines):
+
+```
+total 1
+drwxrws---+ 2 usr123 nesi99991 4096 Nov 15 09:01 usr123
+drwxrws---+ 2 usr345 nesi99991 4096 Nov 15 09:01 usr345
+```
 {: .output}
 
-#TODO: talk about mv to move into directory.
+Here we can see that the `-l` option has used what is know as the "long listing format",
+and has listed all the files in alphanumeric order, which can make finding a specific file easier.
+It also includes information about thefile size, time of its last modification, and permission and ownership information.
 
-#TODO: mention `nano mydirectory/myfile.txt` as alternative.
+Sometimes options and arguments are referred to as **parameters**.
+A command can be called with more than one option and more than one argument, but a
+command doesn't always require an argument or an option.
 
-#TODO  segue
+Each part is separated by spaces: if you omit the space
+between `ls` and `-l` the shell will look for a command called `ls-l`, which
+doesn't exist. Also, capitalization can be important.
+For example, `ls -s` will display the size of files and directories alongside the names,
+while `ls -S` will sort the files and directories by size.
+
+Another userful option for `ls` is the `-a` option, lets try using this option together with the -l option:
+
+```
+$ ls -la
+```
+{: .language-bash}
+
+```
+total 1
+drwxrws---+  4 usr001 nesi99991   4096 Nov 15 09:00 .
+drwxrws---+ 12 root   nesi99991 262144 Nov 15 09:23 ..
+drwxrws---+  2 usr123 nesi99991   4096 Nov 15 09:01 usr123
+drwxrws---+  2 usr345 nesi99991   4096 Nov 15 09:01 usr345
+```
+{: .output}
+
+You might notice that we now have two extra lines for directories `.` and `..`. These are hidden directories which the `-a` option has been used to reveal, you can create a hidden directories or files by beggining their filenames with a `.`.
+
+These two specific hiddent directories are special as they will exist hidden inside every directory, with the `.` hidden directory reprenting your current directory and the `..` hidden directory reprenting the **parent** directory above your current directory.
 
 ## Relative paths
 
-So far, when specifying directory names, or even a directory path (as above),
-we have been using **relative paths**.  When you use a relative path with a command
+You may have noticed in the last command we did not specify an argument for the directory path.
+Until now, when specifying directory names, or even a directory path (as above),
+we have been using what are know **absolute paths**, which work no matter where you are currently located on the machine
+since it specifies the full path from the top level root directory.
+When you use a relative path with a command
 like `ls` or `cd`, it tries to find that location from where we are,
 rather than from the root of the file system.
+In the previous command, since we did not specify an **absolute path** it ran the command on the relative path from our current directory 
+(implcitly using the `.` hidden directory), and so listed the contents of our current directory.
 
-However, it is possible to specify the **absolute path** to a directory by
-including its entire path from the root directory, which is indicated by a
+To specify the **absolute path** to a directory it is necessary to 
+use its entire path from the root directory, which is indicated by a
 leading slash. The leading `/` tells the computer to follow the path from
 the root of the file system, so it always refers to exactly one directory,
 no matter where we are when we run the command.
-We now know how to go down the directory tree (i.e. how to go into a subdirectory),
-but how do we go up (i.e. how do we leave a directory and go into its parent directory)?
-We might try the following:
 
-With our methods so far,
-`cd` can only see sub-directories inside your current directory. There are
-different ways to see directories above your current location; we'll start
-with the simplest.
+The simplest method of moving up to the parent directory is to use the previously mentioned hidden `..` directory:
 
-There is a shortcut in the shell to move up one directory level
-that looks like this:
-
-~~~
+```
 $ cd ..
-~~~
+```
 {: .language-bash}
 
 `..` is a special directory name meaning
@@ -279,16 +329,16 @@ $ cd ..
 or more succinctly,
 the **parent** of the current directory.
 Sure enough,
-if we run `pwd` after running `cd ..`, we're back in `/nesi/project`:
+if we run `pwd` after running `cd ..`, we're back in `/nesi/project/nesi99991`:
 
-~~~
+```
 $ pwd
-~~~
+```
 {: .language-bash}
 
-~~~
-/nesi/project
-~~~
+```
+/nesi/project/nesi99991
+```
 {: .output}
 
 Depending on your default options,
@@ -319,36 +369,45 @@ directory.
 > {: .solution}
 {: .challenge}
 
-> ## Other Hidden Files
->
-> In addition to the hidden directories `..` and `.`, you may also see a file
-> called `.bash_profile`. This file usually contains shell configuration
-> settings. You may also see other files and directories beginning
-> with `.`. These are usually files and directories that are used to configure
-> different programs on your computer. The prefix `.` is used to prevent these
-> configuration files from cluttering the terminal when a standard `ls` command
-> is used.
-{: .callout}
 
+Let's try moving to your personal directory from before. Last time we used `cd`, we used
+the absolute path from the root, but it is often easier to use the relative path.
 
+## Tab completion
 
-Let's try returning to the `project` directory from before. Last time, we used
-three commands, but we can actually string together the list of directories
-to move to `project` in one step:
+Sometime file paths can also be very long, making typing out the path tedious.
+One neat trick you can use to save yourself time is to use something called **tab completion**.
+If you start typing the path in a command and their is only one possible match,
+if you hit tab the path will autocomplete (until there are more than one possible matches).
 
-~~~
-$ cd /nesi/project/<projectcode>
-~~~
+For example, if you type:
+
+```
+$ cd res
+```
 {: .language-bash}
 
-Check that we've moved to the right place by running `pwd` and `ls -F`.
+and then press <kbd>Tab</kbd> (the tab key on your keyboard),
+the shell automatically completes the directory name for you (since there is only one possible match):
 
-If we want to move up one level from the data directory, we could use `cd ..`.  But
-there is another way to move to any directory, regardless of your
-current location.
+```
+$ cd resbaz2021/
+```
+{: .language-bash}
 
+However, that command would only take you `/nesi/project/nesi99991/resbaz2021`.
+You want to move to your personal working diretory. If you hit <kbd>Tab</kbd> once you will
+likely see nothing change, as there are more than one possible options. Hitting <kbd>Tab</kbd>
+a second time will print all possible autocomplete options.
 
+So now let complete te relative path to your personal directory in this `cd` command:
 
+```
+$ cd resbaz2021/<username>
+```
+{: .language-bash}
+
+Check that we've moved to the right place by running `pwd`.
 
 > ## Absolute vs Relative Paths
 >
@@ -411,9 +470,9 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > and `-r` tells `ls` to display things in reverse order,
 > what command(s) will result in the following output:
 >
-> ~~~
+> ```
 > pnas_sub/ pnas_final/ original/
-> ~~~
+> ```
 > {: .output}
 >
 > ![A directory tree below the Users directory where "/Users" contains the
@@ -426,78 +485,40 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > 2.  `ls -r -F`
 > 3.  `ls -r -F /Users/backup` -->
 >
-<!-- > > ## Solution
+> > ## Solution
 > >  1. No: `pwd` is not the name of a directory.
 > >  2. Yes: `ls` without directory argument lists files and directories
 > >     in the current directory.
 > >  3. Yes: uses the absolute path explicitly.
 > {: .solution}
 {: .challenge}
- -->
 
-## General Syntax of a Shell Command
-We have now encountered commands, options, and arguments,
-but it is perhaps useful to formalise some terminology.
-
-Consider the command below as a general example of a command,
-which we will dissect into its component parts:
-
-~~~
-$ ls -F /
-~~~
-{: .language-bash}
-
-
-`ls` is the **command**, with an **option** `-F` and an
-**argument** `/`.
-We've already encountered options (also called **switches** or **flags**) which
-either start with a single dash (`-`) or two dashes (`--`), and they change the behavior of a command.
-[Arguments] tell the command what to operate on (e.g. files and directories).
-Sometimes options and arguments are referred to as **parameters**.
-A command can be called with more than one option and more than one argument, but a
-command doesn't always require an argument or an option.
-
-Each part is separated by spaces: if you omit the space
-between `ls` and `-F` the shell will look for a command called `ls-F`, which
-doesn't exist. Also, capitalization can be important.
-For example, `ls -s` will display the size of files and directories alongside the names,
-while `ls -S` will sort the files and directories by size.
-
+> ## Unsupported command-line options
+> If you try to use an option (flag) that is not supported, `ls` and other commands
+> will usually print an error message similar to:
+>
+> ```
+> $ ls -j
+> ```
+> {: .language-bash}
+>
+> ```
+> ls: invalid option -- 'j'
+> Try 'ls --help' for more information.
+> ```
+> {: .error}
+{: .callout}
 
 ### Getting help
 
-`ls` has lots of other **options**. There are two common ways to find out how
-to use a command and what options it accepts:
+`ls` has lots of other **options**. You can use `ls --help` as shown in the output or by using the `man` (manual) command.
 
-1. We can pass a `--help` option to the command, such as:
-    ~~~
-    $ ls --help
-    ~~~
-    {: .language-bash}
-
-2. We can read its manual with `man`, such as:
-    ~~~
-    $ man ls
-    ~~~
-    {: .language-bash}
-
-**Depending on your environment, you might find that only one of these commands works
-(either `man` or `--help`, e.g., `man` works for macOS and `--help` typically works for Git Bash).**
-
-We'll describe both ways below.
-
-#### The `--help` option
-
-Many bash commands, and programs that people have written that can be
-run from within bash, support a `--help` option to display more
-information on how to use the command or program.
-
-~~~
-$ ls --help
-~~~
+```
+$ man ls
+```
 {: .language-bash}
 
-~~~
+```
 Usage: ls [OPTION]... [FILE]...
 List information about the FILEs (the current directory by default).
 Sort entries alphabetically if neither -cftuvSUX nor --sort is specified.
@@ -523,35 +544,8 @@ Mandatory arguments to long options are mandatory for short options, too.
   -f                         do not sort, enable -aU, disable -ls --color
   -F, --classify             append indicator (one of */=>@|) to entries
 ...        ...        ...
-~~~
+```
 {: .output}
-
-> ## Unsupported command-line options
-> If you try to use an option (flag) that is not supported, `ls` and other commands
-> will usually print an error message similar to:
->
-> ~~~
-> $ ls -j
-> ~~~
-> {: .language-bash}
->
-> ~~~
-> ls: invalid option -- 'j'
-> Try 'ls --help' for more information.
-> ~~~
-> {: .error}
-{: .callout}
-
-#### The `man` command
-
-The other way to learn about `ls` is to type
-~~~
-$ man ls
-~~~
-{: .language-bash}
-
-This command will turn your terminal into a page with a description
-of the `ls` command and its options.
 
 To navigate through the `man` pages,
 you may use <kbd>↑</kbd> and <kbd>↓</kbd> to move line-by-line,
@@ -561,7 +555,6 @@ use <kbd>/</kbd> followed by the character or word you are searching for.
 Sometimes a search will result in multiple hits. If so, you can move between hits using <kbd>N</kbd> (for moving forward) and <kbd>Shift</kbd>+<kbd>N</kbd> (for moving backward).
 
 To **quit** the `man` pages, press <kbd>Q</kbd>.
-
 > ## Manual pages on the web
 >
 > Of course, there is a third way to access help for commands:
@@ -592,7 +585,7 @@ To **quit** the `man` pages, press <kbd>Q</kbd>.
 > > instead of `5369`.
 > {: .solution}
 {: .challenge}
-<!-- ~~~
+<!-- ```
 $ ls -s Desktop/shell-lesson-data/data
 total 116
  4 amino-acids.txt   4 animals.txt   4 morse.txt  12 planets.txt  76 sunspot.txt
@@ -600,96 +593,96 @@ total 116
 $ ls -S Desktop/shell-lesson-data/data
 sunspot.txt  animal-counts  pdb        amino-acids.txt  salmon.txt
 planets.txt  elements       morse.txt  animals.txt
-~~~
+```
 {: .output}
 
 Putting all that together, our command above gives us a listing
 of files and directories in the root directory `/`.
 An example of the output you might get from the above command is given below:
 
-~~~
+```
 $ ls -F /
-~~~
+```
 {: .language-bash}
 
-~~~
+```
 Applications/         System/
 Library/              Users/
 Network/              Volumes/
-~~~
+```
 {: .output}
 
+Now lets create a file to go into our new folder.
 
-### Nelle's Pipeline: Organizing Files
+`nano` is a minimal command line text editor, you will probably have other more convenient means of editing files on the cluster, but being able to use a command line text editor will probably come in handy.
 
-Knowing this much about files and directories,
-Nelle is ready to organize the files that the protein assay machine will create.
-First,
-she creates a directory called `north-pacific-gyre`
-(to remind herself where the data came from).
-Inside that,
-she creates a directory called `2012-07-03`,
-which is the date she started processing the samples.
-She used to use names like `conference-paper` and `revised-results`,
-but she found them hard to understand after a couple of years.
-(The final straw was when she found herself creating
-a directory called `revised-revised-results-3`.)
+Enter the command `nano` followed by a filename, this will create, then open the file. If you are sharing this directory with other people make sure you don't use the same filename as them. 
 
-> ## Sorting Output
+```
+{{ site.remote.prompt }} nano myFile.txt
+```
+{: .language-bash}
+
+TODO: More about vim.
+
+```
+{{ site.remote.prompt }} ls
+```
+{: .language-bash}
+
+```
+directoryname  filename.txt
+```
+{: .output}
+
+#TODO: Suitable directory to list files in.
+
+These three commands are the basic commands for navigating the filesystem on your computer:
+`pwd`, `ls`, and `cd`. Let's explore some variations on those commands. What happens
+if you type `cd` on its own, without giving
+a directory?
+
+```
+$ cd
+```
+{: .language-bash}
+
+How can you check what happened? `pwd` gives us the answer!
+
+```
+$ pwd
+```
+{: .language-bash}
+
+```
+/home/usr123
+```
+{: .output}
+
+It turns out that `cd` without an argument will return you to your home directory,
+which is great if you've gotten lost in the filesystem.
+
+> ## Two More Shortcuts
 >
-> Nelle names her directories 'year-month-day',
-> with leading zeroes for months and days,
-> because the shell displays file and directory names in alphabetical order.
-> If she used month names,
-> December would come before July;
-> if she didn't use leading zeroes,
-> November ('11') would come before July ('7'). Similarly, putting the year first
-> means that June 2012 will come before June 2013.
+> The shell interprets a tilde (`~`) character at the start of a path to
+> mean "the current user's home directory". For example, if Nelle's home
+> directory is `/home/nelle`, then `~/data` is equivalent to
+> `/home/nelle/`. This only works if it is the first character in the
+> path: `here/there/~/elsewhere` is *not* `here/there/Users/nelle/elsewhere`.
+>
+> Another shortcut is the `-` (dash) character. `cd` will translate `-` into
+> *the previous directory I was in*, which is faster than having to remember,
+> then type, the full path.  This is a *very* efficient way of moving
+> *back and forth between two directories* -- i.e. if you execute `cd -` twice,
+> you end up back in the starting directory.
+>
+> The difference between `cd ..` and `cd -` is
+> that the former brings you *up*, while the latter brings you *back*.
+>
 {: .callout}
 
-Each of her physical samples is labelled according to her lab's convention
-with a unique ten-character ID,
-such as 'NENE01729A'.
-This ID is what she used in her collection log
-to record the location, time, depth, and other characteristics of the sample,
-so she decides to use it as part of each data file's name.
-Since the assay machine's output is plain text,
-she will call her files `NENE01729A.txt`, `NENE01812A.txt`, and so on.
-All 1520 files will go into the same directory.
+#TODO: talk about mv to move into directory.
 
-Now in her current directory `shell-lesson-data`,
-Nelle can see what files she has using the command:
-
-~~~
-$ ls north-pacific-gyre/2012-07-03/
-~~~
-{: .language-bash}
-
-This command is a lot to type,
-but she can let the shell do most of the work through what is called **tab completion**.
-If she types:
-
-~~~
-$ ls nor
-~~~
-{: .language-bash}
-
-and then presses <kbd>Tab</kbd> (the tab key on her keyboard),
-the shell automatically completes the directory name for her:
-
-~~~
-$ ls north-pacific-gyre/
-~~~
-{: .language-bash}
-
-If she presses <kbd>Tab</kbd> again,
-Bash will add `2012-07-03/` to the command,
-since it's the only possible completion.
-Pressing <kbd>Tab</kbd> again does nothing,
-since there are 19 possibilities;
-pressing <kbd>Tab</kbd> twice brings up a list of all the files,
-and so on.
-This is called **tab completion**,
-and we will see it in many other tools as we go on.
+#TODO: mention `nano mydirectory/myfile.txt` as alternative.
 
 [Arguments]: https://swcarpentry.github.io/shell-novice/reference.html#argument -->
