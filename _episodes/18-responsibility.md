@@ -5,20 +5,12 @@ exercises: 5
 questions:
 - "How can I be a responsible user?"
 - "How can I protect my data?"
-- "How can I best get large amounts of data off an HPC system?"
 objectives:
 - "Learn how to be a considerate shared system citizen."
 - "Understand how to protect your critical data."
-- "Appreciate the challenges with transferring large amounts of data off HPC
-  systems."
-- "Understand how to convert many files to a single archive file using tar."
 keypoints:
 - "Be careful how you use the login node."
 - "Your data on the system is your responsibility."
-- "Plan and test large data transfers."
-- "It is often best to convert many files to a single archive file before
-  transferring."
-- "Again, don't run stuff on the login node."
 ---
 
 One of the major differences between using remote HPC resources and your own
@@ -94,23 +86,6 @@ safely use it for your non-routine processing task. If something goes wrong
 If you experience performance issues with a login node you should report it to
 the system staff (usually via the helpdesk) for them to investigate.
 
-## Test Before Scaling
-
-Remember that you are generally charged for usage on shared systems. A simple
-mistake in a job script can end up costing a large amount of resource budget.
-Imagine a job script with a mistake that makes it sit doing nothing for 24
-hours on 1000 cores or one where you have requested 2000 cores by mistake and
-only use 100 of them! This problem can be compounded when people write scripts
-that automate job submission (for example, when running the same calculation or
-analysis over lots of different parameters or files). When this happens it
-hurts both you (as you waste lots of charged resource) and other users (who are
-blocked from accessing the idle compute nodes).
-
-On very busy resources you may wait many days in a queue for your job to fail
-within 10 seconds of starting due to a trivial typo in the job script. This is
-extremely frustrating! Most systems provide dedicated resources for testing
-that have short wait times to help you avoid this issue.
-
 > ## Test Job Submission Scripts That Use Large Amounts of Resources
 >
 > Before submitting a large run of jobs, submit one as a test first to make
@@ -129,25 +104,13 @@ directory you have deleted by mistake). Protecting critical data from
 corruption or deletion is primarily your responsibility: keep your own backup
 copies.
 
+TODO: Insert info here about nesi data retention policy and backups.
+
 Version control systems (such as Git) often have free, cloud-based offerings
 (e.g., GitHub and GitLab) that are generally used for storing source code. Even
 if you are not writing your own programs, these can be very useful for storing
 job scripts, analysis scripts and small input files.
 
-For larger amounts of data, you should make sure you have a robust system in
-place for taking copies of critical data off the HPC system wherever possible
-to backed-up storage. Tools such as `rsync` can be very useful for this.
-
-Your access to the shared HPC system will generally be time-limited so you
-should ensure you have a plan for transferring your data off the system before
-your access finishes. The time required to transfer large amounts of data
-should not be underestimated and you should ensure you have planned for this
-early enough (ideally, before you even start using the system for your
-research).
-
-In all these cases, the helpdesk of the system you are using should be able to
-provide useful guidance on your options for data transfer for the volumes of
-data you will be using.
 
 > ## Your Data Is Your Responsibility
 >
@@ -156,125 +119,3 @@ data you will be using.
 > your data on the system. Plan your backups of critical data and how you will
 > transfer data off the system throughout the project.
 {: .callout}
-
-## Transferring Data
-
-As mentioned above, many users run into the challenge of transferring large
-amounts of data off HPC systems at some point (this is more often in
-transferring data off than onto systems but the advice below applies in either
-case). Data transfer speed may be limited by many different factors so the best
-data transfer mechanism to use depends on the type of data being transferred
-and where the data is going. 
-
-The components between your data's source and destination have 
-varying levels of performance, and in particular, may have 
-different capabilities with respect to **bandwidth** and **latency**.
-
-**Bandwidth** is generally the raw amount of data per unit time a
-device is capable of transmitting or receiving. It's a common
-and generally well-understood metric.
-
-**Latency** is a bit more subtle. For data transfers, it may be thought
-of as the amount of time it takes to get data out of storage and into
-a transmittable form. Latency issues are the reason it's advisable
-to execute data transfers by moving a small number of large 
-files, rather than the converse.
-
-Some of the key components and their associated issues are:
-
-- **Disk speed**: File systems on HPC systems are often highly parallel,
-  consisting of a very large number of high performance disk drives. This
-  allows them to support a very high data bandwidth. Unless the remote system
-  has a similar parallel file system you may find your transfer speed limited
-  by disk performance at that end.
-- **Meta-data performance**: *Meta-data operations* such as opening and closing
-  files or listing the owner or size of a file are much less parallel than
-  read/write operations. If your data consists of a very large number of small
-  files you may find your transfer speed is limited by meta-data operations.
-  Meta-data operations performed by other users of the system can also interact
-  strongly with those you perform so reducing the number of such operations you
-  use (by combining multiple files into a single file) may reduce variability
-  in your transfer rates and increase transfer speeds.
-- **Network speed**: Data transfer performance can be limited by network speed.
-  More importantly it is limited by the slowest section of the network between
-  source and destination. If you are transferring to your laptop/workstation,
-  this is likely to be its connection (either via LAN or WiFi).
-- **Firewall speed**: Most modern networks are protected by some form of
-  firewall that filters out malicious traffic. This filtering has some overhead
-  and can result in a reduction in data transfer performance. The needs of a
-  general purpose network that hosts email/web-servers and desktop machines are
-  quite different from a research network that needs to support high volume
-  data transfers. If you are trying to transfer data to or from a host on a
-  general purpose network you may find the firewall for that network will limit
-  the transfer rate you can achieve.
-
-As mentioned above, if you have related data that consists of a large number of
-small files it is strongly recommended to pack the files into a larger
-*archive* file for long term storage and transfer. A single large file makes
-more efficient use of the file system and is easier to move, copy and transfer
-because significantly fewer metadata operations are required. Archive files can
-be created using tools like `tar` and `zip`. We have already met `tar` when we
-talked about data transfer earlier.
-
-{% include figure.html url="" max-width="90%"
-   file="/fig/responsibility-bandwidth.svg"
-   alt="Schematic of network bandwidth"
-   caption="<i>Schematic diagram of bandwidth and latency for disk and network
-   I/O. Each of the components on the figure is connected by a blue line of
-   width proportional to the interface bandwidth. The small mazes at the
-   link points illustrate the latency of the link, with more tortuous
-   mazes indicating higher latency.</i>" %}
-
-> ## Consider the Best Way to Transfer Data
->
-> If you are transferring large amounts of data you will need to think about
-> what may affect your transfer performance. It is always useful to run some
-> tests that you can use to extrapolate how long it will take to transfer your
-> data.
->
-> Say you have a "data" folder containing 10,000 or so files, a healthy mix of
-> small and large ASCII and binary data. Which of the following would be the
-> best way to transfer them to {{ site.remote.name }}?
->
-> 1. ```
->    {{ site.local.prompt }} scp -r data {{ site.remote.user }}@{{ site.remote.login }}:~/
->    ```
->    {: .language-bash}
-> 2. ```
->    {{ site.local.prompt }} rsync -ra data {{ site.remote.user }}@{{ site.remote.login }}:~/
->    ```
->    {: .language-bash}
-> 3. ```
->    {{ site.local.prompt }} rsync -raz data {{ site.remote.user }}@{{ site.remote.login }}:~/
->    ```
->    {: .language-bash}
-> 4. ```
->    {{ site.local.prompt }} tar -cvf data.tar data
->    {{ site.local.prompt }} rsync -raz data.tar {{ site.remote.user }}@{{ site.remote.login }}:~/
->    ```
->    {: .language-bash}
-> 5. ```
->    {{ site.local.prompt }} tar -cvzf data.tar.gz data
->    {{ site.local.prompt }} rsync -ra data.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:~/
->    ```
->    {: .language-bash}
->
-> > ## Solution
-> >
-> > 1. `scp` will recursively copy the directory. This works, but without
-> >    compression.
-> > 2. `rsync -ra` works like `scp -r`, but preserves file information like
-> >    creation times. This is marginally better.
-> > 3. `rsync -raz` adds compression, which will save some bandwidth. If you
-> >    have a strong CPU at both ends of the line, and you're on a slow
-> >    network, this is a good choice.
-> > 4. This command first uses `tar` to merge everything into a single file,
-> >    then `rsync -z` to transfer it with compression. With this large
-> >    *number* of files, metadata overhead can hamper your transfer, so this
-> >    is a good idea.
-> > 5. This command uses `tar -z` to compress the archive, then `rsync` to
-> >    transfer it. This may perform similarly to #4, but in most cases (for
-> >    large datasets), it's the best combination of high throughput and low
-> >    latency (making the most of your time and network connection).
-> {: .solution}
-{: .challenge}
