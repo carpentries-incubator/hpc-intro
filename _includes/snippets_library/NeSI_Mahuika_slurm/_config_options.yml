@@ -37,7 +37,7 @@ sched:
     histdetail: "-l -j"
     name: "--job-name"
     time: "--time"
-    queue: "-p"
+    queue: "--partition"
   del: "scancel"
   interactive: "srun"
   info: "sinfo"

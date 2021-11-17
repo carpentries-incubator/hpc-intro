@@ -19,7 +19,6 @@ keypoints:
 - "A job is just a shell script."
 - "If in doubt, request more resources than you will need."
 ---
-
 ## Job Scheduler
 
 An HPC system might have thousands of nodes and thousands of users. How do we
@@ -37,94 +36,60 @@ why sometimes your job do not start instantly as in your laptop.
    file="/fig/restaurant_queue_manager.svg"
    alt="Compare a job scheduler to a waiter in a restaurant" %}
 
-> ## Job Scheduling Roleplay (Optional)
->
-> Your instructor will divide you into groups taking on different roles in the
-> cluster (users, compute nodes and the scheduler). Follow their instructions
-> as they lead you through this exercise. You will be emulating how a job
-> scheduling system works on the cluster.
->
-> > ## Instructions
-> >
-> > To do this exercise, you will need about 50-100 pieces of paper or sticky
-> > notes.
-> >
-> > 1. Divide the room into groups, with specific roles.
-> >    * Pick three or four people to be the "scheduler."
-> >    * Select one-third of the room be "users", given several slips of paper
-> >      (or post-it notes) and pens.
-> >    * Have the remaining two thirds of the room be "compute nodes."
-> >    * Have the "users" go to the front of the room (or the back, wherever
-> >      there's space for them to stand) and the "schedulers" stand between
-> >      the users and "compute nodes" (who should remain at their seats).
-> >
-> > 1. Divide the pieces of paper / sticky notes among the "users" and have
-> >    them fill out all the pages with simple math problems and their name.
-> >    Tell everyone that these are the jobs that need to be done and
-> >    correspond to their computing research problems.
-> >
-> > 1. Point out that we now have jobs and we have "compute nodes" (the people
-> >    still sitting down) that can solve these problems. How are the jobs
-> >    going to get to the nodes? The answer is the scheduling program that
-> >    will take the jobs from the users and deliver them to open compute
-> >    nodes.
-> >
-> > 1. Have all the "compute nodes" raise their hands. Have the users "submit"
-> >    their jobs by handing them to the schedulers. Schedulers should then
-> >    deliver them to "open" (hands-raised) compute nodes and collect finished
-> >    problems and return them to the appropriate user.
-> >
-> > 1. Wait until most of the problems are done and then re-seat everyone.
-> >
-> > > ## Discussion
-> > >
-> > > A "node" might be unable to solve the assigned problem for a variety of
-> > > reasons.
-> > >
-> > > * Ran out of time.
-> > > * Ran out of memory.
-> > > * Ran out of storage space, or could not load an input file or dataset.
-> > > * Doesn't know where to start: nobody "taught" it, i.e., the program
-> > >   can't be loaded.
-> > > * Gets stuck on a hard part: the program has the wrong algorithm, or was
-> > >   never told to load the library containing the right algorithm.
-> > > * Was busy thinking about something else, and didn't get to the problem
-> > >   yet.
-> > {: .discussion}
-> {: .challenge}
-{: .callout}
 
-The scheduler used in this lesson is {{ site.sched.name }}. Although
-{{ site.sched.name }} is not used everywhere, running jobs is quite similar
-regardless of what software is being used. The exact syntax might change, but
-the concepts remain the same.
 
-## Running a Batch Job
+## Interactive vs Batch
 
-The most basic use of the scheduler is to run a command non-interactively. Any
+Sofar, whenever we have entered a command into our terminals, we have received the response immediately in the same terminal, this is said to be an _interactive session_.
+
+[//]: # TODO ??Diagram??
+
+This is all well for doing small tasks, but what if we want to do several things one after another without without waiting in-between? Or what if we want to repeat the same series of command again later?
+
+This is where _batch processing_ becomes useful, this is where instead of entering commands directly to the terminal we write them down in a text file or _script_. Then, the script can be _executed_ by calling it with `bash`.
+
+[//]: # TODO ??Diagram??
+
+Lets try this now, create and open a new file in your current directory called `example-job.sh`.
+(If you prefer another text editor than nano, feel free to use that), and enter the following.
+
+
+<!-- The most basic use of the scheduler is to run a command non-interactively. Any
 command (or series of commands) that you want to run on the cluster is called a
 *job*, and the process of using a scheduler to run the job is called *batch job
-submission*.
-
-In this case, the job we want to run is just a shell script. Let's create a
-demo shell script to run as a test. The landing pad will have a number of
-terminal-based text editors installed. Use whichever you prefer. Unsure? `nano`
-is a pretty good, basic choice.
+submission*. -->
 
 ```
 {{ site.remote.prompt }} nano example-job.sh
-{{ site.remote.prompt }} chmod +x example-job.sh
-{{ site.remote.prompt }} cat example-job.sh
 ```
 {: .language-bash}
+
 
 ```
 {{ site.remote.bash_shebang }}
 
-echo -n "This script is running on "
-hostname
+echo "This script is running on $HOSTNAME"
+date
+```
+{: .language-bash}
+
+> ## shabang 
+>
+> _shabang_ or _shebang_, also referred to as _hashbang_ is the character sequence consisting of the number sign (aka: hash) and exclamation mark (aka: bang): `#!` at the beginning of a script.  It is used to describe the _interpreter_ that will be used to run the script.  In this case we will be using the Bash Shell, which can be found at the path `/bin/bash`
+>
+{: .callout}
+
+
+We can now run this script using
+```
+{{ site.remote.prompt }} bash example-job.sh
+
+This script is running on {{ site.remote.host }}
+{{ site.time }}
 ```
 {: .output}
+
+You will get the output printed to your terminal as if you had just run it.
 
 > ## Creating Our Test Job
 >
@@ -133,7 +98,7 @@ hostname
 > > ## Solution
 > >
 > > ```
-> > {{ site.remote.prompt }} ./example-job.sh
+> > {{ site.remote.prompt }} bash example-job.sh
 > > ```
 > > {: .language-bash}
 > > ```
@@ -150,12 +115,39 @@ there is a distinction between running the job through the scheduler and just
 "running it". To submit this job to the scheduler, we use the `{{
 site.sched.submit.name }}` command.
 
+## Scheduled Batch Job
+
+Up until now the scheduler has not been involved, our scripts were run directly on the login node (or Jupyter node).
+
+Lets first copy our shell script and create a slurm submit script, also called a _batch_ script.
+
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
+cp example-job.sh example-job.sl
+```
+> ## File Extensions
+>
+> A files extension in this case does not in any way affect how a script is read,
+> it is just another part of the name used to remind users what type of file it is.
+> Some common file extensions:  
+> `.sh`: **Sh**ell Script.  
+> `.sl`: **Sl**urm Script, a script that includes a *slurm header* and is intended to be submitted to the cluster.  
+> `.out`: Commonly used to indicate the file contains the std**out** of some process.  
+> `.err`: Same as `.out` but for std**err**.
+{: .callout}
+
+[//]: # TODO: Diagram, slurm anatomy?
+
+
+
+Now, rather than running our script with `bash` we _submit_ it to the scheduler using the command `sbatch` (**S**lurm **batch**).
+
+```
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sl
 ```
 {: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/basic-job-script.snip %}
+
 
 And that's all we need to do to submit a job. Our work is done &mdash; now the
 scheduler takes over and tries to run the job for us. While the job is waiting
@@ -170,81 +162,12 @@ status, we check the queue using the command
 
 {% include {{ site.snippets }}/scheduler/basic-job-status.snip %}
 
-The best way to check our job's status is with `{{ site.sched.status }}`. Of
-course, running `{{ site.sched.status }}` repeatedly to check on things can be
-a little tiresome. To see a real-time view of our jobs, we can use the `watch`
-command. `watch` reruns a given command at 2-second intervals. This is too
-frequent, and will likely upset your system administrator. You can change the
-interval to a more reasonable value, for example 15 seconds, with the `-n 15`
-parameter. Let's try using it to monitor another job.
-
-```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
-{{ site.remote.prompt }} watch -n 15 {{ site.sched.status }} {{ site.sched.flag.user }}
-```
-{: .language-bash}
-
-You should see an auto-updating display of your job's status. When it finishes,
-it will disappear from the queue. Press `Ctrl-c` when you want to stop the
-`watch` command.
-
 > ## Where's the Output?
 >
-> On the login node, this script printed output to the terminal &mdash; but
-> when we exit `watch`, there's nothing. Where'd it go?
->
-> Cluster job output is typically redirected to a file in the directory you
+> On the login node, when we ran the bash script, the output was printed to the terminal. 
+> However, batch job output is typically redirected to a file in the directory you
 > launched it from. Use `ls` to find and read the file.
 {: .discussion}
-
-## Customising a Job
-
-The job we just ran used all of the scheduler's default options. In a
-real-world scenario, that's probably not what we want. The default options
-represent a reasonable minimum. Chances are, we will need more cores, more
-memory, more time, among other special considerations. To get access to these
-resources we must customize our job script.
-
-Comments in UNIX shell scripts (denoted by `#`) are typically ignored, but
-there are exceptions. For instance the special `#!` comment at the beginning of
-scripts specifies what program should be used to run it (you'll typically see
-`{{ site.local.bash_shebang }}`). Schedulers like {{ site.sched.name }} also
-have a special comment used to denote special scheduler-specific options.
-Though these comments differ from scheduler to scheduler,
-{{ site.sched.name }}'s special comment is `{{ site.sched.comment }}`. Anything
-following the `{{ site.sched.comment }}` comment is interpreted as an
-instruction to the scheduler.
-
-Let's illustrate this by example. By default, a job's name is the name of the
-script, but the `{{ site.sched.flag.name }}` option can be used to change the
-name of a job. Add an option to the script:
-
-```
-{{ site.remote.prompt }} cat example-job.sh
-```
-{: .language-bash}
-
-```
-{{ site.remote.bash_shebang }}
-{{ site.sched.comment }} {{ site.sched.flag.name }} new_name
-
-echo -n "This script is running on "
-hostname
-echo "This script has finished successfully."
-```
-{: .output}
-
-Submit the job and monitor its status:
-
-```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
-{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
-```
-{: .language-bash}
-
-{% include {{ site.snippets }}/scheduler/job-with-name-status.snip %}
-
-Fantastic, we've successfully changed the name of our job!
 
 > ## Setting up Email Notifications
 >
@@ -270,12 +193,10 @@ Fantastic, we've successfully changed the name of our job!
 
 ### Resource Requests
 
-But what about more important changes, such as the number of cores and memory
-for our jobs? One thing that is absolutely critical when working on an HPC
-system is specifying the resources required to run a job. This allows the
-scheduler to find the right time and place to schedule our job. If you do not
-specify requirements (such as the amount of time you need), you will likely be
-stuck with your site's default resources, which is probably not what you want.
+In the `sbatch example-job.sl`example above, we submitted the job with no resource requests, so we would be given a minimal default, typically 1 CPU, 512M memory and 15 minutes of runtime.  But what if I need more than a single CPU or I require a lot more memory and time?  
+
+One thing that is absolutely critical when working on an HPC
+system is specifying the resources required to run a job. This allows your job to run faster and more efficiently.  This also allows the scheduler to find the right time and place to schedule our job.
 
 The following are several key resource requests:
 
@@ -322,6 +243,20 @@ later episode of this lesson.
 > > Why are the {{ site.sched.name }} runtime and `sleep` time not identical?
 > {: .solution}
 {: .challenge}
+> ## Comments
+>
+> Comments in UNIX shell scripts (denoted by `#`) are ignored by the bash interpreter.
+> Why is it that we start our slurm parameters with `#` if it is going to be ignored?
+> > ## Solution
+> > Commented lines are ignored by the bash interpreter, but they are _not_ ignored by slurm.
+> > The `{{ site.sched.comment }}` parameters are read by slurm when we _submit_ the job. When the job starts,
+> > the bash interpreter will ignore all lines starting with `#`.
+> >
+> > This is very similar to the _shebang_ mentioned earlier,
+> > when you run your script, the system looks at the `#!`, then uses the program at the subsequent
+> > path to interpret the script, in our case `/bin/bash` (the program 'bash' found in the 'bin' directory).
+> {: .solution}
+{: .challenge}
 
 {% include {{ site.snippets }}/scheduler/print-sched-variables.snip %}
 
@@ -330,7 +265,7 @@ killed. Let's use walltime as an example. We will request 30 seconds of
 walltime, and attempt to run a job for two minutes.
 
 ```
-{{ site.remote.prompt }} cat example-job.sh
+{{ site.remote.prompt }} nano example-job.sl
 ```
 {: .language-bash}
 
@@ -351,7 +286,7 @@ log file.
 
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
-{{ site.remote.prompt }} watch -n 15 {{ site.sched.status }} {{ site.sched.flag.user }}
+{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .language-bash}
 
@@ -378,7 +313,7 @@ its job number (remember to change the walltime so that it runs long enough for
 you to cancel it before it is killed!).
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sl
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .language-bash}
@@ -390,7 +325,7 @@ return of your command prompt indicates that the request to cancel the job was
 successful.
 
 ```
-{{ site.remote.prompt }} {{site.sched.del }} 38759
+{{ site.remote.prompt }} {{site.sched.del }} 231972
 # It might take a minute for the job to disappear from the queue...
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
