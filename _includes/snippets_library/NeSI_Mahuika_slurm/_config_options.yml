@@ -24,7 +24,7 @@ remote:
   bash_shebang: "#!/bin/bash -e"
 
 sched:
-  name: "SLURM"
+  name: "Slurm"
   submit:
     name: "sbatch"
     options: ""
@@ -68,7 +68,7 @@ carpentry: "incubator"
 title: "Introduction to High-Performance Computing"
 
 # Email address, no mailto:
-email: "team@carpentries.org"
+email: "support@carpentries.org"
 
 # Life cycle stage of the lesson ("pre-alpha", "alpha", "beta", "stable")?
 life_cycle: "alpha"
