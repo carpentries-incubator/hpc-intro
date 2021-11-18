@@ -1,0 +1,82 @@
+Let's take a closer look at the `Python` modules. There are many applications
+that are run using python and may fail to run if the wrong version is loaded. 
+In this case, there are many different versions: `Python/3.6.3-gimkl-2017a`, 
+`Python/3.7.3-gimkl-2018b` through to the newest versions. 
+
+How do we load each copy and which copy is the default?
+
+In this case, `Python/3.8.2-gimkl-2020a` has a `(D)` next to it. This indicates that it is the
+default &mdash; if we type `module load Python`, as we did above, this is the copy that will be
+loaded.
+
+```
+{{ site.remote.prompt }} module load Python
+{{ site.remote.prompt }} python3 --version
+```
+{: .language-bash}
+
+```
+Python 3.8.2
+```
+{: .output}
+
+So how do we load the non-default copy of a software package? In this case, the
+only change we need to make is be more specific about the module we are
+loading. There are many other Python versions.  To load a
+non-default module, the only change we need to make to our `module load`
+command is to add the version number after the `/`.
+
+```
+{{ site.remote.prompt }} module load Python/3.9.5-gimkl-2020a
+```
+{: .language-bash}
+
+```
+The following have been reloaded with a version change:
+  1) Python/3.8.2-gimkl-2020a => Python/3.9.5-gimkl-2020a
+```
+{: .output}
+
+Notice how the module command has swapped out versions of the Python module. 
+And now we test which version we are using:
+
+```
+{{ site.remote.prompt }} python3 --version
+```
+{: .language-bash}
+
+```
+Python 3.9.5
+```
+{: .output}
+
+We are now left with only those module required to do our work for this project.
+
+```
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+```
+  1) XALT/minimal                       20) HDF5/1.10.5-gimpi-2020a
+  2) slurm                              21) libjpeg-turbo/2.0.2-GCCcore-9.2.0
+  3) NeSI                          (S)  22) ncurses/6.1-GCCcore-9.2.0
+  4) craype-broadwell                   23) libreadline/8.0-GCCcore-9.2.0
+  5) craype-network-infiniband          24) libxml2/2.9.10-GCCcore-9.2.0
+  6) GCCcore/9.2.0                      25) libxslt/1.1.34-GCCcore-9.2.0
+  7) zlib/1.2.11-GCCcore-9.2.0          26) cURL/7.64.0-GCCcore-9.2.0
+  8) binutils/2.32-GCCcore-9.2.0        27) PCRE/8.43-GCCcore-9.2.0
+  9) GCC/9.2.0                          28) netCDF/4.7.3-gimpi-2020a
+ 10) libpmi                             29) SQLite/3.31.1-GCCcore-9.2.0
+ 11) impi/2019.6.166-GCC-9.2.0          30) METIS/5.1.0-GCCcore-9.2.0
+ 12) gimpi/2020a                        31) tbb/2019_U9-GCCcore-9.2.0
+ 13) imkl/2020.0.166-gimpi-2020a        32) SuiteSparse/5.6.0-gimkl-2020a-METIS-5.1.0
+ 14) gimkl/2020a                        33) Tcl/8.6.10-GCCcore-9.2.0
+ 15) bzip2/1.0.8-GCCcore-9.2.0          34) Tk/8.6.10-GCCcore-9.2.0
+ 16) XZ/5.2.4-GCCcore-9.2.0             35) LLVM/10.0.1-GCCcore-9.2.0
+ 17) libpng/1.6.37-GCCcore-9.2.0        36) OpenSSL/1.1.1k-GCCcore-9.2.0
+ 18) freetype/2.10.1-GCCcore-9.2.0      37) Python/3.9.5-gimkl-2020a
+ 19) Szip/2.1.1-GCCcore-9.2.0
+  ```
+
+  {: .output}

@@ -1,7 +1,7 @@
 ---
 title: "Accessing software via Modules"
-teaching: 30
-exercises: 15
+teaching: 20
+exercises: 0
 questions:
 - "How do we load and unload software packages?"
 objectives:
@@ -169,7 +169,7 @@ Let's examine the output of `module avail` more closely.
 
 {% include {{ site.snippets }}/modules/available-modules.snip %}
 
-{% include {{ site.snippets }}/modules/wrong-gcc-version.snip %}
+{% include {{ site.snippets }}/modules/wrong-python-version.snip %}
 
 > ## Using Software Modules in Scripts
 >
