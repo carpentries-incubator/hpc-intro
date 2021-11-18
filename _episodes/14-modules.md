@@ -171,35 +171,4 @@ Let's examine the output of `module avail` more closely.
 
 {% include {{ site.snippets }}/modules/wrong-python-version.snip %}
 
-> ## Using Software Modules in Scripts
->
-> Create a job that is able to run `python3 --version`. Remember, no software
-> is loaded by default! Running a job is just like logging on to the system
-> (you should not assume a module loaded on the login node is loaded on a
-> compute node).
->
-> > ## Solution
-> >
-> > ```
-> > {{ site.remote.prompt }} nano python-module.sh
-> > {{ site.remote.prompt }} cat python-module.sh
-> > ```
-> > {: .language-bash}
-> >
-> > ```
-> > {{ site.remote.bash_shebang }}
-> >
-> > module load Python
-> >
-> > python3 --version
-> > ```
-> > {: .output}
-> >
-> > ```
-> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}python-module.sh
-> > ```
-> > {: .language-bash}
-> {: .solution}
-{: .challenge}
-
 {% include links.md %}
