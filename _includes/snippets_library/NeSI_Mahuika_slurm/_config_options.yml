@@ -68,10 +68,10 @@ carpentry: "incubator"
 title: "Introduction to High-Performance Computing"
 
 # Email address, no mailto:
-email: "support@carpentries.org"
+email: "support@nesi.org.nz"
 
 # Life cycle stage of the lesson ("pre-alpha", "alpha", "beta", "stable")?
-life_cycle: "alpha"
+life_cycle: "stable"
 
 #------------------------------------------------------------
 # Generic settings (should not need to change).
