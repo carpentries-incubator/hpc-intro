@@ -1,4 +1,47 @@
-* `--cpus-per-task=<ncpus>` or `-c <ncpus>`: How many CPU cores does your job need,
+<table style="width: 966px; height: 90px;">
+<tr style="height: 40px;">
+<td style="width: 156.167px; height: 40px;">--job-name</td>
+<td style="width: 314.333px; height: 40px;"><code><span class="c">#SBATCH --job-name=MyJob</span></code></td>
+<td style="width: 461.5px; height: 40px;"><span class="c">The name that will appear when using squeue or sacct</span></td>
+</tr>
+<tr style="height: 40px;">
+<td style="width: 156.167px; height: 40px;">--account</td>
+<td style="width: 314.333px; height: 40px;"><code><span class="c">#SBATCH --account=nesi99999</span></code></td>
+<td style="width: 461.5px; height: 40px;"><span class="c">The account your core hours will be 'charged' to.</span></td>
+</tr>
+<tr style="height: 40px;">
+<td style="width: 156.167px; height: 40px;">--time</td>
+<td style="width: 314.333px; height: 40px;"><code><span class="c">#SBATCH --time=DD-HH:MM:SS</span></code></td>
+<td style="width: 461.5px; height: 40px;"><span class="c">Job max walltime<br></span></td>
+</tr>
+<tr style="height: 40px;">
+<td style="width: 156.167px; height: 40px;">--mem</td>
+<td style="width: 314.333px; height: 40px;"><code><span class="c">#SBATCH --mem=1500M</span></code></td>
+<td style="width: 461.5px; height: 40px;">Memory required per node.</td>
+</tr>
+<tr style="height: 40px;">
+<td style="width: 156.167px; height: 40px;">--output</td>
+<td style="width: 314.333px; height: 40px;"><code>#SBATCH --output=%j_output.out</code></td>
+<td style="width: 461.5px; height: 41px;">Path and name of standard output file.</td>
+</tr>
+<tr style="height: 23px;">
+<td style="width: 148px; height: 23px;">--ntasks</td>
+<td style="width: 303px; height: 23px;"><code>#SBATCH --ntasks=2</code></td>
+<td style="width: 446px; height: 23px;">Will start 2 <a href="/knowledge/articles/360000690275/">MPI</a> tasks.</td>
+</tr>
+<tr style="height: 23px;">
+<td style="width: 148px; height: 23px;">--cpus-per-task</td>
+<td style="width: 303px; height: 23px;"><code>#SBATCH --cpus-per-task=10</code></td>
+<td style="width: 446px; height: 23px;">
+<p>Will request 10 <em>logical</em> CPUs per task.</p>
+<p>See <a href="https://support.nesi.org.nz/hc/en-gb/articles/360000568236-Hyperthreading" target="_self" rel="undefined">Hyperthreading</a>.</p>
+</td>
+</tr>
+</table>
+
+
+
+<!-- * `--cpus-per-task=<ncpus>` or `-c <ncpus>`: How many CPU cores does your job need,
   in total?
 
 * `--ntasks=<ntasks>` or `-n <ntasks>`: How many tasks does your job need,
@@ -17,4 +60,4 @@
   one machine can offer, {{ site.sched.name }} will set this value
   automatically.
   
-* `--gpus-per-node=<ngpus>` Where ngpus could be a number e.g. `1`, or specific GPU `P100:1`.
+* `--gpus-per-node=<ngpus>` Where ngpus could be a number e.g. `1`, or specific GPU `P100:1`. -->
