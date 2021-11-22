@@ -193,6 +193,52 @@ use the following command to do this:
 
 You should see a directory called `resbaz2021`, and possibly several other directories. For the purposes of this workshop you will be working within `/nesi/project/nesi99991/resbaz2021`
 
+> ## `ls` Reading Comprehension
+>
+> Using the filesystem diagram below,
+> if `pwd` displays `/Users/backup`,
+> and `-r` tells `ls` to display things in reverse order,
+> what command(s) will result in the following output:
+>
+> ```
+> pnas_sub pnas_final original
+> ```
+> {: .output}
+>
+> ![A directory tree below the Users directory where "/Users" contains the
+directories "backup" and "thing"; "/Users/backup" contains "original",
+"pnas_final" and "pnas_sub"; "/Users/thing" contains "backup"; and
+"/Users/thing/backup" contains "2012-12-01", "2013-01-08" and
+"2013-01-27"](../fig/filesystem-challenge.svg)
+>
+> 1.  `ls pwd`
+> 2.  `ls -r`
+> 3.  `ls -r /Users/backup` -->
+>
+> > ## Solution
+> >  1. No: `pwd` is not the name of a directory.
+> >  2. Yes: `ls` without directory argument lists files and directories
+> >     in the current directory.
+> >  3. Yes: uses the absolute path explicitly.
+> {: .solution}
+{: .challenge}
+
+> ## Unsupported command-line options
+> If you try to use an option (flag) that is not supported, `ls` and other commands
+> will usually print an error message similar to:
+>
+> ```
+> $ ls -j
+> ```
+> {: .language-bash}
+>
+> ```
+> ls: invalid option -- 'j'
+> Try 'ls --help' for more information.
+> ```
+> {: .error}
+{: .callout}
+
 ## Moving about
 
 The command to change locations is `cd` followed by a
@@ -225,6 +271,25 @@ in `/nesi/project/nesi99991/resbaz2021`.
 ```
 {: .output}
 
+> ## Two More Shortcuts
+>
+> The shell interprets a tilde (`~`) character at the start of a path to
+> mean "the current user's home directory". For example, if Nelle's home
+> directory is `/home/nelle`, then `~/data` is equivalent to
+> `/home/nelle/`. This only works if it is the first character in the
+> path: `here/there/~/elsewhere` is *not* `here/there/Users/nelle/elsewhere`.
+>
+> Another shortcut is the `-` (dash) character. `cd` will translate `-` into
+> *the previous directory I was in*, which is faster than having to remember,
+> then type, the full path.  This is a *very* efficient way of moving
+> *back and forth between two directories* -- i.e. if you execute `cd -` twice,
+> you end up back in the starting directory.
+>
+> The difference between `cd ..` and `cd -` is
+> that the former brings you *up*, while the latter brings you *back*.
+>
+{: .callout}
+
 ## Creating files
 
 As previously mentioned, it is general useful to organise your work in a hierarchical file structure to make managing and finding files easier. It is also is especially important when working within a shared directory with colleagues, such as a project, to minimise the chance of accidentally effecting your colleagues work. So for this workshop you will each make a directory using the `mkdir` command within the workshops directory for you to personally work from.
@@ -247,8 +312,6 @@ which we will dissect into its component parts:
 $ ls -l /nesi/project/nesi99991/resbaz2021
 ```
 {: .language-bash}
-
-![General syntax of a shell command](../fig/shell_command_syntax.svg)
 
 `ls` is the **command**, with an **option** `-l` and an
 **argument** `/nesi/project/nesi99991/resbaz2021`.
@@ -299,6 +362,24 @@ You might notice that we now have two extra lines for directories `.` and `..`. 
 
 These two specific hiddent directories are special as they will exist hidden inside every directory, with the `.` hidden directory reprenting your current directory and the `..` hidden directory reprenting the **parent** directory above your current directory.
 
+> ## Exploring More `ls` Flags
+>
+> You can also use two options at the same time. What does the command `ls` do when used
+> with the `-l` option? What about if you use both the `-l` and the `-h` option?
+>
+> Some of its output is about properties that we do not cover in this lesson (such
+> as file permissions and ownership), but the rest should be useful
+> nevertheless.
+>
+> > ## Solution
+> > The `-l` option makes `ls` use a **l**ong listing format, showing not only
+> > the file/directory names but also additional information, such as the file size
+> > and the time of its last modification. If you use both the `-h` option and the `-l` option,
+> > this makes the file size '**h**uman readable', i.e. displaying something like `5.3K`
+> > instead of `5369`.
+> {: .solution}
+{: .challenge}
+
 ## Relative paths
 
 You may have noticed in the last command we did not specify an argument for the directory path.
@@ -344,6 +425,58 @@ $ pwd
 Depending on your default options,
 the shell might also use colors to indicate whether each entry is a file or
 directory.
+
+> ## Absolute vs Relative Paths
+>
+> Starting from `/Users/amanda/data`,
+> which of the following commands could Amanda use to navigate to her home directory,
+> which is `/Users/amanda`?
+>
+> 1. `cd .`
+> 2. `cd /`
+> 3. `cd /home/amanda`
+> 4. `cd ../..`
+> 5. `cd ~`
+> 6. `cd home`
+> 7. `cd ~/data/..`
+> 8. `cd`
+> 9. `cd ..`
+>
+> > ## Solution
+> > 1. No: `.` stands for the current directory.
+> > 2. No: `/` stands for the root directory.
+> > 3. No: Amanda's home directory is `/Users/amanda`.
+> > 4. No: this command goes up two levels, i.e. ends in `/Users`.
+> > 5. Yes: `~` stands for the user's home directory, in this case `/Users/amanda`.
+> > 6. No: this command would navigate into a directory `home` in the current directory if it exists.
+> > 7. Yes: unnecessarily complicated, but correct.
+> > 8. Yes: shortcut to go back to the user's home directory.
+> > 9. Yes: goes up one level.
+> {: .solution}
+{: .challenge}
+
+> ## Relative Path Resolution
+>
+> Using the filesystem diagram below, if `pwd` displays `/Users/thing`,
+> what will `ls ../backup` display?
+>
+> 1.  `../backup: No such file or directory`
+> 2.  `2012-12-01 2013-01-08 2013-01-27`
+> 3.  `original pnas_final pnas_sub`
+>
+> ![A directory tree below the Users directory where "/Users" contains the
+directories "backup" and "thing"; "/Users/backup" contains "original",
+"pnas_final" and "pnas_sub"; "/Users/thing" contains "backup"; and
+"/Users/thing/backup" contains "2012-12-01", "2013-01-08" and
+"2013-01-27"](../fig/filesystem-challenge.svg)
+>
+> > ## Solution
+> > 1. No: there *is* a directory `backup` in `/Users`.
+> > 2. No: this is the content of `Users/thing/backup`,
+> >    but with `..`, we asked for one level further up.
+> > 3. Yes: `../backup/` refers to `/Users/backup/`.
+> {: .solution}
+{: .challenge}
 
 > ## Clearing your terminal
 >
@@ -400,7 +533,7 @@ You want to move to your personal working diretory. If you hit <kbd>Tab</kbd> on
 likely see nothing change, as there are more than one possible options. Hitting <kbd>Tab</kbd>
 a second time will print all possible autocomplete options.
 
-So now let complete te relative path to your personal directory in this `cd` command:
+So now let complete the relative path to your personal directory in this `cd` command:
 
 ```
 $ cd resbaz2021/<username>
@@ -409,109 +542,151 @@ $ cd resbaz2021/<username>
 
 Check that we've moved to the right place by running `pwd`.
 
-> ## Absolute vs Relative Paths
->
-> Starting from `/Users/amanda/data`,
-> which of the following commands could Amanda use to navigate to her home directory,
-> which is `/Users/amanda`?
->
-> 1. `cd .`
-> 2. `cd /`
-> 3. `cd /home/amanda`
-> 4. `cd ../..`
-> 5. `cd ~`
-> 6. `cd home`
-> 7. `cd ~/data/..`
-> 8. `cd`
-> 9. `cd ..`
->
-> > ## Solution
-> > 1. No: `.` stands for the current directory.
-> > 2. No: `/` stands for the root directory.
-> > 3. No: Amanda's home directory is `/Users/amanda`.
-> > 4. No: this command goes up two levels, i.e. ends in `/Users`.
-> > 5. Yes: `~` stands for the user's home directory, in this case `/Users/amanda`.
-> > 6. No: this command would navigate into a directory `home` in the current directory if it exists.
-> > 7. Yes: unnecessarily complicated, but correct.
-> > 8. Yes: shortcut to go back to the user's home directory.
-> > 9. Yes: goes up one level.
-> {: .solution}
-{: .challenge}
+## Create a text file
 
-> ## Relative Path Resolution
->
-> Using the filesystem diagram below, if `pwd` displays `/Users/thing`,
-> what will `ls -F ../backup` display?
->
-> 1.  `../backup: No such file or directory`
-> 2.  `2012-12-01 2013-01-08 2013-01-27`
-> 3.  `2012-12-01/ 2013-01-08/ 2013-01-27/`
-> 4.  `original/ pnas_final/ pnas_sub/`
->
-> ![A directory tree below the Users directory where "/Users" contains the
-directories "backup" and "thing"; "/Users/backup" contains "original",
-"pnas_final" and "pnas_sub"; "/Users/thing" contains "backup"; and
-"/Users/thing/backup" contains "2012-12-01", "2013-01-08" and
-"2013-01-27"](../fig/filesystem-challenge.svg)
->
-> > ## Solution
-> > 1. No: there *is* a directory `backup` in `/Users`.
-> > 2. No: this is the content of `Users/thing/backup`,
-> >    but with `..`, we asked for one level further up.
-> > 3. No: see previous explanation.
-> > 4. Yes: `../backup/` refers to `/Users/backup/`.
-> {: .solution}
-{: .challenge}
+Now let's create a file. To do this we will use a text editor called Nano to create a file called `draft.txt`:
 
-> ## `ls` Reading Comprehension
->
-> Using the filesystem diagram below,
-> if `pwd` displays `/Users/backup`,
-> and `-r` tells `ls` to display things in reverse order,
-> what command(s) will result in the following output:
->
-> ```
-> pnas_sub/ pnas_final/ original/
-> ```
-> {: .output}
->
-> ![A directory tree below the Users directory where "/Users" contains the
-directories "backup" and "thing"; "/Users/backup" contains "original",
-"pnas_final" and "pnas_sub"; "/Users/thing" contains "backup"; and
-"/Users/thing/backup" contains "2012-12-01", "2013-01-08" and
-"2013-01-27"](../fig/filesystem-challenge.svg)
->
-> 1.  `ls pwd`
-> 2.  `ls -r -F`
-> 3.  `ls -r -F /Users/backup` -->
->
-> > ## Solution
-> >  1. No: `pwd` is not the name of a directory.
-> >  2. Yes: `ls` without directory argument lists files and directories
-> >     in the current directory.
-> >  3. Yes: uses the absolute path explicitly.
-> {: .solution}
-{: .challenge}
+~~~
+$ nano draft.txt
+~~~
+{: .language-bash}
 
-> ## Unsupported command-line options
-> If you try to use an option (flag) that is not supported, `ls` and other commands
-> will usually print an error message similar to:
+> ## Which Editor?
 >
-> ```
-> $ ls -j
-> ```
+> When we say, '`nano` is a text editor' we really do mean 'text': it can
+> only work with plain character data, not tables, images, or any other
+> human-friendly media. We use it in examples because it is one of the
+> least complex text editors. However, because of this trait, it may
+> not be powerful enough or flexible enough for the work you need to do
+> after this workshop. On Unix systems (such as Linux and macOS),
+> many programmers use [Emacs](http://www.gnu.org/software/emacs/) or
+> [Vim](http://www.vim.org/) (both of which require more time to learn),
+> or a graphical editor such as
+> [Gedit](http://projects.gnome.org/gedit/). On Windows, you may wish to
+> use [Notepad++](http://notepad-plus-plus.org/).  Windows also has a built-in
+> editor called `notepad` that can be run from the command line in the same
+> way as `nano` for the purposes of this lesson.
+>
+> No matter what editor you use, you will need to know where it searches
+> for and saves files. If you start it from the shell, it will (probably)
+> use your current working directory as its default location. If you use
+> your computer's start menu, it may want to save files in your desktop or
+> documents directory instead. You can change this by navigating to
+> another directory the first time you 'Save As...'
+{: .callout}
+
+Let's type in a few lines of text.
+Once we're happy with our text, we can press <kbd>Ctrl</kbd>+<kbd>O</kbd>
+(press the <kbd>Ctrl</kbd> or <kbd>Control</kbd> key and, while
+holding it down, press the <kbd>O</kbd> key) to write our data to disk
+(we'll be asked what file we want to save this to:
+press <kbd>Return</kbd> to accept the suggested default of `draft.txt`).
+
+<div style="width:80%; margin: auto;"><img alt="screenshot of nano text editor in action"
+src="../fig/nano-screenshot.png"></div>
+
+Once our file is saved, we can use <kbd>Ctrl</kbd>+<kbd>X</kbd> to quit the editor and
+return to the shell.
+
+> ## Control, Ctrl, or ^ Key
+>
+> The Control key is also called the 'Ctrl' key. There are various ways
+> in which using the Control key may be described. For example, you may
+> see an instruction to press the <kbd>Control</kbd> key and, while holding it down,
+> press the <kbd>X</kbd> key, described as any of:
+>
+> * `Control-X`
+> * `Control+X`
+> * `Ctrl-X`
+> * `Ctrl+X`
+> * `^X`
+> * `C-x`
+>
+> In nano, along the bottom of the screen you'll see `^G Get Help ^O WriteOut`.
+> This means that you can use `Control-G` to get help and `Control-O` to save your
+> file.
+{: .callout}
+
+`nano` doesn't leave any output on the screen after it exits,
+but `ls` now shows that we have created a file called `draft.txt`:
+
+~~~
+$ ls
+~~~
+{: .language-bash}
+
+~~~
+draft.txt
+~~~
+{: .output}
+
+> ## Creating Files a Different Way
+>
+> We have seen how to create text files using the `nano` editor.
+> Now, try the following command:
+>
+> ~~~
+> $ touch my_file.txt
+> ~~~
 > {: .language-bash}
 >
-> ```
-> ls: invalid option -- 'j'
-> Try 'ls --help' for more information.
-> ```
-> {: .error}
-{: .callout}
+> 1.  What did the `touch` command do?
+>     When you look at your current directory using the GUI file explorer,
+>     does the file show up?
+>
+> 2.  Use `ls -l` to inspect the files.  How large is `my_file.txt`?
+>
+> 3.  When might you want to create a file this way?
+>
+> > ## Solution
+> > 1.  The `touch` command generates a new file called `my_file.txt` in
+> >     your current directory.  You
+> >     can observe this newly generated file by typing `ls` at the
+> >     command line prompt.  `my_file.txt` can also be viewed in your
+> >     GUI file explorer.
+> >
+> > 2.  When you inspect the file with `ls -l`, note that the size of
+> >     `my_file.txt` is 0 bytes.  In other words, it contains no data.
+> >     If you open `my_file.txt` using your text editor it is blank.
+> >
+> > 3.  Some programs do not generate output files themselves, but
+> >     instead require that empty files have already been generated.
+> >     When the program is run, it searches for an existing file to
+> >     populate with its output.  The touch command allows you to
+> >     efficiently generate a blank text file to be used by such
+> >     programs.
+> {: .solution}
+{: .challenge}
+
+## Copying files and directories
+
+The file that we will be using in future sections is  `/nesi/project/nesi99991/resbaz2021/examplejob.sh`, but we can't all work on the same file at the same time, so you will all move a copy of this directory to the personal directory you created using th `cp` command.
+We can check that it did the right thing using `ls`
+with two paths as arguments --- like most Unix commands,
+`ls` can be given multiple paths at once:
+
+~~~
+$ cp /nesi/project/nesi99991/resbaz2021/examplejob.sh .
+$ ls
+~~~
+{: .language-bash}
+
+~~~
+draft.txt   examplejob.sh
+~~~
+{: .output}
+
+We can also copy a directory and all its contents by using the
+[recursive](https://en.wikipedia.org/wiki/Recursion) option `-r`,
+e.g. to back up a directory:
+
+Alternatively, if in the future you wish to move a file, rather than copy it, you can replace the `cp` command with `mv`.
+If you wish to permanently delete a file or directory you can use the `rm` command, but be careful, as once the file or directory is deleted it cannot be recovered.
+
 
 ### Getting help
 
-`ls` has lots of other **options**. You can use `ls --help` as shown in the output or by using the `man` (manual) command.
+Commands will often have many **options**. You can use the `man` (manual) command on most other commands to bring up the manual page of that command providing you with all the available options and their use. For example, for thr `ls` command:
 
 ```
 $ man ls
@@ -566,119 +741,6 @@ To **quit** the `man` pages, press <kbd>Q</kbd>.
 > [manuals](http://www.gnu.org/manual/manual.html) including the
 > [core GNU utilities](http://www.gnu.org/software/coreutils/manual/coreutils.html),
 > which covers many commands introduced within this lesson.
-{: .callout}
-
-> ## Exploring More `ls` Flags
->
-> You can also use two options at the same time. What does the command `ls` do when used
-> with the `-l` option? What about if you use both the `-l` and the `-h` option?
->
-> Some of its output is about properties that we do not cover in this lesson (such
-> as file permissions and ownership), but the rest should be useful
-> nevertheless.
->
-> > ## Solution
-> > The `-l` option makes `ls` use a **l**ong listing format, showing not only
-> > the file/directory names but also additional information, such as the file size
-> > and the time of its last modification. If you use both the `-h` option and the `-l` option,
-> > this makes the file size '**h**uman readable', i.e. displaying something like `5.3K`
-> > instead of `5369`.
-> {: .solution}
-{: .challenge}
-<!-- ```
-$ ls -s Desktop/shell-lesson-data/data
-total 116
- 4 amino-acids.txt   4 animals.txt   4 morse.txt  12 planets.txt  76 sunspot.txt
- 4 animal-counts     4 elements      4 pdb         4 salmon.txt
-$ ls -S Desktop/shell-lesson-data/data
-sunspot.txt  animal-counts  pdb        amino-acids.txt  salmon.txt
-planets.txt  elements       morse.txt  animals.txt
-```
-{: .output}
-
-Putting all that together, our command above gives us a listing
-of files and directories in the root directory `/`.
-An example of the output you might get from the above command is given below:
-
-```
-$ ls -F /
-```
-{: .language-bash}
-
-```
-Applications/         System/
-Library/              Users/
-Network/              Volumes/
-```
-{: .output}
-
-Now lets create a file to go into our new folder.
-
-`nano` is a minimal command line text editor, you will probably have other more convenient means of editing files on the cluster, but being able to use a command line text editor will probably come in handy.
-
-Enter the command `nano` followed by a filename, this will create, then open the file. If you are sharing this directory with other people make sure you don't use the same filename as them. 
-
-```
-{{ site.remote.prompt }} nano myFile.txt
-```
-{: .language-bash}
-
-TODO: More about vim.
-
-```
-{{ site.remote.prompt }} ls
-```
-{: .language-bash}
-
-```
-directoryname  filename.txt
-```
-{: .output}
-
-#TODO: Suitable directory to list files in.
-
-These three commands are the basic commands for navigating the filesystem on your computer:
-`pwd`, `ls`, and `cd`. Let's explore some variations on those commands. What happens
-if you type `cd` on its own, without giving
-a directory?
-
-```
-$ cd
-```
-{: .language-bash}
-
-How can you check what happened? `pwd` gives us the answer!
-
-```
-$ pwd
-```
-{: .language-bash}
-
-```
-/home/usr123
-```
-{: .output}
-
-It turns out that `cd` without an argument will return you to your home directory,
-which is great if you've gotten lost in the filesystem.
-
-> ## Two More Shortcuts
->
-> The shell interprets a tilde (`~`) character at the start of a path to
-> mean "the current user's home directory". For example, if Nelle's home
-> directory is `/home/nelle`, then `~/data` is equivalent to
-> `/home/nelle/`. This only works if it is the first character in the
-> path: `here/there/~/elsewhere` is *not* `here/there/Users/nelle/elsewhere`.
->
-> Another shortcut is the `-` (dash) character. `cd` will translate `-` into
-> *the previous directory I was in*, which is faster than having to remember,
-> then type, the full path.  This is a *very* efficient way of moving
-> *back and forth between two directories* -- i.e. if you execute `cd -` twice,
-> you end up back in the starting directory.
->
-> The difference between `cd ..` and `cd -` is
-> that the former brings you *up*, while the latter brings you *back*.
->
 {: .callout}
 
 #TODO: talk about mv to move into directory.
