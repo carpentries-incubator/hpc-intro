@@ -44,7 +44,7 @@ To start exploring them, we'll go to our open shell window.
 First, let's find out where we are by running a command called `pwd`
 (which stands for 'print working directory'). Directories are like *places* — at any time
 while we are using the shell, we are in exactly one place called
-our **current working directory**. 
+our **current working directory**.
 Commands mostly read and write files in the
 current working directory, i.e. 'here', so knowing where you are before running
 a command is important.
@@ -180,6 +180,7 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > 3.  `ls -r /Users/backup` -->
 >
 > > ## Solution
+> >
 > >  1. No: `pwd` is not the name of a directory.
 > >  2. Yes: `ls` without directory argument lists files and directories
 > >     in the current directory.
@@ -188,6 +189,7 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 {: .challenge}
 
 > ## Unsupported command-line options
+>
 > If you try to use an option (flag) that is not supported, `ls` and other commands
 > will usually print an error message similar to:
 >
@@ -205,12 +207,8 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 
 ## Moving about
 
-The command to change locations is `cd` followed by a
+The command to **c**hange **d**irectory is `cd` followed by a
 directory name to change our working directory.
-`cd` stands for 'change directory',
-which is a bit misleading:
-the command doesn't change the directory;
-it changes the shell's idea of what directory we are in.
 The `cd` command is akin to double clicking a folder in a graphical interface to get into a folder.
 
 We will now move into the`project` directory we saw above. We can
@@ -273,7 +271,7 @@ Consider the command below as a general example of a command,
 which we will dissect into its component parts:
 
 ```
-$ ls -l /nesi/project/nesi99991/resbaz2021
+{{ site.remote.prompt }} ls -l /nesi/project/nesi99991/resbaz2021
 ```
 {: .language-bash}
 
@@ -309,7 +307,7 @@ while `ls -S` will sort the files and directories by size.
 Another userful option for `ls` is the `-a` option, lets try using this option together with the -l option:
 
 ```
-$ ls -la
+{{ site.remote.prompt }} ls -la
 ```
 {: .language-bash}
 
@@ -365,7 +363,7 @@ no matter where we are when we run the command.
 The simplest method of moving up to the parent directory is to use the previously mentioned hidden `..` directory:
 
 ```
-$ cd ..
+{{ site.remote.prompt }} cd ..
 ```
 {: .language-bash}
 
@@ -377,7 +375,7 @@ Sure enough,
 if we run `pwd` after running `cd ..`, we're back in `/nesi/project/nesi99991`:
 
 ```
-$ pwd
+{{ site.remote.prompt }} pwd
 ```
 {: .language-bash}
 
@@ -480,7 +478,7 @@ if you hit tab the path will autocomplete (until there are more than one possibl
 For example, if you type:
 
 ```
-$ cd res
+{{ site.remote.prompt }} cd res
 ```
 {: .language-bash}
 
@@ -488,7 +486,7 @@ and then press <kbd>Tab</kbd> (the tab key on your keyboard),
 the shell automatically completes the directory name for you (since there is only one possible match):
 
 ```
-$ cd resbaz2021/
+{{ site.remote.prompt }} cd resbaz2021/
 ```
 {: .language-bash}
 
@@ -500,7 +498,7 @@ a second time will print all possible autocomplete options.
 So now let complete the relative path to your personal directory in this `cd` command:
 
 ```
-$ cd resbaz2021/<username>
+{{ site.remote.prompt }} cd resbaz2021/<username>
 ```
 {: .language-bash}
 
@@ -510,9 +508,9 @@ Check that we've moved to the right place by running `pwd`.
 
 Now let's create a file. To do this we will use a text editor called Nano to create a file called `draft.txt`:
 
-~~~
-$ nano draft.txt
-~~~
+```
+{{ site.remote.prompt }} nano draft.txt
+```
 {: .language-bash}
 
 > ## Which Editor?
@@ -574,14 +572,14 @@ return to the shell.
 `nano` doesn't leave any output on the screen after it exits,
 but `ls` now shows that we have created a file called `draft.txt`:
 
-~~~
-$ ls
-~~~
+```
+{{ site.remote.prompt }} ls
+```
 {: .language-bash}
 
-~~~
+```
 draft.txt
-~~~
+```
 {: .output}
 
 > ## Creating Files a Different Way
@@ -589,9 +587,9 @@ draft.txt
 > We have seen how to create text files using the `nano` editor.
 > Now, try the following command:
 >
-> ~~~
-> $ touch my_file.txt
-> ~~~
+> ```
+> {{ site.remote.prompt }} touch my_file.txt
+> ```
 > {: .language-bash}
 >
 > 1.  What did the `touch` command do?
@@ -629,15 +627,15 @@ We can check that it did the right thing using `ls`
 with two paths as arguments --- like most Unix commands,
 `ls` can be given multiple paths at once:
 
-~~~
-$ cp /nesi/project/nesi99991/resbaz2021/examplejob.sh .
-$ ls
-~~~
+```
+{{ site.remote.prompt }} cp /nesi/project/nesi99991/resbaz2021/examplejob.sh .
+{{ site.remote.prompt }} ls
+```
 {: .language-bash}
 
-~~~
+```
 draft.txt   examplejob.sh
-~~~
+```
 {: .output}
 
 We can also copy a directory and all its contents by using the
@@ -653,7 +651,7 @@ If you wish to permanently delete a file or directory you can use the `rm` comma
 Commands will often have many **options**. You can use the `man` (manual) command on most other commands to bring up the manual page of that command providing you with all the available options and their use. For example, for thr `ls` command:
 
 ```
-$ man ls
+{{ site.remote.prompt }} man ls
 ```
 {: .language-bash}
 
