@@ -464,7 +464,6 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > {: .solution}
 {: .challenge}
 
-
 Let's try moving to your personal directory from before. Last time we used `cd`, we used
 the absolute path from the root, but it is often easier to use the relative path.
 
@@ -622,19 +621,21 @@ draft.txt
 
 ## Copying files and directories
 
-The file that we will be using in future sections is  `/nesi/project/nesi99991/resbaz2021/examplejob.sh`, but we can't all work on the same file at the same time, so you will all move a copy of this directory to the personal directory you created using th `cp` command.
-We can check that it did the right thing using `ls`
-with two paths as arguments --- like most Unix commands,
-`ls` can be given multiple paths at once:
+In a future lesson, we will be running the R script ```/nesi/project/nesi99991/resbaz2021/array_sum.r```, but as we can't all work on the same file at once you will need to take your own copy. This can be done with the **c**o**p**y command `cp`, two arguments are needed the file (or directory) you want to copy, and the directory (or file) where you want the copy to be created. We will be copying the file into the directory we made previously, as this should be your current directory the second argument can be a simple `.`.
 
 ```
-{{ site.remote.prompt }} cp /nesi/project/nesi99991/resbaz2021/examplejob.sh .
+{{ site.remote.prompt }} cp /nesi/project/nesi99991/resbaz2021/array_sum.sh .
+```
+
+We can check that it did the right thing using `ls`
+
+```
 {{ site.remote.prompt }} ls
 ```
 {: .language-bash}
 
 ```
-draft.txt   examplejob.sh
+draft.txt   array_sum.r
 ```
 {: .output}
 
@@ -645,8 +646,7 @@ e.g. to back up a directory:
 Alternatively, if in the future you wish to move a file, rather than copy it, you can replace the `cp` command with `mv`.
 If you wish to permanently delete a file or directory you can use the `rm` command, but be careful, as once the file or directory is deleted it cannot be recovered.
 
-
-### Getting help
+## Getting help
 
 Commands will often have many **options**. You can use the `man` (manual) command on most other commands to bring up the manual page of that command providing you with all the available options and their use. For example, for thr `ls` command:
 
