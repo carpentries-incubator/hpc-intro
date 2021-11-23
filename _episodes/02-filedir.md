@@ -152,7 +152,7 @@ use the following command to do this:
 {: .language-bash}
 
 ```
- resbaz2021
+ ernz2021  ML20210329  ML20210928  resbaz2021  snakemake20210914
 ```
 
 You should see a directory called `resbaz2021`, and possibly several other directories. For the purposes of this workshop you will be working within `/nesi/project/nesi99991/resbaz2021`
@@ -285,8 +285,9 @@ When you run this command you should see something like this output (though like
 
 ```
 total 1
-drwxrws---+ 2 usr123 nesi99991 4096 Nov 15 09:01 usr123
-drwxrws---+ 2 usr345 nesi99991 4096 Nov 15 09:01 usr345
+-rw-r-----+ 1 cwal219 nesi99991  460 Nov 18 17:03 array_sum.r
+drwxrws---+ 2 usr123  nesi99991 4096 Nov 15 09:01 usr123
+drwxrws---+ 2 usr345  nesi99991 4096 Nov 15 09:01 usr345
 ```
 {: .output}
 
@@ -313,10 +314,11 @@ Another userful option for `ls` is the `-a` option, lets try using this option t
 
 ```
 total 1
-drwxrws---+  4 usr001 nesi99991   4096 Nov 15 09:00 .
-drwxrws---+ 12 root   nesi99991 262144 Nov 15 09:23 ..
-drwxrws---+  2 usr123 nesi99991   4096 Nov 15 09:01 usr123
-drwxrws---+  2 usr345 nesi99991   4096 Nov 15 09:01 usr345
+drwxrws---+  4 usr001  nesi99991   4096 Nov 15 09:00 .
+drwxrws---+ 12 root    nesi99991 262144 Nov 15 09:23 ..
+-rw-r-----+  1 cwal219 nesi99991    460 Nov 18 17:03 array_sum.r
+drwxrws---+  2 usr123  nesi99991   4096 Nov 15 09:01 usr123
+drwxrws---+  2 usr345  nesi99991   4096 Nov 15 09:01 usr345
 ```
 {: .output}
 
@@ -351,10 +353,10 @@ since it specifies the full path from the top level root directory.
 When you use a relative path with a command
 like `ls` or `cd`, it tries to find that location from where we are,
 rather than from the root of the file system.
-In the previous command, since we did not specify an **absolute path** it ran the command on the relative path from our current directory 
+In the previous command, since we did not specify an **absolute path** it ran the command on the relative path from our current directory
 (implcitly using the `.` hidden directory), and so listed the contents of our current directory.
 
-To specify the **absolute path** to a directory it is necessary to 
+To specify the **absolute path** to a directory it is necessary to
 use its entire path from the root directory, which is indicated by a
 leading slash. The leading `/` tells the computer to follow the path from
 the root of the file system, so it always refers to exactly one directory,
@@ -422,9 +424,9 @@ directory.
 > Using the filesystem diagram below, if `pwd` displays `/Users/thing`,
 > what will `ls ../backup` display?
 >
-> 1.  `../backup: No such file or directory`
-> 2.  `2012-12-01 2013-01-08 2013-01-27`
-> 3.  `original pnas_final pnas_sub`
+> 1. `../backup: No such file or directory`
+> 2. `2012-12-01 2013-01-08 2013-01-27`
+> 3. `original pnas_final pnas_sub`
 >
 > ![A directory tree below the Users directory where "/Users" contains the
 directories "backup" and "thing"; "/Users/backup" contains "original",
@@ -433,10 +435,12 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 "2013-01-27"](../fig/filesystem-challenge.svg)
 >
 > > ## Solution
+> >
 > > 1. No: there *is* a directory `backup` in `/Users`.
 > > 2. No: this is the content of `Users/thing/backup`,
 > >    but with `..`, we asked for one level further up.
 > > 3. Yes: `../backup/` refers to `/Users/backup/`.
+> >
 > {: .solution}
 {: .challenge}
 
@@ -458,6 +462,7 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > last changed dates.
 >
 > > ## Solution
+> >
 > > The most recently changed file is listed last when using `-rt`. This
 > > can be very useful for finding your most recent edits or checking to
 > > see if a new output file was written.
@@ -600,17 +605,18 @@ draft.txt
 > 3.  When might you want to create a file this way?
 >
 > > ## Solution
+> >
 > > 1.  The `touch` command generates a new file called `my_file.txt` in
 > >     your current directory.  You
 > >     can observe this newly generated file by typing `ls` at the
 > >     command line prompt.  `my_file.txt` can also be viewed in your
 > >     GUI file explorer.
 > >
-> > 2.  When you inspect the file with `ls -l`, note that the size of
+> > 2. When you inspect the file with `ls -l`, note that the size of
 > >     `my_file.txt` is 0 bytes.  In other words, it contains no data.
 > >     If you open `my_file.txt` using your text editor it is blank.
 > >
-> > 3.  Some programs do not generate output files themselves, but
+> > 3. Some programs do not generate output files themselves, but
 > >     instead require that empty files have already been generated.
 > >     When the program is run, it searches for an existing file to
 > >     populate with its output.  The touch command allows you to
