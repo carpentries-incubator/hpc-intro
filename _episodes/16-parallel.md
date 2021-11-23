@@ -64,9 +64,9 @@ All of this is done using *vectors* of double-precision (64-bit)
 floating-point values.
 
 ```
-def inside_circle(total_count):
-    x = np.random.uniform(size=total_count)
-    y = np.random.uniform(size=total_count)
+def inside_circle(samples):
+    x = np.random.uniform(size=samples)
+    y = np.random.uniform(size=samples)
     radii = np.sqrt(x*x + y*y)
     count = len(radii[np.where(radii<=1.0)])
     return count
@@ -138,80 +138,6 @@ requires, and later take the same measurements after creating a parallel
 version of the script to see the benefits of parallelizing the calculations
 required.
 
-### Estimating Memory Requirements
-
-Since the largest variables in the script are `x`, `y`, and `radii`, each
-containing `n_samples` points, we'll modify the script to report their
-total memory required.
-Each point in `x`, `y`, or `radii` is stored as a NumPy `float64`, we can
-use NumPy's [`dtype`](
-https://numpy.org/doc/stable/reference/generated/numpy.dtype.html)
-function to calculate the size of a `float64`.
-
-Replace the `print(my_pi)` line with the following:
-
-```
-size_of_float = np.dtype(np.float64).itemsize
-memory_required = 3 * n_samples * size_of_float / (1024**3)
-print("Pi: {}, memory: {} GiB".format(my_pi, memory_required))
-```
-{: .language-python}
-
-The first line calculates the bytes of memory required for a single `float64`
-value using the `dtype`function.
-The second line estimates the total amount of memory required to store three
-variables containing `n_samples` `float64` values, converting the value into
-units of [gibibytes](https://en.wikipedia.org/wiki/Byte#Multiple-byte_units).
-The third line prints both the estimate of &#960; and the estimated amount of
-memory used by the script.
-
-The updated Python script is:
-
-```
-import numpy as np
-import sys
-
-def inside_circle(total_count):
-    x = np.random.uniform(size=total_count)
-    y = np.random.uniform(size=total_count)
-    radii = np.sqrt(x*x + y*y)
-    count = len(radii[np.where(radii<=1.0)])
-    return count
-
-def main():
-    n_samples = int(sys.argv[1])
-    counts = inside_circle(n_samples)
-    my_pi = 4.0 * counts / n_samples
-    size_of_float = np.dtype(np.float64).itemsize
-    memory_required = 3 * n_samples * size_of_float / (1024**3)
-    print("Pi: {}, memory: {} GiB".format(my_pi, memory_required))
-
-if __name__ == '__main__':
-    main()
-```
-{: .language-python}
-
-Run the script again with a few different values for the number of samples,
-and see how the memory required changes:
-
-```
-{{ site.local.prompt }} python pi-serial.py 1000
-Pi: 3.144, memory: 2.2351741790771484e-05 GiB
-{{ site.local.prompt }} python pi-serial.py 2000
-Pi: 3.18, memory: 4.470348358154297e-05 GiB
-{{ site.local.prompt }} python pi-serial.py 1000000
-Pi: 3.140944, memory: 0.022351741790771484 GiB
-{{ site.local.prompt }} python pi-serial.py 100000000
-Pi: 3.14182724, memory: 2.2351741790771484 GiB
-```
-{: .language-bash }
-
-Here we can see that the estimated amount of memory required scales linearly
-with the number of samples used.
-In practice, there is some memory required for other parts of the script,
-but the `x`, `y`, and `radii` variables are by far the largest influence
-on the total amount of memory required.
-
 ### Estimating Calculation Time
 
 Most of the calculations required to estimate &#960; are in the
@@ -255,8 +181,7 @@ elapsed_time = (end_time - start_time).total_seconds()
 And finally, modify the `print` statement with the following:
 
 ```
-print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required,
-                                                  elapsed_time))
+print("Pi: {}, time: {} s".format(my_pi, elapsed_time))
 ```
 {: .language-python}
 
@@ -281,10 +206,7 @@ def main():
     my_pi = 4.0 * counts / n_samples
     end_time = datetime.datetime.now()
     elapsed_time = (end_time - start_time).total_seconds()
-    size_of_float = np.dtype(np.float64).itemsize
-    memory_required = 3 * n_samples * size_of_float / (1024**3)
-    print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required,
-                                                      elapsed_time))
+    print("Pi: {}, time: {} s".format(my_pi, elapsed_time))
 
 if __name__ == '__main__':
     main()
@@ -296,11 +218,11 @@ and see how the solution time changes:
 
 ```
 {{ site.local.prompt }} python pi-serial.py 1000000
-Pi: 3.139612, memory: 0.022351741790771484 GiB, time: 0.034872 s
+Pi: 3.139612, time: 0.034872 s
 {{ site.local.prompt }} python pi-serial.py 10000000
-Pi: 3.1425492, memory: 0.22351741790771484 GiB, time: 0.351212 s
+Pi: 3.1425492, time: 0.351212 s
 {{ site.local.prompt }} python pi-serial.py 100000000
-Pi: 3.14146608, memory: 2.2351741790771484 GiB, time: 3.735195 s
+Pi: 3.14146608, time: 3.735195 s
 ```
 {: .language-bash }
 
@@ -316,7 +238,6 @@ Now that we've developed our initial script to estimate &#960;, we can see
 that as we increase the number of samples:
 
 1. The estimate of &#960; tends to become more accurate.
-1. The amount of memory required scales approximately linearly.
 1. The amount of time to calculate scales approximately linearly.
 
 In general, achieving a better estimate of &#960; requires a greater number of
@@ -325,14 +246,6 @@ Take a closer look at `inside_circle`: should we expect to get high accuracy
 on a single machine?
 
 Probably not.
-The function allocates three arrays of size *N* equal to the number of points
-belonging to this process.
-Using 64-bit floating point numbers, the memory footprint of these arrays can
-get quite large.
-Each 100,000,000 points sampled consumes 2.24 GiB of memory.
-Sampling 400,000,000 points consumes 8.94 GiB of memory,
-and if your machine has less RAM than that, it will grind to a halt.
-If you have 16 GiB installed, you won't quite make it to 750,000,000 points.
 
 ## Running the Serial Job on a Compute Node
 
@@ -359,7 +272,6 @@ As before, use the status commands to check when your job runs.
 Use `ls` to locate the output file, and examine it. Is it what you expected?
 
 * How good is the value for &#960;?
-* How much memory did it need?
 * How long did the job take to run?
 
 Modify the job script to increase both the number of samples and the amount
@@ -367,7 +279,6 @@ of memory requested (perhaps by a factor of 2, then by a factor of 10),
 and resubmit the job each time.
 
 * How good is the value for &#960;?
-* How much memory did it need?
 * How long did the job take to run?
 
 Even with sufficient memory for necessary variables,
@@ -437,12 +348,10 @@ included.
 > * COMM_WORLD: the default MPI Communicator, providing a channel for all the
 >   processes involved in this `mpiexec` to exchange information with one
 >   another.
-> * Scatter: A collective operation in which an array of data on one MPI rank
->   is divided up, with separate portions being sent out to the partner ranks.
->   Each partner rank receives data from the matching index of the host array.
-> * Gather: The inverse of scatter. One rank populates a local array,
->   with the array element at each index assigned the value provided by the
->   corresponding partner rank &mdash; including the host's own value.
+> * Reduce: A collective operation in which scalar values are collected on
+>   one MPI rank according to an operations such as summation, comparing
+>   values and finding the maximum, or comparing values and finding the 
+>   minimum. 
 > * Conditional Output: since every rank is running the *same code*, the
 >   partitioning, the final calculations, and the `print` statement are
 >   wrapped in a conditional so that only one rank performs these operations.
@@ -460,39 +369,40 @@ rank = comm.Get_rank()
 immediately before the `n_samples` line to set up the MPI environment for
 each process.
 
-We replace the `start_time` and `counts` lines with the lines:
 
-```
-if rank == 0:
-  start_time = datetime.datetime.now()
-  partitions = [ int(n_samples / cpus) ] * cpus
-  counts = [ int(0) ] * cpus
-else:
-  partitions = None
-  counts = None
-```
-{: .language-python}
-
-This ensures that only the rank 0 process measures times and coordinates
-the work to be distributed to all the ranks, while the other ranks
-get placeholder values for the `partitions` and `counts` variables.
-
-Immediately below these lines, let's
-
-* distribute the work among the ranks with MPI `scatter`,
-* call the `inside_circle` function so each rank can perform its share
-  of the work,
+Immediately below these lines, let's distribute the work among the ranks
+as evenly as possible with a calculation, that uses integer division, 
+` n_samples//size` and then distributes the remaining work piece by piece 
+by checking whether the remainder is greater than the rank using 
+`N % size > rank`
 * collect each rank's results into a `counts` variable on rank 0 using MPI
-  `gather`.
+  `reduce`.
 
 by adding the following three lines:
 
 ```
-partition_item = comm.scatter(partitions, root=0)
-count_item = inside_circle(partition_item)
-counts = comm.gather(count_item, root=0)
+my_samples = n_samples//size
+if ( N % size > rank ):
+  my_samples = my_samples + 1
 ```
 {: .language-python}
+
+Then modify the `counts` line and call the `inside_circle` function so 
+each rank can perform its share of the work,
+
+```
+ my_counts = inside_circle(my_samples)
+```
+{: .language-python}
+
+Finally, aggregate the total counts and find the maximum execution time 
+amongst all of the parallel computations
+```
+  counts = comm.reduce(my_counts,op=MPI.SUM,root=0)
+  max_elapsed_time = comm.reduce(elapsed_time,op=MPI.MAX,root=0)
+```
+{: .language-python}
+
 
 Illustrations of these steps are shown below.
 
@@ -502,32 +412,31 @@ Setup the MPI environment and initialize local variables &mdash; including the
 vector containing the number of points to generate on each parallel processor:
 
 {% include figure.html url="" caption="" max-width="50%"
-   file="/fig/initialize.png"
+   file="/fig/initialize.svg"
    alt="MPI initialize" %}
 
-Distribute the number of points from the originating vector to all the parallel
-processors:
+Calculate work each process should compute in parallel:
 
 {% include figure.html url="" caption="" max-width="50%"
-   file="/fig/scatter.png"
-   alt="MPI scatter" %}
+   file="/fig/calculatework.svg"
+   alt="Calculate work of each process" %}
 
 Perform the computation in parallel:
 
 {% include figure.html url="" caption="" max-width="50%"
-   file="/fig/compute.png"
+   file="/fig/compute.svg"
    alt="MPI compute" %}
 
 Retrieve counts from all the parallel processes:
 
 {% include figure.html url="" caption="" max-width="50%"
-   file="/fig/gather.png"
-   alt="MPI gather" %}
+   file="/fig/reduce.svg"
+   alt="MPI reduce" %}
 
 Print out the report:
 
 {% include figure.html url="" caption="" max-width="50%"
-   file="/fig/finalize.png"
+   file="/fig/finalize.svg"
    alt="MPI finalize" %}
 
 ---
@@ -538,13 +447,8 @@ and the report will become hopelessly garbled:
 
 ```
 if rank == 0:
-   my_pi = 4.0 * sum(counts) / sum(partitions)
-   end_time = datetime.datetime.now()
-   elapsed_time = (end_time - start_time).total_seconds()
-   size_of_float = np.dtype(np.float64).itemsize
-   memory_required = 3 * sum(partitions) * size_of_float / (1024**3)
-   print("Pi: {}, memory: {} GiB, time: {} s".format(my_pi, memory_required,
-                                                            elapsed_time))
+   my_pi = 4.0 * counts / n_samples
+   print("Pi: {}, time: {} s".format(my_pi, max_elapsed_time))
 ```
 {: .language-python}
 
@@ -579,7 +483,6 @@ Use `ls` to locate the output file, and examine it.
 Is it what you expected?
 
 * How good is the value for &#960;?
-* How much memory did it need?
 * How much faster was this run than the serial run with 100000000 points?
 
 Modify the job script to increase both the number of samples and the amount
@@ -588,7 +491,6 @@ and resubmit the job each time.
 You can also increase the number of CPUs.
 
 * How good is the value for &#960;?
-* How much memory did it need?
 * How long did the job take to run?
 
 ## How Much Does MPI Improve Performance?
