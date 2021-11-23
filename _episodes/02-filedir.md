@@ -84,76 +84,40 @@ we know that `/home` is stored inside the root directory `/`
 because its name begins with `/`.
 
 In the NeSI file system you will have access to several different locations.
-#### Home Directory
 
-User-specific files such as configuration files, environment setup, source code, etc.
-
-<table style="width: 966px; height: 90px;">
+<table style="width: 100%; height: 90px;">
 <tbody>
 <tr>
-<td style="width: 109.453px;"></td>
-<td style="width: 300.703px;">Location</td>
+<td style="width: 300px;"></td>
+<td style="width: 250px;">Location</td>
 <td style="width: 167.562px;">Default Storage</td>
 <td style="width: 142.734px;">Default Files</td>
 <td style="width: 89.3594px;">Backup</td>
 <td style="width: 155.188px;">Access Speed</td>
 </tr>
 <tr>
-<td style="width: 109.453px;">Home</td>
-<td style="width: 300.703px;"><code>/home/&lt;username&gt;</code></td>
+<td style="width: 300px;"><strong>Home</strong> is for user-specific files such as configuration files, environment setup, source code, etc.</td>
+<td style="width: 250px;"><code>/home/&lt;username&gt;</code></td>
 <td style="width: 167.562px;">20GB</td>
 <td style="width: 142.734px;">1,000,000</td>
 <td style="width: 89.3594px;">Daily</td>
 <td style="width: 155.188px;">Normal</td>
 </tr>
-</tbody>
-</table>
-
-#### Project Directory
-
-Persistent project-related data, project-related software, etc.
-
-<table style="width: 966px; height: 90px;">
-<tbody>
 <tr>
-<td style="width: 109.453px;"></td>
-<td style="width: 300.703px;">Location</td>
-<td style="width: 167.562px;">Default Storage</td>
-<td style="width: 142.734px;">Default Files</td>
-<td style="width: 89.3594px;">Backup</td>
-<td style="width: 155.188px;">Access Speed</td>
-</tr>
-<tr>
-<td style="width: 109.453px;">Project</td>
-<td style="width: 300.703px;"><code>/nesi/project/&lt;projectcode&gt;</code></td>
+<td style="width: 300px;"><strong>Project</strong> is for persistent project-related data, project-related software, etc.</td>
+<td style="width: 250px;"><code>/nesi/project/&lt;projectcode&gt;</code></td>
 <td style="width: 167.562px;">100GB</td>
 <td style="width: 142.734px;">100,000</td>
 <td style="width: 89.3594px;">Daily</td>
 <td style="width: 155.188px;">Normal</td>
 </tr>
-</tbody>
-</table>
-
-#### Nobackup Directory
-
-Persistent project-related data, project-related software, etc.
-<table style="width: 966px; height: 90px;">
-<tbody>
 <tr>
-<td style="width: 109.453px;"></td>
-<td style="width: 300.703px;">Location</td>
-<td style="width: 167.562px;">Default Storage</td>
-<td style="width: 142.734px;">Default Files</td>
-<td style="width: 89.3594px;">Backup</td>
-<td style="width: 155.188px;">Access Speed</td>
-</tr>
-<tr>
-<td style="width: 109.453px;">Nobackup</td>
-<td style="width: 300.703px;"><code>/nesi/nobackup/&lt;projectcode&gt;</code></td>
+<td style="width: 300px;"><strong>Nobackup</strong> is a 'scratch space', for data you don't need to keep long term.</td>
+<td style="width: 250px;"><code>/nesi/nobackup/&lt;projectcode&gt;</code></td>
 <td style="width: 167.562px;">10TB</td>
 <td style="width: 142.734px;">1,000,000</td>
 <td style="width: 89.3594px;">None</td>
-<td style="width: 155.188px;"></td>
+<td style="width: 155.188px;">Fast</td>
 </tr>
 </tbody>
 </table>
