@@ -53,7 +53,7 @@ of these types of tasks on the login node is a quick and reliable way to discove
 > > ## Solution
 > >
 > > Building software, submitting jobs, and unpacking software are common
-> > and acceptable > tasks for the login node: options #2 (`make`), #3
+> > and acceptable tasks for the login node: options #2 (`make`), #3
 > > (`sbatch`), and #5 (`tar`) are OK.  Running a Python script or a molecular 
 > > dynamics software are not appropriate commands to run on the login node. 
 > >
@@ -75,18 +75,17 @@ of these types of tasks on the login node is a quick and reliable way to discove
 > NeSI has an easy way for you to test your job submission.  One can employ the debug
 > QOS to get a short, very high priority test job.  Debug jobs have to run within 15 
 > minutes and cannot use more that 2 nodes.  To use debug QOS, add or change the
-> following in your batch submit script
+> following in your batch submit script  
 > `#SBATCH --qos=debug`  
-> `#SBATCH --time=15:00`
+> `#SBATCH --time=15:00`  
 > 
 > Adding these SBATCH directives will provide your job with the highest priority
 > possible, meaning it should start to run within a few minutes, provided
 > your resource request is not too large.
 {: .callout}
 
-Let's edit our Slurm submit script one last time:
+<!--Let's edit our Slurm submit script one last time: (TODO:need to get from latest)-->
 
-## TODO:  Get latest submit script from a previous lesson
 
 ## Have a Backup Plan
 
