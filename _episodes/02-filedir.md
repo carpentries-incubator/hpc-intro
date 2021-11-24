@@ -712,9 +712,5 @@ To **quit** the `man` pages, press <kbd>Q</kbd>.
 > [core GNU utilities](http://www.gnu.org/software/coreutils/manual/coreutils.html),
 > which covers many commands introduced within this lesson.
 {: .callout}
-<!-- 
-#TODO: talk about mv to move into directory.
-
-#TODO: mention `nano mydirectory/myfile.txt` as alternative. -->
 
 [Arguments]: https://swcarpentry.github.io/shell-novice/reference.html#argument
