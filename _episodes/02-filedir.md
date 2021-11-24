@@ -18,6 +18,9 @@ keypoints:
 - "`cd [path]` changes the current working directory."
 - "`ls [path]` prints a listing of a specific file or directory; `ls` on its own lists the current working directory."
 - "`pwd` prints the user's current working directory."
+- "`cp [file] [path]` copies [file] to [path]"
+- "`mv [file] [path]` moves [file] to [path]"
+- "`rm [file]` deletes [file]"
 - "`/` on its own is the root directory of the whole file system."
 - "Most commands take options (flags) that begin with a `-`."
 - "A relative path specifies a location starting from the current location."
@@ -25,6 +28,13 @@ keypoints:
 - "Directory names in a path are separated with `/` on Unix, but `\\` on Windows."
 - "`..` means 'the directory above the current one'; `.` on its own means 'the current directory'."
 ---
+> ## The Unix Shell
+>
+> This episode will be a quick introduction to the Unix shell, only the bare minimum required to use the cluster.
+>
+> The Software Carpentary '[Unix Shell](https://swcarpentry.github.io/shell-novice/)' lesson covers the subject in more depth, we recommend you check it out.
+>
+{: .callout}
 
 The part of the operating system responsible for managing files and directories
 is called the **file system**.
@@ -33,21 +43,16 @@ which hold information,
 and directories (also called 'folders'),
 which hold files or other directories.
 
-The NeSI filesystem looks something like this:
+Understanding how to navigate the file system using command line is essential for using an HPC.
 
-![The file system is made up of a root directory that contains sub-directories
-titled home, nesi, and system files](../fig/NesiFiletree.svg)
-
-Several commands are frequently used to create, inspect, rename, and delete files and directories.
-To start exploring them, we'll go to our open shell window.
-
-First, let's find out where we are by running a command called `pwd`
-(which stands for 'print working directory'). Directories are like *places* — at any time
+Directories are like *places* — at any time
 while we are using the shell, we are in exactly one place called
 our **current working directory**.
 Commands mostly read and write files in the
 current working directory, i.e. 'here', so knowing where you are before running
 a command is important.
+
+First, let's find out where we are by running the command `pwd` for '**p**rint **w**orking **d**irectory'. 
 
 ```
 {{ site.remote.prompt }} pwd
@@ -57,33 +62,38 @@ a command is important.
 ```
 /home/<username>
 ```
-Those using Jupyter will see something like this instead:
-```
-/home/<username>/.jupyter/jobs/<jupyter-jobid>
-```
 {: .output}
 
 > ## Default directory
+> 
+> If you are using a JupyterLab, you may see something like this instead.
 >
-> We will assume that your `pwd` command returns your user's home directory (`/home/` followed by your username).
-> If `pwd` returns something different, you will need to navigate to your home directory by running the command `cd`
+> ```
+> /home/<username>/.jupyter/jobs/<jupyter-jobid>
+> ```
+> {: .output}
 {: .callout}
 
-To understand what a 'home directory' is,
-let's have a look at how the file system as a whole is organized.
+
+The output we see is what is known as a 'path'.
+The path can be thought of as a series of directions given to navigate the file system.
 
 At the top is the **root directory**
 that holds all the files in a filesystem.
-We refer to it using a slash character, `/`, on its own;
-this character is the leading slash in `/home/<username>`.
 
-We know that our current working directory `/home/<username>` is stored inside `/home`
-because `/home` is the first part of its name.
-Similarly,
-we know that `/home` is stored inside the root directory `/`
-because its name begins with `/`.
+We refer to it using a slash character, `/`, on its own.
+This is what the leading slash in `/home/<username>` is referring to, it is telling us our path starts at the root directory.
 
-In the NeSI file system you will have access to several different locations.
+Next is `home`, as it is the next part of the path we know it is inside the root directory,
+we also know that home is another directory as the path continues.
+Finally, stored inside `home` is the directory with your username.
+
+The NeSI filesystem looks something like this:
+
+![The file system is made up of a root directory that contains sub-directories
+titled home, nesi, and system files](../fig/NesiFiletree.svg)
+
+The directories that are relevant to us are.
 
 <table style="width: 100%; height: 90px;">
 <tbody>
@@ -112,7 +122,7 @@ In the NeSI file system you will have access to several different locations.
 <td style="width: 155.188px;">Normal</td>
 </tr>
 <tr>
-<td style="width: 300px;"><strong>Nobackup</strong> is a 'scratch space', for data you don't need to keep long term.</td>
+<td style="width: 300px;"><strong>Nobackup</strong> is a 'scratch space', for data you don't need to keep long term. Old data is periodically deleted from nobackup</td>
 <td style="width: 250px;"><code>/nesi/nobackup/&lt;projectcode&gt;</code></td>
 <td style="width: 167.562px;">10TB</td>
 <td style="width: 142.734px;">1,000,000</td>
@@ -130,18 +140,15 @@ In the NeSI file system you will have access to several different locations.
 > it's just a separator.
 {: .callout}
 
-## Listing the contents of directories
-
 As you may now see, using a bash shell is strongly dependent on the idea that
 your files are organized in a hierarchical file system.
 Organizing things hierarchically in this way helps us keep track of our work:
 it's possible to put hundreds of files in our home directory,
 just as it's possible to pile hundreds of printed papers on our desk,
 but it's a self-defeating strategy.
+## Listing the contents of directories
 
-The command to prints the names of the files and directories is `ls` followed by the desired directories path. 
-However, `ls` can be run without an argument, in which case it will list the contents of the directory you 
-are currently located in.
+To **l**i**s**t the contents of a directory, we use the command `ls` followed by the path to the directory whose contents we want listed.
 
 We will now list the contents of the `project` directory we we will be working from. We can
 use the following command to do this:
@@ -187,6 +194,131 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > >  3. Yes: uses the absolute path explicitly.
 > {: .solution}
 {: .challenge}
+## Moving about
+
+Currently we are still in our home directory, we want to move into the`project` directory from the previous command.
+
+The command to **c**hange **d**irectory is `cd` followed by the path to the directory we want to move to.
+
+The `cd` command is akin to double clicking a folder in a graphical interface.
+
+We will use the following command:
+
+```
+{{ site.remote.prompt }} cd /nesi/project/nesi99991/resbaz2021
+```
+{: .language-bash}
+
+You will notice that `cd` doesn't print anything. This is normal. Many shell commands will not output anything to the screen when successfully executed.
+We can check we are in the right place by running `pwd`.
+
+```
+{{ site.remote.prompt }} pwd
+```
+{: .language-bash}
+
+```
+/nesi/project/nesi99991/resbaz2021
+```
+{: .output}
+
+## Creating directories
+
+As previously mentioned, it is general useful to organise your work in a hierarchical file structure to make managing and finding files easier. It is also is especially important when working within a shared directory with colleagues, such as a project, to minimise the chance of accidentally effecting your colleagues work. So for this workshop you will each make a directory using the `mkdir` command within the workshops directory for you to personally work from.
+
+```
+{{ site.remote.prompt }} mkdir <username>
+```
+{: .language-bash}
+
+You can then your new directory is there using `ls`.
+
+```
+{{ site.remote.prompt }} ls /nesi/project/nesi99991
+```
+{: .language-bash}
+```
+  array_sum.r   usr123   usr234
+```
+{: .output}
+## General Syntax of a Shell Command
+
+We are now going to use `ls` again but with a twist, this time we will also use what are known as **options**, **flags** or **switches**.
+These options modify the way that the command works, for this example we will add the flag `-l` for "long listing format".
+
+```
+{{ site.remote.prompt }} ls -l /nesi/project/nesi99991/resbaz2021
+```
+{: .language-bash}
+
+```
+total 1
+-rw-r-----+ 1 cwal219 nesi99991  460 Nov 18 17:03 array_sum.r
+drwxrws---+ 2 usr123  nesi99991 4096 Nov 15 09:01 usr123
+drwxrws---+ 2 usr345  nesi99991 4096 Nov 15 09:01 usr345
+```
+{: .output}
+
+We can see that the `-l` option has modified the command and now our output has listed all the files in alphanumeric order, which can make finding a specific file easier.
+It also includes information about the file size, time of its last modification, and permission and ownership information.
+
+Most unix commands follow this basic structure.
+![Structure of a Unix command](../fig/Unix_Command_Struc.svg)
+
+The **prompt** tells us that the terminal is accepting inputs, prompts can be customised to show all sorts of info.
+
+The **command**, what are we trying to do.
+
+**Options** will modify the behavior of the command, multiple options can be specified.
+Options will either start with a single dash (`-`) or two dashes (`--`)..
+Often options will have a short and long format e.g. `-a` and `--all`.
+
+**Arguments** tell the command what to operate on (usually files and directories).
+
+Each part is separated by spaces: if you omit the space
+between `ls` and `-l` the shell will look for a command called `ls-l`, which
+doesn't exist. Also, capitalization can be important.
+For example, `ls -s` will display the size of files and directories alongside the names,
+while `ls -S` will sort the files and directories by size.
+
+Another useful option for `ls` is the `-a` option, lets try using this option together with the -l option:
+
+```
+{{ site.remote.prompt }} ls -la
+```
+{: .language-bash}
+
+```
+total 1
+drwxrws---+  4 usr001  nesi99991   4096 Nov 15 09:00 .
+drwxrws---+ 12 root    nesi99991 262144 Nov 15 09:23 ..
+-rw-r-----+  1 cwal219 nesi99991    460 Nov 18 17:03 array_sum.r
+drwxrws---+  2 usr123  nesi99991   4096 Nov 15 09:01 usr123
+drwxrws---+  2 usr345  nesi99991   4096 Nov 15 09:01 usr345
+```
+{: .output}
+
+You might notice that we now have two extra lines for directories `.` and `..`. These are hidden directories which the `-a` option has been used to reveal, you can make any file or directory hidden by beginning their filenames with a `.`.
+
+These two specific hidden directories are special as they will exist hidden inside every directory, with the `.` hidden directory representing your current directory and the `..` hidden directory representing the **parent** directory above your current directory.
+
+> ## Exploring More `ls` Flags
+>
+> You can also use two options at the same time. What does the command `ls` do when used
+> with the `-l` option? What about if you use both the `-l` and the `-h` option?
+>
+> Some of its output is about properties that we do not cover in this lesson (such
+> as file permissions and ownership), but the rest should be useful
+> nevertheless.
+>
+> > ## Solution
+> > The `-l` option makes `ls` use a **l**ong listing format, showing not only
+> > the file/directory names but also additional information, such as the file size
+> > and the time of its last modification. If you use both the `-h` option and the `-l` option,
+> > this makes the file size '**h**uman readable', i.e. displaying something like `5.3K`
+> > instead of `5369`.
+> {: .solution}
+{: .challenge}
 
 > ## Unsupported command-line options
 >
@@ -205,23 +337,35 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > {: .error}
 {: .callout}
 
-## Moving about
+## Relative paths
 
-The command to **c**hange **d**irectory is `cd` followed by a
-directory name to change our working directory.
-The `cd` command is akin to double clicking a folder in a graphical interface to get into a folder.
+You may have noticed in the last command we did not specify an argument for the directory path.
+Until now, when specifying directory names, or even a directory path (as above),
+we have been using what are know **absolute paths**, which work no matter where you are currently located on the machine
+since it specifies the full path from the top level root directory.
 
-We will now move into the`project` directory we saw above. We can
-use the following of commands to get there:
+An **absolute path** always starts at the root directory, which is indicated by a
+leading slash. The leading `/` tells the computer to follow the path from
+the root of the file system, so it always refers to exactly one directory,
+no matter where we are when we run the command.
+
+Any path without a leading `/` is a **relative path**.
+
+When you use a relative path with a command
+like `ls` or `cd`, it tries to find that location from where we are,
+rather than from the root of the file system.
+
+In the previous command, since we did not specify an **absolute path** it ran the command on the relative path from our current directory
+(implicitly using the `.` hidden directory), and so listed the contents of our current directory.
+
+We will now navigate to the parent directory, the simplest way do do this is to use the relative path `..`.
 
 ```
-{{ site.remote.prompt }} cd /nesi/project/nesi99991/resbaz2021
+{{ site.remote.prompt }} cd ..
 ```
 {: .language-bash}
 
-You will notice that `cd` doesn't print anything. This is normal. Many shell commands will not output anything to the screen when successfully executed.
-But if we run `pwd` after it, we can see that we are now
-in `/nesi/project/nesi99991/resbaz2021`.
+We should now be back in `/nesi/project/nesi99991`.
 
 ```
 {{ site.remote.prompt }} pwd
@@ -229,7 +373,7 @@ in `/nesi/project/nesi99991/resbaz2021`.
 {: .language-bash}
 
 ```
-/nesi/project/nesi99991/resbaz2021
+/nesi/project/nesi99991
 ```
 {: .output}
 
@@ -251,145 +395,6 @@ in `/nesi/project/nesi99991/resbaz2021`.
 > that the former brings you *up*, while the latter brings you *back*.
 >
 {: .callout}
-
-## Creating files
-
-As previously mentioned, it is general useful to organise your work in a hierarchical file structure to make managing and finding files easier. It is also is especially important when working within a shared directory with colleagues, such as a project, to minimise the chance of accidentally effecting your colleagues work. So for this workshop you will each make a directory using the `mkdir` command within the workshops directory for you to personally work from.
-
-```
-{{ site.remote.prompt }} mkdir <username>
-```
-{: .language-bash}
-
-## General Syntax of a Shell Command
-
-Now that you have all created your own directory to work from lets use the `ls` command to list contents of `/nesi/project/nesi99991/resbaz2021` again.
-
-We have previously used Shell commands with arguments, however, this time we will also use what are known as **options**, **flags** or **switches**, which is part of the general syntax of not just `ls` but all Shell commands
-
-Consider the command below as a general example of a command,
-which we will dissect into its component parts:
-
-```
-{{ site.remote.prompt }} ls -l /nesi/project/nesi99991/resbaz2021
-```
-{: .language-bash}
-
-`ls` is the **command**, with an **option** `-l` and an
-**argument** `/nesi/project/nesi99991/resbaz2021`.
-Options, either start with a single dash (`-`) or two dashes (`--`), and they change the behavior of a command.
-Often options will have a short and long format e.g. `-a` and `--all`
-[Arguments] tell the command what to operate on (e.g. files and directories).
-
-When you run this command you should see something like this output (though likely with more lines):
-
-```
-total 1
--rw-r-----+ 1 cwal219 nesi99991  460 Nov 18 17:03 array_sum.r
-drwxrws---+ 2 usr123  nesi99991 4096 Nov 15 09:01 usr123
-drwxrws---+ 2 usr345  nesi99991 4096 Nov 15 09:01 usr345
-```
-{: .output}
-
-Here we can see that the `-l` option has used what is know as the "long listing format",
-and has listed all the files in alphanumeric order, which can make finding a specific file easier.
-It also includes information about thefile size, time of its last modification, and permission and ownership information.
-
-Sometimes options and arguments are referred to as **parameters**.
-A command can be called with more than one option and more than one argument, but a
-command doesn't always require an argument or an option.
-
-Each part is separated by spaces: if you omit the space
-between `ls` and `-l` the shell will look for a command called `ls-l`, which
-doesn't exist. Also, capitalization can be important.
-For example, `ls -s` will display the size of files and directories alongside the names,
-while `ls -S` will sort the files and directories by size.
-
-Another userful option for `ls` is the `-a` option, lets try using this option together with the -l option:
-
-```
-{{ site.remote.prompt }} ls -la
-```
-{: .language-bash}
-
-```
-total 1
-drwxrws---+  4 usr001  nesi99991   4096 Nov 15 09:00 .
-drwxrws---+ 12 root    nesi99991 262144 Nov 15 09:23 ..
--rw-r-----+  1 cwal219 nesi99991    460 Nov 18 17:03 array_sum.r
-drwxrws---+  2 usr123  nesi99991   4096 Nov 15 09:01 usr123
-drwxrws---+  2 usr345  nesi99991   4096 Nov 15 09:01 usr345
-```
-{: .output}
-
-You might notice that we now have two extra lines for directories `.` and `..`. These are hidden directories which the `-a` option has been used to reveal, you can create a hidden directories or files by beggining their filenames with a `.`.
-
-These two specific hiddent directories are special as they will exist hidden inside every directory, with the `.` hidden directory reprenting your current directory and the `..` hidden directory reprenting the **parent** directory above your current directory.
-
-> ## Exploring More `ls` Flags
->
-> You can also use two options at the same time. What does the command `ls` do when used
-> with the `-l` option? What about if you use both the `-l` and the `-h` option?
->
-> Some of its output is about properties that we do not cover in this lesson (such
-> as file permissions and ownership), but the rest should be useful
-> nevertheless.
->
-> > ## Solution
-> > The `-l` option makes `ls` use a **l**ong listing format, showing not only
-> > the file/directory names but also additional information, such as the file size
-> > and the time of its last modification. If you use both the `-h` option and the `-l` option,
-> > this makes the file size '**h**uman readable', i.e. displaying something like `5.3K`
-> > instead of `5369`.
-> {: .solution}
-{: .challenge}
-
-## Relative paths
-
-You may have noticed in the last command we did not specify an argument for the directory path.
-Until now, when specifying directory names, or even a directory path (as above),
-we have been using what are know **absolute paths**, which work no matter where you are currently located on the machine
-since it specifies the full path from the top level root directory.
-When you use a relative path with a command
-like `ls` or `cd`, it tries to find that location from where we are,
-rather than from the root of the file system.
-In the previous command, since we did not specify an **absolute path** it ran the command on the relative path from our current directory
-(implcitly using the `.` hidden directory), and so listed the contents of our current directory.
-
-To specify the **absolute path** to a directory it is necessary to
-use its entire path from the root directory, which is indicated by a
-leading slash. The leading `/` tells the computer to follow the path from
-the root of the file system, so it always refers to exactly one directory,
-no matter where we are when we run the command.
-
-The simplest method of moving up to the parent directory is to use the previously mentioned hidden `..` directory:
-
-```
-{{ site.remote.prompt }} cd ..
-```
-{: .language-bash}
-
-`..` is a special directory name meaning
-"the directory containing this one",
-or more succinctly,
-the **parent** of the current directory.
-Sure enough,
-if we run `pwd` after running `cd ..`, we're back in `/nesi/project/nesi99991`:
-
-```
-{{ site.remote.prompt }} pwd
-```
-{: .language-bash}
-
-```
-/nesi/project/nesi99991
-```
-{: .output}
-
-Depending on your default options,
-the shell might also use colors to indicate whether each entry is a file or
-directory.
-
 > ## Absolute vs Relative Paths
 >
 > Starting from `/Users/amanda/data`,
@@ -469,13 +474,10 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > {: .solution}
 {: .challenge}
 
-Let's try moving to your personal directory from before. Last time we used `cd`, we used
-the absolute path from the root, but it is often easier to use the relative path.
-
 ## Tab completion
 
-Sometime file paths can also be very long, making typing out the path tedious.
-One neat trick you can use to save yourself time is to use something called **tab completion**.
+Sometimes file paths can also be very long, making typing out the path tedious.
+One trick you can use to save yourself time is to use something called **tab completion**.
 If you start typing the path in a command and their is only one possible match,
 if you hit tab the path will autocomplete (until there are more than one possible matches).
 
@@ -495,7 +497,7 @@ the shell automatically completes the directory name for you (since there is onl
 {: .language-bash}
 
 However, that command would only take you `/nesi/project/nesi99991/resbaz2021`.
-You want to move to your personal working diretory. If you hit <kbd>Tab</kbd> once you will
+You want to move to your personal working directory. If you hit <kbd>Tab</kbd> once you will
 likely see nothing change, as there are more than one possible options. Hitting <kbd>Tab</kbd>
 a second time will print all possible autocomplete options.
 
@@ -710,9 +712,9 @@ To **quit** the `man` pages, press <kbd>Q</kbd>.
 > [core GNU utilities](http://www.gnu.org/software/coreutils/manual/coreutils.html),
 > which covers many commands introduced within this lesson.
 {: .callout}
-
+<!-- 
 #TODO: talk about mv to move into directory.
 
-#TODO: mention `nano mydirectory/myfile.txt` as alternative.
+#TODO: mention `nano mydirectory/myfile.txt` as alternative. -->
 
-[Arguments]: https://swcarpentry.github.io/shell-novice/reference.html#argument -->
+[Arguments]: https://swcarpentry.github.io/shell-novice/reference.html#argument
