@@ -1,7 +1,7 @@
 ---
 title: "Using resources effectively"
-teaching: 10
-exercises: 30
+teaching: 15
+exercises: 10
 questions:
 - "How do we monitor our jobs?"
 - "How can I get my jobs scheduled more easily?"
@@ -12,23 +12,35 @@ objectives:
 keypoints:
 - As your task gets larger, so does the potential for inefficiencies.
 - "The smaller your job (time, CPUs, memory, etc), the faster it will schedule."
-- scaling testing involves running jobs with increasing resources and measuring the efficiency in order to establish a pattern informed descisions about future job submissions.
 ---
+<!--
+- scaling testing involves running jobs with increasing resources and measuring the efficiency in order to establish a pattern informed descisions about future job submissions.-->
+
 In previous episodes we covered *how* to request resources, but what you may not know is *what* resources you need to request. The solution to this problem is testing!
 Understanding the resources you have available and how to use them most efficiently is a vital skill in high performance computing.
 
-<table>
-**Resource**	Asking for too much	Not asking for enough
-Number of CPUs The job may wait in the queue for longer. Your fair share score will fall rapidly (your project will be charged for CPU cores that it reserved but didn't use)
-The job will run more slowly than expected, and so may run out of time and get killed for exceeding its time limit.
-**Memory**	
-The job may wait in the queue for longer.
-Your fair share score will fall more than necessary. (see here and here for information about how memory use is charged to projects)
-Your job will fail, probably with an 'OUT OF MEMORY' error, segmentation fault or bus error. This may not happen immediately.
-**Wall time**
-The job may wait in the queue for longer than necessary
-The job will run out of time and get killed. 
-</table>
+Below is a list of common resources and issues you may face if you do not request the correct amount.
+
+**CPU**  
+* Issue: Asking for too many CPUs  
+* Result: The job will wait in the queue for longer. Your fair share score will fall.  You will be charged for CPUs regardless of whether they are used or not.  
+
+* Issue: Asking for too few CPUs 
+* Result: The job will run more slowly than expected, and so may run out of time and get killed for exceeding its time limit.  
+
+**Memory**    	
+* Issue: Requesting too much memory  
+* Result: The job will wait in the queue for longer.  Your fair share score will fall more than necessary.  
+
+* Issue: Request too little memory 
+* Result: Your job will fail, probably with an 'OUT OF MEMORY' error, segmentation fault or bus error. This may not happen immediately.  
+
+**Wall time**  
+* Issue: Requesting too much time  
+* Result: The job will wait in the queue for longer than necessary  
+
+* Issue: Requesting too little time  
+* Result: The job will run out of time and be terminated by the scheduler. 
 
 ## Estimating Required Resources
 
@@ -38,17 +50,12 @@ memory or compute time a program will need.
 
 > ## Read the Documentation
 >
-> Most HPC facilities maintain documentation as a wiki, a website, or a
-> document sent along when you register for an account. Take a look at these
-> resources, and search for the software you plan to use: somebody might have
-> written up guidance for getting the most out of it.
+> NeSI maintains documentation  that does have some guidance on using resources for some software
+> However, as you noticed in the Modules lessons, we have a lot of software.  So it is also advised to search
+> the web for others that may have written up guidance for getting the most out of your specific software.
 {: .callout}
 
-The best way to determine the resources required for a job to run is to submit a test job,
-and then ask the scheduler about its
-impact using `{{ site.sched.hist }}`.
-
-## Test Job
+## Running Test Jobs
 
 As you may have to run this a few times you want to spend as little time waiting as possible.
 A test job should not run for more than 15mins. This could involve using a smaller input, coarser parameters or using a subset of the calculations.
@@ -65,84 +72,39 @@ Make sure outputs are going somewhere you can see them.
 {: .callout}
 
 You generally should ask for 20% to 30% more time and memory than you think the job will use.
-Testing allows you to become more more precise with your resource requests.
+Testing allows you to become more more precise with your resource requests.  We will cover a bit more on running tests in the last lesson.
 
 
 ## Measuring Resource Usage of a Finished Job
 
 <!-- New example maybe? -->
-After the completion of our test job we will use the `{{ site.sched.hist }}` command.
+After the completion of our test job we will use the `{{ site.sched.efficiency }}` command.
 
+For convenince, NeSI has provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA). 
 ```
-{{ site.remote.prompt }} {{ site.sched.hist }}
-```
-{: .language-bash}
-
-{% include {{ site.snippets }}/resources/account-history.snip %}
-
-This shows all the jobs we ran recently (note that there are multiple entries
-per job). To get info about a specific job, we change command slightly.
-
-```
-{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965
+{{ site.remote.prompt }} nn_seff <jobid>
 ```
 {: .language-bash}
 
-It will show a lot of info, in fact, every single piece of info collected on
-your job by the scheduler. It may be useful to redirect this information to
-`less` to make it easier to view (use the left and right arrow keys to scroll
-through fields).
-
 ```
-{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965 | less
+Job ID: 22278992
+Cluster: mahuika
+User/Group: username/username
+State: TIMEOUT (exit code 0)
+Cores: 1
+Tasks: 1
+Nodes: 1
+Job Wall-time:  100.33%  00:15:03 of 00:15:00 time limit
+CPU Efficiency: 0.55%  00:00:05 of 00:15:03 core-walltime
+Mem Efficiency: 0.20%  2.09 MB of 1.00 GB
 ```
-{: .language-bash}
-
-Some interesting fields include the following:
-
-* **Hostname**: Where did your job run?
-* **MaxRSS**: What was the maximum amount of memory used?
-* **Elapsed**: How long did the job take?
-* **State**: What is the job currently doing/what happened to it?
-* **MaxDiskRead**: Amount of data read from disk.
-* **MaxDiskWrite**: Amount of data written to disk.
-
-> ## `nn_seff`
->
-> For convenince, we have provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA). 
->
-> > ## Solution
-> >
-> > ```
-> > {{ site.remote.prompt }} nn_seff <jobid>
-> > ```
-> > {: .language-bash}
-> > ```
-> > Job ID: 22278992
-> > Cluster: mahuika
-> > User/Group: username/username
-> > State: TIMEOUT (exit code 0)
-> > Cores: 1
-> > Tasks: 1
-> > Nodes: 1
-> > Job Wall-time:  100.33%  00:15:03 of 00:15:00 time limit
-> > CPU Efficiency: 0.55%  00:00:05 of 00:15:03 core-walltime
-> > Mem Efficiency: 0.20%  2.09 MB of 1.00 GB
-> > ```
-> > {: .output}
-> >
-> > If you were to submit this same job again what resources would you request?
-> {: .solution}
-{: .challenge}
+If you were to submit this same job again what resources would you request?
 
 ## Measuring the System Load From Currently Running Tasks
 
-Typically, clusters allow users to connect directly to compute nodes from the
-head node. This is useful to check on a running job and see how it's doing, but
-is not a recommended practice in general, because it bypasses the resource
-manager. To reduce the risk of interfering with other users, some clusters will
-only allow you to connect to nodes on which you have running jobs. Let's
-practice by taking a look at what's running on the login node right now.
+On Mahuika, we allow users to connect directly to compute nodes from the
+login node. This is useful to check on a running job and see how it's doing, however, we
+only allow you to connect to nodes on which you have running jobs. 
 
 ### Monitor System Processes With `htop`
 
@@ -150,7 +112,7 @@ The most reliable way to check current system stats is with `htop`. Some sample
 output might look like the following (type `q` to exit `htop`):
 
 ```
-{{ site.remote.prompt }} htop
+{{ site.remote.prompt }} htop -u yourUsername
 ```
 {: .language-bash}
 
@@ -169,13 +131,6 @@ Overview of the most important fields:
   accumulate time at twice the normal rate.
 * `COMMAND`: What command was used to launch a process?
 
-If `htop` isn't available on your system `top` provides a similar (but less pretty) function.
-
-```
-{{ site.remote.prompt }} htop
-```
-{: .language-bash}
-
 <!-- Now that you know the efficiency of your small test job what next? Throw 100 more CPUs at the problem for 100x speedup?
 
 You can use this knowledge to set up the
@@ -186,14 +141,18 @@ will not result in your job being cancelled by the scheduler. Keep in mind that
 if you ask for too much, your job may not run even though enough resources are
 available, because the scheduler will be waiting for other people's jobs to
 finish and free up the resources needed to match what you asked for. -->
+
+<!-- TODO: Add scaling example
+Currently the rest of this lesson Not ready yet.  Too little info to go on without some sort of easy to grok exercise.
+
 ## Scaling behaviour
 
-Unfortunately we cannot assume speedup will be linear (e.g. double CPUs won't usually half runtime, double data won't necessarily double runtime) therefore more testing is required. This is called *scaling testing*.
+Unfortunately we cannot assume speedup will be linear (e.g. double CPUs won't usually half runtime, doubling the size of your input data won't necessarily double runtime) therefore more testing is required. This is called *scaling testing*.
 
-The aim of these tests will be to establish how a jobs requirements change with size (CPUs, inputs) and ultemately figure out the best way to run your jobs.
+The aim of these tests will be to establish how a jobs requirements change with size (CPUs, inputs) and ultimately figure out the best way to run your jobs.
+
 
 Using the information we collected from the previous job, we will submit a larger version with our best estimates of requred resources.
-
 Example here
 
 Examine outputs
@@ -210,41 +169,6 @@ Depending on the fraction of your code that is paralell, th
 
 - start small.
 - record everything.
-
-
-<!-- ### `ps`
-
-To show all processes from your current session, type `ps`.
-
-```
-{{ site.remote.prompt }} ps
-```
-{: .language-bash}
-
-```
-  PID TTY          TIME CMD
-15113 pts/5    00:00:00 bash
-15218 pts/5    00:00:00 ps
-```
-{: .output}
-
-Note that this will only show processes from our current session. To show all
-processes you own (regardless of whether they are part of your current session
-or not), you can use `ps ux`.
-
-```
-{{ site.remote.prompt }} ps ux
-```
-{: .language-bash}
-
-```
-    USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-{{ site.remote.user }}  67780  0.0  0.0 149140  1724 pts/81   R+   13:51   0:00 ps ux
-{{ site.remote.user }}  73083  0.0  0.0 142392  2136 ?        S    12:50   0:00 sshd: {{ site.remote.user }}@pts/81
-{{ site.remote.user }}  73087  0.0  0.0 114636  3312 pts/81   Ss   12:50   0:00 -bash
-```
-{: .output}
-
-This is useful for identifying which processes are doing what. -->
+-->
 
 {% include links.md %}

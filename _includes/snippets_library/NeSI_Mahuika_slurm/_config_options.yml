@@ -43,6 +43,7 @@ sched:
   info: "sinfo"
   comment: "#SBATCH"
   hist: "sacct"
+  efficiency: "nn_seff"
 
 episode_order:
   - 12-cluster
