@@ -30,25 +30,3 @@ Currently Loaded Modules:
 {: .output}
 
 Notice that our initial list of modules has increased by 30.  When we loaded Python, it also loaded all of it's dependencies along with all the dependencies of those modules.
-
-So what if we wanted to unload all our modules, to do that, we would run `module purge`
-
-```
-{{ site.remote.prompt }} module purge
-```
-{: .language-bash}
-
-```
-
-The following modules were not unloaded:
-   (Use "module --force purge" to unload all):
-
-  1) XALT/minimal   2) slurm   3) NeSI
-```
-{: .output}
-
-Note that `module purge` is informative. It lets us know that all but a minimal default
-set of packages have been unloaded (and how to actually unload these if we
-truly so desired).
-
-We are able to unload individual modules, unfortunately within the NeSI system it does not always unload it's dependencies, therefore we recommend `module purge` to bring you back to a state where only those modules needed to perform your normal work on the cluster.
