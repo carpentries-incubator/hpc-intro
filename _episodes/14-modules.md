@@ -62,6 +62,32 @@ what you want to do. For a list of subcommands you can use `module -h` or
 `module help`. As for all commands, you can access the full help on the *man*
 pages with `man module`.
 
+### Purging Modules
+
+Depending on how you are accessing the HPC the modules you have loaded by default will be different. So before we start listing our modules we will first use the `module purge` command to clear all but the minimum default modules so that we are all starting with the same modules.
+
+```
+{{ site.remote.prompt }} module purge
+```
+{: .language-bash}
+
+```
+
+The following modules were not unloaded:
+   (Use "module --force purge" to unload all):
+
+  1) XALT/minimal   2) slurm   3) NeSI
+```
+{: .output}
+
+Note that `module purge` is informative. It lets us know that all but a minimal default
+set of packages have been unloaded (and how to actually unload these if we
+truly so desired).
+
+We are able to unload individual modules, unfortunately within the NeSI system it does not always unload it's dependencies, therefore we recommend `module purge` to bring you back to a state where only those modules needed to perform your normal work on the cluster.
+
+`module purge` is a useful tool for ensuring repeatable research by guaranteeing that the environment that you build your software stack from is always the same. This is important since some modules have the potential to silently effect your results if they are loaded (or not loaded).
+
 ### Listing Available Modules
 
 To see available software modules, use `module avail`:
@@ -145,10 +171,25 @@ ran the `module load` command, it added many directories to the beginning of our
 
 {% include {{ site.snippets }}/modules/python-ls-dir-output.snip %}
 
-Taking this to its conclusion, `module load` will add software to your `$PATH`.
-It "loads" software, not only that but it also loads software dependencies.  That is, the software that the application you load requires to run. 
+`module load` "loads" not only the specified software, but it also loads software dependencies. That is, the software that the application you load requires to run. 
 
 {% include {{ site.snippets }}/modules/software-dependencies.snip %}
+
+Before moving onto the next session lets use `module purge` again to return to the minimal environment.
+
+```
+{{ site.remote.prompt }} module purge
+```
+{: .language-bash}
+
+```
+
+The following modules were not unloaded:
+   (Use "module --force purge" to unload all):
+
+  1) XALT/minimal   2) slurm   3) NeSI
+```
+{: .output}
 
 ## Software Versioning
 
