@@ -77,15 +77,47 @@ and data without having to worry about prying eyes.
    file="/fig/connect-to-remote.svg"
    alt="Connect to cluster" caption="" %}
 
-Make sure you have a SSH client installed on your laptop. Refer to the
-[setup]({{ page.root }}/setup) section for more details. SSH clients are
-usually command-line tools, where you provide the remote machine address as the
-only required argument. If your username on the remote system differs from what
-you use locally, you must provide that as well. If your SSH client has a
-graphical front-end, such as PuTTY or MobaXterm, you will set these arguments
-before clicking "connect." From the terminal, you'll write something like `ssh
-userName@hostname`, where the "@" symbol is used to separate the two parts of a
-single argument.
+SSH clients are usually command-line tools, where you provide the remote
+machine address as the only required argument. If your username on the remote
+system differs from what you use locally, you must provide that as well. If
+your SSH client has a graphical front-end, such as PuTTY or MobaXterm, you will
+set these arguments before clicking "connect." From the terminal, you'll write
+something like `ssh userName@hostname`, where the argument is just like an
+email address: the "@" symbol is used to separate the personal ID from the
+address of the shared resource.
+
+> ## Setup Revisited
+>
+> The [Lesson Setup]({{ page.root }}/setup) provides instructions for
+> installing a [shell application][setup-shell] with [SSH][setup-ssh],
+> generating your [public-private key pair][setup-keys], and
+> installing the [SSH agent][setup-agent].
+>
+> If you have not completed Setup already, please do the following;
+> skip any steps you have already completed:
+>
+> 1. Open your terminal application.
+> 2. Generate a public-private key pair:
+>    ```
+>    {{ site.local.prompt }} ssh-keygen -t ed25519 -a 100
+>    # accept default location; enter a strong password
+>    ```
+>    {: .language-bash}
+> 3. Launch the SSH Agent:
+>    ```
+>    {{ site.local.prompt }} eval $(ssh-agent)
+>    ```
+>    {: .language-bash}
+> 4. Add your key to the agent:
+>    ```
+>    {{ site.local.prompt }} ssh-add -t 8h ~/.ssh/id_ed25519
+>    ```
+>    {: .language-bash}
+>
+> You can now use your strong SSH key to log in to remote machines and, for the
+> next 8 hours, you will not have to type your password to do so: the SSH Agent
+> handles it for you.
+{: .callout}
 
 Go ahead and open your terminal or graphical SSH client, then log in to the
 cluster using your username and the remote computer you can reach from the
@@ -309,7 +341,7 @@ connect to a shared, remote fileserver or cluster of servers.
 > >
 > > > The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're
 > > > on the same login node (or compute node, later on). Networked filesystems
-> > > (beegfs, cifs, gpfs, nfs, pvfs) will be similar &mdash; but may include
+> > > (beegfs, cifs, gpfs, nfs, pvfs) will be similar -- but may include
 > > > {{ site.remote.user }}, depending on how it is [mounted](
 > > > https://en.wikipedia.org/wiki/Mount_(computing)).
 > > {: .discussion}
@@ -345,3 +377,8 @@ With all of this in mind, we will now cover how to talk to the cluster's
 scheduler, and use it to start running our scripts and programs!
 
 {% include links.md %}
+
+[setup-shell]: {{ page.root }}/setup#where-to-type-commands-how-to-open-a-new-shell
+[setup-ssh]: {{ page.root }}/setup#ssh-for-secure-connections
+[setup-keys]: {{ page.root }}/setup#public-private-key-pair-for-ssh
+[setup-agent]: {{ page.root }}/setup#ssh-agent-for-easier-key-handling
