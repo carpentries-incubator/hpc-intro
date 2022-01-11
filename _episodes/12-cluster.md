@@ -146,7 +146,7 @@ convention:
 
 - `{{ site.local.prompt }}` when the command is to be entered on a terminal
   connected to your local computer
-- `{{ site.workshop_host_prompt }}` when the command is to be entered on a
+- `{{ site.remote.prompt }}` when the command is to be entered on a
   terminal connected to the remote system
 - `$` when it really doesn't matter which system the terminal is connected to.
 

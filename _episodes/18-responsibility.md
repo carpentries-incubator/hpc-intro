@@ -37,7 +37,7 @@ consider.
 The login node is often busy managing all of the logged in users, creating and
 editing files and compiling software. If the machine runs out of memory or
 processing capacity, it will become very slow and unusable for everyone. While
-the machine is meant to be used, be sure to do so responsibly &mdash; in ways
+the machine is meant to be used, be sure to do so responsibly -- in ways
 that will not adversely impact other users' experience.
 
 Login nodes are always the right place to launch jobs. Cluster policies vary,
@@ -63,7 +63,7 @@ You can always use the commands `top` and `ps ux` to list the processes that
 are running on the login node along with the amount of CPU and memory they are
 using. If this check reveals that the login node is somewhat idle, you can
 safely use it for your non-routine processing task. If something goes wrong
-&mdash; the process takes too long, or doesn't respond &mdash; you can use the
+-- the process takes too long, or doesn't respond -- you can use the
 `kill` command along with the *PID* to terminate the process.
 
 > ## Login Node Etiquette

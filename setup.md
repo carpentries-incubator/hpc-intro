@@ -44,8 +44,8 @@ the Windows start menu.
 
 #### Shell Programs for Windows
 
-* [Git for Windows][git4win] &mdash; *Recommended*
-* [Windows Subsystem for Linux][ms-wsl] &mdash; advanced option for Windows 10
+* [Git for Windows][git4win] -- *Recommended*
+* [Windows Subsystem for Linux][ms-wsl] -- advanced option for Windows 10
 
 > ## Alternatives to Git for Windows
 >

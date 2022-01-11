@@ -120,6 +120,8 @@ manner. Our shell script will have three parts:
 * Anywhere below the first line, we'll add an `echo` command with a friendly
   greeting. When run, the shell script will print whatever comes after `echo`
   in the terminal.
+  * `echo -n` will print everything that follows, *without* ending
+    the line by printing the new-line character.
 * On the last line, we'll invoke the `hostname` command, which will print the
   name of the machine the script is run on.
 
