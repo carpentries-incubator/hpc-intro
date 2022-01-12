@@ -418,11 +418,13 @@ connect to a shared, remote fileserver or cluster of servers.
 > > ```
 > > {: .language-bash}
 > >
-> > > The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're
-> > > on the same login node (or compute node, later on). Networked filesystems
-> > > (beegfs, cifs, gpfs, nfs, pvfs) will be similar -- but may include
-> > > {{ site.remote.user }}, depending on how it is [mounted](
-> > > https://en.wikipedia.org/wiki/Mount_(computing)).
+> > > ## Different results from `df`
+> > >
+> > > * The local filesystems (ext, tmp, xfs, zfs) will depend on whether
+> > >   you're on the same login node (or compute node, later on).
+> > > * Networked filesystems (beegfs, cifs, gpfs, nfs, pvfs) will be similar
+> > >   -- but may include {{ site.remote.user }}, depending on how it
+> > >   is [mounted](https://en.wikipedia.org/wiki/Mount_(computing)).
 > > {: .discussion}
 > >
 > > > ## Shared Filesystems
@@ -438,18 +440,26 @@ connect to a shared, remote fileserver or cluster of servers.
 > ## Compare Your Computer, the Head Node and the Worker Node
 >
 > Compare your laptop's number of processors and memory with the numbers you
-> see on the cluster head node and worker node. Discuss the differences with
-> your neighbor.
+> see on the cluster head node and worker node. What implications do
+> you think the differences might have on running your research work on the
+> different systems and nodes?
 >
-> What implications do you think the differences might have on running your
-> research work on the different systems and nodes?
+> > ## Solution
+> >
+> > Compute nodes are usually built with processors that have *higher
+> > core-counts* than the head node or personal computers in order to support
+> > highly parallel tasks. Compute nodes usually also have substantially *more
+> > memory (RAM)* installed than a personal computer. More cores tends to help
+> > jobs that depend on some work that is easy to perform in *parallel*, and
+> > more, faster memory is key for large or *complex numerical tasks*.
+> {: .solution}
 {: .discussion}
 
 > ## Differences Between Nodes
 >
 > Many HPC clusters have a variety of nodes optimized for particular workloads.
 > Some nodes may have larger amount of memory, or specialized resources such as
-> Graphical Processing Units (GPUs).
+> Graphics Processing Units (GPUs or "video cards").
 {: .callout}
 
 With all of this in mind, we will now cover how to talk to the cluster's

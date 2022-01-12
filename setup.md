@@ -11,7 +11,7 @@ recommend that these tools are installed (or at least downloaded) beforehand.
 1. [A terminal application or command-line interface](
    #where-to-type-commands-how-to-open-a-new-shell)
 2. [A Secure Shell application](#ssh-for-secure-connections)
-3. [A public—private key pair](#public-private-key-pair-for-ssh)
+3. [A public-private key pair](#public-private-key-pair-for-ssh)
 4. [An SSH key agent](#ssh-agent-for-easier-key-handling)
 
 > ## Bash and SSH
@@ -197,13 +197,13 @@ Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see the two new files:
 If a key is requested by the system administrators, the *public* key is the one
 to provide.
 
-> ## Private keys are your private identity
+> ## Private keys are your secure digital passport
 >
 > A private key that is visible to anyone but you should be considered
 > compromised, and must be destroyed. This includes having improper permissions
-> on the directory it (or a copy) is stored in, traversing any network in the
-> clear, attachment on unencrypted email, and even displaying the key (which is
-> ASCII text) in your terminal window.
+> on the directory it (or a copy) is stored in, traversing any network that is
+> not secure (encrypted), attachment on unencrypted email, and even displaying
+> the key (which is ASCII text) in your terminal window.
 >
 > Protect this key as if it unlocks your front door. In many ways, it does.
 {: .caution}
