@@ -144,7 +144,7 @@ Normal output will resume once you press `Enter`.
 You may have noticed that the prompt changed when you logged into the remote
 system using the terminal (if you logged in using PuTTY this will not apply
 because it does not offer a local terminal). This change is important because
-it makes it clear on which system the commands you type will be run when you
+it can help you distinguish on which system the commands you type will be run when you
 pass them into the terminal. This change is also a small complication that we
 will need to navigate throughout the workshop. Exactly what is reported before
 the `$` in the terminal when it is connected to the local system and the remote

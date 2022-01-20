@@ -106,7 +106,7 @@ command (or series of commands) that you want to run on the cluster is called a
 *job*, and the process of using a scheduler to run the job is called *batch job
 submission*.
 
-In this case, the job we want to run is just a shell script -- essentially a
+In this case, the job we want to run is a shell script -- essentially a
 text file containing a list of UNIX commands to be executed in a sequential
 manner. Our shell script will have three parts:
 
@@ -115,7 +115,7 @@ manner. Our shell script will have three parts:
   meant to process the contents of this file. In this case, we are telling it
   that the commands that follow are written for the command-line shell (what
   we've been doing everything in so far). If we wanted our script to be run
-  with something else -- Python, for example -- we could change thios line to
+  with something else -- Python, for example -- we could change this line to
   read `#!/usr/bin/python3`.
 * Anywhere below the first line, we'll add an `echo` command with a friendly
   greeting. When run, the shell script will print whatever comes after `echo`
