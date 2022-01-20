@@ -97,18 +97,26 @@ address of the shared resource.
 > skip any steps you have already completed:
 >
 > 1. Open your terminal application.
-> 2. Generate a public-private key pair:
+> 2. Generate a public-private key pair using the 255-bit EdDSA
+>    algorithm and 100 rounds of hashing:
 >    ```
 >    {{ site.local.prompt }} ssh-keygen -t ed25519 -a 100
 >    # accept default location; enter a strong password
 >    ```
 >    {: .language-bash}
-> 3. Launch the SSH Agent:
+> 3. Check the SSH Agent by attempting to list the keys it knows about:
 >    ```
->    {{ site.local.prompt }} eval $(ssh-agent)
+>    {{ site.local.prompt }} ssh-add -l
 >    ```
 >    {: .language-bash}
-> 4. Add your key to the agent:
+>    1. *Iff* this returns an error because the agent cannot be
+>    found, launch the SSH Agent as a background process:
+>       ```
+>       {{ site.local.prompt }} eval $(ssh-agent)
+>       ```
+>       {: .language-bash}
+> 4. Register your private key (assuming it resides at `~/.ssh/id_ed25519`)
+>    with the agent:
 >    ```
 >    {{ site.local.prompt }} ssh-add -t 8h ~/.ssh/id_ed25519
 >    ```

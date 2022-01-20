@@ -257,7 +257,7 @@ Error connecting to agent: No such file or directory
 Now you can add your key to the agent:
 
 ```
-{{ site.local.prompt }} ssh-add -t 1d ~/.ssh/id_ed25519
+{{ site.local.prompt }} ssh-add -t 8h ~/.ssh/id_ed25519
 ```
 {: .language-bash}
 ```
@@ -267,7 +267,7 @@ Lifetime set to 86400 seconds
 ```
 {: .output}
 
-For the duration (one day), whenever you use that key, the SSH Agent will
+For the duration (8 hours), whenever you use that key, the SSH Agent will
 provide the key on your behalf without you having to type a single keystroke.
 
 ### SSH Agent on PuTTY
