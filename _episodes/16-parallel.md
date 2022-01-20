@@ -650,6 +650,8 @@ In practice, MPI speedup factors are influenced by:
 
 In an HPC environment, we try to reduce the execution time for all types of
 jobs, and MPI is an extremely common way to combine dozens, hundreds, or
-thousands of CPUs into solving a single problem.
+thousands of CPUs into solving a single problem. To learn more about 
+parallelization, see the 
+[parallel novice lesson](http://www.hpc-carpentry.org/hpc-parallel-novice/)
 
 {% include links.md %}
