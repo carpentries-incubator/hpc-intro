@@ -155,7 +155,8 @@ to tell Bash exactly where to look. To run a script that we wrote ourselves, we
 need to tell Bash where it is explicitly, so it doesn't go searching. We could
 do this one of two ways: either with the absolute path 
 `{{ site.workshop_host_homedir }}/yourUserName/example-job.sh` (equivalently,
-`~/example-job.sh`), or with the relative path `./example-job.sh`.
+`~/example-job.sh`), or with the relative path `./example-job.sh`
+(where "." stands for "the current working directory").
 
 ```
 $ ./example-job.sh
@@ -168,10 +169,11 @@ bash: ./example-job.sh: Permission denied
 {: .error}
 
 There's one last thing we need to do. Before a file can be run, it needs
-"permission" to execute. Let's look at our file's permissions with `ls -l`:
+"permission" to execute. Let's look at the permissions for every file in this
+directory using the "long" format option with `ls`:
 
 ```
-$ ls -l *.sh
+$ ls -l
 ```
 {: .language-bash}
 
@@ -182,7 +184,6 @@ $ ls -l *.sh
 ```
 {: .output}
 
-That's a huge amount of output: a full listing of everything in the directory.
 Let's see if we can understand **what each field of a given row represents**,
 working left to right.
 
