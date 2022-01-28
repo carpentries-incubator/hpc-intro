@@ -8,6 +8,10 @@ There are several pieces of software you will wish to install before the
 workshop. Though installation help will be provided at the workshop, we
 recommend that these tools are installed (or at least downloaded) beforehand.
 
+1. [A terminal application or command-line interface](
+   #where-to-type-commands-how-to-open-a-new-shell)
+2. [A Secure Shell application](#ssh-for-secure-connections)
+
 > ## Bash and SSH
 >
 > This lesson requires a terminal application (`bash`, `zsh`, or others) with
@@ -25,7 +29,7 @@ have one installed. There are also options for identifying and downloading a
 Unix Shell program, a Linux/UNIX emulator, or a program to access a Unix Shell
 on a server.
 
-### Windows
+### Unix Shells on Windows
 
 Computers with Windows operating systems do not automatically have a Unix Shell
 program installed. In this lesson, we encourage you to use an emulator included
@@ -38,10 +42,8 @@ the Windows start menu.
 
 #### Shell Programs for Windows
 
-* [Git for Windows](https://gitforwindows.org/) &mdash; *Recommended*
-* [Windows Subsystem for Linux](
-  https://docs.microsoft.com/en-us/windows/wsl/install-win10)
-  &mdash; advanced option for Windows 10
+* [Git for Windows][git4win] -- *Recommended*
+* [Windows Subsystem for Linux][ms-wsl] -- advanced option for Windows 10
 
 > ## Alternatives to Git for Windows
 >
@@ -56,22 +58,21 @@ the Windows start menu.
 >
 > For advanced users, you may choose one of the following alternatives:
 >
-> * Install the [Windows Subsystem for
->   Linux][microsoft-wsl]
-> * Use the Windows [Powershell][microsoft-powershell]
+> * Install the [Windows Subsystem for Linux][ms-wsl]
+> * Use the Windows [PowerShell][ms-shell]
 > * Read up on [Using a Unix/Linux emulator][unix-emulator] (Cygwin) or Secure
->   Shell (SSH) client (Putty)
+>   Shell (SSH) client (PuTTY)
 >
 > > ## Warning
 > >
-> > Commands in the Windows Subsystem for Linux (WSL), Powershell, or Cygwin
+> > Commands in the Windows Subsystem for Linux (WSL), PowerShell, or Cygwin
 > > may differ slightly from those shown in the lesson or presented in the
-> > workshop. Please ask if you encounter such a mismatch &mdash; you're
+> > workshop. Please ask if you encounter such a mismatch -- you're
 > > probably not alone.
 > {: .challenge}
 {: .discussion}
 
-### macOS
+### Unix Shell on macOS
 
 On macOS, the default Unix Shell is accessible by running the Terminal program
 from the `/Application/Utilities` folder in Finder.
@@ -85,7 +86,7 @@ To open Terminal, try one or both of the following:
 
 For an introduction, see [How to Use Terminal on a Mac][mac-terminal].
 
-### Linux
+### Unix Shell on Linux
 
 On most versions of Linux, the default Unix Shell is accessible by running the
 [(Gnome) Terminal](https://help.gnome.org/users/gnome-terminal/stable/) or
@@ -131,7 +132,10 @@ Linux comes with SSH and X window support preinstalled: you do not have to do
 anything.
 
 <!-- links -->
+[git4win]: https://gitforwindows.org/
 [mac-terminal]: https://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608274/
-[microsoft-wsl]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
-[microsoft-powershell]: https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7
+[ms-wsl]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
+[ms-shell]: https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7
+[mobax-gen]: https://mobaxterm.mobatek.net/documentation.html
 [unix-emulator]: https://faculty.smu.edu/reynolds/unixtut/windows.html
+[wsl]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
