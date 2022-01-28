@@ -11,8 +11,6 @@ recommend that these tools are installed (or at least downloaded) beforehand.
 1. [A terminal application or command-line interface](
    #where-to-type-commands-how-to-open-a-new-shell)
 2. [A Secure Shell application](#ssh-for-secure-connections)
-3. [A public-private key pair](#public-private-key-pair-for-ssh)
-4. [An SSH key agent](#ssh-agent-for-easier-key-handling)
 
 > ## Bash and SSH
 >

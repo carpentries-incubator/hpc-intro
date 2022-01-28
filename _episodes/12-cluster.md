@@ -51,7 +51,7 @@ impressive than the [Top-500](https://www.top500.org). Clusters are often
 maintained in computing centers that support several such systems, all sharing
 common networking and storage to support common compute intensive tasks.
 
-## Logging In
+## Secure Connections
 
 The first step in using a cluster is to establish a connection from our laptop
 to the cluster. When we are sitting at a computer (or standing, or holding it
@@ -101,10 +101,9 @@ through the use of SSH keys and an SSH agent to both strengthen your security
 
 ### Better Security With SSH Keys
 
-The [Lesson Setup]({{ page.root }}/setup) provides instructions for
-installing a [shell application][setup-shell] with [SSH][setup-ssh].
-If you have not done so already, please open that shell application with a
-Unix-like command line interface to your system.
+The [Lesson Setup]({{ page.root }}/setup) provides instructions for installing
+a shell application with SSH. If you have not done so already, please open that
+shell application with a Unix-like command line interface to your system.
 
 SSH keys are an alternative method for authentication to obtain access to
 remote computing systems. They can also be used for authentication when
@@ -112,7 +111,7 @@ transferring files or for accessing version control systems. In this section
 you will create a pair of SSH keys:
 
 * a private key which you keep on your own computer, and
-* a public key which is placed on any remote system you will access.
+* a public key which can be placed on any remote system you will access.
 
 > ## Private keys are your secure digital passport
 >
@@ -180,7 +179,7 @@ Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
 > Nothing is *less* secure than a private key with no password. If you skipped
 > password entry by accident, go back and generate a new key pair *with* a
 > strong password.
-{: .error}
+{: .warning}
 
 ##### Use RSA for Older Systems
 
@@ -251,7 +250,7 @@ Take a look in the folder you specified. You should see two new files:
   asks for a key, this is the one to send. It is also safe to upload to
   websites such as GitHub: it is meant to be seen.
 
-## SSH Agent for Easier Key Handling
+### SSH Agent for Easier Key Handling
 
 An SSH key is only as strong as the password used to unlock it, but on the
 other hand, typing out a complex password every time you connect to a machine
@@ -266,7 +265,7 @@ password safe, and removes the tedium of entering the password multiple times.
 Just remember your password, because once it expires in the Agent, you have to
 type it in again.
 
-### SSH Agents on Linux, macOS, and Windows
+#### SSH Agents on Linux, macOS, and Windows
 
 Open your terminal application and check if an agent is running:
 
@@ -307,26 +306,38 @@ Lifetime set to 86400 seconds
 For the duration (8 hours), whenever you use that key, the SSH Agent will
 provide the key on your behalf without you having to type a single keystroke.
 
-### SSH Agent on PuTTY
+#### SSH Agent on PuTTY
 
 If you are using PuTTY on Windows, download and use `pageant` as the SSH agent.
 See the [PuTTY documentation][putty-agent].
 
-### Log in
+### Transfer Your Public Key
+
+{% if site.remote.portal %}
+Visit {{ site.remote.portal }} to upload your SSH public key.
+{% else %}
+Use the **s**ecure **c**o**p**y tool to send your public key to the cluster.
+
+```
+{{ site.local.prompt }} scp ~/.ssh/id_ed25519.pub {{ site.remote.user }}@{{ site.remote.login }}:~/
+```
+{: .language-bash}
+{% endif %}
+
+## Log In to the Cluster
 
 Go ahead and open your terminal or graphical SSH client, then log in to the
-cluster using your username and the remote computer you can reach from the
-outside world, {{ site.remote.location }}.
+cluster. Replace `{{ site.remote.user }}` with your username or the one
+supplied by the instructors.
 
 ```
 {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
 ```
 {: .language-bash}
 
-Remember to replace `{{ site.remote.user }}` with your username or the one
-supplied by the instructors. You may be asked for your password. Watch out: the
-characters you type after the password prompt are not displayed on the screen.
-Normal output will resume once you press `Enter`.
+You may be asked for your password. Watch out: the characters you type after
+the password prompt are not displayed on the screen. Normal output will resume
+once you press `Enter`.
 
 You may have noticed that the prompt changed when you logged into the remote
 system using the terminal (if you logged in using PuTTY this will not apply
@@ -345,7 +356,7 @@ following convention:
   terminal connected to the remote system
 - `$` when it really doesn't matter which system the terminal is connected to.
 
-## Looking Around
+## Looking Around Your Remote Home
 
 Very often, many users are tempted to think of a high-performance computing
 installation as one giant, magical machine. Sometimes, people will assume that
@@ -394,16 +405,56 @@ double-check, include hidden files in your directory listing:
 ```
 {: .language-bash}
 ```
-  .            .bashrc
+  .            .bashrc           id_ed25519.pub
   ..           .ssh
 ```
 {: .output}
 
 In the first column, `.` is a reference to the current directory and `..` a
 reference to its parent (`{{ site.remote.homedir }}`). You may or may not see
-the other two files, or files like them: `.bashrc` is a shell configuration
-file, which you can edit with your preferences; and `.ssh` is a directory
-storing SSH keys and a record of authorized connections.
+the other files, or files like them: `.bashrc` is a shell configuration file,
+which you can edit with your preferences; and `.ssh` is a directory storing SSH
+keys and a record of authorized connections.
+
+### Install Your SSH Key
+
+If you transferred your SSH public key with `scp`, you should see
+`id_ed25519.pub` in your home directory. To "install" this key, it must be
+listed in a file named `authorized_keys` under the `.ssh` folder.
+
+If the `.ssh` folder was not listed above, then it does not yet exist: create it.
+
+```
+{{ site.remote.prompt }} mkdir ~/.ssh
+```
+{: .language-bash}
+
+Now, use `cat` to print your public key, but redirect the output, appending it
+to the `authorized_keys` file:
+
+```
+{{ site.remote.prompt }} cat ~/id_ed25519.pub >> ~/.ssh/authorized_keys
+```
+{: .language-bash}
+
+That's all! Disconnect, then try to log back into the remote: if your key and
+agent have been configured correctly, you should not be prompted for a password.
+
+```
+{{ site.remote.prompt }} logout
+```
+{: .language-bash}
+
+```
+{{ site.local.prompt }}  ssh {{ site.remote.user }}@{{ site.remote.login }}
+```
+{: .language-bash}
+
+
+```
+{{ site.remote.prompt }} ls
+```
+{: .language-bash}
 
 > ## What's different between your machine and the remote?
 >
@@ -428,6 +479,8 @@ storing SSH keys and a record of authorized connections.
 > > the local computer: they are completely separate systems!
 > {: .solution}
 {: .discussion}
+
+## Look Around the Rest of the System
 
 Most high-performance computing systems run the Linux operating system, which
 is built around the UNIX [Filesystem Hierarchy Standard][fshs]. Instead of
