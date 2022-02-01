@@ -1,0 +1,51 @@
+---
+title:
+- HPC Jargon Buster
+author:
+- HPC Carpentry Team
+theme:
+- Copenhagen
+date:
+- February 1, 2022
+
+---
+
+# Your Laptop
+
+![Your laptop. Banana for scale](img/laptop_b_c.png){height=45%}
+
+- Familiar starting point, accessed locally
+- Good for local computational tasks
+- Highly flexible, easy to reconfigure for new tasks
+
+# A large computer
+
+![A large computer. Banana for scale](img/large_computer_b_c.png){height=45%}
+
+- More powerful
+- Accessed remotely, likely shared by a small group
+- Less flexible -- need to accommodate other users
+
+# A mainframe
+
+![A mainframe computer. Banana for scale](img/mainframe_b_c.png){height=45%}
+
+- Very powerful special-purpose
+- Generally non-interactive
+- Managed at a large-organization level
+
+# A cluster or supercomputer
+
+![A cluster. Banana for scale](img/cluster_b_c.png){height=45%}
+
+- Special nodes accessed remotely
+- Compute service accessed via resource manager
+- Some flexibility on local accounts
+- Specially-built software for best performance
+
+# A larger cluster
+
+![A larger cluster. Bananas for scale](img/multi_cluster_b.png){height=50%}
+
+- May be more heterogeneous
+- "The Cloud" looks like this
