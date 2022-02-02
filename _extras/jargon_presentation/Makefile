@@ -5,8 +5,8 @@ PDF = hpc_jargon.pdf
 all: $(PDF)
 .PHONY: all clean
 
-%.pdf: %.md
-	pandoc -f markdown -t beamer $< -o $@
+%.pdf: %.md beamer.tex
+	pandoc -f markdown+smart -t beamer --template beamer.tex $< -o $@
 
 clean:
 	rm -rv $(PDF)
