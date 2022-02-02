@@ -20,7 +20,7 @@ some notes for the presenter.
 
 The scheme is meant to work with the `pdfpc` presentation
 tool.  The idea is that you would create a PDF presentation
-from the source `hpc_jargon.txt` file, and then present it
+from the source `hpc_jargon.md` file, and then present it
 with `pdfpc` and read the notes.
 
 In the below workflow example, the `pdfpc` tool is used 
@@ -30,6 +30,6 @@ and the presenter console would be viewable by the presenter,
 with the timer and notes so that content does not get missed.
 
 ```
-$ pandoc -t beamer hpc_jargon.txt -o hpc_jargon.pdf
+$ pandoc -f markdown -t beamer hpc_jargon.md -o hpc_jargon.pdf
 $ pdfpc -w hpc_jargon.pdf
 ```
