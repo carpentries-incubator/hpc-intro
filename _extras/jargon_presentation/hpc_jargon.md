@@ -9,7 +9,7 @@ linkstyle: bold
 
 # Your Personal Computer
 
-![Your laptop (banana for scale)](img/laptop_b_c.png){height=45%}
+![Standalone computers (banana for scale)](img/standalone_b_c.png){height=45%}
 
 - Familiar starting point, accessed locally
 - Good for local computational tasks

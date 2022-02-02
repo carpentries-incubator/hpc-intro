@@ -6,7 +6,7 @@ all: $(PDF)
 .PHONY: all clean
 
 %.pdf: %.md beamer.tex
-	pandoc -f markdown+smart -t beamer --template beamer.tex $< -o $@
+	pandoc -f markdown -t beamer --template beamer.tex $< -o $@
 
 clean:
 	rm -rv $(PDF)
