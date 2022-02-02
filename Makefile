@@ -154,7 +154,7 @@ lesson-fixme :
 
 ## spellcheck
 spellcheck:
-	codespell --skip="assets,*.svg,.vendor" --quiet-level=2  -L "dropse,hist,namd,rouge,figurestyle"
+	codespell --skip="assets,*.svg,*.tex,.vendor" --quiet-level=2  -L "dropse,hist,namd,rouge"
 
 ##
 ## IV. Auxililary (plumbing) commands
