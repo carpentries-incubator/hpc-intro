@@ -33,13 +33,13 @@ linkstyle: bold
 - Accessed remotely, likely shared by a small group
 - Less flexible -- need to accommodate other users
 
-# A mainframe
 
-![A mainframe computer (banana for scale)](img/mainframe_b_c.png){height=45%}
+# Cloud Systems
 
-- Very powerful special-purpose system
-- Generally non-interactive
-- Managed at a large-organization level
+![Cloud computers (bananas for scale)](img/multi_cluster_b.png){height=50%}
+
+- Generally quite heterogeneous
+- Many types of servers
 
 # A cluster or supercomputer
 
@@ -50,9 +50,10 @@ linkstyle: bold
 - Some flexibility on local accounts
 - Specially-built software for best performance
 
-# A larger cluster
+# HPC workflow
 
-![A larger cluster (bananas for scale)](img/multi_cluster_b.png){height=50%}
+![Schematic HPC workflow](img/workflow_a.png){height=50%}
 
-- May be more heterogeneous
-- "The Cloud" looks like this, many types of servers
+- You talk to the cluster head node
+- The cluster head node distributes compute tasks
+- You view results
