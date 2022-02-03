@@ -14,14 +14,14 @@ keypoints:
 - "These other systems can be used to do work that would either be impossible
   or much slower on smaller systems."
 - "The standard method of interacting with such systems is via a command line
-  interface called Bash."
+  interface."
 ---
 
 Frequently, research problems that use computing can outgrow the capabilities
 of the desktop or laptop computer where they started:
 
 * A statistics student wants to cross-validate a model. This involves running
-  the model 1000 times &mdash; but each run takes an hour. Running the model on
+  the model 1000 times -- but each run takes an hour. Running the model on
   a laptop will take over a month! In this research problem, final results are
   calculated after all 1000 models have run, but typically only one model is
   run at a time (in **serial**) on the laptop. Since each of the 1000 runs is
@@ -29,13 +29,13 @@ of the desktop or laptop computer where they started:
   possible to run them all at once (in **parallel**).
 * A genomics researcher has been using small datasets of sequence data, but
   soon will be receiving a new type of sequencing data that is 10 times as
-  large. It's already challenging to open the datasets on a computer &mdash;
+  large. It's already challenging to open the datasets on a computer --
   analyzing these larger datasets will probably crash it. In this research
   problem, the calculations required might be impossible to parallelize, but a
   computer with **more memory** would be required to analyze the much larger
   future data set.
 * An engineer is using a fluid dynamics package that has an option to run in
-  parallel. So far, this option was not utilized on a desktop. In going from 2D
+  parallel. So far, this option was not used on a desktop. In going from 2D
   to 3D simulations, the simulation time has more than tripled. It might be
   useful to take advantage of that option or feature. In this research problem,
   the calculations in each region of the simulation are largely independent of
@@ -60,7 +60,7 @@ problems in parallel**.
 > * How could more computing help you do more or better research?
 {: .discussion }
 
-## A standard Laptop for standard tasks
+## A Standard Laptop for Standard Tasks
 
 Today, people coding or analysing data typically work with laptops.
 
@@ -82,7 +82,7 @@ Schematically, this can be reduced to the following:
    file="/fig/Simple_Von_Neumann_Architecture.svg"
    alt="Schematic of how a computer works" caption="" %}
 
-## When tasks take too long
+## When Tasks Take Too Long
 
 When the task to solve becomes heavy on computations, the operations are
 typically out-sourced from the local laptop or desktop to elsewhere. Take for
@@ -114,7 +114,7 @@ your laptop will ever have. In any case, you need a local device (laptop,
 workstation, mobile phone or tablet) to interact with this remote machine,
 which people typically call 'a server'.
 
-## When one server is not enough
+## When One Server Is Not Enough
 
 If the computational task or analysis to complete is daunting for a single
 server, larger agglomerations of servers are used. These go by the name of
@@ -135,7 +135,7 @@ to
 1. work with a distributed set of computers (called nodes) rather than the
    machine attached to their keyboard & mouse
 
-> ## I've never used a server, have I?
+> ## I've Never Used a Server, Have I?
 >
 > Take a minute and think about which of your daily interactions with a
 > computer may require a remote server or even cluster to provide you with

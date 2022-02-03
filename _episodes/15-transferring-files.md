@@ -7,7 +7,7 @@ questions:
 objectives:
 - "Be able to transfer files to and from a computing cluster."
 keypoints:
-- "`wget` downloads a file from the internet."
+- "`wget` and `curl -O` download a file from the internet."
 - "`scp` transfer files to and from your computer."
 - "You can use an SFTP client like FileZilla to transfer files through a GUI."
 ---
@@ -17,20 +17,28 @@ to or from the cluster. There are several options for transferring data between
 computing resources, from command line options to GUI programs, which we will
 cover here.
 
-## Download files from the Internet
+## Download Files From the Internet
 
-One of the most straightforward ways to download files is to use `wget`. Any
-file that can be downloaded in your web browser through a direct link can be
-downloaded using `wget`. This is a quick way to download datasets or source
-code.
+One of the most straightforward ways to download files is to use either `curl`
+or `wget`, one of these is usually installed in most Linux shells, on Mac OS
+terminal and in GitBash. Any file that can be downloaded in your web browser 
+through a direct link can be downloaded using `curl -O` or `wget`. This is a 
+quick way to download datasets or source code. 
 
-The syntax is: `wget https://some/link/to/a/file`. Try it out by downloading
+The syntax for these commands is: `curl -O https://some/link/to/a/file` 
+and `wget https://some/link/to/a/file`. Try it out by downloading
 some material we'll use later on, from a terminal on your local machine.
 
+```
+{{ site.local.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
+```
+{: .language-bash}
+or
 ```
 {{ site.local.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 ```
 {: .language-bash}
+
 
 > ## `tar.gz`?
 >
@@ -41,7 +49,7 @@ some material we'll use later on, from a terminal on your local machine.
 > mouthful, later on.
 {: .discussion}
 
-## Transferring single files and folders with scp
+## Transferring Single Files and Folders With `scp`
 
 To copy a single file to or from the cluster, we can use `scp` ("secure copy").
 The syntax can be a little complex for new users, but we'll break it down.
@@ -68,7 +76,7 @@ remote computer. We can leave it at that if we don't care where the file goes.
 ```
 {: .language-bash}
 
-> ## Upload a file
+> ## Upload a File
 >
 > Copy the file you just downloaded from the Internet to your home directory on
 > {{ site.remote.name }}.
@@ -82,17 +90,19 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > {: .solution}
 {: .challenge}
 
-> ## Why not download on {{ site.remote.name }} directly?
+> ## Why Not Download on {{ site.remote.name }} Directly?
 >
 > Some computer clusters are behind firewalls set to only allow transfers
-> initiated from the *outside*. This means that the `wget` command will fail,
+> initiated from the *outside*. This means that the `curl` command will fail,
 > as an address outside the firewall is unreachable from the inside. To get
-> around this, run the `wget` command from your local machine to download the
-> file, then use the `scp` command (just below here) to upload it to the
-> cluster.
+> around this, run the `curl` or `wget` command from your local machine to 
+> download the file, then use the `scp` command (just below here) to upload
+> it to the cluster.
 >
+> > ## `curl -O` from {{ site.remote.login }}
+> > or
 > > ## `wget` from {{ site.remote.login }}
-> >
+> > 
 > > Try downloading the file directly. Note that it may well fail, and that's
 > > OK!
 > >
@@ -100,6 +110,8 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > > >
 > > > ```
 > > > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
+> > > {{ site.remote.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
+> > > or
 > > > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 > > > ```
 > > > {: .language-bash}
@@ -122,7 +134,7 @@ provided.
 
 > ## Caution
 >
-> For a large directory &mdash; either in size or number of files &mdash;
+> For a large directory -- either in size or number of files --
 > copying with `-r` can take a long time to complete.
 {: .callout}
 
@@ -136,8 +148,8 @@ path starting with a `/` is called *absolute*, since there can be nothing above
 the root `/`. A path that does not start with `/` is called *relative*, since
 it is not anchored to the root.
 
-If you want to upload a file to a location inside your home directory &mdash;
-which is often the case &mdash; then you don't need a leading `/`. After the
+If you want to upload a file to a location inside your home directory --
+which is often the case -- then you don't need a leading `/`. After the
 `:`, start writing the sequence of folders that lead to the final storage
 location for the file or, as mentioned above, provide nothing if your home
 directory *is* the destination.
@@ -145,7 +157,7 @@ directory *is* the destination.
 A trailing slash on the target directory is optional, and has no effect for
 `scp -r`, but is important in other commands, like `rsync`.
 
-> ## A note on `rsync`
+> ## A Note on `rsync`
 >
 > As you gain experience with transferring files, you may find the `scp`
 > command limiting. The [rsync](https://rsync.samba.org/) utility provides
@@ -191,7 +203,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > {: .language-bash}
 {: .callout}
 
-> ## A note on ports
+> ## A Note on Ports
 >
 > All file transfers using the above methods use SSH to encrypt data sent
 > through the network. So, if you can connect via SSH, you will be able to
@@ -199,7 +211,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > in use, you will have to specify it using the appropriate flag, often `-p`,
 > `-P`, or `--port`. Check `--help` or the `man` page if you're unsure.
 >
-> > ## Rsync port
+> > ## Rsync Port
 > >
 > > Say we have to connect `rsync` through port 768 instead of 22. How would we
 > > modify this command?
@@ -222,7 +234,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > {: .challenge}
 {: .callout}
 
-## Transferring files interactively with FileZilla
+## Transferring Files Interactively with FileZilla
 
 FileZilla is a cross-platform client for downloading and uploading files to and
 from a remote computer. It is absolutely fool-proof and always works quite
@@ -255,7 +267,7 @@ will be more efficient than using FileZilla (or related applications) that
 would copy from the source to your local machine, then to the destination
 machine.
 
-## Archiving files
+## Archiving Files
 
 One of the biggest challenges we often face when transferring data between
 remote HPC systems is that of large numbers of files. There is an overhead to
@@ -319,7 +331,7 @@ familiar. Let's see about that compression, using `du` for "**d**isk
 ```
 {: .language-bash}
 
-> ## Files occupy at least one "block"
+> ## Files Occupy at Least One "Block"
 >
 > If the filesystem block size is larger than 36 KB, you'll see a larger
 > number: files cannot be smaller than one block.
@@ -383,15 +395,15 @@ When it's done, check the directory size with `du` and compare.
 > > {: .language-bash}
 > {: .solution}
 >
-> > ## Was the data compressed?
+> > ## Was the Data Compressed?
 > >
 > > Text files compress nicely: the "tarball" is one-quarter the total size of
 > > the raw data!
 > {: .discussion}
 {: .challenge}
 
-If you want to reverse the process &mdash; compressing raw data instead of
-extracting it &mdash; set a `c` flag instead of `x`, set the archive filename,
+If you want to reverse the process -- compressing raw data instead of
+extracting it -- set a `c` flag instead of `x`, set the archive filename,
 then provide a directory to compress:
 
 ```

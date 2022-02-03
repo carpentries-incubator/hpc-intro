@@ -39,19 +39,19 @@ sure how this would help them.
 ## Dana Fisher
 
 Dana wants to cross-validate a model for a statistics class project. This
-involves running the model 1000 times &mdash; but each run takes an hour.
+involves running the model 1000 times -- but each run takes an hour.
 Running the model on a laptop will take over a month!
 
 ## Rina Watson
 
 Rina, a genomics researcher, has been using small datasets of sequence data,
 but soon will be receiving a new type of sequencing data that is 10 times as
-large. It's already challenging to open the datasets on a computer &mdash;
+large. It's already challenging to open the datasets on a computer --
 analyzing these larger datasets will probably crash it.
 
 ## Lucy Navier-Stokes
 
 Lucy is using a fluid dynamics package that has an option to run in parallel.
-So far, this option was not utilized on a desktop. In going from 2D to 3D
+So far, this option was not used on a desktop. In going from 2D to 3D
 simulations, the simulation time has more than tripled. It might be useful to
 take advantage of that parallel feature to speed things up.

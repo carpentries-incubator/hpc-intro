@@ -20,7 +20,7 @@ keypoints:
 - "If in doubt, request more resources than you will need."
 ---
 
-## Job scheduler
+## Job Scheduler
 
 An HPC system might have thousands of nodes and thousands of users. How do we
 decide who gets what and when? How do we ensure that a task is run with the
@@ -37,7 +37,7 @@ why sometimes your job do not start instantly as in your laptop.
    file="/fig/restaurant_queue_manager.svg"
    alt="Compare a job scheduler to a waiter in a restaurant" %}
 
-> ## Job scheduling roleplay (optional)
+> ## Job Scheduling Roleplay (Optional)
 >
 > Your instructor will divide you into groups taking on different roles in the
 > cluster (users, compute nodes and the scheduler). Follow their instructions
@@ -99,25 +99,36 @@ The scheduler used in this lesson is {{ site.sched.name }}. Although
 regardless of what software is being used. The exact syntax might change, but
 the concepts remain the same.
 
-## Running a batch job
+## Running a Batch Job
 
 The most basic use of the scheduler is to run a command non-interactively. Any
 command (or series of commands) that you want to run on the cluster is called a
 *job*, and the process of using a scheduler to run the job is called *batch job
 submission*.
 
-In this case, the job we want to run is just a shell script. Let's create a
-demo shell script to run as a test. The landing pad will have a number of
-terminal-based text editors installed. Use whichever you prefer. Unsure? `nano`
-is a pretty good, basic choice.
+In this case, the job we want to run is a shell script -- essentially a
+text file containing a list of UNIX commands to be executed in a sequential
+manner. Our shell script will have three parts:
+
+* On the very first line, add `{{ site.remote.bash_shebang }}`. The `#!`
+  (pronounced "hash-bang" or "shebang") tells the computer what program is
+  meant to process the contents of this file. In this case, we are telling it
+  that the commands that follow are written for the command-line shell (what
+  we've been doing everything in so far). If we wanted our script to be run
+  with something else -- Python, for example -- we could change this line to
+  read `#!/usr/bin/python3`.
+* Anywhere below the first line, we'll add an `echo` command with a friendly
+  greeting. When run, the shell script will print whatever comes after `echo`
+  in the terminal.
+  * `echo -n` will print everything that follows, *without* ending
+    the line by printing the new-line character.
+* On the last line, we'll invoke the `hostname` command, which will print the
+  name of the machine the script is run on.
 
 ```
 {{ site.remote.prompt }} nano example-job.sh
-{{ site.remote.prompt }} chmod +x example-job.sh
-{{ site.remote.prompt }} cat example-job.sh
 ```
 {: .language-bash}
-
 ```
 {{ site.remote.bash_shebang }}
 
@@ -126,7 +137,105 @@ hostname
 ```
 {: .output}
 
-> ## Creating our test job
+Let's try running it:
+
+```
+$ example-job.sh 
+```
+{: .language-bash}
+
+```
+bash: example-job.sh: command not found...
+```
+{: .error}
+
+Strangely enough, Bash can't find our script. As it turns out, Bash will only
+look in certain directories for scripts to run. To run anything else, we need
+to tell Bash exactly where to look. To run a script that we wrote ourselves, we
+need to tell Bash where it is explicitly, so it doesn't go searching. We could
+do this one of two ways: either with the absolute path 
+`{{ site.workshop_host_homedir }}/yourUserName/example-job.sh` (equivalently,
+`~/example-job.sh`), or with the relative path `./example-job.sh`
+(where "." stands for "the current working directory").
+
+```
+$ ./example-job.sh
+```
+{: .language-bash}
+
+```
+bash: ./example-job.sh: Permission denied
+```
+{: .error}
+
+There's one last thing we need to do. Before a file can be run, it needs
+"permission" to execute. Let's look at the permissions for every file in this
+directory using the "long" format option with `ls`:
+
+```
+$ ls -l
+```
+{: .language-bash}
+
+```
+...
+-rw-rw-r-- 1 yourUsername yourGroup  40 Jan 16 19:41 example-job.sh
+...
+```
+{: .output}
+
+Let's see if we can understand **what each field of a given row represents**,
+working left to right.
+
+1. **Permissions:** to the far left, there are 10 single-character columns with
+   some or all of the following symbols:
+   * `d` indicates whether something is a directory
+   * `r` indicates permission to **r**ead the file or directory
+   * `w` indicates permission to **w**rite to the file or directory
+   * `x` indicates permission to e**x**ecute the file or directory
+   * `-` is used where permission has not been granted.
+
+   There are three fields of `rwx` permissions following the spot for `d`:
+  
+   * The first set of `rwx` are the permissions that the `u`ser who owns the
+     file has (in this case the owner is `yourUsername`).
+   * The second set of `rwx`s are permissions that other members of the owner's
+     `g`roup share (in this case, the group is named `yourGroup`); shorthand is `g`.
+   * The third set of `rwx`s are permissions that all `o`ther users can do with
+     a file.
+   * Although files are typically created with read permissions for
+     everyone, typically the permissions on your home directory prevent others
+     from being able to access the file in the first place.
+2. **References:** This counts the number of references ([hard links](
+   https://en.wikipedia.org/wiki/Hard_link)) to the item (file, folder,
+   symbolic link or "shortcut").
+3. **Owner:** This is the username of the user who owns the file. Their
+   permissions are indicated in the first permissions field.
+4. **Group:** This is the user group of the user who owns the file. Members of
+   this user group have permissions indicated in the second permissions field.
+5. **Size of item:** This is the number of bytes in a file, or the number of
+   [filesystem blocks](https://en.wikipedia.org/wiki/Block_(data_storage))
+   occupied by the contents of a folder. (We can use the `-h` option here to
+   get a human-readable file size in megabytes, gigabytes, etc.)
+6. **Time last modified:** This is the last time the file was modified.
+7. **Filename:** This is the filename.
+
+Changing permissions is done with `chmod`. To add executable permissions for
+our own **u**sername, we'll enter:
+
+```
+$ chmod u+x example-job.sh
+$ ls -l example-job.sh
+```
+{: .language-bash}
+```
+...
+-rwxrw-r-- 1 yourUsername yourGroup  40 Jan 16 19:41 example-job.sh
+```
+{: .output}
+
+
+> ## Creating Our Test Job
 >
 > Run the script. Does it execute on the cluster or just our login node?
 >
@@ -147,17 +256,17 @@ hostname
 
 If you completed the previous challenge successfully, you probably realise that
 there is a distinction between running the job through the scheduler and just
-"running it". To submit this job to the scheduler, we use the `{{
-site.sched.submit.name }}` command.
+"running it". To submit this job to the scheduler, we use the
+`{{ site.sched.submit.name }}` command.
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
 ```
 {: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/basic-job-script.snip %}
 
-And that's all we need to do to submit a job. Our work is done &mdash; now the
+And that's all we need to do to submit a job. Our work is done -- now the
 scheduler takes over and tries to run the job for us. While the job is waiting
 to run, it goes into a list of jobs called the *queue*. To check on our job's
 status, we check the queue using the command
@@ -179,7 +288,7 @@ interval to a more reasonable value, for example 15 seconds, with the `-n 15`
 parameter. Let's try using it to monitor another job.
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
 {{ site.remote.prompt }} watch -n 15 {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .language-bash}
@@ -188,16 +297,16 @@ You should see an auto-updating display of your job's status. When it finishes,
 it will disappear from the queue. Press `Ctrl-c` when you want to stop the
 `watch` command.
 
-> ## Where's the output?
+> ## Where's the Output?
 >
-> On the login node, this script printed output to the terminal &mdash; but
+> On the login node, this script printed output to the terminal -- but
 > when we exit `watch`, there's nothing. Where'd it go?
 >
 > Cluster job output is typically redirected to a file in the directory you
 > launched it from. Use `ls` to find and read the file.
 {: .discussion}
 
-## Customising a job
+## Customising a Job
 
 The job we just ran used all of the scheduler's default options. In a
 real-world scenario, that's probably not what we want. The default options
@@ -237,7 +346,7 @@ echo "This script has finished successfully."
 Submit the job and monitor its status:
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .language-bash}
@@ -246,7 +355,7 @@ Submit the job and monitor its status:
 
 Fantastic, we've successfully changed the name of our job!
 
-> ## Setting up email notifications
+> ## Setting up Email Notifications
 >
 > Jobs on an HPC system might run for days or even weeks. We probably have
 > better things to do than constantly check on the status of our job with
@@ -268,7 +377,7 @@ Fantastic, we've successfully changed the name of our job!
 > {: .solution}
 {: .challenge}
 
-### Resource requests
+### Resource Requests
 
 But what about more important changes, such as the number of cores and memory
 for our jobs? One thing that is absolutely critical when working on an HPC
@@ -291,7 +400,7 @@ It's best if your requests accurately reflect your job's requirements. We'll
 talk more about how to make sure that you're using resources effectively in a
 later episode of this lesson.
 
-> ## Submitting resource requests
+> ## Submitting Resource Requests
 >
 > Modify our `hostname` script so that it runs for a minute, then submit a job
 > for it on the cluster.
@@ -315,7 +424,7 @@ later episode of this lesson.
 > > {: .output}
 > >
 > > ```
-> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
+> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
 > > ```
 > > {: .language-bash}
 > >
@@ -350,7 +459,7 @@ Submit the job and wait for it to finish. Once it is has finished, check the
 log file.
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
 {{ site.remote.prompt }} watch -n 15 {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .language-bash}
@@ -370,7 +479,7 @@ jobs on the node will be unaffected. This means that one user cannot mess up
 the experience of others, the only jobs affected by a mistake in scheduling
 will be their own.
 
-## Cancelling a job
+## Cancelling a Job
 
 Sometimes we'll make a mistake and need to cancel a job. This can be done with
 the `{{ site.sched.del }}` command. Let's submit a job and then cancel it using
@@ -378,7 +487,7 @@ its job number (remember to change the walltime so that it runs long enough for
 you to cancel it before it is killed!).
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {{ site.sched.submit.options }} example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .language-bash}
@@ -400,7 +509,7 @@ successful.
 
 {% include {{ site.snippets }}/scheduler/terminate-multiple-jobs.snip %}
 
-## Other types of jobs
+## Other Types of Jobs
 
 Up to this point, we've focused on running jobs in batch mode.
 {{ site.sched.name }} also provides the ability to start an interactive session.
