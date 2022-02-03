@@ -1,0 +1,28 @@
+easyblock = "MakeCp"
+
+name = 'amdahl'
+version = '1.0'
+
+homepage = 'http://XXX'
+description = """
+ An illustration program for Amdahls Law that does fake work. """
+
+toolchain = {'name': 'foss', 'version': '2021a'}
+
+# Not in a repo right now
+# source_urls = ['http://XXX']
+sources = ['%(name)s_v%(version)s.tgz']
+
+dependencies = [('SciPy-bundle', '2021.05')]
+
+# We just use the MakeCp block to copy each file to the right destination folder
+skipsteps = ['build']
+
+files_to_copy = [(["*"], 'bin')]
+
+sanity_check_paths = {
+    'files': ["bin/amdahl", "bin/amdahl.py"],
+    'dirs': [],
+}
+
+moduleclass = 'tools'

@@ -1,0 +1,4 @@
+#!/bin/bash
+# Assuming script is in the same directory as this shell script
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+python $SCRIPT_DIR/amdahl.py "$@"
