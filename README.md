@@ -224,9 +224,7 @@ provided to help guide planning and decision-making.
 
    * Discuss the ways some activities can affect everyone else on the system
 
-### Nascent lesson ideas
-
-1. Playing friendly in the cluster (psteinb: the following is very tricky as it
+1. UPCOMING: Playing friendly in the cluster (psteinb: the following is very tricky as it
    is site dependent, I personally would like to see it in
    [_extras](
    https://github.com/carpentries-incubator/hpc-intro/tree/gh-pages/_extras)
@@ -235,6 +233,8 @@ provided to help guide planning and decision-making.
    * Profiling code &mdash; time, size, etc.
    * Getting system stats
    * Consequences of going over
+   
+### Nascent lesson ideas for Parallel Novice
 
 1. Filesystems and Storage: objectives likely include items from @psteinb's
    [Shared Filesystem lesson](
