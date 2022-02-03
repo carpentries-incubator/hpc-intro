@@ -42,7 +42,7 @@ def do_work(work_time=30, parallel_proportion=0.8, comm=MPI.COMM_WORLD):
         parallel_sleep_time = None
 
     # Tell all processes how much work they need to do using 'bcast' to broadcast
-    # (this also creates an implicit barrier, blocking processes until they recieve
+    # (this also creates an implicit barrier, blocking processes until they receive
     # the value)
     parallel_sleep_time = comm.bcast(parallel_sleep_time, root=0)
 
