@@ -2,8 +2,9 @@
 title: "HPC Jargon Buster"
 author: "HPC Carpentry Team"
 theme: "Copenhagen"
+colortheme: "dolphin"
 date: "February 1, 2022"
-urlcolor: blue
+urlcolor: Blue
 linkstyle: bold
 ---
 
@@ -17,7 +18,7 @@ linkstyle: bold
 
 # Shared Computing Resources
 
-![An HPC resource (img: [Julian Herzog @ Wikimedia Commons](https://commons.wikimedia.org/wiki/File:High_Performance_Computing_Center_Stuttgart_HLRS_2015_07_Cray_XC40_Hazel_Hen_IO.jpg))](img/High_Performance_Computing_Center_Stuttgart_HLRS_2015_07_Cray_XC40_Hazel_Hen_IO.jpg){height=40%}
+![An HPC resource (img: [Julian Herzog](https://commons.wikimedia.org/wiki/File:High_Performance_Computing_Center_Stuttgart_HLRS_2015_07_Cray_XC40_Hazel_Hen_IO.jpg))](img/High_Performance_Computing_Center_Stuttgart_HLRS_2015_07_Cray_XC40_Hazel_Hen_IO.jpg){height=40%}
 
 <!-- Image: https://commons.wikimedia.org/wiki/File:High_Performance_Computing_Center_Stuttgart_HLRS_2015_07_Cray_XC40_Hazel_Hen_IO.jpg, Julian Herzog. -->
 
