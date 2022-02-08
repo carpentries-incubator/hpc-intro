@@ -60,6 +60,12 @@ problems in parallel**.
 > * How could more computing help you do more or better research?
 {: .discussion }
 
+## Jargon Busting Presentation
+
+Open the [HPC Jargon Buster]({{ site.baseurl }}/files/jargon.html#p1) in
+a new tab. To present the content, press `C` to open a **c**lone in
+a separate window, then press `P` to toggle presentation mode.
+
 ## A Standard Laptop for Standard Tasks
 
 Today, people coding or analysing data typically work with laptops.
