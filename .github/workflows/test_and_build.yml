@@ -57,7 +57,7 @@ jobs:
       matrix:
         HPC_JEKYLL_CONFIG:
           - ComputeCanada_Graham_slurm
-          - EPCC_Cirrus_pbs
+          - EPCC_Cirrus_slurm
           - NIST_CTCMS_slurm
           - Norway_SIGMA2_SAGA_slurm
           - UCL_Myriad_sge
