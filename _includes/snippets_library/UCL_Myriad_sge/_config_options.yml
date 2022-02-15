@@ -33,6 +33,7 @@ sched:
   info: "qhost"
   comment: "#$ "
   hist: "jobhist"
+  hist_filter: ""
   bash_shebang: "#!/bin/bash -l"
 
 episode_order:

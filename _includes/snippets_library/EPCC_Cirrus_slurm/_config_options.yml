@@ -1,5 +1,5 @@
 #------------------------------------------------------------
-# ComputeCanada: Graham + Slurm
+# EPCC, The University of Edinburgh: Cirrus + PBS Pro
 #------------------------------------------------------------
 
 # Cluster host and scheduler options: the defaults come from
@@ -8,58 +8,63 @@
 # `_includes/snippets_library`. To use one, replace options
 # below with those in `_config_options.yml` from the
 # library. E.g, to customise for Cirrus at EPCC, running
-# PBS, we could replace the options below with those from
+# Slurm, we could replace the options below with those from
 # 
-# _includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
+# _includes/snippets_library/EPCC_Cirrus_slurm/_config_options.yml
 # 
 # If your cluster is not represented in the library, please
 # copy an existing folder, rename it, and customize for your
 # installation. Remember to keep the leading slash on the
 # `snippets` variable below!
 
-snippets: "/snippets_library/ComputeCanada_Graham_slurm"
+snippets: "/snippets_library/EPCC_Cirrus_slurm"
 
 local:
-  prompt: "[user@laptop ~]$"
-  bash_shebang: "#!/usr/bin/env bash"
+  prompt: "[auser@laptop ~]$"
+  bash_shebang: "#!/bin/bash"
 
 remote:
-  name: "Graham"
-  login: "graham.computecanada.ca"
-  host: "gra-login1"
-  node: "aci-377"
-  location: "University of Waterloo"
-  homedir: "/home"
-  user: "yourUsername"
-  prompt: "[yourUsername@gra-login1 ~]$"
-  bash_shebang: "#!/usr/bin/env bash"
+  name: "Cirrus"
+  login: "login.cirrus.ac.uk"
+  host: "cirrus-login1"
+  node: "r1i0n32"
+  location: "EPCC, The University of Edinburgh"
+  homedir: "/lustre/home/tc001"
+  user: "auser"
+  group: "tc001"
+  prompt: "[auser@cirrus-login1 ~]$"
+  bash_shebang: "#!/bin/bash"
+  module_python3: "anaconda/python3-2021.11"
 
 sched:
   name: "Slurm"
   submit:
     name: "sbatch"
-    options: ""
+    options: "--partition=standard --qos=standard --time=00:02:00"
   queue:
     debug: "debug"
     testing: "testing"
   status: "squeue"
   flag:
-    user: "-u yourUsername"
-    interactive: ""
+    user: "-u auser"
+    interactive: "--time=00:20:00 --partition=standard --qos=standard --pty /usr/bin/bash --login"
     histdetail: "-l -j"
     name: "-J"
+    partition: "-p standard"
+    qos: "-q standard"
     time: "-t"
     queue: "-p"
+    nodes: "-N"
+    tasks: "-n"
   del: "scancel"
   interactive: "srun"
   info: "sinfo"
   comment: "#SBATCH"
-  hist: "sacct -u yourUsername"
-  hist_filter: ""
+  hist: "sacct"
+  hist_filter: "--format=JobID,JobName,State,Elapsed,NodeList,MaxRSS,MaxDiskRead,MaxDiskWrite"
 
 episode_order:
-  - 10-hpc-intro
-  - 11-connecting
+  - 11-hpc-intro
   - 12-cluster
   - 13-scheduler
   - 14-modules

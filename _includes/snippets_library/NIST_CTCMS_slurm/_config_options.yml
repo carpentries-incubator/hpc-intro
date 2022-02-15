@@ -50,11 +50,13 @@ sched:
     name: "-J"
     time: "-t"
     queue: "-p"
+    partition: "-p serial"
   del: "scancel"
   interactive: "srun"
   info: "sinfo"
   comment: "#SBATCH"
   hist: "sacct -u yourUsername"
+  hist_filter: ""
 
 episode_order:
   - 10-hpc-intro
