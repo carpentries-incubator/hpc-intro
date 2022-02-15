@@ -1,5 +1,5 @@
 #------------------------------------------------------------
-# EPCC, The University of Edinburgh: Cirrus + PBS Pro
+# EPCC, The University of Edinburgh: Cirrus + Slurm
 #------------------------------------------------------------
 
 # Cluster host and scheduler options: the defaults come from
