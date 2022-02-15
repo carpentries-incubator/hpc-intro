@@ -31,7 +31,7 @@ when.
 The following illustration compares these tasks of a job scheduler to a waiter
 in a restaurant. If you can relate to an instance where you had to wait for a
 while in a queue to get in to a popular restaurant, then you may now understand
-why sometimes your job do not start instantly as in your laptop.
+why sometimes your job does not start instantly as on your laptop.
 
 {% include figure.html max-width="75%" caption=""
    file="/fig/restaurant_queue_manager.svg"
@@ -127,6 +127,7 @@ manner. Our shell script will have three parts:
 
 ```
 {{ site.remote.prompt }} nano example-job.sh
+{{ site.remote.prompt }} cat example-job.sh
 ```
 {: .language-bash}
 ```
@@ -145,7 +146,7 @@ $ example-job.sh
 {: .language-bash}
 
 ```
-bash: example-job.sh: command not found...
+bash: example-job.sh: command not found
 ```
 {: .error}
 
@@ -154,7 +155,7 @@ look in certain directories for scripts to run. To run anything else, we need
 to tell Bash exactly where to look. To run a script that we wrote ourselves, we
 need to tell Bash where it is explicitly, so it doesn't go searching. We could
 do this one of two ways: either with the absolute path 
-`{{ site.workshop_host_homedir }}/yourUserName/example-job.sh` (equivalently,
+`{{ site.remote.homedir }}/{{ site.remote.user }}/example-job.sh` (equivalently,
 `~/example-job.sh`), or with the relative path `./example-job.sh`
 (where "." stands for "the current working directory").
 
@@ -179,7 +180,7 @@ $ ls -l
 
 ```
 ...
--rw-rw-r-- 1 yourUsername yourGroup  40 Jan 16 19:41 example-job.sh
+-rw-r--r-- 1 {{ site.remote.user }} {{ site.remote.group }}  40 Jan 16 19:41 example-job.sh
 ...
 ```
 {: .output}
@@ -195,24 +196,24 @@ working left to right.
    * `x` indicates permission to e**x**ecute the file or directory
    * `-` is used where permission has not been granted.
 
-   There are three fields of `rwx` permissions following the spot for `d`:
+   There are three sets of `rwx` permissions following the spot for `d`:
   
-   * The first set of `rwx` are the permissions that the `u`ser who owns the
-     file has (in this case the owner is `yourUsername`).
-   * The second set of `rwx`s are permissions that other members of the owner's
-     `g`roup share (in this case, the group is named `yourGroup`); shorthand is `g`.
-   * The third set of `rwx`s are permissions that all `o`ther users can do with
-     a file.
+   * The first set of `rwx` settings specifies the permissions that the `u`ser who owns the
+     file has (in this case the owner is `{{ site.remote.user }}`).
+   * The second set specifies the permissions that other members of the owner's
+     `g`roup share (in this case, the group is named `{{ site.remote.group }}`); shorthand is `g`.
+   * The third set specifies the permissions that control what all `o`ther users can do with
+     the file.
    * Although files are typically created with read permissions for
-     everyone, typically the permissions on your home directory prevent others
+     everyone, the permissions on your home directory prevent others
      from being able to access the file in the first place.
 2. **References:** This counts the number of references ([hard links](
    https://en.wikipedia.org/wiki/Hard_link)) to the item (file, folder,
    symbolic link or "shortcut").
 3. **Owner:** This is the username of the user who owns the file. Their
-   permissions are indicated in the first permissions field.
+   permissions are indicated in the first permissions set.
 4. **Group:** This is the user group of the user who owns the file. Members of
-   this user group have permissions indicated in the second permissions field.
+   this user group have permissions indicated in the second permissions set.
 5. **Size of item:** This is the number of bytes in a file, or the number of
    [filesystem blocks](https://en.wikipedia.org/wiki/Block_(data_storage))
    occupied by the contents of a folder. (We can use the `-h` option here to
@@ -230,7 +231,7 @@ $ ls -l example-job.sh
 {: .language-bash}
 ```
 ...
--rwxrw-r-- 1 yourUsername yourGroup  40 Jan 16 19:41 example-job.sh
+-rwxr--r-- 1 {{ site.remote.user }} {{ site.remote.group }}  40 Jan 16 19:42 example-job.sh
 ```
 {: .output}
 
@@ -258,6 +259,26 @@ If you completed the previous challenge successfully, you probably realise that
 there is a distinction between running the job through the scheduler and just
 "running it". To submit this job to the scheduler, we use the
 `{{ site.sched.submit.name }}` command.
+
+However, before running `{{ site.sched.submit.name }}` you should add a sleep command
+to `example-job.sh`, so that we will have chance to track the job status.
+
+```
+{{ site.remote.prompt }} nano example-job.sh
+{{ site.remote.prompt }} cat example-job.sh
+```
+{: .language-bash}
+```
+{{ site.remote.bash_shebang }}
+
+sleep 60 # time in seconds
+
+echo -n "This script is running on "
+hostname
+```
+{: .output}
+
+Now run the `{{ site.sched.submit.name }}` command as follows.
 
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
@@ -308,7 +329,7 @@ it will disappear from the queue. Press `Ctrl-c` when you want to stop the
 
 ## Customising a Job
 
-The job we just ran used all of the scheduler's default options. In a
+The job we just ran used many of the scheduler's default options. In a
 real-world scenario, that's probably not what we want. The default options
 represent a reasonable minimum. Chances are, we will need more cores, more
 memory, more time, among other special considerations. To get access to these
@@ -316,7 +337,7 @@ resources we must customize our job script.
 
 Comments in UNIX shell scripts (denoted by `#`) are typically ignored, but
 there are exceptions. For instance the special `#!` comment at the beginning of
-scripts specifies what program should be used to run it (you'll typically see
+a script specifies what program should be used to run it (you'll typically see
 `{{ site.local.bash_shebang }}`). Schedulers like {{ site.sched.name }} also
 have a special comment used to denote special scheduler-specific options.
 Though these comments differ from scheduler to scheduler,
@@ -329,6 +350,7 @@ script, but the `{{ site.sched.flag.name }}` option can be used to change the
 name of a job. Add an option to the script:
 
 ```
+{{ site.remote.prompt }} nano example-job.sh
 {{ site.remote.prompt }} cat example-job.sh
 ```
 {: .language-bash}
@@ -336,9 +358,14 @@ name of a job. Add an option to the script:
 ```
 {{ site.remote.bash_shebang }}
 {{ site.sched.comment }} {{ site.sched.flag.name }} new_name
+{% include {{ site.snippets }}/scheduler/sbatch-options.snip %}
+{{ site.sched.comment }} {{ site.sched.flag.time }} 00:02:00
+
+sleep 60 # time in seconds
 
 echo -n "This script is running on "
 hostname
+
 echo "This script has finished successfully."
 ```
 {: .output}
@@ -346,7 +373,7 @@ echo "This script has finished successfully."
 Submit the job and monitor its status:
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} example-job.sh
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .language-bash}
@@ -357,25 +384,7 @@ Fantastic, we've successfully changed the name of our job!
 
 > ## Setting up Email Notifications
 >
-> Jobs on an HPC system might run for days or even weeks. We probably have
-> better things to do than constantly check on the status of our job with
-> `{{ site.sched.status }}`. Looking at the manual page for
-> `{{ site.sched.submit.name }}`, can you set up our test job to send you an email
-> when it finishes?
->
-> > ## Hint
-> >
-> > You can use the *manual pages* for {{ site.sched.name }} utilities to find
-> > more about their capabilities. On the command line, these are accessed
-> > through the `man` utility: run `man <program-name>`. You can find the same
-> > information online by searching > "man <program-name>".
-> >
-> > ```
-> > {{ site.remote.prompt }} man {{ site.sched.submit.name }}
-> > ```
-> > {: .language-bash}
-> {: .solution}
-{: .challenge}
+{% include {{ site.snippets }}/scheduler/email-notifications.snip %}
 
 ### Resource Requests
 
@@ -402,29 +411,33 @@ later episode of this lesson.
 
 > ## Submitting Resource Requests
 >
-> Modify our `hostname` script so that it runs for a minute, then submit a job
+> Modify our `example-job.sh` script so that it runs for one minute and 15 seconds, then submit a job
 > for it on the cluster.
 >
 > > ## Solution
 > >
 > > ```
+> > {{ site.remote.prompt }} nano example-job.sh
 > > {{ site.remote.prompt }} cat example-job.sh
 > > ```
 > > {: .language-bash}
 > >
 > > ```
 > > {{ site.remote.bash_shebang }}
+> > {% include {{ site.snippets }}/scheduler/sbatch-options.snip %} 
 > > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:01:15
-> >
-> > echo -n "This script is running on "
+> > 
 > > sleep 60 # time in seconds
+> > 
+> > echo -n "This script is running on "
 > > hostname
+> >
 > > echo "This script has finished successfully."
 > > ```
 > > {: .output}
 > >
 > > ```
-> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
+> > {{ site.remote.prompt }} {{ site.sched.submit.name }} example-job.sh
 > > ```
 > > {: .language-bash}
 > >
@@ -439,18 +452,22 @@ killed. Let's use walltime as an example. We will request 30 seconds of
 walltime, and attempt to run a job for two minutes.
 
 ```
+{{ site.remote.prompt }} nano example-job.sh
 {{ site.remote.prompt }} cat example-job.sh
 ```
 {: .language-bash}
 
 ```
 {{ site.remote.bash_shebang }}
-{{ site.sched.comment }} {{ site.sched.flag.name }} long_job
-{{ site.sched.comment }} {{ site.sched.flag.time }} 00:00:30
+{{ site.sched.comment }} {{ site.sched.flag.name }} overrun
+{% include {{ site.snippets }}/scheduler/sbatch-options.snip %}
+{{ site.sched.comment }} {{ site.sched.flag.time }} 00:00:30 
+
+sleep 120 # time in seconds
 
 echo "This script is running on ... "
-sleep 120 # time in seconds
 hostname
+
 echo "This script has finished successfully."
 ```
 {: .output}
@@ -459,7 +476,7 @@ Submit the job and wait for it to finish. Once it is has finished, check the
 log file.
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} example-job.sh
 {{ site.remote.prompt }} watch -n 15 {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .language-bash}
@@ -474,7 +491,7 @@ requests allows the scheduler to find the best possible place for your jobs.
 Even more importantly, it ensures that another user cannot use more resources
 than they've been given. If another user messes up and accidentally attempts to
 use all of the cores or memory on a node, {{ site.sched.name }} will either
-restrain their job to the requested resources or kill the job outright. Other
+limit their job to the requested resources or kill the job outright. Other
 jobs on the node will be unaffected. This means that one user cannot mess up
 the experience of others, the only jobs affected by a mistake in scheduling
 will be their own.
@@ -487,7 +504,7 @@ its job number (remember to change the walltime so that it runs long enough for
 you to cancel it before it is killed!).
 
 ```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
+{{ site.remote.prompt }} {{ site.sched.submit.name }} example-job.sh
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .language-bash}
@@ -499,7 +516,7 @@ return of your command prompt indicates that the request to cancel the job was
 successful.
 
 ```
-{{ site.remote.prompt }} {{site.sched.del }} 38759
+{{ site.remote.prompt }} {{site.sched.del }} 2166487
 # It might take a minute for the job to disappear from the queue...
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```

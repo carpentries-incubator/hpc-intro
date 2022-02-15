@@ -1,0 +1,16 @@
+```
+{{ site.remote.bash_shebang }}
+{{ site.sched.comment }} {{ site.sched.flag.name }} serial-pi
+{{ site.sched.comment }} {{ site.sched.flag.partition }}
+{{ site.sched.comment }} {{ site.sched.flag.qos }}
+{{ site.sched.comment }} --exclusive
+{{ site.sched.comment }} --time=00:20:00
+{{ site.sched.comment }} --ntasks=1
+
+# Load the computing environment we need
+module load {{ site.remote.module_python3 }} 
+
+# Execute the task
+python serial-pi.py 100000000
+```
+{: .language-bash}

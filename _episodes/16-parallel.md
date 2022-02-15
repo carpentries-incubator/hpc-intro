@@ -41,7 +41,7 @@ to calculate &#960; through a command-line parameter.
 This script will only use a single CPU for its entire run, so it's classified
 as a serial process.
 
-Let's write a Python program, `pi.py`, to estimate &#960; for us.
+Let's write a Python program, `serial-pi.py`, to estimate &#960; for us.
 Start by importing the `numpy` module for calculating the results,
 and the `sys` module to process command-line parameters:
 
@@ -92,11 +92,11 @@ if __name__ == '__main__':
 {: .language-python}
 
 If we run the Python script locally with a command-line parameter, as in
-`python pi-serial.py 1024`, we should see the script print its estimate of
+`python serial-pi.py 1024`, we should see the script print its estimate of
 &#960;:
 
 ```
-{{ site.local.prompt }} python pi-serial.py 1024
+{{ site.local.prompt }} python serial-pi.py 1024
 3.10546875
 ```
 {: .language-bash}
@@ -116,7 +116,7 @@ If we run the Python script locally with a command-line parameter, as in
 > > * Computers are deterministic and produce pseudo random numbers using
 > > an algorithm.  The choice of algorithm and its parameters determines 
 > > how random the generated numbers are.  Pseudo random number generation 
-> > algorithms usually produce a sequence numbers taking the previous output 
+> > algorithms usually produce a sequence of numbers taking the previous output 
 > > as an input for generating the next number. At some point the sequence of
 > > pseudo random numbers will repeat, so care is required to make sure the 
 > > repetition period is long and that the generated numbers have statistical 
@@ -141,7 +141,7 @@ required.
 ### Estimating Memory Requirements
 
 Since the largest variables in the script are `x`, `y`, and `radii`, each
-containing `n_samples` points, we'll modify the script to report their
+containing `n_samples` points, we'll modify the script to report the
 total memory required.
 Each point in `x`, `y`, or `radii` is stored as a NumPy `float64`, we can
 use NumPy's [`dtype`](
@@ -195,13 +195,13 @@ Run the script again with a few different values for the number of samples,
 and see how the memory required changes:
 
 ```
-{{ site.local.prompt }} python pi-serial.py 1000
+{{ site.local.prompt }} python serial-pi.py 1000
 Pi: 3.144, memory: 2.2351741790771484e-05 GiB
-{{ site.local.prompt }} python pi-serial.py 2000
+{{ site.local.prompt }} python serial-pi.py 2000
 Pi: 3.18, memory: 4.470348358154297e-05 GiB
-{{ site.local.prompt }} python pi-serial.py 1000000
+{{ site.local.prompt }} python serial-pi.py 1000000
 Pi: 3.140944, memory: 0.022351741790771484 GiB
-{{ site.local.prompt }} python pi-serial.py 100000000
+{{ site.local.prompt }} python serial-pi.py 100000000
 Pi: 3.14182724, memory: 2.2351741790771484 GiB
 ```
 {: .language-bash }
@@ -295,11 +295,11 @@ Run the script again with a few different values for the number of samples,
 and see how the solution time changes:
 
 ```
-{{ site.local.prompt }} python pi-serial.py 1000000
+{{ site.local.prompt }} python serial-pi.py 1000000
 Pi: 3.139612, memory: 0.022351741790771484 GiB, time: 0.034872 s
-{{ site.local.prompt }} python pi-serial.py 10000000
+{{ site.local.prompt }} python serial-pi.py 10000000
 Pi: 3.1425492, memory: 0.22351741790771484 GiB, time: 0.351212 s
-{{ site.local.prompt }} python pi-serial.py 100000000
+{{ site.local.prompt }} python serial-pi.py 100000000
 Pi: 3.14146608, memory: 2.2351741790771484 GiB, time: 3.735195 s
 ```
 {: .language-bash }
@@ -652,6 +652,6 @@ In an HPC environment, we try to reduce the execution time for all types of
 jobs, and MPI is an extremely common way to combine dozens, hundreds, or
 thousands of CPUs into solving a single problem. To learn more about 
 parallelization, see the 
-[parallel novice lesson](http://www.hpc-carpentry.org/hpc-parallel-novice/)
+[parallel novice lesson](http://www.hpc-carpentry.org/hpc-parallel-novice/).
 
 {% include links.md %}

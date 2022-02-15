@@ -134,8 +134,8 @@ since existing SSH keys are overwritten.
 ```
 {: .language-bash}
 
-If `~/.ssh/id_ed25519` already exists, you will need to specify
-choose a different name for the new key-pair.
+If `~/.ssh/id_ed25519` already exists, you will need to choose a different name
+for the new key-pair.
 
 Generate a new public-private key pair using the following command, which will
 produce a stronger key than the `ssh-keygen` default by invoking these flags:
@@ -192,8 +192,8 @@ check for an existing key:
 ```
 {: .language-bash}
 
-If `~/.ssh/id_rsa` already exists, you will need to specify choose a different
-name for the new key-pair. Generate it as above, with the following extra flags:
+If `~/.ssh/id_rsa` already exists, you will need to choose a different name
+for the new key-pair. Generate it as above, with the following extra flags:
 
 * `-b` sets the number of bits in the key. The default is 2048.
   EdDSA uses a fixed key length, so this flag would have no effect.
@@ -491,17 +491,11 @@ devices are anchored to the "root" directory, which is `/`:
 {{ site.remote.prompt }} ls /
 ```
 {: .language-bash}
-```
-bin   etc   lib64  proc  sbin     sys  var
-boot  {{ site.remote.homedir | replace: "/", "" }}  mnt    root  scratch  tmp  working
-dev   lib   opt    run   srv      usr
-```
-{: .output}
+{% include {{ site.snippets }}/cluster/root-folders.snip %}
 
-The "{{ site.remote.homedir | replace: "/", "" }}" directory is the one where
-we generally want to keep all of our files. Other folders on a UNIX OS contain
-system files, and get modified and changed as you install new software or
-upgrade your OS.
+The "home" directory is the one where we generally want to keep all of our
+files. Other folders on a UNIX OS contain system files, and get modified and
+changed as you install new software or upgrade your OS.
 
 > ## Using HPC filesystems
 >

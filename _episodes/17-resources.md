@@ -46,12 +46,12 @@ finish and free up the resources needed to match what you asked for.
 
 ## Stats
 
-Since we already submitted `pi.py` to run on the cluster, we can query the
+Since we already submitted `parallel-pi.py` to run on the cluster, we can query the
 scheduler to see how long our job took and what resources were used. We will
 use `{{ site.sched.hist }}` to get statistics about `parallel-pi.sh`.
 
 ```
-{{ site.remote.prompt }} {{ site.sched.hist }}
+{{ site.remote.prompt }} {{ site.sched.hist }} -u {{ site.remote.user }}
 ```
 {: .language-bash}
 
@@ -61,7 +61,7 @@ This shows all the jobs we ran recently (note that there are multiple entries
 per job). To get info about a specific job, we change command slightly.
 
 ```
-{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965
+{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 2168130
 ```
 {: .language-bash}
 
@@ -71,18 +71,21 @@ your job by the scheduler. It may be useful to redirect this information to
 through fields).
 
 ```
-{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965 | less
+{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 2168130 | less
 ```
 {: .language-bash}
 
 Some interesting fields include the following:
 
-* **Hostname**: Where did your job run?
-* **MaxRSS**: What was the maximum amount of memory used?
-* **Elapsed**: How long did the job take?
-* **State**: What is the job currently doing/what happened to it?
-* **MaxDiskRead**: Amount of data read from disk.
-* **MaxDiskWrite**: Amount of data written to disk.
+{% include {{ site.snippets }}/resources/hist-fields.snip %}
+
+{% if site.sched.hist_filter != "" %}
+It is also possible to filter the fields returned by `saact`.
+```
+{{ site.remote.prompt }} {{ site.sched.hist }} -j 2168130 {{ site.sched.hist_filter }}
+```
+{: .language-bash}
+{% endif %}
 
 ## Measuring the System Load From Currently Running Tasks
 

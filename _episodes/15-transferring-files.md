@@ -57,14 +57,14 @@ The syntax can be a little complex for new users, but we'll break it down.
 To *upload to* another computer:
 
 ```
-{{ site.local.prompt }} scp path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}
+{{ site.local.prompt }} scp path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.login }}:{{ site.remote.homedir }}/{{ site.remote.user }}/
 ```
 {: .language-bash}
 
 To *download from* another computer:
 
 ```
-{{ site.local.prompt }} scp {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}/file.txt path/to/local/
+{{ site.local.prompt }} scp {{ site.remote.user }}@{{ site.remote.login }}:{{ site.remote.homedir }}/{{ site.remote.user }}/file.txt path/to/local/
 ```
 {: .language-bash}
 
@@ -128,7 +128,7 @@ reaches the bottom of the directory tree rooted at the folder name you
 provided.
 
 ```
-{{ site.local.prompt }} scp -r some-local-folder {{ site.remote.user }}@{{ site.remote.login }}:target-directory/
+{{ site.local.prompt }} scp -r some-local-folder {{ site.remote.user }}@{{ site.remote.login }}:~/target-directory
 ```
 {: .language-bash}
 
