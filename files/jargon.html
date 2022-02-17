@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--
+ This is a <a href="https://github.com/gnab/remark">remark</a>
+ presentation: plain Markdown with an HTML wrapper. To see the
+ finished product, please visit <a href=""></a>
+--->
+<html>
+  <head>
+    <title>HPC Jargon Buster</title>
+    <link href="favicon.png" rel="icon" type="image/png"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle
+
+# High Performance Computing Jargon Buster
+
+[The HPC Carpentry Community](https://www.hpc-carpentry.org)
+
+???
+
+> Press `C` to open a "clone", then `P` to toggle Presentation Mode.
+
+HPC Carpentry is a community effort to develop educational materials
+in the pedagogical style of The Carpentries.
+
+The point of this presentation is to briefly introduce some scale-up
+options, so that learners get a sense of the variety of ways this can
+be done, and the source of some of the overloading of terminology
+that will be used later in the lesson.
+
+This non-interactive activity should be kept brief.
+
+---
+
+# Your Personal Computer
+
+.center[
+![Standalone computers (banana for scale)](/fig/jargon_standalone.svg)
+]
+
+- Familiar starting point, accessed locally
+- Good for local computational tasks
+- Highly flexible, easy to reconfigure for new tasks
+
+???
+
+A laptop and a desktop computer: you sit at the keyboard & mouse and
+log in to the computer directly, often as the sole user.
+
+Good at performing local and personal tasks: limited resources, but
+familiar to all of us.
+
+---
+
+# Shared Computing Resources
+
+.center[
+![An HPC resource (img: [Julian Herzog](https://commons.wikimedia.org/wiki/File:High_Performance_Computing_Center_Stuttgart_HLRS_2015_07_Cray_XC40_Hazel_Hen_IO.jpg))](/fig/HPCCStuttgart_Hazel_Hen_XC40.png)
+]
+<!-- Image: https://commons.wikimedia.org/wiki/File:High_Performance_Computing_Center_Stuttgart_HLRS_2015_07_Cray_XC40_Hazel_Hen_IO.jpg, Julian Herzog. -->
+
+- Large-scale computation is different
+- It has a rich history, and confusing terminology
+- Many terms overloaded
+
+???
+
+Computational at larger scales typically involves changes in how
+things are done, and connection to remote computer systems and
+transfer of data between systems.
+
+There are many ways to do it, and the terminology can be confusing.
+
+This presentation will step through some scale-up scenarios to help
+frame the problem.
+
+---
+
+# A large computer
+
+.center[
+![A large computer (banana for scale)](/fig/jargon_large_computer.svg)
+]
+
+- More powerful "compute server"
+- Accessed remotely, likely shared by a small group
+- Less flexible &mdash; need to accommodate other users
+
+???
+
+First obvious way to scale, has more CPUs and memory, and more or
+faster storage.Typically shared, run commercial or open-source OSs,
+may be called a "compute server". Typical tasks are operations of
+large user-facing programs, like scientific models or visualizations.
+
+---
+
+# Cloud Systems
+
+.center[
+![Cloud computers (bananas for scale)](/fig/jargon_multi_cluster.svg)
+]
+
+- Generally quite heterogeneous
+- Many types of servers
+
+???
+
+Cloud systems physically resemble clusters or supercomputers, but
+with greater heterogeneity among components, and less coupling, often
+without an interconnect at all. Cloud servers are generally accessed
+by connecting to their services over the network. Multiple VMs may
+reside on individual physical machines. Typical tasks are driven by
+user connections from the outside to the various "front end" services
+(e.g. web sites) which pass traffic on to the "back end" servers
+(e.g. databases) to present results to users.
+
+---
+
+# A cluster or supercomputer
+
+.center[
+![A cluster (banana for scale)](/fig/jargon_cluster.svg)
+]
+
+- Special "login node" or "head node" accessed remotely by users
+- Compute service accessed via resource manager
+- Some flexibility on local accounts
+- Specially-built software for best performance
+
+???
+
+Cloud systems physically resemble clusters or supercomputers, but
+with greater heterogeneity among components, and less coupling, often
+without an interconnect at all. Cloud servers are generally accessed
+by connecting to their services over the network. Multiple VMs may
+reside on individual physical machines. Typical tasks are driven by
+user connections from the outside to the various "front end" services
+(e.g. web sites) which pass traffic on to the "back end" servers
+(e.g. databases) to present results to users.
+
+---
+
+# HPC workflow
+
+.center[
+![Schematic HPC workflow](/fig/jargon_workflow.png)
+]
+
+- You talk to the cluster head node
+- The cluster head node distributes compute tasks
+- You view results
+
+???
+
+In the usual HPC workflow, users do not communicate directly with
+compute nodes, but work through a scheduling system to distribute
+tasks.
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
