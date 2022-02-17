@@ -48,7 +48,7 @@ to work.
 ## Environment Modules
 
 Environment modules are the solution to these problems. A *module* is a
-self-contained description of a software package &mdash; it contains the
+self-contained description of a software package -- it contains the
 settings required to run a software package and, usually, encodes required
 dependencies on other software packages.
 

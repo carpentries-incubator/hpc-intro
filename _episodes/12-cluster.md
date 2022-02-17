@@ -191,3 +191,11 @@ connect to a shared, remote fileserver or cluster of servers.  You will learn mo
 {: .callout}
 
 {% include links.md %}
+
+[fshs]: https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
+[putty-gen]: https://tartarus.org/~simon/putty-prerel-snapshots/htmldoc/Chapter8.html#pubkey-puttygen
+[putty-agent]: https://tartarus.org/~simon/putty-prerel-snapshots/htmldoc/Chapter9.html#pageant
+[ssh-agent]: https://www.ssh.com/academy/ssh/agent
+[ssh-flags]: https://stribika.github.io/2015/01/04/secure-secure-shell.html
+[wiki-rsa]: https://en.wikipedia.org/wiki/RSA_(cryptosystem)
+[wiki-dsa]: https://en.wikipedia.org/wiki/EdDSA
