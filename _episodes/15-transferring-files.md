@@ -173,12 +173,13 @@ A trailing slash on the target directory is optional, and has no effect for
 > ```
 > {: .language-bash}
 >
-> The `a` (archive) option preserves file timestamps and permissions among
-> other things; the `v` (verbose) option gives verbose output to help monitor
-> the transfer; the `z` (compression) option compresses the file during transit
-> to reduce size and transfer time; and the `P` (partial/progress) option
-> preserves partially transferred files in case of an interruption and also
-> displays the progress of the transfer.
+> The options are:
+> * `a` (archive) to preserve file timestamps and permissions among other things
+> * `v` (verbose) to get verbose output to help monitor the transfer
+> * `z` (compression) to compress the file during transit to reduce size and 
+> transfer time
+> * `P` (partial/progress) to preserve partially transferred files in case 
+> of an interruption and also displays the progress of the transfer.
 >
 > To recursively copy a directory, we can use the same options:
 >
