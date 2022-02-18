@@ -7,7 +7,7 @@ bring all prerequisites to the course.
 
 > ## Required Pre-Knowledge
 >
-> **Basic Shell** &mdash; Navigating directories, Copy/Moving, writing shell
+> **Basic Shell** -- Navigating directories, Copy/Moving, writing shell
 > scripts, using the environment, using wildcards.
 {: .prereq}
 

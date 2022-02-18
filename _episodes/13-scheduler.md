@@ -18,6 +18,7 @@ keypoints:
 - "A job is just a shell script."
 - "If in doubt, request more resources than you will need."
 ---
+
 ## Job Scheduler
 
 An HPC system might have thousands of nodes and thousands of users. How do we
@@ -167,7 +168,7 @@ Now, rather than running our script with `bash` we _submit_ it to the scheduler 
 
 {% include {{ site.snippets }}/scheduler/basic-job-script.snip %}
 
-And that's all we need to do to submit a job. Our work is done &mdash; now the
+And that's all we need to do to submit a job. Our work is done -- now the
 scheduler takes over and tries to run the job for us.
 
 ## Checking on our Job

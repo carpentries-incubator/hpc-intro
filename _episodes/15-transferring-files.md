@@ -134,7 +134,7 @@ provided.
 
 > ## Caution
 >
-> For a large directory &mdash; either in size or number of files &mdash;
+> For a large directory -- either in size or number of files --
 > copying with `-r` can take a long time to complete.
 {: .callout}
 
@@ -148,8 +148,8 @@ path starting with a `/` is called *absolute*, since there can be nothing above
 the root `/`. A path that does not start with `/` is called *relative*, since
 it is not anchored to the root.
 
-If you want to upload a file to a location inside your home directory &mdash;
-which is often the case &mdash; then you don't need a leading `/`. After the
+If you want to upload a file to a location inside your home directory --
+which is often the case -- then you don't need a leading `/`. After the
 `:`, start writing the sequence of folders that lead to the final storage
 location for the file or, as mentioned above, provide nothing if your home
 directory *is* the destination.
@@ -402,8 +402,8 @@ When it's done, check the directory size with `du` and compare.
 > {: .discussion}
 {: .challenge}
 
-If you want to reverse the process &mdash; compressing raw data instead of
-extracting it &mdash; set a `c` flag instead of `x`, set the archive filename,
+If you want to reverse the process -- compressing raw data instead of
+extracting it -- set a `c` flag instead of `x`, set the archive filename,
 then provide a directory to compress:
 
 ```

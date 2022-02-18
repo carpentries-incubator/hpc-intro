@@ -21,7 +21,7 @@ Frequently, research problems that use computing can outgrow the capabilities
 of the desktop or laptop computer where they started:
 
 * A statistics student wants to cross-validate a model. This involves running
-  the model 1000 times &mdash; but each run takes an hour. Running the model on
+  the model 1000 times -- but each run takes an hour. Running the model on
   a laptop will take over a month! In this research problem, final results are
   calculated after all 1000 models have run, but typically only one model is
   run at a time (in **serial**) on the laptop. Since each of the 1000 runs is
@@ -29,7 +29,7 @@ of the desktop or laptop computer where they started:
   possible to run them all at once (in **parallel**).
 * A genomics researcher has been using small datasets of sequence data, but
   soon will be receiving a new type of sequencing data that is 10 times as
-  large. It's already challenging to open the datasets on a computer &mdash;
+  large. It's already challenging to open the datasets on a computer --
   analyzing these larger datasets will probably crash it. In this research
   problem, the calculations required might be impossible to parallelize, but a
   computer with **more memory** would be required to analyze the much larger
@@ -59,6 +59,12 @@ problems in parallel**.
 > * How does computing help you do your research?
 > * How could more computing help you do more or better research?
 {: .discussion }
+
+## Jargon Busting Presentation
+
+Open the [HPC Jargon Buster]({{ site.baseurl }}/files/jargon.html#p1) in
+a new tab. To present the content, press `C` to open a **c**lone in
+a separate window, then press `P` to toggle presentation mode.
 
 ## A Standard Laptop for Standard Tasks
 

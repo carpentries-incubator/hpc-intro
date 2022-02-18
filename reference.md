@@ -39,7 +39,7 @@ the *binary* prefixes (with base of 2<sup>10</sup>=1024) by the prefixes Kibi
 `scp` and `rsync` may throw a perplexing error about files that very much do
 exist. One source of these errors is copy-and-paste of command line arguments
 from Web browsers, where the double-dash string `--` is rendered as an em-dash
-character "&mdash;" (or en-dash "&mdash;", or horizontal bar `―`). For example,
+character "&mdash;" (or en-dash "&ndash;", or horizontal bar `―`). For example,
 instead of showing the transfer rate in real time, the following command fails
 mysteriously.
 
@@ -68,7 +68,7 @@ request on the lesson repository to help others avoid it.
 `scp` is useful, but what if we don't know the exact location of what we want
 to transfer? Or perhaps we're simply not sure which files we want to transfer
 yet. `sftp` is an interactive way of downloading and uploading files. Let's
-connect to a cluster, using `sftp` &mdash; you'll notice it works the same way
+connect to a cluster, using `sftp` -- you'll notice it works the same way
 as SSH:
 
 ```

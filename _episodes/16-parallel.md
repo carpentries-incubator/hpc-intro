@@ -382,7 +382,7 @@ calculate the solution.
 ## Running the Parallel Job
 
 We will run an example that uses the Message Passing Interface (MPI) for
-parallelism &mdash; this is a common tool on HPC systems.
+parallelism -- this is a common tool on HPC systems.
 
 > ## What is MPI?
 >
@@ -442,7 +442,7 @@ included.
 >   Each partner rank receives data from the matching index of the host array.
 > * Gather: The inverse of scatter. One rank populates a local array,
 >   with the array element at each index assigned the value provided by the
->   corresponding partner rank &mdash; including the host's own value.
+>   corresponding partner rank -- including the host's own value.
 > * Conditional Output: since every rank is running the *same code*, the
 >   partitioning, the final calculations, and the `print` statement are
 >   wrapped in a conditional so that only one rank performs these operations.
@@ -498,7 +498,7 @@ Illustrations of these steps are shown below.
 
 ---
 
-Setup the MPI environment and initialize local variables &mdash; including the
+Setup the MPI environment and initialize local variables -- including the
 vector containing the number of points to generate on each parallel processor:
 
 {% include figure.html url="" caption="" max-width="50%"
@@ -650,6 +650,8 @@ In practice, MPI speedup factors are influenced by:
 
 In an HPC environment, we try to reduce the execution time for all types of
 jobs, and MPI is an extremely common way to combine dozens, hundreds, or
-thousands of CPUs into solving a single problem.
+thousands of CPUs into solving a single problem. To learn more about 
+parallelization, see the 
+[parallel novice lesson](http://www.hpc-carpentry.org/hpc-parallel-novice/)
 
 {% include links.md %}
