@@ -32,7 +32,7 @@ keypoints:
 >
 > This episode will be a quick introduction to the Unix shell, only the bare minimum required to use the cluster.
 >
-> The Software Carpentary '[Unix Shell](https://swcarpentry.github.io/shell-novice/)' lesson covers the subject in more depth, we recommend you check it out.
+> The Software Carpentry '[Unix Shell](https://swcarpentry.github.io/shell-novice/)' lesson covers the subject in more depth, we recommend you check it out.
 >
 {: .callout}
 
