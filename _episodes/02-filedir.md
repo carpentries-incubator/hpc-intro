@@ -184,7 +184,7 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 >
 > 1.  `ls pwd`
 > 2.  `ls -r`
-> 3.  `ls -r /Users/backup` -->
+> 3.  `ls -r /Users/backup`
 >
 > > ## Solution
 > >
