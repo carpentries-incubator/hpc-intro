@@ -30,8 +30,7 @@ By the end of this workshop, students will know how to:
 > ## Getting Started
 >
 > To get started, follow the directions in the "[Setup](
-> {{ page.root }}/setup.html)" tab to download data to your computer and follow
-> any installation instructions.
+> {{ page.root }}/setup.html)" tab and follow any installation instructions.
 {: .callout}
 
 Note that this is the draft HPC Carpentry release. Comments and feedback are
