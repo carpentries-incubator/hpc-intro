@@ -154,15 +154,14 @@ We will now list the contents of the `project` directory we we will be working f
 use the following command to do this:
 
 ```
-{{ site.remote.prompt }} ls /nesi/project/nesi99991
+{{ site.remote.prompt }} ls {{ site.working_dir[0] }}
 ```
 {: .language-bash}
 
-```
- ernz2021  ML20210329  ML20210928  resbaz2021  snakemake20210914
-```
+{% include {{ site.snippets }}/filedir/working-dir.snip %}
 
-You should see a directory called `resbaz2021`, and possibly several other directories. For the purposes of this workshop you will be working within `/nesi/project/nesi99991/resbaz2021`
+
+You should see a directory called `{{ site.working_dir[1] }}`, and possibly several other directories. For the purposes of this workshop you will be working within `{{ site.working_dir[0] }}/{{ site.working_dir[1] }}`
 
 > ## `ls` Reading Comprehension
 >
@@ -184,7 +183,7 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 >
 > 1.  `ls pwd`
 > 2.  `ls -r`
-> 3.  `ls -r /Users/backup` -->
+> 3.  `ls -r /Users/backup`
 >
 > > ## Solution
 > >
@@ -205,7 +204,7 @@ The `cd` command is akin to double clicking a folder in a graphical interface.
 We will use the following command:
 
 ```
-{{ site.remote.prompt }} cd /nesi/project/nesi99991/resbaz2021
+{{ site.remote.prompt }} cd {{ site.working_dir[0] }}/{{ site.working_dir[1] }}
 ```
 {: .language-bash}
 
@@ -218,7 +217,7 @@ We can check we are in the right place by running `pwd`.
 {: .language-bash}
 
 ```
-/nesi/project/nesi99991/resbaz2021
+{{ site.working_dir[0] }}/{{ site.working_dir[1] }}
 ```
 {: .output}
 
@@ -234,7 +233,7 @@ As previously mentioned, it is general useful to organise your work in a hierarc
 You can then your new directory is there using `ls`.
 
 ```
-{{ site.remote.prompt }} ls /nesi/project/nesi99991
+{{ site.remote.prompt }} ls {{ site.working_dir[0] }}
 ```
 {: .language-bash}
 ```
@@ -247,7 +246,7 @@ We are now going to use `ls` again but with a twist, this time we will also use 
 These options modify the way that the command works, for this example we will add the flag `-l` for "long listing format".
 
 ```
-{{ site.remote.prompt }} ls -l /nesi/project/nesi99991/resbaz2021
+{{ site.remote.prompt }} ls -l {{ site.working_dir[0] }}/{{ site.working_dir[1] }}
 ```
 {: .language-bash}
 
@@ -365,7 +364,7 @@ We will now navigate to the parent directory, the simplest way do do this is to 
 ```
 {: .language-bash}
 
-We should now be back in `/nesi/project/nesi99991`.
+We should now be back in `{{ site.working_dir[0] }}`.
 
 ```
 {{ site.remote.prompt }} pwd
@@ -373,7 +372,7 @@ We should now be back in `/nesi/project/nesi99991`.
 {: .language-bash}
 
 ```
-/nesi/project/nesi99991
+{{ site.working_dir[0] }}
 ```
 {: .output}
 
@@ -484,7 +483,7 @@ if you hit tab the path will autocomplete (until there are more than one possibl
 For example, if you type:
 
 ```
-{{ site.remote.prompt }} cd res
+{{ site.remote.prompt }} cd {{ site.working_dir[1] | slice: 0,3 }}
 ```
 {: .language-bash}
 
@@ -492,11 +491,11 @@ and then press <kbd>Tab</kbd> (the tab key on your keyboard),
 the shell automatically completes the directory name for you (since there is only one possible match):
 
 ```
-{{ site.remote.prompt }} cd resbaz2021/
+{{ site.remote.prompt }} cd {{ working_dir[0] }}/
 ```
 {: .language-bash}
 
-However, that command would only take you `/nesi/project/nesi99991/resbaz2021`.
+However, that command would only take you `{{ working_dir[0] }}/{{ working_dir[0] }}`.
 You want to move to your personal working directory. If you hit <kbd>Tab</kbd> once you will
 likely see nothing change, as there are more than one possible options. Hitting <kbd>Tab</kbd>
 a second time will print all possible autocomplete options.
@@ -504,7 +503,7 @@ a second time will print all possible autocomplete options.
 So now let complete the relative path to your personal directory in this `cd` command:
 
 ```
-{{ site.remote.prompt }} cd resbaz2021/<username>
+{{ site.remote.prompt }} cd {{ working_dir[0] }}/<username>
 ```
 {: .language-bash}
 
@@ -629,10 +628,10 @@ draft.txt
 
 ## Copying files and directories
 
-In a future lesson, we will be running the R script ```/nesi/project/nesi99991/resbaz2021/array_sum.r```, but as we can't all work on the same file at once you will need to take your own copy. This can be done with the **c**o**p**y command `cp`, two arguments are needed the file (or directory) you want to copy, and the directory (or file) where you want the copy to be created. We will be copying the file into the directory we made previously, as this should be your current directory the second argument can be a simple `.`.
+In a future lesson, we will be running the R script ```{{ site.working_dir[0] }}/{{ site.working_dir[1] }}/array_sum.r```, but as we can't all work on the same file at once you will need to take your own copy. This can be done with the **c**o**p**y command `cp`, two arguments are needed the file (or directory) you want to copy, and the directory (or file) where you want the copy to be created. We will be copying the file into the directory we made previously, as this should be your current directory the second argument can be a simple `.`.
 
 ```
-{{ site.remote.prompt }} cp /nesi/project/nesi99991/resbaz2021/array_sum.sh .
+{{ site.remote.prompt }} cp {{ site.working_dir[0] }}/{{ site.working_dir[1] }}/array_sum.r .
 ```
 
 We can check that it did the right thing using `ls`

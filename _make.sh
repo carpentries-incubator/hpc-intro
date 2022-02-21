@@ -1,1 +1,1 @@
-HPC_JEKYLL_CONFIG=_includes/_config_slurm.yml,_includes/_config_NeSI.yml,_includes/_config_NeSI_Mahuika.yml make serve
+HPC_JEKYLL_CONFIG=_includes/snippets_library/NeSI_Mahuika_slurm/_config_options.yml make serve
