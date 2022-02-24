@@ -223,6 +223,8 @@ We can check we are in the right place by running `pwd`.
 
 ## Creating directories
 
+<!-- NOTE: This bit uses relative paths even though the convept hasn't been introduced yet. -->
+
 As previously mentioned, it is general useful to organise your work in a hierarchical file structure to make managing and finding files easier. It is also is especially important when working within a shared directory with colleagues, such as a project, to minimise the chance of accidentally effecting your colleagues work. So for this workshop you will each make a directory using the `mkdir` command within the workshops directory for you to personally work from.
 
 ```
@@ -491,7 +493,7 @@ and then press <kbd>Tab</kbd> (the tab key on your keyboard),
 the shell automatically completes the directory name for you (since there is only one possible match):
 
 ```
-{{ site.remote.prompt }} cd {{ working_dir[0] }}/
+{{ site.remote.prompt }} cd {{ site.working_dir[1] }}/
 ```
 {: .language-bash}
 
@@ -500,14 +502,26 @@ You want to move to your personal working directory. If you hit <kbd>Tab</kbd> o
 likely see nothing change, as there are more than one possible options. Hitting <kbd>Tab</kbd>
 a second time will print all possible autocomplete options.
 
-So now let complete the relative path to your personal directory in this `cd` command:
+```
+cwal219/    riom/    harrellw/
+```
+{: .output}
+
+Now entering in the first few characters of the path (just enough that the possible options are no longer ambiguous) and pressing <kbd>Tab</kbd> again, should complete the path.
+
+Now press <kbd>Enter</kbd> to execute the command.
 
 ```
-{{ site.remote.prompt }} cd {{ working_dir[0] }}/<username>
+{{ site.remote.prompt }} cd {{ site.working_dir[1] }}/<username>
 ```
 {: .language-bash}
 
 Check that we've moved to the right place by running `pwd`.
+
+```
+{{ site.working_dir[0] }}/{{ site.working_dir[1] }}/<username>
+```
+{: .output}
 
 ## Create a text file
 
