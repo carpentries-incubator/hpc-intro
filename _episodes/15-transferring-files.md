@@ -99,26 +99,22 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > download the file, then use the `scp` command (just below here) to upload
 > it to the cluster.
 >
-> > ## `curl -O` from {{ site.remote.login }}
+> Try downloading the file directly. Note that it may well fail, and that's
+> OK!
+>
+> > ## Commands
+> >
+> > ```
+> > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
+> > {{ site.remote.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 > > or
-> > ## `wget` from {{ site.remote.login }}
-> > 
-> > Try downloading the file directly. Note that it may well fail, and that's
-> > OK!
-> >
-> > > ## Commands
-> > >
-> > > ```
-> > > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
-> > > {{ site.remote.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
-> > > or
-> > > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
-> > > ```
-> > > {: .language-bash}
-> > {: .solution}
-> >
-> > Did it work? If not, what does the terminal output tell you about what
-> > happened?
+> > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
+> > ```
+> > {: .language-bash}
+> {: .solution}
+>
+> Did it work? If not, what does the terminal output tell you about what
+> happened?
 > {: .challenge}
 {: .discussion}
 
@@ -173,12 +169,13 @@ A trailing slash on the target directory is optional, and has no effect for
 > ```
 > {: .language-bash}
 >
-> The `a` (archive) option preserves file timestamps and permissions among
-> other things; the `v` (verbose) option gives verbose output to help monitor
-> the transfer; the `z` (compression) option compresses the file during transit
-> to reduce size and transfer time; and the `P` (partial/progress) option
-> preserves partially transferred files in case of an interruption and also
-> displays the progress of the transfer.
+> The options are:
+> * `a` (archive) to preserve file timestamps and permissions among other things
+> * `v` (verbose) to get verbose output to help monitor the transfer
+> * `z` (compression) to compress the file during transit to reduce size and 
+> transfer time
+> * `P` (partial/progress) to preserve partially transferred files in case 
+> of an interruption and also displays the progress of the transfer.
 >
 > To recursively copy a directory, we can use the same options:
 >
