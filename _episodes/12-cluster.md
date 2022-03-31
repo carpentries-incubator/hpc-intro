@@ -4,8 +4,8 @@ teaching: 25
 exercises: 10
 questions:
 - "How does my local computer compare to the remote systems?"
-- "How does the login node compare to the worker nodes?"
-- "Are all worker nodes alike?"
+- "How does the login node compare to the compute nodes?"
+- "Are all compute nodes alike?"
 objectives:
 - "Survey system resources using `nproc`, `free`, and the queuing system"
 - "Compare & contrast resources on the local machine, login node, and worker
@@ -15,7 +15,7 @@ nodes"
 - "Glance at the number of idle and occupied nodes"
 keypoints:
 - "An HPC system is a set of networked machines."
-- "HPC systems typically provide login nodes and a set of worker nodes."
+- "HPC systems typically provide login nodes and a set of compute nodes."
 - "The resources found on independent (worker) nodes can vary in volume and
   type (amount of RAM, processor architecture, availability of network mounted
   filesystems, etc.)."
@@ -142,17 +142,17 @@ This may show only your user ID, but there are likely several other people
 > of yourself and of your cluster or other factors.
 {: .callout}
 
-The real work on a cluster gets done by the *worker* (or *compute*) *nodes*.
-Worker nodes come in many shapes and sizes, but generally are dedicated to long
+The real work on a cluster gets done by the *compute* (or *worker*) *nodes*.
+compute nodes come in many shapes and sizes, but generally are dedicated to long
 or hard tasks that require a lot of computational resources.
 
-All interaction with the worker nodes is handled by a specialized piece of
+All interaction with the compute nodes is handled by a specialized piece of
 software called a scheduler (the scheduler used in this lesson is called
 {{ site.sched.name }}). We'll learn more about how to use the
 scheduler to submit jobs next, but for now, it can also tell us more
-information about the worker nodes.
+information about the compute nodes.
 
-For example, we can view all of the worker nodes by running the command
+For example, we can view all of the compute nodes by running the command
 `{{ site.sched.info }}`.
 
 ```
@@ -279,10 +279,10 @@ connect to a shared, remote fileserver or cluster of servers.
 
 {% include {{ site.snippets }}/cluster/specific-node-info.snip %}
 
-> ## Compare Your Computer, the Login Node and the Worker Node
+> ## Compare Your Computer, the Login Node and the Compute Node
 >
 > Compare your laptop's number of processors and memory with the numbers you
-> see on the cluster login node and worker node. What implications do
+> see on the cluster login node and compute node. What implications do
 > you think the differences might have on running your research work on the
 > different systems and nodes?
 >
