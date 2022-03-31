@@ -1,19 +1,26 @@
 ---
-title: "Connecting to a remote HPC system"
+title: "Exploring Remote Resources"
 teaching: 25
 exercises: 10
 questions:
-- "How do I log in to a remote HPC system?"
+- "How does my local computer compare to the remote systems?"
+- "How does the login node compare to the worker nodes?"
+- "Are all worker nodes alike?"
 objectives:
-- "Configure secure access to a remote HPC system."
-- "Connect to a remote HPC system."
+- "Survey system resources using `nproc`, `free`, and the queuing system"
+- "Compare & contrast resources on the local machine, login node, and worker
+nodes"
+- "Learn about the various filesystems on the cluster using `df`"
+- "See `who` else is logged in"
+- "Glance at the number of idle and occupied nodes"
 keypoints:
 - "An HPC system is a set of networked machines."
 - "HPC systems typically provide login nodes and a set of worker nodes."
 - "The resources found on independent (worker) nodes can vary in volume and
   type (amount of RAM, processor architecture, availability of network mounted
   filesystems, etc.)."
-- "Files saved on one node are available on all nodes."
+- "Files saved on shared storage are available on all nodes."
+- "The login node is a shared machine: be considerate of other users."
 ---
 
 ## Look Around the Remote System
@@ -25,7 +32,7 @@ If you have not already connected to {{ site.remote.name }}, please do so now:
 ```
 {: .language-bash}
 
-Then take a look at your home directory on the remote system:
+Take a look at your home directory on the remote system:
 
 ```
 {{ site.remote.prompt }} ls
@@ -87,7 +94,7 @@ upgrade your OS.
 >   throughout the HPC system, and often backed up periodically. Files stored
 >   here are typically slower to access, the data is actually stored on another
 >   computer and is being transmitted and made available over the network!
-> * **Scratch** -- typically faster than the networked home directory, but not
+> * **Scratch** -- typically faster than the networked Home directory, but not
 >   usually backed up, and should not be used for long term storage.
 > * **Work** -- sometimes provided as an alternative to Scratch space, Work is
 >   a fast file system accessed over the network. Typically, this will have
@@ -106,12 +113,22 @@ types of tasks. The node where you are right now is called the *login node*,
 *head node*, *landing pad*, or *submit node*. A login node serves as an access
 point to the cluster.
 
-As a gateway, it is well suited for uploading and downloading files, setting up
-software, and running quick tests. Generally speaking, the login node should
-not be used for time-consuming or resource-intensive tasks. You should be alert
-to this, and check with your site's operators or documentation for details of
-what is and isn't allowed. In these lessons, we will avoid running jobs on the
-login node.
+As a gateway, the login node should not be used for time-consuming or
+resource-intensive tasks. You should be alert to this, and check with your
+site's operators or documentation for details of what is and isn't allowed. It
+is well suited for uploading and downloading files, setting up software, and
+running tests. Generally speaking, in these lessons, we will avoid running jobs
+on the login node.
+
+Who else is logged in to the login node?
+
+```
+{{ site.remote.prompt }} who
+```
+{: .language-bash}
+
+This may show only your user ID, but there are likely several other people
+(including fellow learners) connected right now.
 
 > ## Dedicated Transfer Nodes
 >
@@ -144,6 +161,9 @@ For example, we can view all of the worker nodes by running the command
 {: .language-bash}
 
 {% include {{ site.snippets }}/cluster/queue-info.snip %}
+
+A lot of the nodes are busy running work for other users: we are not alone
+here!
 
 There are also specialized machines used for managing disk storage, user
 authentication, and other infrastructure-related tasks. Although we do not
@@ -290,9 +310,3 @@ scheduler, and use it to start running our scripts and programs!
 {% include links.md %}
 
 [fshs]: https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
-[putty-gen]: https://tartarus.org/~simon/putty-prerel-snapshots/htmldoc/Chapter8.html#pubkey-puttygen
-[putty-agent]: https://tartarus.org/~simon/putty-prerel-snapshots/htmldoc/Chapter9.html#pageant
-[ssh-agent]: https://www.ssh.com/academy/ssh/agent
-[ssh-flags]: https://stribika.github.io/2015/01/04/secure-secure-shell.html
-[wiki-rsa]: https://en.wikipedia.org/wiki/RSA_(cryptosystem)
-[wiki-dsa]: https://en.wikipedia.org/wiki/EdDSA
