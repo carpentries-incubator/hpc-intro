@@ -707,3 +707,5 @@ run these types of tasks as a one-off with `{{ site.sched.interactive }}`.
 {% include {{ site.snippets }}/scheduler/using-nodes-interactively.snip %}
 
 {% include links.md %}
+
+[fshs]: https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
