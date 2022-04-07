@@ -146,11 +146,10 @@ It "loads" software. A special note on this - depending on which version of the
 `module` program that is installed at your site, `module load` will also load
 required software dependencies.
 
-
 {% include {{ site.snippets }}/modules/software-dependencies.snip %}
 
 Note that this module loading process happens principally through
-the manipulation of envrionment variables like `$PATH`. There
+the manipulation of environment variables like `$PATH`. There
 is usually little or no data transfer involved.
 
 The module loading process manipulates other special envrionment
