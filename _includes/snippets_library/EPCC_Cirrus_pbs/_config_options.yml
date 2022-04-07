@@ -58,7 +58,8 @@ sched:
   hist: "qstat -x"
 
 episode_order:
-  - 11-hpc-intro
+  - 10-hpc-intro
+  - 11-connecting
   - 12-cluster
   - 13-scheduler
   - 14-modules
@@ -66,4 +67,3 @@ episode_order:
   - 16-parallel
   - 17-resources
   - 18-responsibility
-

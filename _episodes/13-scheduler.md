@@ -8,7 +8,6 @@ questions:
 - "How do I capture the output of a program that is run on a node in the
   cluster?"
 objectives:
-- "Run a simple Hello World style program on the cluster."
 - "Submit a simple Hello World style script to the cluster."
 - "Monitor the execution of jobs using command line tools."
 - "Inspect the output and error files of your jobs."

@@ -1,28 +1,36 @@
 ---
 title: "Running a parallel job"
 teaching: 30
-exercises: 30
+exercises: 60
 questions:
 - "How do we execute a task in parallel?"
+- "What benefits arise from parallel execution?"
+- "What are the limits of gains from execution in parallel?"
 objectives:
-- "Understand how to run a parallel job on a cluster."
+- "Construct a program that can execute in parallel."
+- "Prepare a job submission script for the parallel executable."
+- "Launch jobs with increasing degrees of parallel execution."
+- "Record and summarize the timing and accuracy of the results."
 keypoints:
-- "Parallelism is an important feature of HPC clusters."
-- "MPI parallelism is a common case."
+- "Parallel programming allows applications to take advantage of
+  parallel hardware; serial code will not 'just work.'"
+- "Distributed memory parallelism is a common case, using the Message
+  Passing Interface (MPI)."
 - "The queuing system facilitates executing parallel tasks."
+- "Performance improvements from parallel execution do not scale linearly."
 ---
 
 We now have the tools we need to run a multi-processor job. This is a very
-important aspect of HPC systems, as parallelism is one of the primary tools we
-have to improve the performance of computational tasks.
+important aspect of HPC systems, as parallelism is one of the primary tools
+we have to improve the performance of computational tasks.
 
 Our example implements a stochastic algorithm for estimating the value of
-&#960;, the ratio of the circumference to the diameter of a circle.
-The program generates a large number of random points on a 1&times;1 square
-centered on (&frac12;,&frac12;), and checks how many of these points fall
+π, the ratio of the circumference to the diameter of a circle.
+The program generates a large number of random points on a 1×1 square
+centered on (½,½), and checks how many of these points fall
 inside the unit circle.
-On average, &#960;/4 of the randomly-selected points should fall in the
-circle, so &#960; can be estimated from 4*f*, where *f* is the observed
+On average, π/4 of the randomly-selected points should fall in the
+circle, so π can be estimated from 4*f*, where *f* is the observed
 fraction of points that fall in the circle.
 Because each sample is independent, this algorithm is easily implemented
 in parallel.
@@ -34,14 +42,13 @@ in parallel.
 ## A Serial Solution to the Problem
 
 We start from a Python script using concepts taught in Software Carpentry's
-[Programming with Python](
-https://swcarpentry.github.io/python-novice-inflammation/) workshops.
+[Programming with Python][inflammation] workshops.
 We want to allow the user to specify how many random points should be used
-to calculate &#960; through a command-line parameter.
+to calculate π through a command-line parameter.
 This script will only use a single CPU for its entire run, so it's classified
 as a serial process.
 
-Let's write a Python program, `pi.py`, to estimate &#960; for us.
+Let's write a Python program, `pi.py`, to estimate π for us.
 Start by importing the `numpy` module for calculating the results,
 and the `sys` module to process command-line parameters:
 
@@ -52,9 +59,8 @@ import sys
 {: .language-python}
 
 We define a Python function `inside_circle` that accepts a single parameter
-for the number of random points used to calculate &#960;.
-See [Programming with Python: Creating Functions](
-https://swcarpentry.github.io/python-novice-inflammation/08-func/index.html)
+for the number of random points used to calculate π.
+See [Programming with Python: Creating Functions][python-func]
 for a review of Python functions.
 It randomly samples points with both *x* and *y* on the half-open interval
 [0, 1).
@@ -74,9 +80,8 @@ def inside_circle(total_count):
 {: .language-python}
 
 Next, we create a main function to call the `inside_circle` function and
-calculate &#960; from its returned result.
-See [Programming with Python: Command-Line Programs](
-https://swcarpentry.github.io/python-novice-inflammation/12-cmdline/index.html)
+calculate π from its returned result.
+See [Programming with Python: Command-Line Programs][cmd-line]
 for a review of `main` functions and parsing command-line parameters.
 
 ```
@@ -93,7 +98,7 @@ if __name__ == '__main__':
 
 If we run the Python script locally with a command-line parameter, as in
 `python pi-serial.py 1024`, we should see the script print its estimate of
-&#960;:
+π:
 
 ```
 {{ site.local.prompt }} python pi-serial.py 1024
@@ -107,19 +112,20 @@ If we run the Python script locally with a command-line parameter, as in
 > built-in capabilities of NumPy. In general, random-number generation is
 > difficult to do well, it's easy to accidentally introduce correlations into
 > the generated sequence.
+>
 > * Discuss why generating high quality random numbers might be difficult.
-> * Is the quality of random numbers generated sufficient for estimating &#960;
+> * Is the quality of random numbers generated sufficient for estimating π
 > in this implementation?
-> 
+>
 > > ## Solution
 > >
 > > * Computers are deterministic and produce pseudo random numbers using
-> > an algorithm.  The choice of algorithm and its parameters determines 
-> > how random the generated numbers are.  Pseudo random number generation 
-> > algorithms usually produce a sequence numbers taking the previous output 
+> > an algorithm.  The choice of algorithm and its parameters determines
+> > how random the generated numbers are.  Pseudo random number generation
+> > algorithms usually produce a sequence numbers taking the previous output
 > > as an input for generating the next number. At some point the sequence of
-> > pseudo random numbers will repeat, so care is required to make sure the 
-> > repetition period is long and that the generated numbers have statistical 
+> > pseudo random numbers will repeat, so care is required to make sure the
+> > repetition period is long and that the generated numbers have statistical
 > > properties similar to those of true random numbers.
 > > * Yes.
 > {: .solution }
@@ -127,7 +133,7 @@ If we run the Python script locally with a command-line parameter, as in
 
 ## Measuring Performance of the Serial Solution
 
-The stochastic method used to estimate &#960; should converge on the true
+The stochastic method used to estimate π should converge on the true
 value as the number of random points increases.
 But as the number of points increases, creating the variables `x`, `y`, and
 `radii` requires more time and more memory.
@@ -144,9 +150,7 @@ Since the largest variables in the script are `x`, `y`, and `radii`, each
 containing `n_samples` points, we'll modify the script to report their
 total memory required.
 Each point in `x`, `y`, or `radii` is stored as a NumPy `float64`, we can
-use NumPy's [`dtype`](
-https://numpy.org/doc/stable/reference/generated/numpy.dtype.html)
-function to calculate the size of a `float64`.
+use NumPy's [`dtype`][np-dtype] function to calculate the size of a `float64`.
 
 Replace the `print(my_pi)` line with the following:
 
@@ -157,12 +161,12 @@ print("Pi: {}, memory: {} GiB".format(my_pi, memory_required))
 ```
 {: .language-python}
 
-The first line calculates the bytes of memory required for a single `float64`
-value using the `dtype`function.
+The first line calculates the bytes of memory required for a single
+64-bit floating point number using the `dtype` function.
 The second line estimates the total amount of memory required to store three
 variables containing `n_samples` `float64` values, converting the value into
 units of [gibibytes](https://en.wikipedia.org/wiki/Byte#Multiple-byte_units).
-The third line prints both the estimate of &#960; and the estimated amount of
+The third line prints both the estimate of π and the estimated amount of
 memory used by the script.
 
 The updated Python script is:
@@ -214,7 +218,7 @@ on the total amount of memory required.
 
 ### Estimating Calculation Time
 
-Most of the calculations required to estimate &#960; are in the
+Most of the calculations required to estimate π are in the
 `inside_circle` function:
 
 1. Generating `n_samples` random values for `x` and `y`.
@@ -222,7 +226,7 @@ Most of the calculations required to estimate &#960; are in the
 1. Counting how many values in `radii` are under 1.0.
 
 There's also one multiplication operation and one division operation required
-to convert the `counts` value to the final estimate of &#960; in the main
+to convert the `counts` value to the final estimate of π in the main
 function.
 
 A simple way to measure the calculation time is to use Python's `datetime`
@@ -312,14 +316,14 @@ running on the computer at the same time.
 But if the script is the most computationally-intensive process running at the
 time, its calculations are the largest influence on the elapsed time.
 
-Now that we've developed our initial script to estimate &#960;, we can see
+Now that we've developed our initial script to estimate π, we can see
 that as we increase the number of samples:
 
-1. The estimate of &#960; tends to become more accurate.
+1. The estimate of π tends to become more accurate.
 1. The amount of memory required scales approximately linearly.
 1. The amount of time to calculate scales approximately linearly.
 
-In general, achieving a better estimate of &#960; requires a greater number of
+In general, achieving a better estimate of π requires a greater number of
 points.
 Take a closer look at `inside_circle`: should we expect to get high accuracy
 on a single machine?
@@ -358,7 +362,7 @@ rather than the command line.
 As before, use the status commands to check when your job runs.
 Use `ls` to locate the output file, and examine it. Is it what you expected?
 
-* How good is the value for &#960;?
+* How good is the value for π?
 * How much memory did it need?
 * How long did the job take to run?
 
@@ -366,7 +370,7 @@ Modify the job script to increase both the number of samples and the amount
 of memory requested (perhaps by a factor of 2, then by a factor of 10),
 and resubmit the job each time.
 
-* How good is the value for &#960;?
+* How good is the value for π?
 * How much memory did it need?
 * How long did the job take to run?
 
@@ -416,7 +420,7 @@ included.
 > by examining the environment variables set when the job is launched.
 {: .callout}
 
-> ## What Changes Are Needed for an MPI Version of the &#960; Calculator?
+> ## What Changes Are Needed for an MPI Version of the π Calculator?
 >
 > First, we need to import the `MPI` object from the Python module `mpi4py` by
 > adding an `from mpi4py import MPI` line immediately below the `import
@@ -578,7 +582,7 @@ As before, use the status commands to check when your job runs.
 Use `ls` to locate the output file, and examine it.
 Is it what you expected?
 
-* How good is the value for &#960;?
+* How good is the value for π?
 * How much memory did it need?
 * How much faster was this run than the serial run with 100000000 points?
 
@@ -587,13 +591,13 @@ of memory requested (perhaps by a factor of 2, then by a factor of 10),
 and resubmit the job each time.
 You can also increase the number of CPUs.
 
-* How good is the value for &#960;?
+* How good is the value for π?
 * How much memory did it need?
 * How long did the job take to run?
 
 ## How Much Does MPI Improve Performance?
 
-In theory, by dividing up the &#960; calculations among *n* MPI processes,
+In theory, by dividing up the π calculations among *n* MPI processes,
 we should see run times reduce by a factor of *n*.
 In practice, some time is required to start the additional MPI processes,
 for the MPI processes to communicate and coordinate, and some types of
@@ -604,7 +608,7 @@ in the computer, or across multiple compute nodes, additional time is
 required for communication compared to all processes operating on a
 single CPU.
 
-[Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl's_law) is one way of
+[Amdahl's Law][wiki-amdahl] is one way of
 predicting improvements in execution time for a **fixed** parallel workload.
 If a workload needs 20 hours to complete on a single core,
 and one hour of that time is spent on tasks that cannot be parallelized,
@@ -650,8 +654,14 @@ In practice, MPI speedup factors are influenced by:
 
 In an HPC environment, we try to reduce the execution time for all types of
 jobs, and MPI is an extremely common way to combine dozens, hundreds, or
-thousands of CPUs into solving a single problem. To learn more about 
-parallelization, see the 
-[parallel novice lesson](http://www.hpc-carpentry.org/hpc-parallel-novice/)
+thousands of CPUs into solving a single problem. To learn more about
+parallelization, see the [parallel novice lesson][parallel-novice] lesson.
 
 {% include links.md %}
+
+[cmd-line]: https://swcarpentry.github.io/python-novice-inflammation/12-cmdline/index.html
+[inflammation]: https://swcarpentry.github.io/python-novice-inflammation/
+[np-dtype]: https://numpy.org/doc/stable/reference/generated/numpy.dtype.html
+[parallel-novice]: http://www.hpc-carpentry.org/hpc-parallel-novice/
+[python-func]: https://swcarpentry.github.io/python-novice-inflammation/08-func/index.html
+[wiki-amdahl]: https://en.wikipedia.org/wiki/Amdahl's_law
