@@ -53,7 +53,7 @@ or
 
 To copy a single file to or from the cluster, we can use `scp` ("secure copy").
 The syntax can be a little complex for new users, but we'll break it down.
-the `scp` command is a relative of the `ssh` command we used to 
+The `scp` command is a relative of the `ssh` command we used to 
 access the system, and can use the same public-key authentication
 mechanism.
 
