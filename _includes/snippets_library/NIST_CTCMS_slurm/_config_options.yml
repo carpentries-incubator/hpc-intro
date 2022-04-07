@@ -46,7 +46,7 @@ sched:
   flag:
     user: "-u yourUsername"
     interactive: ""
-    histdetail: "-l -j"
+    histdetail: "--format=JobID,JobName,Submit,Start,State,ReqCPUS,Reserved,Elapsed,MaxRSS"
     name: "-J"
     time: "-t"
     queue: "-p"

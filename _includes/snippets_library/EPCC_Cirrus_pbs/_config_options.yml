@@ -49,13 +49,13 @@ sched:
     interactive: "-IVl select=1:ncpus=1"
     name: "-N"
     histdetail: "-f"
-    time: "-l"
+    time: "-l walltime"
     queue: "-q"
   del: "qdel"
   interactive: "qsub"
   info: "pbsnodes -a"
   comment: "#PBS"
-  hist: "qstat -x"
+  hist: "tracejob"
 
 episode_order:
   - 10-hpc-intro
