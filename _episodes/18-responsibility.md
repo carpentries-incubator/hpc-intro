@@ -18,7 +18,6 @@ keypoints:
 - "Plan and test large data transfers."
 - "It is often best to convert many files to a single archive file before
   transferring."
-- "Again, don't run stuff on the login node."
 ---
 
 One of the major differences between using remote HPC resources and your own
@@ -104,12 +103,12 @@ only use 100 of them! This problem can be compounded when people write scripts
 that automate job submission (for example, when running the same calculation or
 analysis over lots of different parameters or files). When this happens it
 hurts both you (as you waste lots of charged resource) and other users (who are
-blocked from accessing the idle compute nodes).
+blocked from accessing the idle compute nodes). On very busy resources you may 
+wait many days in a queue for your job to fail within 10 seconds of starting due 
+to a trivial typo in the job script. This is extremely frustrating! 
 
-On very busy resources you may wait many days in a queue for your job to fail
-within 10 seconds of starting due to a trivial typo in the job script. This is
-extremely frustrating! Most systems provide dedicated resources for testing
-that have short wait times to help you avoid this issue.
+Most systems provide dedicated resources for testing that have short wait times 
+to help you avoid this issue.
 
 > ## Test Job Submission Scripts That Use Large Amounts of Resources
 >
@@ -134,8 +133,15 @@ Version control systems (such as Git) often have free, cloud-based offerings
 if you are not writing your own programs, these can be very useful for storing
 job scripts, analysis scripts and small input files.
 
-For larger amounts of data, you should make sure you have a robust system in
-place for taking copies of critical data off the HPC system wherever possible
+If you are building software, you may have a large amount of source code
+that you compile to build your executable. Since this data can generally
+be recovered by re-downloading the code, or re-running the checkout 
+operation from the source code repository, this data is also less
+critical to protect.
+
+For larger amounts of data, especially important results from your runs,
+which may be irreplaceable, you should make sure you have a robust system in
+place for taking copies of data off the HPC system wherever possible
 to backed-up storage. Tools such as `rsync` can be very useful for this.
 
 Your access to the shared HPC system will generally be time-limited so you
