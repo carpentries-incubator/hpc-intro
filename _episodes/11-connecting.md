@@ -125,7 +125,7 @@ common approaches to this:
    substitutions, 32 characters or longer. Street addresses work well; just be
    careful of social engineering or public records attacks.
 2. Use a password manager and its built-in password generator with all
-   character classes, 25 characters or longer. KeePass and BitWarden are two
+   character classes, 25 characters or longer. [KeePass](https://keepass.info/) and [BitWarden](https://bitwarden.com/) are two
    good options.
 
 Note that the terminal will not appear to change while you type the password:
