@@ -1,13 +1,13 @@
 library(doParallel)
 
 num_cpus <- strtoi(Sys.getenv('SLURM_CPUS_PER_TASK', unset = "1")) 
-slurm_array_task_id <- strtoi(Sys.getenv('SLURM_ARRAY_TASK_ID', unset = "-1"))
 size_array <- 20000
-print_progress <- interactive()
- 
+print_progress <- interactive() # Whether to print progress or not.
+
+seed <- strtoi(Sys.getenv('SLURM_ARRAY_TASK_ID', unset = "0"))
+set.seed(seed)
 
 registerDoParallel(num_cpus)    
-set.seed(slurm_array_task_id)
 
 sprintf("Using %i cpus to sum [ %e x %e ] matrix.",num_cpus,size_array,size_array)
 
@@ -18,4 +18,4 @@ results <- foreach(z=0:size_array) %dopar% {
     }
     sum(rnorm(size_array))
 }
-sprintf("Seed '%s' sums to %f", slurm_array_task_id,  Reduce("+",results))
+sprintf("Seed '%s' sums to %f", seed,  Reduce("+",results))
