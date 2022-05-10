@@ -112,7 +112,7 @@ The most reliable way to check current system stats is with `htop`. Some sample
 output might look like the following (type `q` to exit `htop`):
 
 ```
-{{ site.remote.prompt }} htop -u yourUsername
+{{ site.remote.prompt }} htop -u <yourUsername>
 ```
 {: .language-bash}
 
@@ -131,26 +131,58 @@ Overview of the most important fields:
   accumulate time at twice the normal rate.
 * `COMMAND`: What command was used to launch a process?
 
-<!-- Now that you know the efficiency of your small test job what next? Throw 100 more CPUs at the problem for 100x speedup?
+Running this command as is will show us information on tasks running on the login nod (where we should not be running resource intensive jobs anyway), in order to get information on a running job we will need to run htop on a compute node.
 
-You can use this knowledge to set up the
-next job with a closer estimate of its load on the system. A good general rule
-is to ask the scheduler for 20% to 30% more time and memory than you expect the
-job to need. This ensures that minor fluctuations in run time or memory use
-will not result in your job being cancelled by the scheduler. Keep in mind that
-if you ask for too much, your job may not run even though enough resources are
-available, because the scheduler will be waiting for other people's jobs to
-finish and free up the resources needed to match what you asked for. -->
+#### Finding job node
+
+Running the command `sacct` we can see where our currently located jobs are located.
+
+```
+{{ site.remote.prompt }} sacct
+```
+{: .language-bash}
+
+
+```
+       JobID                                  JobName Timelimit   Elapsed  TotalCPU Al NT     ReqMem     MaxRSS        State     NodeList 
+------------ ---------------------------------------- --------- --------- --------- -- -- ---------- ---------- ------------ ------------ 
+    25002699                                 test-job  00:15:00  00:01:07  00:00:00  4           2Gn                 RUNNING       wbn189 
+25002699.ex+                                   extern            00:01:07  00:00:00  4  1        2Gn                 RUNNING       wbn189 
+  25002699.0                                 test-job            00:01:06  00:00:00  4  1        2Gn                 RUNNING       wbn189 
+```
+{: .output}
+
+Now that we know the location of the job (wbn189) we can use SSH to run htop there.
+
+```
+{{ site.remote.prompt }} ssh wbn189 -t htop -u $USER
+```
+{: .language-bash}
+
+
+<!-- Now that you know the efficiency of your small test job what next? Throw 100 more CPUs at the problem for 100x speedup? -->
+
+> ## Next Steps
+>
+> You can use this knowledge to set up the
+> next job with a closer estimate of its load on the system. 
+> A good general rule
+> is to ask the scheduler for **30%** more time and memory than you expect the
+> job to need.
+{: .callout}
+
+
+## Scaling
 
 <!-- TODO: Add scaling example
-Currently the rest of this lesson Not ready yet.  Too little info to go on without some sort of easy to grok exercise.
-
-## Scaling behaviour
-
+Currently the rest of this lesson Not ready yet.  Too little info to go on without some sort of easy to grok exercise. -->
 Unfortunately we cannot assume speedup will be linear (e.g. double CPUs won't usually half runtime, doubling the size of your input data won't necessarily double runtime) therefore more testing is required. This is called *scaling testing*.
 
-The aim of these tests will be to establish how a jobs requirements change with size (CPUs, inputs) and ultimately figure out the best way to run your jobs.
 
+The aim of these tests will be to establish how a jobs requirements change with size (CPUs, inputs) and ultimately figure out the best way to run your jobs.
+### Scaling behaviour
+
+Last time we submitted a job, we did not specify a number of CPUs, and therefore got the default of `2`, now we will add to that script to include `#SBATCH --cpus-per-task 4`
 
 Using the information we collected from the previous job, we will submit a larger version with our best estimates of requred resources.
 Example here
