@@ -14,7 +14,7 @@ keypoints:
 - "The smaller your job (time, CPUs, memory, etc), the faster it will schedule."
 ---
 <!--
-- scaling testing involves running jobs with increasing resources and measuring the efficiency in order to establish a pattern informed descisions about future job submissions.-->
+- scaling testing involves running jobs with increasing resources and measuring the efficiency in order to establish a pattern informed decisions about future job submissions.-->
 
 In previous episodes we covered *how* to request resources, but what you may not know is *what* resources you need to request. The solution to this problem is testing!
 Understanding the resources you have available and how to use them most efficiently is a vital skill in high performance computing.
@@ -80,7 +80,7 @@ Testing allows you to become more more precise with your resource requests.  We 
 <!-- New example maybe? -->
 After the completion of our test job we will use the `{{ site.sched.efficiency }}` command.
 
-For convenince, NeSI has provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA). 
+For convenience, NeSI has provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA). 
 ```
 {{ site.remote.prompt }} nn_seff <jobid>
 ```
@@ -184,7 +184,8 @@ The aim of these tests will be to establish how a jobs requirements change with 
 
 Last time we submitted a job, we did not specify a number of CPUs, and therefore got the default of `2`, now we will add to that script to include `#SBATCH --cpus-per-task 4`
 
-Using the information we collected from the previous job, we will submit a larger version with our best estimates of requred resources.
+Using the information we collected from the previous job, we will submit a larger version with our best estimates of required resources.
+
 Example here
 
 Examine outputs
@@ -195,9 +196,9 @@ Submit more, maybe a few at once.
 
 Most jobs will look something like this
 
-Under ideal scaling speedup increases 1:1 with number of CPUs. Embarrasingly paralell work will have ideal scaling.
+Under ideal scaling speedup increases 1:1 with number of CPUs. Embarrassingly parallel work will have ideal scaling.
 
-Depending on the fraction of your code that is paralell, th
+Depending on the fraction of your code that is parallel, th
 
 - start small.
 - record everything.

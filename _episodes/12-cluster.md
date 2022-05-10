@@ -186,7 +186,7 @@ connect to a shared, remote fileserver or cluster of servers.  You will learn mo
 > ## Dedicated Transfer Nodes
 >
 > If you want to transfer larger amounts of data to or from the cluster, NeSI
-> offers dedicated transfer nodes using the Globus service.  More infromation on using Globus for large data transfer to and from the 
+> offers dedicated transfer nodes using the Globus service.  More information on using Globus for large data transfer to and from the 
 > cluster can be found here: [Globus Transfer Service](https://support.nesi.org.nz/hc/en-gb/sections/360000040596)
 {: .callout}
 

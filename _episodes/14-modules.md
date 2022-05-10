@@ -155,6 +155,8 @@ directories (separated by `:`) that the OS searches through for a command
 before giving up and telling us it can't find it. As with all environment
 variables we can print it out using `echo`.
 
+what is an environment variable? 
+
 ```
 {{ site.remote.prompt }} echo $PATH
 ```
