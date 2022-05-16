@@ -379,6 +379,7 @@ keys and a record of authorized connections.
 > administrators or documentation. In particular, if there is an
 > online portal for managing SSH keys, use that instead of the
 > directions outlined here.
+{: .callout}
 
 If you transferred your SSH public key with `scp`, you should see
 `id_ed25519.pub` in your home directory. To "install" this key, it must be
