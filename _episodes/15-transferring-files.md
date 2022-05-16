@@ -92,14 +92,13 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > {: .solution}
 {: .challenge}
 
+Some computer clusters are behind firewalls set to only allow transfers
+initiated from the *outside*. This means that the `curl` command will fail, as
+an address outside the firewall is unreachable from the inside. To get around
+this, run the `curl` or `wget` command from your local machine to download the
+file, then use the `scp` command (just below here) to upload it to the cluster.
+
 > ## Why Not Download on {{ site.remote.name }} Directly?
->
-> Some computer clusters are behind firewalls set to only allow transfers
-> initiated from the *outside*. This means that the `curl` command will fail,
-> as an address outside the firewall is unreachable from the inside. To get
-> around this, run the `curl` or `wget` command from your local machine to 
-> download the file, then use the `scp` command (just below here) to upload
-> it to the cluster.
 >
 > Try downloading the file directly. Note that it may well fail, and that's
 > OK!
@@ -228,7 +227,7 @@ you will have to specify it using the appropriate flag, often `-p`, `-P`, or
 > > ```
 > > {: .language-bash}
 > {: .solution}
-> {: .challenge}
+{: .challenge}
 
 ## Transferring Files Interactively with FileZilla
 
