@@ -89,6 +89,25 @@ you will create a pair of SSH keys:
 > Protect this key as if it unlocks your front door. In many ways, it does.
 {: .caution}
 
+Regardless of the software or operating system you use, you must choose a
+strong password or passphrase for your SSH keys.
+
+> ## Considerations for SSH Key Passwords
+>
+> When prompted, enter a strong password that you will remember. There are two
+> common approaches to this:
+>
+> 1. Create a memorable passphrase with some punctuation and number-for-letter
+>    substitutions, 32 characters or longer. Street addresses work well; just
+>    be careful of social engineering or public records attacks.
+> 2. Use a password manager and its built-in password generator with all
+>    character classes, 25 characters or longer. [KeePass][keepass] and
+>    [BitWarden][bitwarden] are two good options.
+> 3. Nothing is *less* secure than a private key with no password. If you
+>    skipped password entry by accident, go back and generate a new key pair
+>    *with* a strong password.
+{: .callout}
+
 #### SSH Keys on Linux, Mac, MobaXterm, and Windows Subsystem for Linux
 
 Once you have opened a terminal, check for existing SSH keys and filenames
@@ -118,16 +137,8 @@ produce a stronger key than the `ssh-keygen` default by invoking these flags:
 ```
 {: .language-bash}
 
-When prompted, enter a strong password that you will remember. There are two
-common approaches to this:
-
-1. Create a memorable passphrase with some punctuation and number-for-letter
-   substitutions, 32 characters or longer. Street addresses work well; just be
-   careful of social engineering or public records attacks.
-2. Use a password manager and its built-in password generator with all
-   character classes, 25 characters or longer. [KeePass](https://keepass.info/) and [BitWarden](https://bitwarden.com/) are two
-   good options.
-
+When prompted, enter a strong password with the [above considerations in mind](
+#considerations-for-ssh-key-passwords).
 Note that the terminal will not appear to change while you type the password:
 this is deliberate, for your security. You will be prompted to type it again,
 so don't worry too much about typos.
@@ -138,13 +149,6 @@ Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
 * the shareable public key (`~/.ssh/id_ed25519.pub`): if a system administrator
   asks for a key, this is the one to send. It is also safe to upload to
   websites such as GitHub: it is meant to be seen.
-
-> ## No Empty Passwords
->
-> Nothing is *less* secure than a private key with no password. If you skipped
-> password entry by accident, go back and generate a new key pair *with* a
-> strong password.
-{: .warning}
 
 ##### Use RSA for Older Systems
 
@@ -170,15 +174,8 @@ name for the new key-pair. Generate it as above, with the following extra flags:
 ```
 {: .language-bash}
 
-When prompted, enter a strong password that you will remember. There are two
-common approaches to this:
-
-1. Create a memorable passphrase with some punctuation and number-for-letter
-   substitutions, 32 characters or longer. Street addresses work well; just be
-   careful of social engineering or public records attacks.
-2. Use a password manager and its built-in password generator with all
-   character classes, 25 characters or longer. KeePass and BitWarden are two
-   good options.
+When prompted, enter a strong password with the [above considerations in mind](
+#considerations-for-ssh-key-passwords).
 
 Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
 
@@ -196,16 +193,8 @@ key pair. See the [PuTTY documentation][putty-gen] for details.
 * Select `255` as the key size or strength.
 * Click on the "Generate" button.
 * You do not need to enter a comment.
-* When prompted, enter a strong password that you will remember. There are two
-  common approaches to this:
-
-1. Create a memorable passphrase with some punctuation and number-for-letter
-   substitutions, 32 characters or longer. Street addresses work well; just be
-   careful of social engineering or public records attacks.
-2. Use a password manager and its built-in password generator with all
-   character classes, 25 characters or longer. KeePass and BitWarden are two
-   good options.
-
+* When prompted, enter a strong password with the
+  [above considerations in mind](#considerations-for-ssh-key-passwords).
 * Save the keys in a folder no other users of the system can read.
 
 Take a look in the folder you specified. You should see two new files:
@@ -383,11 +372,20 @@ keys and a record of authorized connections.
 
 ### Install Your SSH Key
 
+> ## There May Be a Better Way
+>
+> Policies and practices for handling SSH keys vary between HPC
+> clusters: follow any guidance provided by the cluster
+> administrators or documentation. In particular, if there is an
+> online portal for managing SSH keys, use that instead of the
+> directions outlined here.
+
 If you transferred your SSH public key with `scp`, you should see
 `id_ed25519.pub` in your home directory. To "install" this key, it must be
 listed in a file named `authorized_keys` under the `.ssh` folder.
 
-If the `.ssh` folder was not listed above, then it does not yet exist: create it.
+If the `.ssh` folder was not listed above, then it does not yet
+exist: create it.
 
 ```
 {{ site.remote.prompt }} mkdir ~/.ssh
@@ -417,7 +415,9 @@ agent have been configured correctly, you should not be prompted for a password.
 
 {% include links.md %}
 
+[bitwarden]: https://bitwarden.com
 [fshs]: https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
+[keepass]: https://keepass.info
 [putty-gen]: https://tartarus.org/~simon/putty-prerel-snapshots/htmldoc/Chapter8.html#pubkey-puttygen
 [putty-agent]: https://tartarus.org/~simon/putty-prerel-snapshots/htmldoc/Chapter9.html#pageant
 [ssh-agent]: https://www.ssh.com/academy/ssh/agent
