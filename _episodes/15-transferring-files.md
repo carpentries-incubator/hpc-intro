@@ -8,24 +8,23 @@ objectives:
 - "Be able to transfer files to and from a computing cluster."
 keypoints:
 - "`wget` and `curl -O` download a file from the internet."
-- "`scp` transfer files to and from your computer."
+- "`scp` and `rsync` transfer files to and from your computer."
 - "You can use an SFTP client like FileZilla to transfer files through a GUI."
 ---
 
-Computing with a remote computer offers very limited utility if we cannot 
-get files to or from the cluster. There are several options for 
-transferring data between computing resources, from command line 
-options to GUI programs, which we will cover here.
+Performing work on a remote computer is not very useful if we cannot get files
+to or from the cluster. There are several options for transferring data between
+computing resources using CLI and GUI utilities, a few of which we will cover.
 
 ## Download Files From the Internet
 
 One of the most straightforward ways to download files is to use either `curl`
 or `wget`. One of these is usually installed in most Linux shells, on Mac OS
-terminal and in GitBash. Any file that can be downloaded in your web browser 
-through a direct link can be downloaded using `curl -O` or `wget`. This is a 
-quick way to download datasets or source code. 
+terminal and in GitBash. Any file that can be downloaded in your web browser
+through a direct link can be downloaded using `curl -O` or `wget`. This is a
+quick way to download datasets or source code.
 
-The syntax for these commands is: `curl -O https://some/link/to/a/file` 
+The syntax for these commands is: `curl -O https://some/link/to/a/file`
 and `wget https://some/link/to/a/file`. Try it out by downloading
 some material we'll use later on, from a terminal on your local machine.
 
@@ -53,7 +52,7 @@ or
 
 To copy a single file to or from the cluster, we can use `scp` ("secure copy").
 The syntax can be a little complex for new users, but we'll break it down.
-The `scp` command is a relative of the `ssh` command we used to 
+The `scp` command is a relative of the `ssh` command we used to
 access the system, and can use the same public-key authentication
 mechanism.
 
@@ -202,6 +201,34 @@ A trailing slash on the target directory is optional, and has no effect for
 > ```
 > {: .language-bash}
 {: .callout}
+
+All file transfers using the above methods use SSH to encrypt data sent through
+the network. So, if you can connect via SSH, you will be able to transfer
+files. By default, SSH uses network port 22. If a custom SSH port is in use,
+you will have to specify it using the appropriate flag, often `-p`, `-P`, or
+`--port`. Check `--help` or the `man` page if you're unsure.
+
+> ## Change the Rsync Port
+>
+> Say we have to connect `rsync` through port 768 instead of 22. How would we
+> modify this command?
+>
+> ```
+> {{ site.local.prompt }} rsync test.txt {{ site.remote.user }}@{{ site.remote.login }}:
+> ```
+> {: .language-bash}
+>
+> > ## Solution
+> >
+> > ```
+> > {{ site.local.prompt }} rsync --help | grep port
+> >      --port=PORT             specify double-colon alternate port number
+> > See http://rsync.samba.org/ for updates, bug reports, and answers
+> > {{ site.local.prompt }} rsync --port=768 test.txt {{ site.remote.user }}@{{ site.remote.login }}:
+> > ```
+> > {: .language-bash}
+> {: .solution}
+> {: .challenge}
 
 ## Transferring Files Interactively with FileZilla
 

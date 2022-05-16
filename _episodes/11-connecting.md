@@ -212,8 +212,8 @@ is tedious and gets old very fast. This is where the [SSH Agent][ssh-agent]
 comes in.
 
 Using an SSH Agent, you can type your password for the private key once, then
-have the Agent remember for some number of hours or until you log off. Unless
-some nefarious actor has physical access to your machine, this keeps the
+have the Agent remember it for some number of hours or until you log off.
+Unless some nefarious actor has physical access to your machine, this keeps the
 password safe, and removes the tedium of entering the password multiple times.
 
 Just remember your password, because once it expires in the Agent, you have to

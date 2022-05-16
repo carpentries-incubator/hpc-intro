@@ -9,7 +9,7 @@ objectives:
 - "Understand how the module mechanism interacts with the shell."
 keypoints:
 - "Load software with `module load softwareName`."
-- "Unload software with `module purge`"
+- "Unload software with `module unload`"
 - "The module system handles software versioning and package conflicts for you
   automatically."
 ---
@@ -153,7 +153,7 @@ the manipulation of environment variables like `$PATH`. There
 is usually little or no data transfer involved.
 
 The module loading process manipulates other special environment
-variables as well, including variables that influence where the 
+variables as well, including variables that influence where the
 system looks for software libraries, and sometimes variables which
 tell commercial software packages where to find license servers.
 
