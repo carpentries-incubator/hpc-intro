@@ -15,7 +15,7 @@ objectives:
 keypoints:
 - "The scheduler handles how compute resources are shared between users."
 - "A job is just a shell script."
-- "Request slightly more resources than you will need."
+- "Request _slightly_ more resources than you will need."
 ---
 
 ## Job Scheduler
