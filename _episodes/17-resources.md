@@ -7,7 +7,7 @@ questions:
 - "How can I use this knowledge to create a more accurate submission script?"
 objectives:
 - "Look up job statistics."
-- "Use past performance to make more accurate resource requests in job scripts."
+- "Make more accurate resource requests in job scripts based on data describing past performance."
 keypoints:
 - "Accurate job scripts help the queuing system efficiently allocate
   shared resources."
