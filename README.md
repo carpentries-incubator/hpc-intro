@@ -9,7 +9,7 @@ https://actions-badge.atrox.dev/carpentries-incubator/hpc-intro/goto?ref=gh-page
 
 ## Using this material
 
-NOTE: This is *not* Carpentries boilerplate! Please read carefully.
+NOTE: This is _not_ Carpentries boilerplate! Please read carefully.
 
 1. Follow the instructions found in The Carpentries' [example lesson](
    https://github.com/carpentries/lesson-example/) to create a repository for
@@ -21,8 +21,8 @@ NOTE: This is *not* Carpentries boilerplate! Please read carefully.
    are stored in a library
    [_includes/snippets_library](_includes/snippets_library), with
    subdirectories matching the pattern `InstitutionName_ClusterName_scheduler`.
-   If your cluster is not already present, please copy (`cp -r`) the *closest
-   match* as a new folder under `snippets_library`.
+   If your cluster is not already present, please copy (`cp -r`) the _closest
+   match_ as a new folder under `snippets_library`.
 
    * We have placed snippets in files with the `.snip` extension, to make
      tracking easier. These files contain Markdown-formatted text, and will
@@ -65,10 +65,10 @@ NOTE: This is *not* Carpentries boilerplate! Please read carefully.
    https://github.com/carpentries-incubator/hpc-intro). We would love to have
    your site config for the Library.
 
-1. To maintain compatibility, please *do not* merge your new branch into your
+1. To maintain compatibility, please _do not_ merge your new branch into your
    fork's `gh-pages` branch. Instead, wait until your pull request has been
    merged upstream, then pull down the upstream version. Otherwise, your
-   repository will *diverge* from ours, and pull requests you make in the
+   repository will _diverge_ from ours, and pull requests you make in the
    future will probably not be accepted.
 
 ## Deploying a Customized Lesson
@@ -83,12 +83,12 @@ want to make a stand-alone copy.
 This will let you create an exact duplicate of your fork. Without this, GitHub
 won't let you create a second fork of a repository on the same account.
 
-1. On GitHub, go to your repository's **Settings**.
+1. On GitHub, go to your repository's __Settings__.
 1. Under the repository name, check the "Template Repository" box.
-1. Go to the **Code** tab.
-1. Click the new button to **Use This Template**.
+1. Go to the __Code__ tab.
+1. Click the new button to __Use This Template__.
 1. Fill in a name, like `yyyy-mm-dd-hpc-intro`.
-1. Check the **Include all branches** box.
+1. Check the __Include all branches__ box.
 1. Go!
 
 ### Merge Your Customized Branch
@@ -99,12 +99,12 @@ If your snippets are already included in the snippet library, skip this step.
    the left of the "Use This Template" button.
 1. From the list, select the branch containing your site customization.
 1. There should be a bar above the list of repository contents with the branch
-   name, stating "This branch is *x* commits ahead, *y* commits behind
-   `gh-pages`" or similar. To the right of that, click the button to **Create
-   Pull Request**.
+   name, stating "This branch is _x_ commits ahead, _y_ commits behind
+   `gh-pages`" or similar. To the right of that, click the button to __Create
+   Pull Request__.
 1. Make sure that the source and destination repositories at the top of the new
-   PR are *both* your current duplicate of hpc-intro, not the upstream.
-1. Create the pull request, then click the **Merge** button. You can delete the
+   PR are _both_ your current duplicate of hpc-intro, not the upstream.
+1. Create the pull request, then click the __Merge__ button. You can delete the
    customization branch when it's done.
 
 ### Modify `_config.yml`
@@ -115,11 +115,11 @@ you want the values set in the snippet library.
 1. Open a copy of your
   `_includes/snippet_library/Institution_Cluster_scheduler/_config_options.yml`
 1. On GitHub, open the top-level `_config.yml` for editing.
-1. Copy your `_config_options.yml`, overwriting the values under the **SITE
-   specific configuration** section of the top-level `_config.yml`. Leave the
+1. Copy your `_config_options.yml`, overwriting the values under the __SITE
+   specific configuration__ section of the top-level `_config.yml`. Leave the
    rest as-is.
 1. Commit the change.
-1. Back on the **Code** tab, there should be a timer icon, a green check, or a
+1. Back on the __Code__ tab, there should be a timer icon, a green check, or a
    red X next to the latest commit hash. If it's a timer, the site is building;
    give it time.
 1. If the symbol is a red x, something went wrong. Click it to open the build
@@ -205,7 +205,7 @@ provided to help guide planning and decision-making.
 
    * Introduce message passing and MPI as the fundamental engine of parallel
      software
-   * Walk through a simple Python program for estimation of &#960;
+   * Walk through a simple Python program for estimation of π
    * Use [mpi4py](https://mpi4py.readthedocs.io) to parallelize the program
    * Write job submission scripts & run the job on a cluster node
    * Tools: `nano`, `sbatch`, `squeue`
@@ -232,13 +232,13 @@ provided to help guide planning and decision-making.
    https://github.com/carpentries-incubator/hpc-intro/tree/gh-pages/_extras)
 
    * Understanding resource utilisation
-   * Profiling code &mdash; time, size, etc.
+   * Profiling code - time, size, etc.
    * Getting system stats
    * Consequences of going over
 
 1. Filesystems and Storage: objectives likely include items from @psteinb's
    [Shared Filesystem lesson](
-https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/01-04-shared-filesystem.md):
+   https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/01-04-shared-filesystem.md):
 
    * Understand the difference between a local and shared / network filesystem
    * Learn about high performance / scratch filesystems
@@ -268,4 +268,3 @@ https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/01-04-shared-fil
      `/shared` or however your shared file system is called
    * for a starting point, see [this](
      https://psteinb.github.io/hpc-in-a-day/02-03-shared-filesystem/)
-

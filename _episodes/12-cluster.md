@@ -90,13 +90,13 @@ upgrade your OS.
 > These differ in both the amount of space allocated and whether or not they
 > are backed up.
 >
-> * **Home** -- often a *network filesystem*, data stored here is available
+> * __Home__ -- often a _network filesystem_, data stored here is available
 >   throughout the HPC system, and often backed up periodically. Files stored
 >   here are typically slower to access, the data is actually stored on another
 >   computer and is being transmitted and made available over the network!
-> * **Scratch** -- typically faster than the networked Home directory, but not
+> * __Scratch__ -- typically faster than the networked Home directory, but not
 >   usually backed up, and should not be used for long term storage.
-> * **Work** -- sometimes provided as an alternative to Scratch space, Work is
+> * __Work__ -- sometimes provided as an alternative to Scratch space, Work is
 >   a fast file system accessed over the network. Typically, this will have
 >   higher performance than your home directory, but lower performance than
 >   Scratch; it may not be backed up. It differs from Scratch space in that
@@ -106,11 +106,11 @@ upgrade your OS.
 
 ## Nodes
 
-Individual computers that compose a cluster are typically called *nodes*
-(although you will also hear people call them *servers*, *computers* and
-*machines*). On a cluster, there are different types of nodes for different
-types of tasks. The node where you are right now is called the *login node*,
-*head node*, *landing pad*, or *submit node*. A login node serves as an access
+Individual computers that compose a cluster are typically called _nodes_
+(although you will also hear people call them _servers_, _computers_ and
+_machines_). On a cluster, there are different types of nodes for different
+types of tasks. The node where you are right now is called the _login node_,
+_head node_, _landing pad_, or _submit node_. A login node serves as an access
 point to the cluster.
 
 As a gateway, the login node should not be used for time-consuming or
@@ -142,7 +142,7 @@ This may show only your user ID, but there are likely several other people
 > of yourself and of your cluster or other factors.
 {: .callout}
 
-The real work on a cluster gets done by the *compute* (or *worker*) *nodes*.
+The real work on a cluster gets done by the _compute_ (or _worker_) _nodes_.
 compute nodes come in many shapes and sizes, but generally are dedicated to long
 or hard tasks that require a lot of computational resources.
 
@@ -174,8 +174,8 @@ throughout the HPC system.
 ## What's in a Node?
 
 All of the nodes in an HPC system have the same components as your own laptop
-or desktop: *CPUs* (sometimes also called *processors* or *cores*), *memory*
-(or *RAM*), and *disk* space. CPUs are a computer's tool for actually running
+or desktop: _CPUs_ (sometimes also called _processors_ or _cores_), _memory_
+(or _RAM_), and _disk_ space. CPUs are a computer's tool for actually running
 programs and calculations. Information about a current task is stored in the
 computer's memory. Disk refers to all storage that can be accessed like a file
 system. This is generally storage that can hold data permanently, i.e. data is
@@ -250,9 +250,9 @@ connect to a shared, remote fileserver or cluster of servers.
 > > ```
 > > {: .language-bash}
 > >
-> > You can also explore the available filesystems using `df` to show **d**isk
-> > **f**ree space. The `-h` flag renders the sizes in a human-friendly format,
-> > i.e., GB instead of B. The **t**ype flag `-T` shows what kind of filesystem
+> > You can also explore the available filesystems using `df` to show __d__isk
+> > __f__ree space. The `-h` flag renders the sizes in a human-friendly format,
+> > i.e., GB instead of B. The __t__ype flag `-T` shows what kind of filesystem
 > > each resource is.
 > >
 > > ```
@@ -288,12 +288,12 @@ connect to a shared, remote fileserver or cluster of servers.
 >
 > > ## Solution
 > >
-> > Compute nodes are usually built with processors that have *higher
-> > core-counts* than the login node or personal computers in order to support
-> > highly parallel tasks. Compute nodes usually also have substantially *more
-> > memory (RAM)* installed than a personal computer. More cores tends to help
-> > jobs that depend on some work that is easy to perform in *parallel*, and
-> > more, faster memory is key for large or *complex numerical tasks*.
+> > Compute nodes are usually built with processors that have _higher
+> > core-counts_ than the login node or personal computers in order to support
+> > highly parallel tasks. Compute nodes usually also have substantially _more
+> > memory (RAM)_ installed than a personal computer. More cores tends to help
+> > jobs that depend on some work that is easy to perform in _parallel_, and
+> > more, faster memory is key for large or _complex numerical tasks_.
 > {: .solution}
 {: .discussion}
 

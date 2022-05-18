@@ -31,7 +31,7 @@ example) must be written to disk and opened with a separate program.
 If you have ever opened the Windows Command Prompt or macOS Terminal, you have
 seen a CLI. If you have already taken The Carpentries' courses on the UNIX
 Shell or Version Control, you have used the CLI on your local machine somewhat
-extensively. The only leap to be made here is to open a CLI on a *remote*
+extensively. The only leap to be made here is to open a CLI on a _remote_
 machine, while taking some precautions so that other folks on the network can't
 see (or change) the commands you're running or the results the remote machine
 sends back. We will use the Secure SHell protocol (or SSH) to open an encrypted
@@ -62,7 +62,7 @@ clusters therefore forbid password-based login, requiring instead that you
 generate and configure a public-private key pair with a much stronger password.
 Even if your cluster does not require it, the next section will guide you
 through the use of SSH keys and an SSH agent to both strengthen your security
-*and* make it more convenient to log in to remote systems.
+_and_ make it more convenient to log in to remote systems.
 
 ### Better Security With SSH Keys
 
@@ -103,9 +103,9 @@ strong password or passphrase for your SSH keys.
 > 2. Use a password manager and its built-in password generator with all
 >    character classes, 25 characters or longer. [KeePass][keepass] and
 >    [BitWarden][bitwarden] are two good options.
-> 3. Nothing is *less* secure than a private key with no password. If you
+> 3. Nothing is _less_ secure than a private key with no password. If you
 >    skipped password entry by accident, go back and generate a new key pair
->    *with* a strong password.
+>    _with_ a strong password.
 {: .callout}
 
 #### SSH Keys on Linux, Mac, MobaXterm, and Windows Subsystem for Linux
@@ -145,7 +145,7 @@ so don't worry too much about typos.
 
 Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
 
-* your private key (`~/.ssh/id_ed25519`): *do not share with anyone!*
+* your private key (`~/.ssh/id_ed25519`): _do not share with anyone!_
 * the shareable public key (`~/.ssh/id_ed25519.pub`): if a system administrator
   asks for a key, this is the one to send. It is also safe to upload to
   websites such as GitHub: it is meant to be seen.
@@ -179,7 +179,7 @@ When prompted, enter a strong password with the [above considerations in mind](
 
 Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
 
-* your private key (`~/.ssh/id_ed25519`): *do not share with anyone!*
+* your private key (`~/.ssh/id_ed25519`): _do not share with anyone!_
 * the shareable public key (`~/.ssh/id_ed25519.pub`): if a system administrator
   asks for a key, this is the one to send. It is also safe to upload to
   websites such as GitHub: it is meant to be seen.
@@ -199,7 +199,7 @@ key pair. See the [PuTTY documentation][putty-gen] for details.
 
 Take a look in the folder you specified. You should see two new files:
 
-* your private key (`id_ed25519`): *do not share with anyone!*
+* your private key (`id_ed25519`): _do not share with anyone!_
 * the shareable public key (`id_ed25519.pub`): if a system administrator
   asks for a key, this is the one to send. It is also safe to upload to
   websites such as GitHub: it is meant to be seen.
@@ -235,7 +235,7 @@ Open your terminal application and check if an agent is running:
   ```
   {: .error}
 
-  ... then you need to launch the agent *as a background process*.
+  ... then you need to launch the agent _as a background process_.
 
   ```
   {{ site.local.prompt }} eval $(ssh-agent)
@@ -270,7 +270,7 @@ See the [PuTTY documentation][putty-agent].
 {% if site.remote.portal %}
 Visit {{ site.remote.portal }} to upload your SSH public key.
 {% else %}
-Use the **s**ecure **c**o**p**y tool to send your public key to the cluster.
+Use the __s__ecure __c__o__p__y tool to send your public key to the cluster.
 
 ```
 {{ site.local.prompt }} scp ~/.ssh/id_ed25519.pub {{ site.remote.user }}@{{ site.remote.login }}:~/
@@ -299,16 +299,16 @@ because it does not offer a local terminal). This change is important because
 it can help you distinguish on which system the commands you type will be run
 when you pass them into the terminal. This change is also a small complication
 that we will need to navigate throughout the workshop. Exactly what is reported
-as the prompt (which conventionally ends in `$`) in the terminal when it is connected to the local system and the
-remote system will typically be different for every user. We still need to
-indicate which system we are entering commands on though so we will adopt the
-following convention:
+as the prompt (which conventionally ends in `$`) in the terminal when it is
+connected to the local system and the remote system will typically be different
+for every user. We still need to indicate which system we are entering commands
+on though so we will adopt the following convention:
 
-- `{{ site.local.prompt }}` when the command is to be entered on a terminal
+* `{{ site.local.prompt }}` when the command is to be entered on a terminal
   connected to your local computer
-- `{{ site.remote.prompt }}` when the command is to be entered on a
+* `{{ site.remote.prompt }}` when the command is to be entered on a
   terminal connected to the remote system
-- `$` when it really doesn't matter which system the terminal is connected to.
+* `$` when it really doesn't matter which system the terminal is connected to.
 
 ## Looking Around Your Remote Home
 
@@ -330,7 +330,7 @@ may also notice that the current hostname is also part of our prompt!)
 {: .output}
 
 So, we're definitely on the remote machine. Next, let's find out where we are
-by running `pwd` to **p**rint the **w**orking **d**irectory.
+by running `pwd` to __p__rint the __w__orking __d__irectory.
 
 ```
 {{ site.remote.prompt }} pwd

@@ -31,7 +31,7 @@ The program generates a large number of random points on a 1×1 square
 centered on (½,½), and checks how many of these points fall
 inside the unit circle.
 On average, π/4 of the randomly-selected points should fall in the
-circle, so π can be estimated from 4*f*, where *f* is the observed
+circle, so π can be estimated from 4_f_, where _f_ is the observed
 fraction of points that fall in the circle.
 Because each sample is independent, this algorithm is easily implemented
 in parallel.
@@ -63,18 +63,18 @@ We define a Python function `inside_circle` that accepts a single parameter
 for the number of random points used to calculate π.
 See [Programming with Python: Creating Functions][python-func]
 for a review of Python functions.
-It randomly samples points with both *x* and *y* on the half-open interval
+It randomly samples points with both _x_ and _y_ on the half-open interval
 [0, 1).
 It then computes their distances from the origin (i.e., radii), and returns
 how many of those distances were less than or equal to 1.0.
-All of this is done using *vectors* of double-precision (64-bit)
+All of this is done using _vectors_ of double-precision (64-bit)
 floating-point values.
 
 ```
 def inside_circle(total_count):
     x = np.random.uniform(size=total_count)
     y = np.random.uniform(size=total_count)
-    radii = np.sqrt(x*x + y*y)
+    radii = np.sqrt(x * x + y * y)
     count = len(radii[np.where(radii<=1.0)])
     return count
 ```
@@ -116,18 +116,18 @@ If we run the Python script locally with a command-line parameter, as in
 >
 > * Discuss why generating high quality random numbers might be difficult.
 > * Is the quality of random numbers generated sufficient for estimating π
-> in this implementation?
+>   in this implementation?
 >
 > > ## Solution
 > >
 > > * Computers are deterministic and produce pseudo random numbers using
-> > an algorithm.  The choice of algorithm and its parameters determines
-> > how random the generated numbers are.  Pseudo random number generation
-> > algorithms usually produce a sequence numbers taking the previous output
-> > as an input for generating the next number. At some point the sequence of
-> > pseudo random numbers will repeat, so care is required to make sure the
-> > repetition period is long and that the generated numbers have statistical
-> > properties similar to those of true random numbers.
+> >   an algorithm.  The choice of algorithm and its parameters determines
+> >   how random the generated numbers are.  Pseudo random number generation
+> >   algorithms usually produce a sequence numbers taking the previous output
+> >   as an input for generating the next number. At some point the sequence of
+> >   pseudo random numbers will repeat, so care is required to make sure the
+> >   repetition period is long and that the generated numbers have statistical
+> >   properties similar to those of true random numbers.
 > > * Yes.
 > {: .solution }
 {: .discussion }
@@ -179,7 +179,7 @@ import sys
 def inside_circle(total_count):
     x = np.random.uniform(size=total_count)
     y = np.random.uniform(size=total_count)
-    radii = np.sqrt(x*x + y*y)
+    radii = np.sqrt(x * x + y * y)
     count = len(radii[np.where(radii<=1.0)])
     return count
 
@@ -275,7 +275,7 @@ import datetime
 def inside_circle(total_count):
     x = np.random.uniform(size=total_count)
     y = np.random.uniform(size=total_count)
-    radii = np.sqrt(x*x + y*y)
+    radii = np.sqrt(x * x + y * y)
     count = len(radii[np.where(radii<=1.0)])
     return count
 
@@ -330,7 +330,7 @@ Take a closer look at `inside_circle`: should we expect to get high accuracy
 on a single machine?
 
 Probably not.
-The function allocates three arrays of size *N* equal to the number of points
+The function allocates three arrays of size _N_ equal to the number of points
 belonging to this process.
 Using 64-bit floating point numbers, the memory footprint of these arrays can
 get quite large.
@@ -402,8 +402,8 @@ parallelism -- this is a common tool on HPC systems.
 {: .callout}
 
 While MPI jobs can generally be run as stand-alone executables, in order for
-them to run in parallel they must use an MPI *run-time system*, which is a
-specific implementation of the MPI *standard*.
+them to run in parallel they must use an MPI _run-time system_, which is a
+specific implementation of the MPI _standard_.
 To do this, they should be started via a command such as `mpiexec` (or
 `mpirun`, or `srun`, etc. depending on the MPI run-time you need to use),
 which will ensure that the appropriate run-time support for parallelism is
@@ -431,7 +431,7 @@ included.
 > accounting work required to:
 >
 > * subdivide the total number of points to be sampled,
-> * *partition* the total workload among the various parallel processors
+> * _partition_ the total workload among the various parallel processors
 >   available,
 > * have each parallel process report the results of its workload back
 >   to the "rank 0" process,
@@ -448,7 +448,7 @@ included.
 > * Gather: The inverse of scatter. One rank populates a local array,
 >   with the array element at each index assigned the value provided by the
 >   corresponding partner rank -- including the host's own value.
-> * Conditional Output: since every rank is running the *same code*, the
+> * Conditional Output: since every rank is running the _same code_, the
 >   partitioning, the final calculations, and the `print` statement are
 >   wrapped in a conditional so that only one rank performs these operations.
 {: .discussion}
@@ -598,8 +598,8 @@ You can also increase the number of CPUs.
 
 ## How Much Does MPI Improve Performance?
 
-In theory, by dividing up the π calculations among *n* MPI processes,
-we should see run times reduce by a factor of *n*.
+In theory, by dividing up the π calculations among _n_ MPI processes,
+we should see run times reduce by a factor of _n_.
 In practice, some time is required to start the additional MPI processes,
 for the MPI processes to communicate and coordinate, and some types of
 calculations may only be able to run effectively on a single CPU.
@@ -610,7 +610,7 @@ required for communication compared to all processes operating on a
 single CPU.
 
 [Amdahl's Law][wiki-amdahl] is one way of
-predicting improvements in execution time for a **fixed** parallel workload.
+predicting improvements in execution time for a __fixed__ parallel workload.
 If a workload needs 20 hours to complete on a single core,
 and one hour of that time is spent on tasks that cannot be parallelized,
 only the remaining 19 hours could be parallelized.
@@ -623,7 +623,7 @@ In practice, it's common to evaluate the parallelism of an MPI program by
 * recording the execution time on each run,
 * comparing each execution time to the time when using a single CPU.
 
-The speedup factor *S* is calculated as the single-CPU execution time divided
+The speedup factor _S_ is calculated as the single-CPU execution time divided
 by the multi-CPU execution time.
 For a laptop with 8 cores, the graph of speedup factor versus number of cores
 used shows relatively consistent improvement when using 2, 4, or 8 cores, but
@@ -635,7 +635,7 @@ using additional cores shows a diminishing return.
 
 For a set of HPC nodes containing 28 cores each, the graph of speedup factor
 versus number of cores shows consistent improvements up through three nodes
-and 84 cores, but **worse** performance when adding a fourth node with an
+and 84 cores, but __worse__ performance when adding a fourth node with an
 additional 28 cores.
 This is due to the amount of communication and coordination required among
 the MPI processes requiring more time than is gained by reducing the amount

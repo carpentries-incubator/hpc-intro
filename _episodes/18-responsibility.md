@@ -63,7 +63,7 @@ are running on the login node along with the amount of CPU and memory they are
 using. If this check reveals that the login node is somewhat idle, you can
 safely use it for your non-routine processing task. If something goes wrong
 -- the process takes too long, or doesn't respond -- you can use the
-`kill` command along with the *PID* to terminate the process.
+`kill` command along with the _PID_ to terminate the process.
 
 > ## Login Node Etiquette
 >
@@ -103,11 +103,11 @@ only use 100 of them! This problem can be compounded when people write scripts
 that automate job submission (for example, when running the same calculation or
 analysis over lots of different parameters or files). When this happens it
 hurts both you (as you waste lots of charged resource) and other users (who are
-blocked from accessing the idle compute nodes). On very busy resources you may 
-wait many days in a queue for your job to fail within 10 seconds of starting due 
-to a trivial typo in the job script. This is extremely frustrating! 
+blocked from accessing the idle compute nodes). On very busy resources you may
+wait many days in a queue for your job to fail within 10 seconds of starting due
+to a trivial typo in the job script. This is extremely frustrating!
 
-Most systems provide dedicated resources for testing that have short wait times 
+Most systems provide dedicated resources for testing that have short wait times
 to help you avoid this issue.
 
 > ## Test Job Submission Scripts That Use Large Amounts of Resources
@@ -135,7 +135,7 @@ job scripts, analysis scripts and small input files.
 
 If you are building software, you may have a large amount of source code
 that you compile to build your executable. Since this data can generally
-be recovered by re-downloading the code, or re-running the checkout 
+be recovered by re-downloading the code, or re-running the checkout
 operation from the source code repository, this data is also less
 critical to protect.
 
@@ -170,30 +170,30 @@ amounts of data off HPC systems at some point (this is more often in
 transferring data off than onto systems but the advice below applies in either
 case). Data transfer speed may be limited by many different factors so the best
 data transfer mechanism to use depends on the type of data being transferred
-and where the data is going. 
+and where the data is going.
 
-The components between your data's source and destination have 
-varying levels of performance, and in particular, may have 
-different capabilities with respect to **bandwidth** and **latency**.
+The components between your data's source and destination have
+varying levels of performance, and in particular, may have
+different capabilities with respect to __bandwidth__ and __latency__.
 
-**Bandwidth** is generally the raw amount of data per unit time a
+__Bandwidth__ is generally the raw amount of data per unit time a
 device is capable of transmitting or receiving. It's a common
 and generally well-understood metric.
 
-**Latency** is a bit more subtle. For data transfers, it may be thought
+__Latency__ is a bit more subtle. For data transfers, it may be thought
 of as the amount of time it takes to get data out of storage and into
 a transmittable form. Latency issues are the reason it's advisable
-to execute data transfers by moving a small number of large 
+to execute data transfers by moving a small number of large
 files, rather than the converse.
 
 Some of the key components and their associated issues are:
 
-- **Disk speed**: File systems on HPC systems are often highly parallel,
+* __Disk speed__: File systems on HPC systems are often highly parallel,
   consisting of a very large number of high performance disk drives. This
   allows them to support a very high data bandwidth. Unless the remote system
   has a similar parallel file system you may find your transfer speed limited
   by disk performance at that end.
-- **Meta-data performance**: *Meta-data operations* such as opening and closing
+* __Meta-data performance__: _Meta-data operations_ such as opening and closing
   files or listing the owner or size of a file are much less parallel than
   read/write operations. If your data consists of a very large number of small
   files you may find your transfer speed is limited by meta-data operations.
@@ -201,11 +201,11 @@ Some of the key components and their associated issues are:
   strongly with those you perform so reducing the number of such operations you
   use (by combining multiple files into a single file) may reduce variability
   in your transfer rates and increase transfer speeds.
-- **Network speed**: Data transfer performance can be limited by network speed.
+* __Network speed__: Data transfer performance can be limited by network speed.
   More importantly it is limited by the slowest section of the network between
   source and destination. If you are transferring to your laptop/workstation,
   this is likely to be its connection (either via LAN or WiFi).
-- **Firewall speed**: Most modern networks are protected by some form of
+* __Firewall speed__: Most modern networks are protected by some form of
   firewall that filters out malicious traffic. This filtering has some overhead
   and can result in a reduction in data transfer performance. The needs of a
   general purpose network that hosts email/web-servers and desktop machines are
@@ -216,7 +216,7 @@ Some of the key components and their associated issues are:
 
 As mentioned above, if you have related data that consists of a large number of
 small files it is strongly recommended to pack the files into a larger
-*archive* file for long term storage and transfer. A single large file makes
+_archive_ file for long term storage and transfer. A single large file makes
 more efficient use of the file system and is easier to move, copy and transfer
 because significantly fewer metadata operations are required. Archive files can
 be created using tools like `tar` and `zip`. We have already met `tar` when we
@@ -276,7 +276,7 @@ talked about data transfer earlier.
 > >    network, this is a good choice.
 > > 4. This command first uses `tar` to merge everything into a single file,
 > >    then `rsync -z` to transfer it with compression. With this large
-> >    *number* of files, metadata overhead can hamper your transfer, so this
+> >    _number_ of files, metadata overhead can hamper your transfer, so this
 > >    is a good idea.
 > > 5. This command uses `tar -z` to compress the archive, then `rsync` to
 > >    transfer it. This may perform similarly to #4, but in most cases (for

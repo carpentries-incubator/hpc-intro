@@ -56,14 +56,14 @@ The `scp` command is a relative of the `ssh` command we used to
 access the system, and can use the same public-key authentication
 mechanism.
 
-To *upload to* another computer:
+To _upload to_ another computer:
 
 ```
 {{ site.local.prompt }} scp path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}
 ```
 {: .language-bash}
 
-To *download from* another computer:
+To _download from_ another computer:
 
 ```
 {{ site.local.prompt }} scp {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}/file.txt path/to/local/
@@ -93,7 +93,7 @@ remote computer. We can leave it at that if we don't care where the file goes.
 {: .challenge}
 
 Some computer clusters are behind firewalls set to only allow transfers
-initiated from the *outside*. This means that the `curl` command will fail, as
+initiated from the _outside_. This means that the `curl` command will fail, as
 an address outside the firewall is unreachable from the inside. To get around
 this, run the `curl` or `wget` command from your local machine to download the
 file, then use the `scp` command to upload it to the cluster.
@@ -119,7 +119,7 @@ file, then use the `scp` command to upload it to the cluster.
 > {: .challenge}
 {: .discussion}
 
-To copy a whole directory, we add the `-r` flag, for "**r**ecursive": copy the
+To copy a whole directory, we add the `-r` flag, for "__r__ecursive": copy the
 item specified, and every item below it, and every item below those... until it
 reaches the bottom of the directory tree rooted at the folder name you
 provided.
@@ -137,19 +137,19 @@ provided.
 
 ## What's in a `/`?
 
-When using `scp`, you may have noticed that a `:` *always* follows the remote
+When using `scp`, you may have noticed that a `:` _always_ follows the remote
 computer name; sometimes a `/` follows that, and sometimes not, and sometimes
-there's a final `/`. On Linux computers, `/` is the ***root*** directory, the
+there's a final `/`. On Linux computers, `/` is the ___root___ directory, the
 location where the entire filesystem (and others attached to it) is anchored. A
-path starting with a `/` is called *absolute*, since there can be nothing above
-the root `/`. A path that does not start with `/` is called *relative*, since
+path starting with a `/` is called _absolute_, since there can be nothing above
+the root `/`. A path that does not start with `/` is called _relative_, since
 it is not anchored to the root.
 
 If you want to upload a file to a location inside your home directory --
 which is often the case -- then you don't need a leading `/`. After the
 `:`, start writing the sequence of folders that lead to the final storage
 location for the file or, as mentioned above, provide nothing if your home
-directory *is* the destination.
+directory _is_ the destination.
 
 A trailing slash on the target directory is optional, and has no effect for
 `scp -r`, but is important in other commands, like `rsync`.
@@ -162,7 +162,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > `scp` and `sftp` (see below). It is especially useful for transferring large
 > and/or many files and creating synced backup folders.
 >
-> The syntax is similar to `scp`. To transfer *to* another computer with
+> The syntax is similar to `scp`. To transfer _to_ another computer with
 > commonly used options:
 >
 > ```
@@ -173,10 +173,10 @@ A trailing slash on the target directory is optional, and has no effect for
 > The options are:
 > * `a` (archive) to preserve file timestamps and permissions among other things
 > * `v` (verbose) to get verbose output to help monitor the transfer
-> * `z` (compression) to compress the file during transit to reduce size and 
-> transfer time
-> * `P` (partial/progress) to preserve partially transferred files in case 
-> of an interruption and also displays the progress of the transfer.
+> * `z` (compression) to compress the file during transit to reduce size and
+>   transfer time
+> * `P` (partial/progress) to preserve partially transferred files in case
+>   of an interruption and also displays the progress of the transfer.
 >
 > To recursively copy a directory, we can use the same options:
 >
@@ -269,9 +269,9 @@ remote HPC systems is that of large numbers of files. There is an overhead to
 transferring each individual file and when we are transferring large numbers of
 files these overheads combine to slow down our transfers to a large degree.
 
-The solution to this problem is to *archive* multiple files into smaller
+The solution to this problem is to _archive_ multiple files into smaller
 numbers of larger files before we transfer the data to improve our transfer
-efficiency. Sometimes we will combine archiving with *compression* to reduce
+efficiency. Sometimes we will combine archiving with _compression_ to reduce
 the amount of data we have to transfer and so speed up the transfer.
 
 The most common archiving command you will use on a (Linux) HPC cluster is
@@ -279,11 +279,11 @@ The most common archiving command you will use on a (Linux) HPC cluster is
 optionally, compress it.
 
 Let's start with the file we downloaded from the lesson site,
-`hpc-lesson-data.tar.gz`. The "gz" part stands for *gzip*, which is a
+`hpc-lesson-data.tar.gz`. The "gz" part stands for _gzip_, which is a
 compression library. Reading this file name, it appears somebody took a folder
 named "hpc-lesson-data," wrapped up all its contents in a single file with
 `tar`, then compressed that archive with `gzip` to save space. Let's check
-using `tar` with the `-t` flag, which prints the "**t**able of contents"
+using `tar` with the `-t` flag, which prints the "__t__able of contents"
 without unpacking the file, specified by `-f <filename>`, on the remote
 computer. Note that you can concatenate the two flags, instead of writing
 `-t -f` separately.
@@ -317,8 +317,8 @@ hpc-intro-data/north-pacific-gyre/NENE02040Z.txt
 
 This shows a folder containing another folder, which contains a bunch of files.
 If you've taken The Carpentries' Shell lesson recently, these might look
-familiar. Let's see about that compression, using `du` for "**d**isk
-**u**sage".
+familiar. Let's see about that compression, using `du` for "__d__isk
+__u__sage".
 
 ```
 {{ site.remote.prompt }} du -sh hpc-lesson-data.tar.gz
@@ -334,9 +334,9 @@ familiar. Let's see about that compression, using `du` for "**d**isk
 
 Now let's unpack the archive. We'll run `tar` with a few common flags:
 
-* `-x` to e**x**tract the archive
-* `-v` for **v**erbose output
-* `-z` for g**z**ip compression
+* `-x` to e__x__tract the archive
+* `-v` for __v__erbose output
+* `-z` for g__z__ip compression
 * `-f` for the file to be unpacked
 
 When it's done, check the directory size with `du` and compare.

@@ -23,8 +23,8 @@ keypoints:
 An HPC system might have thousands of nodes and thousands of users. How do we
 decide who gets what and when? How do we ensure that a task is run with the
 resources it needs? This job is handled by a special piece of software called
-the scheduler. On an HPC system, the scheduler manages which jobs run where and
-when.
+the _scheduler_. On an HPC system, the scheduler manages which jobs run where
+and when.
 
 The following illustration compares these tasks of a job scheduler to a waiter
 in a restaurant. If you can relate to an instance where you had to wait for a
@@ -44,8 +44,8 @@ the concepts remain the same.
 
 The most basic use of the scheduler is to run a command non-interactively. Any
 command (or series of commands) that you want to run on the cluster is called a
-*job*, and the process of using a scheduler to run the job is called *batch job
-submission*.
+_job_, and the process of using a scheduler to run the job is called _batch job
+submission_.
 
 In this case, the job we want to run is a shell script -- essentially a
 text file containing a list of UNIX commands to be executed in a sequential
@@ -59,7 +59,7 @@ manner. Our shell script will have three parts:
 * Anywhere below the first line, we'll add an `echo` command with a friendly
   greeting. When run, the shell script will print whatever comes after `echo`
   in the terminal.
-  * `echo -n` will print everything that follows, *without* ending
+  * `echo -n` will print everything that follows, _without_ ending
     the line by printing the new-line character.
 * On the last line, we'll invoke the `hostname` command, which will print the
   name of the machine the script is run on.
@@ -99,7 +99,7 @@ to run on a compute node.
 
 To submit this task to the scheduler, we use the
 `{{ site.sched.submit.name }}` command.
-This creates a *job* which will run the *script* when *dispatched* to
+This creates a _job_ which will run the _script_ when _dispatched_ to
 a compute node which the queuing system has identified as being
 available to perform the work.
 
@@ -112,7 +112,7 @@ available to perform the work.
 
 And that's all we need to do to submit a job. Our work is done -- now the
 scheduler takes over and tries to run the job for us. While the job is waiting
-to run, it goes into a list of jobs called the *queue*. To check on our job's
+to run, it goes into a list of jobs called the _queue_. To check on our job's
 status, we check the queue using the command
 `{{ site.sched.status }} {{ site.sched.flag.user }}`.
 
@@ -195,7 +195,7 @@ The following are several key resource requests:
 
 {% include {{ site.snippets }}/scheduler/option-flags-list.snip %}
 
-Note that just *requesting* these resources does not make your job run faster,
+Note that just _requesting_ these resources does not make your job run faster,
 nor does it necessarily mean that you will consume all of these resources. It
 only means that these are made available to you. Your job may end up using less
 memory, or less time, or fewer nodes than you have requested, and it will still
