@@ -9,8 +9,9 @@ questions:
 objectives:
 - "Construct a program that can execute in parallel."
 - "Prepare a job submission script for the parallel executable."
-- "Launch jobs with increasing degrees of parallel execution."
-- "Record and summarize the timing and accuracy of the results."
+- "Launch jobs with parallel execution."
+- "Record and summarize the timing and accuracy of jobs."
+- "Describe the relationship between job parallelism and performance."
 keypoints:
 - "Parallel programming allows applications to take advantage of
   parallel hardware; serial code will not 'just work.'"
