@@ -5,7 +5,7 @@ exercises: 15
 questions:
 - "How do I transfer files to (and from) the cluster?"
 objectives:
-- "Be able to transfer files to and from a computing cluster."
+- "Transfer files to and from a computing cluster."
 keypoints:
 - "`wget` and `curl -O` download a file from the internet."
 - "`scp` and `rsync` transfer files to and from your computer."
