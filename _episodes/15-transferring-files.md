@@ -96,7 +96,7 @@ Some computer clusters are behind firewalls set to only allow transfers
 initiated from the *outside*. This means that the `curl` command will fail, as
 an address outside the firewall is unreachable from the inside. To get around
 this, run the `curl` or `wget` command from your local machine to download the
-file, then use the `scp` command (just below here) to upload it to the cluster.
+file, then use the `scp` command to upload it to the cluster.
 
 > ## Why Not Download on {{ site.remote.name }} Directly?
 >
