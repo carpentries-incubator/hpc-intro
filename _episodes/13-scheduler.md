@@ -1,9 +1,9 @@
 ---
-title: "Queuing System Fundamentals"
+title: "Scheduler Fundamentals"
 teaching: 45
 exercises: 30
 questions:
-- "What is a scheduler and why are they used?"
+- "What is a scheduler and why does a cluster need one?"
 - "How do I launch a program to run on a compute node in the cluster?"
 - "How do I capture the output of a program that is run on a node in the
   cluster?"
