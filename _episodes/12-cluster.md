@@ -11,7 +11,7 @@ objectives:
 - "Compare & contrast resources on the local machine, login node, and worker
 nodes"
 - "Learn about the various filesystems on the cluster using `df`"
-- "See `who` else is logged in"
+- "Find out `who` else is logged in"
 - "Glance at the number of idle and occupied nodes"
 keypoints:
 - "An HPC system is a set of networked machines."
