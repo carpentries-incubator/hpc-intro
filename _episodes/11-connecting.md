@@ -137,8 +137,8 @@ produce a stronger key than the `ssh-keygen` default by invoking these flags:
 ```
 {: .language-bash}
 
-When prompted, enter a strong password with the [above considerations in mind](
-#considerations-for-ssh-key-passwords).
+When prompted, enter a strong password with the
+[above considerations in mind](#considerations-for-ssh-key-passwords).
 Note that the terminal will not appear to change while you type the password:
 this is deliberate, for your security. You will be prompted to type it again,
 so don't worry too much about typos.
@@ -150,39 +150,40 @@ Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
   asks for a key, this is the one to send. It is also safe to upload to
   websites such as GitHub: it is meant to be seen.
 
-##### Use RSA for Older Systems
-
-If key generation failed because ed25519 is not available, try using the older
-(but still strong and trustworthy) [RSA][wiki-rsa] cryptosystem. Again, first
-check for an existing key:
-
-```
-{{ site.local.prompt }} ls ~/.ssh/
-```
-{: .language-bash}
-
-If `~/.ssh/id_rsa` already exists, you will need to specify choose a different
-name for the new key-pair. Generate it as above, with the following extra flags:
-
-* `-b` sets the number of bits in the key. The default is 2048.
-  EdDSA uses a fixed key length, so this flag would have no effect.
-* `-o` (no default): use the OpenSSH key format,
-  rather than PEM.
-
-```
-{{ site.local.prompt }} ssh-keygen -a 100 -b 4096 -f ~/.ssh/id_rsa -o -t rsa
-```
-{: .language-bash}
-
-When prompted, enter a strong password with the [above considerations in mind](
-#considerations-for-ssh-key-passwords).
-
-Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
-
-* your private key (`~/.ssh/id_ed25519`): _do not share with anyone!_
-* the shareable public key (`~/.ssh/id_ed25519.pub`): if a system administrator
-  asks for a key, this is the one to send. It is also safe to upload to
-  websites such as GitHub: it is meant to be seen.
+> ## Use RSA for Older Systems
+>
+> If key generation failed because ed25519 is not available, try using the older
+> (but still strong and trustworthy) [RSA][wiki-rsa] cryptosystem. Again, first
+> check for an existing key:
+>
+> ```
+> {{ site.local.prompt }} ls ~/.ssh/
+> ```
+> {: .language-bash}
+>
+> If `~/.ssh/id_rsa` already exists, you will need to specify choose a different
+> name for the new key-pair. Generate it as above, with the following extra flags:
+>
+> * `-b` sets the number of bits in the key. The default is 2048.
+>   EdDSA uses a fixed key length, so this flag would have no effect.
+> * `-o` (no default): use the OpenSSH key format,
+>   rather than PEM.
+>
+> ```
+> {{ site.local.prompt }} ssh-keygen -a 100 -b 4096 -f ~/.ssh/id_rsa -o -t rsa
+> ```
+> {: .language-bash}
+>
+> When prompted, enter a strong password with the
+> [above considerations in mind](#considerations-for-ssh-key-passwords).
+>
+> Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
+>
+> * your private key (`~/.ssh/id_rsa`): _do not share with anyone!_
+> * the shareable public key (`~/.ssh/id_rsa.pub`): if a system administrator
+>   asks for a key, this is the one to send. It is also safe to upload to
+>   websites such as GitHub: it is meant to be seen.
+{: .callout}
 
 #### SSH Keys on PuTTY
 
