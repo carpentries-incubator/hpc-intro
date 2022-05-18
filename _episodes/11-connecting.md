@@ -299,7 +299,7 @@ because it does not offer a local terminal). This change is important because
 it can help you distinguish on which system the commands you type will be run
 when you pass them into the terminal. This change is also a small complication
 that we will need to navigate throughout the workshop. Exactly what is reported
-before the `$` in the terminal when it is connected to the local system and the
+as the prompt (which conventionally ends in `$`) in the terminal when it is connected to the local system and the
 remote system will typically be different for every user. We still need to
 indicate which system we are entering commands on though so we will adopt the
 following convention:
