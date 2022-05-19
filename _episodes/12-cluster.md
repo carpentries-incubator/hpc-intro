@@ -12,7 +12,7 @@ objectives:
 nodes"
 - "Learn about the various filesystems on the cluster using `df`"
 - "Find out `who` else is logged in"
-- "Glance at the number of idle and occupied nodes"
+- "Assess the number of idle and occupied nodes"
 keypoints:
 - "An HPC system is a set of networked machines."
 - "HPC systems typically provide login nodes and a set of compute nodes."
