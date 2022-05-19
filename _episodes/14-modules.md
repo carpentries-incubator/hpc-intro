@@ -5,8 +5,8 @@ exercises: 15
 questions:
 - "How do we load and unload software packages?"
 objectives:
-- "Understand how to load and use a software package."
-- "Understand how the module mechanism interacts with the shell."
+- "Load and use a software package."
+- "Explain how the shell environment changes when the module mechanism loads or unloads packages."
 keypoints:
 - "Load software with `module load softwareName`."
 - "Unload software with `module unload`"
