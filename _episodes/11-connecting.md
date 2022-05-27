@@ -22,19 +22,20 @@ The first step in using a cluster is to establish a connection from our laptop
 to the cluster. When we are sitting at a computer (or standing, or holding it
 in our hands or on our wrists), we have come to expect a visual display with
 icons, widgets, and perhaps some windows or applications: a _graphical user
-interface_, or GUI. Since computer clusters are remote resources that we connect
-to over often slow or laggy interfaces (WiFi and VPNs especially), it is more
-practical to use a _command-line interface_, or CLI, in which commands and
-results are transmitted via text, only. Anything other than text (images, for
-example) must be written to disk and opened with a separate program.
+interface_, or GUI. Since computer clusters are remote resources that we
+connect to over slow or intermittent interfaces (WiFi and VPNs especially), it
+is more practical to use a _command-line interface_, or CLI, to send commands
+as plain-text. If a command returns output, it is printed as plain text as
+well. The commands we run today will not open a window to show graphical
+results.
 
 If you have ever opened the Windows Command Prompt or macOS Terminal, you have
 seen a CLI. If you have already taken The Carpentries' courses on the UNIX
-Shell or Version Control, you have used the CLI on your local machine somewhat
-extensively. The only leap to be made here is to open a CLI on a _remote_
-machine, while taking some precautions so that other folks on the network can't
-see (or change) the commands you're running or the results the remote machine
-sends back. We will use the Secure SHell protocol (or SSH) to open an encrypted
+Shell or Version Control, you have used the CLI on your _local machine_
+extensively. The only leap to be made here is to open a CLI on a _remote machine_,
+while taking some precautions so that other folks on the network can't see (or
+change) the commands you're running or the results the remote machine sends
+back. We will use the Secure SHell protocol (or SSH) to open an encrypted
 network connection between two machines, allowing you to send & receive text
 and data without having to worry about prying eyes.
 
@@ -236,12 +237,39 @@ Open your terminal application and check if an agent is running:
   ```
   {: .error}
 
-  ... then you need to launch the agent _as a background process_.
+  ... then you need to launch the agent as follows:
 
   ```
   {{ site.local.prompt }} eval $(ssh-agent)
   ```
   {: .language-bash}
+  
+  > ## What's in a `$(...)`?
+  >
+  > The syntax of this SSH Agent command is unusual, based on what we've seen
+  > in the UNIX Shell lesson. This is because the `ssh-agent` command creates
+  > opens a connection that only you have access to, and prints a series of
+  > shell commands that can be used to reach it -- but _does not execute them!_
+  >
+  > ```
+  > {{ site.local.prompt }} ssh-agent
+  > ```
+  > {: .language-bash}
+  > ```
+  > SSH_AUTH_SOCK=/tmp/ssh-Zvvga2Y8kQZN/agent.131521;
+  > export SSH_AUTH_SOCK;
+  > SSH_AGENT_PID=131522;
+  > export SSH_AGENT_PID;
+  > echo Agent pid 131522;
+  > ```
+  > {: .output}
+  >
+  > The `eval` command interprets this text output as commands and allows you
+  > to access the SSH Agent connection you just created.
+  >
+  > You could run each line of the `ssh-agent` output yourself, and
+  > achieve the same result. Using `eval` just makes this easier.
+  {: .callout}
 
 * Otherwise, your agent is already running: don't mess with it.
 
