@@ -50,6 +50,7 @@ episode_order:
   - 02-filedir
   - 14-modules
   - 13-scheduler
+  - 16.5-good-batch-script
   - 17-resources
   - 18-responsibility
 
@@ -87,7 +88,7 @@ working_dir:
 - introhpc20220222
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
-start_time: 760
+start_time: 780
 
 # Magic to make URLs resolve both locally and on GitHub. Please don't change.
 repository: <USERNAME>/<PROJECT>
