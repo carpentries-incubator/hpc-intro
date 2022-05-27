@@ -431,7 +431,8 @@ to the `authorized_keys` file:
 {: .language-bash}
 
 That's all! Disconnect, then try to log back into the remote: if your key and
-agent have been configured correctly, you should not be prompted for a password.
+agent have been configured correctly, you should not be prompted for the
+password for your SSH key.
 
 ```
 {{ site.remote.prompt }} logout

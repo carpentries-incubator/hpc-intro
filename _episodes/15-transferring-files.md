@@ -92,11 +92,11 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > {: .solution}
 {: .challenge}
 
-Some computer clusters are behind firewalls set to only allow transfers
-initiated from the _outside_. This means that the `curl` command will fail, as
-an address outside the firewall is unreachable from the inside. To get around
-this, run the `curl` or `wget` command from your local machine to download the
-file, then use the `scp` command to upload it to the cluster.
+Most computer clusters are protected from the open internet by a _firewall_.
+This means that the `curl` command will fail, as an address outside the
+firewall is unreachable from the inside. To get around this, run the `curl` or
+`wget` command from your local machine to download the file, then use the `scp`
+command to upload it to the cluster.
 
 > ## Why Not Download on {{ site.remote.name }} Directly?
 >
