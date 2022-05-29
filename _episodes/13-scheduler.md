@@ -75,7 +75,7 @@ echo "Done!"
 
 > ## shebang
 >
-> _shebang_ or _shabang_, also referred to as _hashbang_ is the character sequence consisting of the number sign (aka: hash) and exclamation mark (aka: bang): `#!` at the beginning of a script.  It is used to describe the _interpreter_ that will be used to run the script.  In this case we will be using the Bash Shell, which can be found at the path `/bin/bash`
+> _shebang_ or _shabang_, also referred to as _hashbang_ is the character sequence consisting of the number sign (aka: hash) and exclamation mark (aka: bang): `#!` at the beginning of a script.  It is used to describe the _interpreter_ that will be used to run the script.  In this case we will be using the Bash Shell, which can be found at the path `/bin/bash`. The job scheduler will give you an error if your script does not start with a shebang.
 >
 {: .callout}
 
