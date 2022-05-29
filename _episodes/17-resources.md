@@ -143,7 +143,7 @@ Running the command `sacct` we can see where our currently located jobs are loca
 {: .language-bash}
 
 
-{% include  {{ site.snippets }}/resources/get-job-node %}
+{% include  {{ site.snippets }}/resources/get-job-node.snip %}
 
 Now that we know the location of the job (wbn189) we can use SSH to run htop there.
 
