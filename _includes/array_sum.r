@@ -1,6 +1,6 @@
 library(doParallel)
 
-num_cpus <- 2
+num_cpus <- 2 # Use this value to request num cpus.
 size_array <- 20000 
 
 registerDoParallel(num_cpus)    

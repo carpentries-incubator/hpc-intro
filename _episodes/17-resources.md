@@ -138,19 +138,12 @@ Running this command as is will show us information on tasks running on the logi
 Running the command `sacct` we can see where our currently located jobs are located.
 
 ```
-{{ site.remote.prompt }} sacct
+{{ site.remote.prompt }} squeue -me
 ```
 {: .language-bash}
 
 
-```
-       JobID                                  JobName Timelimit   Elapsed  TotalCPU Al NT     ReqMem     MaxRSS        State     NodeList 
------------- ---------------------------------------- --------- --------- --------- -- -- ---------- ---------- ------------ ------------ 
-    25002699                                 test-job  00:15:00  00:01:07  00:00:00  4           2Gn                 RUNNING       wbn189 
-25002699.ex+                                   extern            00:01:07  00:00:00  4  1        2Gn                 RUNNING       wbn189 
-  25002699.0                                 test-job            00:01:06  00:00:00  4  1        2Gn                 RUNNING       wbn189 
-```
-{: .output}
+{% include  {{ site.snippets }}/resources/get-job-node.snip %}
 
 Now that we know the location of the job (wbn189) we can use SSH to run htop there.
 
@@ -190,7 +183,7 @@ Example here
 
 Examine outputs
 
-Repeat this processes several times until a pattern has been established.
+  Repeat this processes several times until a pattern has been established.
 
 Submit more, maybe a few at once.
 
