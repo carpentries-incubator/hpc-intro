@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+#SBATCH --job-name      my_job
+#SBATCH --mem           200M
+#SBATCH --time          00:15:00
+#SBATCH --cpus-per-task 4
+#SBATCH --acctg-freq    1
+
+module load R/4.1.0-gimkl-2020a
+Rscript array_sum.r
+echo "Done!"

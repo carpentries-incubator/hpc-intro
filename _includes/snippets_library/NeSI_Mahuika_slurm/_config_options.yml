@@ -84,11 +84,11 @@ kind: "lesson"
 
 # Workshop working directory.
 working_dir:
-- /nesi/project/nesi99991
-- introhpc20220222
+- /nesi/project/agresearch03304
+- introhpc20220602
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
-start_time: 780
+start_time: 630
 
 # Magic to make URLs resolve both locally and on GitHub. Please don't change.
 repository: <USERNAME>/<PROJECT>
@@ -113,6 +113,10 @@ training_site: "https://carpentries.github.io/instructor-training"
 workshop_repo: "https://github.com/carpentries/workshop-template"
 workshop_site: "https://carpentries.github.io/workshop-template"
 cc_by_human: "https://creativecommons.org/licenses/by/4.0/"
+support_docs: "https://support.nesi.org.nz/hc/en-gb"
+17_exersice: "https://docs.google.com/spreadsheets/d/1D5PnhE6iJOB3ZKkDCiBHnk5CNZlhmj_gS-IXKGkkVoI/edit?usp=sharing"
+
+
 
 # Specify that things in the Episodes and Extras collections should be output.
 collections:
