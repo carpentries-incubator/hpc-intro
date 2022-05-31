@@ -52,6 +52,7 @@ episode_order:
   - 13-scheduler
   - 16.5-good-batch-script
   - 17-resources
+  - 17.5-scaling
   - 18-responsibility
 
 
