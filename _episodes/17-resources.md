@@ -10,7 +10,7 @@ objectives:
 - "Understand job size implications."
 - "Understand problems and limitations involved in using multiple CPUs."
 keypoints:
-- As your task gets larger, so does the potential for inefficiencies.
+- "As your task gets larger, so does the potential for inefficiencies."
 - "The smaller your job (time, CPUs, memory, etc), the faster it will schedule."
 ---
 <!--
@@ -87,16 +87,16 @@ For convenience, NeSI has provided the command `nn_seff <jobid>` to calculate **
 {: .language-bash}
 
 ```
-Job ID: 22278992
+Job ID: 27323570
 Cluster: mahuika
 User/Group: username/username
-State: TIMEOUT (exit code 0)
+State: COMPLETED (exit code 0)
 Cores: 1
 Tasks: 1
 Nodes: 1
-Job Wall-time:  100.33%  00:15:03 of 00:15:00 time limit
-CPU Efficiency: 0.55%  00:00:05 of 00:15:03 core-walltime
-Mem Efficiency: 0.20%  2.09 MB of 1.00 GB
+Job Wall-time:  5.11%  00:00:46 of 00:15:00 time limit
+CPU Efficiency: 141.30%  00:01:05 of 00:00:46 core-walltime
+Mem Efficiency: 93.31%  233.29 MB of 250.00 MB
 ```
 If you were to submit this same job again what resources would you request?
 
@@ -163,38 +163,5 @@ Now that we know the location of the job (wbn189) we can use SSH to run htop the
 > is to ask the scheduler for **30%** more time and memory than you expect the
 > job to need.
 {: .callout}
-
-
-## Scaling
-
-<!-- TODO: Add scaling example
-Currently the rest of this lesson Not ready yet.  Too little info to go on without some sort of easy to grok exercise. -->
-Unfortunately we cannot assume speedup will be linear (e.g. double CPUs won't usually half runtime, doubling the size of your input data won't necessarily double runtime) therefore more testing is required. This is called *scaling testing*.
-
-
-The aim of these tests will be to establish how a jobs requirements change with size (CPUs, inputs) and ultimately figure out the best way to run your jobs.
-### Scaling behaviour
-
-Last time we submitted a job, we did not specify a number of CPUs, and therefore got the default of `2`, now we will add to that script to include `#SBATCH --cpus-per-task 4`
-
-Using the information we collected from the previous job, we will submit a larger version with our best estimates of required resources.
-
-Example here
-
-Examine outputs
-
-  Repeat this processes several times until a pattern has been established.
-
-Submit more, maybe a few at once.
-
-Most jobs will look something like this
-
-Under ideal scaling speedup increases 1:1 with number of CPUs. Embarrassingly parallel work will have ideal scaling.
-
-Depending on the fraction of your code that is parallel, th
-
-- start small.
-- record everything.
--->
 
 {% include links.md %}
