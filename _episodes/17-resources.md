@@ -138,7 +138,7 @@ Running this command as is will show us information on tasks running on the logi
 Running the command `sacct` we can see where our currently located jobs are located.
 
 ```
-{{ site.remote.prompt }} squeue -me
+{{ site.remote.prompt }} squeue --me
 ```
 {: .language-bash}
 
