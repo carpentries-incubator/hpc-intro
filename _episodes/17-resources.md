@@ -1,7 +1,7 @@
 ---
 title: "Using resources effectively"
 teaching: 15
-exercises: 10
+exercises: 5
 questions:
 - "How do we monitor our jobs?"
 - "How can I get my jobs scheduled more easily?"
