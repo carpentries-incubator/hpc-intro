@@ -320,12 +320,12 @@ Up to this point, we've focused on running jobs in batch mode.
 There are very frequently tasks that need to be done interactively. Creating an
 entire job script might be overkill, but the amount of resources required is
 too much for a login node to handle. A good example of this might be building a
-genome index for alignment with a tool like
-[HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml). Fortunately, we can
-run these types of tasks as a one-off with `{{ site.sched.interactive }}`.
+genome index for alignment with a tool like [HISAT2][hisat]. Fortunately, we
+can run these types of tasks as a one-off with `{{ site.sched.interactive }}`.
 
 {% include {{ site.snippets }}/scheduler/using-nodes-interactively.snip %}
 
 {% include links.md %}
 
 [fshs]: https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
+[hisat]: https://ccb.jhu.edu/software/hisat2/index.shtml

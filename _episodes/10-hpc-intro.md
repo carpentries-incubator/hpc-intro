@@ -74,13 +74,11 @@ separate window, then press `P` to toggle presentation mode.
 > > * Searching for a phrase online involves comparing your search term against
 > >   a massive database of all known sites, looking for matches. This "query"
 > >   operation can be straightforward, but building that database is a
-> >   [monumental task](https://en.wikipedia.org/wiki/MapReduce)! Servers are
-> >   involved at every step.
+> >   [monumental task][mapreduce]! Servers are involved at every step.
 > > * Searching for directions on a mapping website involves connecting your
-> >   (A) starting and (B) end points by [traversing a graph](
-> >   https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) in search of
-> >   the "shortest" path by distance, time, expense, or another metric.
-> >   Converting a map into the right form is relatively simple, but
+> >   (A) starting and (B) end points by [traversing a graph][dijkstra] in
+> >   search of the "shortest" path by distance, time, expense, or another
+> >   metric. Converting a map into the right form is relatively simple, but
 > >   calculating all the possible routes between A and B is expensive.
 > >
 > > Checking email could be serial: your machine connects to one server and
@@ -88,10 +86,13 @@ separate window, then press `P` to toggle presentation mode.
 > > endpoints) could also be serial, in that one machine receives your query
 > > and returns the result. However, assembling and storing the full database
 > > is far beyond the capability of any one machine. Therefore, these functions
-> > are served in parallel by a large, ["hyperscale"](
-> > https://en.wikipedia.org/wiki/Hyperscale_computing) collection of servers
-> > working together.
+> > are served in parallel by a large, ["hyperscale"][hyperscale] collection of
+> > servers working together.
 > {: .solution}
 {: .challenge }
 
 {% include links.md %}
+
+[dijkstra]: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+[hyperscale]: https://en.wikipedia.org/wiki/Hyperscale_computing
+[mapreduce]: https://en.wikipedia.org/wiki/MapReduce

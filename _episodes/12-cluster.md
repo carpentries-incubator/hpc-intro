@@ -266,7 +266,7 @@ connect to a shared, remote fileserver or cluster of servers.
 > > >   you're on the same login node (or compute node, later on).
 > > > * Networked filesystems (beegfs, cifs, gpfs, nfs, pvfs) will be similar
 > > >   -- but may include {{ site.remote.user }}, depending on how it
-> > >   is [mounted](https://en.wikipedia.org/wiki/Mount_(computing)).
+> > >   is [mounted][mount].
 > > {: .discussion}
 > >
 > > > ## Shared Filesystems
@@ -310,3 +310,4 @@ scheduler, and use it to start running our scripts and programs!
 {% include links.md %}
 
 [fshs]: https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
+[mount]: https://en.wikipedia.org/wiki/Mount_(computing)

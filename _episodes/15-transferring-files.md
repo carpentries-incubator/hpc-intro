@@ -157,7 +157,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > ## A Note on `rsync`
 >
 > As you gain experience with transferring files, you may find the `scp`
-> command limiting. The [rsync](https://rsync.samba.org/) utility provides
+> command limiting. The [rsync][rsync] utility provides
 > advanced features for file transfer and is typically faster compared to both
 > `scp` and `sftp` (see below). It is especially useful for transferring large
 > and/or many files and creating synced backup folders.
@@ -234,14 +234,14 @@ you will have to specify it using the appropriate flag, often `-p`, `-P`, or
 FileZilla is a cross-platform client for downloading and uploading files to and
 from a remote computer. It is absolutely fool-proof and always works quite
 well. It uses the `sftp` protocol. You can read more about using the `sftp`
-protocol in the command line [here]({{ site.baseurl }}{% link
-_extras/discuss.md %}).
+protocol in the command line in the
+[lesson discussion]({{ site.baseurl }}{% link extras/discuss.md %}).
 
-Download and install the FileZilla client from
-[https://filezilla-project.org](https://filezilla-project.org). After
-installing and opening the program, you should end up with a window with a file
-browser of your local system on the left hand side of the screen. When you
-connect to the cluster, your cluster files will appear on the right hand side.
+Download and install the FileZilla client from <https://filezilla-project.org>.
+After installing and opening the program, you should end up with a window with
+a file browser of your local system on the left hand side of the screen. When
+you connect to the cluster, your cluster files will appear on the right hand
+side.
 
 To connect to the cluster, we'll just need to enter our credentials at the top
 of the screen:
@@ -429,3 +429,5 @@ then provide a directory to compress:
 {: .callout}
 
 {% include links.md %}
+
+[rsync]: https://rsync.samba.org/

@@ -166,7 +166,7 @@ The first line calculates the bytes of memory required for a single
 64-bit floating point number using the `dtype` function.
 The second line estimates the total amount of memory required to store three
 variables containing `n_samples` `float64` values, converting the value into
-units of [gibibytes](https://en.wikipedia.org/wiki/Byte#Multiple-byte_units).
+units of [gibibytes][units].
 The third line prints both the estimate of π and the estimated amount of
 memory used by the script.
 
@@ -609,13 +609,12 @@ in the computer, or across multiple compute nodes, additional time is
 required for communication compared to all processes operating on a
 single CPU.
 
-[Amdahl's Law][wiki-amdahl] is one way of
-predicting improvements in execution time for a __fixed__ parallel workload.
-If a workload needs 20 hours to complete on a single core,
-and one hour of that time is spent on tasks that cannot be parallelized,
-only the remaining 19 hours could be parallelized.
-Even if an infinite number of cores were used for the parallel parts of
-the workload, the total run time cannot be less than one hour.
+[Amdahl's Law][amdahl] is one way of predicting improvements in execution time
+for a __fixed__ parallel workload.  If a workload needs 20 hours to complete on
+a single core, and one hour of that time is spent on tasks that cannot be
+parallelized, only the remaining 19 hours could be parallelized.  Even if an
+infinite number of cores were used for the parallel parts of the workload, the
+total run time cannot be less than one hour.
 
 In practice, it's common to evaluate the parallelism of an MPI program by
 
@@ -660,9 +659,10 @@ parallelization, see the [parallel novice lesson][parallel-novice] lesson.
 
 {% include links.md %}
 
+[amdahl]: https://en.wikipedia.org/wiki/Amdahl's_law
 [cmd-line]: https://swcarpentry.github.io/python-novice-inflammation/12-cmdline/index.html
 [inflammation]: https://swcarpentry.github.io/python-novice-inflammation/
 [np-dtype]: https://numpy.org/doc/stable/reference/generated/numpy.dtype.html
 [parallel-novice]: http://www.hpc-carpentry.org/hpc-parallel-novice/
 [python-func]: https://swcarpentry.github.io/python-novice-inflammation/08-func/index.html
-[wiki-amdahl]: https://en.wikipedia.org/wiki/Amdahl's_law
+[units]: https://en.wikipedia.org/wiki/Byte#Multiple-byte_units

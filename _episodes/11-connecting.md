@@ -47,7 +47,7 @@ SSH clients are usually command-line tools, where you provide the remote
 machine address as the only required argument. If your username on the remote
 system differs from what you use locally, you must provide that as well. If
 your SSH client has a graphical front-end, such as PuTTY or MobaXterm, you will
-set these arguments before clicking "connect." From the terminal, you'll write
+7set these arguments before clicking "connect." From the terminal, you'll write
 something like `ssh userName@hostname`, where the argument is just like an
 email address: the "@" symbol is used to separate the personal ID from the
 address of the remote machine.
@@ -73,8 +73,9 @@ shell application with a Unix-like command line interface to your system.
 
 SSH keys are an alternative method for authentication to obtain access to
 remote computing systems. They can also be used for authentication when
-transferring files or for accessing remote version control systems (such as [GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)). In this section
-you will create a pair of SSH keys:
+transferring files or for accessing remote version control systems (such as
+[GitHub][gh-ssh]).
+In this section you will create a pair of SSH keys:
 
 * a private key which you keep on your own computer, and
 * a public key which can be placed on any remote system you will access.
@@ -91,7 +92,8 @@ you will create a pair of SSH keys:
 {: .caution}
 
 Regardless of the software or operating system you use, _please_ choose a
-strong password or passphrase to act as another layer of protection for your private SSH key.
+strong password or passphrase to act as another layer of protection for your
+private SSH key.
 
 > ## Considerations for SSH Key Passwords
 >
@@ -131,7 +133,8 @@ produce a stronger key than the `ssh-keygen` default by invoking these flags:
   algorithm. `ed25519` specifies [EdDSA][wiki-dsa] with a 256-bit key;
   it is faster than RSA with a comparable strength.
 * `-f` (default is /home/user/.ssh/id_algorithm): filename to store your
-  private key. The public key filename will be identical, with a `.pub` extension added.
+  private key. The public key filename will be identical, with a `.pub`
+  extension added.
 
 ```
 {{ site.local.prompt }} ssh-keygen -a 100 -f ~/.ssh/id_ed25519 -t ed25519
@@ -327,7 +330,7 @@ system using the terminal (if you logged in using PuTTY this will not apply
 because it does not offer a local terminal). This change is important because
 it can help you distinguish on which system the commands you type will be run
 when you pass them into the terminal. This change is also a small complication
-that we will need to navigate throughout the workshop. Exactly what is reported
+that we will need to navigate throughout the workshop. Exactly what is displayed
 as the prompt (which conventionally ends in `$`) in the terminal when it is
 connected to the local system and the remote system will typically be different
 for every user. We still need to indicate which system we are entering commands
@@ -377,6 +380,10 @@ Great, we know where we are! Let's see what's in our current directory:
 {{ site.remote.prompt }} ls
 ```
 {: .language-bash}
+```
+id_ed25519.pub
+```
+{: .output}
 
 The system administrators may have configured your home directory with some
 helpful files, folders, and links (shortcuts) to space reserved for you on
@@ -403,11 +410,10 @@ keys and a record of authorized connections.
 
 > ## There May Be a Better Way
 >
-> Policies and practices for handling SSH keys vary between HPC
-> clusters: follow any guidance provided by the cluster
-> administrators or documentation. In particular, if there is an
-> online portal for managing SSH keys, use that instead of the
-> directions outlined here.
+> Policies and practices for handling SSH keys vary between HPC clusters:
+> follow any guidance provided by the cluster administrators or
+> documentation. In particular, if there is an online portal for managing SSH
+> keys, use that instead of the directions outlined here.
 {: .callout}
 
 If you transferred your SSH public key with `scp`, you should see
@@ -440,7 +446,7 @@ password for your SSH key.
 {: .language-bash}
 
 ```
-{{ site.local.prompt }}  ssh {{ site.remote.user }}@{{ site.remote.login }}
+{{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
 ```
 {: .language-bash}
 
@@ -448,6 +454,7 @@ password for your SSH key.
 
 [bitwarden]: https://bitwarden.com
 [fshs]: https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
+[gh-ssh]: https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 [keepass]: https://keepass.info
 [putty-gen]: https://tartarus.org/~simon/putty-prerel-snapshots/htmldoc/Chapter8.html#pubkey-puttygen
 [putty-agent]: https://tartarus.org/~simon/putty-prerel-snapshots/htmldoc/Chapter9.html#pageant
