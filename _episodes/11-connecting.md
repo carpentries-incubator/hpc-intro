@@ -131,7 +131,7 @@ produce a stronger key than the `ssh-keygen` default by invoking these flags:
   algorithm. `ed25519` specifies [EdDSA][wiki-dsa] with a 256-bit key;
   it is faster than RSA with a comparable strength.
 * `-f` (default is /home/user/.ssh/id_algorithm): filename to store your
-  private key. The public key will be identical, with a `.pub` extension added.
+  private key. The public key filename will be identical, with a `.pub` extension added.
 
 ```
 {{ site.local.prompt }} ssh-keygen -a 100 -f ~/.ssh/id_ed25519 -t ed25519
