@@ -90,8 +90,8 @@ you will create a pair of SSH keys:
 > Protect this key as if it unlocks your front door. In many ways, it does.
 {: .caution}
 
-Regardless of the software or operating system you use, you must choose a
-strong password or passphrase for your SSH keys.
+Regardless of the software or operating system you use, _please_ choose a
+strong password or passphrase to act as another layer of protection for your private SSH key.
 
 > ## Considerations for SSH Key Passwords
 >
