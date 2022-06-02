@@ -50,7 +50,7 @@ your SSH client has a graphical front-end, such as PuTTY or MobaXterm, you will
 set these arguments before clicking "connect." From the terminal, you'll write
 something like `ssh userName@hostname`, where the argument is just like an
 email address: the "@" symbol is used to separate the personal ID from the
-address of the shared resource.
+address of the remote machine.
 
 When logging in to a laptop, tablet, or other personal device, a username,
 password, or pattern are normally required to prevent unauthorized access. In
