@@ -6,7 +6,7 @@ questions:
 - "Why would I be interested in High Performance Computing (HPC)?"
 - "What can I expect to learn from this course?"
 objectives:
-- "Be able to describe what an HPC system is"
+- "Describe what an HPC system is"
 - "Identify how an HPC system could benefit you."
 keypoints:
 - "High Performance Computing (HPC) typically involves connecting to very large
@@ -62,7 +62,7 @@ problems in parallel**.
 
 ## Jargon Busting Presentation
 
-Open the [HPC Jargon Buster]({{ site.baseurl }}/files/jargon.html#p1) in
+Open the [HPC Jargon Buster]({{ site.url }}{{ site.baseurl }}/files/jargon.html#p1) in
 a new tab. To present the content, press `C` to open a **c**lone in
 a separate window, then press `P` to toggle presentation mode.
 
