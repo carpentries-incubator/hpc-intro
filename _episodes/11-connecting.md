@@ -73,7 +73,7 @@ shell application with a Unix-like command line interface to your system.
 
 SSH keys are an alternative method for authentication to obtain access to
 remote computing systems. They can also be used for authentication when
-transferring files or for accessing version control systems. In this section
+transferring files or for accessing remote version control systems (such as [GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)). In this section
 you will create a pair of SSH keys:
 
 * a private key which you keep on your own computer, and
