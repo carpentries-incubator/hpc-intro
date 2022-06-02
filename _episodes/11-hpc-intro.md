@@ -6,7 +6,7 @@ questions:
 - "Why would I be interested in High Performance Computing (HPC)?"
 - "What can I expect to learn from this course?"
 objectives:
-- "Be able to describe what an HPC system is"
+- "Describe what an HPC system is"
 - "Identify how an HPC system could benefit you."
 keypoints:
 - "High Performance Computing (HPC) typically involves connecting to very large
