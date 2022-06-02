@@ -253,7 +253,7 @@ wall time, and attempt to run a job for two minutes.
 {{ site.sched.comment }} {{ site.sched.flag.time }} 00:01 # timeout in HH:MM
 
 echo "This script is running on ... "
-sleep 120 # time in seconds
+sleep 240 # time in seconds
 hostname
 ```
 {: .output}
