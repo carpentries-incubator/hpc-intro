@@ -3,18 +3,15 @@
 This lesson teaches the basics of interacting with high-performance computing
 (HPC) clusters through the command line
 
-[![Build Status](
-https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fcarpentries-incubator%2Fhpc-intro%2Fbadge%3Fref%3Dgh-pages&style=flat)](
-https://actions-badge.atrox.dev/carpentries-incubator/hpc-intro/goto?ref=gh-pages)
+[![Build Status][badge-img]][badge-lnk]
 
 ## Using this material
 
 NOTE: This is _not_ Carpentries boilerplate! Please read carefully.
 
-1. Follow the instructions found in The Carpentries' [example lesson](
-   https://github.com/carpentries/lesson-example/) to create a repository for
-   your lesson. Install Ruby, Make, and Jekyll following the instructions
-   [here](http://carpentries.github.io/lesson-example/setup.html).
+1. Follow the instructions found in The Carpentries' [example lesson][ex-lesson]
+   to create a repository for your lesson. Install Ruby, Make, and Jekyll
+   following the instructions [here][setup].
 
 1. For easier portability, we use snippets of text and code to capture inputs
    and outputs that are host- or site-specific and cannot be scripted. These
@@ -30,10 +27,9 @@ NOTE: This is _not_ Carpentries boilerplate! Please read carefully.
    * Code snippets are placed in subdirectories that are named according to the
      episode they appear in. For example, if the snippet is for episode 12, then
      it will be in a subdirectory called `12`.
-   * In the episodes source, snippets are included using [Liquid](
-     https://shopify.github.io/liquid/) scripting `include` statements. For
-     example, the first snippet in episode 12 is included using
-     `{% include /snippets/12/info.snip %}`.
+   * In the episodes source, snippets are included using [Liquid][liquid]
+     scripting `include` statements. For example, the first snippet in episode
+     12 is included using `{% include /snippets/12/info.snip %}`.
 
 1. Edit `_config_options.yml` in your snippets folder. These options set such
    things as the address of the host to log in to, definitions of the command
@@ -61,9 +57,8 @@ NOTE: This is _not_ Carpentries boilerplate! Please read carefully.
 
 1. Check out a new branch(`git checkout -b new_branch_name`), commit your
    changes, and push to your fork of the repository. If you're comfortable
-   sharing, please file a Pull Request against our [upstream repo](
-   https://github.com/carpentries-incubator/hpc-intro). We would love to have
-   your site config for the Library.
+   sharing, please file a Pull Request against our [upstream repo][upstream].
+   We would love to have your site config for the Library.
 
 1. To maintain compatibility, please _do not_ merge your new branch into your
    fork's `gh-pages` branch. Instead, wait until your pull request has been
@@ -206,7 +201,7 @@ provided to help guide planning and decision-making.
    * Introduce message passing and MPI as the fundamental engine of parallel
      software
    * Walk through a simple Python program for estimation of π
-   * Use [mpi4py](https://mpi4py.readthedocs.io) to parallelize the program
+   * Use [mpi4py][mpi4py] to parallelize the program
    * Write job submission scripts & run the job on a cluster node
    * Tools: `nano`, `sbatch`, `squeue`
 
@@ -227,9 +222,7 @@ provided to help guide planning and decision-making.
 ### Nascent lesson ideas
 
 1. Playing friendly in the cluster (psteinb: the following is very tricky as it
-   is site dependent, I personally would like to see it in
-   [_extras](
-   https://github.com/carpentries-incubator/hpc-intro/tree/gh-pages/_extras)
+   is site dependent, I personally would like to see it in [_extras][extras])
 
    * Understanding resource utilisation
    * Profiling code - time, size, etc.
@@ -237,8 +230,7 @@ provided to help guide planning and decision-making.
    * Consequences of going over
 
 1. Filesystems and Storage: objectives likely include items from @psteinb's
-   [Shared Filesystem lesson](
-   https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/01-04-shared-filesystem.md):
+   [Shared Filesystem lesson][hpcday-fs]:
 
    * Understand the difference between a local and shared / network filesystem
    * Learn about high performance / scratch filesystems
@@ -255,9 +247,7 @@ provided to help guide planning and decision-making.
    * Callout: Changing a job's name
    * Optional Callout: Send an email once the job completes (not all sites
      support sending emails)
-   * for a starting point, see [this](
-     https://psteinb.github.io/hpc-in-a-day/02-02-advanced-job-scheduling/)
-     for reference
+   * for a starting point, see [this][hpcday-sched] for reference
 
 1. Filesystem Zoo:
 
@@ -266,5 +256,16 @@ provided to help guide planning and decision-making.
    * ask participants where the output went and why they can't see it
    * execute a job that collects node information and stores the output to
      `/shared` or however your shared file system is called
-   * for a starting point, see [this](
-     https://psteinb.github.io/hpc-in-a-day/02-03-shared-filesystem/)
+   * for a starting point, see [this][hpcday-fs]
+
+<!-- links -->
+[badge-img]: https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fcarpentries-incubator%2Fhpc-intro%2Fbadge%3Fref%3Dgh-pages&style=flat
+[badge-lnk]: https://actions-badge.atrox.dev/carpentries-incubator/hpc-intro/goto?ref=gh-pages
+[ex-lesson]: https://github.com/carpentries/lesson-example
+[extras]: https://github.com/carpentries-incubator/hpc-intro/tree/gh-pages/_extras
+[hpcday-fs]: https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/01-04-shared-filesystem.md
+[hpcday-sched]: https://psteinb.github.io/hpc-in-a-day/02-02-advanced-job-scheduling
+[liquid]: https://shopify.github.io/liquid/
+[mpi4py]: https://mpi4py.readthedocs.io
+[setup]: http://carpentries.github.io/lesson-example/setup.html
+[upstream]: https://github.com/carpentries-incubator/hpc-intro
