@@ -120,7 +120,7 @@ since existing SSH keys are overwritten.
 {: .language-bash}
 
 If `~/.ssh/id_ed25519` already exists, you will need to specify
-choose a different name for the new key-pair.
+a different name for the new key-pair.
 
 Generate a new public-private key pair using the following command, which will
 produce a stronger key than the `ssh-keygen` default by invoking these flags:
