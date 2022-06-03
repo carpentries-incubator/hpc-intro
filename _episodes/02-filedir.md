@@ -121,6 +121,8 @@ The directories that are relevant to us are.
 </tbody>
 </table>
 
+For more details on our persistent and nobackup storage systems, including the nobackup autodelete schedule, please see our documentation page [HERE](https://support.nesi.org.nz/hc/en-gb/articles/360000177256-NeSI-File-Systems-and-Quotas)
+
 > ## Slashes
 >
 > Notice that there are two meanings for the `/` character.
@@ -589,46 +591,6 @@ but `ls` now shows that we have created a file called `draft.txt`:
 draft.txt
 ```
 {: .output}
-
-> ## Creating Files a Different Way
->
-> We have seen how to create text files using the `nano` editor.
-> Now, try the following command:
->
-> ```
-> {{ site.remote.prompt }} touch my_file.txt
-> ```
-> {: .language-bash}
->
-> 1.  What did the `touch` command do?
->     When you look at your current directory using the GUI file explorer,
->     does the file show up?
->
-> 2.  Use `ls -l` to inspect the files.  How large is `my_file.txt`?
->
-> 3.  When might you want to create a file this way?
->
-> > ## Solution
-> >
-> > 1.  The `touch` command generates a new file called `my_file.txt` in
-> >     your current directory.  You
-> >     can observe this newly generated file by typing `ls` at the
-> >     command line prompt.  `my_file.txt` can also be viewed in your
-> >     GUI file explorer.
-> >
-> > 2. When you inspect the file with `ls -l`, note that the size of
-> >     `my_file.txt` is 0 bytes.  In other words, it contains no data.
-> >     If you open `my_file.txt` using your text editor it is blank.
-> >
-> > 3. Some programs do not generate output files themselves, but
-> >     instead require that empty files have already been generated.
-> >     When the program is run, it searches for an existing file to
-> >     populate with its output.  The touch command allows you to
-> >     efficiently generate a blank text file to be used by such
-> >     programs.
-> {: .solution}
-{: .challenge}
-
 ## Copying files and directories
 
 In a future lesson, we will be running the R script ```{{ site.working_dir[0] }}/{{ site.working_dir[1] }}/array_sum.r```, but as we can't all work on the same file at once you will need to take your own copy. This can be done with the **c**o**p**y command `cp`, two arguments are needed the file (or directory) you want to copy, and the directory (or file) where you want the copy to be created. We will be copying the file into the directory we made previously, as this should be your current directory the second argument can be a simple `.`.
