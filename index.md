@@ -22,10 +22,11 @@ how to use them effectively.
 By the end of this workshop, students will know how to:
 
 * Identify problems a cluster can help solve
-* Use the UNIX shell (also known as terminal or command line) to operate a
-  computer, connect to a cluster, and write simple shell scripts.
-* Submit and manage jobs on a cluster using a scheduler, transfer files, and
-  use software through environment modules.
+* Use the UNIX shell (also known as terminal or command line) to
+  connect to a cluster.
+* Transfer files onto a cluster.
+* Submit and manage jobs on a cluster using a scheduler.
+* Observe the benefits and limitations of parallel execution.
 
 > ## Getting Started
 >

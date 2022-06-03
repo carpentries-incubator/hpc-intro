@@ -49,16 +49,17 @@ sched:
     interactive: "-IVl select=1:ncpus=1"
     name: "-N"
     histdetail: "-f"
-    time: "-l"
+    time: "-l walltime"
     queue: "-q"
   del: "qdel"
   interactive: "qsub"
   info: "pbsnodes -a"
   comment: "#PBS"
-  hist: "qstat -x"
+  hist: "tracejob"
 
 episode_order:
-  - 11-hpc-intro
+  - 10-hpc-intro
+  - 11-connecting
   - 12-cluster
   - 13-scheduler
   - 14-modules
@@ -66,4 +67,3 @@ episode_order:
   - 16-parallel
   - 17-resources
   - 18-responsibility
-
