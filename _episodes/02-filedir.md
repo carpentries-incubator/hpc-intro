@@ -641,9 +641,25 @@ e.g. to back up a directory:
 Alternatively, if in the future you wish to move a file, rather than copy it, you can replace the `cp` command with `mv`.
 If you wish to permanently delete a file or directory you can use the `rm` command, but be careful, as once the file or directory is deleted it cannot be recovered.
 
+> ## Unsupported command-line options
+>
+> If you try to use an option (flag) that is not supported, `ls` and other commands
+> will usually print an error message similar to:
+>
+> ```
+> $ ls -j
+> ```
+> {: .language-bash}
+>
+> ```
+> ls: invalid option -- 'j'
+> Try 'ls --help' for more information.
+> ```
+> {: .error}
+{: .callout}
 ## Getting help
 
-Commands will often have many **options**. You can use the `man` (manual) command on most other commands to bring up the manual page of that command providing you with all the available options and their use. For example, for thr `ls` command:
+Commands will often have many **options**. Most commands have a `--help` flag, as can be seen in the error above.  You can also use the manual pages (aka manpages) by using the `man` command. The manual page provides you with all the available options and their use in more detail. For example, for thr `ls` command:
 
 ```
 {{ site.remote.prompt }} man ls
