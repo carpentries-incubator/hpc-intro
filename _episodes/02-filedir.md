@@ -335,23 +335,6 @@ These two specific hidden directories are special as they will exist hidden insi
 > {: .solution}
 {: .challenge}
 
-> ## Unsupported command-line options
->
-> If you try to use an option (flag) that is not supported, `ls` and other commands
-> will usually print an error message similar to:
->
-> ```
-> $ ls -j
-> ```
-> {: .language-bash}
->
-> ```
-> ls: invalid option -- 'j'
-> Try 'ls --help' for more information.
-> ```
-> {: .error}
-{: .callout}
-
 ## Relative paths
 
 You may have noticed in the last command we did not specify an argument for the directory path.
