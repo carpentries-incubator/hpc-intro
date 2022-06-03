@@ -64,17 +64,6 @@ First, let's find out where we are by running the command `pwd` for '**p**rint *
 ```
 {: .output}
 
-> ## Default directory
-> 
-> If you are using a JupyterLab, you may see something like this instead.
->
-> ```
-> /home/<username>/.jupyter/jobs/<jupyter-jobid>
-> ```
-> {: .output}
-{: .callout}
-
-
 The output we see is what is known as a 'path'.
 The path can be thought of as a series of directions given to navigate the file system.
 
