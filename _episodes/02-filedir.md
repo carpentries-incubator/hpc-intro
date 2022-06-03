@@ -121,20 +121,31 @@ The directories that are relevant to us are.
 </tbody>
 </table>
 
-### Have a Backup Plan
+#### Have a Backup Plan
 
 NeSI performs backups of the `/home` and `/nesi/project` (persistent) filesystems.  However, backups are only captured once per day.  So, if you edit or change code or data and then immediately delete it, it likely cannot be recovered.  Note, as the name suggests, NeSI does **not** backup the `/nesi/nobackup` filesystem.
 
 Protecting critical data from corruption or deletion is primarily your 
-responsibility. Ensure you have a data management plan and stick to the plan to reduce the chance of data loss.
+responsibility. Ensure you have a data management plan and stick to the plan to reduce the chance of data loss.  Also important is managing your storage quota.  To check your quotas, use the `nn_storage_quota` command, eg
+
+```
+$ nn_storage_quota
+Quota Location                    Available         Used      Use%     State       Inodes        IUsed     IUse%    IState
+home_johndoe                            20G       14.51G    72.57%        OK      1000000       112084    11.21%        OK
+project_nesi99999                      100G         101G    101.00%       LOCKED  100000           194     0.19%        OK
+nobackup_nesi99999                      10T            0     0.00%        OK      1000000           14     0.00%        OK
+```
+
+Notice that the project space for this user is over quota and has been locked, meaning no more data can be added.  When your space is locked you will need to move or remove data.  Also note that none of the nobackup space is being used.  Likely data from project can be moved to nobackup.
+
+For more details on our persistent and nobackup storage systems, including data retention and the nobackup autodelete schedule, please see our [Filesystem and Quota](https://support.nesi.org.nz/hc/en-gb/articles/360000177256-NeSI-File-Systems-and-Quotas) documentation.
+
+#### Version Control
 
 Version control systems (such as Git) often have free, cloud-based offerings
 (e.g., BitBucket, GitHub and GitLab) that are generally used for storing source code. Even
 if you are not writing your own programs, these can be very useful for storing
 job submit scripts, notes and other files.  Git is not an appropriate solution for storing data.
-
-For more details on our persistent and nobackup storage systems, including data retention and the nobackup autodelete schedule, please see our [Filesystem and Quota](https://support.nesi.org.nz/hc/en-gb/articles/360000177256-NeSI-File-Systems-and-Quotas) documentation.
-
 > ## Slashes
 >
 > Notice that there are two meanings for the `/` character.
