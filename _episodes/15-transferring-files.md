@@ -5,27 +5,26 @@ exercises: 15
 questions:
 - "How do I transfer files to (and from) the cluster?"
 objectives:
-- "Be able to transfer files to and from a computing cluster."
+- "Transfer files to and from a computing cluster."
 keypoints:
 - "`wget` and `curl -O` download a file from the internet."
-- "`scp` transfer files to and from your computer."
+- "`scp` and `rsync` transfer files to and from your computer."
 - "You can use an SFTP client like FileZilla to transfer files through a GUI."
 ---
 
-Computing with a remote computer offers very limited use if we cannot get files
+Performing work on a remote computer is not very useful if we cannot get files
 to or from the cluster. There are several options for transferring data between
-computing resources, from command line options to GUI programs, which we will
-cover here.
+computing resources using CLI and GUI utilities, a few of which we will cover.
 
 ## Download Files From the Internet
 
 One of the most straightforward ways to download files is to use either `curl`
-or `wget`, one of these is usually installed in most Linux shells, on Mac OS
-terminal and in GitBash. Any file that can be downloaded in your web browser 
-through a direct link can be downloaded using `curl -O` or `wget`. This is a 
-quick way to download datasets or source code. 
+or `wget`. One of these is usually installed in most Linux shells, on Mac OS
+terminal and in GitBash. Any file that can be downloaded in your web browser
+through a direct link can be downloaded using `curl -O` or `wget`. This is a
+quick way to download datasets or source code.
 
-The syntax for these commands is: `curl -O https://some/link/to/a/file` 
+The syntax for these commands is: `curl -O https://some/link/to/a/file`
 and `wget https://some/link/to/a/file`. Try it out by downloading
 some material we'll use later on, from a terminal on your local machine.
 
@@ -53,15 +52,18 @@ or
 
 To copy a single file to or from the cluster, we can use `scp` ("secure copy").
 The syntax can be a little complex for new users, but we'll break it down.
+The `scp` command is a relative of the `ssh` command we used to
+access the system, and can use the same public-key authentication
+mechanism.
 
-To *upload to* another computer:
+To _upload to_ another computer:
 
 ```
 {{ site.local.prompt }} scp path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}
 ```
 {: .language-bash}
 
-To *download from* another computer:
+To _download from_ another computer:
 
 ```
 {{ site.local.prompt }} scp {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}/file.txt path/to/local/
@@ -90,14 +92,13 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > {: .solution}
 {: .challenge}
 
+Most computer clusters are protected from the open internet by a _firewall_.
+This means that the `curl` command will fail, as an address outside the
+firewall is unreachable from the inside. To get around this, run the `curl` or
+`wget` command from your local machine to download the file, then use the `scp`
+command to upload it to the cluster.
+
 > ## Why Not Download on {{ site.remote.name }} Directly?
->
-> Some computer clusters are behind firewalls set to only allow transfers
-> initiated from the *outside*. This means that the `curl` command will fail,
-> as an address outside the firewall is unreachable from the inside. To get
-> around this, run the `curl` or `wget` command from your local machine to 
-> download the file, then use the `scp` command (just below here) to upload
-> it to the cluster.
 >
 > Try downloading the file directly. Note that it may well fail, and that's
 > OK!
@@ -118,7 +119,7 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > {: .challenge}
 {: .discussion}
 
-To copy a whole directory, we add the `-r` flag, for "**r**ecursive": copy the
+To copy a whole directory, we add the `-r` flag, for "__r__ecursive": copy the
 item specified, and every item below it, and every item below those... until it
 reaches the bottom of the directory tree rooted at the folder name you
 provided.
@@ -136,19 +137,19 @@ provided.
 
 ## What's in a `/`?
 
-When using `scp`, you may have noticed that a `:` *always* follows the remote
+When using `scp`, you may have noticed that a `:` _always_ follows the remote
 computer name; sometimes a `/` follows that, and sometimes not, and sometimes
-there's a final `/`. On Linux computers, `/` is the ***root*** directory, the
+there's a final `/`. On Linux computers, `/` is the ___root___ directory, the
 location where the entire filesystem (and others attached to it) is anchored. A
-path starting with a `/` is called *absolute*, since there can be nothing above
-the root `/`. A path that does not start with `/` is called *relative*, since
+path starting with a `/` is called _absolute_, since there can be nothing above
+the root `/`. A path that does not start with `/` is called _relative_, since
 it is not anchored to the root.
 
 If you want to upload a file to a location inside your home directory --
 which is often the case -- then you don't need a leading `/`. After the
 `:`, start writing the sequence of folders that lead to the final storage
 location for the file or, as mentioned above, provide nothing if your home
-directory *is* the destination.
+directory _is_ the destination.
 
 A trailing slash on the target directory is optional, and has no effect for
 `scp -r`, but is important in other commands, like `rsync`.
@@ -156,12 +157,12 @@ A trailing slash on the target directory is optional, and has no effect for
 > ## A Note on `rsync`
 >
 > As you gain experience with transferring files, you may find the `scp`
-> command limiting. The [rsync](https://rsync.samba.org/) utility provides
+> command limiting. The [rsync][rsync] utility provides
 > advanced features for file transfer and is typically faster compared to both
 > `scp` and `sftp` (see below). It is especially useful for transferring large
 > and/or many files and creating synced backup folders.
 >
-> The syntax is similar to `scp`. To transfer *to* another computer with
+> The syntax is similar to `scp`. To transfer _to_ another computer with
 > commonly used options:
 >
 > ```
@@ -172,10 +173,10 @@ A trailing slash on the target directory is optional, and has no effect for
 > The options are:
 > * `a` (archive) to preserve file timestamps and permissions among other things
 > * `v` (verbose) to get verbose output to help monitor the transfer
-> * `z` (compression) to compress the file during transit to reduce size and 
-> transfer time
-> * `P` (partial/progress) to preserve partially transferred files in case 
-> of an interruption and also displays the progress of the transfer.
+> * `z` (compression) to compress the file during transit to reduce size and
+>   transfer time
+> * `P` (partial/progress) to preserve partially transferred files in case
+>   of an interruption and also displays the progress of the transfer.
 >
 > To recursively copy a directory, we can use the same options:
 >
@@ -200,50 +201,47 @@ A trailing slash on the target directory is optional, and has no effect for
 > {: .language-bash}
 {: .callout}
 
-> ## A Note on Ports
+All file transfers using the above methods use SSH to encrypt data sent through
+the network. So, if you can connect via SSH, you will be able to transfer
+files. By default, SSH uses network port 22. If a custom SSH port is in use,
+you will have to specify it using the appropriate flag, often `-p`, `-P`, or
+`--port`. Check `--help` or the `man` page if you're unsure.
+
+> ## Change the Rsync Port
 >
-> All file transfers using the above methods use SSH to encrypt data sent
-> through the network. So, if you can connect via SSH, you will be able to
-> transfer files. By default, SSH uses network port 22. If a custom SSH port is
-> in use, you will have to specify it using the appropriate flag, often `-p`,
-> `-P`, or `--port`. Check `--help` or the `man` page if you're unsure.
+> Say we have to connect `rsync` through port 768 instead of 22. How would we
+> modify this command?
 >
-> > ## Rsync Port
-> >
-> > Say we have to connect `rsync` through port 768 instead of 22. How would we
-> > modify this command?
+> ```
+> {{ site.local.prompt }} rsync test.txt {{ site.remote.user }}@{{ site.remote.login }}:
+> ```
+> {: .language-bash}
+>
+> > ## Solution
 > >
 > > ```
-> > {{ site.local.prompt }} rsync test.txt {{ site.remote.user }}@{{ site.remote.login }}:
+> > {{ site.local.prompt }} rsync --help | grep port
+> >      --port=PORT             specify double-colon alternate port number
+> > See http://rsync.samba.org/ for updates, bug reports, and answers
+> > {{ site.local.prompt }} rsync --port=768 test.txt {{ site.remote.user }}@{{ site.remote.login }}:
 > > ```
 > > {: .language-bash}
-> >
-> > > ## Solution
-> > >
-> > > ```
-> > > {{ site.local.prompt }} rsync --help | grep port
-> > >      --port=PORT             specify double-colon alternate port number
-> > > See http://rsync.samba.org/ for updates, bug reports, and answers
-> > > {{ site.local.prompt }} rsync --port=768 test.txt {{ site.remote.user }}@{{ site.remote.login }}:
-> > > ```
-> > > {: .language-bash}
-> > {: .solution}
-> {: .challenge}
-{: .callout}
+> {: .solution}
+{: .challenge}
 
 ## Transferring Files Interactively with FileZilla
 
 FileZilla is a cross-platform client for downloading and uploading files to and
 from a remote computer. It is absolutely fool-proof and always works quite
 well. It uses the `sftp` protocol. You can read more about using the `sftp`
-protocol in the command line [here]({{ site.baseurl }}{% link
-_extras/discuss.md %}).
+protocol in the command line in the
+[lesson discussion]({{ site.baseurl }}{% link _extras/discuss.md %}).
 
-Download and install the FileZilla client from
-[https://filezilla-project.org](https://filezilla-project.org). After
-installing and opening the program, you should end up with a window with a file
-browser of your local system on the left hand side of the screen. When you
-connect to the cluster, your cluster files will appear on the right hand side.
+Download and install the FileZilla client from <https://filezilla-project.org>.
+After installing and opening the program, you should end up with a window with
+a file browser of your local system on the left hand side of the screen. When
+you connect to the cluster, your cluster files will appear on the right hand
+side.
 
 To connect to the cluster, we'll just need to enter our credentials at the top
 of the screen:
@@ -271,9 +269,9 @@ remote HPC systems is that of large numbers of files. There is an overhead to
 transferring each individual file and when we are transferring large numbers of
 files these overheads combine to slow down our transfers to a large degree.
 
-The solution to this problem is to *archive* multiple files into smaller
+The solution to this problem is to _archive_ multiple files into smaller
 numbers of larger files before we transfer the data to improve our transfer
-efficiency. Sometimes we will combine archiving with *compression* to reduce
+efficiency. Sometimes we will combine archiving with _compression_ to reduce
 the amount of data we have to transfer and so speed up the transfer.
 
 The most common archiving command you will use on a (Linux) HPC cluster is
@@ -281,11 +279,11 @@ The most common archiving command you will use on a (Linux) HPC cluster is
 optionally, compress it.
 
 Let's start with the file we downloaded from the lesson site,
-`hpc-lesson-data.tar.gz`. The "gz" part stands for *gzip*, which is a
+`hpc-lesson-data.tar.gz`. The "gz" part stands for _gzip_, which is a
 compression library. Reading this file name, it appears somebody took a folder
 named "hpc-lesson-data," wrapped up all its contents in a single file with
 `tar`, then compressed that archive with `gzip` to save space. Let's check
-using `tar` with the `-t` flag, which prints the "**t**able of contents"
+using `tar` with the `-t` flag, which prints the "__t__able of contents"
 without unpacking the file, specified by `-f <filename>`, on the remote
 computer. Note that you can concatenate the two flags, instead of writing
 `-t -f` separately.
@@ -319,8 +317,8 @@ hpc-intro-data/north-pacific-gyre/NENE02040Z.txt
 
 This shows a folder containing another folder, which contains a bunch of files.
 If you've taken The Carpentries' Shell lesson recently, these might look
-familiar. Let's see about that compression, using `du` for "**d**isk
-**u**sage".
+familiar. Let's see about that compression, using `du` for "__d__isk
+__u__sage".
 
 ```
 {{ site.remote.prompt }} du -sh hpc-lesson-data.tar.gz
@@ -336,9 +334,9 @@ familiar. Let's see about that compression, using `du` for "**d**isk
 
 Now let's unpack the archive. We'll run `tar` with a few common flags:
 
-* `-x` to e**x**tract the archive
-* `-v` for **v**erbose output
-* `-z` for g**z**ip compression
+* `-x` to e__x__tract the archive
+* `-v` for __v__erbose output
+* `-z` for g__z__ip compression
 * `-f` for the file to be unpacked
 
 When it's done, check the directory size with `du` and compare.
@@ -431,3 +429,5 @@ then provide a directory to compress:
 {: .callout}
 
 {% include links.md %}
+
+[rsync]: https://rsync.samba.org/

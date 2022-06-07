@@ -46,7 +46,7 @@ sched:
   flag:
     user: "-u yourUsername"
     interactive: ""
-    histdetail: "-l -j"
+    histdetail: "--format=JobID,JobName,Submit,Start,State,ReqCPUS,Reserved,Elapsed,MaxRSS"
     name: "-J"
     time: "-t"
     queue: "-p"
@@ -57,12 +57,11 @@ sched:
   hist: "sacct -u yourUsername"
 
 episode_order:
-  - 11-hpc-intro
+  - 10-hpc-intro
+  - 11-connecting
   - 12-cluster
   - 13-scheduler
-  - 14-modules
   - 15-transferring-files
   - 16-parallel
   - 17-resources
   - 18-responsibility
-

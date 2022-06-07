@@ -3,26 +3,23 @@
 This lesson teaches the basics of interacting with high-performance computing
 (HPC) clusters through the command line
 
-[![Build Status](
-https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fcarpentries-incubator%2Fhpc-intro%2Fbadge%3Fref%3Dgh-pages&style=flat)](
-https://actions-badge.atrox.dev/carpentries-incubator/hpc-intro/goto?ref=gh-pages)
+[![Build Status][badge-img]][badge-lnk]
 
 ## Using this material
 
-NOTE: This is *not* Carpentries boilerplate! Please read carefully.
+NOTE: This is _not_ Carpentries boilerplate! Please read carefully.
 
-1. Follow the instructions found in The Carpentries' [example lesson](
-   https://github.com/carpentries/lesson-example/) to create a repository for
-   your lesson. Install Ruby, Make, and Jekyll following the instructions
-   [here](http://carpentries.github.io/lesson-example/setup.html).
+1. Follow the instructions found in The Carpentries' [example lesson][ex-lesson]
+   to create a repository for your lesson. Install Ruby, Make, and Jekyll
+   following the instructions [here][setup].
 
 1. For easier portability, we use snippets of text and code to capture inputs
    and outputs that are host- or site-specific and cannot be scripted. These
    are stored in a library
    [_includes/snippets_library](_includes/snippets_library), with
    subdirectories matching the pattern `InstitutionName_ClusterName_scheduler`.
-   If your cluster is not already present, please copy (`cp -r`) the *closest
-   match* as a new folder under `snippets_library`.
+   If your cluster is not already present, please copy (`cp -r`) the _closest
+   match_ as a new folder under `snippets_library`.
 
    * We have placed snippets in files with the `.snip` extension, to make
      tracking easier. These files contain Markdown-formatted text, and will
@@ -30,10 +27,9 @@ NOTE: This is *not* Carpentries boilerplate! Please read carefully.
    * Code snippets are placed in subdirectories that are named according to the
      episode they appear in. For example, if the snippet is for episode 12, then
      it will be in a subdirectory called `12`.
-   * In the episodes source, snippets are included using [Liquid](
-     https://shopify.github.io/liquid/) scripting `include` statements. For
-     example, the first snippet in episode 12 is included using
-     `{% include /snippets/12/info.snip %}`.
+   * In the episodes source, snippets are included using [Liquid][liquid]
+     scripting `include` statements. For example, the first snippet in episode
+     12 is included using `{% include /snippets/12/info.snip %}`.
 
 1. Edit `_config_options.yml` in your snippets folder. These options set such
    things as the address of the host to log in to, definitions of the command
@@ -61,14 +57,13 @@ NOTE: This is *not* Carpentries boilerplate! Please read carefully.
 
 1. Check out a new branch(`git checkout -b new_branch_name`), commit your
    changes, and push to your fork of the repository. If you're comfortable
-   sharing, please file a Pull Request against our [upstream repo](
-   https://github.com/carpentries-incubator/hpc-intro). We would love to have
-   your site config for the Library.
+   sharing, please file a Pull Request against our [upstream repo][upstream].
+   We would love to have your site config for the Library.
 
-1. To maintain compatibility, please *do not* merge your new branch into your
+1. To maintain compatibility, please _do not_ merge your new branch into your
    fork's `gh-pages` branch. Instead, wait until your pull request has been
    merged upstream, then pull down the upstream version. Otherwise, your
-   repository will *diverge* from ours, and pull requests you make in the
+   repository will _diverge_ from ours, and pull requests you make in the
    future will probably not be accepted.
 
 ## Deploying a Customized Lesson
@@ -83,12 +78,12 @@ want to make a stand-alone copy.
 This will let you create an exact duplicate of your fork. Without this, GitHub
 won't let you create a second fork of a repository on the same account.
 
-1. On GitHub, go to your repository's **Settings**.
+1. On GitHub, go to your repository's __Settings__.
 1. Under the repository name, check the "Template Repository" box.
-1. Go to the **Code** tab.
-1. Click the new button to **Use This Template**.
+1. Go to the __Code__ tab.
+1. Click the new button to __Use This Template__.
 1. Fill in a name, like `yyyy-mm-dd-hpc-intro`.
-1. Check the **Include all branches** box.
+1. Check the __Include all branches__ box.
 1. Go!
 
 ### Merge Your Customized Branch
@@ -99,12 +94,12 @@ If your snippets are already included in the snippet library, skip this step.
    the left of the "Use This Template" button.
 1. From the list, select the branch containing your site customization.
 1. There should be a bar above the list of repository contents with the branch
-   name, stating "This branch is *x* commits ahead, *y* commits behind
-   `gh-pages`" or similar. To the right of that, click the button to **Create
-   Pull Request**.
+   name, stating "This branch is _x_ commits ahead, _y_ commits behind
+   `gh-pages`" or similar. To the right of that, click the button to __Create
+   Pull Request__.
 1. Make sure that the source and destination repositories at the top of the new
-   PR are *both* your current duplicate of hpc-intro, not the upstream.
-1. Create the pull request, then click the **Merge** button. You can delete the
+   PR are _both_ your current duplicate of hpc-intro, not the upstream.
+1. Create the pull request, then click the __Merge__ button. You can delete the
    customization branch when it's done.
 
 ### Modify `_config.yml`
@@ -115,11 +110,11 @@ you want the values set in the snippet library.
 1. Open a copy of your
   `_includes/snippet_library/Institution_Cluster_scheduler/_config_options.yml`
 1. On GitHub, open the top-level `_config.yml` for editing.
-1. Copy your `_config_options.yml`, overwriting the values under the **SITE
-   specific configuration** section of the top-level `_config.yml`. Leave the
+1. Copy your `_config_options.yml`, overwriting the values under the __SITE
+   specific configuration__ section of the top-level `_config.yml`. Leave the
    rest as-is.
 1. Commit the change.
-1. Back on the **Code** tab, there should be a timer icon, a green check, or a
+1. Back on the __Code__ tab, there should be a timer icon, a green check, or a
    red X next to the latest commit hash. If it's a timer, the site is building;
    give it time.
 1. If the symbol is a red x, something went wrong. Click it to open the build
@@ -205,8 +200,8 @@ provided to help guide planning and decision-making.
 
    * Introduce message passing and MPI as the fundamental engine of parallel
      software
-   * Walk through a simple Python program for estimation of &#960;
-   * Use [mpi4py](https://mpi4py.readthedocs.io) to parallelize the program
+   * Walk through a simple Python program for estimation of π
+   * Use [mpi4py][mpi4py] to parallelize the program
    * Write job submission scripts & run the job on a cluster node
    * Tools: `nano`, `sbatch`, `squeue`
 
@@ -227,18 +222,15 @@ provided to help guide planning and decision-making.
 ### Nascent lesson ideas
 
 1. Playing friendly in the cluster (psteinb: the following is very tricky as it
-   is site dependent, I personally would like to see it in
-   [_extras](
-   https://github.com/carpentries-incubator/hpc-intro/tree/gh-pages/_extras)
+   is site dependent, I personally would like to see it in [_extras][extras])
 
    * Understanding resource utilisation
-   * Profiling code &mdash; time, size, etc.
+   * Profiling code - time, size, etc.
    * Getting system stats
    * Consequences of going over
 
 1. Filesystems and Storage: objectives likely include items from @psteinb's
-   [Shared Filesystem lesson](
-https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/01-04-shared-filesystem.md):
+   [Shared Filesystem lesson][hpcday-fs]:
 
    * Understand the difference between a local and shared / network filesystem
    * Learn about high performance / scratch filesystems
@@ -255,9 +247,7 @@ https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/01-04-shared-fil
    * Callout: Changing a job's name
    * Optional Callout: Send an email once the job completes (not all sites
      support sending emails)
-   * for a starting point, see [this](
-     https://psteinb.github.io/hpc-in-a-day/02-02-advanced-job-scheduling/)
-     for reference
+   * for a starting point, see [this][hpcday-sched] for reference
 
 1. Filesystem Zoo:
 
@@ -266,6 +256,16 @@ https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/01-04-shared-fil
    * ask participants where the output went and why they can't see it
    * execute a job that collects node information and stores the output to
      `/shared` or however your shared file system is called
-   * for a starting point, see [this](
-     https://psteinb.github.io/hpc-in-a-day/02-03-shared-filesystem/)
+   * for a starting point, see [this][hpcday-fs]
 
+<!-- links -->
+[badge-img]: https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fcarpentries-incubator%2Fhpc-intro%2Fbadge%3Fref%3Dgh-pages&style=flat
+[badge-lnk]: https://actions-badge.atrox.dev/carpentries-incubator/hpc-intro/goto?ref=gh-pages
+[ex-lesson]: https://github.com/carpentries/lesson-example
+[extras]: https://github.com/carpentries-incubator/hpc-intro/tree/gh-pages/_extras
+[hpcday-fs]: https://github.com/psteinb/hpc-in-a-day/blob/gh-pages/_episodes/01-04-shared-filesystem.md
+[hpcday-sched]: https://psteinb.github.io/hpc-in-a-day/02-02-advanced-job-scheduling
+[liquid]: https://shopify.github.io/liquid/
+[mpi4py]: https://mpi4py.readthedocs.io
+[setup]: http://carpentries.github.io/lesson-example/setup.html
+[upstream]: https://github.com/carpentries-incubator/hpc-intro
