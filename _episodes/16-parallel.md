@@ -31,7 +31,7 @@ The program generates a large number of random points on a 1×1 square
 centered on (½,½), and checks how many of these points fall
 inside the unit circle.
 On average, π/4 of the randomly-selected points should fall in the
-circle, so π can be estimated from 4_f_, where _f_ is the observed
+circle, so π can be estimated from 4*f*, where _f_ is the observed
 fraction of points that fall in the circle.
 Because each sample is independent, this algorithm is easily implemented
 in parallel.

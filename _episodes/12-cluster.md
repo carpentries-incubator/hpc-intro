@@ -250,9 +250,9 @@ connect to a shared, remote fileserver or cluster of servers.
 > > ```
 > > {: .language-bash}
 > >
-> > You can also explore the available filesystems using `df` to show __d__isk
-> > __f__ree space. The `-h` flag renders the sizes in a human-friendly format,
-> > i.e., GB instead of B. The __t__ype flag `-T` shows what kind of filesystem
+> > You can also explore the available filesystems using `df` to show **d**isk
+> > **f**ree space. The `-h` flag renders the sizes in a human-friendly format,
+> > i.e., GB instead of B. The **t**ype flag `-T` shows what kind of filesystem
 > > each resource is.
 > >
 > > ```
