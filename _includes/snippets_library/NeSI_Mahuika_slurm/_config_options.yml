@@ -51,9 +51,9 @@ episode_order:
   - 00-break1
   - 14-modules
   - 13-scheduler
-  - 16.5-good-batch-script
-  - 00-break2
+  - 00-lunch
   - 17-resources
+  - 00-break2
   - 17.5-scaling
   - 18-responsibility
 
@@ -87,11 +87,11 @@ kind: "lesson"
 
 # Workshop working directory.
 working_dir:
-- /nesi/project/agresearch03304
-- introhpc20220602
+- /nesi/project/nesi99991
+- introhpc20220614
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
-start_time: 510
+start_time: 600
 
 # Magic to make URLs resolve both locally and on GitHub. Please don't change.
 repository: <USERNAME>/<PROJECT>
