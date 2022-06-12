@@ -19,28 +19,40 @@ keypoints:
 In previous episodes we covered *how* to request resources, but what you may not know is *what* resources you need to request. The solution to this problem is testing!
 Understanding the resources you have available and how to use them most efficiently is a vital skill in high performance computing.
 
-Below is a list of common resources and issues you may face if you do not request the correct amount.
+Below is a table of common resources and issues you may face if you do not request the correct amount.
 
-**CPU**  
-* Issue: Asking for too many CPUs  
-* Result: The job will wait in the queue for longer. Your fair share score will fall.  You will be charged for CPUs regardless of whether they are used or not.  
 
-* Issue: Asking for too few CPUs 
-* Result: The job will run more slowly than expected, and so may run out of time and get killed for exceeding its time limit.  
-
-**Memory**    	
-* Issue: Requesting too much memory  
-* Result: The job will wait in the queue for longer.  Your fair share score will fall more than necessary.  
-
-* Issue: Request too little memory 
-* Result: Your job will fail, probably with an 'OUT OF MEMORY' error, segmentation fault or bus error. This may not happen immediately.  
-
-**Wall time**  
-* Issue: Requesting too much time  
-* Result: The job will wait in the queue for longer than necessary  
-
-* Issue: Requesting too little time  
-* Result: The job will run out of time and be terminated by the scheduler. 
+<table>
+    <thead>
+        <tr>
+            <th>  </th>
+            <th>Not enough</th>
+            <th>Too Much</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b>   CPU   </b></td>
+            <td>The job will run more slowly than expected, and so may run out of time and get killed for exceeding its time limit.</td>
+            <td>The job will wait in the queue for longer. <br>
+             You will be charged for CPUs regardless of whether they are used or not.<br>
+            Your fair share score will fall more.
+           </td>
+        </tr>
+        <tr>
+            <td><b>   Memory   </b></td>
+            <td>Your job will fail, probably with an 'OUT OF MEMORY' error, segmentation fault or bus error (may not happen immediately).</td>
+            <td>The job will wait in the queue for longer.<br> 
+             You will be charged for memory regardless of whether it is used or not.<br>
+             Your fair share score will fall more.</td>
+        </tr>
+        <tr>
+            <td><b>   Walltime   </b></td>
+            <td>The job will run out of time and be terminated by the scheduler.</td>
+            <td>The job will wait in the queue for longer.</td>
+        </tr>
+    </tbody>
+</table>
 
 ## Estimating Required Resources
 
