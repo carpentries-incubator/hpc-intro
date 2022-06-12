@@ -64,17 +64,6 @@ First, let's find out where we are by running the command `pwd` for '**p**rint *
 ```
 {: .output}
 
-> ## Default directory
-> 
-> If you are using a JupyterLab, you may see something like this instead.
->
-> ```
-> /home/<username>/.jupyter/jobs/<jupyter-jobid>
-> ```
-> {: .output}
-{: .callout}
-
-
 The output we see is what is known as a 'path'.
 The path can be thought of as a series of directions given to navigate the file system.
 
@@ -132,6 +121,31 @@ The directories that are relevant to us are.
 </tbody>
 </table>
 
+#### Have a Backup Plan
+
+NeSI performs backups of the `/home` and `/nesi/project` (persistent) filesystems.  However, backups are only captured once per day.  So, if you edit or change code or data and then immediately delete it, it likely cannot be recovered.  Note, as the name suggests, NeSI does **not** backup the `/nesi/nobackup` filesystem.
+
+Protecting critical data from corruption or deletion is primarily your 
+responsibility. Ensure you have a data management plan and stick to the plan to reduce the chance of data loss.  Also important is managing your storage quota.  To check your quotas, use the `nn_storage_quota` command, eg
+
+```
+$ nn_storage_quota
+Quota Location                    Available         Used      Use%     State       Inodes        IUsed     IUse%    IState
+home_johndoe                            20G       14.51G    72.57%        OK      1000000       112084    11.21%        OK
+project_nesi99999                      100G         101G    101.00%       LOCKED  100000           194     0.19%        OK
+nobackup_nesi99999                      10T            0     0.00%        OK      1000000           14     0.00%        OK
+```
+
+Notice that the project space for this user is over quota and has been locked, meaning no more data can be added.  When your space is locked you will need to move or remove data.  Also note that none of the nobackup space is being used.  Likely data from project can be moved to nobackup.
+
+For more details on our persistent and nobackup storage systems, including data retention and the nobackup autodelete schedule, please see our [Filesystem and Quota](https://support.nesi.org.nz/hc/en-gb/articles/360000177256-NeSI-File-Systems-and-Quotas) documentation.
+
+#### Version Control
+
+Version control systems (such as Git) often have free, cloud-based offerings
+(e.g., BitBucket, GitHub and GitLab) that are generally used for storing source code. Even
+if you are not writing your own programs, these can be very useful for storing
+job submit scripts, notes and other files.  Git is not an appropriate solution for storing data.
 > ## Slashes
 >
 > Notice that there are two meanings for the `/` character.
@@ -320,23 +334,6 @@ These two specific hidden directories are special as they will exist hidden insi
 > > instead of `5369`.
 > {: .solution}
 {: .challenge}
-
-> ## Unsupported command-line options
->
-> If you try to use an option (flag) that is not supported, `ls` and other commands
-> will usually print an error message similar to:
->
-> ```
-> $ ls -j
-> ```
-> {: .language-bash}
->
-> ```
-> ls: invalid option -- 'j'
-> Try 'ls --help' for more information.
-> ```
-> {: .error}
-{: .callout}
 
 ## Relative paths
 
@@ -600,46 +597,6 @@ but `ls` now shows that we have created a file called `draft.txt`:
 draft.txt
 ```
 {: .output}
-
-> ## Creating Files a Different Way
->
-> We have seen how to create text files using the `nano` editor.
-> Now, try the following command:
->
-> ```
-> {{ site.remote.prompt }} touch my_file.txt
-> ```
-> {: .language-bash}
->
-> 1.  What did the `touch` command do?
->     When you look at your current directory using the GUI file explorer,
->     does the file show up?
->
-> 2.  Use `ls -l` to inspect the files.  How large is `my_file.txt`?
->
-> 3.  When might you want to create a file this way?
->
-> > ## Solution
-> >
-> > 1.  The `touch` command generates a new file called `my_file.txt` in
-> >     your current directory.  You
-> >     can observe this newly generated file by typing `ls` at the
-> >     command line prompt.  `my_file.txt` can also be viewed in your
-> >     GUI file explorer.
-> >
-> > 2. When you inspect the file with `ls -l`, note that the size of
-> >     `my_file.txt` is 0 bytes.  In other words, it contains no data.
-> >     If you open `my_file.txt` using your text editor it is blank.
-> >
-> > 3. Some programs do not generate output files themselves, but
-> >     instead require that empty files have already been generated.
-> >     When the program is run, it searches for an existing file to
-> >     populate with its output.  The touch command allows you to
-> >     efficiently generate a blank text file to be used by such
-> >     programs.
-> {: .solution}
-{: .challenge}
-
 ## Copying files and directories
 
 In a future lesson, we will be running the R script ```{{ site.working_dir[0] }}/{{ site.working_dir[1] }}/array_sum.r```, but as we can't all work on the same file at once you will need to take your own copy. This can be done with the **c**o**p**y command `cp`, two arguments are needed the file (or directory) you want to copy, and the directory (or file) where you want the copy to be created. We will be copying the file into the directory we made previously, as this should be your current directory the second argument can be a simple `.`.
@@ -667,9 +624,25 @@ e.g. to back up a directory:
 Alternatively, if in the future you wish to move a file, rather than copy it, you can replace the `cp` command with `mv`.
 If you wish to permanently delete a file or directory you can use the `rm` command, but be careful, as once the file or directory is deleted it cannot be recovered.
 
+> ## Unsupported command-line options
+>
+> If you try to use an option (flag) that is not supported, `ls` and other commands
+> will usually print an error message similar to:
+>
+> ```
+> $ ls -j
+> ```
+> {: .language-bash}
+>
+> ```
+> ls: invalid option -- 'j'
+> Try 'ls --help' for more information.
+> ```
+> {: .error}
+{: .callout}
 ## Getting help
 
-Commands will often have many **options**. You can use the `man` (manual) command on most other commands to bring up the manual page of that command providing you with all the available options and their use. For example, for thr `ls` command:
+Commands will often have many **options**. Most commands have a `--help` flag, as can be seen in the error above.  You can also use the manual pages (aka manpages) by using the `man` command. The manual page provides you with all the available options and their use in more detail. For example, for thr `ls` command:
 
 ```
 {{ site.remote.prompt }} man ls
