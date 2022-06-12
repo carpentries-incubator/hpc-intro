@@ -121,7 +121,7 @@ The directories that are relevant to us are.
 </tbody>
 </table>
 
-#### Have a Backup Plan
+### Managing your data and storage (backups and quotas)
 
 NeSI performs backups of the `/home` and `/nesi/project` (persistent) filesystems.  However, backups are only captured once per day.  So, if you edit or change code or data and then immediately delete it, it likely cannot be recovered.  Note, as the name suggests, NeSI does **not** backup the `/nesi/nobackup` filesystem.
 
@@ -472,53 +472,55 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > {: .solution}
 {: .challenge}
 
-## Tab completion
-
-Sometimes file paths can also be very long, making typing out the path tedious.
-One trick you can use to save yourself time is to use something called **tab completion**.
-If you start typing the path in a command and their is only one possible match,
-if you hit tab the path will autocomplete (until there are more than one possible matches).
-
-For example, if you type:
-
-```
-{{ site.remote.prompt }} cd {{ site.working_dir[1] | slice: 0,3 }}
-```
-{: .language-bash}
-
-and then press <kbd>Tab</kbd> (the tab key on your keyboard),
-the shell automatically completes the directory name for you (since there is only one possible match):
-
-```
-{{ site.remote.prompt }} cd {{ site.working_dir[1] }}/
-```
-{: .language-bash}
-
-However, that command would only take you `{{ working_dir[0] }}/{{ working_dir[0] }}`.
-You want to move to your personal working directory. If you hit <kbd>Tab</kbd> once you will
-likely see nothing change, as there are more than one possible options. Hitting <kbd>Tab</kbd>
-a second time will print all possible autocomplete options.
-
-```
-cwal219/    riom/    harrellw/
-```
-{: .output}
-
-Now entering in the first few characters of the path (just enough that the possible options are no longer ambiguous) and pressing <kbd>Tab</kbd> again, should complete the path.
-
-Now press <kbd>Enter</kbd> to execute the command.
-
-```
-{{ site.remote.prompt }} cd {{ site.working_dir[1] }}/<username>
-```
-{: .language-bash}
-
-Check that we've moved to the right place by running `pwd`.
-
-```
-{{ site.working_dir[0] }}/{{ site.working_dir[1] }}/<username>
-```
-{: .output}
+> ## Tab completion
+>
+> Sometimes file paths and file names can be very long, making typing out the path tedious.
+> One trick you can use to save yourself time is to use something called **tab completion**.
+> If you start typing the path in a command and their is only one possible match,
+> if you hit tab the path will autocomplete (until there are more than one possible matches).
+>
+> > ## Solution
+> >For example, if you type:
+> >
+> > ```
+> > {{ site.remote.prompt }} cd {{ site.working_dir[1] | slice: 0,3 }}
+> > ```
+> > {: .language-bash}
+> >
+> > and then press <kbd>Tab</kbd> (the tab key on your keyboard),
+> > the shell automatically completes the directory name for you (since there is only one possible match):
+> >
+> > ```
+> > {{ site.remote.prompt }} cd {{ site.working_dir[1] }}/
+> > ```
+> > {: .language-bash}
+> >
+> > However, you want to move to your personal working directory. If you hit <kbd>Tab</kbd> once you will
+> > likely see nothing change, as there are more than one possible options. Hitting <kbd>Tab</kbd>
+> > a second time will print all possible autocomplete options.
+> > 
+> > ```
+> > cwal219/    riom/    harrellw/
+> > ```
+> > {: .output}
+> >
+> >Now entering in the first few characters of the path (just enough that the possible options are no longer ambiguous) and pressing <kbd>Tab</kbd> again, should complete the path.
+> >
+> > Now press <kbd>Enter</kbd> to execute the command.
+> >
+> > ```
+> > {{ site.remote.prompt }} cd {{ site.working_dir[1] }}/<username>
+> > ```
+> > {: .language-bash}
+> > 
+> > Check that we've moved to the right place by running `pwd`.
+> > 
+> > ```
+> > {{ site.working_dir[0] }}/{{ site.working_dir[1] }}/<username>
+> > ```
+> > {: .output}
+> {: .solution}
+{: .challenge}
 
 ## Create a text file
 
