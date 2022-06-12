@@ -1,6 +1,6 @@
 ---
 title: "Working with the scheduler"
-teaching: 45
+teaching: 40
 exercises: 30
 questions:
 - "What is a scheduler and why are they used?"
