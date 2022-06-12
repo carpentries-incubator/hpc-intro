@@ -1,6 +1,6 @@
 ---
 title: "Using resources effectively"
-teaching: 15
+teaching: 25
 exercises: 5
 questions:
 - "How do we monitor our jobs?"
