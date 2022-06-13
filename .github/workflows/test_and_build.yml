@@ -3,8 +3,6 @@ name: Check lesson and build for all configs
 on:
   pull_request:
   push:
-    branches:
-      - gh-pages-nesi
 
 jobs:
   spellcheck:
