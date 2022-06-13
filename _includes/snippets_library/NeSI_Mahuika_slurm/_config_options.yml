@@ -49,13 +49,13 @@ sched:
 episode_order:
   - 12-cluster
   - 02-filedir
-  - 00-break1
+  - _break1
   - 14-modules
   - 13-scheduler
-  - 00-lunch
+  - _lunch
   - 17-resources
-  - 00-break2
-  - 17.5-scaling
+  - _break2
+  - 175-scaling
   - 18-responsibility
 
 

@@ -98,18 +98,8 @@ For convenience, NeSI has provided the command `nn_seff <jobid>` to calculate **
 ```
 {: .language-bash}
 
-```
-Job ID: 27323570
-Cluster: mahuika
-User/Group: username/username
-State: COMPLETED (exit code 0)
-Cores: 1
-Tasks: 1
-Nodes: 1
-Job Wall-time:  5.11%  00:00:46 of 00:15:00 time limit
-CPU Efficiency: 141.30%  00:01:05 of 00:00:46 core-walltime
-Mem Efficiency: 93.31%  233.29 MB of 250.00 MB
-```
+{% include {{ site.snippets }}/resources/seff.snip %}
+
 If you were to submit this same job again what resources would you request?
 
 ## Measuring the System Load From Currently Running Tasks

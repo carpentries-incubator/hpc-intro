@@ -128,13 +128,7 @@ NeSI performs backups of the `/home` and `/nesi/project` (persistent) filesystem
 Protecting critical data from corruption or deletion is primarily your 
 responsibility. Ensure you have a data management plan and stick to the plan to reduce the chance of data loss.  Also important is managing your storage quota.  To check your quotas, use the `nn_storage_quota` command, eg
 
-```
-$ nn_storage_quota
-Quota Location                    Available         Used      Use%     State       Inodes        IUsed     IUse%    IState
-home_johndoe                            20G       14.51G    72.57%        OK      1000000       112084    11.21%        OK
-project_nesi99999                      100G         101G    101.00%       LOCKED  100000           194     0.19%        OK
-nobackup_nesi99999                      10T            0     0.00%        OK      1000000           14     0.00%        OK
-```
+{% include {{ site.snippets }}/filedir/sinfo.snip %}
 
 Notice that the project space for this user is over quota and has been locked, meaning no more data can be added.  When your space is locked you will need to move or remove data.  Also note that none of the nobackup space is being used.  Likely data from project can be moved to nobackup.
 
@@ -606,6 +600,8 @@ In a future lesson, we will be running the R script ```{{ site.working_dir[0] }}
 ```
 {{ site.remote.prompt }} cp {{ site.working_dir[0] }}/{{ site.working_dir[1] }}/array_sum.r .
 ```
+{: .output}
+
 
 We can check that it did the right thing using `ls`
 

@@ -84,6 +84,8 @@ We can now run this script using
 ```
 {{ site.remote.prompt }} bash example-job.sh
 ```
+{: .output}
+
 ```
 Loading required package: foreach
 Loading required package: iterators
@@ -109,6 +111,8 @@ First lets rename our batch script script to clarify that we intend to run it th
 ```
 mv example-job.sh example-job.sl
 ```
+{: .output}
+
 > ## File Extensions
 >
 > A files extension in this case does not in any way affect how a script is read,
