@@ -33,6 +33,7 @@ sched:
   status: "squeue"
   flag:
     user: "-u yourUsername"
+    me: "--me"
     interactive: ""
     histdetail: "-l -j"
     name: "--job-name"

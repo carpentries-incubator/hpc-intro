@@ -40,7 +40,7 @@ why sometimes your job do not start instantly as in your laptop.
 
 ## Interactive vs Batch
 
-Sofar, whenever we have entered a command into our terminals, we have received the response immediately in the same terminal, this is said to be an _interactive session_.
+So far, whenever we have entered a command into our terminals, we have received the response immediately in the same terminal, this is said to be an _interactive session_.
 
 [//]: # TODO ??Diagram??
 
@@ -176,10 +176,10 @@ scheduler takes over and tries to run the job for us.
 While the job is waiting
 to run, it goes into a list of jobs called the *queue*. To check on our job's
 status, we check the queue using the command
-`{{ site.sched.status }} {{ site.sched.flag.user }}`.
+`{{ site.sched.status }} {{ site.sched.flag.me }}`.
 
 ```
-{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
+{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.me }}
 ```
 {: .language-bash}
 
@@ -244,7 +244,7 @@ log file.
 
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
-{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
+{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.me }}
 ```
 {: .language-bash}
 
@@ -272,7 +272,7 @@ you to cancel it before it is killed!).
 
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sl
-{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
+{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.me }}
 ```
 {: .language-bash}
 
@@ -285,7 +285,7 @@ successful.
 ```
 {{ site.remote.prompt }} {{site.sched.del }} 23229413
 # It might take a minute for the job to disappear from the queue...
-{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
+{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.me }}
 ```
 {: .language-bash}
 
