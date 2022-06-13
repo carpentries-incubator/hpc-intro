@@ -41,6 +41,7 @@ We can use the environment variable `SLURM_CPUS_PER_TASK`.
 ```
 num_cpus <- strtoi(Sys.getenv('SLURM_CPUS_PER_TASK')) 
 ```
+{: .language-r}
 
 Slurm sets many environment variables when starting a job, see [Slurm Documentation for the full list](https://slurm.schedmd.com/sbatch.html). 
 
@@ -51,6 +52,8 @@ Generally it is best not to diverge your codebase especially if you don't have i
 ```
 num_cpus <- strtoi(Sys.getenv('SLURM_CPUS_PER_TASK', unset = "1")) 
 ```
+{: .language-r}
+
 
 Now if `SLURM_CPUS_PER_TASK` variable is not set, 1 CPU will be used. You could also use some other method of detecting CPUs, like `detectCores()`.
 
@@ -64,11 +67,14 @@ Let's add an option to mute the updates.
 ```
 print_progress <- FALSE
 ```
+{: .language-r}
+
 
 ```
 if (print_progress && percent_complete%%1==0){
 
 ```
+{: .language-r}
 
 ## Reproduceability 
 
@@ -83,6 +89,8 @@ We are using the environment variable `SLURM_ARRAY_TASK_ID` for reasons we will 
 seed <- strtoi(Sys.getenv('SLURM_ARRAY_TASK_ID', unset = "0"))
 set.seed(seed)
 ```
+{: .language-r}
+
 
 Now your script should look something like this;
 
