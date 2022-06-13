@@ -55,8 +55,8 @@ problems in parallel__.
 ## Jargon Busting Presentation
 
 Open the [HPC Jargon Buster]({{ site.url }}{{ site.baseurl }}/files/jargon.html#p1)
-in a new tab. To present the content, press `C` to open a __c__lone in a
-separate window, then press `P` to toggle presentation mode.
+in a new tab. To present the content, press `C` to open a **c**lone in a
+separate window, then press `P` to toggle **p**resentation mode.
 
 > ## I've Never Used a Server, Have I?
 >

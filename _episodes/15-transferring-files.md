@@ -119,7 +119,7 @@ command to upload it to the cluster.
 > {: .challenge}
 {: .discussion}
 
-To copy a whole directory, we add the `-r` flag, for "__r__ecursive": copy the
+To copy a whole directory, we add the `-r` flag, for "**r**ecursive": copy the
 item specified, and every item below it, and every item below those... until it
 reaches the bottom of the directory tree rooted at the folder name you
 provided.
@@ -283,7 +283,7 @@ Let's start with the file we downloaded from the lesson site,
 compression library. Reading this file name, it appears somebody took a folder
 named "hpc-lesson-data," wrapped up all its contents in a single file with
 `tar`, then compressed that archive with `gzip` to save space. Let's check
-using `tar` with the `-t` flag, which prints the "__t__able of contents"
+using `tar` with the `-t` flag, which prints the "**t**able of contents"
 without unpacking the file, specified by `-f <filename>`, on the remote
 computer. Note that you can concatenate the two flags, instead of writing
 `-t -f` separately.
@@ -317,8 +317,8 @@ hpc-intro-data/north-pacific-gyre/NENE02040Z.txt
 
 This shows a folder containing another folder, which contains a bunch of files.
 If you've taken The Carpentries' Shell lesson recently, these might look
-familiar. Let's see about that compression, using `du` for "__d__isk
-__u__sage".
+familiar. Let's see about that compression, using `du` for "**d**isk
+**u**sage".
 
 ```
 {{ site.remote.prompt }} du -sh hpc-lesson-data.tar.gz
@@ -334,9 +334,9 @@ __u__sage".
 
 Now let's unpack the archive. We'll run `tar` with a few common flags:
 
-* `-x` to e__x__tract the archive
-* `-v` for __v__erbose output
-* `-z` for g__z__ip compression
+* `-x` to e**x**tract the archive
+* `-v` for **v**erbose output
+* `-z` for g**z**ip compression
 * `-f` for the file to be unpacked
 
 When it's done, check the directory size with `du` and compare.

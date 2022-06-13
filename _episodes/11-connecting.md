@@ -302,7 +302,7 @@ See the [PuTTY documentation][putty-agent].
 {% if site.remote.portal %}
 Visit {{ site.remote.portal }} to upload your SSH public key.
 {% else %}
-Use the __s__ecure __c__o__p__y tool to send your public key to the cluster.
+Use the **s**ecure **c**o**p**y tool to send your public key to the cluster.
 
 ```
 {{ site.local.prompt }} scp ~/.ssh/id_ed25519.pub {{ site.remote.user }}@{{ site.remote.login }}:~/
@@ -362,7 +362,7 @@ may also notice that the current hostname is also part of our prompt!)
 {: .output}
 
 So, we're definitely on the remote machine. Next, let's find out where we are
-by running `pwd` to __p__rint the __w__orking __d__irectory.
+by running `pwd` to **p**rint the **w**orking **d**irectory.
 
 ```
 {{ site.remote.prompt }} pwd
