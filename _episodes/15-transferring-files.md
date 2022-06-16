@@ -29,12 +29,12 @@ and `wget https://some/link/to/a/file`. Try it out by downloading
 some material we'll use later on, from a terminal on your local machine.
 
 ```
-{{ site.local.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
+{{ site.local.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/data.tar.gz
 ```
 {: .language-bash}
 or
 ```
-{{ site.local.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
+{{ site.local.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/data.tar.gz
 ```
 {: .language-bash}
 
@@ -63,13 +63,6 @@ To _upload to_ another computer:
 ```
 {: .language-bash}
 
-To _download from_ another computer:
-
-```
-{{ site.local.prompt }} scp {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}/file.txt path/to/local/
-```
-{: .language-bash}
-
 Note that everything after the `:` is relative to our home directory on the
 remote computer. We can leave it at that if we don't care where the file goes.
 
@@ -89,6 +82,9 @@ remote computer. We can leave it at that if we don't care where the file goes.
 > > {{ site.local.prompt }} scp hpc-intro-data.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:~/
 > > ```
 > > {: .language-bash}
+> >
+> > Because the `wget` command placed the file in the current working
+> > directory, it is not necessary to specify the path leading to it.
 > {: .solution}
 {: .challenge}
 
@@ -107,9 +103,9 @@ command to upload it to the cluster.
 > >
 > > ```
 > > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
-> > {{ site.remote.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
+> > {{ site.remote.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-code.tar.gz
 > > or
-> > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
+> > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-code.tar.gz
 > > ```
 > > {: .language-bash}
 > {: .solution}
@@ -171,8 +167,9 @@ A trailing slash on the target directory is optional, and has no effect for
 > {: .language-bash}
 >
 > The options are:
-> * `a` (archive) to preserve file timestamps and permissions among other things
-> * `v` (verbose) to get verbose output to help monitor the transfer
+>
+> * `a` (**a**rchive) to preserve file timestamps and permissions among other things
+> * `v` (**v**erbose) to get verbose output to help monitor the transfer
 > * `z` (compression) to compress the file during transit to reduce size and
 >   transfer time
 > * `P` (partial/progress) to preserve partially transferred files in case
@@ -196,12 +193,12 @@ A trailing slash on the target directory is optional, and has no effect for
 > To download a file, we simply change the source and destination:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP {{ site.remote.user }}@{{ site.remote.login }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
+> {{ site.local.prompt }} rsync -avzP {{ site.remote.user }}@{{ site.remote.login }}:path/on/{{ site.remote.name }}/hpc-intro-code.tar.gz path/to/local/
 > ```
 > {: .language-bash}
 {: .callout}
 
-All file transfers using the above methods use SSH to encrypt data sent through
+File transfers using both `scp` and `rsync` use SSH to encrypt data sent through
 the network. So, if you can connect via SSH, you will be able to transfer
 files. By default, SSH uses network port 22. If a custom SSH port is in use,
 you will have to specify it using the appropriate flag, often `-p`, `-P`, or
@@ -213,7 +210,7 @@ you will have to specify it using the appropriate flag, often `-p`, `-P`, or
 > modify this command?
 >
 > ```
-> {{ site.local.prompt }} rsync test.txt {{ site.remote.user }}@{{ site.remote.login }}:
+> {{ site.local.prompt }} rsync hpc-intro-code.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
 > ```
 > {: .language-bash}
 >
@@ -223,7 +220,7 @@ you will have to specify it using the appropriate flag, often `-p`, `-P`, or
 > > {{ site.local.prompt }} rsync --help | grep port
 > >      --port=PORT             specify double-colon alternate port number
 > > See http://rsync.samba.org/ for updates, bug reports, and answers
-> > {{ site.local.prompt }} rsync --port=768 test.txt {{ site.remote.user }}@{{ site.remote.login }}:
+> > {{ site.local.prompt }} rsync --port=768 hpc-intro-code.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
 > > ```
 > > {: .language-bash}
 > {: .solution}
@@ -279,57 +276,40 @@ The most common archiving command you will use on a (Linux) HPC cluster is
 optionally, compress it.
 
 Let's start with the file we downloaded from the lesson site,
-`hpc-lesson-data.tar.gz`. The "gz" part stands for _gzip_, which is a
-compression library. Reading this file name, it appears somebody took a folder
-named "hpc-lesson-data," wrapped up all its contents in a single file with
-`tar`, then compressed that archive with `gzip` to save space. Let's check
-using `tar` with the `-t` flag, which prints the "**t**able of contents"
-without unpacking the file, specified by `-f <filename>`, on the remote
-computer. Note that you can concatenate the two flags, instead of writing
-`-t -f` separately.
+`hpc-intro-code.tar.gz`. The "gz" part stands for _gzip_, which is a
+compression library. This kind of file can usually be interpreted by reading
+its name: it appears somebody took a folder named "hpc-intro-code," wrapped up
+all its contents in a single file with `tar`, then compressed that archive with
+`gzip` to save space. Let's check using `tar` with the `-t` flag, which prints
+the "**t**able of contents" without unpacking the file, specified by `-f
+<filename>`, on the remote computer. Note that you can concatenate the two
+flags, instead of writing `-t -f` separately.
 
 ```
 {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
-{{ site.remote.prompt }} tar -tf hpc-lesson-data.tar.gz
-hpc-intro-data/
-hpc-intro-data/north-pacific-gyre/
-hpc-intro-data/north-pacific-gyre/NENE01971Z.txt
-hpc-intro-data/north-pacific-gyre/goostats
-hpc-intro-data/north-pacific-gyre/goodiff
-hpc-intro-data/north-pacific-gyre/NENE02040B.txt
-hpc-intro-data/north-pacific-gyre/NENE01978B.txt
-hpc-intro-data/north-pacific-gyre/NENE02043B.txt
-hpc-intro-data/north-pacific-gyre/NENE02018B.txt
-hpc-intro-data/north-pacific-gyre/NENE01843A.txt
-hpc-intro-data/north-pacific-gyre/NENE01978A.txt
-hpc-intro-data/north-pacific-gyre/NENE01751B.txt
-hpc-intro-data/north-pacific-gyre/NENE01736A.txt
-hpc-intro-data/north-pacific-gyre/NENE01812A.txt
-hpc-intro-data/north-pacific-gyre/NENE02043A.txt
-hpc-intro-data/north-pacific-gyre/NENE01729B.txt
-hpc-intro-data/north-pacific-gyre/NENE02040A.txt
-hpc-intro-data/north-pacific-gyre/NENE01843B.txt
-hpc-intro-data/north-pacific-gyre/NENE01751A.txt
-hpc-intro-data/north-pacific-gyre/NENE01729A.txt
-hpc-intro-data/north-pacific-gyre/NENE02040Z.txt
+{{ site.remote.prompt }} tar -tf hpc-intro-code.tar.gz
+hpc-intro-code/
+hpc-intro-code/amdahl
+hpc-intro-code/README.md
+hpc-intro-code/LICENSE.txt
 ```
 {: .language-bash}
 
-This shows a folder containing another folder, which contains a bunch of files.
-If you've taken The Carpentries' Shell lesson recently, these might look
-familiar. Let's see about that compression, using `du` for "**d**isk
-**u**sage".
+This shows a folder containing another folder, which contains a few files.
+Let's see about that compression, using `du` for "**d**isk **u**sage".
 
 ```
-{{ site.remote.prompt }} du -sh hpc-lesson-data.tar.gz
-36K     hpc-intro-data.tar.gz
+{{ site.remote.prompt }} du -sh hpc-intro-code.tar.gz
+3.4K     hpc-intro-code.tar.gz
 ```
 {: .language-bash}
 
 > ## Files Occupy at Least One "Block"
 >
-> If the filesystem block size is larger than 36 KB, you'll see a larger
+> If the filesystem block size is larger than 3.4 KB, you'll see a larger
 > number: files cannot be smaller than one block.
+> You can use the `--apparent-size` flag to see the exact size, although the
+> unoccupied space in that filesystem block can't be used for anything else.
 {: .callout}
 
 Now let's unpack the archive. We'll run `tar` with a few common flags:
@@ -351,32 +331,15 @@ When it's done, check the directory size with `du` and compare.
 > > ## Commands
 > >
 > > ```
-> > {{ site.remote.prompt }} tar -xvzf hpc-lesson-data.tar.gz
+> > {{ site.remote.prompt }} tar -xvzf hpc-intro-code.tar.gz
 > > ```
 > > {: .language-bash}
 > >
 > > ```
-> > hpc-intro-data/
-> > hpc-intro-data/north-pacific-gyre/
-> > hpc-intro-data/north-pacific-gyre/NENE01971Z.txt
-> > hpc-intro-data/north-pacific-gyre/goostats
-> > hpc-intro-data/north-pacific-gyre/goodiff
-> > hpc-intro-data/north-pacific-gyre/NENE02040B.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01978B.txt
-> > hpc-intro-data/north-pacific-gyre/NENE02043B.txt
-> > hpc-intro-data/north-pacific-gyre/NENE02018B.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01843A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01978A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01751B.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01736A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01812A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE02043A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01729B.txt
-> > hpc-intro-data/north-pacific-gyre/NENE02040A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01843B.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01751A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE01729A.txt
-> > hpc-intro-data/north-pacific-gyre/NENE02040Z.txt
+> > hpc-intro-code/
+> > hpc-intro-code/amdahl
+> > hpc-intro-code/README.md
+> > hpc-intro-code/LICENSE.txt
 > > ```
 > > {: .output}
 > >
@@ -384,8 +347,8 @@ When it's done, check the directory size with `du` and compare.
 > > concatenation, though the command works identically either way.
 > >
 > > ```
-> > {{ site.remote.prompt }} du -sh hpc-lesson-data
-> > 144K    hpc-intro-data
+> > {{ site.remote.prompt }} du -sh hpc-intro-code
+> > 16K    hpc-intro-code
 > > ```
 > > {: .language-bash}
 > {: .solution}
@@ -402,7 +365,7 @@ extracting it -- set a `c` flag instead of `x`, set the archive filename,
 then provide a directory to compress:
 
 ```
-{{ site.local.prompt }} tar -cvzf compressed_data.tar.gz hpc-intro-data
+{{ site.local.prompt }} tar -cvzf compressed_data.tar.gz hpc-intro-code
 ```
 {: .language-bash}
 
