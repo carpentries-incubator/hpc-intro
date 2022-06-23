@@ -1,0 +1,9 @@
+# This file lists the contributors responsible for the
+# repository content. They will also be automatically
+# asked to review any pull request made in this repository.
+
+# Each line is a file pattern followed by one or more owners.
+# The sequence matters: later patterns take precedence.
+
+# FILES  OWNERS
+*        @annajiat @mikerenfro @ocaisa @psteinb @reid-a @tkphd

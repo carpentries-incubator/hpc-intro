@@ -12,11 +12,11 @@ title: Figures
     {% endfor %}
     ];
 
-    var xmlHttp = [];  /* Required since we are going to query every episode. */
+    var xmlHttp = [];  /* Required since we are going to query every episode.*/
     for (i=0; i < lesson_episodes.length; i++) {
 
       xmlHttp[i] = new XMLHttpRequest();
-      xmlHttp[i].episode = lesson_episodes[i];  /* To enable use this later. */
+      xmlHttp[i].episode = lesson_episodes[i];  /* To enable use this later.*/
       xmlHttp[i].onreadystatechange = function() {
 
         if (this.readyState == 4 && this.status == 200) {
@@ -28,10 +28,10 @@ title: Figures
           var images = htmlDocArticle.getElementsByTagName("img");
 
           if (images.length > 0) {
-            var h1text = htmlDocArticle.getElementsByTagName("h1")[0].innerHTML;
+            var htext = htmlDocArticle.getElementsByTagName("h1")[0].innerHTML;
 
             var htitle = document.createElement('h2');
-            htitle.innerHTML = h1text;
+            htitle.innerHTML = htext;
             article_here.appendChild(htitle);
 
             var image_num = 0;
@@ -39,7 +39,8 @@ title: Figures
               image_num++;
 
               var title = document.createElement('p');
-              title.innerHTML = "<strong>Figure " + image_num + ".</strong> " + image.alt;
+              title.innerHTML = "<strong>Figure " + image_num + ".</strong> "
+                              + image.alt;
               article_here.appendChild(title);
 
               article_here.appendChild(image.cloneNode(false));

@@ -1,0 +1,15 @@
+`{{ site.sched.interactive }}` (with the right options) can submit a job and
+then wait for it to start so we can use the compute node resources
+interactively. Let’s demonstrate this by submitting an interactive job that
+uses a single core:
+
+```
+{{ site.remote.prompt }} {{ site.sched.interactive }} {{ site.sched.flag.interactive }}
+```
+{: .language-bash}
+
+You should be presented with a bash prompt. Note that the prompt will likely
+change to reflect your new location, in this case the worker node we are logged
+on. You can also verify this with `hostname`.
+
+When you are done with the interactive job, type `exit` to quit your session.

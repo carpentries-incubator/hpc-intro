@@ -1,0 +1,25 @@
+```
+PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+rack1        up 30-00:00:0     12  alloc r[061-072]
+rack2        up 30-00:00:0     10  alloc r[003-012]
+rack3        up 30-00:00:0      1    mix r036
+rack3        up 30-00:00:0      6  alloc r[032-035,037-038]
+rack4        up 30-00:00:0      1  drain r048
+rack4        up 30-00:00:0      1    mix r047
+rack4        up 30-00:00:0      9  alloc r[041-046,049-051]
+rack4e       up 30-00:00:0      1    mix r073
+rack4e       up 30-00:00:0      5  alloc r[013-016,074]
+rack4e       up 30-00:00:0      2   idle r[075-076]
+rack5        up 30-00:00:0      3    mix r[021-022,028]
+rack5        up 30-00:00:0      5  alloc r[023-027]
+rack5        up 30-00:00:0      3   idle r[019-020,029]
+rack6i       up 30-00:00:0      2   idle r[059-060]
+rack6        up 30-00:00:0      1 drain* r057
+rack6        up 30-00:00:0      1  down* r053
+rack6        up 30-00:00:0      5  alloc r[052,054-056,058]
+{{ site.sched.queue.testing }}         up   12:00:00      1   idle r001
+{{ site.sched.queue.debug }}       up 14-00:00:0      1   idle r002
+gpu          up 7-00:00:00      3   idle rgpu,rgpu[4-5]
+gpu          up 7-00:00:00      2   down rgpu[2-3]
+```
+{: .output}

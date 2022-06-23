@@ -1,0 +1,12 @@
+```
+{{ site.remote.host }}:
+                                                       Req'd  Req'd   Elap
+Job ID Username Queue    Jobname        SessID NDS TSK Memory Time  S Time
+------ -------- -------- -------------- ------ --- --- ------ ----- - -----
+387775 yourUser workq    example-job.sh  50804   1   1    --  96:00 R 00:00
+```
+{: .output}
+
+We can see all the details of our job, most importantly that it is in the `R`
+or `RUNNING` state. Sometimes our jobs might need to wait in a queue
+(`PENDING`) or have an error (`E`).

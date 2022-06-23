@@ -1,0 +1,75 @@
+To demonstrate, let's load the `ansys` module and then use the `module list`
+command to show which modules we currently have loaded in our environment.
+([ANSYS](https://www.ansys.com/en-gb) is an engineering simulation product.)
+
+```
+{{ site.remote.prompt }} module load ansys
+```
+{: .language-bash}
+
+```
+ansys/2019.r3(73):ERROR:151: Module 'ansys/2019.r3' depends on one of the
+module(s) 'giflib/5.1.1'
+ansys/2019.r3(73):ERROR:102: Tcl command execution failed:
+prereq   giflib/5.1.1
+```
+{: .output}
+
+This shows that the default `ansys` module will not run because it first needs
+`giflib/5.1.1` to be loaded. Some HPC systems will automatically load
+dependencies like this, but at the time of writing (June 2020) UCL's Myriad
+does not.
+
+Let's load the `giflib` module:
+
+```
+{{ site.remote.prompt }} module load giflib
+```
+{: .language-bash}
+
+```
+giflib/5.1.1(18):ERROR:151: Module 'giflib/5.1.1' depends on one of the
+module(s) 'gcc-libs/4.9.2'
+giflib/5.1.1(18):ERROR:102: Tcl command execution failed: prereq gcc-libs
+```
+{: .output}
+
+Here, we see that the `giflib` module itself also has a dependency, `gcc-libs`.
+So we have to load that first, then load `giflib`, and then finally load
+`ansys`.
+
+```
+{{ site.remote.prompt }} module load gcc-libs/4.9.2
+{{ site.remote.prompt }} module load giflib/5.1.1
+{{ site.remote.prompt }} module load ansys
+```
+{: .language-bash}
+
+```
+~/Scratch/.config is configured
+...
+...
+~/.mw doesn't exist - creating
+```
+{: .output}
+
+If you now use the `module list` command, you should see these three modules
+included in the list.
+
+To unload a specific module, e.g. `ansys`, run the command
+`module unload ansys`. (On some systems, this will also unload the modules it
+depends on. Currently this is not the case with Myriad.)
+
+If we wanted to unload everything at once (all modules), we could run
+`module purge` (unloads everything).
+
+```
+{{ site.remote.prompt }} module purge
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+```
+No Modulefiles Currently Loaded.
+```
+{: .output}

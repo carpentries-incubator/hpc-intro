@@ -1,9 +1,9 @@
 #------------------------------------------------------------
-# ComputeCanada: Graham + SLURM
+# ComputeCanada: Graham + Slurm
 #------------------------------------------------------------
 
 # Cluster host and scheduler options: the defaults come from
-# Graham at Compute Canada, running SLURM. Other options can
+# Graham at Compute Canada, running Slurm. Other options can
 # be found in the library of snippets,
 # `_includes/snippets_library`. To use one, replace options
 # below with those in `_config_options.yml` from the
@@ -21,6 +21,7 @@ snippets: "/snippets_library/ComputeCanada_Graham_slurm"
 
 local:
   prompt: "[user@laptop ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
 
 remote:
   name: "Graham"
@@ -29,14 +30,18 @@ remote:
   node: "aci-377"
   location: "University of Waterloo"
   homedir: "/home"
+  user: "yourUsername"
   prompt: "[yourUsername@gra-login1 ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
 
 sched:
-  name: "SLURM"
-  user: "yourUsername"
+  name: "Slurm"
   submit:
     name: "sbatch"
     options: ""
+  queue:
+    debug: "debug"
+    testing: "testing"
   status: "squeue"
   flag:
     user: "-u yourUsername"
@@ -44,14 +49,20 @@ sched:
     histdetail: "-l -j"
     name: "-J"
     time: "-t"
-    bash: ""
+    queue: "-p"
   del: "scancel"
   interactive: "srun"
   info: "sinfo"
   comment: "#SBATCH"
   hist: "sacct -u yourUsername"
 
-# Interactive queue names, one or more as a list
-workshop_interactive_queues:
-  - debug
-  - testing
+episode_order:
+  - 10-hpc-intro
+  - 11-connecting
+  - 12-cluster
+  - 13-scheduler
+  - 14-modules
+  - 15-transferring-files
+  - 16-parallel
+  - 17-resources
+  - 18-responsibility

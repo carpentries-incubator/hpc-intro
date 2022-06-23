@@ -1,0 +1,180 @@
+To be more specific, you can specify the particular software you want.
+e.g.,
+
+```
+{{ site.remote.prompt }} module avail stata
+```
+{: .language-bash}
+
+```
+~~~~~~~~~~~~~ /shared/ucl/apps/modulefiles/applications ~~~~~~~~~~~~
+stata/14 stata/15
+```
+{: .output}
+
+Let's take a closer look at the `matlab` module. Matlab is a widely-used piece
+of software which uses matrix multiplication. As we shall see, there are
+different versions available, and we want to make sure the one we use is the
+correct one for our purposes.
+
+Let's see which versions we have access to.
+
+```
+{{ site.remote.prompt }} module avail matlab
+```
+{: .language-bash}
+
+```
+~~~~~~~~~~~~~ /shared/ucl/apps/modulefiles/applications ~~~~~~~~~~~~
+matlab/full/r2015b/8.6 matlab/full/r2017a/9.2 matlab/full/r2018b/9.5
+matlab/full/r2016b/9.1 matlab/full/r2018a/9.4 matlab/full/r2019b/9.7
+```
+{: .output}
+
+In this case, there are seven different versions.
+How do we load each copy, and which copy is the default?
+
+Sometimes, on some systems, a module might have a `(default)` next to it.
+This indicates that it is the default (i.e. which would be loaded if we type
+`module load matlab`). In this case, we don't see this, so we will have to load
+matlab and see what we get.
+
+```
+{{ site.remote.prompt }} module load matlab
+```
+{: .language-bash}
+
+```
+matlab/full/r2019b/9.7(99):ERROR:151: Module 'matlab/full/r2019b/9.7'
+depends on one of the module(s) 'gcc-libs/4.9.2'
+matlab/full/r2019b/9.7(99):ERROR:102: Tcl command execution failed:
+prereq gcc-libs
+```
+{: .output}
+
+Here, we see that the default version of Matlab on the system is r2019b/9.7,
+which in this case is the most recent version. However, you should not assume
+that the default version is necessarily the latest.
+
+As we saw in the earlier example, there are one or more dependencies.
+
+Suppose we decide to load an earlier version of Matlab, e.g. r2017a/9.2.
+
+```
+{{ site.remote.prompt }} module purge
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+```
+No Modulefiles Currently Loaded.
+```
+{: .output}
+
+```
+{{ site.remote.prompt }} module load matlab/full/r2017a/9.2
+```
+{: .language-bash}
+
+```
+matlab/full/r2017a/9.2(96):ERROR:151: Module 'matlab/full/r2017a/9.2' depends
+on one of the module(s) 'gcc-libs/4.9.2'
+matlab/full/r2017a/9.2(96):ERROR:102: Tcl command execution failed:
+prereq gcc-libs
+```
+{: .output}
+
+```
+{{ site.remote.prompt }} module load gcc-libs/4.9.2
+{{ site.remote.prompt }} module load matlab/full/r2017a/9.2
+```
+{: .language-bash}
+
+```
+matlab/full/r2017a/9.2(97):ERROR:151: Module 'matlab/full/r2017a/9.2' depends
+on one of the module(s) 'xorg-utils/X11R7.7'
+matlab/full/r2017a/9.2(97):ERROR:102: Tcl command execution failed:
+prereq xorg-utils/X11R7.7
+```
+{: .output}
+
+```
+{{ site.remote.prompt }} module load xorg-utils/X11R7.7
+{{ site.remote.prompt }} module load matlab/full/r2017a/9.2
+```
+{: .language-bash}
+
+```
+~/.matlab is a symbolic link pointing to /home/yourUsername/Scratch/.matlab
+
+Matlab setup complete type matlab to start Matlab.
+```
+{: .output}
+
+```
+{{ site.remote.prompt }} matlab -nodisplay -nosplash -nodesktop
+```
+{: .language-bash}
+
+```
+                                               < M A T L A B (R) >
+                                     Copyright 1984-2017 The MathWorks, Inc.
+                                      R2017a (9.2.0.556344) 64-bit (glnxa64)
+                                                  March 27, 2017
+
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+
+>> quit
+```
+{: .output}
+
+Note that you cannot load two different versions of the same software at once.
+Currently, we have loaded `matlab/full/r2017a/9.2`. Let's try also loading
+`matlab/full/r2015b/8.6`:
+
+```
+{{ site.remote.prompt }} module load matlab/full/r2015b/8.6
+```
+{: .language-bash}
+
+```
+matlab/full/r2015b/8.6(108):ERROR:150: Module 'matlab/full/r2015b/8.6'
+conflicts with the currently loaded module(s) 'matlab/full/r2017a/9.2'
+matlab/full/r2015b/8.6(108):ERROR:102: Tcl command execution failed:
+conflict matlab
+```
+{: .output}
+
+As we can see, we get an error message about conflicts.
+If we do indeed wish to load version r2015b/8.6, we can say
+
+```
+{{ site.remote.prompt }} module unload matlab/full/r2017a/9.2
+{{ site.remote.prompt }} module load matlab/full/r2015b/8.6
+```
+{: .language-bash}
+
+or, in one step:
+
+```
+{{ site.remote.prompt }} module swap matlab matlab/full/r2015b/8.6
+```
+{: .language-bash}
+
+Check that this module has been loaded:
+
+```
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+```
+Currently Loaded Modulefiles:
+  1) gcc-libs/4.9.2        9) gerun           17) userscripts/1.4.0
+     ...                      ...                 ...
+  6) apr-util/1.5.4       14) emacs/24.5      22) xorg-utils/X11R7.7
+  7) subversion/1.8.13    15) tmux/2.2        23) matlab/full/r2015b/8.6
+  8) screen/4.2.1         16) mrxvt/0.5.4
+```
+{: .output}

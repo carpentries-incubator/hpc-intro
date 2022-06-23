@@ -1,0 +1,37 @@
+> ## Resources for Computational Fluid Dynamics (CFD)
+>
+> Copy the Python 2D CFD application from the course website to the HPC system
+  using the following command:
+>
+> ```
+> {{ site.workshop_host.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/cfd.tar.gz
+> ```
+> {: .language-bash}
+>
+> Then unpack it using
+>
+> ```
+> {{ site.workshop_host.prompt }} tar -xvf cfd.tar.gz
+> ```
+> {: .language-bash}
+>
+> Create a job that runs the following commands in the directory containing the
+> `cfd.py` program.
+>
+> ```
+> module load anaconda/python2
+> python cfd.py 3 20000
+> ```
+> {: .language-bash}
+>
+> You'll need to figure out a good amount of resources to ask for for this
+> first "test run". You might also want to have the scheduler email you to tell
+> you when the job is done.
+>
+> Hint: the job only needs 1 cpu and not too much time.
+> The trick is figuring out just how much you'll need!
+>
+> Do not forget to check the `.e` file produced by the job to make sure there
+> are no errors! You should also check the `.o` file produced by the job to
+> make sure it contains the output from the CFD program.
+{: .challenge}

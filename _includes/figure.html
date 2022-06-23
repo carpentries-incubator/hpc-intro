@@ -1,11 +1,15 @@
 <figure>
-   {% if include.url != "" %}
-    <a href="{{ include.url }}">
-   {% endif %}
-   <img src="{{ include.file | relative_url}}" style="max-width: {{ include.max-width }};"
-      alt="{{ include.alt | relative_url}}"/>
-   {% if include.url != "" %}
-   </a>
-   {% endif %}
-   <figcaption>{{ include.caption }}</figcaption>
+  {% if include.url != "" %}
+  <a href="{{ include.url }}">
+  {% endif %}
+    <img src="{{ include.file | relative_url}}" style="max-width: {{ include.max-width }};"
+       alt="{{ include.alt | relative_url}}"/>
+  {% if include.url != "" %}
+  </a>
+  {% endif %}
+  <figcaption style="text-align: center">
+    <small>
+      {{ include.caption }}
+    </small>
+  </figcaption>
 </figure>

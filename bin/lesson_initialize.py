@@ -12,6 +12,7 @@ BOILERPLATE = (
     'AUTHORS',
     'CITATION',
     'CONTRIBUTING.md',
+    'MAINTENANCE.md',
     'README.md',
     '_config.yml',
     '_episodes/01-introduction.md',
@@ -44,12 +45,6 @@ def main():
         shutil.copyfile(
             "bin/boilerplate/{}".format(path),
             path
-        )
-
-
-if __name__ == '__main__':
-    main()
-ath
         )
 
 
