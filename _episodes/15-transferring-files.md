@@ -16,27 +16,25 @@ Performing work on a remote computer is not very useful if we cannot get files
 to or from the cluster. There are several options for transferring data between
 computing resources using CLI and GUI utilities, a few of which we will cover.
 
-## Download Lesson Files From the Internet
+## Download Files From the Internet
 
 One of the most straightforward ways to download files is to use either `curl`
 or `wget`. One of these is usually installed in most Linux shells, on Mac OS
 terminal and in GitBash. Any file that can be downloaded in your web browser
-through a direct link can be downloaded using `curl` or `wget`. This is a
-quick way to download datasets or source code. The syntax for these commands is
+through a direct link can be downloaded using `curl -O` or `wget`. This is a
+quick way to download datasets or source code.
 
-* `curl -O https://some/link/to/a/file`
-* `wget https://some/link/to/a/file`
-
-Try it out by downloading some material we'll use later on, from a terminal on
-your local machine.
+The syntax for these commands is: `curl -O https://some/link/to/a/file`
+and `wget https://some/link/to/a/file`. Try it out by downloading
+some material we'll use later on, from a terminal on your local machine.
 
 ```
-{{ site.local.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-code.tar.gz
+{{ site.local.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 ```
 {: .language-bash}
 or
 ```
-{{ site.local.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-code.tar.gz
+{{ site.local.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 ```
 {: .language-bash}
 
@@ -46,8 +44,8 @@ or
 > This is an archive file format, just like `.zip`, commonly used and supported
 > by default on Linux, which is the operating system the majority of HPC
 > cluster machines run. You may also see the extension `.tgz`, which is exactly
-> the same. We'll talk more about "tarballs" later, since "tar-dot-g-z" is a
-> mouthful.
+> the same. We'll talk more about "tarballs," since "tar-dot-g-z" is a
+> mouthful, later on.
 {: .discussion}
 
 ## Transferring Single Files and Folders With `scp`
@@ -61,28 +59,46 @@ mechanism.
 To _upload to_ another computer:
 
 ```
-{{ site.local.prompt }} scp local_file {{ site.remote.user }}@{{ site.remote.login }}:remote_path
+{{ site.local.prompt }} scp path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}
+```
+{: .language-bash}
+
+To _download from_ another computer:
+
+```
+{{ site.local.prompt }} scp {{ site.remote.user }}@{{ site.remote.login }}:/path/on/{{ site.remote.name }}/file.txt path/to/local/
 ```
 {: .language-bash}
 
 Note that everything after the `:` is relative to our home directory on the
-remote computer. We can leave it at that if we don't have a more specific
-destination in mind.
-
-Upload the lesson material to your remote home directory like so:
+remote computer. We can leave it at that if we don't care where the file goes.
 
 ```
-{{ site.local.prompt }} scp hpc-intro-code.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
+{{ site.local.prompt }} scp local-file.txt {{ site.remote.user }}@{{ site.remote.login }}:
 ```
 {: .language-bash}
 
-> ## Why Not Download on {{ site.remote.name }} Directly?
+> ## Upload a File
 >
-> Most computer clusters are protected from the open internet by a _firewall_.
-> This means that the `curl` command will fail, as an address outside the
-> firewall is unreachable from the inside. To get around this, run the `curl`
-> or `wget` command from your local machine to download the file, then use the
-> `scp` command to upload it to the cluster.
+> Copy the file you just downloaded from the Internet to your home directory on
+> {{ site.remote.name }}.
+>
+> > ## Solution
+> >
+> > ```
+> > {{ site.local.prompt }} scp hpc-intro-data.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:~/
+> > ```
+> > {: .language-bash}
+> {: .solution}
+{: .challenge}
+
+Most computer clusters are protected from the open internet by a _firewall_.
+This means that the `curl` command will fail, as an address outside the
+firewall is unreachable from the inside. To get around this, run the `curl` or
+`wget` command from your local machine to download the file, then use the `scp`
+command to upload it to the cluster.
+
+> ## Why Not Download on {{ site.remote.name }} Directly?
 >
 > Try downloading the file directly. Note that it may well fail, and that's
 > OK!
@@ -91,29 +107,25 @@ Upload the lesson material to your remote home directory like so:
 > >
 > > ```
 > > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
-> > {{ site.remote.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-code.tar.gz
-> > # or
-> > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-code.tar.gz
+> > {{ site.remote.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
+> > or
+> > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-data.tar.gz
 > > ```
 > > {: .language-bash}
 > {: .solution}
 >
 > Did it work? If not, what does the terminal output tell you about what
 > happened?
+> {: .challenge}
 {: .discussion}
 
-## Transferring a Directory
-
-If you went ahead and extracted the tarball, don't worry! `scp` can handle
-entire directories as well as individual files.
-
-To copy a whole directory, we add the `-r` flag for "**r**ecursive": copy the
+To copy a whole directory, we add the `-r` flag, for "**r**ecursive": copy the
 item specified, and every item below it, and every item below those... until it
 reaches the bottom of the directory tree rooted at the folder name you
 provided.
 
 ```
-{{ site.local.prompt }} scp -r hpc-intro-code {{ site.remote.user }}@{{ site.remote.login }}:~/
+{{ site.local.prompt }} scp -r some-local-folder {{ site.remote.user }}@{{ site.remote.login }}:target-directory/
 ```
 {: .language-bash}
 
@@ -145,7 +157,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > ## A Note on `rsync`
 >
 > As you gain experience with transferring files, you may find the `scp`
-> command limiting. The [rsync] utility provides
+> command limiting. The [rsync][rsync] utility provides
 > advanced features for file transfer and is typically faster compared to both
 > `scp` and `sftp` (see below). It is especially useful for transferring large
 > and/or many files and creating synced backup folders.
@@ -154,15 +166,13 @@ A trailing slash on the target directory is optional, and has no effect for
 > commonly used options:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP hpc-intro-code.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
+> {{ site.local.prompt }} rsync -avzP path/to/local/file.txt {{ site.remote.user }}@{{ site.remote.login }}:directory/path/on/{{ site.remote.name }}/
 > ```
 > {: .language-bash}
 >
 > The options are:
->
-> * `a` (**a**rchive) to preserve file timestamps, permissions, and folders,
->    among other things; implies recursion
-> * `v` (**v**erbose) to get verbose output to help monitor the transfer
+> * `a` (archive) to preserve file timestamps and permissions among other things
+> * `v` (verbose) to get verbose output to help monitor the transfer
 > * `z` (compression) to compress the file during transit to reduce size and
 >   transfer time
 > * `P` (partial/progress) to preserve partially transferred files in case
@@ -171,25 +181,27 @@ A trailing slash on the target directory is optional, and has no effect for
 > To recursively copy a directory, we can use the same options:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP hpc-intro-code {{ site.remote.user }}@{{ site.remote.login }}:~/
+> {{ site.local.prompt }} rsync -avzP path/to/local/dir {{ site.remote.user }}@{{ site.remote.login }}:directory/path/on/{{ site.remote.name }}/
 > ```
 > {: .language-bash}
 >
-> As written, this will place the local directory and its contents under your
-> home directory on the remote system. If the trailing slash is omitted on
+> As written, this will place the local directory and its contents under the
+> specified directory on the remote system. If the trailing slash is omitted on
 > the destination, a new directory corresponding to the transferred directory
-> will not be created, and the contents of the source
+> ('dir' in the example) will not be created, and the contents of the source
 > directory will be copied directly into the destination directory.
+>
+> The `a` (archive) option implies recursion.
 >
 > To download a file, we simply change the source and destination:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP {{ site.remote.user }}@{{ site.remote.login }}:hpc-intro-code ./
+> {{ site.local.prompt }} rsync -avzP {{ site.remote.user }}@{{ site.remote.login }}:path/on/{{ site.remote.name }}/file.txt path/to/local/
 > ```
 > {: .language-bash}
 {: .callout}
 
-File transfers using both `scp` and `rsync` use SSH to encrypt data sent through
+All file transfers using the above methods use SSH to encrypt data sent through
 the network. So, if you can connect via SSH, you will be able to transfer
 files. By default, SSH uses network port 22. If a custom SSH port is in use,
 you will have to specify it using the appropriate flag, often `-p`, `-P`, or
@@ -201,18 +213,17 @@ you will have to specify it using the appropriate flag, often `-p`, `-P`, or
 > modify this command?
 >
 > ```
-> {{ site.local.prompt }} rsync hpc-intro-code.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
+> {{ site.local.prompt }} rsync test.txt {{ site.remote.user }}@{{ site.remote.login }}:
 > ```
 > {: .language-bash}
 >
 > > ## Solution
 > >
 > > ```
-> > {{ site.local.prompt }} man rsync
 > > {{ site.local.prompt }} rsync --help | grep port
 > >      --port=PORT             specify double-colon alternate port number
 > > See http://rsync.samba.org/ for updates, bug reports, and answers
-> > {{ site.local.prompt }} rsync --port=768 hpc-intro-code.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
+> > {{ site.local.prompt }} rsync --port=768 test.txt {{ site.remote.user }}@{{ site.remote.login }}:
 > > ```
 > > {: .language-bash}
 > {: .solution}
@@ -268,40 +279,57 @@ The most common archiving command you will use on a (Linux) HPC cluster is
 optionally, compress it.
 
 Let's start with the file we downloaded from the lesson site,
-`hpc-intro-code.tar.gz`. The "gz" part stands for _gzip_, which is a
-compression library. This kind of file can usually be interpreted by reading
-its name: it appears somebody took a folder named "hpc-intro-code," wrapped up
-all its contents in a single file with `tar`, then compressed that archive with
-`gzip` to save space. Let's check using `tar` with the `-t` flag, which prints
-the "**t**able of contents" without unpacking the file, specified by
-`-f <filename>`, on the remote computer. Note that you can concatenate the two
-flags, instead of writing `-t -f` separately.
+`hpc-lesson-data.tar.gz`. The "gz" part stands for _gzip_, which is a
+compression library. Reading this file name, it appears somebody took a folder
+named "hpc-lesson-data," wrapped up all its contents in a single file with
+`tar`, then compressed that archive with `gzip` to save space. Let's check
+using `tar` with the `-t` flag, which prints the "**t**able of contents"
+without unpacking the file, specified by `-f <filename>`, on the remote
+computer. Note that you can concatenate the two flags, instead of writing
+`-t -f` separately.
 
 ```
 {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
-{{ site.remote.prompt }} tar -tf hpc-intro-code.tar.gz
-hpc-intro-code/
-hpc-intro-code/amdahl
-hpc-intro-code/README.md
-hpc-intro-code/LICENSE.txt
+{{ site.remote.prompt }} tar -tf hpc-lesson-data.tar.gz
+hpc-intro-data/
+hpc-intro-data/north-pacific-gyre/
+hpc-intro-data/north-pacific-gyre/NENE01971Z.txt
+hpc-intro-data/north-pacific-gyre/goostats
+hpc-intro-data/north-pacific-gyre/goodiff
+hpc-intro-data/north-pacific-gyre/NENE02040B.txt
+hpc-intro-data/north-pacific-gyre/NENE01978B.txt
+hpc-intro-data/north-pacific-gyre/NENE02043B.txt
+hpc-intro-data/north-pacific-gyre/NENE02018B.txt
+hpc-intro-data/north-pacific-gyre/NENE01843A.txt
+hpc-intro-data/north-pacific-gyre/NENE01978A.txt
+hpc-intro-data/north-pacific-gyre/NENE01751B.txt
+hpc-intro-data/north-pacific-gyre/NENE01736A.txt
+hpc-intro-data/north-pacific-gyre/NENE01812A.txt
+hpc-intro-data/north-pacific-gyre/NENE02043A.txt
+hpc-intro-data/north-pacific-gyre/NENE01729B.txt
+hpc-intro-data/north-pacific-gyre/NENE02040A.txt
+hpc-intro-data/north-pacific-gyre/NENE01843B.txt
+hpc-intro-data/north-pacific-gyre/NENE01751A.txt
+hpc-intro-data/north-pacific-gyre/NENE01729A.txt
+hpc-intro-data/north-pacific-gyre/NENE02040Z.txt
 ```
 {: .language-bash}
 
-This shows a folder which contains a few files. Let's see about that
-compression, using `du` for "**d**isk **u**sage".
+This shows a folder containing another folder, which contains a bunch of files.
+If you've taken The Carpentries' Shell lesson recently, these might look
+familiar. Let's see about that compression, using `du` for "**d**isk
+**u**sage".
 
 ```
-{{ site.remote.prompt }} du -sh hpc-intro-code.tar.gz
-3.4K     hpc-intro-code.tar.gz
+{{ site.remote.prompt }} du -sh hpc-lesson-data.tar.gz
+36K     hpc-intro-data.tar.gz
 ```
 {: .language-bash}
 
 > ## Files Occupy at Least One "Block"
 >
-> If the filesystem block size is larger than 3.4 KB, you'll see a larger
+> If the filesystem block size is larger than 36 KB, you'll see a larger
 > number: files cannot be smaller than one block.
-> You can use the `--apparent-size` flag to see the exact size, although the
-> unoccupied space in that filesystem block can't be used for anything else.
 {: .callout}
 
 Now let's unpack the archive. We'll run `tar` with a few common flags:
@@ -323,34 +351,49 @@ When it's done, check the directory size with `du` and compare.
 > > ## Commands
 > >
 > > ```
-> > {{ site.remote.prompt }} tar -xvzf hpc-intro-code.tar.gz
+> > {{ site.remote.prompt }} tar -xvzf hpc-lesson-data.tar.gz
 > > ```
 > > {: .language-bash}
 > >
 > > ```
-> > hpc-intro-code/
-> > hpc-intro-code/amdahl
-> > hpc-intro-code/README.md
-> > hpc-intro-code/LICENSE.txt
+> > hpc-intro-data/
+> > hpc-intro-data/north-pacific-gyre/
+> > hpc-intro-data/north-pacific-gyre/NENE01971Z.txt
+> > hpc-intro-data/north-pacific-gyre/goostats
+> > hpc-intro-data/north-pacific-gyre/goodiff
+> > hpc-intro-data/north-pacific-gyre/NENE02040B.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01978B.txt
+> > hpc-intro-data/north-pacific-gyre/NENE02043B.txt
+> > hpc-intro-data/north-pacific-gyre/NENE02018B.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01843A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01978A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01751B.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01736A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01812A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE02043A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01729B.txt
+> > hpc-intro-data/north-pacific-gyre/NENE02040A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01843B.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01751A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE01729A.txt
+> > hpc-intro-data/north-pacific-gyre/NENE02040Z.txt
 > > ```
 > > {: .output}
 > >
 > > Note that we did not type out `-x -v -z -f`, thanks to the flag
-> > concatenation, though the command works identically either way --
-> > so long as the concatenated list ends with `f`, because the next string
-> > must specify the name of the file to extract.
+> > concatenation, though the command works identically either way.
 > >
 > > ```
-> > {{ site.remote.prompt }} du -sh hpc-intro-code
-> > 16K    hpc-intro-code
+> > {{ site.remote.prompt }} du -sh hpc-lesson-data
+> > 144K    hpc-intro-data
 > > ```
 > > {: .language-bash}
 > {: .solution}
 >
 > > ## Was the Data Compressed?
 > >
-> > Text files (including Python source code) compress nicely: the "tarball" is
-> > one-quarter the total size of the raw data!
+> > Text files compress nicely: the "tarball" is one-quarter the total size of
+> > the raw data!
 > {: .discussion}
 {: .challenge}
 
@@ -359,13 +402,13 @@ extracting it -- set a `c` flag instead of `x`, set the archive filename,
 then provide a directory to compress:
 
 ```
-{{ site.local.prompt }} tar -cvzf compressed_code.tar.gz hpc-intro-code
+{{ site.local.prompt }} tar -cvzf compressed_data.tar.gz hpc-intro-data
 ```
 {: .language-bash}
 
 > ## Working with Windows
 >
-> When you transfer text files from a Windows system to a Unix system (Mac,
+> When you transfer text files to from a Windows system to a Unix system (Mac,
 > Linux, BSD, Solaris, etc.) this can cause problems. Windows encodes its files
 > slightly different than Unix, and adds an extra character to every line.
 >
