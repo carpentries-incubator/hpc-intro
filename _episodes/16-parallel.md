@@ -22,6 +22,13 @@ We now have the tools we need to run a multi-processor job. This is a very
 important aspect of HPC systems, as parallelism is one of the primary tools
 we have to improve the performance of computational tasks.
 
+If you disconnected, log back in to the cluster.
+
+```
+{{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
+```
+{: .language-bash}
+
 ## Help!
 
 Many command-line programs include a "help" message. Navigate to the directory
@@ -69,7 +76,7 @@ As before, use the {{ site.sched.name }} status commands to check whether your j
 is running and when it ends:
 
 ```
-{{ site.remote.prompt }} {{ site.sched.status }}{{ site.sched.flag.user }}
+{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.user }}
 ```
 {: .language-bash}
 
@@ -111,8 +118,9 @@ see that the code uses a default of 30 seconds of work that is 85%
 parallel. The program ran for just over 30 seconds in total, and if we run the
 numbers, it is true that 15% of it was marked 'serial' and 85% was 'parallel'.
 
-Since we only gave the job one CPU, this job wasn't really parallel at
-all.
+Since we only gave the job one CPU, this job wasn't really parallel: the
+processor performed the 'serial' work for 4.5 seconds, then the 'parallel' part
+for 25.5 seconds, and no time was saved. The cluster can do better, if we ask.
 
 ## Running the Parallel Job
 
@@ -171,65 +179,71 @@ batch file rather than the command line.
 {: .language-bash}
 
 As before, use the status commands to check when your job runs.
-Use `ls` to locate the output file, and examine it.
+
+```
+{{ site.remote.prompt }} ls -t
+```
+{: .language-bash}
+```
+slurm-347178.out  parallel-job.sh  slurm-347087.out  serial-job.sh  amdahl  README.md  LICENSE.txt
+```
+{: .output}
+```
+{{ site.remote.prompt }} cat slurm-347178.out
+```
+{: .language-bash}
+```
+Doing 30.000000 seconds of 'work' on 4 processors,
+which should take 10.875000 seconds with 0.850000 parallel proportion of the workload.
+
+  Hello, World! I am process 0 of 4 on {{ site.remote.node }}. I will do all the serial 'work' for 4.500000 seconds.
+  Hello, World! I am process 2 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375000 seconds.
+  Hello, World! I am process 1 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375000 seconds.
+  Hello, World! I am process 3 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375000 seconds.
+  Hello, World! I am process 0 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375000 seconds.
+
+Total execution time (according to rank 0): 10.887713 seconds
+```
+{: .output}
 
 > ## Is it 4× faster?
 >
-> The parallel job received 4× more processors as the serial job.
-> Does that mean that the job completed in ¼ the time?
+> The parallel job received 4× more processors than the serial job:
+> does that mean it finished in ¼ the time?
 >
-> > ## Check the Result
-> >
-> > ```
-> > {{ site.remote.prompt }} ls -t
-> > ```
-> > {: .language-bash}
-> > ```
-> > slurm-347178.out  parallel-job.sh  slurm-347087.out  serial-job.sh  amdahl  README.md  LICENSE.txt
-> > ```
-> > {: .output}
-> > ```
-> > {{ site.remote.prompt }} cat slurm-347178.out
-> > ```
-> > {: .language-bash}
-> > ```
-> > Doing 30.000000 seconds of 'work' on 4 processors,
-> > which should take 10.875000 seconds with 0.850000 parallel proportion of the workload.
-> >
-> >   Hello, World! I am process 0 of 4 on {{ site.remote.node }}. I will do all the serial 'work' for 4.500000 seconds.
-> >   Hello, World! I am process 2 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375000 seconds.
-> >   Hello, World! I am process 1 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375000 seconds.
-> >   Hello, World! I am process 3 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375000 seconds.
-> >   Hello, World! I am process 0 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375000 seconds.
-> >
-> > Total execution time (according to rank 0): 10.887713 seconds
-> > ```
-> > {: .output}
+> > ## Solution
 > >
 > > The parallel job did take _less_ time: 11 seconds is better than 30!
 > > But it is only a 2.7× improvement, not 4×.
+> >
+> > Look at the job output:
+> >
+> > * While "process 0" did serial work, processes 1 through 3 did their
+> >   parallel work.
+> > * While process 0 caught up on its parallel work,
+> >   the rest did nothing at all.
+> >
+> > Process 0 always has to finish its serial task before it can start on the
+> > parallel work. This sets a lower limit on the amount of time this job will
+> > take, no matter how many cores you throw at it.
+> >
+> > This is the basic principle behind [Amdahl's Law][amdahl], which is one way
+> > of predicting improvements in execution time for a __fixed__ workload that
+> > can be subdivided and run in parallel to some extent.
 > {: .solution}
 {: .challenge}
 
-## How Much Does MPI Improve Performance?
+## How Much Does Parallel Execution Improve Performance?
 
-In theory, by dividing up the calculations among _n_ MPI processes,
-we should see run times reduce by a factor of _n_.
-In practice, some time is required to start the additional MPI processes,
-for the MPI processes to communicate and coordinate, and some types of
-calculations may only be able to run effectively on a single CPU.
+In theory, dividing up a perfectly parallel calculation among _n_ MPI processes
+should produce a decrease in total run time by a factor of _n_.
+As we have just seen, real programs need some time for the MPI processes to
+communicate and coordinate, and some types of calculations can't be subdivided:
+they only run effectively on a single CPU.
 
-Additionally, if the MPI processes operate on different physical CPUs
-in the computer, or across multiple compute nodes, additional time is
-required for communication compared to all processes operating on a
-single CPU.
-
-[Amdahl's Law][amdahl] is one way of predicting improvements in execution time
-for a __fixed__ parallel workload.  If a workload needs 20 hours to complete on
-a single core, and one hour of that time is spent on tasks that cannot be
-parallelized, only the remaining 19 hours could be parallelized.  Even if an
-infinite number of cores were used for the parallel parts of the workload, the
-total run time cannot be less than one hour.
+Additionally, if the MPI processes operate on different physical CPUs in the
+computer, or across multiple compute nodes, even more time is required for
+communication than it takes when all processes operate on a single CPU.
 
 In practice, it's common to evaluate the parallelism of an MPI program by
 
@@ -237,35 +251,109 @@ In practice, it's common to evaluate the parallelism of an MPI program by
 * recording the execution time on each run,
 * comparing each execution time to the time when using a single CPU.
 
-The speedup factor _S_ is calculated as the single-CPU execution time divided
-by the multi-CPU execution time.
-For a laptop with 8 cores, the graph of speedup factor versus number of cores
-used shows relatively consistent improvement when using 2, 4, or 8 cores, but
-using additional cores shows a diminishing return.
+Since "more is better" -- improvement is easier to interpret from increases in
+some quantity than decreases -- comparisons are made using the speedup factor
+_S_, which is calculated as the single-CPU execution time divided by the multi-CPU
+execution time. For a perfectly parallel program, a plot of the speedup _S_
+versus the number of CPUs _n_ would give a straight line, _S_ = _n_.
 
-{% include figure.html url="" caption="" max-width="50%"
-   file="/fig/laptop-mpi_Speedup_factor.png"
-   alt="MPI speedup factors on an 8-core laptop" %}
+Let's run one more job, so we can see how close to a straight line our `amdahl`
+code gets.
 
-For a set of HPC nodes containing 28 cores each, the graph of speedup factor
-versus number of cores shows consistent improvements up through three nodes
-and 84 cores, but __worse__ performance when adding a fourth node with an
-additional 28 cores.
-This is due to the amount of communication and coordination required among
-the MPI processes requiring more time than is gained by reducing the amount
-of work each MPI process has to complete. This communication overhead is not
-included in Amdahl's Law.
+```bash
+{{ site.remote.prompt }} nano parallel-job.sh
+{{ site.remote.prompt }} cat parallel-job.sh
+```
 
-{% include figure.html url="" caption="" max-width="50%"
-   file="/fig/hpc-mpi_Speedup_factor.png"
-   alt="MPI speedup factors on an 8-core laptop" %}
+{% include {{ site.snippets }}/parallel/eight-tasks-jobscript.snip %}
 
-In practice, MPI speedup factors are influenced by:
+Then submit your job. Note that the submission command has not really changed
+from how we submitted the serial job: all the parallel settings are in the
+batch file rather than the command line.
 
-* CPU design,
-* the communication network between compute nodes,
-* the MPI library implementations, and
-* the details of the MPI program itself.
+```
+{{ site.remote.prompt }} {{ site.sched.submit.name }} parallel-job.sh
+```
+{: .language-bash}
+
+As before, use the status commands to check when your job runs.
+
+```
+{{ site.remote.prompt }} ls -t
+```
+{: .language-bash}
+```
+slurm-347271.out  parallel-job.sh  slurm-347178.out  slurm-347087.out  serial-job.sh  amdahl  README.md  LICENSE.txt
+```
+{: .output}
+```
+{{ site.remote.prompt }} cat slurm-347178.out
+```
+{: .language-bash}
+```
+which should take 7.687500 seconds with 0.850000 parallel proportion of the workload.
+
+  Hello, World! I am process 4 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
+  Hello, World! I am process 0 of 8 on {{ site.remote.node }}. I will do all the serial 'work' for 4.500000 seconds.
+  Hello, World! I am process 2 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
+  Hello, World! I am process 1 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
+  Hello, World! I am process 3 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
+  Hello, World! I am process 5 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
+  Hello, World! I am process 6 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
+  Hello, World! I am process 7 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
+  Hello, World! I am process 0 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
+
+Total execution time (according to rank 0): 7.697227 seconds
+```
+{: .output}
+
+> ## Non-Linear Output
+>
+> When we ran the job with 4 parallel workers, the serial job wrote its output
+> first, then the parallel processes wrote their output, with process 0 coming
+> in first and last.
+>
+> With 8 workers, this is not the case: since the parallel workers take less
+> time than the serial work, it is hard to say which process will write its
+> output first, except that it will _not_ be process 0!
+{: .discussion}
+
+Now, let's summarize the amount of time it took each job to run:
+
+| Number of CPUs | Runtime (sec) |
+| ---            | ---           |
+| 1              | 30.033140     |
+| 4              | 10.887713     |
+| 8              |  7.697227     |
+
+Then, use the first row to compute speedups _S_, using Python as a command-line calculator:
+
+```
+{{ site.remote.prompt }} for n in 30.033 10.888 7.6972; do python3 -c "print(30.033 / $n)"; done
+```
+{: .language-bash}
+
+| Number of CPUs | Speedup | Ideal |
+| ---            | ---     | ---   |
+| 1              | 1.0     | 1.0   |
+| 4              | 2.75    | 4.0   |
+| 8              | 3.90    | 8.0   |
+
+The job output files have been telling us that this program is performing 85%
+of its work in parallel, leaving 15% to run in serial. This seems reasonably
+high, but our quick study of speedup shows that in order to get a 4× speedup,
+we have to use 8 or 9 processors in parallel. In real programs, the speedup
+factor is influenced by
+
+* CPU design
+* communication network between compute nodes
+* MPI library implementations
+* details of the MPI program itself
+
+Using Amdahl's Law, you can prove that with this program, it is _impossible_
+to reach 8× speedup, no matter how many processors you have on hand. Details of
+that analysis, with results to back it up, are left for the next class in the
+HPC Carpentry workshop, _HPC Workflows_.
 
 In an HPC environment, we try to reduce the execution time for all types of
 jobs, and MPI is an extremely common way to combine dozens, hundreds, or

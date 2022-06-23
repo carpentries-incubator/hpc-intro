@@ -100,7 +100,6 @@ Upload the lesson material to your remote home directory like so:
 >
 > Did it work? If not, what does the terminal output tell you about what
 > happened?
-> {: .challenge}
 {: .discussion}
 
 ## Transferring a Directory
@@ -274,8 +273,8 @@ compression library. This kind of file can usually be interpreted by reading
 its name: it appears somebody took a folder named "hpc-intro-code," wrapped up
 all its contents in a single file with `tar`, then compressed that archive with
 `gzip` to save space. Let's check using `tar` with the `-t` flag, which prints
-the "**t**able of contents" without unpacking the file, specified by `-f
-<filename>`, on the remote computer. Note that you can concatenate the two
+the "**t**able of contents" without unpacking the file, specified by
+`-f <filename>`, on the remote computer. Note that you can concatenate the two
 flags, instead of writing `-t -f` separately.
 
 ```
@@ -337,7 +336,9 @@ When it's done, check the directory size with `du` and compare.
 > > {: .output}
 > >
 > > Note that we did not type out `-x -v -z -f`, thanks to the flag
-> > concatenation, though the command works identically either way.
+> > concatenation, though the command works identically either way --
+> > so long as the concatenated list ends with `f`, because the next string
+> > must specify the name of the file to extract.
 > >
 > > ```
 > > {{ site.remote.prompt }} du -sh hpc-intro-code
@@ -364,7 +365,7 @@ then provide a directory to compress:
 
 > ## Working with Windows
 >
-> When you transfer text files to from a Windows system to a Unix system (Mac,
+> When you transfer text files from a Windows system to a Unix system (Mac,
 > Linux, BSD, Solaris, etc.) this can cause problems. Windows encodes its files
 > slightly different than Unix, and adds an extra character to every line.
 >
