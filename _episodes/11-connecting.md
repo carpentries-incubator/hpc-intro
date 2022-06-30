@@ -47,7 +47,7 @@ SSH clients are usually command-line tools, where you provide the remote
 machine address as the only required argument. If your username on the remote
 system differs from what you use locally, you must provide that as well. If
 your SSH client has a graphical front-end, such as PuTTY or MobaXterm, you will
-7set these arguments before clicking "connect." From the terminal, you'll write
+set these arguments before clicking "connect." From the terminal, you'll write
 something like `ssh userName@hostname`, where the argument is just like an
 email address: the "@" symbol is used to separate the personal ID from the
 address of the remote machine.
