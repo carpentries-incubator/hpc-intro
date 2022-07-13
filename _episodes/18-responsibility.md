@@ -22,7 +22,7 @@ keypoints:
 
 One of the major differences between using remote HPC resources and your own
 system (e.g. your laptop) is that remote resources are shared. How many users
-the resource is shared between at any one time varies from system to system but
+the resource is shared between at any one time varies from system to system, but
 it is unlikely you will ever be the only user logged into or using such a
 system.
 
