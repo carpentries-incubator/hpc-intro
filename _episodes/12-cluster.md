@@ -81,8 +81,7 @@ dev   lib   opt    run   srv      usr
 
 The "{{ site.remote.homedir | replace: "/", "" }}" directory is the one where
 we generally want to keep all of our files. Other folders on a UNIX OS contain
-system files, and get modified and changed as you install new software or
-upgrade your OS.
+system files and change as you install new software or upgrade your OS.
 
 > ## Using HPC filesystems
 >
