@@ -66,10 +66,10 @@ per job). To get info about a specific job, we change command slightly.
 ```
 {: .language-bash}
 
-It will show a lot of info, in fact, every single piece of info collected on
-your job by the scheduler. It may be useful to redirect this information to
-`less` to make it easier to view (use the left and right arrow keys to scroll
-through fields).
+It will show a lot of info; in fact, every single piece of info collected on
+your job by the scheduler will show up here. It may be useful to redirect this
+information to `less` to make it easier to view (use the left and right arrow
+keys to scroll through fields).
 
 ```
 {{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }}
