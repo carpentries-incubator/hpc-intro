@@ -162,7 +162,7 @@ name of a job. Add an option to the script:
 
 ```
 {{ site.remote.bash_shebang }}
-{{ site.sched.comment }} {{ site.sched.flag.name }} new_name
+{{ site.sched.comment }} {{ site.sched.flag.name }} hello-world
 
 echo -n "This script is running on "
 hostname
