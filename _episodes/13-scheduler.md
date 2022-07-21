@@ -130,7 +130,7 @@ status, we check the queue using the command
 > nothing was printed to the terminal.
 >
 > Cluster job output is typically redirected to a file in the directory you
-> launched it from. Use `ls` to find and read the file.
+> launched it from. Use `ls` to find and `cat` to read the file.
 {: .discussion}
 
 ## Customising a Job
