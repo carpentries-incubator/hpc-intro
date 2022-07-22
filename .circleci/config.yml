@@ -52,8 +52,8 @@ jobs:
       - run:
           name: Jekyll re-build for local
           command: |
-            echo "url: https://${CIRCLE_BUILD_NUM}-30926520-gh.circle-artifacts.com" > circle.yml && \
-            bundle exec jekyll build -d html -b "/0/html"  --config _config.yml,circle.yml && \
+            echo "url: https://output.circle-artifacts.com" > circle.yml && \
+            bundle exec jekyll build -d html -b "/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/html"  --config _config.yml,circle.yml && \
             find ./html/ -type f -iname '*html' | xargs -I{} sed -i \
               -e 's|href="\(\.\/.*\/\)"|href="\1index.html"|g' \
               -e '/0\/html/ s|href="\(\/.*\/\)"|href="\1index.html"|g' {}
@@ -61,7 +61,7 @@ jobs:
 
       - run:
           name: "Built documentation is available at:"
-          command: DOCS_URL="${CIRCLE_BUILD_URL}/artifacts/${CIRCLE_NODE_INDEX}/html/index.html"; echo $DOCS_URL
+          command: DOCS_URL="https://output.circle-artifacts.com/output/job/${CIRCLE_WORKFLOW_JOB_ID}/artifacts/0/html/index.html"; echo $DOCS_URL
 
       - save_cache:
           paths:
