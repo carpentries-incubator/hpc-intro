@@ -29,6 +29,7 @@ local:
 remote:
   name: "Myriad"
   login: "myriad.rc.ucl.ac.uk"
+  host: "login12.myriad.ucl.ac.uk"
   node: node-d00a-001
   location: "University College London"
   homedir: "/home"
@@ -58,7 +59,7 @@ sched:
     tasks: "-n" # TODO check for Myriad
   del: "qdel"
   interactive: "qrsh"
-  info: "qhost"
+  info: "nodetypes"
   comment: "#$"
   hist: "jobhist"
 
