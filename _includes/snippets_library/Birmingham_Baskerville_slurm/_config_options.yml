@@ -29,7 +29,7 @@ remote:
   host: "bask-pg0310u18a.cluster.baskerville.ac.uk"
   node: "bask-pg"
   location: "University of Birmingham, UK"
-  homedir: "/bask/homes/y/"
+  homedir: "/bask/homes/y"
   user: "yourUsername"
   prompt: "[yourUsername@bask-pg0310u18a ~]$"
   bash_shebang: "#!/bin/bash"
