@@ -41,11 +41,6 @@ jobs:
           command: bundle check || bundle install --jobs=4 --retry=3
 
       - run:
-          name: Use UCL settings
-          command: |
-            sed -i -e '60r _includes/snippets_library/UCL_Myriad_sge/_config_options.yml' -e '22,60d' _config.yml
-
-      - run:
           name: Jekyll build
           command: bundle exec jekyll build -d html 2> std.err
 
