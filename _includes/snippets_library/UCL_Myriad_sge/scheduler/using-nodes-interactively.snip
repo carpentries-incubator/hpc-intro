@@ -1,0 +1,19 @@
+For an interactive session, you reserve some compute nodes via the scheduler
+and then are logged in live, just like on the login nodes. These can be used
+for live visualisation, software debugging, or to work up a script to run your
+program without having to submit each attempt separately to the queue and wait
+for it to complete.
+
+```
+{{ site.remote.prompt }} {{ site.sched.interactive }} {{ site.sched.flag.interactive }}
+```
+{: .language-bash}
+
+All `{{ site.sched.submit.name }}` options are supported like regular job
+submission with the difference that with `{{ site.sched.interactive }}` they
+must be given at the command line, and not with any job script. Once a node is
+allocated to you, you should be presented with a bash prompt. Note that the
+prompt will likely change to reflect your new location, in this case the worker
+node we are logged on. You can also verify this with `hostname`.
+
+When you are done with the interactive job, type exit to quit your session.

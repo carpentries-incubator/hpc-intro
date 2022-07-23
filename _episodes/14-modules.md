@@ -1,254 +1,215 @@
 ---
-title: "Accessing software"
+title: "Accessing software via Modules"
 teaching: 30
 exercises: 15
 questions:
 - "How do we load and unload software packages?"
 objectives:
-- "Understand how to load and use a software package."
+- "Load and use a software package."
+- "Explain how the shell environment changes when the module mechanism loads or unloads packages."
 keypoints:
-- "Load software with `module load softwareName`"
-- "Unload software with `module purge`"
-- "The module system handles software versioning and package conflicts for you automatically."
-- "You can edit your `.bashrc` file to automatically load a software package."
+- "Load software with `module load softwareName`."
+- "Unload software with `module unload`"
+- "The module system handles software versioning and package conflicts for you
+  automatically."
 ---
 
-On a high-performance computing system, it is often the case that no software is loaded by default.
-If we want to use a software package, we will need to "load" it ourselves.
+On a high-performance computing system, it is seldom the case that the software
+we want to use is available when we log in. It is installed, but we will need
+to "load" it before it can run.
 
-Before we start using individual software packages, however, we should understand the reasoning
-behind this approach. The three biggest factors are:
+Before we start using individual software packages, however, we should
+understand the reasoning behind this approach. The three biggest factors are:
 
 - software incompatibilities
 - versioning
 - dependencies
 
-Software incompatibility is a major headache for programmers. Sometimes the presence (or absence) of
-a software package will break others that depend on it. Two of the most famous examples are Python 2
-and 3 and C compiler versions. Python 3 famously provides a `python` command that conflicts with
-that provided by Python 2. Software compiled against a newer version of the C libraries and then
-used when they are not present will result in a nasty `'GLIBCXX_3.4.20' not found` error, for
-instance.
+Software incompatibility is a major headache for programmers. Sometimes the
+presence (or absence) of a software package will break others that depend on
+it. Two of the most famous examples are Python 2 and 3 and C compiler versions.
+Python 3 famously provides a `python` command that conflicts with that provided
+by Python 2. Software compiled against a newer version of the C libraries and
+then used when they are not present will result in a nasty `'GLIBCXX_3.4.20'
+not found` error, for instance.
 
-Software versioning is another common issue. A team might depend on a certain package version for
-their research project - if the software version was to change (for instance, if a package was
-updated), it might affect their results. Having access to multiple software versions allow a set of
-researchers to prevent software versioning issues from affecting their results.
+Software versioning is another common issue. A team might depend on a certain
+package version for their research project - if the software version was to
+change (for instance, if a package was updated), it might affect their results.
+Having access to multiple software versions allow a set of researchers to
+prevent software versioning issues from affecting their results.
 
-Dependencies are where a particular software package (or even a particular version)
-depends on having access to another software package (or even a particular version of
-another software package). For example, the VASP materials science software may 
-depend on having a particular version of the FFTW (Fastest Fourer Transform in the West)
-software library available for it to work.
+Dependencies are where a particular software package (or even a particular
+version) depends on having access to another software package (or even a
+particular version of another software package). For example, the VASP
+materials science software may depend on having a particular version of the
+FFTW (Fastest Fourier Transform in the West) software library available for it
+to work.
 
-## Environment modules
+## Environment Modules
 
-Environment modules are the solution to these problems.
-A *module* is a self-contained description of a software package - 
-it contains the settings required to run a software package 
-and, usually, encodes required dependencies on other software packages.
+Environment modules are the solution to these problems. A _module_ is a
+self-contained description of a software package -- it contains the
+settings required to run a software package and, usually, encodes required
+dependencies on other software packages.
 
 There are a number of different environment module implementations commonly
-used on HPC systems: the two most common are *TCL modules* and *Lmod*. Both of
-these use similar syntax and the concepts are the same so learning to use one will
-allow you to use whichever is installed on the system you are using. In both 
-implementations the `module` command is used to interact with environment modules. An
-additional subcommand is usually added to the command to specify what you want to do. For a list
-of subcommands you can use `module -h` or `module help`. As for all commands, you can 
-access the full help on the *man* pages with `man module`.
+used on HPC systems: the two most common are _TCL modules_ and _Lmod_. Both of
+these use similar syntax and the concepts are the same so learning to use one
+will allow you to use whichever is installed on the system you are using. In
+both implementations the `module` command is used to interact with environment
+modules. An additional subcommand is usually added to the command to specify
+what you want to do. For a list of subcommands you can use `module -h` or
+`module help`. As for all commands, you can access the full help on the _man_
+pages with `man module`.
 
-On login you may start out with a default set of modules loaded or you may start out
-with an empty environment; this depends on the setup of the system you are using.
+On login you may start out with a default set of modules loaded or you may
+start out with an empty environment; this depends on the setup of the system
+you are using.
 
-### Listing currently loaded modules
+### Listing Available Modules
 
-You can use the `module list` command to see which modules you currently have loaded
-in your environment. If you have no modules loaded, you will see a message telling you
-so
+To see available software modules, use `module avail`:
+
+```
+{{ site.remote.prompt }} module avail
+```
+{: .language-bash}
+
+{% include {{ site.snippets }}/modules/available-modules.snip %}
+
+### Listing Currently Loaded Modules
+
+You can use the `module list` command to see which modules you currently have
+loaded in your environment. If you have no modules loaded, you will see a
+message telling you so
 
 ```
 {{ site.remote.prompt }} module list
 ```
-{: .bash}
+{: .language-bash}
 
 ```
 No Modulefiles Currently Loaded.
 ```
 {: .output}
 
-### Listing available modules
+## Loading and Unloading Software
 
-To see available software modules, use `module avail`
+To load a software module, use `module load`. In this example we will use
+Python 3.
 
-```
-{{ site.remote.prompt }} module avail
-```
-{: .bash}
-
-{% include {{ site.snippets }}/14/module_avail.snip %}
-
-## Loading and unloading software
-
-To load a software module, use `module load`.
-In this example we will use Python 3.
-
-Initially, Python 3 is not loaded. 
-We can test this by using the `which` command.
-`which` looks for programs the same way that Bash does,
-so we can use it to tell us where a particular piece of software is stored.
+Initially, Python 3 is not loaded. We can test this by using the `which`
+command. `which` looks for programs the same way that Bash does, so we can use
+it to tell us where a particular piece of software is stored.
 
 ```
 {{ site.remote.prompt }} which python3
 ```
-{: .bash}
+{: .language-bash}
 
-{% include {{ site.snippets }}/14/which_missing.snip %}
+{% include {{ site.snippets }}/modules/missing-python.snip %}
 
 We can load the `python3` command with `module load`:
 
-{% include {{ site.snippets }}/14/load_python.snip %}
+{% include {{ site.snippets }}/modules/module-load-python.snip %}
 
-{% include {{ site.snippets }}/14/which_python.snip %}
+{% include {{ site.snippets }}/modules/python-executable-dir.snip %}
 
 So, what just happened?
 
-To understand the output, first we need to understand the nature of the `$PATH` environment
-variable. `$PATH` is a special environment variable that controls where a UNIX system looks for
-software. Specifically `$PATH` is a list of directories (separated by `:`) that the OS searches
-through for a command before giving up and telling us it can't find it. As with all environment
+To understand the output, first we need to understand the nature of the `$PATH`
+environment variable. `$PATH` is a special environment variable that controls
+where a UNIX system looks for software. Specifically `$PATH` is a list of
+directories (separated by `:`) that the OS searches through for a command
+before giving up and telling us it can't find it. As with all environment
 variables we can print it out using `echo`.
 
 ```
 {{ site.remote.prompt }} echo $PATH
 ```
-{: .bash}
+{: .language-bash}
 
-{% include {{ site.snippets }}/14/path.snip %}
+{% include {{ site.snippets }}/modules/python-module-path.snip %}
 
-You'll notice a similarity to the output of the `which` command. In this case, there's only one
-difference: the different directory at the beginning. When we ran the `module load` command,
-it added a directory to the beginning of our `$PATH`. Let's examine what's there:
+You'll notice a similarity to the output of the `which` command. In this case,
+there's only one difference: the different directory at the beginning. When we
+ran the `module load` command, it added a directory to the beginning of our
+`$PATH`. Let's examine what's there:
 
-{% include {{ site.snippets }}/14/ls_dir.snip %}
+{% include {{ site.snippets }}/modules/python-ls-dir-command.snip %}
 
-{% include {{ site.snippets }}/14/ls_dir_output.snip %}
+{% include {{ site.snippets }}/modules/python-ls-dir-output.snip %}
 
-Taking this to its conclusion, `module load` will add software to your `$PATH`. It "loads"
-software. A special note on this - depending on which version of the `module` program that is
-installed at your site, `module load` will also load required software dependencies.
+Taking this to its conclusion, `module load` will add software to your `$PATH`.
+It "loads" software. A special note on this - depending on which version of the
+`module` program that is installed at your site, `module load` will also load
+required software dependencies.
 
-{% include {{ site.snippets }}/14/depend_demo.snip %}
+{% include {{ site.snippets }}/modules/software-dependencies.snip %}
 
-## Software versioning
+Note that this module loading process happens principally through
+the manipulation of environment variables like `$PATH`. There
+is usually little or no data transfer involved.
 
-So far, we've learned how to load and unload software packages. This is very useful. However, we
-have not yet addressed the issue of software versioning. At some point or other, you will run into
-issues where only one particular version of some software will be suitable. Perhaps a key bugfix
-only happened in a certain version, or version X broke compatibility with a file format you use. In
-either of these example cases, it helps to be very specific about what software is loaded.
+The module loading process manipulates other special environment
+variables as well, including variables that influence where the
+system looks for software libraries, and sometimes variables which
+tell commercial software packages where to find license servers.
+
+The module command also restores these shell environment variables
+to their previous state when a module is unloaded.
+
+## Software Versioning
+
+So far, we've learned how to load and unload software packages. This is very
+useful. However, we have not yet addressed the issue of software versioning. At
+some point or other, you will run into issues where only one particular version
+of some software will be suitable. Perhaps a key bugfix only happened in a
+certain version, or version X broke compatibility with a file format you use.
+In either of these example cases, it helps to be very specific about what
+software is loaded.
 
 Let's examine the output of `module avail` more closely.
 
 ```
 {{ site.remote.prompt }} module avail
 ```
-{: .bash}
+{: .language-bash}
 
-{% include {{ site.snippets }}/14/module_avail.snip %}
+{% include {{ site.snippets }}/modules/available-modules.snip %}
 
-{% include {{ site.snippets }}/14/gcc_example.snip %}
+{% include {{ site.snippets }}/modules/wrong-gcc-version.snip %}
 
-> ## Using software modules in scripts
+> ## Using Software Modules in Scripts
 >
-> Create a job that is able to run `python3 --version`. Remember, no software is loaded by default!
-> Running a job is just like logging on to the system (you should not assume a module loaded on the
-> login node is loaded on a compute node).
+> Create a job that is able to run `python3 --version`. Remember, no software
+> is loaded by default! Running a job is just like logging on to the system
+> (you should not assume a module loaded on the login node is loaded on a
+> compute node).
 >
 > > ## Solution
 > >
+> > ```
+> > {{ site.remote.prompt }} nano python-module.sh
+> > {{ site.remote.prompt }} cat python-module.sh
+> > ```
+> > {: .language-bash}
 > >
+> > ```
+> > {{ site.remote.bash_shebang }}
+> >
+> > module load {{ site.remote.module_python3 }}
+> >
+> > python3 --version
+> > ```
+> > {: .output}
+> >
+> > ```
+> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}python-module.sh
+> > ```
+> > {: .language-bash}
 > {: .solution}
 {: .challenge}
 
-## Installing software of our own
-
-Most HPC clusters have a pretty large set of preinstalled software. Nonetheless, it's unlikely that
-all of the software we'll need will be available. Sooner or later, we'll need to install some
-software of our own.
-
-Though software installation differs from package to package, the general process is the same:
-download the software, read the installation instructions (important!), install dependencies,
-compile, then start using our software.
-
-As an example we will install the bioinformatics toolkit `seqtk`. We'll first need to obtain the
-source code from GitHub using `git`.
-
-```
-{{ site.remote.prompt }} git clone https://github.com/lh3/seqtk.git
-```
-{: .bash}
-
-```
-Cloning into 'seqtk'...
-remote: Enumerating objects: 14, done.
-remote: Counting objects: 100% (14/14), done.
-remote: Compressing objects: 100% (10/10), done.
-remote: Total 353 (delta 7), reused 11 (delta 4), pack-reused 339
-Receiving objects: 100% (353/353), 169.79 KiB | 5.48 MiB/s, done.
-Resolving deltas: 100% (202/202), done.
-```
-{: .output}
-
-Now, using the instructions in the `README.md` file, all we need to do to complete the install is
-to `cd` into the `seqtk` folder and run the command `make`.
-
-```
-{{ site.remote.prompt }} cd seqtk
-{{ site.remote.prompt }} less README.md
-{{ site.remote.prompt }} make
-```
-{: .bash}
-
-```
-gcc -g -Wall -O2 -Wno-unused-function seqtk.c -o seqtk -lz -lm
-seqtk.c: In function ‘stk_comp’:
-seqtk.c:400:16: warning: variable ‘lc’ set but not used [-Wunused-but-set-variable]
-    int la, lb, lc, na, nb, nc, cnt[11];
-                ^
-```
-{: .output}
-
-It's done! Now all we need to do to use the program is invoke it like any other program.
-
-```
-{{ site.remote.prompt }} ./seqtk
-```
-{: .bash}
-
-```
-Usage:   seqtk <command> <arguments>
-Version: 1.2-r101-dirty
-
-Command: seq       common transformation of FASTA/Q
-         comp      get the nucleotide composition of FASTA/Q
-         sample    subsample sequences
-         subseq    extract subsequences from FASTA/Q
-         fqchk     fastq QC (base/quality summary)
-         mergepe   interleave two PE FASTA/Q files
-         trimfq    trim FASTQ using the Phred algorithm
-
-         hety      regional heterozygosity
-         gc        identify high- or low-GC regions
-         mutfa     point mutate FASTA at specified positions
-         mergefa   merge two FASTA/Q files
-         famask    apply a X-coded FASTA to a source FASTA
-         dropse    drop unpaired from interleaved PE FASTA/Q
-         rename    rename sequence names
-         randbase  choose a random base from hets
-         cutN      cut sequence at long N
-         listhet   extract the position of each het
-         hpc       homopolyer-compressed sequence
-```
-{: .output}
-
-We've successfully built our first piece of software on the cluster!
+{% include links.md %}

@@ -6,7 +6,7 @@
 #------------------------------------------------------------
 
 # Cluster host and scheduler options: the defaults come from
-# Graham at Compute Canada, running SLURM. Other options can
+# Graham at Compute Canada, running Slurm. Other options can
 # be found in the library of snippets,
 # `_includes/snippets_library`. To use one, replace options
 # below with those in `_config_options.yml` from the
@@ -24,39 +24,56 @@ snippets: "/snippets_library/UCL_Myriad_sge"
 
 local:
   prompt: "[user@laptop ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
 
 remote:
   name: "Myriad"
   login: "myriad.rc.ucl.ac.uk"
+  host: "login12.myriad.ucl.ac.uk"
   node: node-d00a-001
   location: "University College London"
   homedir: "/home"
+  user: "yourUsername"
   prompt: "[yourUsername@login12 ~]$ "
+  module_python3: "python3"
+  bash_shebang: "#!/usr/bin/env bash -l"
 
 sched:
   name: "SGE"
   submit:
     name: "qsub"
     options: ""
-    iopt: ""
+    iopt: "" # TODO what does this mean?
+  queue:
+    debug: "debug"
+    testing: "testing"
   status: "qstat"
   flag:
     user: "-u yourUsername"
     interactive: "-l mem=512M,h_rt=2:00:00"
-    name: "-N"
     histdetail: "-j"
+    name: "-N"
     time: "-l h_rt="
-    bash: "-l"
+    queue: "-p" # TODO check for Myriad
+    nodes: "-N" # TODO check for Myriad
+    tasks: "-n" # TODO check for Myriad
   del: "qdel"
   interactive: "qrsh"
-  info: "qhost"
-  comment: "#$ "
+  info: "nodetypes"
+  comment: "#$"
   hist: "jobhist"
 
-# Interactive queue names, one or more as a list
-workshop_interactive_queues:
-  - debug
-  - testing
+episode_order:
+  - 10-hpc-intro
+  - 11-connecting
+  - 12-cluster
+  - 13-scheduler
+  - 14-modules
+  - 15-transferring-files
+  - 16-parallel
+  - 17-resources
+  - 18-responsibility
+
 #------------------------------------------------------------
 # Values for this lesson
 #------------------------------------------------------------
@@ -66,7 +83,7 @@ workshop_interactive_queues:
 # "dc":  Data Carpentry
 # "lc":  Library Carpentry
 # "cp":  Carpentries (e.g., instructor traning)
-carpentry: "swc"
+carpentry: "incubator"
 
 # Overall title for pages.
 title: "Introduction to High-Performance Computing"
@@ -144,7 +161,12 @@ exclude:
   - bin/
   - .Rproj.user/
   - .vendor/
+  - vendor/
   - .docker-vendor/
 
 # Turn on built-in syntax highlighting.
 highlighter: rouge
+
+plugins:
+  - jekyll-redirect-from
+  - jekyll-paginate

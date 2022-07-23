@@ -13,3 +13,4 @@ files/*.tsv
 Gemfile.lock
 scratch/
 .vendor
+.bundle

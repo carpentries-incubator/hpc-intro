@@ -1,0 +1,19 @@
+If `python3` did not exist we would see output like
+
+```
+/usr/bin/which: no python3 in (
+/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin:
+/opt/software/slurm/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:
+/usr/sbin:/opt/puppetlabs/bin:/home/user01/.local/bin:/home/user01/bin)
+```
+{: .output}
+
+However, in our case we do have an existing `python3` available so we see
+
+```
+/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin/python3
+```
+{: .output}
+
+We need a different Python than the system provided one though, so let us load
+a module to access it.

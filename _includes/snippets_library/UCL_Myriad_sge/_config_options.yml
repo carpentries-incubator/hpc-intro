@@ -7,10 +7,13 @@ local:
 remote:
   name: "Myriad"
   login: "myriad.rc.ucl.ac.uk"
+  host: "login12.myriad.ucl.ac.uk"
   node: node-d00a-001
   location: "University College London"
   homedir: "/home"
+  user: "yourUsername"
   prompt: "[yourUsername@login12 ~]$ "
+  bash_shebang: "#!/bin/bash -l"
 
 sched:
   name: "SGE"
@@ -25,14 +28,21 @@ sched:
     name: "-N"
     histdetail: "-j"
     time: "-l h_rt="
-    bash: "-l"
+    queue: "-q" # TODO check how queues work on Myriad
   del: "qdel"
   interactive: "qrsh"
-  info: "qhost"
+  info: "nodetypes"
   comment: "#$ "
   hist: "jobhist"
+  bash_shebang: "#!/bin/bash -l"
 
-# Interactive queue names, one or more as a list
-workshop_interactive_queues:
-  - debug
-  - testing
+episode_order:
+  - 10-hpc-intro
+  - 11-connecting
+  - 12-cluster
+  - 13-scheduler
+  - 14-modules
+  - 15-transferring-files
+  - 16-parallel
+  - 17-resources
+  - 18-responsibility

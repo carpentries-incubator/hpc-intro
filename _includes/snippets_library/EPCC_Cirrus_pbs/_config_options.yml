@@ -3,7 +3,7 @@
 #------------------------------------------------------------
 
 # Cluster host and scheduler options: the defaults come from
-# Graham at Compute Canada, running SLURM. Other options can
+# Graham at Compute Canada, running Slurm. Other options can
 # be found in the library of snippets,
 # `_includes/snippets_library`. To use one, replace options
 # below with those in `_config_options.yml` from the
@@ -21,6 +21,7 @@ snippets: "/snippets_library/EPCC_Cirrus_pbs"
 
 local:
   prompt: "[user@laptop ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
 
 remote:
   name: "Cirrus"
@@ -29,7 +30,9 @@ remote:
   node: "r1i0n32"
   location: "EPCC, The University of Edinburgh"
   homedir: "/lustre/home/tc001/lola"
+  user: "yourUsername"
   prompt: "[yourUsername@cirrus-login0 ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
 
 sched:
   name: "PBS Pro"
@@ -37,21 +40,30 @@ sched:
     name: "qsub"
     options: "-A tc001 -q R387726"
     iopt: ""
+  queue:
+    debug: "standard"
+    testing: "standard"
   status: "qstat"
   flag:
     user: "-u yourUsername"
     interactive: "-IVl select=1:ncpus=1"
     name: "-N"
     histdetail: "-f"
-    time: "-l"
-    bash: ""
+    time: "-l walltime"
+    queue: "-q"
   del: "qdel"
   interactive: "qsub"
   info: "pbsnodes -a"
   comment: "#PBS"
-  hist: "qstat -x"
+  hist: "tracejob"
 
-# Interactive queue names, one or more as a list
-workshop_interactive_queues:
-  - debug
-  - testing
+episode_order:
+  - 10-hpc-intro
+  - 11-connecting
+  - 12-cluster
+  - 13-scheduler
+  - 14-modules
+  - 15-transferring-files
+  - 16-parallel
+  - 17-resources
+  - 18-responsibility

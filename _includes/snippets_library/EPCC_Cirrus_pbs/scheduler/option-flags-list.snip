@@ -1,0 +1,10 @@
+* `-l select=<nnodes>:ncpus=<ncores per node>` &mdash; how many nodes does your
+  job need and how many cores per node? Note that there are 36 cores per node
+  on Cirrus.
+
+* `-l walltime=<hours:minutes:seconds>` &mdash; How much real-world time
+  (walltime) will your job take to run?
+
+* `-l place=scatter:excl` &mdash; Reserve your nodes just for yourself. (If you
+  are using full nodes, you should include this as it stops other users from
+  interfering with the performance of your job.)

@@ -1,0 +1,68 @@
+#------------------------------------------------------------
+# SIGMA2 Norway: Sabry Razick Slurm
+#------------------------------------------------------------
+
+# Cluster host and scheduler options: the defaults come from
+# Graham at Compute Canada, running Slurm. Other options can
+# be found in the library of snippets,
+# `_includes/snippets_library`. To use one, replace options
+# below with those in `_config_options.yml` from the
+# library. E.g, to customise for Cirrus at EPCC, running
+# PBS, we could replace the options below with those from
+# 
+# _includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
+# 
+# If your cluster is not represented in the library, please
+# copy an existing folder, rename it, and customize for your
+# installation. Remember to keep the leading slash on the
+# `snippets` variable below!
+
+snippets: "/snippets_library/Norway_SIGMA2_SAGA_slurm"
+
+local:
+  prompt: "[user@laptop ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
+
+remote:
+  name: "saga"
+  login: "saga.sigma2.no"
+  host: "login-1.SAGA"
+  node: "aci-377"
+  location: "NTNU,Trondheim, Norway"
+  homedir: "/home"
+  user: "$USER"
+  prompt: "[yourUsername@login-1.SAGA ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
+
+sched:
+  name: "Slurm"
+  submit:
+    name: "sbatch"
+    options: ""
+  queue:
+    debug: "devel"
+    testing: "normal"
+  status: "squeue"
+  flag:
+    user: "-u yourUsername"
+    interactive: ""
+    histdetail: "-l -j"
+    name: "-J"
+    time: "-t"
+    queue: "-p"
+  del: "scancel"
+  interactive: "srun"
+  info: "sinfo"
+  comment: "#SBATCH"
+  hist: "sacct -u $USER"
+
+episode_order:
+  - 10-hpc-intro
+  - 11-connecting
+  - 12-cluster
+  - 13-scheduler
+  - 14-modules
+  - 15-transferring-files
+  - 16-parallel
+  - 17-resources
+  - 18-responsibility
