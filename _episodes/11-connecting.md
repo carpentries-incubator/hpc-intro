@@ -1,5 +1,5 @@
 ---
-title: "Connecting to Baskerville"
+title: "Connecting to a remote HPC system"
 teaching: 25
 exercises: 10
 questions:
@@ -421,7 +421,7 @@ keys and a record of authorized connections.
 > documentation. In particular, if there is an online portal for managing SSH
 > keys, use that instead of the directions outlined here. For Baskerville, 
 > please paste your **public** SSH key into [Baskerville Admin](https://admin.baskerville.ac.uk/)
-> under the 'Configure account / reset password' link
+> under the `'Configure account / reset password'` link.
 {: .callout}
 
 If you transferred your SSH public key with `scp`, you should see
