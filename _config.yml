@@ -20,7 +20,7 @@
 # installation. Remember to keep the leading slash on the
 # `snippets` variable below!
 
-snippets: "/snippets_library/ComputeCanada_Graham_slurm"
+snippets: "/snippets_library/Birmingham_Baskerville_slurm"
 
 local:
   prompt: "[user@laptop ~]$"
