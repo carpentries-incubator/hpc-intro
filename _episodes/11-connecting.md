@@ -16,6 +16,12 @@ keypoints:
 - "Files saved on one node are available on all nodes."
 ---
 
+> ## Logging onto Baskerville
+> 
+> For instructions specific to logging in to Baskerville, click [here](https://docs.baskerville.ac.uk/logging-on/).
+> Baskerville requires Two Factor Authentication (2FA) and is set up the first time you login to the cluster - please see details [here](https://docs.baskerville.ac.uk/logging-on/#first-time-access).
+{: .callout}
+
 ## Secure Connections
 
 The first step in using a cluster is to establish a connection from our laptop
@@ -413,7 +419,9 @@ keys and a record of authorized connections.
 > Policies and practices for handling SSH keys vary between HPC clusters:
 > follow any guidance provided by the cluster administrators or
 > documentation. In particular, if there is an online portal for managing SSH
-> keys, use that instead of the directions outlined here.
+> keys, use that instead of the directions outlined here. For Baskerville, 
+> please paste your **public** SSH key into [Baskerville Admin](https://admin.baskerville.ac.uk/)
+> under the `'Configure account / reset password'` link.
 {: .callout}
 
 If you transferred your SSH public key with `scp`, you should see
