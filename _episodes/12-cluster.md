@@ -74,13 +74,13 @@ devices are anchored to the "root" directory, which is `/`:
 {: .language-bash}
 ```
 bin   etc   lib64  proc  sbin     sys  var
-boot  {{ site.remote.homedir | replace: "/", "" }}  mnt    root  scratch  tmp  working
+boot  bask  mnt    root  scratch  tmp  working
 dev   lib   opt    run   srv      usr
 ```
 {: .output}
 
-The "{{ site.remote.homedir | replace: "/", "" }}" directory is the one where
-we generally want to keep all of our files. Other folders on a UNIX OS contain
+The `{{ site.remote.homedir }}` directory is the one where
+we generally want to keep all of our files (Note: on Baskerville, the last letter of the directory corresponds to the first letter of your username). Other folders on a UNIX OS contain
 system files and change as you install new software or upgrade your OS.
 
 > ## Using HPC filesystems
@@ -152,7 +152,7 @@ scheduler to submit jobs next, but for now, it can also tell us more
 information about the compute nodes.
 
 For example, we can view all of the compute nodes by running the command
-`{{ site.sched.info }}`.
+`{{ site.sched.info }}` (Note: command not available on Baskerville).
 
 ```
 {{ site.remote.prompt }} {{ site.sched.info }}

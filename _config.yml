@@ -41,7 +41,7 @@ sched:
   name: "Slurm"
   submit:
     name: "sbatch"
-    options: ""
+    options: "--qos=<input_qos>"
   queue:
     debug: "devel"
     testing: "normal"
