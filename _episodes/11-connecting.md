@@ -62,7 +62,7 @@ When logging in to a laptop, tablet, or other personal device, a username,
 password, or pattern are normally required to prevent unauthorized access. In
 these situations, the likelihood of somebody else intercepting your password is
 low, since logging your keystrokes requires a malicious exploit or physical
-access. For systems like {{ site.remote.host }} running an SSH server, anybody
+access. For systems like {{ site.remote.name }} running an SSH server, anybody
 on the network can log in, or try to. Since usernames are often public or easy
 to guess, your password is often the weakest link in the security chain. Many
 clusters therefore forbid password-based login, requiring instead that you
@@ -305,6 +305,12 @@ See the [PuTTY documentation][putty-agent].
 
 ### Transfer Your Public Key
 
+> ## Baskerville
+> 
+> For Baskerville, please paste your **public** SSH key into [Baskerville Admin](https://admin.baskerville.ac.uk/)
+> under the `'Configure account / reset password'` link. and disregard the **s**ecure **c**o**p**y tool below.
+{: .callout}
+
 {% if site.remote.portal %}
 Visit {{ site.remote.portal }} to upload your SSH public key.
 {% else %}
@@ -327,7 +333,7 @@ supplied by the instructors.
 ```
 {: .language-bash}
 
-You may be asked for your password. Watch out: the characters you type after
+You may be asked for your password, or a One Time Passcode for Multi Factor Authentication. Watch out: the characters you type after
 the password prompt are not displayed on the screen. Normal output will resume
 once you press `Enter`.
 
@@ -421,7 +427,7 @@ keys and a record of authorized connections.
 > documentation. In particular, if there is an online portal for managing SSH
 > keys, use that instead of the directions outlined here. For Baskerville, 
 > please paste your **public** SSH key into [Baskerville Admin](https://admin.baskerville.ac.uk/)
-> under the `'Configure account / reset password'` link.
+> under the `'Configure account / reset password'` link, and disregard the rest of this section.
 {: .callout}
 
 If you transferred your SSH public key with `scp`, you should see
