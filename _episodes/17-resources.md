@@ -3,8 +3,8 @@ title: "Using resources effectively"
 teaching: 25
 exercises: 5
 questions:
-- "How do we monitor our jobs?"
-- "How can I get my jobs scheduled more easily?"
+- "How can I review past jobs?"
+- "How can I use this knowledge to create a more accurate submission script?"
 objectives:
 - "Understand how to look up job statistics and profile code."
 - "Understand job size implications."
@@ -112,7 +112,7 @@ your resource request is not too large.
 
 For convenience, NeSI has provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA). 
 ```
-{{ site.remote.prompt }} nn_seff <jobid>
+{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965 | less
 ```
 {: .language-bash}
 
