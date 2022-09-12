@@ -112,7 +112,7 @@ your resource request is not too large.
 
 For convenience, NeSI has provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA). 
 ```
-{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965 | less
+{{ site.remote.prompt }} nn_seff <jobid>
 ```
 {: .language-bash}
 
