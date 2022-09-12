@@ -86,11 +86,29 @@ Make sure outputs are going somewhere you can see them.
 You generally should ask for 20% to 30% more time and memory than you think the job will use.
 Testing allows you to become more more precise with your resource requests.  We will cover a bit more on running tests in the last lesson.
 
+## Efficient way to run tests jobs using debug QOS (Quality of Service)
 
+Before submitting a large job, first submit one as a test to make
+sure everything works as expected.  Often, users discover typos in their submit
+scripts, incorrect module names or possibly an incorrect pathname after their job
+has queued for many hours.  Be aware that your job is not fully scanned for
+correctness when you submit the job.  While you may get an immediate error if your
+SBATCH directives are malformed, it is not until the job starts to run that the
+interpreter starts to process the batch script.
+
+NeSI has an easy way for you to test your job submission.  One can employ the debug
+QOS to get a short, very high priority test job.  Debug jobs have to run within 15 
+minutes and cannot use more that 2 nodes.  To use debug QOS, add or change the
+following in your batch submit script  
+`#SBATCH --qos=debug`  
+`#SBATCH --time=15:00`  
+
+Adding these SBATCH directives will provide your job with the highest priority
+possible, meaning it should start to run within a few minutes, provided
+your resource request is not too large.
 ## Measuring Resource Usage of a Finished Job
 
 <!-- New example maybe? -->
-After the completion of our test job we will use the `{{ site.sched.efficiency }}` command.
 
 For convenience, NeSI has provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA). 
 ```
