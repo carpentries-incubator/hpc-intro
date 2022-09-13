@@ -47,15 +47,15 @@ sched:
   efficiency: "nn_seff"
 
 episode_order:
-  - 12-cluster
+  - 01-cluster
   - 02-filedir
-  - 00-break1
-  - 14-modules
-  - 13-scheduler
-  - 00-lunch
-  - 17-resources
-  - 00-break2
-  - 175-scaling
+  - 03-break1
+  - 04-modules
+  - 05-scheduler
+  - 06-lunch
+  - 07-resources
+  - 08-break2
+  - 09-scaling
 
 
 #------------------------------------------------------------
@@ -88,7 +88,7 @@ kind: "lesson"
 # Workshop working directory.
 working_dir:
 - /nesi/project/nesi99991
-- introhpc20220614
+- introhpc202209
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
 start_time: 600
