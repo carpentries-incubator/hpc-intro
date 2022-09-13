@@ -15,7 +15,8 @@ keypoints:
 - "The resources found on independent (compute) nodes can vary in volume and
   type (amount of RAM, processor architecture, availability of network mounted
   filesystems, etc.)."
-- "Files saved on one node are available on all nodes."
+- "Files saved on shared storage are available on all nodes."
+- "The login node is a shared machine: be considerate of other users."
 ---
 
 ## What Is an HPC System?
@@ -51,7 +52,7 @@ software, and running quick tests. Generally speaking, the login node *should
 not* be used for time-consuming or resource-intensive tasks.   In other words, do not run jobs directly on the login node.  We will learn how to properly run jobs on the cluster in an upcoming lesson.
 
 
-The real work on a cluster gets done by the *compute* *nodes*.
+The real work on a cluster gets done by the *compute nodes*.
 Compute nodes come in many shapes and sizes, but generally are dedicated to long
 or hard tasks that require a lot of computational resources.
 
@@ -87,20 +88,6 @@ connect to a shared, remote fileserver or cluster of servers.  You will learn mo
    file="/fig/node_anatomy.png"
    alt="Node anatomy" caption="" %}
 
-<!-- > ## Explore Your Computer
->
-> Try to find out the number of CPUs and amount of memory available on your
-> personal computer.
->
-> Note that, if you're logged in to the remote computer cluster, you need to
-> log out first. To do so, type `Ctrl+d` or `exit`:
->
-> ```
-> {{ site.remote.prompt }} exit
-> {{ site.local.prompt }}
-> ```
-> {: .language-bash}
->
 > > ## Solution
 > >
 > > There are several ways to do this. Most operating systems have a graphical
@@ -128,54 +115,6 @@ connect to a shared, remote fileserver or cluster of servers.  You will learn mo
 > >   {: .language-bash}
 > {: .solution}
 {: .challenge}
-
-> ## Explore the Head Node
->
-> Now compare the resources of your computer with those of the head node.
->
-> > ## Solution
-> >
-> > ```
-> > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
-> > {{ site.remote.prompt }} nproc --all
-> > {{ site.remote.prompt }} free -m
-> > ```
-> > {: .language-bash}
-> >
-> > You can get more information about the processors using `lscpu`,
-> > and a lot of detail about the memory by reading the file `/proc/meminfo`:
-> >
-> > ```
-> > {{ site.remote.prompt }} less /proc/meminfo
-> > ```
-> > {: .language-bash}
-> >
-> > You can also explore the available filesystems using `df` to show **d**isk
-> > **f**ree space. The `-h` flag renders the sizes in a human-friendly format,
-> > i.e., GB instead of B. The **t**ype flag `-T` shows what kind of filesystem
-> > each resource is.
-> >
-> > ```
-> > {{ site.remote.prompt }} df -Th
-> > ```
-> > {: .language-bash}
-> >
-> > > The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're
-> > > on the same login node (or compute node, later on). Networked filesystems
-> > > (beegfs, cifs, gpfs, nfs, pvfs) will be similar &mdash; but may include
-> > > {{ site.remote.user }}, depending on how it is [mounted](
-> > > https://en.wikipedia.org/wiki/Mount_(computing)).
-> > {: .discussion}
-> >
-> > > ## Shared Filesystems
-> > >
-> > > This is an important point to remember: files saved on one node
-> > > (computer) are often available everywhere on the cluster!
-> > {: .callout}
-> {: .solution}
-{: .challenge}
-
-{% include {{ site.snippets }}/cluster/specific-node-info.snip %} -->
 
 > ## Differences Between Nodes
 >

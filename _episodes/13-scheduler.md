@@ -1,10 +1,10 @@
 ---
-title: "Working with the scheduler"
+title: "Scheduler Fundamentals"
 teaching: 40
 exercises: 30
 questions:
-- "What is a scheduler and why are they used?"
-- "How do I launch a program to run on any one node in the cluster?"
+- "What is a scheduler and why does a cluster need one?"
+- "How do I launch a program to run on a compute node in the cluster?"
 - "How do I capture the output of a program that is run on a node in the
   cluster?"
 objectives:
@@ -12,11 +12,11 @@ objectives:
 - "Use the batch system command line tools to monitor the execution of your
   job."
 - "Inspect the output and error files of your jobs."
+- "Find the right place to put large datasets on the cluster."
 keypoints:
 - "The scheduler handles how compute resources are shared between users."
-- "Everything you do should be run through the scheduler."
 - "A job is just a shell script."
-- "If in doubt, request more resources than you will need."
+- "Request _slightly_ more resources than you will need."
 ---
 
 ## Job Scheduler
@@ -24,8 +24,8 @@ keypoints:
 An HPC system might have thousands of nodes and thousands of users. How do we
 decide who gets what and when? How do we ensure that a task is run with the
 resources it needs? This job is handled by a special piece of software called
-the scheduler. On an HPC system, the scheduler manages which jobs run where and
-when.
+the _scheduler_. On an HPC system, the scheduler manages which jobs run where
+and when.
 
 The following illustration compares these tasks of a job scheduler to a waiter
 in a restaurant. If you can relate to an instance where you had to wait for a
@@ -36,7 +36,10 @@ why sometimes your job do not start instantly as in your laptop.
    file="/fig/restaurant_queue_manager.svg"
    alt="Compare a job scheduler to a waiter in a restaurant" %}
 
-
+The scheduler used in this lesson is {{ site.sched.name }}. Although
+{{ site.sched.name }} is not used everywhere, running jobs is quite similar
+regardless of what software is being used. The exact syntax might change, but
+the concepts remain the same.
 
 ## Interactive vs Batch
 
@@ -52,11 +55,6 @@ This is where _batch processing_ becomes useful, this is where instead of enteri
 
 Lets try this now, create and open a new file in your current directory called `example-job.sh`.
 (If you prefer another text editor than nano, feel free to use that), we will put to use some things we have learnt so far.
-
-<!-- The most basic use of the scheduler is to run a command non-interactively. Any
-command (or series of commands) that you want to run on the cluster is called a
-*job*, and the process of using a scheduler to run the job is called *batch job
-submission*. -->
 
 ```
 {{ site.remote.prompt }} nano example-job.sh
@@ -84,7 +82,7 @@ We can now run this script using
 ```
 {{ site.remote.prompt }} bash example-job.sh
 ```
-{: .output}
+{: .language-bash}
 
 ```
 Loading required package: foreach
@@ -175,8 +173,6 @@ Now, rather than running our script with `bash` we _submit_ it to the scheduler 
 And that's all we need to do to submit a job. Our work is done -- now the
 scheduler takes over and tries to run the job for us.
 
-## Checking on our Job
-
 While the job is waiting
 to run, it goes into a list of jobs called the *queue*. To check on our job's
 status, we check the queue using the command
@@ -195,14 +191,6 @@ status, we check the queue using the command
 > Slurm batch job output is typically redirected to a file, by default this will be a file named `slurm-<job-id>.out` in the directory where the job was submitted, this can be changed with the slurm parameter `--output`.
 {: .discussion}
 
-<!-- > ## Setting up Email Notifications
->
-> Jobs on an HPC system might run for days or even weeks. We probably have
-> better things to do than constantly check on the status of our job with
-> `{{ site.sched.status }}`. Looking at the manual page for
-> `{{ site.sched.submit.name }}`, can you set up our test job to send you an email
-> when it finishes?
->
 > > ## Hint
 > >
 > > You can use the *manual pages* for {{ site.sched.name }} utilities to find
@@ -223,8 +211,8 @@ status, we check the queue using the command
 
 <!-- 
 Resource requests are typically binding. If you exceed them, your job will be
-killed. Let's use walltime as an example. We will request 30 seconds of
-walltime, and attempt to run a job for two minutes.
+killed. Let's use wall time as an example. We will request 1 minute of
+wall time, and attempt to run a job for two minutes.
 
 ```
 {{ site.remote.prompt }} nano example-job.sl
@@ -234,12 +222,11 @@ walltime, and attempt to run a job for two minutes.
 ```
 {{ site.remote.bash_shebang }}
 {{ site.sched.comment }} {{ site.sched.flag.name }} long_job
-{{ site.sched.comment }} {{ site.sched.flag.time }} 00:00:30
+{{ site.sched.comment }} {{ site.sched.flag.time }} 00:01 # timeout in HH:MM
 
 echo "This script is running on ... "
-sleep 120 # time in seconds
+sleep 240 # time in seconds
 hostname
-echo "This script has finished successfully."
 ```
 {: .output}
 
@@ -297,4 +284,20 @@ successful.
 
 {% include {{ site.snippets }}/scheduler/terminate-multiple-jobs.snip %}
 
+## Other Types of Jobs
+
+Up to this point, we've focused on running jobs in batch mode.
+{{ site.sched.name }} also provides the ability to start an interactive session.
+
+There are very frequently tasks that need to be done interactively. Creating an
+entire job script might be overkill, but the amount of resources required is
+too much for a login node to handle. A good example of this might be building a
+genome index for alignment with a tool like [HISAT2][hisat]. Fortunately, we
+can run these types of tasks as a one-off with `{{ site.sched.interactive }}`.
+
+{% include {{ site.snippets }}/scheduler/using-nodes-interactively.snip %}
+
 {% include links.md %}
+
+[fshs]: https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
+[hisat]: https://ccb.jhu.edu/software/hisat2/index.shtml

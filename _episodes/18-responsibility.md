@@ -13,9 +13,11 @@ keypoints:
 - "Your data on the system is your responsibility."
 ---
 
-One of the major differences between using the {{ site.remote.name }} cluster and your own system (e.g. your laptop) is that {{ site.remote.name }} is shared. How many users
-the resource is shared between at any one time varies from day to day but
-it is unlikely you will ever be the only user logged into or using {{ site.remote.name }}.
+One of the major differences between using remote HPC resources and your own
+system (e.g. your laptop) is that remote resources are shared. How many users
+the resource is shared between at any one time varies from system to system, but
+it is unlikely you will ever be the only user logged into or using such a
+system.
 
 ## Be Kind to the Login Nodes (and your fellow researchers)
 

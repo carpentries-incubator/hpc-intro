@@ -5,10 +5,11 @@ exercises: 0
 questions:
 - "How do we load and unload software packages?"
 objectives:
-- "Understand how to load and use a software package."
+- "Load and use a software package."
+- "Explain how the shell environment changes when the module mechanism loads or unloads packages."
 keypoints:
 - "Load software with `module load softwareName`."
-- "Unload software with `module purge`"
+- "Unload software with `module unload`"
 - "The module system handles software versioning and package conflicts for you
   automatically."
 ---
@@ -47,19 +48,19 @@ to work.
 
 ## Environment Modules
 
-Environment modules are the solution to these problems. A *module* is a
+Environment modules are the solution to these problems. A _module_ is a
 self-contained description of a software package -- it contains the
 settings required to run a software package and, usually, encodes required
 dependencies on other software packages.
 
 There are a number of different environment module implementations commonly
-used on HPC systems: the two most common are *TCL modules* and *Lmod*. Both of
+used on HPC systems: the two most common are _TCL modules_ and _Lmod_. Both of
 these use similar syntax and the concepts are the same so learning to use one
 will allow you to use whichever is installed on the system you are using. In
 both implementations the `module` command is used to interact with environment
 modules. An additional subcommand is usually added to the command to specify
 what you want to do. For a list of subcommands you can use `module -h` or
-`module help`. As for all commands, you can access the full help on the *man*
+`module help`. As for all commands, you can access the full help on the _man_
 pages with `man module`.
 
 ### Purging Modules

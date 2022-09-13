@@ -3,8 +3,8 @@ title: "Using resources effectively"
 teaching: 25
 exercises: 5
 questions:
-- "How do we monitor our jobs?"
-- "How can I get my jobs scheduled more easily?"
+- "How can I review past jobs?"
+- "How can I use this knowledge to create a more accurate submission script?"
 objectives:
 - "Understand how to look up job statistics and profile code."
 - "Understand job size implications."
