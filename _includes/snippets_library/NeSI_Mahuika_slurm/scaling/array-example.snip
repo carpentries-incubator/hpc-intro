@@ -1,0 +1,8 @@
+#!/bin/bash -e
+#SBATCH --job-name=ArrayJob		#job name
+#SBATCH --time=00:01:00			#walltime
+#SBATCH --mem=3000				#memory in MB
+#SBATCH --array=1-2			    #array size
+
+pwd							    #prints working directory
+echo "${SLURM_ARRAY_TASK_ID}"	#prints SLURM_ARRAY_TASK_ID

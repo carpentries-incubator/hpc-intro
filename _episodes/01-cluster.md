@@ -34,7 +34,6 @@ intensive tasks such as running a simulation.
 
 *HPC*, *High Performance Computer*, *High Performance Computing* or *Supercomputer* are all general terms for a large or powerful computing resource.
 
-
 *Cluster* is a more specific term describing a type of supercomputer comprised of multiple smaller computers (nodes) working together. Almost all supercomputers are clusters.
 
 ## Nodes
@@ -47,8 +46,7 @@ how you accessed the cluster.  Most of you (using JupyterHub) will be on an inte
 This is because Jupyter sessions are launched as a job.  If you are using SSH to connect to the cluster, you will be on a
 *login node*. Both JupyterHub and SSH login nodes serve as an access point to the cluster.
 
-As access points, both the login node and JupyterHub are well suited for uploading and downloading files, setting up
-software, and running quick tests. Generally speaking, the login node *should
+As access points, both the login node and JupyterHub are well suited for uploading and downloading files, setting up software, and running quick tests. Generally speaking, the login node *should
 not* be used for time-consuming or resource-intensive tasks.   In other words, do not run jobs directly on the login node.  We will learn how to properly run jobs on the cluster in an upcoming lesson.
 
 
@@ -88,34 +86,6 @@ connect to a shared, remote fileserver or cluster of servers.  You will learn mo
    file="/fig/node_anatomy.png"
    alt="Node anatomy" caption="" %}
 
-> > ## Solution
-> >
-> > There are several ways to do this. Most operating systems have a graphical
-> > system monitor, like the Windows Task Manager. More detailed information
-> > can be found on the command line:
-> >
-> > * Run system utilities
-> >   ```
-> >   {{ site.local.prompt }} nproc --all
-> >   {{ site.local.prompt }} free -m
-> >   ```
-> >   {: .language-bash}
-> >
-> > * Read from `/proc`
-> >   ```
-> >   {{ site.local.prompt }} cat /proc/cpuinfo
-> >   {{ site.local.prompt }} cat /proc/meminfo
-> >   ```
-> >   {: .language-bash}
-> >
-> > * Run system monitor
-> >   ```
-> >   {{ site.local.prompt }} htop
-> >   ```
-> >   {: .language-bash}
-> {: .solution}
-{: .challenge}
-
 > ## Differences Between Nodes
 >
 > Many HPC clusters have a variety of nodes optimized for particular workloads.
@@ -132,9 +102,3 @@ connect to a shared, remote fileserver or cluster of servers.  You will learn mo
 {% include links.md %}
 
 [fshs]: https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
-[putty-gen]: https://tartarus.org/~simon/putty-prerel-snapshots/htmldoc/Chapter8.html#pubkey-puttygen
-[putty-agent]: https://tartarus.org/~simon/putty-prerel-snapshots/htmldoc/Chapter9.html#pageant
-[ssh-agent]: https://www.ssh.com/academy/ssh/agent
-[ssh-flags]: https://stribika.github.io/2015/01/04/secure-secure-shell.html
-[wiki-rsa]: https://en.wikipedia.org/wiki/RSA_(cryptosystem)
-[wiki-dsa]: https://en.wikipedia.org/wiki/EdDSA

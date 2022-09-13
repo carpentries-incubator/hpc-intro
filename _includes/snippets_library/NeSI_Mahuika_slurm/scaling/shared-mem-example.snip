@@ -1,0 +1,7 @@
+#!/bin/bash -e
+#SBATCH --job-name=OpenMPJob	#job name
+#SBATCH --time=00:01:00			#walltime
+#SBATCH --mem=3000				#memory in MB
+#SBATCH --cpus-per-task=4		#cores per task (e.g. OpenMP)
+
+taskset -c -p $$				#prints PID and accessible CPUs

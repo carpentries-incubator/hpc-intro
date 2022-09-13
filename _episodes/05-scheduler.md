@@ -173,6 +173,8 @@ Now, rather than running our script with `bash` we _submit_ it to the scheduler 
 And that's all we need to do to submit a job. Our work is done -- now the
 scheduler takes over and tries to run the job for us.
 
+## Checking on our Job
+
 While the job is waiting
 to run, it goes into a list of jobs called the *queue*. To check on our job's
 status, we check the queue using the command
@@ -284,7 +286,7 @@ successful.
 
 {% include {{ site.snippets }}/scheduler/terminate-multiple-jobs.snip %}
 
-## Other Types of Jobs
+<!-- ## Other Types of Jobs
 
 Up to this point, we've focused on running jobs in batch mode.
 {{ site.sched.name }} also provides the ability to start an interactive session.
@@ -295,7 +297,7 @@ too much for a login node to handle. A good example of this might be building a
 genome index for alignment with a tool like [HISAT2][hisat]. Fortunately, we
 can run these types of tasks as a one-off with `{{ site.sched.interactive }}`.
 
-{% include {{ site.snippets }}/scheduler/using-nodes-interactively.snip %}
+{% include {{ site.snippets }}/scheduler/using-nodes-interactively.snip %} -->
 
 {% include links.md %}
 
