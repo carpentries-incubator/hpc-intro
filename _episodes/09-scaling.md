@@ -35,17 +35,6 @@ As a reminder, our slurm script `example-job.sl` should currently look like this
 Using the information we collected from the previous job (`nn_seff <job-id>`), we will submit the same job again with more CPUs and our best estimates of required resources.
 We ask for more CPUs using by adding `#SBATCH --cpus-per-task 4` to our script.
 
-> ## acctg-freq
->
-> We will also add the line `#SBATCH --acctg-freq 1`.
-> By default SLURM records job data every 30 seconds. This means any job running for less than 30 
-> seconds will not have it's memory use recorded.
-> You will not usually need to change this value, we are only doing so here because our test jobs are so short.
->
-{: .callout}
-
-[//]: # Remove acctg-freq
-
 Your script should now look like this:
 
 ```
@@ -55,8 +44,17 @@ Your script should now look like this:
 
 And then submit using `sbatch` as we did before.
 
+
+> ## acctg-freq
+>
+> We will also add the argument `--acctg-freq 1`.
+> By default SLURM records job data every 30 seconds. This means any job running for less than 30 
+> seconds will not have it's memory use recorded.
+> This is the same as specifying `#SBATCH --acctg-freq 1` inside the script.
+{: .callout}
+
 ```
-{{ site.remote.prompt }} sbatch example-job.sl
+{{ site.remote.prompt }} sbatch --acctg-freq 1 example-job.sl
 ```
 {: .language-bash}
 
@@ -64,13 +62,14 @@ And then submit using `sbatch` as we did before.
 
 > ## Watch
 >
-> We can prepend any command with `watch` in order to continuously it. e.g. `watch squeue --me` will 
-> give us up to date information on our running jobs.
+> We can prepend any command with `watch` in order to periodically (default 2 seconds) run a command. e.g. `watch 
+> squeue --me` will give us up to date information on our running jobs. 
+> Care should be used when using `watch` as repeatedly running a command can have adverse effects.  
 {: .callout}
 
 Checking on our job with `sacct`.
 Oh no! 
-{% include {{ site.snippets }}/resources/OOM.snip %}
+{% include {{ site.snippets }}/scaling/OOM.snip %}
 
 > ## OOM Error
 > 
@@ -90,15 +89,20 @@ Oh no!
 In order to establish an understanding of the scaling properties we may have to repeat this test several times, giving more resources each iteration.
 > ## Scaling Exercise
 >
-> * Find your name in the [spreadsheet]({{ site.exersice }}) and modify your `example-job.sl` to request 
-> "x" cpus-per-task.
-> * Estimate memory requirement based on our previous runs and the cpus requested.
-> * Submit the job with `sbatch example-job.sl`. 
-> * Watch the job with `squeue --me` or `watch squeue --me`.
-> * On completion of job, use `nn_seff <job-id>` and enter in details in spreadsheet.
+> 1. Find your name in the [spreadsheet]({{ site.exersice }}) and modify your `example-job.sl` to request 
+> "x" `--cpus-per-task`. For example `#SBATCH --cpus-per-task 10`.
+> 2. Estimate memory requirement based on our previous runs and the cpus requested, memory 
+> is specified with the `--mem ` flag, it does not accept decimal values, however you may 
+> specify a unit (`K`|`M`|`G`), if no unit is specified it is assumed to be `M`. 
+> For example `#SBATCH --mem 1200`. 
+> 3. Submit the job with `sbatch --acctg-freq 1 example-job.sl`. 
+> 4. Watch the job with `squeue --me` or `watch squeue --me`.
+> 5. On completion of job, use `nn_seff <job-id>`.
+> 6. Record the jobs "Elapsed", "TotalCPU", and "Memory" values in the spreadsheet. (Hint: They are the first 
+> numbers after the percentage efficiency in output of `nn_seff`). Make sure you have entered the values in the correct format and there is a tick next to each entry. ![Correctly entered data in spreadsheet.](../fig/correct-spreadsheet-entry.png)
 >
 > > ## Solution
-> > 
+> > [spreadsheet]({{ site.exersice }})
 > {: .solution}
 {: .challenge}
 
@@ -109,7 +113,7 @@ In order to establish an understanding of the scaling properties we may have to 
 Running code in parallel rarely comes for free, there are usually computational overheads. 
 Whatever method is being used to distribute the workload usually require some computation, as well as communication between processes.
 
-![Fraction of CPU doing useful computation decreases due to overheads.](../fig/DimReturns.svg)
+<!-- ![Fraction of CPU doing useful computation decreases due to overheads.](../fig/DimReturns.svg) -->
 
 This usually leads to diminishing returns when it comes to performance.
 
@@ -120,15 +124,24 @@ This usually leads to diminishing returns when it comes to performance.
 
 Most computational tasks will have a certain amount of work that must be computed serially.
 
-![The blue components can be run in parallel, red cannot.](../fig/AmdahlsLaw.svg)
+<!-- ![The blue components can be run in parallel, red cannot.](../fig/AmdahlsLaw.svg)
 
-As only the parallel portion of the job is sped up by scaling, the ratio of parallel to serial is an important factor in job scaling. 
+As only the parallel portion of the job is sped up by scaling, the ratio of parallel to serial is an important factor in job scaling.  -->
 
 ![Larger fractions of parallel code will have closer to linear scaling performance.](../fig/AmdahlsLaw2.svg)
 
 Eventually your performance gains will plateau.
 
+
 The fraction of the task that can be run in parallel determines the point of this plateau.
 Code that has no serial components is said to be "embarrassingly parallel".
+
+## Methods of Parallel Computing
+
+### Multithreading (OMP)
+
+### Distributed (MPI)
+
+### Embarrasingly Parallel (Job Level)
 
 {% include links.md %}
