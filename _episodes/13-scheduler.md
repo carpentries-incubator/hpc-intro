@@ -203,7 +203,7 @@ status, we check the queue using the command
 > > ```
 > > {: .language-bash}
 > {: .solution}
-{: .challenge} -->
+{: .challenge}
 
 {% include {{ site.snippets }}/scheduler/print-sched-variables.snip %}
 

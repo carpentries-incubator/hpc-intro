@@ -107,7 +107,7 @@ In order to establish an understanding of the scaling properties we may have to 
 ### Diminishing Returns
 
 Running code in parallel rarely comes for free, there are usually computational overheads. 
-Whatever method is being used to distrubute the workload usually require some computation, as well as comunication between proccesses.
+Whatever method is being used to distribute the workload usually require some computation, as well as communication between processes.
 
 ![Fraction of CPU doing useful computation decreases due to overheads.](../fig/DimReturns.svg)
 

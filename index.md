@@ -36,10 +36,4 @@ By the end of this workshop, students will know how to:
 Note that this is the draft HPC Carpentry release. Comments and feedback are
 welcome.
 
-> ## For Instructors
->
-> If you are teaching this lesson in a workshop, please see the
-> [Instructor notes](guide/).
-{: .callout}
-
 {% include links.md %}
