@@ -176,7 +176,7 @@ provided to help guide planning and decision-making.
 
 1. [Working with the scheduler](_episodes/13-scheduler.md) (1 hour 15 minutes)
 
-   * Know how to submit a program and batch scrip to the cluster (interactive &
+   * Know how to submit a program and batch script to the cluster (interactive &
      batch)
    * Use the batch system command line tools to monitor the execution of your
      job.
