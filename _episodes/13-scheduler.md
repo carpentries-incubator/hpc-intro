@@ -183,7 +183,7 @@ status, we check the queue using the command
 ```
 {: .language-bash}
 
-{% include {{ site.snippets }}/scheduler/job-with-name-status.snip %}
+{% include {{ site.snippets }}/scheduler/basic-job-status.snip %}
 
 > ## Where's the Output?
 >
