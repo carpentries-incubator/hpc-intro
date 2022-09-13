@@ -4,12 +4,12 @@ name: Check lesson and build for all configs
 on:
   pull_request:
   push:
-
+    branches:
+      - gh-pages-nesi
 jobs:
   spellcheck:
     runs-on: ubuntu-latest
     steps:
-<<<<<<< HEAD
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -20,7 +20,6 @@ jobs:
         pip3 install codespell
     - name: Check spelling
       run: |
-=======
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -31,7 +30,6 @@ jobs:
           pip3 install codespell
       - name: Check spelling
         run: |
->>>>>>> gh-pages-upstream-compat
           make spellcheck
 
   check_lesson_and_build_default:
