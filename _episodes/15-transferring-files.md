@@ -235,7 +235,6 @@ FileZilla is a cross-platform client for downloading and uploading files to and
 from a remote computer. It is absolutely fool-proof and always works quite
 well. It uses the `sftp` protocol. You can read more about using the `sftp`
 protocol in the command line in the
-[lesson discussion]({{ site.baseurl }}{% link _extras/discuss.md %}).
 
 Download and install the FileZilla client from <https://filezilla-project.org>.
 After installing and opening the program, you should end up with a window with
