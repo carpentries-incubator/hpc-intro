@@ -1,0 +1,30 @@
+```
+PARTITION       AVAIL  TIMELIMIT  NODES  STATE NODELIST
+batch*             up 30-00:00:0     10    mix node[001,003,005,008-009,011,019,023,025-026]
+batch*             up 30-00:00:0     10  alloc node[002,013,015-018,020-022,024]
+batch*             up 30-00:00:0     20   idle node[004,006-007,010,012,014,027-040]
+debug              up      30:00     10    mix node[001,003,005,008-009,011,019,023,025-026]
+debug              up      30:00     10  alloc node[002,013,015-018,020-022,024]
+debug              up      30:00     20   idle node[004,006-007,010,012,014,027-040]
+interactive        up    2:00:00     10    mix node[001,003,005,008-009,011,019,023,025-026]
+interactive        up    2:00:00     10  alloc node[002,013,015-018,020-022,024]
+interactive        up    2:00:00     20   idle node[004,006-007,010,012,014,027-040]
+gpu                up 30-00:00:0      1  drain gpunode001
+gpu                up 30-00:00:0      3    mix gpunode[002-004]
+gpu-debug          up      30:00      1  drain gpunode001
+gpu-debug          up      30:00      3    mix gpunode[002-004]
+gpu-interactive    up    2:00:00      1  drain gpunode001
+gpu-interactive    up    2:00:00      3    mix gpunode[002-004]
+any-interactive    up    2:00:00      1  drain gpunode001
+any-interactive    up    2:00:00     13    mix gpunode[002-004],node[001,003,005,008-009,011,019,023,025-026]
+any-interactive    up    2:00:00     10  alloc node[002,013,015-018,020-022,024]
+any-interactive    up    2:00:00     20   idle node[004,006-007,010,012,014,027-040]
+any-debug          up      30:00      1  drain gpunode001
+any-debug          up      30:00     13    mix gpunode[002-004],node[001,003,005,008-009,011,019,023,025-026]
+any-debug          up      30:00     10  alloc node[002,013,015-018,020-022,024]
+any-debug          up      30:00     20   idle node[004,006-007,010,012,014,027-040]
+bigmem             up 30-00:00:0      1  drain gpunode001
+bigmem             up 30-00:00:0      2    mix gpunode[002-003]
+hugemem            up 30-00:00:0      1    mix gpunode004
+```
+{: .output}
