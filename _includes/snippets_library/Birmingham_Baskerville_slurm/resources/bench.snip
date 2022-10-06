@@ -1,0 +1,18 @@
+> ## Benchmarking `fastqc`
+>
+> Create a job that runs the following command in the same directory as
+> `.fastq` files
+>
+> ```
+> fastqc name_of_fastq_file
+> ```
+> {: .language-bash}
+>
+> The `fastqc` command is provided by the `fastqc` module. You'll need to
+> figure out a good amount of resources to ask for for this first "test run".
+> You might also want to have the scheduler email you to tell you when the job
+> is done.
+>
+> Hint: the job only needs 1 CPU and not too much memory or time. The trick is
+> figuring out just how much you'll need!
+{: .challenge}
