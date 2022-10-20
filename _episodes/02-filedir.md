@@ -374,8 +374,8 @@ We should now be back in `{{ site.working_dir[0] }}`.
 > The shell interprets a tilde (`~`) character at the start of a path to
 > mean "the current user's home directory". For example, if Nelle's home
 > directory is `/home/nelle`, then `~/data` is equivalent to
-> `/home/nelle/`. This only works if it is the first character in the
-> path: `here/there/~/elsewhere` is *not* `here/there/Users/nelle/elsewhere`.
+> `/home/nelle/data`. This only works if it is the first character in the
+> path: `here/there/~/elsewhere` is *not* `here/there//home/nelle/elsewhere`.
 >
 > Another shortcut is the `-` (dash) character. `cd` will translate `-` into
 > *the previous directory I was in*, which is faster than having to remember,
@@ -389,9 +389,9 @@ We should now be back in `{{ site.working_dir[0] }}`.
 {: .callout}
 > ## Absolute vs Relative Paths
 >
-> Starting from `/Users/amanda/data`,
+> Starting from `/home/amanda/data`,
 > which of the following commands could Amanda use to navigate to her home directory,
-> which is `/Users/amanda`?
+> which is `/home/amanda`?
 >
 > 1. `cd .`
 > 2. `cd /`
@@ -406,9 +406,9 @@ We should now be back in `{{ site.working_dir[0] }}`.
 > > ## Solution
 > > 1. No: `.` stands for the current directory.
 > > 2. No: `/` stands for the root directory.
-> > 3. No: Amanda's home directory is `/Users/amanda`.
-> > 4. No: this command goes up two levels, i.e. ends in `/Users`.
-> > 5. Yes: `~` stands for the user's home directory, in this case `/Users/amanda`.
+> > 3. No: Amanda's home directory is `/home/amanda`.
+> > 4. No: this command goes up two levels, i.e. ends in `/home`.
+> > 5. Yes: `~` stands for the user's home directory, in this case `/home/amanda`.
 > > 6. No: this command would navigate into a directory `home` in the current directory if it exists.
 > > 7. Yes: unnecessarily complicated, but correct.
 > > 8. Yes: shortcut to go back to the user's home directory.
