@@ -27,7 +27,7 @@ Last time we submitted a job, we did not specify a number of CPUs, and therefore
 As a reminder, our slurm script `example-job.sl` should currently look like this.
 
 ```
-{% include example-job.sl.1 %}
+{% include example_scripts/example-job.sl.1 %}
 ```
 {: .language-bash}
 
@@ -38,12 +38,11 @@ We ask for more CPUs using by adding `#SBATCH --cpus-per-task 4` to our script.
 Your script should now look like this:
 
 ```
-{% include example-job.sl.2 %}
+{% include example_scripts/example-job.sl.2 %}
 ```
 {: .language-bash}
 
 And then submit using `sbatch` as we did before.
-
 
 > ## acctg-freq
 >
