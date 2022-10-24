@@ -7,7 +7,7 @@ root: .
 {% assign hours = site.hpc_start_time | divided_by: 60 %}
 {% assign minutes = site.hpc_start_time | modulo: 60 %}
 {% assign late_start_episode = site.episodes | where: "slug", site.hpc_start_lesson | first %}
-The first half of this workshop will cover basics of command line (in an HPC enviroment).
+The first half of this workshop will cover basics of command line (in an HPC environment).
 
 The second harlf of this workshop will provide an introduction and overview to the tools available on high-performance computing systems and how to use them effectively.
 
@@ -15,7 +15,7 @@ If you are already comfortable with command line and wish to skip the first half
 
 > ## Prerequisites
 >
-> While we cover the bash essentials, we still reccomend checking out the 
+> While we cover the bash essentials, we still recommend checking out the 
 > [shell-novice](https://swcarpentry.github.io/shell-novice/) lesson for a better foundation in bash.
 {: .prereq}
 

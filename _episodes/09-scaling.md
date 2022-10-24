@@ -140,7 +140,7 @@ Many scientific software applications are written to take advantage of multiple 
 
 Three main types are shared memory, distributed and data level parallism. These methods are not exclusive, a job taking advantage of both SMP and MPI is said to be "Hybrid".
 
-Which methods are available to you is _largely dependant on the software being used_, if you are writing your own code, then this is something you will probably have to specify yourself.
+Which methods are available to you is _largely dependent on the software being used_, if you are writing your own code, then this is something you will probably have to specify yourself.
 ### Shared-Memory (SMP)
 
 Shared-memory multiproccessing divides work among _CPUs_ ( threads or cores ), all of these threads require access to the same memory. This means that all CPUs must be on the same node, most Mahuika nodes have 72 CPUs.
@@ -179,7 +179,7 @@ Job arrays are not "multiproccessing" in the same way as the previous two method
 Ideal for _embarrassingly parallel_ problems, where there are little to no dependencies between the different jobs.
 
 Can be thought of less as running a single job in parallel and more about running multiple serial-jobs simultaneously.
-Often this is a type of _Data level parallelism_ where the same proccess is run on multiple inputs.
+Often this is a type of _Data level parallelism_ where the same process is run on multiple inputs.
 
 Embarrassingly parallel jobs should be able scale without any loss of efficiency. If this type of parallelisation is an option, it will almost certainly be the best choice.
 
