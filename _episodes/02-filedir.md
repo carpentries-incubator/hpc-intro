@@ -168,8 +168,7 @@ use the following command to do this:
 
 {% include {{ site.snippets }}/filedir/working-dir.snip %}
 
-
-You should see a directory called `{{ site.working_dir[1] }}`, and possibly several other directories. For the purposes of this workshop you will be working within `{{ site.working_dir[0] }}/{{ site.working_dir[1] }}`
+You should see a directory called `{{ site.working_dir | last }}`, and possibly several other directories. For the purposes of this workshop you will be working within `{{ site.working_dir | join: '/' }}`
 
 > ## `ls` Reading Comprehension
 >
@@ -212,7 +211,7 @@ The `cd` command is akin to double clicking a folder in a graphical interface.
 We will use the following command:
 
 ```
-{{ site.remote.prompt }} cd {{ site.working_dir[0] }}/{{ site.working_dir[1] }}
+{{ site.remote.prompt }} cd {{ site.working_dir | join: '/' }}
 ```
 {: .language-bash}
 
@@ -225,7 +224,7 @@ We can check we are in the right place by running `pwd`.
 {: .language-bash}
 
 ```
-{{ site.working_dir[0] }}/{{ site.working_dir[1] }}
+{{ site.working_dir | join: '/' }}
 ```
 {: .output}
 
@@ -256,15 +255,15 @@ We are now going to use `ls` again but with a twist, this time we will also use 
 These options modify the way that the command works, for this example we will add the flag `-l` for "long listing format".
 
 ```
-{{ site.remote.prompt }} ls -l {{ site.working_dir[0] }}/{{ site.working_dir[1] }}
+{{ site.remote.prompt }} ls -l {{ site.working_dir | join: '/' }}
 ```
 {: .language-bash}
 
 ```
 total 1
--rw-r-----+ 1 cwal219 nesi99991  460 Nov 18 17:03 array_sum.r
-drwxrws---+ 2 usr123  nesi99991 4096 Nov 15 09:01 usr123
-drwxrws---+ 2 usr345  nesi99991 4096 Nov 15 09:01 usr345
+-rw-r-----+ 1 cwal219 {{site.sched.projectcode}}  460 Nov 18 17:03 array_sum.r
+drwxrws---+ 2 usr123  {{site.sched.projectcode}} 4096 Nov 15 09:01 usr123
+drwxrws---+ 2 usr345  {{site.sched.projectcode}} 4096 Nov 15 09:01 usr345
 ```
 {: .output}
 
@@ -299,11 +298,11 @@ Another useful option for `ls` is the `-a` option, lets try using this option to
 
 ```
 total 1
-drwxrws---+  4 usr001  nesi99991   4096 Nov 15 09:00 .
-drwxrws---+ 12 root    nesi99991 262144 Nov 15 09:23 ..
--rw-r-----+  1 cwal219 nesi99991    460 Nov 18 17:03 array_sum.r
-drwxrws---+  2 usr123  nesi99991   4096 Nov 15 09:01 usr123
-drwxrws---+  2 usr345  nesi99991   4096 Nov 15 09:01 usr345
+drwxrws---+  4 usr001  {{site.sched.projectcode}}   4096 Nov 15 09:00 .
+drwxrws---+ 12 root    {{site.sched.projectcode}} 262144 Nov 15 09:23 ..
+-rw-r-----+  1 cwal219 {{site.sched.projectcode}}    460 Nov 18 17:03 array_sum.r
+drwxrws---+  2 usr123  {{site.sched.projectcode}}   4096 Nov 15 09:01 usr123
+drwxrws---+  2 usr345  {{site.sched.projectcode}}   4096 Nov 15 09:01 usr345
 ```
 {: .output}
 
@@ -477,7 +476,7 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > >For example, if you type:
 > >
 > > ```
-> > {{ site.remote.prompt }} cd {{ site.working_dir[1] | slice: 0,3 }}
+> > {{ site.remote.prompt }} cd {{ site.working_dir | last | slice: 0,3 }}
 > > ```
 > > {: .language-bash}
 > >
@@ -485,7 +484,7 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > > the shell automatically completes the directory name for you (since there is only one possible match):
 > >
 > > ```
-> > {{ site.remote.prompt }} cd {{ site.working_dir[1] }}/
+> > {{ site.remote.prompt }} cd {{ site.working_dir | last }}/
 > > ```
 > > {: .language-bash}
 > >
@@ -503,14 +502,14 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > > Now press <kbd>Enter</kbd> to execute the command.
 > >
 > > ```
-> > {{ site.remote.prompt }} cd {{ site.working_dir[1] }}/<username>
+> > {{ site.remote.prompt }} cd {{ site.working_dir | last }}/<username>
 > > ```
 > > {: .language-bash}
 > > 
 > > Check that we've moved to the right place by running `pwd`.
 > > 
 > > ```
-> > {{ site.working_dir[0] }}/{{ site.working_dir[1] }}/<username>
+> > {{ site.working_dir | join: '/' }}/<username>
 > > ```
 > > {: .output}
 > {: .solution}
@@ -595,10 +594,10 @@ draft.txt
 {: .output}
 ## Copying files and directories
 
-In a future lesson, we will be running the R script ```{{ site.working_dir[0] }}/{{ site.working_dir[1] }}/array_sum.r```, but as we can't all work on the same file at once you will need to take your own copy. This can be done with the **c**o**p**y command `cp`, two arguments are needed the file (or directory) you want to copy, and the directory (or file) where you want the copy to be created. We will be copying the file into the directory we made previously, as this should be your current directory the second argument can be a simple `.`.
+In a future lesson, we will be running the R script ```{{ site.working_dir | join: '/' }}/array_sum.r```, but as we can't all work on the same file at once you will need to take your own copy. This can be done with the **c**o**p**y command `cp`, two arguments are needed the file (or directory) you want to copy, and the directory (or file) where you want the copy to be created. We will be copying the file into the directory we made previously, as this should be your current directory the second argument can be a simple `.`.
 
 ```
-{{ site.remote.prompt }} cp {{ site.working_dir[0] }}/{{ site.working_dir[1] }}/array_sum.r .
+{{ site.remote.prompt }} cp {{ site.working_dir | join: '/' }}/array_sum.r .
 ```
 {: .output}
 

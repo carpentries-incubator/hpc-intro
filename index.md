@@ -27,6 +27,7 @@ By the end of this workshop, students will know how to:
 * Submit and manage jobs on a cluster using a scheduler, transfer files, and
   use software through environment modules.
 * Review and optimise job resource usage. 
+
 > ## Getting Started
 >
 > To get started, follow the directions in the "[Setup](

@@ -45,6 +45,7 @@ sched:
   comment: "#SBATCH"
   hist: "sacct"
   efficiency: "nn_seff"
+  projectcode: "nesi99991"
 
 episode_order:
   - 01-cluster
