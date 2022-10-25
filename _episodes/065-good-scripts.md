@@ -11,6 +11,15 @@ objectives:
 keypoints:
 - "Write your script in a way that is independent of data or environment. (elaborate)"
 ---
+
+## Bash scripts
+
+You will almost always be submitting a bash script, even if it is just calling another script in a different langauge, there are some ways you can bleh blarg
+
+## Other scripts
+
+Bash is not commmonly used as a scientific programming langage. The bulk of your work will lilely be in another language (Python, R, MATLAB). While it is possible that your script can be invoked on the cluster in the same way you do locally, there are factors that may need to be considered.
+
 ## Use environment variables
 
 In this lesson we will take a look at a few of the things to watch out for when writing scripts for use on the cluster.

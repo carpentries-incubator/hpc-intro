@@ -119,7 +119,7 @@ If we check the status of our finshed job using the `sacct` command we learned e
 
 With this information, we may determine a couple of things. 
 
-Memory efficiency can be determined by comparing **ReqMem** (requested memory) with **MaxRSS** (maximum used memory), unfortunatly **MaxRSS** is always given in KB, so a unit conversion is usually required.
+Memory efficiency can be determined by comparing **ReqMem** (requested memory) with **MaxRSS** (maximum used memory), MaxRSS is  given in KB, so a unit conversion is usually required.
 
 So for the above example we see that **0.1GB** (102048K) of our requested **1GB** meaning the memory efficincy was about 10%.
 
