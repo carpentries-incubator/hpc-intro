@@ -108,7 +108,24 @@ possible, meaning it should start to run within a few minutes, provided
 your resource request is not too large.
 ## Measuring Resource Usage of a Finished Job
 
-<!-- New example maybe? -->
+If we check the status of our finshed job using the `sacct` command we learned earlier.
+
+```
+{{ site.remote.prompt }} sacct
+```
+{: .language-bash}
+
+{% include {{ site.snippets }}/scheduler/basic-job-status-sacct.snip %}
+
+With this information, we may determine a couple of things. 
+
+Memory efficiency can be determined by comparing **ReqMem** (requested memory) with **MaxRSS** (maximum used memory), unfortunatly **MaxRSS** is always given in KB, so a unit conversion is usually required.
+
+So for the above example we see that **0.1GB** (102048K) of our requested **1GB** meaning the memory efficincy was about 10%.
+
+CPU efficiency can be determined by comparing **TotalCPU** (CPU time), with the maximum possible CPU time. The maximum possible CPU time equal to **Alloc** (number of allocated CPUs) multiplied by **Elapsed** (Walltime, actual time passed).
+
+For the above example **33 seconds** of computation was done where the maximum possible computation time was **96 seconds** (2 CPUs mutiplied by 00:00:48), meaning the CPU efficiency was about 35%.
 
 For convenience, NeSI has provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA). 
 ```

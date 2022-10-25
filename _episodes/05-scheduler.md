@@ -198,7 +198,8 @@ If we were too slow, and the job has already finished (and therefor not in the q
 
 {% include {{ site.snippets }}/scheduler/basic-job-status-sacct.snip %}
 
-
+Note that despite the fact that we have only run one job, there are three lines shown, this because each _job step_ is also shown.
+This can be supressed using the flag `-X`.
 
 > ## Where's the Output?
 >
