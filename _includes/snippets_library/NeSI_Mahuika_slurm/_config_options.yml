@@ -54,6 +54,8 @@ episode_order:
   - 04-modules
   - 05-scheduler
   - 06-lunch
+  - 064-parallel
+  - 065-good-scripts
   - 07-resources
   - 08-break2
   - 09-scaling

@@ -12,13 +12,14 @@ keypoints:
 - "Write your script in a way that is independent of data or environment. (elaborate)"
 ---
 
-## Bash scripts
 
 You will almost always be submitting a bash script, even if it is just calling another script in a different langauge, there are some ways you can bleh blarg
 
-## Other scripts
-
 Bash is not commmonly used as a scientific programming langage. The bulk of your work will lilely be in another language (Python, R, MATLAB). While it is possible that your script can be invoked on the cluster in the same way you do locally, there are factors that may need to be considered.
+
+## Paralellism
+
+Understand where this is happeing. High level, low level?
 
 ## Use environment variables
 
@@ -66,6 +67,8 @@ num_cpus <- strtoi(Sys.getenv('SLURM_CPUS_PER_TASK', unset = "1"))
 
 Now if `SLURM_CPUS_PER_TASK` variable is not set, 1 CPU will be used. You could also use some other method of detecting CPUs, like `detectCores()`.
 
+## Interoperability
+
 ## Verbose 
 
 
@@ -104,8 +107,33 @@ set.seed(seed)
 Now your script should look something like this;
 
 ```
-{% include array_sum2.r %}
+{% include example_scripts/array_sum2.r %}
 ```
 {: .language-r}
+
+## Readability
+
+Comments!
+
+## Debugging
+
+```
+#!/bin/bash -e
+```
+```
+#!/bin/bash -x
+```
+
+```
+env
+```
+
+```
+cat $0
+```
+
+## Version control
+
+## 
 
 {% include links.md %}
