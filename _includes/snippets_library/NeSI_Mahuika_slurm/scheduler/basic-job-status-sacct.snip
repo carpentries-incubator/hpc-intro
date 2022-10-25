@@ -1,0 +1,11 @@
+```
+JobID           JobName          Alloc     Elapsed     TotalCPU  ReqMem   MaxRSS State      
+--------------- ---------------- ----- ----------- ------------ ------- -------- ---------- 
+31060451        example-job.sl       2    00:00:48    00:33.548      1G          COMPLETED  
+31060451.batch  batch                2    00:00:48    00:33.547          102048K COMPLETED  
+31060451.extern extern               2    00:00:48     00:00:00                0 COMPLETED  
+```
+{: .output}
+
+Note that despite the fact that we have only run one job, there are three lines shown, this because each _job step_ is also shown.
+This can be supressed using the flag `-X`.
