@@ -21,12 +21,45 @@ keypoints:
 - "Performance improvements from parallel execution do not scale linearly."
 ---
 
+
+Know where your performance comes from!
+
+You are most likely using an hpc because you need your work to run faster. This performance improvment is provided by increasing the number of CPUs.
+
+
+
+If you are writing your own code, then this is something you will probably have to specify yourself.
+
+## How to utilise Parallel Computing
+
+### Scientific Software 
+Many scientific software applications are written to take advantage of multiple CPUs in some way. Often this must be specifically requested by the user at the time they run the program, rather than happening automatically.
+RTFM.
+
+Will usually involve providing extra flags on stratup `-n 8` or whatever.
+
+### Implicit Parallelism
+Some programming langauges will have functions that can make use of multiple CPUs without requiring you to changes your code. However, unless that function is where the majority of time is spent, this is unlikely to give you the performance you are looking for.
+
+(matlab, numpy?)
+
+### Explicit Parallelism
+
+Python [Multiproccessing](https://docs.python.org/3/library/multiprocessing.html)
+MATLAB [Parpool](https://au.mathworks.com/help/parallel-computing/parpool.html)
+
+
+### Array Programming
+Vectorisation magic
+Not relevent maybe?
+
+
+
 ## Methods of Parallel Computing
-Many scientific software applications are written to take advantage of multiple CPUs in some way. Often this must be specifically requested by the user at the time they run the program, rather than happening  automatically.
 
-Three main types are shared memory, distributed and data level parallism. These methods are not exclusive, a job taking advantage of both SMP and MPI is said to be "Hybrid".
+Three main types are shared memory, distributed and data level parallism. These methods are not exclusive, a job taking advantage of both SMP and MPI is said to be "Hybrid". Also mentioned is using a "job array", which isn't technically parallel computing, but serves a similar funtion.
 
-Which methods are available to you is _largely dependent on the software being used_, if you are writing your own code, then this is something you will probably have to specify yourself.
+Which methods are available to you is _largely dependent on the software being used_, 
 ### Shared-Memory (SMP)
 
 Shared-memory multiproccessing divides work among _CPUs_ ( threads or cores ), all of these threads require access to the same memory. This means that all CPUs must be on the same node, most Mahuika nodes have 72 CPUs.
