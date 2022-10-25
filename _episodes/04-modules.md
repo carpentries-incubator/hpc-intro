@@ -1,7 +1,7 @@
 ---
 title: "Accessing software via Modules"
 teaching: 20
-exercises: 0
+exercises: 5
 questions:
 - "How do we load and unload software packages?"
 objectives:

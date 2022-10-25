@@ -1,7 +1,7 @@
 ---
 title: "Using resources effectively"
-teaching: 25
-exercises: 5
+teaching: 40
+exercises: 20
 questions:
 - "How can I review past jobs?"
 - "How can I use this knowledge to create a more accurate submission script?"
