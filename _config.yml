@@ -28,6 +28,7 @@ local:
 
 remote:
   name: "Myriad"
+  host: "myriad.ucl.ac.uk"
   login: "myriad.rc.ucl.ac.uk"
   node: node-d00a-001
   location: "University College London"
@@ -35,7 +36,7 @@ remote:
   user: "yourUsername"
   prompt: "[yourUsername@login12 ~]$ "
   module_python3: "python3"
-  bash_shebang: "#!/usr/bin/env bash -l"
+  bash_shebang: "#!/bin/bash -l"
 
 sched:
   name: "SGE"
@@ -58,7 +59,7 @@ sched:
     tasks: "-n" # TODO check for Myriad
   del: "qdel"
   interactive: "qrsh"
-  info: "qhost"
+  info: "nodetypes"
   comment: "#$"
   hist: "jobhist"
 
