@@ -1,0 +1,8 @@
+If you are working outside the UCL network you will need to connect through our Gateway machine 
+before accessing Myriad or other local clusters, so you will need to copy your public key to the 
+Gateway machine too:
+
+```
+{{ site.local.prompt }} scp ~/.ssh/id_ed25519.pub {{ site.remote.user }}@ssh-gateway.ucl.ac.uk:~/
+```
+{: .language-bash}

@@ -308,6 +308,9 @@ Use the **s**ecure **c**o**p**y tool to send your public key to the cluster.
 {{ site.local.prompt }} scp ~/.ssh/id_ed25519.pub {{ site.remote.user }}@{{ site.remote.login }}:~/
 ```
 {: .language-bash}
+
+{% include {{ site.snippets }}/login/ssh-key-instructions.snip %}
+
 {% endif %}
 
 ## Log In to the Cluster
@@ -315,6 +318,8 @@ Use the **s**ecure **c**o**p**y tool to send your public key to the cluster.
 Go ahead and open your terminal or graphical SSH client, then log in to the
 cluster. Replace `{{ site.remote.user }}` with your username or the one
 supplied by the instructors.
+
+{% include {{ site.snippets }}/login/login-instructions.snip %}
 
 ```
 {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
