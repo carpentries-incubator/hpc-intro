@@ -309,7 +309,7 @@ Use the **s**ecure **c**o**p**y tool to send your public key to the cluster.
 ```
 {: .language-bash}
 
-{% include {{ site.snippets }}/login/ssh-key-instructions.snip %}
+{% include {{ site.snippets }}/ssh-key-instructions.snip %}
 
 {% endif %}
 
@@ -319,7 +319,7 @@ Go ahead and open your terminal or graphical SSH client, then log in to the
 cluster. Replace `{{ site.remote.user }}` with your username or the one
 supplied by the instructors.
 
-{% include {{ site.snippets }}/login/login-instructions.snip %}
+{% include {{ site.snippets }}/login-instructions.snip %}
 
 ```
 {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
