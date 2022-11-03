@@ -232,7 +232,7 @@ We can check we are in the right place by running `pwd`.
 
 <!-- NOTE: This bit uses relative paths even though the convept hasn't been introduced yet. -->
 
-As previously mentioned, it is general useful to organise your work in a hierarchical file structure to make managing and finding files easier. It is also is especially important when working within a shared directory with colleagues, such as a project, to minimise the chance of accidentally effecting your colleagues work. So for this workshop you will each make a directory using the `mkdir` command within the workshops directory for you to personally work from.
+As previously mentioned, it is general useful to organise your work in a hierarchical file structure to make managing and finding files easier. It is also is especially important when working within a shared directory with colleagues, such as a project, to minimise the chance of accidentally affecting your colleagues work. So for this workshop you will each make a directory using the `mkdir` command within the workshops directory for you to personally work from.
 
 ```
 {{ site.remote.prompt }} mkdir <username>
@@ -242,7 +242,7 @@ As previously mentioned, it is general useful to organise your work in a hierarc
 You can then your new directory is there using `ls`.
 
 ```
-{{ site.remote.prompt }} ls {{ site.working_dir[0] }}
+{{ site.remote.prompt }} ls {{ site.working_dir | join: '/' }}
 ```
 {: .language-bash}
 ```
@@ -289,7 +289,7 @@ doesn't exist. Also, capitalization can be important.
 For example, `ls -s` will display the size of files and directories alongside the names,
 while `ls -S` will sort the files and directories by size.
 
-Another useful option for `ls` is the `-a` option, lets try using this option together with the -l option:
+Another useful option for `ls` is the `-a` option, lets try using this option together with the `-l` option:
 
 ```
 {{ site.remote.prompt }} ls -la
@@ -305,6 +305,8 @@ drwxrws---+  2 usr123  {{site.sched.projectcode}}   4096 Nov 15 09:01 usr123
 drwxrws---+  2 usr345  {{site.sched.projectcode}}   4096 Nov 15 09:01 usr345
 ```
 {: .output}
+
+Single letter options don't usually need to be seperate. In this case `ls -la` is performing the same function as if we had typed `ls -l -a`.
 
 You might notice that we now have two extra lines for directories `.` and `..`. These are hidden directories which the `-a` option has been used to reveal, you can make any file or directory hidden by beginning their filenames with a `.`.
 
@@ -343,8 +345,8 @@ no matter where we are when we run the command.
 Any path without a leading `/` is a **relative path**.
 
 When you use a relative path with a command
-like `ls` or `cd`, it tries to find that location from where we are,
-rather than from the root of the file system.
+like `ls` or `cd`, it tries to find that location starting from where we are,
+rather than from the root of the file system. 
 
 In the previous command, since we did not specify an **absolute path** it ran the command on the relative path from our current directory
 (implicitly using the `.` hidden directory), and so listed the contents of our current directory.
@@ -394,7 +396,7 @@ We should now be back in `{{ site.working_dir[0] }}`.
 >
 > 1. `cd .`
 > 2. `cd /`
-> 3. `cd /home/amanda`
+> 3. `cd home/amanda`
 > 4. `cd ../..`
 > 5. `cd ~`
 > 6. `cd home`
@@ -614,9 +616,12 @@ draft.txt   array_sum.r
 ```
 {: .output}
 
+## Other File operations.
+
+<!-- Elaborate further -->
+
 We can also copy a directory and all its contents by using the
-[recursive](https://en.wikipedia.org/wiki/Recursion) option `-r`,
-e.g. to back up a directory:
+[recursive](https://en.wikipedia.org/wiki/Recursion) option `-r`.
 
 Alternatively, if in the future you wish to move a file, rather than copy it, you can replace the `cp` command with `mv`.
 If you wish to permanently delete a file or directory you can use the `rm` command, but be careful, as once the file or directory is deleted it cannot be recovered.
@@ -637,6 +642,7 @@ If you wish to permanently delete a file or directory you can use the `rm` comma
 > ```
 > {: .error}
 {: .callout}
+
 ## Getting help
 
 Commands will often have many **options**. Most commands have a `--help` flag, as can be seen in the error above.  You can also use the manual pages (aka manpages) by using the `man` command. The manual page provides you with all the available options and their use in more detail. For example, for thr `ls` command:

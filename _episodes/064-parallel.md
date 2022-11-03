@@ -7,25 +7,14 @@ questions:
 - "What benefits arise from parallel execution?"
 - "What are the limits of gains from execution in parallel?"
 objectives:
-- "Construct a program that can execute in parallel."
 - "Prepare a job submission script for the parallel executable."
-- "Launch jobs with parallel execution."
-- "Record and summarize the timing and accuracy of jobs."
-- "Describe the relationship between job parallelism and performance."
 keypoints:
 - "Parallel programming allows applications to take advantage of
   parallel hardware; serial code will not 'just work.'"
-- "Distributed memory parallelism is a common case, using the Message
-  Passing Interface (MPI)."
-- "The queuing system facilitates executing parallel tasks."
-- "Performance improvements from parallel execution do not scale linearly."
+- "There are multiple ways you can run "
 ---
 
-
-Know where your performance comes from!
-
 You are most likely using an hpc because you need your work to run faster. This performance improvment is provided by increasing the number of CPUs.
-
 
 
 If you are writing your own code, then this is something you will probably have to specify yourself.
