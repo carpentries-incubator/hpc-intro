@@ -12,10 +12,24 @@ keypoints:
 - "Write your script in a way that is independent of data or environment. (elaborate)"
 ---
 
+When talking about 'a script' we could be referring to multiple things.
 
-You will almost always be submitting a bash script, even if it is just calling another script in a different langauge, there are some ways you can bleh blarg
+* Slurm/Bash script - Almost everyone will be using one of these to submit their Slurm jobs.
+* Work script - If your work involves running another script (usually in a langage other than Bash, Python, R, MATLAB, etc) that will have to be invoked in your bash script.
 
-Bash is not commmonly used as a scientific programming langage. The bulk of your work will lilely be in another language (Python, R, MATLAB). While it is possible that your script can be invoked on the cluster in the same way you do locally, there are factors that may need to be considered.
+This section will cover best practice for both types of script. 
+
+```
+python python_script.py
+```
+
+```
+rscript r_script.r
+```
+
+```
+matlab -r matlab_script
+```
 
 ## Paralellism
 
@@ -69,6 +83,9 @@ Now if `SLURM_CPUS_PER_TASK` variable is not set, 1 CPU will be used. You could 
 
 ## Interoperability
 
+windows + mac + linux
+headless + interactive
+
 ## Verbose 
 
 
@@ -120,20 +137,37 @@ Comments!
 ```
 #!/bin/bash -e
 ```
+
+Exit bash script on error
+
 ```
 #!/bin/bash -x
 ```
+
+Print everything.
 
 ```
 env
 ```
 
+Print environment, if someone else has problems replicating the problem, it will likely come down to differences in your enviroment. 
+
 ```
 cat $0
 ```
 
+Will print your input Slurm script to you output, this can help identify when changes in your submission script leads to errors.
+
 ## Version control
 
-## 
+In many cases you may be using the same peice of code across multiple enviroments, in these situations it can be difficult to keep track of changes made and your code can begin to diverge. Setting up version control like Git can save a lot of time.
+
+## Testing
+
+More often than not, problems come in the form of typos, or other small errors that become apparent within the first few seconds/minutes of script. 
+
+Running on login node?
+
+Control + c to kill.
 
 {% include links.md %}
