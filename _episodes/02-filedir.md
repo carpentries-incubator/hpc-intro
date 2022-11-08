@@ -130,7 +130,9 @@ responsibility. Ensure you have a data management plan and stick to the plan to 
 
 {% include {{ site.snippets }}/filedir/sinfo.snip %}
 
-Notice that the project space for this user is over quota and has been locked, meaning no more data can be added.  When your space is locked you will need to move or remove data.  Also note that none of the nobackup space is being used.  Likely data from project can be moved to nobackup.
+As well as disk space, 'inodes' are also tracked, this is the _number_ of files.
+
+Notice that the project space for this user is over quota and has been locked, meaning no more data can be added.  When your space is locked you will need to move or remove data.  Also note that none of the nobackup space is being used.  Likely data from project can be moved to nobackup. `nn_storage_quota` uses cached data, and so will no immediately show changes to storage use.
 
 For more details on our persistent and nobackup storage systems, including data retention and the nobackup autodelete schedule, please see our [Filesystem and Quota](https://support.nesi.org.nz/hc/en-gb/articles/360000177256-NeSI-File-Systems-and-Quotas) documentation.
 
@@ -467,6 +469,74 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > {: .solution}
 {: .challenge}
 
+
+> ## Wildcards
+>
+> `*` is a **wildcard**, which matches zero or more  characters.
+> Let's consider the `shell-lesson-data/exercise-data/proteins` directory:
+> `*.pdb` matches `ethane.pdb`, `propane.pdb`, and every
+> file that ends with '.pdb'. On the other hand, `p*.pdb` only matches
+> `pentane.pdb` and `propane.pdb`, because the 'p' at the front only
+> matches filenames that begin with the letter 'p'.
+>
+> `?` is also a wildcard, but it matches exactly one character.
+> So `?ethane.pdb` would match `methane.pdb` whereas
+> `*ethane.pdb` matches both `ethane.pdb`, and `methane.pdb`.
+>
+> Wildcards can be used in combination with each other
+> e.g. `???ane.pdb` matches three characters followed by `ane.pdb`,
+> giving `cubane.pdb  ethane.pdb  octane.pdb`.
+>
+> When the shell sees a wildcard, it expands the wildcard to create a
+> list of matching filenames *before* running the command that was
+> asked for. As an exception, if a wildcard expression does not match
+> any file, Bash will pass the expression as an argument to the command
+> as it is. For example, typing `ls *.pdf` in the `proteins` directory
+> (which contains only files with names ending with `.pdb`) results in
+> an error message that there is no file called `*.pdf`.
+> However, generally commands like `wc` and `ls` see the lists of
+> file names matching these expressions, but not the wildcards
+> themselves. It is the shell, not the other programs, that deals with
+> expanding wildcards.
+{: .callout}
+
+> ## List filenames matching a pattern
+>
+> Running `ls` in a directory gives the output 
+> `cubane.pdb ethane.pdb methane.pdb octane.pdb pentane.pdb propane.pdb`
+> Which `ls` command(s) will
+> produce this output?
+>
+> `ethane.pdb   methane.pdb`
+>
+> 1. `ls *t*ane.pdb`
+> 2. `ls *t?ne.*`
+> 3. `ls *t??ne.pdb`
+> 4. `ls ethane.*`
+>
+> > ## Solution
+>>  The solution is `3.`
+>>
+>> `1.` shows all files whose names contain zero or more characters (`*`)
+>> followed by the letter `t`,
+>> then zero or more characters (`*`) followed by `ane.pdb`.
+>> This gives `ethane.pdb  methane.pdb  octane.pdb  pentane.pdb`.
+>>
+>> `2.` shows all files whose names start with zero or more characters (`*`) followed by
+>> the letter `t`,
+>> then a single character (`?`), then `ne.` followed by zero or more characters (`*`).
+>> This will give us `octane.pdb` and `pentane.pdb` but doesn't match anything
+>> which ends in `thane.pdb`.
+>>
+>> `3.` fixes the problems of option 2 by matching two characters (`??`) between `t` and `ne`.
+>> This is the solution.
+>>
+>> `4.` only shows files starting with `ethane.`.
+> {: .solution}
+{: .challenge}
+
+include in terminal excersise (delete slurm files later on maybe?)
+
 > ## Tab completion
 >
 > Sometimes file paths and file names can be very long, making typing out the path tedious.
@@ -618,13 +688,45 @@ draft.txt   array_sum.r
 
 ## Other File operations.
 
-<!-- Elaborate further -->
-
 We can also copy a directory and all its contents by using the
 [recursive](https://en.wikipedia.org/wiki/Recursion) option `-r`.
 
+
+<table>
+  <tr>
+    <th>command</th>
+    <th>name</th>
+    <th>usage</th>
+  </tr>
+  <tr>
+    <td rowspan=2>cp</td>
+    <td rowspan=2>copy</td>
+    <td>`cp file1 file2`</td>
+  </tr>
+  <tr>
+    <td>`cp -r directory directory2`</td>
+  </tr>
+  <tr>
+    <td rowspan=2>mv</td>
+    <td rowspan=2>move</td>
+    <td>`mv file1 file2`</td>
+  </tr>
+  <tr>
+    <td>`mv directory directory2`</td>
+  </tr>
+    <tr>
+    <td rowspan=2>rm</td>
+    <td rowspan=2>remove</td>
+    <td>`rm file1 file2`</td>
+  </tr>
+  <tr>
+    <td>`rm -r directory directory2`</td>
+  </tr>
+</table>
+
 Alternatively, if in the future you wish to move a file, rather than copy it, you can replace the `cp` command with `mv`.
 If you wish to permanently delete a file or directory you can use the `rm` command, but be careful, as once the file or directory is deleted it cannot be recovered.
+
 
 > ## Unsupported command-line options
 >
