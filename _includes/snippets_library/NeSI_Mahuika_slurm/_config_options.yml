@@ -45,6 +45,7 @@ sched:
   comment: "#SBATCH"
   hist: "sacct"
   efficiency: "nn_seff"
+  projectcode: "nesi99991"
 
 episode_order:
   - 01-cluster
@@ -53,6 +54,8 @@ episode_order:
   - 04-modules
   - 05-scheduler
   - 06-lunch
+  - 064-parallel
+  - 065-good-scripts
   - 07-resources
   - 08-break2
   - 09-scaling
@@ -92,6 +95,12 @@ working_dir:
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
 start_time: 600
+# Start time for people wanting to skip bash content 
+hpc_start_time: 715
+# Lesson to start at.
+hpc_start_lesson: 04-modules
+# Script to run if skipping bash lessons. Should create neccicery files to get started.
+hpc_start_script: late_start.sh
 
 # Magic to make URLs resolve both locally and on GitHub. Please don't change.
 repository: <USERNAME>/<PROJECT>

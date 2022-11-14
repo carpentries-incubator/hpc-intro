@@ -130,7 +130,9 @@ responsibility. Ensure you have a data management plan and stick to the plan to 
 
 {% include {{ site.snippets }}/filedir/sinfo.snip %}
 
-Notice that the project space for this user is over quota and has been locked, meaning no more data can be added.  When your space is locked you will need to move or remove data.  Also note that none of the nobackup space is being used.  Likely data from project can be moved to nobackup.
+As well as disk space, 'inodes' are also tracked, this is the _number_ of files.
+
+Notice that the project space for this user is over quota and has been locked, meaning no more data can be added.  When your space is locked you will need to move or remove data.  Also note that none of the nobackup space is being used.  Likely data from project can be moved to nobackup. `nn_storage_quota` uses cached data, and so will no immediately show changes to storage use.
 
 For more details on our persistent and nobackup storage systems, including data retention and the nobackup autodelete schedule, please see our [Filesystem and Quota](https://support.nesi.org.nz/hc/en-gb/articles/360000177256-NeSI-File-Systems-and-Quotas) documentation.
 
@@ -168,8 +170,7 @@ use the following command to do this:
 
 {% include {{ site.snippets }}/filedir/working-dir.snip %}
 
-
-You should see a directory called `{{ site.working_dir[1] }}`, and possibly several other directories. For the purposes of this workshop you will be working within `{{ site.working_dir[0] }}/{{ site.working_dir[1] }}`
+You should see a directory called `{{ site.working_dir | last }}`, and possibly several other directories. For the purposes of this workshop you will be working within `{{ site.working_dir | join: '/' }}`
 
 > ## `ls` Reading Comprehension
 >
@@ -212,7 +213,7 @@ The `cd` command is akin to double clicking a folder in a graphical interface.
 We will use the following command:
 
 ```
-{{ site.remote.prompt }} cd {{ site.working_dir[0] }}/{{ site.working_dir[1] }}
+{{ site.remote.prompt }} cd {{ site.working_dir | join: '/' }}
 ```
 {: .language-bash}
 
@@ -225,7 +226,7 @@ We can check we are in the right place by running `pwd`.
 {: .language-bash}
 
 ```
-{{ site.working_dir[0] }}/{{ site.working_dir[1] }}
+{{ site.working_dir | join: '/' }}
 ```
 {: .output}
 
@@ -233,7 +234,7 @@ We can check we are in the right place by running `pwd`.
 
 <!-- NOTE: This bit uses relative paths even though the convept hasn't been introduced yet. -->
 
-As previously mentioned, it is general useful to organise your work in a hierarchical file structure to make managing and finding files easier. It is also is especially important when working within a shared directory with colleagues, such as a project, to minimise the chance of accidentally effecting your colleagues work. So for this workshop you will each make a directory using the `mkdir` command within the workshops directory for you to personally work from.
+As previously mentioned, it is general useful to organise your work in a hierarchical file structure to make managing and finding files easier. It is also is especially important when working within a shared directory with colleagues, such as a project, to minimise the chance of accidentally affecting your colleagues work. So for this workshop you will each make a directory using the `mkdir` command within the workshops directory for you to personally work from.
 
 ```
 {{ site.remote.prompt }} mkdir <username>
@@ -243,7 +244,7 @@ As previously mentioned, it is general useful to organise your work in a hierarc
 You can then your new directory is there using `ls`.
 
 ```
-{{ site.remote.prompt }} ls {{ site.working_dir[0] }}
+{{ site.remote.prompt }} ls {{ site.working_dir | join: '/' }}
 ```
 {: .language-bash}
 ```
@@ -256,15 +257,15 @@ We are now going to use `ls` again but with a twist, this time we will also use 
 These options modify the way that the command works, for this example we will add the flag `-l` for "long listing format".
 
 ```
-{{ site.remote.prompt }} ls -l {{ site.working_dir[0] }}/{{ site.working_dir[1] }}
+{{ site.remote.prompt }} ls -l {{ site.working_dir | join: '/' }}
 ```
 {: .language-bash}
 
 ```
 total 1
--rw-r-----+ 1 cwal219 nesi99991  460 Nov 18 17:03 array_sum.r
-drwxrws---+ 2 usr123  nesi99991 4096 Nov 15 09:01 usr123
-drwxrws---+ 2 usr345  nesi99991 4096 Nov 15 09:01 usr345
+-rw-r-----+ 1 cwal219 {{site.sched.projectcode}}  460 Nov 18 17:03 array_sum.r
+drwxrws---+ 2 usr123  {{site.sched.projectcode}} 4096 Nov 15 09:01 usr123
+drwxrws---+ 2 usr345  {{site.sched.projectcode}} 4096 Nov 15 09:01 usr345
 ```
 {: .output}
 
@@ -290,7 +291,7 @@ doesn't exist. Also, capitalization can be important.
 For example, `ls -s` will display the size of files and directories alongside the names,
 while `ls -S` will sort the files and directories by size.
 
-Another useful option for `ls` is the `-a` option, lets try using this option together with the -l option:
+Another useful option for `ls` is the `-a` option, lets try using this option together with the `-l` option:
 
 ```
 {{ site.remote.prompt }} ls -la
@@ -299,13 +300,15 @@ Another useful option for `ls` is the `-a` option, lets try using this option to
 
 ```
 total 1
-drwxrws---+  4 usr001  nesi99991   4096 Nov 15 09:00 .
-drwxrws---+ 12 root    nesi99991 262144 Nov 15 09:23 ..
--rw-r-----+  1 cwal219 nesi99991    460 Nov 18 17:03 array_sum.r
-drwxrws---+  2 usr123  nesi99991   4096 Nov 15 09:01 usr123
-drwxrws---+  2 usr345  nesi99991   4096 Nov 15 09:01 usr345
+drwxrws---+  4 usr001  {{site.sched.projectcode}}   4096 Nov 15 09:00 .
+drwxrws---+ 12 root    {{site.sched.projectcode}} 262144 Nov 15 09:23 ..
+-rw-r-----+  1 cwal219 {{site.sched.projectcode}}    460 Nov 18 17:03 array_sum.r
+drwxrws---+  2 usr123  {{site.sched.projectcode}}   4096 Nov 15 09:01 usr123
+drwxrws---+  2 usr345  {{site.sched.projectcode}}   4096 Nov 15 09:01 usr345
 ```
 {: .output}
+
+Single letter options don't usually need to be seperate. In this case `ls -la` is performing the same function as if we had typed `ls -l -a`.
 
 You might notice that we now have two extra lines for directories `.` and `..`. These are hidden directories which the `-a` option has been used to reveal, you can make any file or directory hidden by beginning their filenames with a `.`.
 
@@ -344,8 +347,8 @@ no matter where we are when we run the command.
 Any path without a leading `/` is a **relative path**.
 
 When you use a relative path with a command
-like `ls` or `cd`, it tries to find that location from where we are,
-rather than from the root of the file system.
+like `ls` or `cd`, it tries to find that location starting from where we are,
+rather than from the root of the file system. 
 
 In the previous command, since we did not specify an **absolute path** it ran the command on the relative path from our current directory
 (implicitly using the `.` hidden directory), and so listed the contents of our current directory.
@@ -395,7 +398,7 @@ We should now be back in `{{ site.working_dir[0] }}`.
 >
 > 1. `cd .`
 > 2. `cd /`
-> 3. `cd /home/amanda`
+> 3. `cd home/amanda`
 > 4. `cd ../..`
 > 5. `cd ~`
 > 6. `cd home`
@@ -466,6 +469,74 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > {: .solution}
 {: .challenge}
 
+
+> ## Wildcards
+>
+> `*` is a **wildcard**, which matches zero or more  characters.
+> Let's consider the `shell-lesson-data/exercise-data/proteins` directory:
+> `*.pdb` matches `ethane.pdb`, `propane.pdb`, and every
+> file that ends with '.pdb'. On the other hand, `p*.pdb` only matches
+> `pentane.pdb` and `propane.pdb`, because the 'p' at the front only
+> matches filenames that begin with the letter 'p'.
+>
+> `?` is also a wildcard, but it matches exactly one character.
+> So `?ethane.pdb` would match `methane.pdb` whereas
+> `*ethane.pdb` matches both `ethane.pdb`, and `methane.pdb`.
+>
+> Wildcards can be used in combination with each other
+> e.g. `???ane.pdb` matches three characters followed by `ane.pdb`,
+> giving `cubane.pdb  ethane.pdb  octane.pdb`.
+>
+> When the shell sees a wildcard, it expands the wildcard to create a
+> list of matching filenames *before* running the command that was
+> asked for. As an exception, if a wildcard expression does not match
+> any file, Bash will pass the expression as an argument to the command
+> as it is. For example, typing `ls *.pdf` in the `proteins` directory
+> (which contains only files with names ending with `.pdb`) results in
+> an error message that there is no file called `*.pdf`.
+> However, generally commands like `wc` and `ls` see the lists of
+> file names matching these expressions, but not the wildcards
+> themselves. It is the shell, not the other programs, that deals with
+> expanding wildcards.
+{: .callout}
+
+> ## List filenames matching a pattern
+>
+> Running `ls` in a directory gives the output 
+> `cubane.pdb ethane.pdb methane.pdb octane.pdb pentane.pdb propane.pdb`
+> Which `ls` command(s) will
+> produce this output?
+>
+> `ethane.pdb   methane.pdb`
+>
+> 1. `ls *t*ane.pdb`
+> 2. `ls *t?ne.*`
+> 3. `ls *t??ne.pdb`
+> 4. `ls ethane.*`
+>
+> > ## Solution
+>>  The solution is `3.`
+>>
+>> `1.` shows all files whose names contain zero or more characters (`*`)
+>> followed by the letter `t`,
+>> then zero or more characters (`*`) followed by `ane.pdb`.
+>> This gives `ethane.pdb  methane.pdb  octane.pdb  pentane.pdb`.
+>>
+>> `2.` shows all files whose names start with zero or more characters (`*`) followed by
+>> the letter `t`,
+>> then a single character (`?`), then `ne.` followed by zero or more characters (`*`).
+>> This will give us `octane.pdb` and `pentane.pdb` but doesn't match anything
+>> which ends in `thane.pdb`.
+>>
+>> `3.` fixes the problems of option 2 by matching two characters (`??`) between `t` and `ne`.
+>> This is the solution.
+>>
+>> `4.` only shows files starting with `ethane.`.
+> {: .solution}
+{: .challenge}
+
+include in terminal excersise (delete slurm files later on maybe?)
+
 > ## Tab completion
 >
 > Sometimes file paths and file names can be very long, making typing out the path tedious.
@@ -477,7 +548,7 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > >For example, if you type:
 > >
 > > ```
-> > {{ site.remote.prompt }} cd {{ site.working_dir[1] | slice: 0,3 }}
+> > {{ site.remote.prompt }} cd {{ site.working_dir | last | slice: 0,3 }}
 > > ```
 > > {: .language-bash}
 > >
@@ -485,7 +556,7 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > > the shell automatically completes the directory name for you (since there is only one possible match):
 > >
 > > ```
-> > {{ site.remote.prompt }} cd {{ site.working_dir[1] }}/
+> > {{ site.remote.prompt }} cd {{ site.working_dir | last }}/
 > > ```
 > > {: .language-bash}
 > >
@@ -503,14 +574,14 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > > Now press <kbd>Enter</kbd> to execute the command.
 > >
 > > ```
-> > {{ site.remote.prompt }} cd {{ site.working_dir[1] }}/<username>
+> > {{ site.remote.prompt }} cd {{ site.working_dir | last }}/<username>
 > > ```
 > > {: .language-bash}
 > > 
 > > Check that we've moved to the right place by running `pwd`.
 > > 
 > > ```
-> > {{ site.working_dir[0] }}/{{ site.working_dir[1] }}/<username>
+> > {{ site.working_dir | join: '/' }}/<username>
 > > ```
 > > {: .output}
 > {: .solution}
@@ -595,10 +666,10 @@ draft.txt
 {: .output}
 ## Copying files and directories
 
-In a future lesson, we will be running the R script ```{{ site.working_dir[0] }}/{{ site.working_dir[1] }}/array_sum.r```, but as we can't all work on the same file at once you will need to take your own copy. This can be done with the **c**o**p**y command `cp`, two arguments are needed the file (or directory) you want to copy, and the directory (or file) where you want the copy to be created. We will be copying the file into the directory we made previously, as this should be your current directory the second argument can be a simple `.`.
+In a future lesson, we will be running the R script ```{{ site.working_dir | join: '/' }}/array_sum.r```, but as we can't all work on the same file at once you will need to take your own copy. This can be done with the **c**o**p**y command `cp`, two arguments are needed the file (or directory) you want to copy, and the directory (or file) where you want the copy to be created. We will be copying the file into the directory we made previously, as this should be your current directory the second argument can be a simple `.`.
 
 ```
-{{ site.remote.prompt }} cp {{ site.working_dir[0] }}/{{ site.working_dir[1] }}/array_sum.r .
+{{ site.remote.prompt }} cp {{ site.working_dir | join: '/' }}/array_sum.r .
 ```
 {: .output}
 
@@ -615,12 +686,47 @@ draft.txt   array_sum.r
 ```
 {: .output}
 
+## Other File operations.
+
 We can also copy a directory and all its contents by using the
-[recursive](https://en.wikipedia.org/wiki/Recursion) option `-r`,
-e.g. to back up a directory:
+[recursive](https://en.wikipedia.org/wiki/Recursion) option `-r`.
+
+
+<table>
+  <tr>
+    <th>command</th>
+    <th>name</th>
+    <th>usage</th>
+  </tr>
+  <tr>
+    <td rowspan=2>cp</td>
+    <td rowspan=2>copy</td>
+    <td>`cp file1 file2`</td>
+  </tr>
+  <tr>
+    <td>`cp -r directory directory2`</td>
+  </tr>
+  <tr>
+    <td rowspan=2>mv</td>
+    <td rowspan=2>move</td>
+    <td>`mv file1 file2`</td>
+  </tr>
+  <tr>
+    <td>`mv directory directory2`</td>
+  </tr>
+    <tr>
+    <td rowspan=2>rm</td>
+    <td rowspan=2>remove</td>
+    <td>`rm file1 file2`</td>
+  </tr>
+  <tr>
+    <td>`rm -r directory directory2`</td>
+  </tr>
+</table>
 
 Alternatively, if in the future you wish to move a file, rather than copy it, you can replace the `cp` command with `mv`.
 If you wish to permanently delete a file or directory you can use the `rm` command, but be careful, as once the file or directory is deleted it cannot be recovered.
+
 
 > ## Unsupported command-line options
 >
@@ -638,6 +744,7 @@ If you wish to permanently delete a file or directory you can use the `rm` comma
 > ```
 > {: .error}
 {: .callout}
+
 ## Getting help
 
 Commands will often have many **options**. Most commands have a `--help` flag, as can be seen in the error above.  You can also use the manual pages (aka manpages) by using the `man` command. The manual page provides you with all the available options and their use in more detail. For example, for thr `ls` command:

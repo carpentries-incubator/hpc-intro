@@ -1,9 +1,8 @@
 ---
 layout: page
-title: Setup
-root: .
+title: "JupyterHub"
+permalink: /jupyter/
 ---
-
 
 ## NeSI JupyterHub Login
 
@@ -17,7 +16,9 @@ login and troubleshooting instructions for NeSI JupyterHub:
 
 <br>
 
-## Accessing the Cluster and Running Jobs
+<!-- ## SLURM and JupyterHub
+
+All JupyterHub sessions run inside of a SLURM job, however as the sessions are interactive the resources available this way are very limited. In onder to access more resources you will still have to submit a SLURM job.
 
 ### Jupyter for Interactive work.
 ![Terminal](/fig/UsingJupyterHub2.svg)
@@ -39,4 +40,28 @@ From your local computer, using an SSH client to connect to a shell session (int
 
 **Best For:** Users familiar with command line, Linux/Mac users.  
 
-**Advantages:** Most flexible.  
+**Advantages:** Most flexible.   -->
+
+## Plugins
+
+### Rstudio
+
+### MATLAB
+
+### Virtual Desktop
+
+### Queue Manager
+
+## File transfer window
+
+![Terminal](/fig/jupyter_ftw.png)
+
+By default the file browser will be in a temporary hidden directory containing links to all of you projects and your home directory. Do-not create files here as they will be difficult to find later!
+
+Note, the file browser is not linked at all to your terminal, changing your directory in one will not affect the other.
+
+Files can be uploaded to the cluster by dragging from your local machine into the file transfer window.
+
+## Text Editor
+
+<kbd>ctrl</kbd> + <kbd>s</kbd> to save.

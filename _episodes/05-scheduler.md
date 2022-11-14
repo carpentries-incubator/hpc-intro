@@ -1,7 +1,7 @@
 ---
 title: "Scheduler Fundamentals"
-teaching: 40
-exercises: 30
+teaching: 20
+exercises: 10
 questions:
 - "What is a scheduler and why does a cluster need one?"
 - "How do I launch a program to run on a compute node in the cluster?"
@@ -161,7 +161,7 @@ It's best if your requests accurately reflect your job's requirements. We'll
 talk more about how to make sure that you're using resources effectively in a
 later episode of this lesson.
 
-Now, rather than running our script with `bash` we _submit_ it to the scheduler using the command `sbatch` (**S**lurm **batch**).
+Now, rather than running our script with `bash` we _submit_ it to the scheduler using the command `sbatch` (**s**lurm **batch**).
 
 ```
 {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sl
@@ -178,7 +178,7 @@ scheduler takes over and tries to run the job for us.
 While the job is waiting
 to run, it goes into a list of jobs called the *queue*. To check on our job's
 status, we check the queue using the command
-`{{ site.sched.status }} {{ site.sched.flag.me }}`.
+`{{ site.sched.status }}` (**s**lurm **queue**). We will need to filter to see only our jobs, by including either the flag `--user <username>` or `--me`.
 
 ```
 {{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.me }}
@@ -186,6 +186,20 @@ status, we check the queue using the command
 {: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/basic-job-status.snip %}
+
+
+
+If we were too slow, and the job has already finished (and therefor not in the queue) there is another command we can use `{{ site.sched.hist }}` (**s**lurm **acc**oun**t**). By default `{{ site.sched.hist }}` only includes jobs submitted by you, so no need to include additional commands at this point.
+
+```
+{{ site.remote.prompt }} {{ site.sched.hist }}
+```
+{: .language-bash}
+
+{% include {{ site.snippets }}/scheduler/basic-job-status-sacct.snip %}
+
+Note that despite the fact that we have only run one job, there are three lines shown, this because each _job step_ is also shown.
+This can be supressed using the flag `-X`.
 
 > ## Where's the Output?
 >
