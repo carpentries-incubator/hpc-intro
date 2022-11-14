@@ -1,6 +1,6 @@
 ---
 title: "Writing good code"
-teaching: 5
+teaching: 10
 exercises: 5
 questions:
 - "How do we write a good job script."
@@ -30,10 +30,6 @@ rscript r_script.r
 ```
 matlab -r matlab_script
 ```
-
-## Paralellism
-
-Understand where this is happeing. High level, low level?
 
 ## Use environment variables
 

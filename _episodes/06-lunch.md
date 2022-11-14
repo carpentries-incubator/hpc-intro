@@ -1,5 +1,5 @@
 ---
-title: "Lunch Break"
+title: "Morning Break"
 layout: break
-break: 45
+break: 10
 ---

@@ -51,14 +51,15 @@ episode_order:
   - 01-cluster
   - 02-filedir
   - 03-break1
+  - 035-filedir-cont
   - 04-modules
   - 05-scheduler
   - 06-lunch
   - 064-parallel
-  - 065-good-scripts
   - 07-resources
   - 08-break2
   - 09-scaling
+  - 095-writing-good-code
 
 
 #------------------------------------------------------------
@@ -94,9 +95,9 @@ working_dir:
 - introhpc202209
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
-start_time: 600
+start_time: 780
 # Start time for people wanting to skip bash content 
-hpc_start_time: 715
+hpc_start_time: 780
 # Lesson to start at.
 hpc_start_lesson: 04-modules
 # Script to run if skipping bash lessons. Should create neccicery files to get started.

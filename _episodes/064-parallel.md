@@ -1,7 +1,7 @@
 ---
-title: "What is parallel"
-teaching: 30
-exercises: 60
+title: "What is Parallel Computing"
+teaching: 15
+exercises: 5
 questions:
 - "How do we execute a task in parallel?"
 - "What benefits arise from parallel execution?"
@@ -17,33 +17,6 @@ keypoints:
 You are most likely using an hpc because you need your work to run faster. This performance improvment is provided by increasing the number of CPUs.
 
 
-If you are writing your own code, then this is something you will probably have to specify yourself.
-
-## How to utilise Parallel Computing
-
-### Scientific Software 
-Many scientific software applications are written to take advantage of multiple CPUs in some way. Often this must be specifically requested by the user at the time they run the program, rather than happening automatically.
-RTFM.
-
-Will usually involve providing extra flags on stratup `-n 8` or whatever.
-
-### Implicit Parallelism
-Some programming langauges will have functions that can make use of multiple CPUs without requiring you to changes your code. However, unless that function is where the majority of time is spent, this is unlikely to give you the performance you are looking for.
-
-(matlab, numpy?)
-
-### Explicit Parallelism
-
-Python [Multiproccessing](https://docs.python.org/3/library/multiprocessing.html)
-MATLAB [Parpool](https://au.mathworks.com/help/parallel-computing/parpool.html)
-
-
-### Array Programming
-Vectorisation magic?
-Not relevent maybe?
-
-
-
 ## Methods of Parallel Computing
 
 Three main types are shared memory, distributed and data level parallism. These methods are not exclusive, a job taking advantage of both SMP and MPI is said to be "Hybrid". Also mentioned is using a "job array", which isn't technically parallel computing, but serves a similar funtion.
@@ -55,8 +28,6 @@ Which methods are available to you is _largely dependent on the software being u
 Shared-memory multiproccessing divides work among _CPUs_ ( threads or cores ), all of these threads require access to the same memory. This means that all CPUs must be on the same node, most Mahuika nodes have 72 CPUs.
 
 Number of CPUs to use is specified by the Slurm option `--cpus-per-task`.
-
-
 
 ### Distributed-Memory (MPI)
 
@@ -82,6 +53,56 @@ Often this is a type of _Data level parallelism_ where the same process is run o
 Embarrassingly parallel jobs should be able scale without any loss of efficiency. If this type of parallelisation is an option, it will almost certainly be the best choice.
 
 A job array can be specified using `--array`
+
+If you are writing your own code, then this is something you will probably have to specify yourself.
+
+## How to Utilise Multiple CPUs
+
+Requesting extra resources through Slurm only means that more resources will be available, it does not gaurantee your program will be able to make use of them. 
+
+Generally speaking, Parallelism is either _implicit_ where the software figures out everything behind the scenes, or _explicit_ where the software requires extra direction from the user.
+
+### Scientific Software
+
+The first step when looking to run particular software should always be to read the (f*) documentation. 
+Some software may claim to make use of multiple cores implicitly, but this should be verified. 
+
+Some software will require you to specify number of cores (e.g. `-n 8` or `-np 16`), or even type of paralellisation (e.g. `-dis` or `-mpi=intelmpi`).
+
+You may have to set up 
+
+### Writing Code
+
+Occasionally requesting more CPUs in your Slurm job is all that is required and whatever program you are running will automagically take advantage of the additional resources.
+However, it's more likely to require some amount of effort on your behalf.
+It is important to determine this before you start requesting more resources through Slurm  
+
+### Implicit Parallelism
+
+Some scientific software will determine the available resources from your environment and require no extra effort.
+Note, the software might try and do this, but get it wrong. It is always worth checking.
+
+If you are writing your own code, some programming langauges will have functions that can make use of multiple CPUs without requiring you to changes your code. 
+However, unless that function is where the majority of time is spent, this is unlikely to give you the performance you are looking for.
+
+(matlab, numpy?)
+
+### Explicit Parallelism
+
+Most scientific software will require some direction to use multiple cores `-n 8` or whatever.
+
+
+Python [Multiproccessing](https://docs.python.org/3/library/multiprocessing.html)
+MATLAB [Parpool](https://au.mathworks.com/help/parallel-computing/parpool.html)
+
+
+### Scientific Software 
+Many scientific software applications are written to take advantage of multiple CPUs in some way. Often this must be specifically requested by the user at the time they run the program, rather than happening automatically.
+RTFM.
+
+### Array Programming
+Vectorisation magic?
+Not relevent maybe?
 
 
 ## Scaling Test

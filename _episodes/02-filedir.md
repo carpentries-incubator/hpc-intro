@@ -1,7 +1,7 @@
 ---
 title: "Navigating Files and Directories"
-teaching: 35
-exercises: 15
+teaching: 30
+exercises: 10
 questions:
 - "How can I move around the cluster filesystem"
 - "How can I see what files and directories I have?"
