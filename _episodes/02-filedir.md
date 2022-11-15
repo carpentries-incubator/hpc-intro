@@ -308,7 +308,7 @@ drwxrws---+  2 usr345  {{site.sched.projectcode}}   4096 Nov 15 09:01 usr345
 ```
 {: .output}
 
-Single letter options don't usually need to be seperate. In this case `ls -la` is performing the same function as if we had typed `ls -l -a`.
+Single letter options don't usually need to be separate. In this case `ls -la` is performing the same function as if we had typed `ls -l -a`.
 
 You might notice that we now have two extra lines for directories `.` and `..`. These are hidden directories which the `-a` option has been used to reveal, you can make any file or directory hidden by beginning their filenames with a `.`.
 

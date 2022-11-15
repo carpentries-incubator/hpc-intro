@@ -6,6 +6,7 @@ questions:
 - "How do we execute a task in parallel?"
 - "What benefits arise from parallel execution?"
 - "What are the limits of gains from execution in parallel?"
+- "What is the difference between inplicit and explict parallelisation."
 objectives:
 - "Prepare a job submission script for the parallel executable."
 keypoints:
@@ -14,12 +15,12 @@ keypoints:
 - "There are multiple ways you can run "
 ---
 
-You are most likely using an hpc because you need your work to run faster. This performance improvment is provided by increasing the number of CPUs.
+You are most likely using an hpc because you need your work to run faster. This performance improvement is provided by increasing the number of CPUs.
 
 
 ## Methods of Parallel Computing
 
-Three main types are shared memory, distributed and data level parallism. These methods are not exclusive, a job taking advantage of both SMP and MPI is said to be "Hybrid". Also mentioned is using a "job array", which isn't technically parallel computing, but serves a similar funtion.
+Three main types are shared memory, distributed and data level parallism. These methods are not exclusive, a job taking advantage of both SMP and MPI is said to be "Hybrid". Also mentioned is using a "job array", which isn't technically parallel computing, but serves a similar function.
 
 Which methods are available to you is _largely dependent on the software being used_, 
 
@@ -58,51 +59,57 @@ If you are writing your own code, then this is something you will probably have 
 
 ## How to Utilise Multiple CPUs
 
-Requesting extra resources through Slurm only means that more resources will be available, it does not gaurantee your program will be able to make use of them. 
+Requesting extra resources through Slurm only means that more resources will be available, it does not guarantee your program will be able to make use of them. 
 
 Generally speaking, Parallelism is either _implicit_ where the software figures out everything behind the scenes, or _explicit_ where the software requires extra direction from the user.
 
 ### Scientific Software
 
 The first step when looking to run particular software should always be to read the (f*) documentation. 
-Some software may claim to make use of multiple cores implicitly, but this should be verified. 
+On one end of the scale, some software may claim to make use of multiple cores implicitly, but this should be verified as the methods used to determine available resources are not gauranteed to work.
 
 Some software will require you to specify number of cores (e.g. `-n 8` or `-np 16`), or even type of paralellisation (e.g. `-dis` or `-mpi=intelmpi`).
 
-You may have to set up 
+Occasionally your input files may require rewriting/regenerating for every new CPU combintation (e.g. domain based parallelism without automatic partitioning). 
+
 
 ### Writing Code
 
 Occasionally requesting more CPUs in your Slurm job is all that is required and whatever program you are running will automagically take advantage of the additional resources.
-However, it's more likely to require some amount of effort on your behalf.
+However, it's more likely to require some amount of effort on your behalf (or will oper )
+
+Elaborate on 
+
 It is important to determine this before you start requesting more resources through Slurm  
 
-### Implicit Parallelism
-
-Some scientific software will determine the available resources from your environment and require no extra effort.
-Note, the software might try and do this, but get it wrong. It is always worth checking.
-
-If you are writing your own code, some programming langauges will have functions that can make use of multiple CPUs without requiring you to changes your code. 
+If you are writing your own code, some programming languages will have functions that can make use of multiple CPUs without requiring you to changes your code. 
 However, unless that function is where the majority of time is spent, this is unlikely to give you the performance you are looking for.
 
 (matlab, numpy?)
-
-### Explicit Parallelism
-
-Most scientific software will require some direction to use multiple cores `-n 8` or whatever.
 
 
 Python [Multiproccessing](https://docs.python.org/3/library/multiprocessing.html)
 MATLAB [Parpool](https://au.mathworks.com/help/parallel-computing/parpool.html)
 
 
+
+
+
 ### Scientific Software 
+
+
+Some scientific software will determine the available resources from your environment and require no extra effort.
+Note, the software might try and do this, but get it wrong. It is always worth checking.
 Many scientific software applications are written to take advantage of multiple CPUs in some way. Often this must be specifically requested by the user at the time they run the program, rather than happening automatically.
 RTFM.
 
 ### Array Programming
 Vectorisation magic?
-Not relevent maybe?
+Not relevant maybe?
+
+
+
+Shared memory parallelism is what is used in `array_sum.r`,  be using in our example script, 
 
 
 ## Scaling Test

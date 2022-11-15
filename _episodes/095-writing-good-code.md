@@ -15,21 +15,25 @@ keypoints:
 When talking about 'a script' we could be referring to multiple things.
 
 * Slurm/Bash script - Almost everyone will be using one of these to submit their Slurm jobs.
-* Work script - If your work involves running another script (usually in a langage other than Bash, Python, R, MATLAB, etc) that will have to be invoked in your bash script.
+* Work script - If your work involves running another script (usually in a language other than Bash, Python, R, MATLAB, etc) that will have to be invoked in your bash script.
 
 This section will cover best practice for both types of script. 
 
 ```
 python python_script.py
 ```
+{: .language-bash}
+
 
 ```
 rscript r_script.r
 ```
+{: .language-bash}
 
 ```
 matlab -r matlab_script
 ```
+{: .language-bash}
 
 ## Use environment variables
 
@@ -133,30 +137,34 @@ Comments!
 ```
 #!/bin/bash -e
 ```
+{: .language-bash}
 
 Exit bash script on error
 
 ```
 #!/bin/bash -x
 ```
+{: .language-bash}
 
-Print everything.
+Print environment.
 
 ```
 env
 ```
+{: .language-bash}
 
 Print environment, if someone else has problems replicating the problem, it will likely come down to differences in your enviroment. 
 
 ```
 cat $0
 ```
+{: .language-bash}
 
 Will print your input Slurm script to you output, this can help identify when changes in your submission script leads to errors.
 
 ## Version control
 
-In many cases you may be using the same peice of code across multiple enviroments, in these situations it can be difficult to keep track of changes made and your code can begin to diverge. Setting up version control like Git can save a lot of time.
+In many cases you may be using the same piece of code across multiple environments, in these situations it can be difficult to keep track of changes made and your code can begin to diverge. Setting up version control like Git can save a lot of time.
 
 ## Testing
 
