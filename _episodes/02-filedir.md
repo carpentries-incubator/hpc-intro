@@ -689,6 +689,8 @@ draft.txt   array_sum.r
 `mv` to **m**o**v**e move a file, is used similarly to `cp` taking a source argument(s) and a destination argument.
 `rm` will **r**e**m**ove move a file and only needs one argument.
 
+The `mv` command is also used to rename a file, for example `mv my_fiel my_file`. This is because as far as the computer is concerned _moving and renaming a file are the same operation_.
+
 In order to `cp` a directory (and all its contents) the `-r` for [recursive](https://en.wikipedia.org/wiki/Recursion) option must be used. 
 The same is true when deleting directories with `rm`
 
@@ -726,29 +728,21 @@ The same is true when deleting directories with `rm`
 
 For `mv` and `cp` if the destination path (final argument) is an existing directory the file will be placed inside that directory with the same name as the source. 
 
-
 > ## Moving vs Copying
 >
-> 
+> When using the `cp` or `rm` commands on a directory the 'recursive' flag `-r` must be used, but `mv` _does not_ require it?
 >
 >> ## Solution
->>  The solution is `3.`
->>
->> `1.` shows all files whose names contain zero or more characters (`*`)
->> followed by the letter `t`,
->> then zero or more characters (`*`) followed by `ane.pdb`.
->> This gives `ethane.pdb  methane.pdb  octane.pdb  pentane.pdb`.
->>
->> `2.` shows all files whose names start with zero or more characters (`*`) followed by
->> the letter `t`,
->> then a single character (`?`), then `ne.` followed by zero or more characters (`*`).
->> This will give us `octane.pdb` and `pentane.pdb` but doesn't match anything
->> which ends in `thane.pdb`.
->>
->> `3.` fixes the problems of option 2 by matching two characters (`??`) between `t` and `ne`.
->> This is the solution.
->>
->> `4.` only shows files starting with `ethane.`.
+>> We mentioned previously that as far the computer is concerned, _renaming_ is the same operation as _moving_. 
+>> Contrary to what the commands name implies, _all moving is actually renaming_. 
+>> The data on the hard drive stays in the same place, 
+>> only the label applied to that block of memory is changed.
+>> To copy a directory, each _individual file_ inside that directory must be read, and then written to the copy destination.
+>> To delete a directory, each _individual file_ in the directory must be marked for deletion, 
+>> however when moving a directory the files inside are the data inside the directory is not interacted with,
+>> only the parent directory is "renamed" to a different place.
+>> 
+>> This is also why `mv` is faster than `cp` as no reading of the files is required.
 > {: .solution}
 {: .challenge}
 
