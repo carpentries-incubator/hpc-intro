@@ -156,6 +156,7 @@ Organizing things hierarchically in this way helps us keep track of our work:
 it's possible to put hundreds of files in our home directory,
 just as it's possible to pile hundreds of printed papers on our desk,
 but it's a self-defeating strategy.
+
 ## Listing the contents of directories
 
 To **l**i**s**t the contents of a directory, we use the command `ls` followed by the path to the directory whose contents we want listed.
@@ -168,19 +169,27 @@ use the following command to do this:
 ```
 {: .language-bash}
 
-{% include {{ site.snippets }}/filedir/working-dir.snip %}
+```
+{{ site.working_dir | last }}
+```
+{: .output}
+
 
 You should see a directory called `{{ site.working_dir | last }}`, and possibly several other directories. For the purposes of this workshop you will be working within `{{ site.working_dir | join: '/' }}`
 
+> ## Command History
+>
+> You can cycle through your previous commands with the <kbd>↑</kbd> and <kbd>↓</kbd> keys.
+> A quick way to re-run your last command is to type <kbd>↑</kbd> then <kbd>enter</kbd>.
+>
+{: .callout}
+
 > ## `ls` Reading Comprehension
 >
-> Using the filesystem diagram below,
-> if `pwd` displays `/Users/backup`,
-> and `-r` tells `ls` to display things in reverse order,
-> what command(s) will result in the following output:
+> What command would you type to get the following output
 >
 > ```
-> pnas_sub pnas_final original
+> original pnas_final pnas_sub  
 > ```
 > {: .output}
 >
@@ -191,15 +200,16 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 "2013-01-27"](../fig/filesystem-challenge.svg)
 >
 > 1.  `ls pwd`
-> 2.  `ls -r`
-> 3.  `ls -r /Users/backup`
+> 2.  `ls backup`
+> 3.  `ls /Users/backup`
+> 4.  `ls /backup`
 >
 > > ## Solution
 > >
 > >  1. No: `pwd` is not the name of a directory.
-> >  2. Yes: `ls` without directory argument lists files and directories
-> >     in the current directory.
+> >  2. Possibly: It depends on your current directory (we will explore this more shortly).
 > >  3. Yes: uses the absolute path explicitly.
+> >  4. No: There is no such directory.
 > {: .solution}
 {: .challenge}
 ## Moving about
@@ -216,7 +226,9 @@ We will use the following command:
 {{ site.remote.prompt }} cd {{ site.working_dir | join: '/' }}
 ```
 {: .language-bash}
-
+```
+```
+{: .output}
 You will notice that `cd` doesn't print anything. This is normal. Many shell commands will not output anything to the screen when successfully executed.
 We can check we are in the right place by running `pwd`.
 
@@ -241,16 +253,15 @@ As previously mentioned, it is general useful to organise your work in a hierarc
 ```
 {: .language-bash}
 
-You can then your new directory is there using `ls`.
+You should then be able to see your new directory is there using `ls`.
 
 ```
 {{ site.remote.prompt }} ls {{ site.working_dir | join: '/' }}
 ```
 {: .language-bash}
-```
-  array_sum.r   usr123   usr234
-```
-{: .output}
+
+{% include {{ site.snippets }}/filedir/dir-contents1.snip %}
+
 ## General Syntax of a Shell Command
 
 We are now going to use `ls` again but with a twist, this time we will also use what are known as **options**, **flags** or **switches**.
@@ -261,13 +272,7 @@ These options modify the way that the command works, for this example we will ad
 ```
 {: .language-bash}
 
-```
-total 1
--rw-r-----+ 1 cwal219 {{site.sched.projectcode}}  460 Nov 18 17:03 array_sum.r
-drwxrws---+ 2 usr123  {{site.sched.projectcode}} 4096 Nov 15 09:01 usr123
-drwxrws---+ 2 usr345  {{site.sched.projectcode}} 4096 Nov 15 09:01 usr345
-```
-{: .output}
+{% include {{ site.snippets }}/filedir/dir-contents2.snip %}
 
 We can see that the `-l` option has modified the command and now our output has listed all the files in alphanumeric order, which can make finding a specific file easier.
 It also includes information about the file size, time of its last modification, and permission and ownership information.
@@ -298,15 +303,7 @@ Another useful option for `ls` is the `-a` option, lets try using this option to
 ```
 {: .language-bash}
 
-```
-total 1
-drwxrws---+  4 usr001  {{site.sched.projectcode}}   4096 Nov 15 09:00 .
-drwxrws---+ 12 root    {{site.sched.projectcode}} 262144 Nov 15 09:23 ..
--rw-r-----+  1 cwal219 {{site.sched.projectcode}}    460 Nov 18 17:03 array_sum.r
-drwxrws---+  2 usr123  {{site.sched.projectcode}}   4096 Nov 15 09:01 usr123
-drwxrws---+  2 usr345  {{site.sched.projectcode}}   4096 Nov 15 09:01 usr345
-```
-{: .output}
+{% include {{ site.snippets }}/filedir/dir-contents3.snip %}
 
 Single letter options don't usually need to be separate. In this case `ls -la` is performing the same function as if we had typed `ls -l -a`.
 
@@ -470,30 +467,30 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 {: .challenge}
 
 
-> ## Wildcards
+> ## Globbing
+> 
+> One of the most powerfull features of bash is _filename expansion_, otherwise known as _globbing_. 
+> This allows you to use _patterns_ to match a file name (or multiple files),
+> which will then be operated on as if you had typed out all of the matches.
 >
-> `*` is a **wildcard**, which matches zero or more  characters.
-> Let's consider the `shell-lesson-data/exercise-data/proteins` directory:
-> `*.pdb` matches `ethane.pdb`, `propane.pdb`, and every
-> file that ends with '.pdb'. On the other hand, `p*.pdb` only matches
-> `pentane.pdb` and `propane.pdb`, because the 'p' at the front only
-> matches filenames that begin with the letter 'p'.
+> `*` is a **wildcard**, which matches zero or more characters.
+>
+> Consider a directory containing the following files
+> `kaka.txt  kakapo.jpeg  kea.txt  kiwi.jpeg  pukeko.jpeg` 
+> 
+> The pattern `ka*` will match `kaka.txt`and `kakapo.jpeg` as these both start with "ka".
+> Where as `*.jpeg` will match  `kakapo.jpeg`, `kiwi.jpeg` and `pukeko.jpeg` as they all end in ".jpeg"
+> `k*a.*` will match just `kaka.txt` and `kea.txt`
 >
 > `?` is also a wildcard, but it matches exactly one character.
-> So `?ethane.pdb` would match `methane.pdb` whereas
-> `*ethane.pdb` matches both `ethane.pdb`, and `methane.pdb`.
->
-> Wildcards can be used in combination with each other
-> e.g. `???ane.pdb` matches three characters followed by `ane.pdb`,
-> giving `cubane.pdb  ethane.pdb  octane.pdb`.
+> 
+> `????.*` would return `kaka.txt` and `kiwi.jpeg`.
 >
 > When the shell sees a wildcard, it expands the wildcard to create a
 > list of matching filenames *before* running the command that was
 > asked for. As an exception, if a wildcard expression does not match
 > any file, Bash will pass the expression as an argument to the command
-> as it is. For example, typing `ls *.pdf` in the `proteins` directory
-> (which contains only files with names ending with `.pdb`) results in
-> an error message that there is no file called `*.pdf`.
+> as it is. 
 > However, generally commands like `wc` and `ls` see the lists of
 > file names matching these expressions, but not the wildcards
 > themselves. It is the shell, not the other programs, that deals with
@@ -503,7 +500,8 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > ## List filenames matching a pattern
 >
 > Running `ls` in a directory gives the output 
-> `cubane.pdb ethane.pdb methane.pdb octane.pdb pentane.pdb propane.pdb`
+> `cubane.pdb  ethane.pdb  methane.pdb  octane.pdb  pentane.pdb  propane.pdb`
+>
 > Which `ls` command(s) will
 > produce this output?
 >
@@ -514,7 +512,7 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > 3. `ls *t??ne.pdb`
 > 4. `ls ethane.*`
 >
-> > ## Solution
+>> ## Solution
 >>  The solution is `3.`
 >>
 >> `1.` shows all files whose names contain zero or more characters (`*`)
@@ -666,7 +664,7 @@ draft.txt
 {: .output}
 ## Copying files and directories
 
-In a future lesson, we will be running the R script ```{{ site.working_dir | join: '/' }}/array_sum.r```, but as we can't all work on the same file at once you will need to take your own copy. This can be done with the **c**o**p**y command `cp`, two arguments are needed the file (or directory) you want to copy, and the directory (or file) where you want the copy to be created. We will be copying the file into the directory we made previously, as this should be your current directory the second argument can be a simple `.`.
+In a future lesson, we will be running the R script ```{{ site.working_dir | join: '/' }}/array_sum.r```, but as we can't all work on the same file at once you will need to take your own copy. This can be done with the **c**o**p**y command `cp`, at least two arguments are needed the file (or directory) you want to copy, and the directory (or file) where you want the copy to be created. We will be copying the file into the directory we made previously, as this should be your current directory the second argument can be a simple `.`.
 
 ```
 {{ site.remote.prompt }} cp {{ site.working_dir | join: '/' }}/array_sum.r .
@@ -688,9 +686,11 @@ draft.txt   array_sum.r
 
 ## Other File operations.
 
-We can also copy a directory and all its contents by using the
-[recursive](https://en.wikipedia.org/wiki/Recursion) option `-r`.
+`mv` to **m**o**v**e move a file, is used similarly to `cp` taking a source argument(s) and a destination argument.
+`rm` will **r**e**m**ove move a file and only needs one argument.
 
+In order to `cp` a directory (and all its contents) the `-r` for [recursive](https://en.wikipedia.org/wiki/Recursion) option must be used. 
+The same is true when deleting directories with `rm`
 
 <table>
   <tr>
@@ -699,34 +699,58 @@ We can also copy a directory and all its contents by using the
     <th>usage</th>
   </tr>
   <tr>
-    <td rowspan=2>cp</td>
+    <td rowspan=2><code>cp</code></td>
     <td rowspan=2>copy</td>
-    <td>`cp file1 file2`</td>
+    <td><code>cp file1 file2</code></td>
   </tr>
   <tr>
-    <td>`cp -r directory directory2`</td>
+    <td><code>cp -r directory1/ directory2/</code></td>
   </tr>
   <tr>
-    <td rowspan=2>mv</td>
+    <td rowspan=2><code>mv</code></td>
     <td rowspan=2>move</td>
-    <td>`mv file1 file2`</td>
+    <td><code>mv file1 file2</code></td>
   </tr>
   <tr>
-    <td>`mv directory directory2`</td>
+    <td><code>mv directory1/ directory2/</code></td>
   </tr>
     <tr>
-    <td rowspan=2>rm</td>
+    <td rowspan=2><code>rm</code></td>
     <td rowspan=2>remove</td>
-    <td>`rm file1 file2`</td>
+    <td><code>rm file1 file2</code></td>
   </tr>
   <tr>
-    <td>`rm -r directory directory2`</td>
+    <td><code>rm -r directory1/ directory2/</code></td>
   </tr>
 </table>
 
-Alternatively, if in the future you wish to move a file, rather than copy it, you can replace the `cp` command with `mv`.
-If you wish to permanently delete a file or directory you can use the `rm` command, but be careful, as once the file or directory is deleted it cannot be recovered.
+For `mv` and `cp` if the destination path (final argument) is an existing directory the file will be placed inside that directory with the same name as the source. 
 
+
+> ## Moving vs Copying
+>
+> 
+>
+>> ## Solution
+>>  The solution is `3.`
+>>
+>> `1.` shows all files whose names contain zero or more characters (`*`)
+>> followed by the letter `t`,
+>> then zero or more characters (`*`) followed by `ane.pdb`.
+>> This gives `ethane.pdb  methane.pdb  octane.pdb  pentane.pdb`.
+>>
+>> `2.` shows all files whose names start with zero or more characters (`*`) followed by
+>> the letter `t`,
+>> then a single character (`?`), then `ne.` followed by zero or more characters (`*`).
+>> This will give us `octane.pdb` and `pentane.pdb` but doesn't match anything
+>> which ends in `thane.pdb`.
+>>
+>> `3.` fixes the problems of option 2 by matching two characters (`??`) between `t` and `ne`.
+>> This is the solution.
+>>
+>> `4.` only shows files starting with `ethane.`.
+> {: .solution}
+{: .challenge}
 
 > ## Unsupported command-line options
 >
