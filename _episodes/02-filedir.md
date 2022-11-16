@@ -180,7 +180,7 @@ You should see a directory called `{{ site.working_dir | last }}`, and possibly 
 > ## Command History
 >
 > You can cycle through your previous commands with the <kbd>↑</kbd> and <kbd>↓</kbd> keys.
-> A quick way to re-run your last command is to type <kbd>↑</kbd> then <kbd>enter</kbd>.
+> A convenient way to repeat your last command is to type <kbd>↑</kbd> then <kbd>enter</kbd>.
 >
 {: .callout}
 
