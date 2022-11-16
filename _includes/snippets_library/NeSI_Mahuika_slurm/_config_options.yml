@@ -92,7 +92,7 @@ kind: "lesson"
 # Workshop working directory.
 working_dir:
 - /nesi/project/nesi99991
-- introhpc202209
+- introhpc202211
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
 start_time: 780
