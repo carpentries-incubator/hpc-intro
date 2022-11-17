@@ -169,14 +169,16 @@ environment variable.
 These are modifyable named values that exist in your terminal environment.
 
 
-We can set a variable using the syntax
+We can assign a variable named "FOO" with the value "bar" using the syntax.
 
 ```
 {{ site.remote.prompt }} FOO="bar"
 ```
 {: .language-bash}
 
-Our new variable can be referenced using `$FOO`, you could also use  `${FOO}` enclosing a variable in  curly brackets is good practice as it avoids ambiguity.
+Convention is to name enviroment variables in all caps.
+
+Our new variable can be referenced using `$FOO`, you could also use  `${FOO}`, enclosing a variable in curly brackets is good practice as it avoids ambiguity.
 
 ```
 $FOO
