@@ -553,8 +553,8 @@ if rank == 0:
 ```
 {: .language-python}
 
-A fully commented version of the final MPI parallel python code is available
-[here](/files/pi-mpi.py).
+A fully commented version of the final MPI parallel python code is available:
+[pi-mpi.py]({{ site.url }}{{ site.baseurl }}/files/pi-mpi.py).
 
 Our purpose here is to exercise the parallel workflow of the cluster, not to
 optimize the program to minimize its memory footprint.
