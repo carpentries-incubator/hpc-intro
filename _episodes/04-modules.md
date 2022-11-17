@@ -26,6 +26,7 @@ understand the reasoning behind this approach. The three biggest factors are:
 - versioning
 - dependencies
 
+
 Software incompatibility is a major headache for programmers. Sometimes the
 presence (or absence) of a software package will break others that depend on
 it. Two of the most famous examples are Python 2 and 3 and C compiler versions.
@@ -33,6 +34,9 @@ Python 3 famously provides a `python` command that conflicts with that provided
 by Python 2. Software compiled against a newer version of the C libraries and
 then used when they are not present will result in a nasty `'GLIBCXX_3.4.20'
 not found` error, for instance.
+
+<!-- I think python is a bad example here as "python 2 and python 3 conflict" sounds like a versioning issue. -->
+
 
 Software versioning is another common issue. A team might depend on a certain
 package version for their research project - if the software version was to
@@ -113,7 +117,7 @@ loaded in your environment. On {{ site.remote.name }} you will have a few defaul
 
 {% include {{ site.snippets }}/modules/module-list-default.snip %}
 
-If you have no modules loaded you will see a message telling you so
+<!-- If you have no modules loaded you will see a message telling you so
 
 ```
 {{ site.remote.prompt }} module list
@@ -124,7 +128,7 @@ If you have no modules loaded you will see a message telling you so
 No modules loaded
 
 ```
-{: .output}
+{: .output} -->
 
 ## Loading and Unloading Software
 
@@ -148,16 +152,73 @@ We can load the `python3` command with `module load`:
 
 {% include {{ site.snippets }}/modules/python-executable-dir.snip %}
 
+
+> ## Tab Completion
+>
+> The module command also supports tab completion. You may find this the easiest way to find the right software.
+> 
+{: .callout}
+
 So, what just happened?
 
 To understand the output, first we need to understand the nature of the `$PATH`
-environment variable. `$PATH` is a special environment variable that controls
+environment variable.
+
+## Environment Variables
+ 
+These are modifyable named values that exist in your terminal environment.
+
+
+We can set a variable using the syntax
+
+```
+{{ site.remote.prompt }} FOO="bar"
+```
+{: .language-bash}
+
+Our new variable can be referenced using `$FOO`, you could also use  `${FOO}` enclosing a variable in  curly brackets is good practice as it avoids ambiguity.
+
+```
+$FOO
+```
+{: .language-bash}
+
+```
+-bash: bar: command not found
+```
+{: .output}
+
+We got an error here because the variable is evalued _in the terminal_ then executed.
+If we just want to print the variable we can use the command,
+
+```
+echo $FOO
+```
+{: .language-bash}
+
+```
+bar
+```
+{: .output}
+
+We can get a full list of enviroment variables using the command,
+
+```
+env
+```
+{: .language-bash}
+
+{% include {{ site.snippets }}/modules/env-output.snip %}
+
+These variables control many aspects of how your terminal, and any software launched from your terminal works.
+
+
+`$PATH` is a special environment variable that controls
 where a UNIX system looks for software. Specifically `$PATH` is a list of
 directories (separated by `:`) that the OS searches through for a command
 before giving up and telling us it can't find it. As with all environment
 variables we can print it out using `echo`.
 
-what is an environment variable? 
 
 ```
 {{ site.remote.prompt }} echo $PATH
