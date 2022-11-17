@@ -163,56 +163,58 @@ So, what just happened?
 
 To understand the output, first we need to understand the nature of the `$PATH`
 environment variable.
-
-## Environment Variables
  
-These are modifyable named values that exist in your terminal environment.
-
-
-We can assign a variable named "FOO" with the value "bar" using the syntax.
-
-```
-{{ site.remote.prompt }} FOO="bar"
-```
-{: .language-bash}
-
-Convention is to name enviroment variables in all caps.
-
-Our new variable can be referenced using `$FOO`, you could also use  `${FOO}`, enclosing a variable in curly brackets is good practice as it avoids ambiguity.
-
-```
-$FOO
-```
-{: .language-bash}
-
-```
--bash: bar: command not found
-```
-{: .output}
-
-We got an error here because the variable is evalued _in the terminal_ then executed.
-If we just want to print the variable we can use the command,
-
-```
-echo $FOO
-```
-{: .language-bash}
-
-```
-bar
-```
-{: .output}
-
-We can get a full list of enviroment variables using the command,
-
-```
-env
-```
-{: .language-bash}
-
-{% include {{ site.snippets }}/modules/env-output.snip %}
-
-These variables control many aspects of how your terminal, and any software launched from your terminal works.
+> ## Environment Variables
+>  
+> These are modifyable named values that exist in your terminal environment.
+> 
+> 
+> We can assign a variable named "FOO" with the value "bar" using the syntax.
+> 
+> ```
+> {{ site.remote.prompt }} FOO="bar"
+> ```
+> {: .language-bash}
+> 
+> Convention is to name enviroment variables in all caps.
+> 
+> Our new variable can be referenced using `$FOO`, you could also use  `${FOO}`, 
+> enclosing a variable in curly brackets is good practice as it avoids ambiguity.
+> 
+> ```
+> $FOO
+> ```
+> {: .language-bash}
+> 
+> ```
+> -bash: bar: command not found
+> ```
+> {: .output}
+> 
+> We got an error here because the variable is evalued _in the terminal_ then executed.
+> If we just want to print the variable we can use the command,
+> 
+> ```
+> echo $FOO
+> ```
+> {: .language-bash}
+> 
+> ```
+> bar
+> ```
+> {: .output}
+> 
+> We can get a full list of enviroment variables using the command,
+>
+> ```
+> env
+> ```
+> {: .language-bash}
+>
+> {% include {{ site.snippets }}/modules/env-output.snip %}
+>
+> These variables control many aspects of how your terminal, and any software launched from your terminal works.
+{: .callout}
 
 
 `$PATH` is a special environment variable that controls
