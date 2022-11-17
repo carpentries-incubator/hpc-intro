@@ -181,7 +181,7 @@ environment variable.
 > enclosing a variable in curly brackets is good practice as it avoids ambiguity.
 > 
 > ```
-> $FOO
+> {{ site.remote.prompt }} $FOO
 > ```
 > {: .language-bash}
 > 
@@ -194,7 +194,7 @@ environment variable.
 > If we just want to print the variable we can use the command,
 > 
 > ```
-> echo $FOO
+> {{ site.remote.prompt }} echo $FOO
 > ```
 > {: .language-bash}
 > 
@@ -206,7 +206,7 @@ environment variable.
 > We can get a full list of enviroment variables using the command,
 >
 > ```
-> env
+> {{ site.remote.prompt }} env
 > ```
 > {: .language-bash}
 >
