@@ -20,7 +20,38 @@ The aim of these tests will be to establish how a jobs requirements change with 
 
 Unfortunately we cannot assume speedup will be linear (e.g. double CPUs won't usually half runtime, doubling the size of your input data won't necessarily double runtime) therefore more testing is required. This is called *scaling testing*.
 
-## Scaling Test
+In order to establish an understanding of the scaling properties we may have to repeat this test several times, giving more resources each iteration.
+
+## Scaling Behavior
+
+### Diminishing Returns
+
+Running code in parallel rarely comes for free, there are usually computational overheads. 
+Whatever method is being used to distribute the workload usually require some computation, as well as communication between processes.
+
+<!-- ![Fraction of CPU doing useful computation decreases due to overheads.](../fig/DimReturns.svg) -->
+
+This usually leads to diminishing returns when it comes to performance.
+
+![Fraction of CPU doing useful computation decreases due to overheads.](../fig/DimReturns2.png)
+
+
+### Amdahl's Law
+
+Most computational tasks will have a certain amount of work that must be computed serially.
+
+<!-- ![The blue components can be run in parallel, red cannot.](../fig/AmdahlsLaw.svg)
+
+As only the parallel portion of the job is sped up by scaling, the ratio of parallel to serial is an important factor in job scaling.  -->
+
+![Larger fractions of parallel code will have closer to linear scaling performance.](../fig/AmdahlsLaw2.svg)
+
+Eventually your performance gains will plateau.
+
+
+The fraction of the task that can be run in parallel determines the point of this plateau.
+Code that has no serial components is said to be "embarrassingly parallel".
+<!-- ## Scaling Test
 
 Last time we submitted a job, we did not specify a number of CPUs, and therefore got the default of `2` (1 'core').
 
@@ -83,9 +114,8 @@ Oh no!
 > > The job running on 2 CPUs used ≈ 200Mb of RAM, extrapolating linearly, we want to give a 4 CPU job 400 Mb + small buffer, say 500Mb to be safe.
 > > 
 > {: .solution}
-{: .challenge}
+{: .challenge} -->
 
-In order to establish an understanding of the scaling properties we may have to repeat this test several times, giving more resources each iteration.
 > ## Scaling Exercise
 >
 > 1. Find your name in the [spreadsheet]({{ site.exersice }}) and modify your `example-job.sl` to request 
@@ -105,35 +135,7 @@ In order to establish an understanding of the scaling properties we may have to 
 > {: .solution}
 {: .challenge}
 
-## Scaling Behavior
 
-### Diminishing Returns
-
-Running code in parallel rarely comes for free, there are usually computational overheads. 
-Whatever method is being used to distribute the workload usually require some computation, as well as communication between processes.
-
-<!-- ![Fraction of CPU doing useful computation decreases due to overheads.](../fig/DimReturns.svg) -->
-
-This usually leads to diminishing returns when it comes to performance.
-
-![Fraction of CPU doing useful computation decreases due to overheads.](../fig/DimReturns2.png)
-
-
-### Amdahl's Law
-
-Most computational tasks will have a certain amount of work that must be computed serially.
-
-<!-- ![The blue components can be run in parallel, red cannot.](../fig/AmdahlsLaw.svg)
-
-As only the parallel portion of the job is sped up by scaling, the ratio of parallel to serial is an important factor in job scaling.  -->
-
-![Larger fractions of parallel code will have closer to linear scaling performance.](../fig/AmdahlsLaw2.svg)
-
-Eventually your performance gains will plateau.
-
-
-The fraction of the task that can be run in parallel determines the point of this plateau.
-Code that has no serial components is said to be "embarrassingly parallel".
 
 
 

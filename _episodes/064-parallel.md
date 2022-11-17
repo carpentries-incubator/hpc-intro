@@ -85,31 +85,13 @@ It is important to determine this before you start requesting more resources thr
 If you are writing your own code, some programming languages will have functions that can make use of multiple CPUs without requiring you to changes your code. 
 However, unless that function is where the majority of time is spent, this is unlikely to give you the performance you are looking for.
 
-(matlab, numpy?)
+{%- comment -%} (matlab, numpy?) {%- endcomment -%}
 
-
+{%- comment -%} 
 Python [Multiproccessing](https://docs.python.org/3/library/multiprocessing.html)
-MATLAB [Parpool](https://au.mathworks.com/help/parallel-computing/parpool.html)
+MATLAB [Parpool](https://au.mathworks.com/help/parallel-computing/parpool.html) {%- endcomment -%}
 
-
-
-
-
-### Scientific Software 
-
-
-Some scientific software will determine the available resources from your environment and require no extra effort.
-Note, the software might try and do this, but get it wrong. It is always worth checking.
-Many scientific software applications are written to take advantage of multiple CPUs in some way. Often this must be specifically requested by the user at the time they run the program, rather than happening automatically.
-RTFM.
-
-### Array Programming
-Vectorisation magic?
-Not relevant maybe?
-
-
-
-Shared memory parallelism is what is used in `array_sum.r`,  be using in our example script, 
+Shared memory parallelism is what is used in our example script `array_sum.r`.
 
 
 ## Scaling Test
