@@ -73,6 +73,27 @@ Code that has no serial components is said to be "embarrassingly parallel".
 
 
 
+> ## Scaling Exercise
+>
+> 1. Find your name in the [spreadsheet]({{ site.exersice }}) and modify your `example-job.sl` to request 
+> "x" `--cpus-per-task`. For example `#SBATCH --cpus-per-task 10`.
+> 2. Estimate memory requirement based on our previous runs and the cpus requested, memory 
+> is specified with the `--mem ` flag, it does not accept decimal values, however you may 
+> specify a unit (`K`|`M`|`G`), if no unit is specified it is assumed to be `M`. 
+> For example `#SBATCH --mem 1200`. 
+> 3. Submit the job with `sbatch --acctg-freq 1 example-job.sl`. 
+> 4. Watch the job with `squeue --me` or `watch squeue --me`.
+> 5. On completion of job, use `nn_seff <job-id>`.
+> 6. Record the jobs "Elapsed", "TotalCPU", and "Memory" values in the spreadsheet. (Hint: They are the first 
+> numbers after the percentage efficiency in output of `nn_seff`). Make sure you have entered the values in the correct format and there is a tick next to each entry. ![Correctly entered data in spreadsheet.](../fig/correct-spreadsheet-entry.png)
+>
+> > ## Solution
+> > [spreadsheet]({{ site.exersice }})
+> {: .solution}
+{: .challenge}
+
+
+
 
 
 
