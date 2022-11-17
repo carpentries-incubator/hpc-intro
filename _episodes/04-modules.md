@@ -166,8 +166,7 @@ environment variable.
  
 > ## Environment Variables
 >  
-> These are modifyable named values that exist in your terminal environment.
-> 
+> Environment Variables are writable named variable that exist in your terminal environment.
 > 
 > We can assign a variable named "FOO" with the value "bar" using the syntax.
 > 
@@ -211,7 +210,7 @@ environment variable.
 > ```
 > {: .language-bash}
 >
-> {% include {{ site.snippets }}/modules/env-output.snip %}
+<!-- > {% include {{ site.snippets }}/modules/env-output.snip %} -->
 >
 > These variables control many aspects of how your terminal, and any software launched from your terminal works.
 {: .callout}
