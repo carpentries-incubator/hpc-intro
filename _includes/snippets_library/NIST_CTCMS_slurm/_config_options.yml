@@ -24,14 +24,14 @@ local:
   bash_shebang: "#!/usr/bin/bash"
 
 remote:
-  name: "ruth"
-  login: "ruth.nist.gov"
-  host: "ruth"
+  name: "mr-french"
+  login: "mr-french.nist.gov"
+  host: "mr-french"
   node: "r001"
   location: "National Institute of Standards and Technology"
   homedir: "/users"
   user: "yourUsername"
-  prompt: "501 ruth%"
+  prompt: "501 mr-french%"
   bash_shebang: "#!/bin/bash"
 
 sched:
