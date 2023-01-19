@@ -24,31 +24,48 @@ terminal and in GitBash. Any file that can be downloaded in your web browser
 through a direct link can be downloaded using `curl` or `wget`. This is a
 quick way to download datasets or source code. The syntax for these commands is
 
-* `curl -O https://some/link/to/a/file`
-* `wget https://some/link/to/a/file`
+* `curl -O https://some/link/to/a/file [-o new_name]`
+* `wget https://some/link/to/a/file [-O new_name]`
 
 Try it out by downloading some material we'll use later on, from a terminal on
-your local machine.
+your local machine, using the URL of the current codebase:
+<https://github.com/hpc-carpentry/amdahl/tarball/main>
 
-```
-{{ site.local.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-code.tar.gz
-```
-{: .language-bash}
-or
-```
-{{ site.local.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-code.tar.gz
-```
-{: .language-bash}
-
-
-> ## `tar.gz`?
+> ## Download the "Tarball"
 >
-> This is an archive file format, just like `.zip`, commonly used and supported
-> by default on Linux, which is the operating system the majority of HPC
-> cluster machines run. You may also see the extension `.tgz`, which is exactly
-> the same. We'll talk more about "tarballs" later, since "tar-dot-g-z" is a
-> mouthful.
-{: .discussion}
+> The word "tarball" in the above URL refers to a compressed archive format
+> commonly used on Linux, which is the operating system the majority of HPC
+> cluster machines run.
+> A tarball is a lot like a `.zip` file.
+> The actual file extension is `.tar.gz`, which reflects the two-stage process
+> used to create the file:
+> the files or folders are merged into a single file using `tar`, which is then
+> compressed using `gzip`, so the file extension is "tar-dot-g-z."
+> That's a mouthful, so people often say "the _xyz_ tarball" instead.
+>
+> You may also see the extension `.tgz`, which is just an abbreviation of
+> `.tar.gz`.
+>
+> By default, `curl` and `wget` download files to the same name as the URL.
+> In this case, that would be "main," which is not very clear.
+> Use one of the above commands to save the tarball to "amdahl.tar.gz" instead.
+>
+> > ## Solution
+> >
+> > ```
+> > {{ site.local.prompt }} curl -O https://github.com/hpc-carpentry/amdahl/tarball/main -o amdahl.tar.gz
+> > # or
+> > {{ site.local.prompt }} wget https://github.com/hpc-carpentry/amdahl/tarball/main -O amdahl.tar.gz
+> > ```
+> {: .solution}
+{: .language-bash}
+
+After downloading the file, use `ls` to see it in your working directory:
+
+```
+{{ site.local.prompt }} ls
+```
+{: .language-bash}
 
 ## Transferring Single Files and Folders With `scp`
 
@@ -72,17 +89,18 @@ destination in mind.
 Upload the lesson material to your remote home directory like so:
 
 ```
-{{ site.local.prompt }} scp hpc-intro-code.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
+{{ site.local.prompt }} scp amdahl.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
 ```
 {: .language-bash}
 
 > ## Why Not Download on {{ site.remote.name }} Directly?
 >
 > Most computer clusters are protected from the open internet by a _firewall_.
-> This means that the `curl` command will fail, as an address outside the
-> firewall is unreachable from the inside. To get around this, run the `curl`
-> or `wget` command from your local machine to download the file, then use the
-> `scp` command to upload it to the cluster.
+> For enhanced security, some are configured to allow traffic _inbound_, but
+> not _outbound_.
+> This means that an authenticated user can send a file to a cluster machine,
+> but a cluster machine cannot retrieve files from a user's machine or the
+> open Internet.
 >
 > Try downloading the file directly. Note that it may well fail, and that's
 > OK!
@@ -91,9 +109,9 @@ Upload the lesson material to your remote home directory like so:
 > >
 > > ```
 > > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
-> > {{ site.remote.prompt }} curl -O {{ site.url }}{{ site.baseurl }}/files/hpc-intro-code.tar.gz
+> > {{ site.remote.prompt }} curl -O https://github.com/hpc-carpentry/amdahl/tarball/main -o amdahl.tar.gz
 > > # or
-> > {{ site.remote.prompt }} wget {{ site.url }}{{ site.baseurl }}/files/hpc-intro-code.tar.gz
+> > {{ site.remote.prompt }} wget https://github.com/hpc-carpentry/amdahl/tarball/main -O amdahl.tar.gz
 > > ```
 > > {: .language-bash}
 > {: .solution}
@@ -113,7 +131,7 @@ reaches the bottom of the directory tree rooted at the folder name you
 provided.
 
 ```
-{{ site.local.prompt }} scp -r hpc-intro-code {{ site.remote.user }}@{{ site.remote.login }}:~/
+{{ site.local.prompt }} scp -r hpc-carpentry-amdahl-46c9b4b {{ site.remote.user }}@{{ site.remote.login }}:~/
 ```
 {: .language-bash}
 
@@ -154,24 +172,22 @@ A trailing slash on the target directory is optional, and has no effect for
 > commonly used options:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP hpc-intro-code.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
+> {{ site.local.prompt }} rsync -avP amdahl.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
 > ```
 > {: .language-bash}
 >
 > The options are:
 >
-> * `a` (**a**rchive) to preserve file timestamps, permissions, and folders,
+> * `-a` (**a**rchive) to preserve file timestamps, permissions, and folders,
 >    among other things; implies recursion
-> * `v` (**v**erbose) to get verbose output to help monitor the transfer
-> * `z` (compression) to compress the file during transit to reduce size and
->   transfer time
-> * `P` (partial/progress) to preserve partially transferred files in case
+> * `-v` (**v**erbose) to get verbose output to help monitor the transfer
+> * `-P` (partial/progress) to preserve partially transferred files in case
 >   of an interruption and also displays the progress of the transfer.
 >
 > To recursively copy a directory, we can use the same options:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP hpc-intro-code {{ site.remote.user }}@{{ site.remote.login }}:~/
+> {{ site.local.prompt }} rsync -avP hpc-carpentry-amdahl-46c9b4b {{ site.remote.user }}@{{ site.remote.login }}:~/
 > ```
 > {: .language-bash}
 >
@@ -184,7 +200,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > To download a file, we simply change the source and destination:
 >
 > ```
-> {{ site.local.prompt }} rsync -avzP {{ site.remote.user }}@{{ site.remote.login }}:hpc-intro-code ./
+> {{ site.local.prompt }} rsync -avP {{ site.remote.user }}@{{ site.remote.login }}:hpc-carpentry-amdahl-46c9b4b ./
 > ```
 > {: .language-bash}
 {: .callout}
@@ -201,7 +217,7 @@ you will have to specify it using the appropriate flag, often `-p`, `-P`, or
 > modify this command?
 >
 > ```
-> {{ site.local.prompt }} rsync hpc-intro-code.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
+> {{ site.local.prompt }} rsync amdahl.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
 > ```
 > {: .language-bash}
 >
@@ -212,7 +228,7 @@ you will have to specify it using the appropriate flag, often `-p`, `-P`, or
 > > {{ site.local.prompt }} rsync --help | grep port
 > >      --port=PORT             specify double-colon alternate port number
 > > See http://rsync.samba.org/ for updates, bug reports, and answers
-> > {{ site.local.prompt }} rsync --port=768 hpc-intro-code.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
+> > {{ site.local.prompt }} rsync --port=768 amdahl.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
 > > ```
 > > {: .language-bash}
 > {: .solution}
@@ -267,23 +283,33 @@ The most common archiving command you will use on a (Linux) HPC cluster is
 `tar`. `tar` can be used to combine files into a single archive file and,
 optionally, compress it.
 
-Let's start with the file we downloaded from the lesson site,
-`hpc-intro-code.tar.gz`. The "gz" part stands for _gzip_, which is a
-compression library. This kind of file can usually be interpreted by reading
-its name: it appears somebody took a folder named "hpc-intro-code," wrapped up
-all its contents in a single file with `tar`, then compressed that archive with
-`gzip` to save space. Let's check using `tar` with the `-t` flag, which prints
-the "**t**able of contents" without unpacking the file, specified by
-`-f <filename>`, on the remote computer. Note that you can concatenate the two
-flags, instead of writing `-t -f` separately.
+Let's start with the file we downloaded from the lesson site, `amdahl.tar.gz`.
+The "gz" part stands for _gzip_, which is a compression library.
+This kind of file can usually be interpreted by reading its name:
+it appears somebody took a folder named "hpc-carpentry-amdahl-46c9b4b,"
+wrapped up all its contents in a single file with `tar`,
+then compressed that archive with `gzip` to save space.
+Let's check using `tar` with the `-t` flag, which prints the "**t**able of
+contents" without unpacking the file, specified by `-f <filename>`,
+on the remote computer.
+Note that you can concatenate the two flags, instead of writing `-t -f` separately.
 
 ```
 {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
-{{ site.remote.prompt }} tar -tf hpc-intro-code.tar.gz
-hpc-intro-code/
-hpc-intro-code/amdahl
-hpc-intro-code/README.md
-hpc-intro-code/LICENSE.txt
+{{ site.remote.prompt }} tar -tf amdahl.tar.gz
+hpc-carpentry-amdahl-46c9b4b/
+hpc-carpentry-amdahl-46c9b4b/.github/
+hpc-carpentry-amdahl-46c9b4b/.github/workflows/
+hpc-carpentry-amdahl-46c9b4b/.github/workflows/python-publish.yml
+hpc-carpentry-amdahl-46c9b4b/.gitignore
+hpc-carpentry-amdahl-46c9b4b/LICENSE
+hpc-carpentry-amdahl-46c9b4b/README.md
+hpc-carpentry-amdahl-46c9b4b/amdahl/
+hpc-carpentry-amdahl-46c9b4b/amdahl/__init__.py
+hpc-carpentry-amdahl-46c9b4b/amdahl/__main__.py
+hpc-carpentry-amdahl-46c9b4b/amdahl/amdahl.py
+hpc-carpentry-amdahl-46c9b4b/requirements.txt
+hpc-carpentry-amdahl-46c9b4b/setup.py
 ```
 {: .language-bash}
 
@@ -291,8 +317,8 @@ This shows a folder which contains a few files. Let's see about that
 compression, using `du` for "**d**isk **u**sage".
 
 ```
-{{ site.remote.prompt }} du -sh hpc-intro-code.tar.gz
-3.4K     hpc-intro-code.tar.gz
+{{ site.remote.prompt }} du -sh amdahl.tar.gz
+8.0K     amdahl.tar.gz
 ```
 {: .language-bash}
 
@@ -323,43 +349,51 @@ When it's done, check the directory size with `du` and compare.
 > > ## Commands
 > >
 > > ```
-> > {{ site.remote.prompt }} tar -xvzf hpc-intro-code.tar.gz
+> > {{ site.remote.prompt }} tar -xvzf amdahl.tar.gz
 > > ```
 > > {: .language-bash}
 > >
 > > ```
-> > hpc-intro-code/
-> > hpc-intro-code/amdahl
-> > hpc-intro-code/README.md
-> > hpc-intro-code/LICENSE.txt
+> > hpc-carpentry-amdahl-46c9b4b/
+> > hpc-carpentry-amdahl-46c9b4b/.github/
+> > hpc-carpentry-amdahl-46c9b4b/.github/workflows/
+> > hpc-carpentry-amdahl-46c9b4b/.github/workflows/python-publish.yml
+> > hpc-carpentry-amdahl-46c9b4b/.gitignore
+> > hpc-carpentry-amdahl-46c9b4b/LICENSE
+> > hpc-carpentry-amdahl-46c9b4b/README.md
+> > hpc-carpentry-amdahl-46c9b4b/amdahl/
+> > hpc-carpentry-amdahl-46c9b4b/amdahl/__init__.py
+> > hpc-carpentry-amdahl-46c9b4b/amdahl/__main__.py
+> > hpc-carpentry-amdahl-46c9b4b/amdahl/amdahl.py
+> > hpc-carpentry-amdahl-46c9b4b/requirements.txt
+> > hpc-carpentry-amdahl-46c9b4b/setup.py
 > > ```
 > > {: .output}
 > >
-> > Note that we did not type out `-x -v -z -f`, thanks to the flag
-> > concatenation, though the command works identically either way --
+> > Note that we did not type out `-x -v -z -f`, thanks to flag concatenation,
+> > though the command works identically either way --
 > > so long as the concatenated list ends with `f`, because the next string
 > > must specify the name of the file to extract.
-> >
-> > ```
-> > {{ site.remote.prompt }} du -sh hpc-intro-code
-> > 16K    hpc-intro-code
-> > ```
-> > {: .language-bash}
 > {: .solution}
->
-> > ## Was the Data Compressed?
-> >
-> > Text files (including Python source code) compress nicely: the "tarball" is
-> > one-quarter the total size of the raw data!
-> {: .discussion}
 {: .challenge}
+
+Check the size of the extracted directory:
+
+```
+{{ site.remote.prompt }} du -sh hpc-carpentry-amdahl-46c9b4b
+48K    hpc-carpentry-amdahl-46c9b4b
+```
+{: .language-bash}
+
+Text files (including Python source code) compress nicely:
+the "tarball" is one-sixth the total size of the raw data!
 
 If you want to reverse the process -- compressing raw data instead of
 extracting it -- set a `c` flag instead of `x`, set the archive filename,
 then provide a directory to compress:
 
 ```
-{{ site.local.prompt }} tar -cvzf compressed_code.tar.gz hpc-intro-code
+{{ site.local.prompt }} tar -cvzf compressed_code.tar.gz hpc-carpentry-amdahl-46c9b4b
 ```
 {: .language-bash}
 
