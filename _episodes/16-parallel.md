@@ -101,13 +101,13 @@ reverse-chronological order: newest first. What was the output?
 > ```
 > {: .language-bash}
 > ```
-> Doing 30.000000 seconds of 'work' on 1 processor,
-> which should take 30.000000 seconds with 0.850000 parallel proportion of the workload.
+> Doing 30.0000 seconds of 'work' on 1 processor,
+> which should take 30.000 seconds with 0.850 parallel proportion of the workload.
 >
->   Hello, World! I am process 0 of 1 on {{ site.remote.node }}. I will do all the serial 'work' for 4.500000 seconds.
->   Hello, World! I am process 0 of 1 on {{ site.remote.node }}. I will do parallel 'work' for 25.500000 seconds.
+>   Hello, World! I am process 0 of 1 on {{ site.remote.node }}. I will do all the serial 'work' for 4.500 seconds.
+>   Hello, World! I am process 0 of 1 on {{ site.remote.node }}. I will do parallel 'work' for 25.500 seconds.
 >
-> Total execution time (according to rank 0): 30.033140 seconds
+> Total execution time (according to rank 0): 30.033 seconds
 > ```
 > {: .output}
 {: .solution}
@@ -193,16 +193,16 @@ slurm-347178.out  parallel-job.sh  slurm-347087.out  serial-job.sh  amdahl  READ
 ```
 {: .language-bash}
 ```
-Doing 30.000000 seconds of 'work' on 4 processors,
-which should take 10.875000 seconds with 0.850000 parallel proportion of the workload.
+Doing 30.000 seconds of 'work' on 4 processors,
+which should take 10.875 seconds with 0.850 parallel proportion of the workload.
 
-  Hello, World! I am process 0 of 4 on {{ site.remote.node }}. I will do all the serial 'work' for 4.500000 seconds.
-  Hello, World! I am process 2 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375000 seconds.
-  Hello, World! I am process 1 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375000 seconds.
-  Hello, World! I am process 3 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375000 seconds.
-  Hello, World! I am process 0 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375000 seconds.
+  Hello, World! I am process 0 of 4 on {{ site.remote.node }}. I will do all the serial 'work' for 4.500 seconds.
+  Hello, World! I am process 2 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375 seconds.
+  Hello, World! I am process 1 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375 seconds.
+  Hello, World! I am process 3 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375 seconds.
+  Hello, World! I am process 0 of 4 on {{ site.remote.node }}. I will do parallel 'work' for 6.375 seconds.
 
-Total execution time (according to rank 0): 10.887713 seconds
+Total execution time (according to rank 0): 10.888 seconds
 ```
 {: .output}
 
@@ -276,15 +276,7 @@ batch file rather than the command line.
 ```
 {: .language-bash}
 
-A fully commented version of the final MPI parallel python code is available
-[here](/files/pi-mpi.py).
-
-Our purpose here is to exercise the parallel workflow of the cluster, not to
-optimize the program to minimize its memory footprint.
-Rather than push our local machines to the breaking point (or, worse, the login
-node), let's give it to a cluster node with more resources.
-
-Create a submission file, requesting more than one task on a single node:
+As before, use the status commands to check when your job runs.
 
 ```
 {{ site.remote.prompt }} ls -t
@@ -299,19 +291,19 @@ slurm-347271.out  parallel-job.sh  slurm-347178.out  slurm-347087.out  serial-jo
 ```
 {: .language-bash}
 ```
-which should take 7.687500 seconds with 0.850000 parallel proportion of the workload.
+which should take 7.688 seconds with 0.850 parallel proportion of the workload.
 
-  Hello, World! I am process 4 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
-  Hello, World! I am process 0 of 8 on {{ site.remote.node }}. I will do all the serial 'work' for 4.500000 seconds.
-  Hello, World! I am process 2 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
-  Hello, World! I am process 1 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
-  Hello, World! I am process 3 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
-  Hello, World! I am process 5 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
-  Hello, World! I am process 6 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
-  Hello, World! I am process 7 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
-  Hello, World! I am process 0 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.187500 seconds.
+  Hello, World! I am process 4 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 0 of 8 on {{ site.remote.node }}. I will do all the serial 'work' for 4.500 seconds.
+  Hello, World! I am process 2 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 1 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 3 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 5 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 6 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 7 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 0 of 8 on {{ site.remote.node }}. I will do parallel 'work' for 3.188 seconds.
 
-Total execution time (according to rank 0): 7.697227 seconds
+Total execution time (according to rank 0): 7.697 seconds
 ```
 {: .output}
 
@@ -330,9 +322,9 @@ Now, let's summarize the amount of time it took each job to run:
 
 | Number of CPUs | Runtime (sec) |
 | ---            | ---           |
-| 1              | 30.033140     |
-| 4              | 10.887713     |
-| 8              |  7.697227     |
+| 1              | 30.033        |
+| 4              | 10.888        |
+| 8              |  7.697        |
 
 Then, use the first row to compute speedups _S_, using Python as a command-line calculator:
 
