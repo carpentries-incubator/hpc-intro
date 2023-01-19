@@ -50,15 +50,16 @@ your local machine, using the URL of the current codebase:
 > In this case, that would be "main," which is not very clear.
 > Use one of the above commands to save the tarball to "amdahl.tar.gz" instead.
 >
-> > ## Solution
+> > ## Curl & Wget Commands
 > >
 > > ```
 > > {{ site.local.prompt }} curl -O https://github.com/hpc-carpentry/amdahl/tarball/main -o amdahl.tar.gz
 > > # or
 > > {{ site.local.prompt }} wget https://github.com/hpc-carpentry/amdahl/tarball/main -O amdahl.tar.gz
 > > ```
+> > {: .language-bash}
 > {: .solution}
-{: .language-bash}
+{: .challenge}
 
 After downloading the file, use `ls` to see it in your working directory:
 
@@ -408,22 +409,22 @@ then provide a directory to compress:
 {{ site.local.prompt }} tar -cvzf compressed_code.tar.gz amdahl
 ```
 {: .language-bash}
-> ```
-> amdahl/
-> amdahl/.github/
-> amdahl/.github/workflows/
-> amdahl/.github/workflows/python-publish.yml
-> amdahl/.gitignore
-> amdahl/LICENSE
-> amdahl/README.md
-> amdahl/amdahl/
-> amdahl/amdahl/__init__.py
-> amdahl/amdahl/__main__.py
-> amdahl/amdahl/amdahl.py
-> amdahl/requirements.txt
-> amdahl/setup.py
-> ```
-> {: .output}
+```
+amdahl/
+amdahl/.github/
+amdahl/.github/workflows/
+amdahl/.github/workflows/python-publish.yml
+amdahl/.gitignore
+amdahl/LICENSE
+amdahl/README.md
+amdahl/amdahl/
+amdahl/amdahl/__init__.py
+amdahl/amdahl/__main__.py
+amdahl/amdahl/amdahl.py
+amdahl/requirements.txt
+amdahl/setup.py
+```
+{: .output}
 
 > ## Working with Windows
 >

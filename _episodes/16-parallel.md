@@ -49,6 +49,7 @@ or `pip`, to install it in your ("user") home directory:
 > locating the `python3` executable on the login node.
 > If it can't be found, try listing available modules using `module avail`,
 > load the appropriate one, and try the command again.
+{: .callout}
 
 ### MPI for Python
 
@@ -111,10 +112,10 @@ local machine and upload it, just as we did for Amdahl.
 > {{ site.remote.prompt }} logout
 > {{ site.local.prompt }} ...
 > ```
+> {: .language-bash}
 >
 > `which` should now be able to find `amdahl` without difficulties.
 > If you had to load a Python module, load it again!
-> {: .language-bash}
 {: .discussion}
 
 ## Help!
@@ -257,6 +258,7 @@ Let's modify the job script to request more cores and use the MPI run-time.
 {{ site.remote.prompt }} nano parallel-job.sh
 {{ site.remote.prompt }} cat parallel-job.sh
 ```
+{: .language-bash}
 
 {% include {{ site.snippets }}/parallel/four-tasks-jobscript.snip %}
 
