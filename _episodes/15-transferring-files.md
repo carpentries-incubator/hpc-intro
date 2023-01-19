@@ -232,6 +232,8 @@ you will have to specify it using the appropriate flag, often `-p`, `-P`, or
 > > {{ site.local.prompt }} rsync --port=768 amdahl.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
 > > ```
 > > {: .language-bash}
+> (Note that this command will fail, as the correct port in this case is the
+> default: 22.)
 > {: .solution}
 {: .challenge}
 
@@ -347,7 +349,7 @@ The folder inside has an unfortunate name, so we'll change that as well using
 
 > ## Extract the Archive
 >
-> Using the four flags above, unpack the source code tarball into a new
+> Using the flags above, unpack the source code tarball into a new
 > directory named "amdahl" using `tar`.
 >
 > ```

@@ -87,11 +87,11 @@ local machine and upload it, just as we did for Amdahl.
 
 > ## If Pip Raises a Warning...
 >
-> > ## Warning Message
-> >
-> > WARNING: The script amdahl is installed in "${HOME}/.local/bin" which is
-> > not on PATH. Consider adding this directory to PATH or, if you prefer to
-> > suppress this warning, use --no-warn-script-location.
+> ```
+> WARNING: The script amdahl is installed in "${HOME}/.local/bin" which is
+> not on PATH. Consider adding this directory to PATH or, if you prefer to
+> suppress this warning, use --no-warn-script-location.
+> ```
 > {: .warning}
 >
 > To check whether this warning is a problem, use `which` to search for the
@@ -102,10 +102,11 @@ local machine and upload it, just as we did for Amdahl.
 > ```
 > {: .language-bash}
 >
-> If the command returns no output, displaying a new prompt, then you must
-> update the environment variable named `PATH` to include the missing folder.
+> If the command returns no output, displaying a new prompt, it means the file
+> `amdahl` has not been found. You must update the environment variable named
+> `PATH` to include the missing folder.
 > Run the following command to update your shell configuration file, then log
-> off the cluster and back on again.
+> off the cluster and back on again so it takes effect.
 >
 > ```
 > {{ site.remote.prompt }} echo "export PATH=${PATH}:${HOME}/.local/bin" >> ~/.bashrc
@@ -120,8 +121,7 @@ local machine and upload it, just as we did for Amdahl.
 
 ## Help!
 
-Many command-line programs include a "help" message. Navigate to the directory
-of the decompressed files, then print the `amdahl` program's help message:
+Many command-line programs include a "help" message. Try it with `amdahl`:
 
 ```
 {{ site.remote.prompt }} amdahl --help
@@ -204,9 +204,9 @@ reverse-chronological order: newest first. What was the output?
 > {: .output}
 {: .solution}
 
-`amdahl` takes two optional parameters as input: the amount of work and the
-proportion of that work that is parallel in nature. Based on the output, we can
-see that the code uses a default of 30 seconds of work that is 85%
+As we saw before, two of the `amdahl` program flags set the amount of work and
+the proportion of that work that is parallel in nature. Based on the output, we
+can see that the code uses a default of 30 seconds of work that is 85%
 parallel. The program ran for just over 30 seconds in total, and if we run the
 numbers, it is true that 15% of it was marked 'serial' and 85% was 'parallel'.
 
