@@ -7,6 +7,7 @@ questions:
 - "What benefits arise from parallel execution?"
 - "What are the limits of gains from execution in parallel?"
 objectives:
+- "Install a Python package using `pip`"
 - "Prepare a job submission script for the parallel executable."
 - "Launch jobs with parallel execution."
 - "Record and summarize the timing and accuracy of jobs."
@@ -29,26 +30,116 @@ If you disconnected, log back in to the cluster.
 ```
 {: .language-bash}
 
+## Install the Amdahl Program
+
+With the Amdahl source code on the cluster, we can install it, which will
+provide access to the `amdahl` executable.
+Move into the extracted directory, then use the Package Installer for Python,
+or `pip`, to install it in your ("user") home directory:
+
+```
+{{ site.remote.prompt }} cd amdahl
+{{ site.remote.prompt }} python3 -m pip install --user .
+```
+{: .language-bash}
+
+> ## Amdahl is Python Code
+>
+> The Amdahl program is written in Python, and installing or using it requires
+> locating the `python3` executable on the login node.
+> If it can't be found, try listing available modules using `module avail`,
+> load the appropriate one, and try the command again.
+
+### MPI for Python
+
+The Amdahl code has one dependency: __mpi4py__.
+If it hasn't already been installed on the cluster, `pip` will attempt to
+collect mpi4py from the Internet and install it for you.
+If this fails due to a one-way firewall, you must retrieve mpi4py on your
+local machine and upload it, just as we did for Amdahl.
+
+> ## Retrieve and Push mpi4py
+>
+> If installing Amdahl failed because mpi4py could not be installed,
+> retrieve the tarball from <https://github.com/mpi4py/mpi4py/tarball/master>
+> then `rsync` it to the cluster, extract, and install:
+>
+> ```
+> {{ site.local.prompt }} wget https://github.com/mpi4py/mpi4py/tarball/master -O mpi4py.tar.gz
+> {{ site.local.prompt }} scp amdahl.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
+> # or
+> {{ site.local.prompt }} rsync -avP amdahl.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
+> ```
+> {: .language-bash}
+> ```
+> {{ site.remote.prompt }} mkdir mpi4py
+> {{ site.remote.prompt }} tar -xvzf mpi4py.tar.gz -C amdahl --strip-components=1
+> {{ site.remote.prompt }} cd mpi4py
+> {{ site.remote.prompt }} python3 -m pip install --user .
+> {{ site.remote.prompt }} cd ../amdahl
+> {{ site.remote.prompt }} python3 -m pip install --user .
+> ```
+> {: .language-bash}
+{: .discussion}
+
+`pip` may warn that your user package binaries are not in your PATH.
+
+> ## If Pip Raises a Warning...
+>
+> > ## Warning Message
+> >
+> > WARNING: The script amdahl is installed in "${HOME}/.local/bin" which is
+> > not on PATH. Consider adding this directory to PATH or, if you prefer to
+> > suppress this warning, use --no-warn-script-location.
+> {: .warning}
+>
+> To check whether this warning is a problem, use `which` to search for the
+> `amdahl` program:
+>
+> ```
+> {{ site.remote.prompt }} which amdahl
+> ```
+> {: .language-bash}
+>
+> If the command returns no output, displaying a new prompt, then you must
+> update the environment variable named `PATH` to include the missing folder.
+> Run the following command to update your shell configuration file, then log
+> off the cluster and back on again.
+>
+> ```
+> {{ site.remote.prompt }} echo "export PATH=${PATH}:${HOME}/.local/bin" >> ~/.bashrc
+> {{ site.remote.prompt }} logout
+> {{ site.local.prompt }} ...
+> ```
+>
+> `which` should now be able to find `amdahl` without difficulties.
+> If you had to load a Python module, load it again!
+> {: .language-bash}
+{: .discussion}
+
 ## Help!
 
 Many command-line programs include a "help" message. Navigate to the directory
 of the decompressed files, then print the `amdahl` program's help message:
 
 ```
-{{ site.remote.prompt }} cd hpc-intro-code
-{{ site.remote.prompt }} ./amdahl --help
+{{ site.remote.prompt }} amdahl --help
 ```
 {: .language-bash}
 
 ```
-usage: amdahl [-h] [-p [PARALLEL_PROPORTION]] [-w [WORK_SECONDS]]
+usage: amdahl [-h] [-p [PARALLEL_PROPORTION]] [-w [WORK_SECONDS]] [-t] [-e] [-j [JITTER_PROPORTION]]
 
 optional arguments:
   -h, --help            show this help message and exit
   -p [PARALLEL_PROPORTION], --parallel-proportion [PARALLEL_PROPORTION]
-                        Parallel proportion should be a float between 0 and 1
+                        Parallel proportion: a float between 0 and 1
   -w [WORK_SECONDS], --work-seconds [WORK_SECONDS]
-                        Total seconds of workload, should be an integer greater than 0
+                        Total seconds of workload: an integer greater than 0
+  -t, --terse           Format output as a machine-readable object for easier analysis
+  -e, --exact           Exactly match requested timing by disabling random jitter
+  -j [JITTER_PROPORTION], --jitter-proportion [JITTER_PROPORTION]
+                        Random jitter: a float between -1 and +1
 ```
 {: .output}
 
@@ -101,7 +192,7 @@ reverse-chronological order: newest first. What was the output?
 > ```
 > {: .language-bash}
 > ```
-> Doing 30.0000 seconds of 'work' on 1 processor,
+> Doing 30.000 seconds of 'work' on 1 processor,
 > which should take 30.000 seconds with 0.850 parallel proportion of the workload.
 >
 >   Hello, World! I am process 0 of 1 on {{ site.remote.node }}. I will do all the serial 'work' for 4.500 seconds.
@@ -118,7 +209,7 @@ see that the code uses a default of 30 seconds of work that is 85%
 parallel. The program ran for just over 30 seconds in total, and if we run the
 numbers, it is true that 15% of it was marked 'serial' and 85% was 'parallel'.
 
-Since we only gave the job one CPU, this job wasn't really parallel: the
+Since we only gave the job one CPU, this job wasn't really parallel: the same
 processor performed the 'serial' work for 4.5 seconds, then the 'parallel' part
 for 25.5 seconds, and no time was saved. The cluster can do better, if we ask.
 
@@ -329,15 +420,15 @@ Now, let's summarize the amount of time it took each job to run:
 Then, use the first row to compute speedups _S_, using Python as a command-line calculator:
 
 ```
-{{ site.remote.prompt }} for n in 30.033 10.888 7.6972; do python3 -c "print(30.033 / $n)"; done
+{{ site.remote.prompt }} for n in 30.033 10.888 7.697; do python3 -c "print(30.033 / $n)"; done
 ```
 {: .language-bash}
 
 | Number of CPUs | Speedup | Ideal |
 | ---            | ---     | ---   |
-| 1              | 1.0     | 1.0   |
-| 4              | 2.75    | 4.0   |
-| 8              | 3.90    | 8.0   |
+| 1              | 1.0     | 1     |
+| 4              | 2.75    | 4     |
+| 8              | 3.90    | 8     |
 
 The job output files have been telling us that this program is performing 85%
 of its work in parallel, leaving 15% to run in serial. This seems reasonably

@@ -335,53 +335,65 @@ Now let's unpack the archive. We'll run `tar` with a few common flags:
 * `-x` to e**x**tract the archive
 * `-v` for **v**erbose output
 * `-z` for g**z**ip compression
-* `-f` for the file to be unpacked
+* `-f «tarball»` for the file to be unpacked
 
-When it's done, check the directory size with `du` and compare.
+The folder inside has an unfortunate name, so we'll change that as well using
+
+* `-C «folder»` to **c**hange directories before extracting
+  (note that the new directory must exist!)
+* `--strip-components=«n»` to remove $n$ levels of depth from the extracted
+  file hierarchy
 
 > ## Extract the Archive
 >
-> Using the four flags above, unpack the lesson data using `tar`.
-> Then, check the size of the whole unpacked directory using `du`.
+> Using the four flags above, unpack the source code tarball into a new
+> directory named "amdahl" using `tar`.
 >
-> Hint: `tar` lets you concatenate flags.
+> ```
+> {{ site.remote.prompt }} mkdir amdahl
+> {{ site.remote.prompt }} tar -xvzf amdahl.tar.gz -C amdahl --strip-components=1
+> ```
+> {: .language-bash}
 >
-> > ## Commands
-> >
-> > ```
-> > {{ site.remote.prompt }} tar -xvzf amdahl.tar.gz
-> > ```
-> > {: .language-bash}
-> >
-> > ```
-> > hpc-carpentry-amdahl-46c9b4b/
-> > hpc-carpentry-amdahl-46c9b4b/.github/
-> > hpc-carpentry-amdahl-46c9b4b/.github/workflows/
-> > hpc-carpentry-amdahl-46c9b4b/.github/workflows/python-publish.yml
-> > hpc-carpentry-amdahl-46c9b4b/.gitignore
-> > hpc-carpentry-amdahl-46c9b4b/LICENSE
-> > hpc-carpentry-amdahl-46c9b4b/README.md
-> > hpc-carpentry-amdahl-46c9b4b/amdahl/
-> > hpc-carpentry-amdahl-46c9b4b/amdahl/__init__.py
-> > hpc-carpentry-amdahl-46c9b4b/amdahl/__main__.py
-> > hpc-carpentry-amdahl-46c9b4b/amdahl/amdahl.py
-> > hpc-carpentry-amdahl-46c9b4b/requirements.txt
-> > hpc-carpentry-amdahl-46c9b4b/setup.py
-> > ```
-> > {: .output}
-> >
-> > Note that we did not type out `-x -v -z -f`, thanks to flag concatenation,
-> > though the command works identically either way --
-> > so long as the concatenated list ends with `f`, because the next string
-> > must specify the name of the file to extract.
-> {: .solution}
-{: .challenge}
+> ```
+> hpc-carpentry-amdahl-46c9b4b/
+> hpc-carpentry-amdahl-46c9b4b/.github/
+> hpc-carpentry-amdahl-46c9b4b/.github/workflows/
+> hpc-carpentry-amdahl-46c9b4b/.github/workflows/python-publish.yml
+> hpc-carpentry-amdahl-46c9b4b/.gitignore
+> hpc-carpentry-amdahl-46c9b4b/LICENSE
+> hpc-carpentry-amdahl-46c9b4b/README.md
+> hpc-carpentry-amdahl-46c9b4b/amdahl/
+> hpc-carpentry-amdahl-46c9b4b/amdahl/__init__.py
+> hpc-carpentry-amdahl-46c9b4b/amdahl/__main__.py
+> hpc-carpentry-amdahl-46c9b4b/amdahl/amdahl.py
+> hpc-carpentry-amdahl-46c9b4b/requirements.txt
+> hpc-carpentry-amdahl-46c9b4b/setup.py
+> ```
+> {: .output}
+>
+> Note that we did not need to type out `-x -v -z -f`, thanks to flag
+> concatenation, though the command works identically either way --
+> so long as the concatenated list ends with `f`, because the next string
+> must specify the name of the file to extract.
+>
+> We couldn't concatenate `-C` because the next string must name the directory.
+>
+> Long options (`--strip-components`) also can't be concatenated.
+>
+> Since order doesn't generally matter, an equivalent command would be
+> ```
+> {{ site.remote.prompt }} tar -xvzC amdahl -f amdahl.tar.gz --strip-components=1
+> ```
+> {: .language-bash}
+{: .discussion}
 
-Check the size of the extracted directory:
+Check the size of the extracted directory, and compare to the compressed
+file size:
 
 ```
-{{ site.remote.prompt }} du -sh hpc-carpentry-amdahl-46c9b4b
-48K    hpc-carpentry-amdahl-46c9b4b
+{{ site.remote.prompt }} du -sh amdahl
+48K    amdahl
 ```
 {: .language-bash}
 
@@ -393,9 +405,25 @@ extracting it -- set a `c` flag instead of `x`, set the archive filename,
 then provide a directory to compress:
 
 ```
-{{ site.local.prompt }} tar -cvzf compressed_code.tar.gz hpc-carpentry-amdahl-46c9b4b
+{{ site.local.prompt }} tar -cvzf compressed_code.tar.gz amdahl
 ```
 {: .language-bash}
+> ```
+> amdahl/
+> amdahl/.github/
+> amdahl/.github/workflows/
+> amdahl/.github/workflows/python-publish.yml
+> amdahl/.gitignore
+> amdahl/LICENSE
+> amdahl/README.md
+> amdahl/amdahl/
+> amdahl/amdahl/__init__.py
+> amdahl/amdahl/__main__.py
+> amdahl/amdahl/amdahl.py
+> amdahl/requirements.txt
+> amdahl/setup.py
+> ```
+> {: .output}
 
 > ## Working with Windows
 >
