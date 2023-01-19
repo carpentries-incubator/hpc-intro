@@ -15,10 +15,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7
+          python-version: '3.9'
       - name: Install codespell
         run: |
-          pip3 install codespell
+          python3 -m pip install codespell
       - name: Check spelling
         run: |
           make spellcheck
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '2.7'
       - name: Install basic requirements
@@ -64,7 +64,7 @@ jobs:
           - Magic_Castle_EESSI_slurm
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '2.7'
       - name: Install basic requirements
