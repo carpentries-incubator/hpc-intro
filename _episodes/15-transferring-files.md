@@ -262,13 +262,19 @@ mechanism.
 To _upload to_ another computer:
 
 ```
-{{ site.local.prompt }} scp local_file {{ site.remote.user }}@{{ site.remote.login }}:remote_path
+{{ site.local.prompt }} scp local_file {{ site.remote.user }}@{{ site.remote.login }}:remote_destination
 ```
 {: .language-bash}
 
 Note that everything after the `:` is relative to our home directory on the
-remote computer. We can leave it at that if we don't have a more specific
-destination in mind.
+remote computer. If we don't have a specific destination in mind we can
+omit the `remote_destination` and the file will be copied to our home
+directory on the remote computer (with its original name). If we include
+a `remote_destination` we should note that `scp` interprets this the same
+way `cp` does: if it exists and is a folder, the file is copied inside the
+folder; if it exists and is a file, the file is overwritten with the
+contents of `local_file`; if it does not exist, it is assumed to be a
+destination filename for `local_file`. 
 
 Upload the lesson material to your remote home directory like so:
 
@@ -302,7 +308,7 @@ Upload the lesson material to your remote home directory like so:
 >
 > Did it work? If not, what does the terminal output tell you about what
 > happened?
-{: .discussion}
+{: .challenge}
 
 ## Transferring a Directory
 
