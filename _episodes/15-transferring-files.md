@@ -79,7 +79,7 @@ mechanism.
 To _upload to_ another computer:
 
 ```
-{{ site.local.prompt }} scp local_file {{ site.remote.user }}@{{ site.remote.login }}:remote_path
+{{ site.local.prompt }} scp local_file {{ site.remote.user }}@{{ site.remote.login }}:remote_destination
 ```
 {: .language-bash}
 
