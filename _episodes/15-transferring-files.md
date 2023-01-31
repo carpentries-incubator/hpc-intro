@@ -119,7 +119,7 @@ Upload the lesson material to your remote home directory like so:
 >
 > Did it work? If not, what does the terminal output tell you about what
 > happened?
-{: .discussion}
+{: .challenge}
 
 ## Transferring a Directory
 
