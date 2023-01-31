@@ -68,6 +68,189 @@ After downloading the file, use `ls` to see it in your working directory:
 ```
 {: .language-bash}
 
+## Archiving Files
+
+One of the biggest challenges we often face when transferring data between
+remote HPC systems is that of large numbers of files. There is an overhead to
+transferring each individual file and when we are transferring large numbers of
+files these overheads combine to slow down our transfers to a large degree.
+
+The solution to this problem is to _archive_ multiple files into smaller
+numbers of larger files before we transfer the data to improve our transfer
+efficiency. Sometimes we will combine archiving with _compression_ to reduce
+the amount of data we have to transfer and so speed up the transfer.
+
+The most common archiving command you will use on a (Linux) HPC cluster is
+`tar`. `tar` can be used to combine files into a single archive file and,
+optionally, compress it.
+
+Let's start with the file we downloaded from the lesson site, `amdahl.tar.gz`.
+The "gz" part stands for _gzip_, which is a compression library.
+This kind of file can usually be interpreted by reading its name:
+it appears somebody took a folder named "hpc-carpentry-amdahl-46c9b4b,"
+wrapped up all its contents in a single file with `tar`,
+then compressed that archive with `gzip` to save space.
+Let's check using `tar` with the `-t` flag, which prints the "**t**able of
+contents" without unpacking the file, specified by `-f <filename>`,
+on the remote computer.
+Note that you can concatenate the two flags, instead of writing `-t -f` separately.
+
+```
+{{ site.local.prompt }} tar -tf amdahl.tar.gz
+hpc-carpentry-amdahl-46c9b4b/
+hpc-carpentry-amdahl-46c9b4b/.github/
+hpc-carpentry-amdahl-46c9b4b/.github/workflows/
+hpc-carpentry-amdahl-46c9b4b/.github/workflows/python-publish.yml
+hpc-carpentry-amdahl-46c9b4b/.gitignore
+hpc-carpentry-amdahl-46c9b4b/LICENSE
+hpc-carpentry-amdahl-46c9b4b/README.md
+hpc-carpentry-amdahl-46c9b4b/amdahl/
+hpc-carpentry-amdahl-46c9b4b/amdahl/__init__.py
+hpc-carpentry-amdahl-46c9b4b/amdahl/__main__.py
+hpc-carpentry-amdahl-46c9b4b/amdahl/amdahl.py
+hpc-carpentry-amdahl-46c9b4b/requirements.txt
+hpc-carpentry-amdahl-46c9b4b/setup.py
+```
+{: .language-bash}
+
+This shows a folder which contains a few files. Let's see about that
+compression, using `du` for "**d**isk **u**sage".
+
+```
+{{ site.local.prompt }} du -sh amdahl.tar.gz
+8.0K     amdahl.tar.gz
+```
+{: .language-bash}
+
+> ## Files Occupy at Least One "Block"
+>
+> If the filesystem block size is larger than 3.4 KB, you'll see a larger
+> number: files cannot be smaller than one block.
+> You can use the `--apparent-size` flag to see the exact size, although the
+> unoccupied space in that filesystem block can't be used for anything else.
+{: .callout}
+
+Now let's unpack the archive. We'll run `tar` with a few common flags:
+
+* `-x` to e**x**tract the archive
+* `-v` for **v**erbose output
+* `-z` for g**z**ip compression
+* `-f «tarball»` for the file to be unpacked
+
+The folder inside has an unfortunate name, so we'll change that as well using
+
+* `-C «folder»` to **c**hange directories before extracting
+  (note that the new directory must exist!)
+* `--strip-components=«n»` to remove $n$ levels of depth from the extracted
+  file hierarchy
+
+> ## Extract the Archive
+>
+> Using the flags above, unpack the source code tarball into a new
+> directory named "amdahl" using `tar`.
+>
+> ```
+> {{ site.local.prompt }} mkdir amdahl
+> {{ site.local.prompt }} tar -xvzf amdahl.tar.gz -C amdahl --strip-components=1
+> ```
+> {: .language-bash}
+>
+> ```
+> hpc-carpentry-amdahl-46c9b4b/
+> hpc-carpentry-amdahl-46c9b4b/.github/
+> hpc-carpentry-amdahl-46c9b4b/.github/workflows/
+> hpc-carpentry-amdahl-46c9b4b/.github/workflows/python-publish.yml
+> hpc-carpentry-amdahl-46c9b4b/.gitignore
+> hpc-carpentry-amdahl-46c9b4b/LICENSE
+> hpc-carpentry-amdahl-46c9b4b/README.md
+> hpc-carpentry-amdahl-46c9b4b/amdahl/
+> hpc-carpentry-amdahl-46c9b4b/amdahl/__init__.py
+> hpc-carpentry-amdahl-46c9b4b/amdahl/__main__.py
+> hpc-carpentry-amdahl-46c9b4b/amdahl/amdahl.py
+> hpc-carpentry-amdahl-46c9b4b/requirements.txt
+> hpc-carpentry-amdahl-46c9b4b/setup.py
+> ```
+> {: .output}
+>
+> Note that we did not need to type out `-x -v -z -f`, thanks to flag
+> concatenation, though the command works identically either way --
+> so long as the concatenated list ends with `f`, because the next string
+> must specify the name of the file to extract.
+>
+> We couldn't concatenate `-C` because the next string must name the directory.
+>
+> Long options (`--strip-components`) also can't be concatenated.
+>
+> Since order doesn't generally matter, an equivalent command would be
+> ```
+> {{ site.local.prompt }} tar -xvzC amdahl -f amdahl.tar.gz --strip-components=1
+> ```
+> {: .language-bash}
+{: .discussion}
+
+Check the size of the extracted directory, and compare to the compressed
+file size:
+
+```
+{{ site.local.prompt }} du -sh amdahl
+48K    amdahl
+```
+{: .language-bash}
+
+Text files (including Python source code) compress nicely:
+the "tarball" is one-sixth the total size of the raw data!
+
+If you want to reverse the process -- compressing raw data instead of
+extracting it -- set a `c` flag instead of `x`, set the archive filename,
+then provide a directory to compress:
+
+```
+{{ site.local.prompt }} tar -cvzf compressed_code.tar.gz amdahl
+```
+{: .language-bash}
+```
+amdahl/
+amdahl/.github/
+amdahl/.github/workflows/
+amdahl/.github/workflows/python-publish.yml
+amdahl/.gitignore
+amdahl/LICENSE
+amdahl/README.md
+amdahl/amdahl/
+amdahl/amdahl/__init__.py
+amdahl/amdahl/__main__.py
+amdahl/amdahl/amdahl.py
+amdahl/requirements.txt
+amdahl/setup.py
+```
+{: .output}
+
+If you give `amdahl.tar.gz` as the filename in the above command, `tar` will
+update the existing tarball with any changes you made to the files, instead of
+recompressing everything.
+
+> ## Working with Windows
+>
+> When you transfer text files from a Windows system to a Unix system (Mac,
+> Linux, BSD, Solaris, etc.) this can cause problems. Windows encodes its files
+> slightly different than Unix, and adds an extra character to every line.
+>
+> On a Unix system, every line in a file ends with a `\n` (newline). On
+> Windows, every line in a file ends with a `\r\n` (carriage return + newline).
+> This causes problems sometimes.
+>
+> Though most modern programming languages and software handles this correctly,
+> in some rare instances, you may run into an issue. The solution is to convert
+> a file from Windows to Unix encoding with the `dos2unix` command.
+>
+> You can identify if a file has Windows line endings with `cat -A filename`. A
+> file with Windows line endings will have `^M$` at the end of every line. A
+> file with Unix line endings will have `$` at the end of a line.
+>
+> To convert the file, just run `dos2unix filename`. (Conversely, to convert
+> back to Windows format, you can run `unix2dos filename`.)
+{: .callout}
+
 ## Transferring Single Files and Folders With `scp`
 
 To copy a single file to or from the cluster, we can use `scp` ("secure copy").
@@ -123,16 +306,13 @@ Upload the lesson material to your remote home directory like so:
 
 ## Transferring a Directory
 
-If you went ahead and extracted the tarball, don't worry! `scp` can handle
-entire directories as well as individual files.
-
-To copy a whole directory, we add the `-r` flag for "**r**ecursive": copy the
-item specified, and every item below it, and every item below those... until it
-reaches the bottom of the directory tree rooted at the folder name you
+To transfer an entire directory, we add the `-r` flag for "**r**ecursive": copy
+the item specified, and every item below it, and every item below those... 
+until it reaches the bottom of the directory tree rooted at the folder name you
 provided.
 
 ```
-{{ site.local.prompt }} scp -r hpc-carpentry-amdahl-46c9b4b {{ site.remote.user }}@{{ site.remote.login }}:~/
+{{ site.local.prompt }} scp -r amdahl {{ site.remote.user }}@{{ site.remote.login }}:~/
 ```
 {: .language-bash}
 
@@ -269,186 +449,6 @@ hosting the files and use `scp` or `rsync` to transfer over to the other. This
 will be more efficient than using FileZilla (or related applications) that
 would copy from the source to your local machine, then to the destination
 machine.
-
-## Archiving Files
-
-One of the biggest challenges we often face when transferring data between
-remote HPC systems is that of large numbers of files. There is an overhead to
-transferring each individual file and when we are transferring large numbers of
-files these overheads combine to slow down our transfers to a large degree.
-
-The solution to this problem is to _archive_ multiple files into smaller
-numbers of larger files before we transfer the data to improve our transfer
-efficiency. Sometimes we will combine archiving with _compression_ to reduce
-the amount of data we have to transfer and so speed up the transfer.
-
-The most common archiving command you will use on a (Linux) HPC cluster is
-`tar`. `tar` can be used to combine files into a single archive file and,
-optionally, compress it.
-
-Let's start with the file we downloaded from the lesson site, `amdahl.tar.gz`.
-The "gz" part stands for _gzip_, which is a compression library.
-This kind of file can usually be interpreted by reading its name:
-it appears somebody took a folder named "hpc-carpentry-amdahl-46c9b4b,"
-wrapped up all its contents in a single file with `tar`,
-then compressed that archive with `gzip` to save space.
-Let's check using `tar` with the `-t` flag, which prints the "**t**able of
-contents" without unpacking the file, specified by `-f <filename>`,
-on the remote computer.
-Note that you can concatenate the two flags, instead of writing `-t -f` separately.
-
-```
-{{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
-{{ site.remote.prompt }} tar -tf amdahl.tar.gz
-hpc-carpentry-amdahl-46c9b4b/
-hpc-carpentry-amdahl-46c9b4b/.github/
-hpc-carpentry-amdahl-46c9b4b/.github/workflows/
-hpc-carpentry-amdahl-46c9b4b/.github/workflows/python-publish.yml
-hpc-carpentry-amdahl-46c9b4b/.gitignore
-hpc-carpentry-amdahl-46c9b4b/LICENSE
-hpc-carpentry-amdahl-46c9b4b/README.md
-hpc-carpentry-amdahl-46c9b4b/amdahl/
-hpc-carpentry-amdahl-46c9b4b/amdahl/__init__.py
-hpc-carpentry-amdahl-46c9b4b/amdahl/__main__.py
-hpc-carpentry-amdahl-46c9b4b/amdahl/amdahl.py
-hpc-carpentry-amdahl-46c9b4b/requirements.txt
-hpc-carpentry-amdahl-46c9b4b/setup.py
-```
-{: .language-bash}
-
-This shows a folder which contains a few files. Let's see about that
-compression, using `du` for "**d**isk **u**sage".
-
-```
-{{ site.remote.prompt }} du -sh amdahl.tar.gz
-8.0K     amdahl.tar.gz
-```
-{: .language-bash}
-
-> ## Files Occupy at Least One "Block"
->
-> If the filesystem block size is larger than 3.4 KB, you'll see a larger
-> number: files cannot be smaller than one block.
-> You can use the `--apparent-size` flag to see the exact size, although the
-> unoccupied space in that filesystem block can't be used for anything else.
-{: .callout}
-
-Now let's unpack the archive. We'll run `tar` with a few common flags:
-
-* `-x` to e**x**tract the archive
-* `-v` for **v**erbose output
-* `-z` for g**z**ip compression
-* `-f «tarball»` for the file to be unpacked
-
-The folder inside has an unfortunate name, so we'll change that as well using
-
-* `-C «folder»` to **c**hange directories before extracting
-  (note that the new directory must exist!)
-* `--strip-components=«n»` to remove $n$ levels of depth from the extracted
-  file hierarchy
-
-> ## Extract the Archive
->
-> Using the flags above, unpack the source code tarball into a new
-> directory named "amdahl" using `tar`.
->
-> ```
-> {{ site.remote.prompt }} mkdir amdahl
-> {{ site.remote.prompt }} tar -xvzf amdahl.tar.gz -C amdahl --strip-components=1
-> ```
-> {: .language-bash}
->
-> ```
-> hpc-carpentry-amdahl-46c9b4b/
-> hpc-carpentry-amdahl-46c9b4b/.github/
-> hpc-carpentry-amdahl-46c9b4b/.github/workflows/
-> hpc-carpentry-amdahl-46c9b4b/.github/workflows/python-publish.yml
-> hpc-carpentry-amdahl-46c9b4b/.gitignore
-> hpc-carpentry-amdahl-46c9b4b/LICENSE
-> hpc-carpentry-amdahl-46c9b4b/README.md
-> hpc-carpentry-amdahl-46c9b4b/amdahl/
-> hpc-carpentry-amdahl-46c9b4b/amdahl/__init__.py
-> hpc-carpentry-amdahl-46c9b4b/amdahl/__main__.py
-> hpc-carpentry-amdahl-46c9b4b/amdahl/amdahl.py
-> hpc-carpentry-amdahl-46c9b4b/requirements.txt
-> hpc-carpentry-amdahl-46c9b4b/setup.py
-> ```
-> {: .output}
->
-> Note that we did not need to type out `-x -v -z -f`, thanks to flag
-> concatenation, though the command works identically either way --
-> so long as the concatenated list ends with `f`, because the next string
-> must specify the name of the file to extract.
->
-> We couldn't concatenate `-C` because the next string must name the directory.
->
-> Long options (`--strip-components`) also can't be concatenated.
->
-> Since order doesn't generally matter, an equivalent command would be
-> ```
-> {{ site.remote.prompt }} tar -xvzC amdahl -f amdahl.tar.gz --strip-components=1
-> ```
-> {: .language-bash}
-{: .discussion}
-
-Check the size of the extracted directory, and compare to the compressed
-file size:
-
-```
-{{ site.remote.prompt }} du -sh amdahl
-48K    amdahl
-```
-{: .language-bash}
-
-Text files (including Python source code) compress nicely:
-the "tarball" is one-sixth the total size of the raw data!
-
-If you want to reverse the process -- compressing raw data instead of
-extracting it -- set a `c` flag instead of `x`, set the archive filename,
-then provide a directory to compress:
-
-```
-{{ site.local.prompt }} tar -cvzf compressed_code.tar.gz amdahl
-```
-{: .language-bash}
-```
-amdahl/
-amdahl/.github/
-amdahl/.github/workflows/
-amdahl/.github/workflows/python-publish.yml
-amdahl/.gitignore
-amdahl/LICENSE
-amdahl/README.md
-amdahl/amdahl/
-amdahl/amdahl/__init__.py
-amdahl/amdahl/__main__.py
-amdahl/amdahl/amdahl.py
-amdahl/requirements.txt
-amdahl/setup.py
-```
-{: .output}
-
-> ## Working with Windows
->
-> When you transfer text files from a Windows system to a Unix system (Mac,
-> Linux, BSD, Solaris, etc.) this can cause problems. Windows encodes its files
-> slightly different than Unix, and adds an extra character to every line.
->
-> On a Unix system, every line in a file ends with a `\n` (newline). On
-> Windows, every line in a file ends with a `\r\n` (carriage return + newline).
-> This causes problems sometimes.
->
-> Though most modern programming languages and software handles this correctly,
-> in some rare instances, you may run into an issue. The solution is to convert
-> a file from Windows to Unix encoding with the `dos2unix` command.
->
-> You can identify if a file has Windows line endings with `cat -A filename`. A
-> file with Windows line endings will have `^M$` at the end of every line. A
-> file with Unix line endings will have `$` at the end of a line.
->
-> To convert the file, just run `dos2unix filename`. (Conversely, to convert
-> back to Windows format, you can run `unix2dos filename`.)
-{: .callout}
 
 {% include links.md %}
 
