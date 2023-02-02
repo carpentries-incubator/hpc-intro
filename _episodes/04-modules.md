@@ -1,7 +1,8 @@
 ---
 title: "Accessing software via Modules"
-teaching: 20
+teaching: 15
 exercises: 5
+start: true
 questions:
 - "How do we load and unload software packages?"
 objectives:
@@ -25,6 +26,7 @@ understand the reasoning behind this approach. The three biggest factors are:
 - versioning
 - dependencies
 
+
 Software incompatibility is a major headache for programmers. Sometimes the
 presence (or absence) of a software package will break others that depend on
 it. Two of the most famous examples are Python 2 and 3 and C compiler versions.
@@ -32,6 +34,9 @@ Python 3 famously provides a `python` command that conflicts with that provided
 by Python 2. Software compiled against a newer version of the C libraries and
 then used when they are not present will result in a nasty `'GLIBCXX_3.4.20'
 not found` error, for instance.
+
+<!-- I think python is a bad example here as "python 2 and python 3 conflict" sounds like a versioning issue. -->
+
 
 Software versioning is another common issue. A team might depend on a certain
 package version for their research project - if the software version was to
@@ -112,7 +117,7 @@ loaded in your environment. On {{ site.remote.name }} you will have a few defaul
 
 {% include {{ site.snippets }}/modules/module-list-default.snip %}
 
-If you have no modules loaded you will see a message telling you so
+<!-- If you have no modules loaded you will see a message telling you so
 
 ```
 {{ site.remote.prompt }} module list
@@ -123,58 +128,109 @@ If you have no modules loaded you will see a message telling you so
 No modules loaded
 
 ```
-{: .output}
+{: .output} -->
 
 ## Loading and Unloading Software
 
-To load a software module, use `module load`. In this example we will use
-Python 3.
+You can load software using the `module load` command. In this example we will be using the programming language _R_.
 
-Initially, Python 3 is not loaded. We can test this by using the `which`
+Initially, R is not loaded. We can test this by using the `which`
 command. `which` looks for programs the same way that Bash does, so we can use
 it to tell us where a particular piece of software is stored.
 
 ```
-{{ site.remote.prompt }} which python3
+{{ site.remote.prompt }} which R
 ```
 {: .language-bash}
 
-{% include {{ site.snippets }}/modules/missing-python.snip %}
+{% include {{ site.snippets }}/modules/missing-r.snip %}
 
-We can load the `python3` command with `module load`:
+Now lets try loading the R enviroment module, and try again.
 
-{% include {{ site.snippets }}/modules/module-load-python.snip %}
+{% include {{ site.snippets }}/modules/module-load-r.snip %}
 
-{% include {{ site.snippets }}/modules/python-executable-dir.snip %}
+
+> ## Tab Completion
+>
+> The module command also supports tab completion. You may find this the easiest way to find the right software.
+{: .callout}
 
 So, what just happened?
 
 To understand the output, first we need to understand the nature of the `$PATH`
-environment variable. `$PATH` is a special environment variable that controls
+environment variable.
+ 
+> ## Environment Variables
+>  
+> Environment Variables are writable named variable that exist in your terminal environment.
+> 
+> We can assign a variable named "FOO" with the value "bar" using the syntax.
+> 
+> ```
+> {{ site.remote.prompt }} FOO="bar"
+> ```
+> {: .language-bash}
+> 
+> Convention is to name enviroment variables in all caps.
+> 
+> Our new variable can be referenced using `$FOO`, you could also use  `${FOO}`,
+> enclosing a variable in curly brackets is good practice as it avoids ambiguity.
+> 
+> ```
+> {{ site.remote.prompt }} $FOO
+> ```
+> {: .language-bash}
+> 
+> ```
+> -bash: bar: command not found
+> ```
+> {: .output}
+> 
+> We got an error here because the variable is evalued _in the terminal_ then executed.
+> If we just want to print the variable we can use the command,
+> 
+> ```
+> {{ site.remote.prompt }} echo $FOO
+> ```
+> {: .language-bash}
+> 
+> ```
+> bar
+> ```
+> {: .output}
+> 
+> We can get a full list of enviroment variables using the command,
+>
+> ```
+> {{ site.remote.prompt }} env
+> ```
+> {: .language-bash}
+>
+<!-- > {% include {{ site.snippets }}/modules/env-output.snip %} -->
+>
+> These variables control many aspects of how your terminal, and any software launched from your terminal works.
+{: .callout}
+
+`$PATH` is a special environment variable that controls
 where a UNIX system looks for software. Specifically `$PATH` is a list of
 directories (separated by `:`) that the OS searches through for a command
 before giving up and telling us it can't find it. As with all environment
 variables we can print it out using `echo`.
 
-what is an environment variable? 
+{% include {{ site.snippets }}/modules/r-module-path.snip %}
 
-```
-{{ site.remote.prompt }} echo $PATH
-```
-{: .language-bash}
+We can improve the readibility of this command slightly by replacing the colon delimiter`:`s with newline characters.
 
-{% include {{ site.snippets }}/modules/python-module-path.snip %}
+{% include {{ site.snippets }}/modules/r-module-path-tidy.snip %}
 
 You'll notice a similarity to the output of the `which` command. However, in this case,
 there are a lot more directories at the beginning. When we
 ran the `module load` command, it added many directories to the beginning of our
-`$PATH`. The path to NeSI XALT utility will normally show up first.  This helps us track software usage, but the more important directory is the second one: `/opt/nesi/CS400_centos7_bdw/Python/3.8.2-gimkl-2020a/bin` Let's examine what's there:
+`$PATH`. The path to NeSI XALT utility will normally show up first.  This helps us track software usage, but the more important directory is the second one: `/opt/nesi/CS400_centos7_bdw/R/4.2.1-gimkl-2022a/bin` Let's examine what's there:
 
-{% include {{ site.snippets }}/modules/python-ls-dir-command.snip %}
+{% include {{ site.snippets }}/modules/r-ls-dir-command.snip %}
 
-{% include {{ site.snippets }}/modules/python-ls-dir-output.snip %}
-
-`module load` "loads" not only the specified software, but it also loads software dependencies. That is, the software that the application you load requires to run. 
+`module load` "loads" not only the specified software, but it also loads software dependencies. That is, the software that the application you load requires to run.
 
 {% include {{ site.snippets }}/modules/software-dependencies.snip %}
 

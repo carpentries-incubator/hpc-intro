@@ -189,7 +189,7 @@ status, we check the queue using the command
 
 
 
-If we were too slow, and the job has already finished (and therefor not in the queue) there is another command we can use `{{ site.sched.hist }}` (**s**lurm **acc**oun**t**). By default `{{ site.sched.hist }}` only includes jobs submitted by you, so no need to include additional commands at this point.
+If we were too slow, and the job has already finished (and therefore not in the queue) there is another command we can use `{{ site.sched.hist }}` (**s**lurm **acc**oun**t**). By default `{{ site.sched.hist }}` only includes jobs submitted by you, so no need to include additional commands at this point.
 
 ```
 {{ site.remote.prompt }} {{ site.sched.hist }}
@@ -199,7 +199,7 @@ If we were too slow, and the job has already finished (and therefor not in the q
 {% include {{ site.snippets }}/scheduler/basic-job-status-sacct.snip %}
 
 Note that despite the fact that we have only run one job, there are three lines shown, this because each _job step_ is also shown.
-This can be supressed using the flag `-X`.
+This can be suppressed using the flag `-X`.
 
 > ## Where's the Output?
 >

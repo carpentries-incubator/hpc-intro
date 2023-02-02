@@ -1,7 +1,7 @@
 ---
 title: "Using resources effectively"
-teaching: 40
-exercises: 20
+teaching: 25
+exercises: 5
 questions:
 - "How can I review past jobs?"
 - "How can I use this knowledge to create a more accurate submission script?"
@@ -108,7 +108,7 @@ possible, meaning it should start to run within a few minutes, provided
 your resource request is not too large.
 ## Measuring Resource Usage of a Finished Job
 
-If we check the status of our finshed job using the `sacct` command we learned earlier.
+If we check the status of our finished job using the `sacct` command we learned earlier.
 
 ```
 {{ site.remote.prompt }} sacct
