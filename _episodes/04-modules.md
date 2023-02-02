@@ -133,24 +133,22 @@ No modules loaded
 ## Loading and Unloading Software
 
 To load a software module, use `module load`. In this example we will use
-Python 3.
+R.
 
-Initially, Python 3 is not loaded. We can test this by using the `which`
+Initially,R is not loaded. We can test this by using the `which`
 command. `which` looks for programs the same way that Bash does, so we can use
 it to tell us where a particular piece of software is stored.
 
 ```
-{{ site.remote.prompt }} which python3
+{{ site.remote.prompt }} which R
 ```
 {: .language-bash}
 
-{% include {{ site.snippets }}/modules/missing-python.snip %}
+{% include {{ site.snippets }}/modules/missing-r.snip %}
 
-We can load the `python3` command with `module load`:
+We can load the `R` command with `module load`:
 
-{% include {{ site.snippets }}/modules/module-load-python.snip %}
-
-{% include {{ site.snippets }}/modules/python-executable-dir.snip %}
+{% include {{ site.snippets }}/modules/module-load-r.snip %}
 
 
 > ## Tab Completion
@@ -222,22 +220,20 @@ directories (separated by `:`) that the OS searches through for a command
 before giving up and telling us it can't find it. As with all environment
 variables we can print it out using `echo`.
 
+What is an environment variable?
 
-```
-{{ site.remote.prompt }} echo $PATH
-```
-{: .language-bash}
+{% include {{ site.snippets }}/modules/r-module-path.snip %}
 
-{% include {{ site.snippets }}/modules/python-module-path.snip %}
+We can improve the readibility of this command slightly by replacing the colon delimiter`:`s with newline characters.
+
+{% include {{ site.snippets }}/modules/r-module-path-tidy.snip %}
 
 You'll notice a similarity to the output of the `which` command. However, in this case,
 there are a lot more directories at the beginning. When we
 ran the `module load` command, it added many directories to the beginning of our
-`$PATH`. The path to NeSI XALT utility will normally show up first.  This helps us track software usage, but the more important directory is the second one: `/opt/nesi/CS400_centos7_bdw/Python/3.8.2-gimkl-2020a/bin` Let's examine what's there:
+`$PATH`. The path to NeSI XALT utility will normally show up first.  This helps us track software usage, but the more important directory is the second one: `/opt/nesi/CS400_centos7_bdw/R/4.2.1-gimkl-2022a/bin` Let's examine what's there:
 
-{% include {{ site.snippets }}/modules/python-ls-dir-command.snip %}
-
-{% include {{ site.snippets }}/modules/python-ls-dir-output.snip %}
+{% include {{ site.snippets }}/modules/r-ls-dir-command.snip %}
 
 `module load` "loads" not only the specified software, but it also loads software dependencies. That is, the software that the application you load requires to run. 
 

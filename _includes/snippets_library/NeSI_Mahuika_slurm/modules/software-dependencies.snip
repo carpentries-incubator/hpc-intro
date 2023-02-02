@@ -8,23 +8,17 @@ software modules.
 
 ```
 Currently Loaded Modules:
-  1) XALT/minimal                       18) HDF5/1.10.5-gimpi-2020a
-  2) slurm                              19) libjpeg-turbo/2.0.2-GCCcore-9.2.0
-  3) NeSI                          (S)  20) ncurses/6.1-GCCcore-9.2.0
-  4) GCCcore/9.2.0                      21) libreadline/8.0-GCCcore-9.2.0
-  5) zlib/1.2.11-GCCcore-9.2.0          22) libxml2/2.9.10-GCCcore-9.2.0
-  6) binutils/2.32-GCCcore-9.2.0        23) libxslt/1.1.34-GCCcore-9.2.0
-  7) GCC/9.2.0                          24) cURL/7.64.0-GCCcore-9.2.0
-  8) libpmi                             25) PCRE/8.43-GCCcore-9.2.0
-  9) impi/2019.6.166-GCC-9.2.0          26) netCDF/4.7.3-gimpi-2020a
- 10) gimpi/2020a                        27) SQLite/3.31.1-GCCcore-9.2.0
- 11) imkl/2020.0.166-gimpi-2020a        28) METIS/5.1.0-GCCcore-9.2.0
- 12) gimkl/2020a                        29) tbb/2019_U9-GCCcore-9.2.0
- 13) bzip2/1.0.8-GCCcore-9.2.0          30) SuiteSparse/5.6.0-gimkl-2020a-METIS-5.1.0
- 14) XZ/5.2.4-GCCcore-9.2.0             31) Tcl/8.6.10-GCCcore-9.2.0
- 15) libpng/1.6.37-GCCcore-9.2.0        32) Tk/8.6.10-GCCcore-9.2.0
- 16) freetype/2.10.1-GCCcore-9.2.0      33) Python/3.8.2-gimkl-2020a
+vfan001@mahuika01:~$ module list
+
+Currently Loaded Modules:
+  1) XALT/minimal                       8) GCC/11.3.0                 15) gimpi/2022a                     22) libreadline/8.1-GCCcore-11.3.0  29) Java/17
+  2) slurm                              9) libpmi/2-slurm             16) imkl-FFTW/2022.0.2-gimpi-2022a  23) libpng/1.6.37-GCCcore-11.3.0    30) nodejs/16.15.1-GCCcore-11.3.0
+  3) NeSI                         (S)  10) numactl/2.0.14-GCC-11.3.0  17) gimkl/2022a                     24) libxml2/2.9.10-GCCcore-11.3.0   31) OpenSSL/1.1.1k-GCCcore-11.3.0
+  4) LegacySystemLibs/7                11) UCX/1.12.1-GCC-11.3.0      18) bzip2/1.0.8-GCCcore-11.3.0      25) SQLite/3.36.0-GCCcore-11.3.0    32) R/4.2.1-gimkl-2022a
+  5) GCCcore/11.3.0                    12) impi/2021.5.1-GCC-11.3.0   19) XZ/5.2.5-GCCcore-11.3.0         26) cURL/7.83.1-GCCcore-11.3.0
+  6) zlib/1.2.11-GCCcore-11.3.0        13) AlwaysIntelMKL/1.0         20) PCRE2/10.40-GCCcore-11.3.0      27) NLopt/2.7.0-GCC-11.3.0
+  7) binutils/2.38-GCCcore-11.3.0      14) imkl/2022.0.2              21) ncurses/6.2-GCCcore-11.3.0      28) GMP/6.2.1-GCCcore-11.3.0
 ```
 {: .output}
 
-Notice that our initial list of modules has increased by 30.  When we loaded Python, it also loaded all of it's dependencies along with all the dependencies of those modules.
+Notice that our initial list of modules has increased by 30.  When we loaded R, it also loaded all of it's dependencies along with all the dependencies of those modules.
