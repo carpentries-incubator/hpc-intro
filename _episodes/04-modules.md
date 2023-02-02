@@ -145,8 +145,6 @@ We can load the `R` command with `module load`:
 
 {% include {{ site.snippets }}/modules/module-load-r.snip %}
 
-{% include {{ site.snippets }}/modules/r-executable-dir.snip %}
-
 So, what just happened?
 
 To understand the output, first we need to understand the nature of the `$PATH`
@@ -158,16 +156,11 @@ variables we can print it out using `echo`.
 
 What is an environment variable? 
 
-```
-{{ site.remote.prompt }} echo $PATH 
-```
-{: .language-bash}
+{% include {{ site.snippets }}/modules/r-module-path.snip %}
 
-{% include {{ site.snippets }}/modules/r-module-path1.snip %}
+We can improve the readibility of this command slightly by replacing the colon delimiter`:`s with newline characters.
 
-We can improve the readibility of this command slightly by replacing `:`s with newline characters `. 
-
-{% include {{ site.snippets }}/modules/r-module-path2.snip %}
+{% include {{ site.snippets }}/modules/r-module-path-tidy.snip %}
 
 You'll notice a similarity to the output of the `which` command. However, in this case,
 there are a lot more directories at the beginning. When we
@@ -175,8 +168,6 @@ ran the `module load` command, it added many directories to the beginning of our
 `$PATH`. The path to NeSI XALT utility will normally show up first.  This helps us track software usage, but the more important directory is the second one: `/opt/nesi/CS400_centos7_bdw/R/4.2.1-gimkl-2022a/bin` Let's examine what's there:
 
 {% include {{ site.snippets }}/modules/r-ls-dir-command.snip %}
-
-{% include {{ site.snippets }}/modules/r-ls-dir-output.snip %}
 
 `module load` "loads" not only the specified software, but it also loads software dependencies. That is, the software that the application you load requires to run. 
 
