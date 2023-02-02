@@ -153,7 +153,7 @@ env
 ```
 {: .language-bash}
 
-Print environment, if someone else has problems replicating the problem, it will likely come down to differences in your enviroment. 
+Print environment, if someone else has problems replicating the problem, it will likely come down to differences in your environment.
 
 ```
 cat $0

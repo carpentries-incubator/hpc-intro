@@ -145,7 +145,7 @@ it to tell us where a particular piece of software is stored.
 
 {% include {{ site.snippets }}/modules/missing-r.snip %}
 
-Now lets try loading the R enviroment module, and try again.
+Now lets try loading the R environment module, and try again.
 
 {% include {{ site.snippets }}/modules/module-load-r.snip %}
 
@@ -171,7 +171,7 @@ environment variable.
 > ```
 > {: .language-bash}
 > 
-> Convention is to name enviroment variables in all caps.
+> Convention is to name environment variables in all caps.
 > 
 > Our new variable can be referenced using `$FOO`, you could also use  `${FOO}`,
 > enclosing a variable in curly brackets is good practice as it avoids ambiguity.
@@ -199,7 +199,7 @@ environment variable.
 > ```
 > {: .output}
 > 
-> We can get a full list of enviroment variables using the command,
+> We can get a full list of environment variables using the command,
 >
 > ```
 > {{ site.remote.prompt }} env
@@ -219,7 +219,7 @@ variables we can print it out using `echo`.
 
 {% include {{ site.snippets }}/modules/r-module-path.snip %}
 
-We can improve the readibility of this command slightly by replacing the colon delimiter`:`s with newline characters.
+We can improve the readability of this command slightly by replacing the colon delimiter`:`s with newline characters.
 
 {% include {{ site.snippets }}/modules/r-module-path-tidy.snip %}
 

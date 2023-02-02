@@ -6,7 +6,7 @@ questions:
 - "How do we execute a task in parallel?"
 - "What benefits arise from parallel execution?"
 - "What are the limits of gains from execution in parallel?"
-- "What is the difference between inplicit and explict parallelisation."
+- "What is the difference between implicit and explicit parallelisation."
 objectives:
 - "Prepare a job submission script for the parallel executable."
 keypoints:
@@ -66,7 +66,7 @@ Generally speaking, Parallelism is either _implicit_ where the software figures 
 ### Scientific Software
 
 The first step when looking to run particular software should always be to read the (f*) documentation. 
-On one end of the scale, some software may claim to make use of multiple cores implicitly, but this should be verified as the methods used to determine available resources are not gauranteed to work.
+On one end of the scale, some software may claim to make use of multiple cores implicitly, but this should be verified as the methods used to determine available resources are not guaranteed to work.
 
 Some software will require you to specify number of cores (e.g. `-n 8` or `-np 16`), or even type of paralellisation (e.g. `-dis` or `-mpi=intelmpi`).
 
