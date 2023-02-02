@@ -26,7 +26,6 @@ understand the reasoning behind this approach. The three biggest factors are:
 - versioning
 - dependencies
 
-
 Software incompatibility is a major headache for programmers. Sometimes the
 presence (or absence) of a software package will break others that depend on
 it. Two of the most famous examples are Python 2 and 3 and C compiler versions.
@@ -36,7 +35,6 @@ then used when they are not present will result in a nasty `'GLIBCXX_3.4.20'
 not found` error, for instance.
 
 <!-- I think python is a bad example here as "python 2 and python 3 conflict" sounds like a versioning issue. -->
-
 
 Software versioning is another common issue. A team might depend on a certain
 package version for their research project - if the software version was to
@@ -50,6 +48,59 @@ particular version of another software package). For example, the VASP
 materials science software may depend on having a particular version of the
 FFTW (Fastest Fourier Transform in the West) software library available for it
 to work.
+
+## Environment
+
+Before understanding environment modules we first need to understand what is meant by _environment_.
+
+The environment is defined by it's _environment variables_.
+
+_Environment Variables_ are writable named-variables.
+
+We can assign a variable named "FOO" with the value "bar" using the syntax.
+
+```
+{{ site.remote.prompt }} FOO"bar"
+```
+{: .language-bash}
+
+Convention is to name fixed variables in all caps.
+
+Our new variable can be referenced using `$FOO`, you could also use  `${FOO}`,
+enclosing a variable in curly brackets is good practice as it avoids possible ambiguity.
+
+```
+{{ site.remote.prompt }} $FOO
+```
+{: .language-bash}
+
+```
+-bash: bar: command not found
+```
+{: .output}
+
+We got an error here because the variable is evalued _in the terminal_ then executed.
+If we just want to print the variable we can use the command,
+
+```
+{{ site.remote.prompt }} echo $FOO
+```
+{: .language-bash}
+```
+bar
+```
+{: .output}
+
+We can get a full list of environment variables using the command,
+
+```
+{{ site.remote.prompt }} env
+```
+{: .language-bash}
+{% include {{ site.snippets }}/modules/env-output.snip %}
+
+These variables control many aspects of how your terminal, and any software launched from your terminal works.
+{: .callout}
 
 ## Environment Modules
 
@@ -145,6 +196,9 @@ it to tell us where a particular piece of software is stored.
 
 {% include {{ site.snippets }}/modules/missing-r.snip %}
 
+The important bit here being:
+> /usr/bin/which: no R in (...)
+
 Now lets try loading the R environment module, and try again.
 
 {% include {{ site.snippets }}/modules/module-load-r.snip %}
@@ -159,57 +213,6 @@ So, what just happened?
 
 To understand the output, first we need to understand the nature of the `$PATH`
 environment variable.
- 
-> ## Environment Variables
->  
-> Environment Variables are writable named variable that exist in your terminal environment.
-> 
-> We can assign a variable named "FOO" with the value "bar" using the syntax.
-> 
-> ```
-> {{ site.remote.prompt }} FOO="bar"
-> ```
-> {: .language-bash}
-> 
-> Convention is to name environment variables in all caps.
-> 
-> Our new variable can be referenced using `$FOO`, you could also use  `${FOO}`,
-> enclosing a variable in curly brackets is good practice as it avoids ambiguity.
-> 
-> ```
-> {{ site.remote.prompt }} $FOO
-> ```
-> {: .language-bash}
-> 
-> ```
-> -bash: bar: command not found
-> ```
-> {: .output}
-> 
-> We got an error here because the variable is evalued _in the terminal_ then executed.
-> If we just want to print the variable we can use the command,
-> 
-> ```
-> {{ site.remote.prompt }} echo $FOO
-> ```
-> {: .language-bash}
-> 
-> ```
-> bar
-> ```
-> {: .output}
-> 
-> We can get a full list of environment variables using the command,
->
-> ```
-> {{ site.remote.prompt }} env
-> ```
-> {: .language-bash}
->
-<!-- > {% include {{ site.snippets }}/modules/env-output.snip %} -->
->
-> These variables control many aspects of how your terminal, and any software launched from your terminal works.
-{: .callout}
 
 `$PATH` is a special environment variable that controls
 where a UNIX system looks for software. Specifically `$PATH` is a list of
@@ -226,7 +229,9 @@ We can improve the readability of this command slightly by replacing the colon d
 You'll notice a similarity to the output of the `which` command. However, in this case,
 there are a lot more directories at the beginning. When we
 ran the `module load` command, it added many directories to the beginning of our
-`$PATH`. The path to NeSI XALT utility will normally show up first.  This helps us track software usage, but the more important directory is the second one: `/opt/nesi/CS400_centos7_bdw/R/4.2.1-gimkl-2022a/bin` Let's examine what's there:
+`$PATH`.
+
+The path to NeSI XALT utility will normally show up first.  This helps us track software usage, but the more important directory is the second one: `/opt/nesi/CS400_centos7_bdw/R/4.2.1-gimkl-2022a/bin` Let's examine what's there:
 
 {% include {{ site.snippets }}/modules/r-ls-dir-command.snip %}
 
@@ -242,7 +247,6 @@ Before moving onto the next session lets use `module purge` again to return to t
 {: .language-bash}
 
 ```
-
 The following modules were not unloaded:
    (Use "module --force purge" to unload all):
 
@@ -256,7 +260,7 @@ So far, we've learned how to load and unload software packages. This is very
 useful. However, we have not yet addressed the issue of software versioning. At
 some point or other, you will run into issues where only one particular version
 of some software will be suitable. Perhaps a key bugfix only happened in a
-certain version, or version X broke compatibility with a file format you use.
+certain version, or version _X_ broke compatibility with a file format you use.
 In either of these example cases, it helps to be very specific about what
 software is loaded.
 
