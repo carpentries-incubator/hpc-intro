@@ -132,10 +132,9 @@ No modules loaded
 
 ## Loading and Unloading Software
 
-To load a software module, use `module load`. In this example we will use
-R.
+You can load software using the `module load` command. In this example we will be using the programming language _R_.
 
-Initially,R is not loaded. We can test this by using the `which`
+Initially, R is not loaded. We can test this by using the `which`
 command. `which` looks for programs the same way that Bash does, so we can use
 it to tell us where a particular piece of software is stored.
 
@@ -146,7 +145,7 @@ it to tell us where a particular piece of software is stored.
 
 {% include {{ site.snippets }}/modules/missing-r.snip %}
 
-We can load the `R` command with `module load`:
+Now lets try loading the R enviroment module, and try again.
 
 {% include {{ site.snippets }}/modules/module-load-r.snip %}
 
@@ -154,7 +153,6 @@ We can load the `R` command with `module load`:
 > ## Tab Completion
 >
 > The module command also supports tab completion. You may find this the easiest way to find the right software.
-> 
 {: .callout}
 
 So, what just happened?
@@ -175,7 +173,7 @@ environment variable.
 > 
 > Convention is to name enviroment variables in all caps.
 > 
-> Our new variable can be referenced using `$FOO`, you could also use  `${FOO}`, 
+> Our new variable can be referenced using `$FOO`, you could also use  `${FOO}`,
 > enclosing a variable in curly brackets is good practice as it avoids ambiguity.
 > 
 > ```
@@ -213,14 +211,11 @@ environment variable.
 > These variables control many aspects of how your terminal, and any software launched from your terminal works.
 {: .callout}
 
-
 `$PATH` is a special environment variable that controls
 where a UNIX system looks for software. Specifically `$PATH` is a list of
 directories (separated by `:`) that the OS searches through for a command
 before giving up and telling us it can't find it. As with all environment
 variables we can print it out using `echo`.
-
-What is an environment variable?
 
 {% include {{ site.snippets }}/modules/r-module-path.snip %}
 
@@ -235,7 +230,7 @@ ran the `module load` command, it added many directories to the beginning of our
 
 {% include {{ site.snippets }}/modules/r-ls-dir-command.snip %}
 
-`module load` "loads" not only the specified software, but it also loads software dependencies. That is, the software that the application you load requires to run. 
+`module load` "loads" not only the specified software, but it also loads software dependencies. That is, the software that the application you load requires to run.
 
 {% include {{ site.snippets }}/modules/software-dependencies.snip %}
 
