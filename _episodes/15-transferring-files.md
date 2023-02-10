@@ -24,11 +24,12 @@ terminal and in GitBash. Any file that can be downloaded in your web browser
 through a direct link can be downloaded using `curl` or `wget`. This is a
 quick way to download datasets or source code. The syntax for these commands is
 
-* `curl -O https://some/link/to/a/file [-o new_name]`
-* `wget https://some/link/to/a/file [-O new_name]`
+* `wget [-O new_name] https://some/link/to/a/file`
+* `curl [-o new_name] https://some/link/to/a/file`
 
 Try it out by downloading some material we'll use later on, from a terminal on
 your local machine, using the URL of the current codebase:
+
 <https://github.com/hpc-carpentry/amdahl/tarball/main>
 
 > ## Download the "Tarball"
@@ -50,12 +51,12 @@ your local machine, using the URL of the current codebase:
 > In this case, that would be "main," which is not very clear.
 > Use one of the above commands to save the tarball to "amdahl.tar.gz" instead.
 >
-> > ## Curl & Wget Commands
+> > ## `wget` and `curl` Commands
 > >
 > > ```
-> > {{ site.local.prompt }} curl -O https://github.com/hpc-carpentry/amdahl/tarball/main -o amdahl.tar.gz
+> > {{ site.local.prompt }} wget -O amdahl.tar.gz https://github.com/hpc-carpentry/amdahl/tarball/main
 > > # or
-> > {{ site.local.prompt }} wget https://github.com/hpc-carpentry/amdahl/tarball/main -O amdahl.tar.gz
+> > {{ site.local.prompt }} curl -o amdahl.tar.gz https://github.com/hpc-carpentry/amdahl/tarball/main
 > > ```
 > > {: .language-bash}
 > {: .solution}
@@ -79,21 +80,24 @@ The solution to this problem is to _archive_ multiple files into smaller
 numbers of larger files before we transfer the data to improve our transfer
 efficiency. Sometimes we will combine archiving with _compression_ to reduce
 the amount of data we have to transfer and so speed up the transfer.
-
 The most common archiving command you will use on a (Linux) HPC cluster is
 `tar`. `tar` can be used to combine files into a single archive file and,
 optionally, compress it.
 
-Let's start with the file we downloaded from the lesson site, `amdahl.tar.gz`.
-The "gz" part stands for _gzip_, which is a compression library.
-This kind of file can usually be interpreted by reading its name:
-it appears somebody took a folder named "hpc-carpentry-amdahl-46c9b4b,"
-wrapped up all its contents in a single file with `tar`,
+Let's look at the file we downloaded from the lesson site, `amdahl.tar.gz`.
+
+The `.gz` part stands for _gzip_, which is a compression library.
+It's common (but not necessary!) that this kind of file can be interpreted by
+reading its name:
+it appears somebody took files and folders relating to something called
+"amdahl," wrapped them all up into a single file with `tar`,
 then compressed that archive with `gzip` to save space.
-Let's check using `tar` with the `-t` flag, which prints the "**t**able of
-contents" without unpacking the file, specified by `-f <filename>`,
-on the remote computer.
-Note that you can concatenate the two flags, instead of writing `-t -f` separately.
+
+Let's see if that's the case without unpacking the file.
+`tar` prints the "**t**able of contents" with the `-t` flag,
+for the file specified by the `-f` flag and a filename.
+Note that you can concatenate the two flags:
+writing `-t -f` separately, or `-tf` together, are interchangeable.
 
 ```
 {{ site.local.prompt }} tar -tf amdahl.tar.gz
@@ -113,22 +117,9 @@ hpc-carpentry-amdahl-46c9b4b/setup.py
 ```
 {: .language-bash}
 
-This shows a folder which contains a few files. Let's see about that
-compression, using `du` for "**d**isk **u**sage".
-
-```
-{{ site.local.prompt }} du -sh amdahl.tar.gz
-8.0K     amdahl.tar.gz
-```
-{: .language-bash}
-
-> ## Files Occupy at Least One "Block"
->
-> If the filesystem block size is larger than 3.4 KB, you'll see a larger
-> number: files cannot be smaller than one block.
-> You can use the `--apparent-size` flag to see the exact size, although the
-> unoccupied space in that filesystem block can't be used for anything else.
-{: .callout}
+This example output shows a folder which contains a few files,
+where `46c9b4b` is an 8-character [git][git-swc] commit hash that will change
+when the source material is updated.
 
 Now let's unpack the archive. We'll run `tar` with a few common flags:
 
@@ -137,21 +128,13 @@ Now let's unpack the archive. We'll run `tar` with a few common flags:
 * `-z` for g**z**ip compression
 * `-f «tarball»` for the file to be unpacked
 
-The folder inside has an unfortunate name, so we'll change that as well using
-
-* `-C «folder»` to **c**hange directories before extracting
-  (note that the new directory must exist!)
-* `--strip-components=«n»` to remove $n$ levels of depth from the extracted
-  file hierarchy
-
 > ## Extract the Archive
 >
 > Using the flags above, unpack the source code tarball into a new
 > directory named "amdahl" using `tar`.
 >
 > ```
-> {{ site.local.prompt }} mkdir amdahl
-> {{ site.local.prompt }} tar -xvzf amdahl.tar.gz -C amdahl --strip-components=1
+> {{ site.local.prompt }} tar -xvzf amdahl.tar.gz
 > ```
 > {: .language-bash}
 >
@@ -176,22 +159,22 @@ The folder inside has an unfortunate name, so we'll change that as well using
 > concatenation, though the command works identically either way --
 > so long as the concatenated list ends with `f`, because the next string
 > must specify the name of the file to extract.
->
-> We couldn't concatenate `-C` because the next string must name the directory.
->
-> Long options (`--strip-components`) also can't be concatenated.
->
-> Since order doesn't generally matter, an equivalent command would be
-> ```
-> {{ site.local.prompt }} tar -xvzC amdahl -f amdahl.tar.gz --strip-components=1
-> ```
-> {: .language-bash}
 {: .discussion}
 
-Check the size of the extracted directory, and compare to the compressed
-file size:
+The folder has an unfortunate name, so let's change that to something more
+convenient.
 
 ```
+{{ site.local.prompt }} mv hpc-carpentry-amdahl-46c9b4b amdahl
+```
+{: .language-bash}
+
+Check the size of the extracted directory and compare to the compressed
+file size, using `du` for "**d**isk **u**sage".
+
+```
+{{ site.local.prompt }} du -sh amdahl.tar.gz
+8.0K     amdahl.tar.gz
 {{ site.local.prompt }} du -sh amdahl
 48K    amdahl
 ```
@@ -225,9 +208,10 @@ amdahl/setup.py
 ```
 {: .output}
 
-If you give `amdahl.tar.gz` as the filename in the above command, `tar` will
-update the existing tarball with any changes you made to the files, instead of
-recompressing everything.
+If you give `amdahl.tar.gz` as the filename in the above command,
+`tar` will update the existing tarball with any changes you made to the files.
+That would mean adding the new `amdahl` folder to the _existing_ folder
+(`hpc-carpentry-amdahl-46c9b4b`), doubling the size of the archive!
 
 > ## Working with Windows
 >
@@ -259,7 +243,7 @@ The `scp` command is a relative of the `ssh` command we used to
 access the system, and can use the same public-key authentication
 mechanism.
 
-To _upload to_ another computer:
+To _upload to_ another computer, the template command is
 
 ```
 {{ site.local.prompt }} scp local_file {{ site.remote.user }}@{{ site.remote.login }}:remote_destination
@@ -299,9 +283,9 @@ Upload the lesson material to your remote home directory like so:
 > >
 > > ```
 > > {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
-> > {{ site.remote.prompt }} curl -O https://github.com/hpc-carpentry/amdahl/tarball/main -o amdahl.tar.gz
+> > {{ site.remote.prompt }} wget -O amdahl.tar.gz https://github.com/hpc-carpentry/amdahl/tarball/main
 > > # or
-> > {{ site.remote.prompt }} wget https://github.com/hpc-carpentry/amdahl/tarball/main -O amdahl.tar.gz
+> > {{ site.remote.prompt }} curl -o amdahl.tar.gz https://github.com/hpc-carpentry/amdahl/tarball/main
 > > ```
 > > {: .language-bash}
 > {: .solution}
@@ -374,7 +358,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > To recursively copy a directory, we can use the same options:
 >
 > ```
-> {{ site.local.prompt }} rsync -avP hpc-carpentry-amdahl-46c9b4b {{ site.remote.user }}@{{ site.remote.login }}:~/
+> {{ site.local.prompt }} rsync -avP amdahl {{ site.remote.user }}@{{ site.remote.login }}:~/
 > ```
 > {: .language-bash}
 >
@@ -458,4 +442,5 @@ machine.
 
 {% include links.md %}
 
+[git-swc]: https://swcarpentry.github.io/git-novice/
 [rsync]: https://rsync.samba.org/
