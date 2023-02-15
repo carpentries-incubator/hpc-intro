@@ -47,9 +47,9 @@ your local machine, using the URL of the current codebase:
 > You may also see the extension `.tgz`, which is just an abbreviation of
 > `.tar.gz`.
 >
-> By default, `curl` and `wget` download files to the same name as the URL.
-> In this case, that would be "main," which is not very clear.
-> Use one of the above commands to save the tarball to "amdahl.tar.gz" instead.
+> By default, `curl` and `wget` download files to the same name as the URL:
+> in this case, `main`.
+> Use one of the above commands to save the tarball as `amdahl.tar.gz`.
 >
 > > ## `wget` and `curl` Commands
 > >
@@ -78,26 +78,29 @@ files these overheads combine to slow down our transfers to a large degree.
 
 The solution to this problem is to _archive_ multiple files into smaller
 numbers of larger files before we transfer the data to improve our transfer
-efficiency. Sometimes we will combine archiving with _compression_ to reduce
-the amount of data we have to transfer and so speed up the transfer.
+efficiency.
+Sometimes we will combine archiving with _compression_ to reduce the amount of
+data we have to transfer and so speed up the transfer.
 The most common archiving command you will use on a (Linux) HPC cluster is
-`tar`. `tar` can be used to combine files into a single archive file and,
-optionally, compress it.
+`tar`.
 
+`tar` can be used to combine files and folders into a single archive file and,
+optionally, compress the result.
 Let's look at the file we downloaded from the lesson site, `amdahl.tar.gz`.
 
 The `.gz` part stands for _gzip_, which is a compression library.
 It's common (but not necessary!) that this kind of file can be interpreted by
-reading its name:
-it appears somebody took files and folders relating to something called
-"amdahl," wrapped them all up into a single file with `tar`,
+reading its name: it appears somebody took files and folders relating to
+something called "amdahl," wrapped them all up into a single file with `tar`,
 then compressed that archive with `gzip` to save space.
 
-Let's see if that's the case without unpacking the file.
-`tar` prints the "**t**able of contents" with the `-t` flag,
-for the file specified by the `-f` flag and a filename.
-Note that you can concatenate the two flags:
-writing `-t -f` separately, or `-tf` together, are interchangeable.
+Let's see if that is the case, _without_ unpacking the file.
+`tar` prints the "**t**able of contents" with the `-t` flag, for the file
+specified with the `-f` flag followed by the filename.
+Note that you can concatenate the two flags: writing `-t -f` is interchangeable
+with writing `-tf` together.
+However, the argument following `-f` must be a filename, so writing `-ft` will
+_not_ work.
 
 ```
 {{ site.local.prompt }} tar -tf amdahl.tar.gz
@@ -117,9 +120,9 @@ hpc-carpentry-amdahl-46c9b4b/setup.py
 ```
 {: .language-bash}
 
-This example output shows a folder which contains a few files,
-where `46c9b4b` is an 8-character [git][git-swc] commit hash that will change
-when the source material is updated.
+This example output shows a folder which contains a few files, where `46c9b4b`
+is an 8-character [git][git-swc] commit hash that will change when the source
+material is updated.
 
 Now let's unpack the archive. We'll run `tar` with a few common flags:
 
@@ -208,10 +211,11 @@ amdahl/setup.py
 ```
 {: .output}
 
-If you give `amdahl.tar.gz` as the filename in the above command,
-`tar` will update the existing tarball with any changes you made to the files.
+If you give `amdahl.tar.gz` as the filename in the above command, `tar` will
+update the existing tarball with any changes you made to the files.
 That would mean adding the new `amdahl` folder to the _existing_ folder
-(`hpc-carpentry-amdahl-46c9b4b`), doubling the size of the archive!
+(`hpc-carpentry-amdahl-46c9b4b`) inside the tarball, doubling the size of the
+archive!
 
 > ## Working with Windows
 >
@@ -250,15 +254,18 @@ To _upload to_ another computer, the template command is
 ```
 {: .language-bash}
 
-Note that everything after the `:` is relative to our home directory on the
-remote computer. If we don't have a specific destination in mind we can
-omit the `remote_destination` and the file will be copied to our home
-directory on the remote computer (with its original name). If we include
-a `remote_destination` we should note that `scp` interprets this the same
-way `cp` does: if it exists and is a folder, the file is copied inside the
-folder; if it exists and is a file, the file is overwritten with the
-contents of `local_file`; if it does not exist, it is assumed to be a
-destination filename for `local_file`. 
+in which `@` and `:` are field separators and `remote_destination` is a path
+relative to your remote home directory, or a new filename if you wish to change
+it, or both a relative path _and_ a new filename.
+If you don't have a specific folder in mind you can omit the
+`remote_destination` and the file will be copied to your home directory on the
+remote computer (with its original name).
+If you include a `remote_destination`, note that `scp` interprets this the same
+way `cp` does when making local copies:
+if it exists and is a folder, the file is copied inside the folder; if it
+exists and is a file, the file is overwritten with the contents of
+`local_file`; if it does not exist, it is assumed to be a destination filename
+for `local_file`.
 
 Upload the lesson material to your remote home directory like so:
 
@@ -296,13 +303,13 @@ Upload the lesson material to your remote home directory like so:
 
 ## Transferring a Directory
 
-To transfer an entire directory, we add the `-r` flag for "**r**ecursive": copy
-the item specified, and every item below it, and every item below those... 
+To transfer an entire directory, we add the `-r` flag for "**r**ecursive":
+copy the item specified, and every item below it, and every item below those...
 until it reaches the bottom of the directory tree rooted at the folder name you
 provided.
 
 ```
-{{ site.local.prompt }} scp -r amdahl {{ site.remote.user }}@{{ site.remote.login }}:~/
+{{ site.local.prompt }} scp -r amdahl {{ site.remote.user }}@{{ site.remote.login }}:
 ```
 {: .language-bash}
 
@@ -312,24 +319,29 @@ provided.
 > copying with `-r` can take a long time to complete.
 {: .callout}
 
-## What's in a `/`?
-
 When using `scp`, you may have noticed that a `:` _always_ follows the remote
-computer name; sometimes a `/` follows that, and sometimes not, and sometimes
-there's a final `/`. On Linux computers, `/` is the ___root___ directory, the
-location where the entire filesystem (and others attached to it) is anchored. A
-path starting with a `/` is called _absolute_, since there can be nothing above
-the root `/`. A path that does not start with `/` is called _relative_, since
-it is not anchored to the root.
+computer name.
+A string _after_ the `:` specifies the remote directory you wish to transfer
+the file or folder to, including a new name if you wish to rename the remote
+material.
+If you leave this field blank, `scp` defaults to your home directory and the
+name of the local material to be transferred.
+
+On Linux computers, `/` is the separator in file or directory paths.
+A path starting with a `/` is called _absolute_, since there can be nothing
+above the root `/`.
+A path that does not start with `/` is called _relative_, since it is not
+anchored to the root.
 
 If you want to upload a file to a location inside your home directory --
-which is often the case -- then you don't need a leading `/`. After the
-`:`, start writing the sequence of folders that lead to the final storage
-location for the file or, as mentioned above, provide nothing if your home
-directory _is_ the destination.
+which is often the case -- then you don't need a _leading_ `/`. After the `:`,
+you can type the destination path relative to your home directory.
+If your home directory _is_ the destination, you can leave the destination
+field blank, or type `~` -- the shorthand for your home directory -- for
+completeness.
 
-A trailing slash on the target directory is optional, and has no effect for
-`scp -r`, but is important in other commands, like `rsync`.
+With `scp`, a trailing slash on the target directory is optional, and has
+no effect. It is important for other commands, like `rsync`.
 
 > ## A Note on `rsync`
 >
@@ -337,7 +349,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > command limiting. The [rsync] utility provides
 > advanced features for file transfer and is typically faster compared to both
 > `scp` and `sftp` (see below). It is especially useful for transferring large
-> and/or many files and creating synced backup folders.
+> and/or many files and for synchronizing folder contents between computers.
 >
 > The syntax is similar to `scp`. To transfer _to_ another computer with
 > commonly used options:
@@ -371,7 +383,7 @@ A trailing slash on the target directory is optional, and has no effect for
 > To download a file, we simply change the source and destination:
 >
 > ```
-> {{ site.local.prompt }} rsync -avP {{ site.remote.user }}@{{ site.remote.login }}:hpc-carpentry-amdahl-46c9b4b ./
+> {{ site.local.prompt }} rsync -avP {{ site.remote.user }}@{{ site.remote.login }}:amdahl ./
 > ```
 > {: .language-bash}
 {: .callout}
@@ -392,6 +404,8 @@ you will have to specify it using the appropriate flag, often `-p`, `-P`, or
 > ```
 > {: .language-bash}
 >
+> _Hint:_ check the `man` page or "help" for `rsync`.
+>
 > > ## Solution
 > >
 > > ```
@@ -402,6 +416,7 @@ you will have to specify it using the appropriate flag, often `-p`, `-P`, or
 > > {{ site.local.prompt }} rsync --port=768 amdahl.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
 > > ```
 > > {: .language-bash}
+>
 > (Note that this command will fail, as the correct port in this case is the
 > default: 22.)
 > {: .solution}
