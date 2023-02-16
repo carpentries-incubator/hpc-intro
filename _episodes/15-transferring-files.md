@@ -416,9 +416,9 @@ you will have to specify it using the appropriate flag, often `-p`, `-P`, or
 > > {{ site.local.prompt }} rsync --port=768 amdahl.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
 > > ```
 > > {: .language-bash}
->
-> (Note that this command will fail, as the correct port in this case is the
-> default: 22.)
+> >
+> > (Note that this command will fail, as the correct port in this case is the
+> > default: 22.)
 > {: .solution}
 {: .challenge}
 
