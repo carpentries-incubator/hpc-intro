@@ -59,22 +59,24 @@ collect mpi4py from the Internet and install it for you.
 If this fails due to a one-way firewall, you must retrieve mpi4py on your
 local machine and upload it, just as we did for Amdahl.
 
-> ## Retrieve and Push mpi4py
+> ## Retrieve and Upload `mpi4py`
 >
 > If installing Amdahl failed because mpi4py could not be installed,
 > retrieve the tarball from <https://github.com/mpi4py/mpi4py/tarball/master>
 > then `rsync` it to the cluster, extract, and install:
 >
 > ```
-> {{ site.local.prompt }} wget https://github.com/mpi4py/mpi4py/tarball/master -O mpi4py.tar.gz
-> {{ site.local.prompt }} scp amdahl.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
+> {{ site.local.prompt }} wget -O mpi4py.tar.gz https://github.com/mpi4py/mpi4py/tarball/master
+> {{ site.local.prompt }} scp mpi4py.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
 > # or
-> {{ site.local.prompt }} rsync -avP amdahl.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
+> {{ site.local.prompt }} rsync -avP mpi4py.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
 > ```
 > {: .language-bash}
+>
 > ```
-> {{ site.remote.prompt }} mkdir mpi4py
-> {{ site.remote.prompt }} tar -xvzf mpi4py.tar.gz -C amdahl --strip-components=1
+> {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
+> {{ site.remote.prompt }} tar -xvzf mpi4py.tar.gz  # extract the archive
+> {{ site.remote.prompt }} mv mpi4py* mpi4py        # rename the directory
 > {{ site.remote.prompt }} cd mpi4py
 > {{ site.remote.prompt }} python3 -m pip install --user .
 > {{ site.remote.prompt }} cd ../amdahl
@@ -83,9 +85,9 @@ local machine and upload it, just as we did for Amdahl.
 > {: .language-bash}
 {: .discussion}
 
-`pip` may warn that your user package binaries are not in your PATH.
-
-> ## If Pip Raises a Warning...
+> ## If `pip` Raises a Warning...
+>
+> `pip` may warn that your user package binaries are not in your PATH.
 >
 > ```
 > WARNING: The script amdahl is installed in "${HOME}/.local/bin" which is
@@ -105,18 +107,22 @@ local machine and upload it, just as we did for Amdahl.
 > If the command returns no output, displaying a new prompt, it means the file
 > `amdahl` has not been found. You must update the environment variable named
 > `PATH` to include the missing folder.
-> Run the following command to update your shell configuration file, then log
-> off the cluster and back on again so it takes effect.
+> Edit your shell configuration file as follows, then log off the cluster and
+> back on again so it takes effect.
 >
 > ```
-> {{ site.remote.prompt }} echo "export PATH=${PATH}:${HOME}/.local/bin" >> ~/.bashrc
-> {{ site.remote.prompt }} logout
-> {{ site.local.prompt }} ...
+> {{ site.remote.prompt }} nano ~/.bashrc
+> {{ site.remote.prompt }} tail ~/.bashrc
 > ```
 > {: .language-bash}
+> ```
+> export PATH=${PATH}:${HOME}/.local/bin
+> ```
+> {: .output}
 >
-> `which` should now be able to find `amdahl` without difficulties.
-> If you had to load a Python module, load it again!
+> After logging back in to {{ site.remote.login }}, `which` should be able to
+> find `amdahl` without difficulties.
+> If you had to load a Python module, load it again.
 {: .discussion}
 
 ## Help!
@@ -178,7 +184,7 @@ reverse-chronological order: newest first. What was the output?
 > ## Read the Job Output
 >
 > The cluster output should be written to a file in the folder you launched the
-> job from.
+> job from. For example,
 >
 > ```
 > {{ site.remote.prompt }} ls -t
