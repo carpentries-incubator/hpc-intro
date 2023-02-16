@@ -58,11 +58,13 @@ use `{{ site.sched.hist }}` to get statistics about `parallel-job.sh`.
 
 {% include {{ site.snippets }}/resources/account-history.snip %}
 
-This shows all the jobs we ran today (note that there are multiple entries
-per job). To get info about a specific job, we change command slightly.
+This shows all the jobs we ran today (note that there are multiple entries per
+job).
+To get info about a specific job (for example, 347087), we change command
+slightly.
 
 ```
-{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965
+{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 347087
 ```
 {: .language-bash}
 
@@ -72,7 +74,7 @@ information to `less` to make it easier to view (use the left and right arrow
 keys to scroll through fields).
 
 ```
-{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965 | less
+{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 347087 | less
 ```
 {: .language-bash}
 
