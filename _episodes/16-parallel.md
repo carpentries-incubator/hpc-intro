@@ -66,7 +66,7 @@ local machine and upload it, just as we did for Amdahl.
 > then `rsync` it to the cluster, extract, and install:
 >
 > ```
-> {{ site.local.prompt }} wget -O mpi4py.tar.gz https://github.com/mpi4py/mpi4py/tarball/master
+> {{ site.local.prompt }} wget -O mpi4py.tar.gz https://github.com/mpi4py/mpi4py/releases/download/3.1.4/mpi4py-3.1.4.tar.gz
 > {{ site.local.prompt }} scp mpi4py.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
 > # or
 > {{ site.local.prompt }} rsync -avP mpi4py.tar.gz {{ site.remote.user }}@{{ site.remote.login }}:
