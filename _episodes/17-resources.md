@@ -47,9 +47,9 @@ finish and free up the resources needed to match what you asked for.
 
 ## Stats
 
-Since we already submitted `pi.py` to run on the cluster, we can query the
+Since we already submitted `amdahl` to run on the cluster, we can query the
 scheduler to see how long our job took and what resources were used. We will
-use `{{ site.sched.hist }}` to get statistics about `parallel-pi.sh`.
+use `{{ site.sched.hist }}` to get statistics about `parallel-job.sh`.
 
 ```
 {{ site.remote.prompt }} {{ site.sched.hist }}
@@ -58,11 +58,13 @@ use `{{ site.sched.hist }}` to get statistics about `parallel-pi.sh`.
 
 {% include {{ site.snippets }}/resources/account-history.snip %}
 
-This shows all the jobs we ran recently (note that there are multiple entries
-per job). To get info about a specific job, we change command slightly.
+This shows all the jobs we ran today (note that there are multiple entries per
+job).
+To get info about a specific job (for example, 347087), we change command
+slightly.
 
 ```
-{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 1965
+{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 347087
 ```
 {: .language-bash}
 
@@ -72,7 +74,7 @@ information to `less` to make it easier to view (use the left and right arrow
 keys to scroll through fields).
 
 ```
-{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }}
+{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 347087 | less
 ```
 {: .language-bash}
 
@@ -87,12 +89,12 @@ keys to scroll through fields).
 
 ## Improving Resource Requests
 
-From the job history, we see that `pi.py` jobs finished executing in
+From the job history, we see that `amdahl` jobs finished executing in
 at most a few minutes, once dispatched. The time estimate we provided
 in the job script was far too long! This makes it harder for the
 queuing system to accurately estimate when resources will become free
 for other jobs. Practically, this means that the queuing system waits
-to dispatch our `pi.py` job until the full requested time slot opens,
+to dispatch our `amdahl` job until the full requested time slot opens,
 instead of "sneaking it in" a much shorter window where the job could
 actually finish. Specifying the expected runtime in the submission
 script more accurately will help alleviate cluster congestion and may
@@ -100,7 +102,7 @@ get your job dispatched earlier.
 
 > ## Narrow the Time Estimate
 >
-> Edit `parallel_pi.sh` to set a better time estimate. How close can
+> Edit `parallel_job.sh` to set a better time estimate. How close can
 > you get?
 >
 > Hint: use `{{ site.sched.flag.time }}`.
