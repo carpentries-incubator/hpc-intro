@@ -2,7 +2,6 @@
 title: "Working on a remote HPC system"
 teaching: 10
 exercises: 0
-start: true
 questions:
 - "What is an HPC system?"
 - "How does an HPC system work?"

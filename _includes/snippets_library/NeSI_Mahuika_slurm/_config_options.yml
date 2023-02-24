@@ -51,7 +51,6 @@ episode_order:
   - 01-cluster
   - 02-filedir
   - 03-break1
-  - 035-filedir-cont
   - 04-modules
   - 05-scheduler
   - 06-lunch
@@ -92,14 +91,14 @@ kind: "lesson"
 # Workshop working directory.
 working_dir:
 - /nesi/project/nesi99991
-- resbaz2022
+- scion2023
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
-start_time: 780
+start_time: 630
 # Start time for people wanting to skip bash content 
-hpc_start_time: 780
+hpc_start_time: 765
 # Lesson to start at.
-hpc_start_lesson: 04-modules
+hpc_start_lesson: 01-cluster
 # Script to run if skipping bash lessons. Should create neccicery files to get started.
 hpc_start_script: late_start.sh
 
