@@ -25,8 +25,8 @@ By the end of this workshop, students will know how to:
 * Use the UNIX shell (also known as terminal or command line) to operate a
   computer, connect to a cluster, and write simple shell scripts.
 * Submit and manage jobs on a cluster using a scheduler, transfer files, and
-  use software through environment modules.
-* Review and optimise job resource usage. 
+* Use software through environment modules.
+* Review and optimise job resource usage.
 
 > ## Getting Started
 >

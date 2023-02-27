@@ -1,5 +1,5 @@
 #------------------------------------------------------------
-# NIST CTCMS Slurm
+# Birmingham Baskerville  Slurm: Jenny Wong
 #------------------------------------------------------------
 
 # Cluster host and scheduler options: the defaults come from
@@ -17,36 +17,36 @@
 # installation. Remember to keep the leading slash on the
 # `snippets` variable below!
 
-snippets: "/snippets_library/NIST_CTCMS_slurm"
+snippets: "/snippets_library/Birmingham_Baskerville_slurm"
 
 local:
   prompt: "[user@laptop ~]$"
-  bash_shebang: "#!/usr/bin/bash"
+  bash_shebang: "#!/usr/bin/env bash"
 
 remote:
-  name: "mr-french"
-  login: "mr-french.nist.gov"
-  host: "mr-french"
-  node: "r001"
-  location: "National Institute of Standards and Technology"
-  homedir: "/users"
+  name: "Baskerville"
+  login: "login.baskerville.ac.uk"
+  host: "bask-pg0310u18a.cluster.baskerville.ac.uk"
+  node: "bask-pg"
+  location: "University of Birmingham, UK"
+  homedir: "/bask/homes/y/yourUsername"
   user: "yourUsername"
-  prompt: "501 mr-french%"
+  prompt: "[yourUsername@bask-pg0310u18a ~]$"
   bash_shebang: "#!/bin/bash"
 
 sched:
   name: "Slurm"
   submit:
     name: "sbatch"
-    options: "--partition=serial"
+    options: ""
   queue:
-    debug: "serial"
-    testing: "fast"
+    debug: "devel"
+    testing: "normal"
   status: "squeue"
   flag:
     user: "-u yourUsername"
     interactive: ""
-    histdetail: "--format=JobID,JobName,Submit,Start,State,ReqCPUS,Reserved,Elapsed,MaxRSS"
+    histdetail: "-l -j"
     name: "-J"
     time: "-t"
     queue: "-p"
@@ -54,13 +54,14 @@ sched:
   interactive: "srun"
   info: "sinfo"
   comment: "#SBATCH"
-  hist: "sacct -u yourUsername"
+  hist: "sacct -u $USER"
 
 episode_order:
   - 10-hpc-intro
   - 11-connecting
   - 12-cluster
   - 13-scheduler
+  - 14-modules
   - 15-transferring-files
   - 16-parallel
   - 17-resources

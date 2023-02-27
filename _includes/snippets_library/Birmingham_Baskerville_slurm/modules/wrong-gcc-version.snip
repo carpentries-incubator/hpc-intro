@@ -1,0 +1,34 @@
+Let's take a closer look at the `gcc` module. GCC is an extremely widely used
+C/C++/Fortran compiler. Tons of software is dependent on the GCC version, and
+might not compile or run if the wrong version is loaded. In this case, there
+are few different versions:
+
+`GCC/7.3.0-2.30    GCC/8.2.0-2.31.1    GCC/8.3.0    GCC/9.3.0`
+
+How do we load each copy and which copy is the default?
+
+On SAGA and Fram we do not have default modules and we must use the full name
+to load it.
+
+```
+{{ site.host_prompt }} module load gcc
+```
+{: .language-bash}
+
+```
+Lmod has detected the following error:  The following module(s) are unknown:
+"gcc"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore-cache load "gcc"
+```
+{: .output}
+
+To load a software module we must specify the full module name:
+
+```
+{{ site.host_prompt }} module load GCC/8.2.0-2.31.1
+{{ site.host_prompt }} gcc --version
+```
+{: .language-bash}
