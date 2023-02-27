@@ -29,10 +29,7 @@ A *Remote* computer is one you have no access to physically and must connect via
 
 *Cloud* refers to remote computing resources
 that are provisioned to users on demand or as needed.
-<!-- Cloud resources may refer to machines performing relatively simple tasks such as
-serving websites, providing shared storage, providing web services (such as
-e-mail or social media platforms), as well as more traditional compute
-intensive tasks such as running a simulation. -->
+
 
 *HPC*, *High Performance Computer*, *High Performance Computing* or *Supercomputer* are all general terms for a large or powerful computing resource.
 
