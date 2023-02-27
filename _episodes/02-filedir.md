@@ -469,7 +469,7 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 
 > ## Globbing
 > 
-> One of the most powerfull features of bash is _filename expansion_, otherwise known as _globbing_. 
+> One of the most powerful features of bash is _filename expansion_, otherwise known as _globbing_. 
 > This allows you to use _patterns_ to match a file name (or multiple files),
 > which will then be operated on as if you had typed out all of the matches.
 >
