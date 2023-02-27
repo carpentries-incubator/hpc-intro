@@ -1,7 +1,7 @@
 ---
 title: "Accessing software via Modules"
-teaching: 30
-exercises: 15
+teaching: 15
+exercises: 5
 questions:
 - "How do we load and unload software packages?"
 objectives:
@@ -33,6 +33,8 @@ by Python 2. Software compiled against a newer version of the C libraries and
 then used when they are not present will result in a nasty `'GLIBCXX_3.4.20'
 not found` error, for instance.
 
+<!-- I think python is a bad example here as "python 2 and python 3 conflict" sounds like a versioning issue. -->
+
 Software versioning is another common issue. A team might depend on a certain
 package version for their research project - if the software version was to
 change (for instance, if a package was updated), it might affect their results.
@@ -45,6 +47,59 @@ particular version of another software package). For example, the VASP
 materials science software may depend on having a particular version of the
 FFTW (Fastest Fourier Transform in the West) software library available for it
 to work.
+
+## Environment
+
+Before understanding environment modules we first need to understand what is meant by _environment_.
+
+The environment is defined by it's _environment variables_.
+
+_Environment Variables_ are writable named-variables.
+
+We can assign a variable named "FOO" with the value "bar" using the syntax.
+
+```
+{{ site.remote.prompt }} FOO"bar"
+```
+{: .language-bash}
+
+Convention is to name fixed variables in all caps.
+
+Our new variable can be referenced using `$FOO`, you could also use  `${FOO}`,
+enclosing a variable in curly brackets is good practice as it avoids possible ambiguity.
+
+```
+{{ site.remote.prompt }} $FOO
+```
+{: .language-bash}
+
+```
+-bash: bar: command not found
+```
+{: .output}
+
+We got an error here because the variable is evalued _in the terminal_ then executed.
+If we just want to print the variable we can use the command,
+
+```
+{{ site.remote.prompt }} echo $FOO
+```
+{: .language-bash}
+```
+bar
+```
+{: .output}
+
+We can get a full list of environment variables using the command,
+
+```
+{{ site.remote.prompt }} env
+```
+{: .language-bash}
+{% include {{ site.snippets }}/modules/env-output.snip %}
+
+These variables control many aspects of how your terminal, and any software launched from your terminal works.
+{: .callout}
 
 ## Environment Modules
 
@@ -63,9 +118,31 @@ what you want to do. For a list of subcommands you can use `module -h` or
 `module help`. As for all commands, you can access the full help on the _man_
 pages with `man module`.
 
-On login you may start out with a default set of modules loaded or you may
-start out with an empty environment; this depends on the setup of the system
-you are using.
+### Purging Modules
+
+Depending on how you are accessing the HPC the modules you have loaded by default will be different. So before we start listing our modules we will first use the `module purge` command to clear all but the minimum default modules so that we are all starting with the same modules.
+
+```
+{{ site.remote.prompt }} module purge
+```
+{: .language-bash}
+
+```
+
+The following modules were not unloaded:
+   (Use "module --force purge" to unload all):
+
+  1) XALT/minimal   2) slurm   3) NeSI
+```
+{: .output}
+
+Note that `module purge` is informative. It lets us know that all but a minimal default
+set of packages have been unloaded (and how to actually unload these if we
+truly so desired).
+
+We are able to unload individual modules, unfortunately within the NeSI system it does not always unload it's dependencies, therefore we recommend `module purge` to bring you back to a state where only those modules needed to perform your normal work on the cluster.
+
+`module purge` is a useful tool for ensuring repeatable research by guaranteeing that the environment that you build your software stack from is always the same. This is important since some modules have the potential to silently effect your results if they are loaded (or not loaded).
 
 ### Listing Available Modules
 
@@ -81,8 +158,16 @@ To see available software modules, use `module avail`:
 ### Listing Currently Loaded Modules
 
 You can use the `module list` command to see which modules you currently have
-loaded in your environment. If you have no modules loaded, you will see a
-message telling you so
+loaded in your environment. On {{ site.remote.name }} you will have a few default modules loaded when you login.  
+
+```
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+{% include {{ site.snippets }}/modules/module-list-default.snip %}
+
+<!-- If you have no modules loaded you will see a message telling you so
 
 ```
 {{ site.remote.prompt }} module list
@@ -90,75 +175,83 @@ message telling you so
 {: .language-bash}
 
 ```
-No Modulefiles Currently Loaded.
+No modules loaded
+
 ```
-{: .output}
+{: .output} -->
 
 ## Loading and Unloading Software
 
-To load a software module, use `module load`. In this example we will use
-Python 3.
+You can load software using the `module load` command. In this example we will be using the programming language _R_.
 
-Initially, Python 3 is not loaded. We can test this by using the `which`
+Initially, R is not loaded. We can test this by using the `which`
 command. `which` looks for programs the same way that Bash does, so we can use
 it to tell us where a particular piece of software is stored.
 
 ```
-{{ site.remote.prompt }} which python3
+{{ site.remote.prompt }} which R
 ```
 {: .language-bash}
 
-{% include {{ site.snippets }}/modules/missing-python.snip %}
+{% include {{ site.snippets }}/modules/missing-r.snip %}
 
-We can load the `python3` command with `module load`:
+The important bit here being:
+> /usr/bin/which: no R in (...)
 
-{% include {{ site.snippets }}/modules/module-load-python.snip %}
+Now lets try loading the R environment module, and try again.
 
-{% include {{ site.snippets }}/modules/python-executable-dir.snip %}
+{% include {{ site.snippets }}/modules/module-load-r.snip %}
+
+
+> ## Tab Completion
+>
+> The module command also supports tab completion. You may find this the easiest way to find the right software.
+{: .callout}
 
 So, what just happened?
 
 To understand the output, first we need to understand the nature of the `$PATH`
-environment variable. `$PATH` is a special environment variable that controls
+environment variable.
+
+`$PATH` is a special environment variable that controls
 where a UNIX system looks for software. Specifically `$PATH` is a list of
 directories (separated by `:`) that the OS searches through for a command
 before giving up and telling us it can't find it. As with all environment
 variables we can print it out using `echo`.
 
-```
-{{ site.remote.prompt }} echo $PATH
-```
-{: .language-bash}
+{% include {{ site.snippets }}/modules/r-module-path.snip %}
 
-{% include {{ site.snippets }}/modules/python-module-path.snip %}
+We can improve the readability of this command slightly by replacing the colon delimiter`:`s with newline characters.
 
-You'll notice a similarity to the output of the `which` command. In this case,
-there's only one difference: the different directory at the beginning. When we
-ran the `module load` command, it added a directory to the beginning of our
-`$PATH`. Let's examine what's there:
+{% include {{ site.snippets }}/modules/r-module-path-tidy.snip %}
 
-{% include {{ site.snippets }}/modules/python-ls-dir-command.snip %}
+You'll notice a similarity to the output of the `which` command. However, in this case,
+there are a lot more directories at the beginning. When we
+ran the `module load` command, it added many directories to the beginning of our
+`$PATH`.
 
-{% include {{ site.snippets }}/modules/python-ls-dir-output.snip %}
+The path to NeSI XALT utility will normally show up first.  This helps us track software usage, but the more important directory is the second one: `/opt/nesi/CS400_centos7_bdw/R/4.2.1-gimkl-2022a/bin` Let's examine what's there:
 
-Taking this to its conclusion, `module load` will add software to your `$PATH`.
-It "loads" software. A special note on this - depending on which version of the
-`module` program that is installed at your site, `module load` will also load
-required software dependencies.
+{% include {{ site.snippets }}/modules/r-ls-dir-command.snip %}
+
+`module load` "loads" not only the specified software, but it also loads software dependencies. That is, the software that the application you load requires to run.
 
 {% include {{ site.snippets }}/modules/software-dependencies.snip %}
 
-Note that this module loading process happens principally through
-the manipulation of environment variables like `$PATH`. There
-is usually little or no data transfer involved.
+Before moving onto the next session lets use `module purge` again to return to the minimal environment.
 
-The module loading process manipulates other special environment
-variables as well, including variables that influence where the
-system looks for software libraries, and sometimes variables which
-tell commercial software packages where to find license servers.
+```
+{{ site.remote.prompt }} module purge
+```
+{: .language-bash}
 
-The module command also restores these shell environment variables
-to their previous state when a module is unloaded.
+```
+The following modules were not unloaded:
+   (Use "module --force purge" to unload all):
+
+  1) XALT/minimal   2) slurm   3) NeSI
+```
+{: .output}
 
 ## Software Versioning
 
@@ -166,7 +259,7 @@ So far, we've learned how to load and unload software packages. This is very
 useful. However, we have not yet addressed the issue of software versioning. At
 some point or other, you will run into issues where only one particular version
 of some software will be suitable. Perhaps a key bugfix only happened in a
-certain version, or version X broke compatibility with a file format you use.
+certain version, or version _X_ broke compatibility with a file format you use.
 In either of these example cases, it helps to be very specific about what
 software is loaded.
 
@@ -179,37 +272,6 @@ Let's examine the output of `module avail` more closely.
 
 {% include {{ site.snippets }}/modules/available-modules.snip %}
 
-{% include {{ site.snippets }}/modules/wrong-gcc-version.snip %}
-
-> ## Using Software Modules in Scripts
->
-> Create a job that is able to run `python3 --version`. Remember, no software
-> is loaded by default! Running a job is just like logging on to the system
-> (you should not assume a module loaded on the login node is loaded on a
-> compute node).
->
-> > ## Solution
-> >
-> > ```
-> > {{ site.remote.prompt }} nano python-module.sh
-> > {{ site.remote.prompt }} cat python-module.sh
-> > ```
-> > {: .language-bash}
-> >
-> > ```
-> > {{ site.remote.bash_shebang }}
-> >
-> > module load {{ site.remote.module_python3 }}
-> >
-> > python3 --version
-> > ```
-> > {: .output}
-> >
-> > ```
-> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}python-module.sh
-> > ```
-> > {: .language-bash}
-> {: .solution}
-{: .challenge}
+{% include {{ site.snippets }}/modules/wrong-python-version.snip %}
 
 {% include links.md %}
