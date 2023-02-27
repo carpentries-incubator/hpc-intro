@@ -1,204 +1,122 @@
 ---
 title: "Using resources effectively"
-teaching: 25
-exercises: 5
+teaching: 10
+exercises: 20
 questions:
 - "How can I review past jobs?"
 - "How can I use this knowledge to create a more accurate submission script?"
 objectives:
-- "Understand how to look up job statistics and profile code."
-- "Understand job size implications."
-- "Understand problems and limitations involved in using multiple CPUs."
+- "Look up job statistics."
+- "Make more accurate resource requests in job scripts based on data describing past performance."
 keypoints:
-- "As your task gets larger, so does the potential for inefficiencies."
-- "The smaller your job (time, CPUs, memory, etc), the faster it will schedule."
+- "Accurate job scripts help the queuing system efficiently allocate
+  shared resources."
 ---
-<!--
-- scaling testing involves running jobs with increasing resources and measuring the efficiency in order to establish a pattern informed decisions about future job submissions.-->
 
-In previous episodes we covered *how* to request resources, but what you may not know is *what* resources you need to request. The solution to this problem is testing!
-Understanding the resources you have available and how to use them most efficiently is a vital skill in high performance computing.
+We've touched on all the skills you need to interact with an HPC cluster:
+logging in over SSH, loading software modules, submitting parallel jobs, and
+finding the output. Let's learn about estimating resource usage and why it
+might matter.
 
-Below is a table of common resources and issues you may face if you do not request the correct amount.
+## Estimating Required Resources Using the Scheduler
 
-
-<table>
-    <thead>
-        <tr>
-            <th>  </th>
-            <th>Not enough</th>
-            <th>Too Much</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><b>   CPU   </b></td>
-            <td>The job will run more slowly than expected, and so may run out of time and get killed for exceeding its time limit.</td>
-            <td>The job will wait in the queue for longer. <br>
-             You will be charged for CPUs regardless of whether they are used or not.<br>
-            Your fair share score will fall more.
-           </td>
-        </tr>
-        <tr>
-            <td><b>   Memory   </b></td>
-            <td>Your job will fail, probably with an 'OUT OF MEMORY' error, segmentation fault or bus error (may not happen immediately).</td>
-            <td>The job will wait in the queue for longer.<br> 
-             You will be charged for memory regardless of whether it is used or not.<br>
-             Your fair share score will fall more.</td>
-        </tr>
-        <tr>
-            <td><b>   Walltime   </b></td>
-            <td>The job will run out of time and be terminated by the scheduler.</td>
-            <td>The job will wait in the queue for longer.</td>
-        </tr>
-    </tbody>
-</table>
-
-## Estimating Required Resources
-
-How do we know what resources to ask for in our scripts? In general, unless the software
+Although we covered requesting resources from the scheduler earlier with the
+π code, how do we know what type of resources the software will need in
+the first place, and its demand for each? In general, unless the software
 documentation or user testimonials provide some idea, we won't know how much
 memory or compute time a program will need.
 
 > ## Read the Documentation
 >
-> NeSI maintains documentation  that does have some guidance on using resources for some software
-> However, as you noticed in the Modules lessons, we have a lot of software.  So it is also advised to search
-> the web for others that may have written up guidance for getting the most out of your specific software.
+> Most HPC facilities maintain documentation as a wiki, a website, or a
+> document sent along when you register for an account. Take a look at these
+> resources, and search for the software you plan to use: somebody might have
+> written up guidance for getting the most out of it.
 {: .callout}
 
-## Running Test Jobs
+A convenient way of figuring out the resources required for a job to run
+successfully is to submit a test job, and then ask the scheduler about its
+impact using `{{ site.sched.hist }}`. You can use this knowledge to set up the
+next job with a closer estimate of its load on the system. A good general rule
+is to ask the scheduler for 20% to 30% more time and memory than you expect the
+job to need. This ensures that minor fluctuations in run time or memory use
+will not result in your job being cancelled by the scheduler. Keep in mind that
+if you ask for too much, your job may not run even though enough resources are
+available, because the scheduler will be waiting for other people's jobs to
+finish and free up the resources needed to match what you asked for.
 
-As you may have to run this a few times you want to spend as little time waiting as possible.
-A test job should not run for more than 15mins. This could involve using a smaller input, coarser parameters or using a subset of the calculations.
-As well as being quick to run, you want your test job to be quick to start (e.g. get through queue quickly), the best way to ensure this is keep the resources requested (memory, CPUs, time) small.
-Similar as possible to actual jobs e.g. same functions etc.
-Use same workflow. (most issues are caused by small issues, typos, missing files etc, your test job is a jood chance to sort out these issues.).
-Make sure outputs are going somewhere you can see them.
-> ## Serial Test
+## Stats
+
+Since we already submitted `amdahl` to run on the cluster, we can query the
+scheduler to see how long our job took and what resources were used. We will
+use `{{ site.sched.hist }}` to get statistics about `parallel-job.sh`.
+
+```
+{{ site.remote.prompt }} {{ site.sched.hist }}
+```
+{: .language-bash}
+
+{% include {{ site.snippets }}/resources/account-history.snip %}
+
+This shows all the jobs we ran today (note that there are multiple entries per
+job).
+To get info about a specific job (for example, 347087), we change command
+slightly.
+
+```
+{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 347087
+```
+{: .language-bash}
+
+It will show a lot of info; in fact, every single piece of info collected on
+your job by the scheduler will show up here. It may be useful to redirect this
+information to `less` to make it easier to view (use the left and right arrow
+keys to scroll through fields).
+
+```
+{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 347087 | less
+```
+{: .language-bash}
+
+> ## Discussion
 >
-> Often a good first test to run, is to execute your job *serially* e.g. using only 1 CPU.
-> This not only saves you time by being fast to start, but serial jobs can often be easier to debug.
-> If you confirm your job works in its most simple state you can identify problems caused by
-> paralellistaion much more easily.
-{: .callout}
-
-You generally should ask for 20% to 30% more time and memory than you think the job will use.
-Testing allows you to become more more precise with your resource requests.  We will cover a bit more on running tests in the last lesson.
-
-## Efficient way to run tests jobs using debug QOS (Quality of Service)
-
-Before submitting a large job, first submit one as a test to make
-sure everything works as expected.  Often, users discover typos in their submit
-scripts, incorrect module names or possibly an incorrect pathname after their job
-has queued for many hours.  Be aware that your job is not fully scanned for
-correctness when you submit the job.  While you may get an immediate error if your
-SBATCH directives are malformed, it is not until the job starts to run that the
-interpreter starts to process the batch script.
-
-NeSI has an easy way for you to test your job submission.  One can employ the debug
-QOS to get a short, very high priority test job.  Debug jobs have to run within 15 
-minutes and cannot use more that 2 nodes.  To use debug QOS, add or change the
-following in your batch submit script  
-`#SBATCH --qos=debug`  
-`#SBATCH --time=15:00`  
-
-Adding these SBATCH directives will provide your job with the highest priority
-possible, meaning it should start to run within a few minutes, provided
-your resource request is not too large.
-## Measuring Resource Usage of a Finished Job
-
-If we check the status of our finished job using the `sacct` command we learned earlier.
-
-```
-{{ site.remote.prompt }} sacct
-```
-{: .language-bash}
-
-{% include {{ site.snippets }}/scheduler/basic-job-status-sacct.snip %}
-
-With this information, we may determine a couple of things. 
-
-Memory efficiency can be determined by comparing **ReqMem** (requested memory) with **MaxRSS** (maximum used memory), MaxRSS is  given in KB, so a unit conversion is usually required.
-
-So for the above example we see that **0.1GB** (102048K) of our requested **1GB** meaning the memory efficincy was about 10%.
-
-CPU efficiency can be determined by comparing **TotalCPU** (CPU time), with the maximum possible CPU time. The maximum possible CPU time equal to **Alloc** (number of allocated CPUs) multiplied by **Elapsed** (Walltime, actual time passed).
-
-For the above example **33 seconds** of computation was done where the maximum possible computation time was **96 seconds** (2 CPUs mutiplied by 00:00:48), meaning the CPU efficiency was about 35%.
-
-For convenience, NeSI has provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA). 
-```
-{{ site.remote.prompt }} nn_seff <jobid>
-```
-{: .language-bash}
-
-{% include {{ site.snippets }}/resources/seff.snip %}
-
-If you were to submit this same job again what resources would you request?
-
-## Measuring the System Load From Currently Running Tasks
-
-On Mahuika, we allow users to connect directly to compute nodes from the
-login node. This is useful to check on a running job and see how it's doing, however, we
-only allow you to connect to nodes on which you have running jobs. 
-
-### Monitor System Processes With `htop`
-
-The most reliable way to check current system stats is with `htop`. Some sample
-output might look like the following (type `q` to exit `htop`):
-
-```
-{{ site.remote.prompt }} htop -u <yourUsername>
-```
-{: .language-bash}
-
-{% include {{ site.snippets }}/resources/monitor-processes-top.snip %}
-
-Overview of the most important fields:
-
-* `PID`: What is the numerical id of each process?
-* `USER`: Who started the process?
-* `RES`: What is the amount of memory currently being used by a process (in
-  bytes)?
-* `%CPU`: How much of a CPU is each process using? Values higher than 100
-  percent indicate that a process is running in parallel.
-* `%MEM`: What percent of system memory is a process using?
-* `TIME+`: How much CPU time has a process used so far? Processes using 2 CPUs
-  accumulate time at twice the normal rate.
-* `COMMAND`: What command was used to launch a process?
-
-Running this command as is will show us information on tasks running on the login nod (where we should not be running resource intensive jobs anyway), in order to get information on a running job we will need to run htop on a compute node.
-
-#### Finding job node
-
-Running the command `sacct` we can see where our currently located jobs are located.
-
-```
-{{ site.remote.prompt }} squeue --me
-```
-{: .language-bash}
-
-
-{% include  {{ site.snippets }}/resources/get-job-node.snip %}
-
-Now that we know the location of the job (wbn189) we can use SSH to run htop there.
-
-```
-{{ site.remote.prompt }} ssh wbn189 -t htop -u $USER
-```
-{: .language-bash}
-
-
-<!-- Now that you know the efficiency of your small test job what next? Throw 100 more CPUs at the problem for 100x speedup? -->
-
-> ## Next Steps
+> This view can help compare the amount of time requested and actually
+> used, duration of residence in the queue before launching, and memory
+> footprint on the compute node(s).
 >
-> You can use this knowledge to set up the
-> next job with a closer estimate of its load on the system. 
-> A good general rule
-> is to ask the scheduler for **30%** more time and memory than you expect the
-> job to need.
-{: .callout}
+> How accurate were our estimates?
+{: .discussion}
+
+## Improving Resource Requests
+
+From the job history, we see that `amdahl` jobs finished executing in
+at most a few minutes, once dispatched. The time estimate we provided
+in the job script was far too long! This makes it harder for the
+queuing system to accurately estimate when resources will become free
+for other jobs. Practically, this means that the queuing system waits
+to dispatch our `amdahl` job until the full requested time slot opens,
+instead of "sneaking it in" a much shorter window where the job could
+actually finish. Specifying the expected runtime in the submission
+script more accurately will help alleviate cluster congestion and may
+get your job dispatched earlier.
+
+> ## Narrow the Time Estimate
+>
+> Edit `parallel_job.sh` to set a better time estimate. How close can
+> you get?
+>
+> Hint: use `{{ site.sched.flag.time }}`.
+>
+> > ## Solution
+> >
+> > The following line tells {{ site.sched.name }} that our job should
+> > finish within 2 minutes:
+> >
+> > ```
+> > {{ site.sched.comment }} {{ site.sched.flag.time }}{% if site.sched.name == "Slurm" %} {% else %}={% endif %}00:02:00
+> > ```
+> > {: .language-bash}
+> {: .solution}
+{: .challenge}
 
 {% include links.md %}
