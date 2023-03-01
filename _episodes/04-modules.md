@@ -59,7 +59,7 @@ _Environment Variables_ are writable named-variables.
 We can assign a variable named "FOO" with the value "bar" using the syntax.
 
 ```
-{{ site.remote.prompt }} FOO"bar"
+{{ site.remote.prompt }} FOO="bar"
 ```
 {: .language-bash}
 
