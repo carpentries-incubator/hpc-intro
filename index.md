@@ -9,9 +9,9 @@ root: .
 {% assign late_start_episode = site.episodes | where: "slug", site.hpc_start_lesson | first %}
 The first half of this workshop will cover basics of command line (in an HPC environment).
 
-The second harlf of this workshop will provide an introduction and overview to the tools available on high-performance computing systems and how to use them effectively.
+The second half of this workshop will provide an introduction and overview to the tools available on high-performance computing systems and how to use them effectively.
 
-If you are already comfortable with command line and wish to skip the first half you may join for the [{{late_start_episode.title}}]({{site.url}}/{{site.hpc_start_lesson}}) at {% if hours < 10 %}0{% endif %}{{ hours}}:{% if minutes < 10 %}0{% endif %}{{ minutes }}
+[//]: If you are already comfortable with command line and wish to skip the first half you may join for the [{{late_start_episode.title}}]({{site.url}}/{{site.hpc_start_lesson}}) at {% if hours < 10 %}0{% endif %}{{ hours}}:{% if minutes < 10 %}0{% endif %}{{ minutes }}
 
 > ## Prerequisites
 >
