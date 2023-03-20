@@ -328,4 +328,4 @@ can run these types of tasks as a one-off with `{{ site.sched.interactive }}`.
 {% include links.md %}
 
 [fshs]: https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
-[hisat]: https://ccb.jhu.edu/software/hisat2/index.shtml
+[hisat]: https://daehwankimlab.github.io/hisat2/
