@@ -434,7 +434,7 @@ directories "backup" and "thing"; "/Users/backup" contains "original",
 > > ## Solution
 > >
 > > 1. No: there *is* a directory `backup` in `/Users`.
-> > 2. No: this is the content of `Users/thing/backup`,
+> > 2. No: this is the content of `/Users/thing/backup`,
 > >    but with `..`, we asked for one level further up.
 > > 3. Yes: `../backup/` refers to `/Users/backup/`.
 > >
