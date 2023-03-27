@@ -1,0 +1,175 @@
+#------------------------------------------------------------
+# NeSI: Mahuika + SLURM
+#------------------------------------------------------------
+# If your cluster is not represented in the library, please
+# copy an existing folder, rename it, and customize for your
+# installation. Remember to keep the leading slash on the
+# `snippets` variable below!
+
+snippets: "/snippets_library/NeSI_Mahuika_slurm"
+
+local:
+  prompt: "[user@laptop ~]$"
+  bash_shebang: "#!/usr/bin/env bash"
+
+remote:
+  name: "mahuika"
+  login: "nesi.org.nz"
+  host: "mahuika02"
+  node: "mahuika02"
+  location: "Greta Point Datacenter"
+  homedir: "/home"
+  user: "yourUsername"
+  prompt: "[yourUsername@mahuika ~]$"
+  bash_shebang: "#!/bin/bash -e"
+
+sched:
+  name: "Slurm"
+  submit:
+    name: "sbatch"
+    options: ""
+  queue:
+    debug: "debug"
+  status: "squeue"
+  flag:
+    user: "-u yourUsername"
+    me: "--me"
+    interactive: ""
+    histdetail: "-l -j"
+    name: "--job-name"
+    time: "--time"
+    queue: "--partition"
+  del: "scancel"
+  interactive: "srun"
+  info: "sinfo"
+  comment: "#SBATCH"
+  hist: "sacct"
+  efficiency: "nn_seff"
+  projectcode: "nesi99991"
+
+episode_order:
+  - 01-cluster
+  - 02-filedir
+  - 03-break1
+  - 04-modules
+  - 05-scheduler
+  - 06-lunch
+  - 064-parallel
+  - 07-resources
+  - 08-break2
+  - 09-scaling
+  - 095-writing-good-code
+
+
+#------------------------------------------------------------
+# Values for this lesson
+#------------------------------------------------------------
+
+# Which carpentry is this?
+# "swc": Software Carpentry
+# "dc":  Data Carpentry
+# "lc":  Library Carpentry
+# "cp":  Carpentries (e.g., instructor traning)
+carpentry: "incubator"
+
+# Overall title for pages.
+title: "Introduction to High-Performance Computing"
+
+# Email address, no mailto:
+email: "support@nesi.org.nz"
+
+# Life cycle stage of the lesson ("pre-alpha", "alpha", "beta", "stable")?
+life_cycle: "stable"
+
+#------------------------------------------------------------
+# Generic settings (should not need to change).
+#------------------------------------------------------------
+
+# What kind of thing is this ("workshop" or "lesson")?
+kind: "lesson"
+
+# Workshop working directory.
+working_dir:
+- /nesi/project/nesi99991
+- introhpc2303
+
+# Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
+# 600 is 10am
+start_time: 600
+# Start time for people wanting to skip bash content 
+hpc_start_time: 765
+# Lesson to start at.
+hpc_start_lesson: 01-cluster
+# Script to run if skipping bash lessons. Should create neccicery files to get started.
+hpc_start_script: late_start.sh
+
+# Magic to make URLs resolve both locally and on GitHub. Please don't change.
+repository: <USERNAME>/<PROJECT>
+
+# Invoke the Carpentries theme rather than copying into our repository.
+remote_theme: carpentries/carpentries-theme
+
+# Sites.
+amy_site: "https://amy.carpentries.org/"
+carpentries_github: "https://github.com/carpentries"
+carpentries_pages: "https://carpentries.github.io"
+carpentries_site: "https://carpentries.org/"
+dc_site: "https://datacarpentry.org"
+example_repo: "https://github.com/carpentries/lesson-example"
+example_site: "https://carpentries.github.io/lesson-example"
+lc_site: "https://librarycarpentry.org/"
+swc_github: "https://github.com/swcarpentry"
+swc_pages: "https://swcarpentry.github.io"
+swc_site: "https://software-carpentry.org"
+template_repo: "https://github.com/carpentries/styles"
+training_site: "https://carpentries.github.io/instructor-training"
+workshop_repo: "https://github.com/carpentries/workshop-template"
+workshop_site: "https://carpentries.github.io/workshop-template"
+cc_by_human: "https://creativecommons.org/licenses/by/4.0/"
+support_docs: "https://support.nesi.org.nz/hc/en-gb"
+exersice: "https://docs.google.com/spreadsheets/d/1D5PnhE6iJOB3ZKkDCiBHnk5CNZlhmj_gS-IXKGkkVoI/edit?usp=sharing"
+
+
+
+# Specify that things in the Episodes and Extras collections should be output.
+collections:
+  episodes:
+    output: true
+    permalink: /:path/index.html
+  extras:
+    output: true
+    permalink: /:path/index.html
+
+# Set the default layout for things in the episodes collection.
+defaults:
+  - values:
+      root: .
+      layout: page
+  - scope:
+      path: ""
+      type: episodes
+    values:
+      root: ..
+      layout: episode
+  - scope:
+      path: ""
+      type: extras
+    values:
+      root: ..
+      layout: page
+
+# Files and directories that are not to be copied.
+exclude:
+  - Makefile
+  - bin/
+  - .Rproj.user/
+  - .vendor/
+  - vendor/
+  - .docker-vendor/
+
+# Turn on built-in syntax highlighting.
+highlighter: rouge
+
+plugins:
+  - jekyll-redirect-from
+  - jekyll-paginate
