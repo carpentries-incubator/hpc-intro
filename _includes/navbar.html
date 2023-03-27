@@ -55,8 +55,7 @@ Lesson navigation bar.
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
 
-        {% comment %} Always show code of conduct. {% endcomment %}
-        <li><a href="{{ relative_root_path }}{% link CODE_OF_CONDUCT.md %}">Code of Conduct</a></li>
+        <li><a href="{{ relative_root_path }}{% link setup.md %}">Setup</a></li>
 
         {% if site.kind == "lesson" %}
 
@@ -91,6 +90,7 @@ Lesson navigation bar.
             aria-haspopup="true" aria-expanded="false">Extras <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="{{ relative_root_path }}{% link reference.md %}">Reference</a></li>
+            <li><a href="{{ relative_root_path }}{% link CODE_OF_CONDUCT.md %}">Code Of Conduct</a></li>
             {% for lesson_extra in lesson_extras %}
             {% if site.extras_order %}
             {% assign extra = site.extras | where: "slug", lesson_extra | first %}
@@ -104,9 +104,6 @@ Lesson navigation bar.
           </ul>
         </li>
         {% endif %}
-
-        {% comment %} Always show license. {% endcomment %}
-        <li><a href="{{ relative_root_path }}{% link LICENSE.md %}">License</a></li>
         {% if page.source %}
         {% if page.source == "Rmd" %}
         <li><a href="{{repo_url}}/edit/{{ default_branch }}/{{page.path|replace: " _episodes", "_episodes_rmd" |

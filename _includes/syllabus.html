@@ -33,6 +33,7 @@ Days are displayed if at least one episode has 'start = true'.
             <td class="col-md-7">Please fill out our pre-training survey before the start of the course.</td>
         </tr>
         {% endif %}
+        <td colspan="3" class="col-md-1 align-self-center"><a href="{{ relative_root_path }}{% link setup.md %}">Setup</a></td>
         {% for lesson_episode in lesson_episodes %}
         {% if site.episode_order %}
         {% assign episode = site.episodes | where: "slug", lesson_episode | first %}
