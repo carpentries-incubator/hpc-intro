@@ -74,7 +74,7 @@ information to `less` to make it easier to view (use the left and right arrow
 keys to scroll through fields).
 
 ```
-{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 347087 | less
+{{ site.remote.prompt }} {{ site.sched.hist }} {{ site.sched.flag.histdetail }} 347087 | less -S
 ```
 {: .language-bash}
 
