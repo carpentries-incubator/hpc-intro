@@ -1,13 +1,21 @@
 ```
 {{ site.remote.bash_shebang }}
 {{ site.sched.comment }} {{ site.sched.flag.name }} parallel-pi
-{{ site.sched.comment }} {{ site.sched.flag.queue }} {{ site.sched.queue.testing }}
-{{ site.sched.comment }} -l nodes=1:ppn=4:mem=3G
+{{ site.sched.comment }} -l mem=3G
+{{ site.sched.comment }} -l h_rt=00:30:00
+{{ site.sched.comment }} -pe mpi 4
+{{ site.sched.comment }} -cwd
 
 # Load the computing environment we need
 module load python3
+module load compilers/gnu/4.9.2
+module load numactl/2.0.12  
+module load binutils/2.29.1/gnu-4.9.2 
+module load ucx/1.9.0/gnu-4.9.2
+module load openmpi/4.1.1/gnu-4.9.2
+module load mpi4py/3.1.4
 
 # Execute the task
-mpiexec python pi.py 100000000
+gerun python3 pi.py 100000000
 ```
 {: .language-bash}
