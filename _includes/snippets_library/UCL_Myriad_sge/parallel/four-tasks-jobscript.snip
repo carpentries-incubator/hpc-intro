@@ -3,6 +3,7 @@
 {{ site.sched.comment }} {{ site.sched.flag.name }} parallel-pi
 {{ site.sched.comment }} -l mem=3G
 {{ site.sched.comment }} -l h_rt=00:30:00
+{{ site.sched.comment }} -pe mpi 4
 {{ site.sched.comment }} -cwd
 
 # Load the computing environment we need
