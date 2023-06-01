@@ -17,6 +17,8 @@ if __name__ == '__main__':
     n_samples = int(sys.argv[1])
     if rank == 0:
         partitions = [ int(n_samples / cpus) ] * cpus
+        for a in range(n_samples - sum(partitions)):
+            partitions[a] += 1
         counts = [ int(0) ] * cpus
     else:
         partitions = None
