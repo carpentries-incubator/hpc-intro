@@ -84,8 +84,8 @@ if __name__ == '__main__':
         # one for the number of samples they should run, and
         # one to store the count info each rank returns.
         partitions = [ int(n_samples / cpus) ] * cpus
-        # if the number of samples does not equally divide the number of 
-        # partitions, we need to tidy up - work out left over and add 1
+        # if the number of partitions does not equally divide the number of 
+        # samples, we need to tidy up - work out left over and add 1
         # to each of that many partitions.
         for a in range(n_samples - sum(partitions)):
             partitions[a] += 1
