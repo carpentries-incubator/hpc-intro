@@ -471,6 +471,8 @@ We replace the `start_time` and `counts` lines with the lines:
 if rank == 0:
   start_time = datetime.datetime.now()
   partitions = [ int(n_samples / cpus) ] * cpus
+  for a in range(n_samples - sum(partitions)):
+    partitions[a] += 1
   counts = [ int(0) ] * cpus
 else:
   partitions = None
