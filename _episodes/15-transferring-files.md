@@ -151,7 +151,7 @@ which is often the case -- then you don't need a leading `/`. After the
 location for the file or, as mentioned above, provide nothing if your home
 directory _is_ the destination.
 
-A trailing slash on the target directory is optional, and has no effect for
+A trailing slash on the source directory is optional, and has no effect for 
 `scp -r`, but is important in other commands, like `rsync`.
 
 > ## A Note on `rsync`
@@ -187,9 +187,10 @@ A trailing slash on the target directory is optional, and has no effect for
 >
 > As written, this will place the local directory and its contents under the
 > specified directory on the remote system. If the trailing slash is omitted on
-> the destination, a new directory corresponding to the transferred directory
+> the source, a new directory corresponding to the transferred directory
 > ('dir' in the example) will not be created, and the contents of the source
-> directory will be copied directly into the destination directory.
+> directory will be copied directly into the destination directory. Omitting
+> the trailing slash on the destination makes no difference.
 >
 > The `a` (archive) option implies recursion.
 >
