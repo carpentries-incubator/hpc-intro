@@ -249,12 +249,17 @@ of the screen:
 
 * Host: `sftp://{{ site.remote.login }}`
 * User: Your cluster username
-* Password: Your cluster password
+* Password: Your cluster password (leave blank to use your SSH keys)
 * Port: (leave blank to use the default port)
+
+Leave the password blank there and in any popups to have FileZilla use your 
+existing SSH keys that are loaded in your SSH agent.
 
 Hit "Quickconnect" to connect. You should see your remote files appear on the
 right hand side of the screen. You can drag-and-drop files between the left
 (local) and right (remote) sides of the screen to transfer files.
+
+{% include {{ site.snippets }}/filezilla-remote-instructions.snip %}
 
 Finally, if you need to move large files (typically larger than a gigabyte)
 from one remote computer to another remote computer, SSH in to the computer
