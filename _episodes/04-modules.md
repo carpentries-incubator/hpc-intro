@@ -224,10 +224,6 @@ variables we can print it out using `echo`.
 
 {% include {{ site.snippets }}/modules/r-module-path.snip %}
 
-We can improve the readability of this command slightly by replacing the colon delimiter`:`s with newline characters.
-
-{% include {{ site.snippets }}/modules/r-module-path-tidy.snip %}
-
 You'll notice a similarity to the output of the `which` command. However, in this case,
 there are a lot more directories at the beginning. When we
 ran the `module load` command, it added many directories to the beginning of our
