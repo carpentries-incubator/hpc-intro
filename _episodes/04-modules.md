@@ -98,7 +98,7 @@ We can get a full list of environment variables using the command,
 {: .language-bash}
 {% include {{ site.snippets }}/modules/env-output.snip %}
 
-These variables control many aspects of how your terminal, and any software launched from your terminal works.
+> These variables control many aspects of how your terminal, and any software launched from your terminal works.
 {: .callout}
 
 ## Environment Modules
@@ -196,7 +196,10 @@ it to tell us where a particular piece of software is stored.
 {% include {{ site.snippets }}/modules/missing-r.snip %}
 
 The important bit here being:
-> /usr/bin/which: no R in (...)
+
+```
+/usr/bin/which: no R in (...)
+```
 
 Now lets try loading the R environment module, and try again.
 
