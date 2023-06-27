@@ -1,8 +1,7 @@
 ---
 title: "Scheduler Fundamentals"
 teaching: 20
-# exercises: 10
-exercises: 5
+exercises: 10
 questions:
 - "What is a scheduler and why does a cluster need one?"
 - "How do I launch a program to run on a compute node in the cluster?"
