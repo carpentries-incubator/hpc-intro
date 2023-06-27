@@ -7,3 +7,52 @@
 /opt/nesi/CS400_centos7_bdw/XALT/current/bin:/opt/nesi/CS400_centos7_bdw/Python/3.8.2-gimkl-2020a/bin:/opt/nesi/CS400_centos7_bdw/Tk/8.6.10-GCCcore-9.2.0/bin:/opt/nesi/CS400_centos7_bdw/Tcl/8.6.10-GCCcore-9.2.0/bin:/opt/nesi/CS400_centos7_bdw/SuiteSparse/5.6.0-gimkl-2020a-METIS-5.1.0/bin:/opt/nesi/CS400_centos7_bdw/METIS/5.1.0-GCCcore-9.2.0/bin:/opt/nesi/CS400_centos7_bdw/SQLite/3.31.1-GCCcore-9.2.0/bin:/opt/nesi/CS400_centos7_bdw/netCDF/4.7.3-gimpi-2020a/bin:/opt/nesi/CS400_centos7_bdw/PCRE/8.43-GCCcore-9.2.0/bin:/opt/nesi/CS400_centos7_bdw/cURL/7.64.0-GCCcore-9.2.0/bin:/opt/nesi/CS400_centos7_bdw/libxslt/1.1.34-GCCcore-9.2.0/bin:/opt/nesi/CS400_centos7_bdw/libxml2/2.9.10-GCCcore-9.2.0/bin:/opt/nesi/CS400_centos7_bdw/ncurses/6.1-GCCcore-9.2.0/bin:/opt/nesi/mahuika/libjpeg-turbo/2.0.2-GCCcore-9.2.0/bin:/opt/nesi/CS400_centos7_bdw/HDF5/1.10.5-gimpi-2020a/bin:/opt/nesi/CS400_centos7_bdw/freetype/2.10.1-GCCcore-9.2.0/bin:/opt/nesi/CS400_centos7_bdw/libpng/1.6.37-GCCcore-9.2.0/bin:/opt/nesi/CS400_centos7_bdw/XZ/5.2.4-GCCcore-9.2.0/bin:/opt/nesi/CS400_centos7_bdw/bzip2/1.0.8-GCCcore-9.2.0/bin:/opt/nesi/CS400_centos7_bdw/impi/2019.6.166-GCC-9.2.0/intel64/libfabric/bin:/opt/nesi/CS400_centos7_bdw/impi/2019.6.166-GCC-9.2.0/intel64/bin:/opt/nesi/CS400_centos7_bdw/binutils/2.32-GCCcore-9.2.0/bin:/opt/nesi/CS400_centos7_bdw/GCCcore/9.2.0/bin:/home/harrellw/bin:/home/harrellw/.local/bin:/home/harrellw/apps/bin:/usr/lpp/mmfs/bin:/opt/slurm/sbin:/opt/slurm/bin:/opt/nesi/share/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/nesi/bin:/opt/ibutils/bin
 ```
 {: .output}
+
+We can improve the readability of this command slightly by replacing the colon delimiters (`:`) with newline (`\n`) characters.
+
+```
+{{ site.remote.prompt }} echo $PATH | tr ":" "\n"
+```
+{: .language-bash}
+
+```
+/opt/nesi/CS400_centos7_bdw/XALT/current/bin
+/opt/nesi/CS400_centos7_bdw/R/4.2.1-gimkl-2022a/bin
+/opt/nesi/CS400_centos7_bdw/nodejs/16.15.1-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/Java/17
+/opt/nesi/CS400_centos7_bdw/Java/17/bin
+/opt/nesi/CS400_centos7_bdw/PCRE2/10.40-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/Python/3.10.5-gimkl-2022a/bin
+/opt/nesi/CS400_centos7_bdw/OpenSSL/1.1.1k-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/Tk/8.6.10-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/Tcl/8.6.10-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/SQLite/3.36.0-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/netCDF/4.8.1-gimpi-2022a/bin
+/opt/nesi/CS400_centos7_bdw/cURL/7.83.1-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/libxslt/1.1.34-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/libxml2/2.9.10-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/ncurses/6.2-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/libjpeg-turbo/2.1.3-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/HDF5/1.12.2-gimpi-2022a/bin
+/opt/nesi/CS400_centos7_bdw/freetype/2.11.1-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/libpng/1.6.37-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/XZ/5.2.5-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/bzip2/1.0.8-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/impi/2021.5.1-GCC-11.3.0/mpi/2021.5.1/libfabric/bin
+/opt/nesi/CS400_centos7_bdw/impi/2021.5.1-GCC-11.3.0/mpi/2021.5.1/bin
+/opt/nesi/CS400_centos7_bdw/UCX/1.12.1-GCC-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/numactl/2.0.14-GCC-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/binutils/2.38-GCCcore-11.3.0/bin
+/opt/nesi/CS400_centos7_bdw/GCCcore/11.3.0/bin
+/opt/slurm/sbin
+/opt/slurm/bin
+/opt/nesi/share/bin
+/usr/local/bin
+/usr/bin
+/usr/local/sbin
+/usr/sbin
+/opt/ibutils/bin
+/opt/nesi/vdt
+/opt/nesi/bin
+```
+{: .output}

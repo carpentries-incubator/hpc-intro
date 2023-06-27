@@ -1,6 +1,7 @@
 ---
 title: "Using resources effectively"
-teaching: 25
+#teaching: 25
+teaching: 20
 exercises: 5
 questions:
 - "How can I review past jobs?"
@@ -125,7 +126,7 @@ So for the above example we see that **0.1GB** (102048K) of our requested **1GB*
 
 CPU efficiency can be determined by comparing **TotalCPU** (CPU time), with the maximum possible CPU time. The maximum possible CPU time equal to **Alloc** (number of allocated CPUs) multiplied by **Elapsed** (Walltime, actual time passed).
 
-For the above example **33 seconds** of computation was done where the maximum possible computation time was **96 seconds** (2 CPUs mutiplied by 00:00:48), meaning the CPU efficiency was about 35%.
+For the above example **33 seconds** of computation was done where the maximum possible computation time was **96 seconds** (2 CPUs multiplied by 00:00:48), meaning the CPU efficiency was about 35%.
 
 For convenience, NeSI has provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA). 
 ```

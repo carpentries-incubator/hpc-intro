@@ -1,6 +1,6 @@
 ---
 title: "Scaling"
-teaching: 35
+teaching: 25
 exercises: 5
 questions:
 - "How do we go from running a job on a small number of CPUs to a larger one."
@@ -54,7 +54,7 @@ Code that has no serial components is said to be "embarrassingly parallel".
 
 > ## Scaling Exercise
 >
-> 1. Find your name in the [spreadsheet]({{ site.exersice }}) and modify your `example-job.sl` to request 
+> 1. Find your name in the [spreadsheet]({{ site.exercise }}) and modify your `example-job.sl` to request 
 > "x" `--cpus-per-task`. For example `#SBATCH --cpus-per-task 10`.
 > 2. Estimate memory requirement based on our previous runs and the cpus requested, memory 
 > is specified with the `--mem ` flag, it does not accept decimal values, however you may 
@@ -67,7 +67,7 @@ Code that has no serial components is said to be "embarrassingly parallel".
 > numbers after the percentage efficiency in output of `nn_seff`). Make sure you have entered the values in the correct format and there is a tick next to each entry. ![Correctly entered data in spreadsheet.](../fig/correct-spreadsheet-entry.png)
 >
 > > ## Solution
-> > [spreadsheet]({{ site.exersice }})
+> > [spreadsheet]({{ site.exercise }})
 > {: .solution}
 {: .challenge}
 
@@ -75,7 +75,7 @@ Code that has no serial components is said to be "embarrassingly parallel".
 
 > ## Scaling Exercise
 >
-> 1. Find your name in the [spreadsheet]({{ site.exersice }}) and modify your `example-job.sl` to request 
+> 1. Find your name in the [spreadsheet]({{ site.exercise }}) and modify your `example-job.sl` to request 
 > "x" `--cpus-per-task`. For example `#SBATCH --cpus-per-task 10`.
 > 2. Estimate memory requirement based on our previous runs and the cpus requested, memory 
 > is specified with the `--mem ` flag, it does not accept decimal values, however you may 
@@ -88,7 +88,7 @@ Code that has no serial components is said to be "embarrassingly parallel".
 > numbers after the percentage efficiency in output of `nn_seff`). Make sure you have entered the values in the correct format and there is a tick next to each entry. ![Correctly entered data in spreadsheet.](../fig/correct-spreadsheet-entry.png)
 >
 > > ## Solution
-> > [spreadsheet]({{ site.exersice }})
+> > [spreadsheet]({{ site.exercise }})
 > {: .solution}
 {: .challenge}
 

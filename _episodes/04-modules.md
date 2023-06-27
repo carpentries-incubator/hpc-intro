@@ -1,7 +1,9 @@
 ---
 title: "Accessing software via Modules"
-teaching: 15
-exercises: 5
+# teaching: 15
+# exercises: 5
+teaching: 20
+exercises: 10
 questions:
 - "How do we load and unload software packages?"
 objectives:
@@ -98,7 +100,7 @@ We can get a full list of environment variables using the command,
 {: .language-bash}
 {% include {{ site.snippets }}/modules/env-output.snip %}
 
-These variables control many aspects of how your terminal, and any software launched from your terminal works.
+> These variables control many aspects of how your terminal, and any software launched from your terminal works.
 {: .callout}
 
 ## Environment Modules
@@ -196,7 +198,10 @@ it to tell us where a particular piece of software is stored.
 {% include {{ site.snippets }}/modules/missing-r.snip %}
 
 The important bit here being:
-> /usr/bin/which: no R in (...)
+
+```
+/usr/bin/which: no R in (...)
+```
 
 Now lets try loading the R environment module, and try again.
 
@@ -220,10 +225,6 @@ before giving up and telling us it can't find it. As with all environment
 variables we can print it out using `echo`.
 
 {% include {{ site.snippets }}/modules/r-module-path.snip %}
-
-We can improve the readability of this command slightly by replacing the colon delimiter`:`s with newline characters.
-
-{% include {{ site.snippets }}/modules/r-module-path-tidy.snip %}
 
 You'll notice a similarity to the output of the `which` command. However, in this case,
 there are a lot more directories at the beginning. When we
