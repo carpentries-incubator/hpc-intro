@@ -30,6 +30,18 @@ Shared-memory multiproccessing divides work among _CPUs_ ( threads or cores ), a
 
 Number of CPUs to use is specified by the Slurm option `--cpus-per-task`.
 
+
+```
+#!/bin/bash -e
+
+#SBATCH --cpus-per-task   8
+#SBATCH --name            SMP-job
+#SBATCH --output          %J-output
+
+srun echo "I am on ${HOSTNAME} and can access $(nproc) CPUs"
+```
+
+
 ### Distributed-Memory (MPI)
 
 Message Passing Interface (MPI) is a communication standard for distributed-memory multiproccessing.
@@ -42,6 +54,18 @@ The NeSI platforms have _Hyperthreading_ enabled (not worth getting into). This 
 Distributed-Memory multiproccessing predates shared-memory multiproccessing, and is more common with classical high performance applications.
 
 Number of tasks to use is specified by the Slurm option `--ntasks`, because tasks do not share memory you will also likely want to specify memory using `--mem-per-cpu` rather than `--mem`. Unless otherwise specified, each task will have `--cpus-per-task=2` (the minimum amount).
+
+
+```
+#!/bin/bash -e
+
+#SBATCH --ntasks          4
+#SBATCH --name            SMP-job
+#SBATCH --output          %J-output
+
+srun echo "I am on ${HOSTNAME} and can access $(nproc) CPUs"
+```
+
 
 ### Job Array
 
