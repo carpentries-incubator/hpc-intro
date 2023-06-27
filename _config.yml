@@ -49,14 +49,14 @@ sched:
 
 episode_order:
   - 01-cluster
-  - 02-filedir
-  - 03-break1
+  # - 02-filedir
   - 04-modules
+  - 03-break1
   - 05-scheduler
-  - 06-lunch
+  # - 06-lunch
   - 064-parallel
-  - 07-resources
   - 08-break2
+  - 07-resources
   - 09-scaling
   - 095-writing-good-code
 
@@ -95,9 +95,9 @@ working_dir:
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
 # 600 is 10am
-start_time: 600
+start_time: 780
 # Start time for people wanting to skip bash content 
-hpc_start_time: 765
+hpc_start_time: 780
 # Lesson to start at.
 hpc_start_lesson: 01-cluster
 # Script to run if skipping bash lessons. Should create neccicery files to get started.

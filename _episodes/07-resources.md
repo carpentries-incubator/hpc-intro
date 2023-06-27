@@ -1,6 +1,7 @@
 ---
 title: "Using resources effectively"
-teaching: 25
+#teaching: 25
+teaching: 20
 exercises: 5
 questions:
 - "How can I review past jobs?"

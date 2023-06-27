@@ -1,6 +1,7 @@
 ---
 title: "Working on a remote HPC system"
-teaching: 10
+# teaching: 10
+teaching: 20
 exercises: 0
 questions:
 - "What is an HPC system?"
