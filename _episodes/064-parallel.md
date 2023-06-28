@@ -84,7 +84,7 @@ If you are writing your own code, then this is something you will probably have 
 {% include parallel/array-example.snip %}
 ```
 
-we can also comapre how these jobs look by checking check 
+we can also compare how these jobs look by checking check 
 
 ```
 {{ site.remote.prompt }} sacct -X
