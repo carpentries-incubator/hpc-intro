@@ -24,7 +24,7 @@ In order to establish an understanding of the scaling properties we may have to 
 
 ## Scaling Behavior
 
-### Diminishing Returns
+<!-- ### Diminishing Returns
 
 Running code in parallel rarely comes for free, there are usually computational overheads. 
 Whatever method is being used to distribute the workload usually require some computation, as well as communication between processes.
@@ -33,7 +33,7 @@ Whatever method is being used to distribute the workload usually require some co
 
 This usually leads to diminishing returns when it comes to performance.
 
-![Fraction of CPU doing useful computation decreases due to overheads.](../fig/DimReturns2.png)
+![Fraction of CPU doing useful computation decreases due to overheads.](../fig/DimReturns2.png) -->
 
 
 ### Amdahl's Law
@@ -51,6 +51,8 @@ Eventually your performance gains will plateau.
 
 The fraction of the task that can be run in parallel determines the point of this plateau.
 Code that has no serial components is said to be "embarrassingly parallel".
+
+It is worth noting that Amdahl's law assumes all other elements of scaling are happening with 100% efficient, in reality there are additional computational and communication overheads.
 
 > ## Scaling Exercise
 >
