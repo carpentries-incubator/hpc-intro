@@ -30,6 +30,19 @@ Shared-memory multiproccessing divides work among _CPUs_ ( threads or cores ), a
 
 Number of CPUs to use is specified by the Slurm option `--cpus-per-task`.
 
+
+Take a copy of the `whothis.sh` file from the workshop directory.
+
+```
+cp ../whothis.sh .
+```
+
+
+```
+{% include parallel/smp-example.snip %}
+```
+
+
 ### Distributed-Memory (MPI)
 
 Message Passing Interface (MPI) is a communication standard for distributed-memory multiproccessing.
@@ -42,6 +55,15 @@ The NeSI platforms have _Hyperthreading_ enabled (not worth getting into). This 
 Distributed-Memory multiproccessing predates shared-memory multiproccessing, and is more common with classical high performance applications.
 
 Number of tasks to use is specified by the Slurm option `--ntasks`, because tasks do not share memory you will also likely want to specify memory using `--mem-per-cpu` rather than `--mem`. Unless otherwise specified, each task will have `--cpus-per-task=2` (the minimum amount).
+
+
+```
+{% include parallel/mpi-example.snip %}
+```
+
+```
+{% include parallel/hyb-example.snip %}
+```
 
 ### Job Array
 
@@ -56,6 +78,33 @@ Embarrassingly parallel jobs should be able scale without any loss of efficiency
 A job array can be specified using `--array`
 
 If you are writing your own code, then this is something you will probably have to specify yourself.
+
+
+```
+{% include parallel/array-example.snip %}
+```
+
+we can also compare how these jobs look by checking check 
+
+```
+{{ site.remote.prompt }} sacct -X
+```
+
+```
+JobID           JobName          Alloc     Elapsed     TotalCPU  ReqMem   MaxRSS State      
+--------------- ---------------- ----- ----------- ------------ ------- -------- ---------- 
+37077995        SMP-job              8    00:00:00     00:00:00      4G          COMPLETED  
+37082531        MPI-job              8    00:00:01     00:00:00      2G          COMPLETED  
+37077747        hybrid-job           8    00:00:00     00:00:00      4G          COMPLETED  
+37083701_0      array-job            2    00:00:01     00:00:00    512M          COMPLETED  
+37083701_1      array-job            2    00:00:01     00:00:00    512M          COMPLETED  
+37083701_2      array-job            2    00:00:01     00:00:00    512M          COMPLETED  
+37083701_3      array-job            2    00:00:01     00:00:00    512M          COMPLETED  
+```
+{: .output}
+
+Can you explain the differences in memory?
+
 
 ## How to Utilise Multiple CPUs
 
@@ -76,9 +125,7 @@ Occasionally your input files may require rewriting/regenerating for every new C
 ### Writing Code
 
 Occasionally requesting more CPUs in your Slurm job is all that is required and whatever program you are running will automagically take advantage of the additional resources.
-However, it's more likely to require some amount of effort on your behalf (or will oper )
-
-Elaborate on 
+However, it's more likely to require some amount of effort on your behalf.
 
 It is important to determine this before you start requesting more resources through Slurm  
 

@@ -1,0 +1,33 @@
+> ## Hybrid Example
+> 
+> ```
+> #!/bin/bash -e
+> 
+> #SBATCH --ntasks          2
+> #SBATCH --cpus-per-task   4
+> #SBATCH --name            hybrid-job
+> #SBATCH --output          %x.out
+> 
+> srun bash whothis.sh
+> ```
+> {: .language-bash}
+>
+> ```
+> {{ site.remote.prompt }} sbatch hybrid.sl
+> ```
+> {: .language-bash}
+> 
+> > ## Solution
+> > 
+> > ```
+> > {{ site.remote.prompt }} cat hybrid-job.out
+> >
+> > ```
+> > 
+> > ```
+> > I am task #0 running on node 'wbn016' with 4 CPUs
+> > I am task #1 running on node 'wbn022' with 4 CPUs
+> > ```
+> > {: .output}
+> {: .solution}
+{: .challenge}

@@ -58,7 +58,7 @@ episode_order:
   - 08-break2
   - 07-resources
   - 09-scaling
-  - 095-writing-good-code
+  # - 095-writing-good-code
 
 
 #------------------------------------------------------------
