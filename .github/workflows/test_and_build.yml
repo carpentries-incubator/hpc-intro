@@ -32,7 +32,7 @@ jobs:
       - name: Install proselint
         run: |
           python3 -m pip install proselint
-      - name: Check spelling
+      - name: Check prose
         run: |
           proselint **/*.md
   check_lesson_and_build_default:
