@@ -76,6 +76,7 @@ As well as being quick to run, you want your test job to be quick to start (e.g.
 Similar as possible to actual jobs e.g. same functions etc.
 Use same workflow. (most issues are caused by small issues, typos, missing files etc, your test job is a jood chance to sort out these issues.).
 Make sure outputs are going somewhere you can see them.
+
 > ## Serial Test
 >
 > Often a good first test to run, is to execute your job *serially* e.g. using only 1 CPU.
@@ -107,6 +108,7 @@ following in your batch submit script
 Adding these SBATCH directives will provide your job with the highest priority
 possible, meaning it should start to run within a few minutes, provided
 your resource request is not too large.
+
 ## Measuring Resource Usage of a Finished Job
 
 If we check the status of our finished job using the `sacct` command we learned earlier.
@@ -118,7 +120,9 @@ If we check the status of our finished job using the `sacct` command we learned 
 
 {% include {{ site.snippets }}/scheduler/basic-job-status-sacct.snip %}
 
-With this information, we may determine a couple of things. 
+<!-- Put big formulas here. -->
+
+With this information, we may determine a couple of things.
 
 Memory efficiency can be determined by comparing **ReqMem** (requested memory) with **MaxRSS** (maximum used memory), MaxRSS is  given in KB, so a unit conversion is usually required.
 
