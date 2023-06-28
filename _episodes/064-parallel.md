@@ -34,10 +34,12 @@ Number of CPUs to use is specified by the Slurm option `--cpus-per-task`.
 Take a copy of the `whothis.sh` file from the workshop directory.
 
 ```
-cp ../whothis.sh .
+{{ site.remote.prompt }}  cp ../whothis.sh .
 ```
+{: .language-bash}
 
-{% include parallel/smp-example.snip %}
+
+{% include {{ site.snippets }}/parallel/smp-example.snip %}
 
 
 ### Distributed-Memory (MPI)
@@ -54,9 +56,9 @@ Distributed-Memory multiproccessing predates shared-memory multiproccessing, and
 Number of tasks to use is specified by the Slurm option `--ntasks`, because tasks do not share memory you will also likely want to specify memory using `--mem-per-cpu` rather than `--mem`. Unless otherwise specified, each task will have `--cpus-per-task=2` (the minimum amount).
 
 
-{% include parallel/mpi-example.snip %}
+{% include {{ site.snippets }}/parallel/mpi-example.snip %}
 
-{% include parallel/hyb-example.snip %}
+{% include {{ site.snippets }}/parallel/hyb-example.snip %}
 
 ### Job Array
 
@@ -73,13 +75,14 @@ A job array can be specified using `--array`
 If you are writing your own code, then this is something you will probably have to specify yourself.
 
 
-{% include parallel/array-example.snip %}
+{% include {{ site.snippets }}/parallel/array-example.snip %}
 
 we can also compare how these jobs look by checking 
 
 ```
 {{ site.remote.prompt }} sacct -X
 ```
+{: .language-bash}
 
 ```
 JobID           JobName          Alloc     Elapsed     TotalCPU  ReqMem   MaxRSS State      
