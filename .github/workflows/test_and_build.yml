@@ -20,7 +20,21 @@ jobs:
       - name: Check spelling
         run: |
           make spellcheck
-
+          
+  proselint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Install proselint
+        run: |
+          python3 -m pip install proselint
+      - name: Check spelling
+        run: |
+          proselint **/*.md
   check_lesson_and_build_default:
     runs-on: ubuntu-latest
     steps:
