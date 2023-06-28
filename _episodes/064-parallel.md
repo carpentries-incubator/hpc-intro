@@ -22,7 +22,14 @@ You are most likely using an hpc because you need your work to run faster. This 
 
 Three main types are shared memory, distributed and data level parallism. These methods are not exclusive, a job taking advantage of both SMP and MPI is said to be "Hybrid". Also mentioned is using a "job array", which isn't technically parallel computing, but serves a similar function.
 
-Which methods are available to you is _largely dependent on the software being used_, 
+Which methods are available to you is _largely dependent on the software being used_.
+
+Exercises in this episode will require a copy of the `whothis.sh` file from the workshop directory.
+
+```
+{{ site.remote.prompt }}  cp ../whothis.sh .
+```
+{: .language-bash}
 
 ### Shared-Memory (SMP)
 
@@ -30,23 +37,13 @@ Shared-memory multiproccessing divides work among _CPUs_ ( threads or cores ), a
 
 Number of CPUs to use is specified by the Slurm option `--cpus-per-task`.
 
-
-Take a copy of the `whothis.sh` file from the workshop directory.
-
-```
-cp ../whothis.sh .
-```
-
-
-```
 {% include {{ site.snippets }}/parallel/smp-example.snip %}
-```
 
 
 ### Distributed-Memory (MPI)
 
 Message Passing Interface (MPI) is a communication standard for distributed-memory multiproccessing.
-Distributed-memory multiproccessing divides work among _tasks_, a task may contain multiple CPUs (provided they all share memory, as discussed previously). 
+Distributed-memory multiproccessing divides work among _tasks_, a task may contain multiple CPUs (provided they all share memory, as discussed previously).
 
 Each task has it's own exclusive memory, tasks can be spread across multiple nodes, communicating via and _interconnect_. This allows MPI jobs to be much larger than shared memory jobs. It also means that memory requirements are more likely to increase proportionally with CPUs.
 
@@ -57,13 +54,11 @@ Distributed-Memory multiproccessing predates shared-memory multiproccessing, and
 Number of tasks to use is specified by the Slurm option `--ntasks`, because tasks do not share memory you will also likely want to specify memory using `--mem-per-cpu` rather than `--mem`. Unless otherwise specified, each task will have `--cpus-per-task=2` (the minimum amount).
 
 
-```
 {% include {{ site.snippets }}/parallel/mpi-example.snip %}
-```
 
-```
+Using a combination of Shared and Distrubuted memory is called _Hybrid Parallel_. 
+
 {% include {{ site.snippets }}/parallel/hyb-example.snip %}
-```
 
 ### Job Array
 
@@ -80,15 +75,16 @@ A job array can be specified using `--array`
 If you are writing your own code, then this is something you will probably have to specify yourself.
 
 
-```
 {% include {{ site.snippets }}/parallel/array-example.snip %}
-```
 
-we can also compare how these jobs look by checking check 
+we can also compare how these jobs look by checking.
+
+Note: We havn't introduced `sacct` yet.
 
 ```
 {{ site.remote.prompt }} sacct -X
 ```
+{: .language-bash}
 
 ```
 JobID           JobName          Alloc     Elapsed     TotalCPU  ReqMem   MaxRSS State      
@@ -105,7 +101,6 @@ JobID           JobName          Alloc     Elapsed     TotalCPU  ReqMem   MaxRSS
 
 Can you explain the differences in memory?
 
-
 ## How to Utilise Multiple CPUs
 
 Requesting extra resources through Slurm only means that more resources will be available, it does not guarantee your program will be able to make use of them. 
@@ -119,8 +114,7 @@ On one end of the scale, some software may claim to make use of multiple cores i
 
 Some software will require you to specify number of cores (e.g. `-n 8` or `-np 16`), or even type of paralellisation (e.g. `-dis` or `-mpi=intelmpi`).
 
-Occasionally your input files may require rewriting/regenerating for every new CPU combintation (e.g. domain based parallelism without automatic partitioning). 
-
+Occasionally your input files may require rewriting/regenerating for every new CPU combintation (e.g. domain based parallelism without automatic partitioning).
 
 ### Writing Code
 
@@ -139,7 +133,6 @@ Python [Multiproccessing](https://docs.python.org/3/library/multiprocessing.html
 MATLAB [Parpool](https://au.mathworks.com/help/parallel-computing/parpool.html) {%- endcomment -%}
 
 Shared memory parallelism is what is used in our example script `array_sum.r`.
-
 
 ## Scaling Test
 

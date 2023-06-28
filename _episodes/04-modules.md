@@ -1,7 +1,5 @@
 ---
 title: "Accessing software via Modules"
-# teaching: 15
-# exercises: 5
 teaching: 20
 exercises: 10
 questions:
