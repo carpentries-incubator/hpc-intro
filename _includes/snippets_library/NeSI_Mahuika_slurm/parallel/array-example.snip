@@ -1,23 +1,48 @@
-```
-#!/bin/bash -e
-
-#SBATCH --array           0-3
-#SBATCH --name            array-job
-#SBATCH --output          %x_%a.out
-
-srun bash whothis.sh
-```
-{: .language-bash}
-
-
-```
-array-job_0.out array-job_1.out array-job_2.out array-job_3.out
-```
-{: .output}
-
-Each of which should contain,
-
-```
-I am task #0 running on node 'wbn*' with 2 CPUs
-```
-{: .output}
+> ## Job Array Example
+> 
+> Create a new script called `array.sl`
+>
+> ```
+> #!/bin/bash -e
+> 
+> #SBATCH --array           0-3
+> #SBATCH --name            array-job
+> #SBATCH --output          %x_%a.out
+> 
+> srun bash whothis.sh
+> ```
+> {: .language-bash}
+> 
+> then submit with 
+> 
+> ```
+> {{ site.remote.prompt }} sbatch array.sl
+> ```
+> {: .language-bash}
+> 
+> > ## Solution
+> > 
+> > ```
+> > ls
+> > ```
+> > {: .language-bash}
+> >
+> > ```
+> > array-job_0.out array-job_1.out array-job_2.out array-job_3.out
+> > ```
+> > {: .output}
+> > 
+> > Each of which should contain,
+> > 
+> > 
+> > ```
+> >  {{ site.remote.prompt }} cat array-job_*.out
+> > ```
+> > {: .language-bash}
+> >
+> > ```
+> > I am task #0 running on node 'wbn*' with 2 CPUs
+> > ```
+> > {: .output}
+> {: .solution}
+{: .challenge}

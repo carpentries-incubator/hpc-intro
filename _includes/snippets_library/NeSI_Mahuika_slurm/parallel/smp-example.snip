@@ -1,25 +1,36 @@
-Then create a new script called `smp.sl`
-
-```
-#!/bin/bash -e
-
-#SBATCH --cpus-per-task   8
-#SBATCH --name            SMP-job
-#SBATCH --output          %x.out
-
-srun bash whothis.sh
-```
-{: .language-bash}
-
-then submit with 
-
-```
-sbatch smp.sl
-```
-
-Checking the output should reveal
-
-```
-I am task #0 running on node 'wbn224' with 8 CPUs
-```
-{: .output}
+> ## Shared Memory Example
+> 
+> Create a new script called `smp.sl`
+> 
+> ```
+> #!/bin/bash -e
+> 
+> #SBATCH --cpus-per-task   8
+> #SBATCH --name            SMP-job
+> #SBATCH --output          %x.out
+> 
+> srun bash whothis.sh
+> ```
+> {: .language-bash}
+> 
+> then submit with 
+> 
+> ```
+> {{ site.remote.prompt }} sbatch smp.sl
+> ```
+> {: .language-bash}
+> > ## Solution
+> >
+> > Checking the output should reveal
+> > 
+> > ```
+> > {{ site.remote.prompt }} cat SMP-job.out
+> > ```
+> > {: .language-bash}
+> > 
+> > ```
+> > I am task #0 running on node 'wbn224' with 8 CPUs
+> > ```
+> > {: .output}
+> {: .solution}
+{: .challenge}
