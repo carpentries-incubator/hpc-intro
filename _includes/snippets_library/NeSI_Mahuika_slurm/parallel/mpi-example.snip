@@ -1,0 +1,31 @@
+```
+#!/bin/bash -e
+
+#SBATCH --ntasks          4
+#SBATCH --name            MPI-job
+#SBATCH --output          %x.out
+
+srun bash whothis.sh
+```
+{: .language-bash}
+
+
+
+```
+I am task #1 running on node 'wbn012' with 2 CPUs
+I am task #3 running on node 'wbn010' with 2 CPUs
+I am task #0 running on node 'wbn009' with 2 CPUs
+I am task #2 running on node 'wbn063' with 2 CPUs
+```
+{: .output}
+
+> ## Not Adding up
+>
+> You may find that the number of CPUs does not add up to 8. 
+> Why might this be?
+>
+> > ## Solution
+> >
+> > I honestly don't know.
+> {: .solution}
+{: .challenge}

@@ -1,0 +1,23 @@
+```
+#!/bin/bash -e
+
+#SBATCH --array           0-3
+#SBATCH --name            array-job
+#SBATCH --output          %x_%a.out
+
+srun bash whothis.sh
+```
+{: .language-bash}
+
+
+```
+array-job_0.out array-job_1.out array-job_2.out array-job_3.out
+```
+{: .output}
+
+Each of which should contain,
+
+```
+I am task #0 running on node 'wbn*' with 2 CPUs
+```
+{: .output}
