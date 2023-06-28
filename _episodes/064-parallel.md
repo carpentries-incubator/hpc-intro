@@ -39,7 +39,7 @@ cp ../whothis.sh .
 
 
 ```
-{% include parallel/smp-example.snip %}
+{% include {{ site.snippets }}/parallel/smp-example.snip %}
 ```
 
 
@@ -58,11 +58,11 @@ Number of tasks to use is specified by the Slurm option `--ntasks`, because task
 
 
 ```
-{% include parallel/mpi-example.snip %}
+{% include {{ site.snippets }}/parallel/mpi-example.snip %}
 ```
 
 ```
-{% include parallel/hyb-example.snip %}
+{% include {{ site.snippets }}/parallel/hyb-example.snip %}
 ```
 
 ### Job Array
@@ -81,7 +81,7 @@ If you are writing your own code, then this is something you will probably have 
 
 
 ```
-{% include parallel/array-example.snip %}
+{% include {{ site.snippets }}/parallel/array-example.snip %}
 ```
 
 we can also compare how these jobs look by checking check 
