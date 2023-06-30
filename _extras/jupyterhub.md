@@ -6,7 +6,7 @@ permalink: /jupyter/
 
 ## NeSI JupyterHub Login
 
-The easiest method for accessing the NeSI cluster is to use our JupyterHub service.  Below are the 
+The easiest method for accessing the NeSI cluster is to use our JupyterHub service. Below are the
 login and troubleshooting instructions for NeSI JupyterHub:
 
 1. Follow this link: [https://jupyter.nesi.org.nz](https://jupyter.nesi.org.nz)
@@ -18,7 +18,7 @@ login and troubleshooting instructions for NeSI JupyterHub:
 
 <!-- ## SLURM and JupyterHub
 
-All JupyterHub sessions run inside of a SLURM job, however as the sessions are interactive the resources available this way are very limited. In onder to access more resources you will still have to submit a SLURM job.
+All JupyterHub sessions run inside of a SLURM job, however as the sessions are interactive the resources available this way are limited. In onder to access more resources you will still have to submit a SLURM job.
 
 ### Jupyter for Interactive work.
 ![Terminal](/fig/UsingJupyterHub2.svg)

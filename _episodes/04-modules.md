@@ -108,7 +108,7 @@ self-contained description of a software package -- it contains the
 settings required to run a software package and, usually, encodes required
 dependencies on other software packages.
 
-There are a number of different environment module implementations commonly
+There are a number environment module implementations commonly
 used on HPC systems: the two most common are _TCL modules_ and _Lmod_. Both of
 these use similar syntax and the concepts are the same so learning to use one
 will allow you to use whichever is installed on the system you are using. In
@@ -166,19 +166,6 @@ loaded in your environment. On {{ site.remote.name }} you will have a few defaul
 {: .language-bash}
 
 {% include {{ site.snippets }}/modules/module-list-default.snip %}
-
-<!-- If you have no modules loaded you will see a message telling you so
-
-```
-{{ site.remote.prompt }} module list
-```
-{: .language-bash}
-
-```
-No modules loaded
-
-```
-{: .output} -->
 
 ## Loading and Unloading Software
 
@@ -254,8 +241,7 @@ The following modules were not unloaded:
 
 ## Software Versioning
 
-So far, we've learned how to load and unload software packages. This is very
-useful. However, we have not yet addressed the issue of software versioning. At
+So far, we've learned how to load and unload software packages. However, we have not yet addressed the issue of software versioning. At
 some point or other, you will run into issues where only one particular version
 of some software will be suitable. Perhaps a key bugfix only happened in a
 certain version, or version _X_ broke compatibility with a file format you use.

@@ -5,9 +5,10 @@
 > ```
 > #!/bin/bash -e
 > 
-> #SBATCH --ntasks          4
 > #SBATCH --name            MPI-job
 > #SBATCH --output          %x.out
+> #SBATCH --mem-per-cpu     500
+> #SBATCH --ntasks          4
 > 
 > srun bash whothis.sh
 > ```

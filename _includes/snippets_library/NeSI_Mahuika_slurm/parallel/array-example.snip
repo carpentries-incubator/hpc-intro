@@ -5,10 +5,10 @@
 > ```
 > #!/bin/bash -e
 > 
-> #SBATCH --array           0-3
 > #SBATCH --name            array-job
 > #SBATCH --output          %x_%a.out
-> 
+> #SBATCH --mem-per-cpu     500
+> #SBATCH --array           0-3
 > srun bash whothis.sh
 > ```
 > {: .language-bash}

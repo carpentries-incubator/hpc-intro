@@ -22,7 +22,6 @@ Understanding the resources you have available and how to use them most efficien
 
 Below is a table of common resources and issues you may face if you do not request the correct amount.
 
-
 <table>
     <thead>
         <tr>
@@ -86,21 +85,21 @@ Make sure outputs are going somewhere you can see them.
 {: .callout}
 
 You generally should ask for 20% to 30% more time and memory than you think the job will use.
-Testing allows you to become more more precise with your resource requests.  We will cover a bit more on running tests in the last lesson.
+Testing allows you to become more more precise with your resource requests. We will cover a bit more on running tests in the last lesson.
 
 ## Efficient way to run tests jobs using debug QOS (Quality of Service)
 
 Before submitting a large job, first submit one as a test to make
-sure everything works as expected.  Often, users discover typos in their submit
+sure everything works as expected. Often, users discover typos in their submit
 scripts, incorrect module names or possibly an incorrect pathname after their job
-has queued for many hours.  Be aware that your job is not fully scanned for
-correctness when you submit the job.  While you may get an immediate error if your
+has queued for many hours. Be aware that your job is not fully scanned for
+correctness when you submit the job. While you may get an immediate error if your
 SBATCH directives are malformed, it is not until the job starts to run that the
 interpreter starts to process the batch script.
 
 NeSI has an easy way for you to test your job submission.  One can employ the debug
-QOS to get a short, very high priority test job.  Debug jobs have to run within 15 
-minutes and cannot use more that 2 nodes.  To use debug QOS, add or change the
+QOS to get a short, high priority test job. Debug jobs have to run within 15
+minutes and cannot use more that 2 nodes. To use debug QOS, add or change the
 following in your batch submit script  
 `#SBATCH --qos=debug`  
 `#SBATCH --time=15:00`  
@@ -132,7 +131,32 @@ CPU efficiency can be determined by comparing **TotalCPU** (CPU time), with the 
 
 For the above example **33 seconds** of computation was done where the maximum possible computation time was **96 seconds** (2 CPUs multiplied by 00:00:48), meaning the CPU efficiency was about 35%.
 
-For convenience, NeSI has provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA). 
+> ## Efficiency Exercise
+>
+> Calculate for the job shown below,
+> 
+> ```
+> JobID           JobName          Alloc     Elapsed     TotalCPU  ReqMem   MaxRSS State      
+> --------------- ---------------- ----- ----------- ------------ ------- -------- ----------  
+> 37171050        Example-job          8    00:06:03     00:23:04     32G           FAILED     
+> 37171050.batch  batch                8    00:06:03    23:03.999         14082672k FAILED     
+> 37171050.extern extern               8    00:06:03    00:00.001                0  COMPLETED
+> ```
+>
+> a. CPU efficiency.
+>
+> b. Memory efficiency.
+>
+> > ## Solution
+> >
+> > a. CPU efficiency is `( 23 / ( 8 * 6 ) ) x 100` or around **48%**.
+> >
+> > b. Memory efficiency is `( 14 / 32 ) x 100` or around **43%**.
+> {: .solution}
+{: .challenge}
+
+
+For convenience, NeSI has provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA).
 ```
 {{ site.remote.prompt }} nn_seff <jobid>
 ```

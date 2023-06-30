@@ -47,7 +47,7 @@ So far, whenever we have entered a command into our terminals, we have received 
 
 [//]: # TODO ??Diagram??
 
-This is all well for doing small tasks, but what if we want to do several things one after another without without waiting in-between? Or what if we want to repeat the same series of command again later?
+This is all well for doing small tasks, but what if we want to do several things one after another without without waiting in-between? Or what if we want to repeat a series of command again later?
 
 This is where _batch processing_ becomes useful, this is where instead of entering commands directly to the terminal we write them down in a text file or _script_. Then, the script can be _executed_ by calling it with `bash`.
 
@@ -145,7 +145,7 @@ All the parameters available can be found by checking `man sbatch` or on the onl
 > > The `{{ site.sched.comment }}` parameters are read by slurm when we _submit_ the job. When the job starts,
 > > the bash interpreter will ignore all lines starting with `#`.
 > >
-> > This is very similar to the _shebang_ mentioned earlier,
+> > This is similar to the _shebang_ mentioned earlier,
 > > when you run your script, the system looks at the `#!`, then uses the program at the subsequent
 > > path to interpret the script, in our case `/bin/bash` (the program 'bash' found in the 'bin' directory).
 > {: .solution}

@@ -5,9 +5,10 @@
 > ```
 > #!/bin/bash -e
 > 
-> #SBATCH --cpus-per-task   8
 > #SBATCH --name            SMP-job
 > #SBATCH --output          %x.out
+> #SBATCH --mem-per-cpu     500
+> #SBATCH --cpus-per-task   8
 > 
 > srun bash whothis.sh
 > ```

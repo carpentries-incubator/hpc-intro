@@ -17,7 +17,6 @@ keypoints:
 
 You are most likely using an hpc because you need your work to run faster. This performance improvement is provided by increasing the number of CPUs.
 
-
 ## Methods of Parallel Computing
 
 Three main types are shared memory, distributed and data level parallism. These methods are not exclusive, a job taking advantage of both SMP and MPI is said to be "Hybrid". Also mentioned is using a "job array", which isn't technically parallel computing, but serves a similar function.
@@ -51,12 +50,11 @@ The NeSI platforms have _Hyperthreading_ enabled (not worth getting into). This 
 
 Distributed-Memory multiproccessing predates shared-memory multiproccessing, and is more common with classical high performance applications.
 
-Number of tasks to use is specified by the Slurm option `--ntasks`, because tasks do not share memory you will also likely want to specify memory using `--mem-per-cpu` rather than `--mem`. Unless otherwise specified, each task will have `--cpus-per-task=2` (the minimum amount).
-
+Number of tasks to use is specified by the Slurm option `--ntasks`, because the number of tasks ending up on one node is variable you should use `--mem-per-cpu` rather than `--mem` to ensure each task has enough. Tasks cannot share cores, this means in most circumstances leaving `--cpus-per-task` unspecified will get you `2`.
 
 {% include {{ site.snippets }}/parallel/mpi-example.snip %}
 
-Using a combination of Shared and Distrubuted memory is called _Hybrid Parallel_. 
+Using a combination of Shared and Distributed memory is called _Hybrid Parallel_.
 
 {% include {{ site.snippets }}/parallel/hyb-example.snip %}
 
@@ -79,7 +77,7 @@ If you are writing your own code, then this is something you will probably have 
 
 we can also compare how these jobs look by checking.
 
-Note: We havn't introduced `sacct` yet.
+Note: We haven't introduced `sacct` yet.
 
 ```
 {{ site.remote.prompt }} sacct -X
@@ -145,7 +143,6 @@ As a reminder, our slurm script `example-job.sl` should currently look like this
 ```
 {: .language-bash}
 
-
 Using the information we collected from the previous job (`nn_seff <job-id>`), we will submit the same job again with more CPUs and our best estimates of required resources.
 We ask for more CPUs using by adding `#SBATCH --cpus-per-task 4` to our script.
 
@@ -154,7 +151,7 @@ Your script should now look like this:
 ```
 {% include example_scripts/example-job.sl.2 %}
 ```
-{: .language-bash} 
+{: .language-bash}
 
 And then submit using `sbatch` as we did before.
 
@@ -181,7 +178,7 @@ And then submit using `sbatch` as we did before.
 {: .callout}
 
 Checking on our job with `sacct`.
-Oh no! 
+Oh no!
 {% include {{ site.snippets }}/scaling/OOM.snip %}
 
 {: .language-bash}
