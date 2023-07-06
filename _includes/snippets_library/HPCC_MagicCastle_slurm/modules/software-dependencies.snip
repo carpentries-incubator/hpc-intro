@@ -1,0 +1,87 @@
+To demonstrate, let's use `module list`. `module list` shows all loaded
+software modules.
+
+```
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+```
+Currently Loaded Modules:
+  1) GCCcore/x.y.z                 4) GMP/6.2.0-GCCcore-x.y.z
+  2) Tcl/8.6.10-GCCcore-x.y.z      5) libffi/3.3-GCCcore-x.y.z
+  3) SQLite/3.31.1-GCCcore-x.y.z   6) Python/3.x.y-GCCcore-x.y.z
+```
+{: .output}
+
+```
+{{ site.remote.prompt }} module load GROMACS
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+```
+Currently Loaded Modules:
+  1) GCCcore/x.y.z                    14) libfabric/1.11.0-GCCcore-x.y.z
+  2) Tcl/8.6.10-GCCcore-x.y.z         15) PMIx/3.1.5-GCCcore-x.y.z
+  3) SQLite/3.31.1-GCCcore-x.y.z      16) OpenMPI/4.0.3-GCC-x.y.z
+  4) GMP/6.2.0-GCCcore-x.y.z          17) OpenBLAS/0.3.9-GCC-x.y.z
+  5) libffi/3.3-GCCcore-x.y.z         18) gompi/2020a
+  6) Python/3.x.y-GCCcore-x.y.z       19) FFTW/3.3.8-gompi-2020a
+  7) GCC/x.y.z                        20) ScaLAPACK/2.1.0-gompi-2020a
+  8) numactl/2.0.13-GCCcore-x.y.z     21) foss/2020a
+  9) libxml2/2.9.10-GCCcore-x.y.z     22) pybind11/2.4.3-GCCcore-x.y.z-Pytho...
+ 10) libpciaccess/0.16-GCCcore-x.y.z  23) SciPy-bundle/2020.03-foss-2020a-Py...
+ 11) hwloc/2.2.0-GCCcore-x.y.z        24) networkx/2.4-foss-2020a-Python-3.8...
+ 12) libevent/2.1.11-GCCcore-x.y.z    25) GROMACS/2020.1-foss-2020a-Python-3...
+ 13) UCX/1.8.0-GCCcore-x.y.z
+```
+{: .output}
+
+So in this case, loading the `GROMACS` module (a bioinformatics software
+package), also loaded `GMP/6.2.0-GCCcore-x.y.z` and
+`SciPy-bundle/2020.03-foss-2020a-Python-3.x.y` as well. Let's try unloading the
+`GROMACS` package.
+
+```
+{{ site.remote.prompt }} module unload GROMACS
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+```
+Currently Loaded Modules:
+  1) GCCcore/x.y.z                    13) UCX/1.8.0-GCCcore-x.y.z
+  2) Tcl/8.6.10-GCCcore-x.y.z         14) libfabric/1.11.0-GCCcore-x.y.z
+  3) SQLite/3.31.1-GCCcore-x.y.z      15) PMIx/3.1.5-GCCcore-x.y.z
+  4) GMP/6.2.0-GCCcore-x.y.z          16) OpenMPI/4.0.3-GCC-x.y.z
+  5) libffi/3.3-GCCcore-x.y.z         17) OpenBLAS/0.3.9-GCC-x.y.z
+  6) Python/3.x.y-GCCcore-x.y.z       18) gompi/2020a
+  7) GCC/x.y.z                        19) FFTW/3.3.8-gompi-2020a
+  8) numactl/2.0.13-GCCcore-x.y.z     20) ScaLAPACK/2.1.0-gompi-2020a
+  9) libxml2/2.9.10-GCCcore-x.y.z     21) foss/2020a
+ 10) libpciaccess/0.16-GCCcore-x.y.z  22) pybind11/2.4.3-GCCcore-x.y.z-Pytho...
+ 11) hwloc/2.2.0-GCCcore-x.y.z        23) SciPy-bundle/2020.03-foss-2020a-Py...
+ 12) libevent/2.1.11-GCCcore-x.y.z    24) networkx/2.4-foss-2020a-Python-3.x.y
+```
+{: .output}
+
+So using `module unload` "un-loads" a module, and depending on how a site is
+ configured it may also unload all of the dependencies (in our case it does
+ not). If we wanted to unload everything at once, we could run `module purge`
+ (unloads everything).
+
+```
+{{ site.remote.prompt }} module purge
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+```
+No modules loaded
+```
+{: .output}
+
+Note that `module purge` is informative. It will also let us know if a default
+set of "sticky" packages cannot be unloaded (and how to actually unload these
+if we truly so desired).

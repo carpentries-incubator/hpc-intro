@@ -1,0 +1,11 @@
+> ## Explore a Worker Node
+>
+> Finally, let's look at the resources available on the worker nodes where your
+> jobs will actually run. Try running this command to see the name, CPUs and
+> memory available on the worker nodes:
+>
+> ```
+> {{ site.remote.prompt }} sinfo -o "%n %c %m" | column -t
+> ```
+> {: .language-bash}
+{: .challenge}

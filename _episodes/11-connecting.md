@@ -300,7 +300,9 @@ See the [PuTTY documentation][putty-agent].
 ### Transfer Your Public Key
 
 {% if site.remote.portal %}
-Visit {{ site.remote.portal }} to upload your SSH public key.
+Visit [{{ site.remote.portal }}]({{ site.remote.portal }}) to upload your SSH
+public key. (Remember, it's the one ending in `.pub`!)
+
 {% else %}
 Use the **s**ecure **c**o**p**y tool to send your public key to the cluster.
 
@@ -406,6 +408,7 @@ the other files, or files like them: `.bashrc` is a shell configuration file,
 which you can edit with your preferences; and `.ssh` is a directory storing SSH
 keys and a record of authorized connections.
 
+{% unless site.remote.portal %}
 ### Install Your SSH Key
 
 > ## There May Be a Better Way
@@ -449,6 +452,7 @@ password for your SSH key.
 {{ site.local.prompt }} ssh {{ site.remote.user }}@{{ site.remote.login }}
 ```
 {: .language-bash}
+{% endunless %}
 
 {% include links.md %}
 

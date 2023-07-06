@@ -1,0 +1,64 @@
+# ---------------------------------------------------------------
+# HPC Carpentries in the Cloud: Slurm + Software Stack from EESSI
+# ---------------------------------------------------------------
+#
+# The HPC Carpentry Cluster in the Cloud is provided as a public
+# service by volunteers. It is provisioned with Magic Castle
+# <https://github.com/ComputeCanada/magic_castle> using the EESSI
+# <https://eessi.github.io/docs/> software stack. If you need an
+# account, please visit <cluster.hpc-carpentry.org>.
+#
+# Compute responsibly.
+---
+
+snippets: "/snippets_library/HPCC_MagicCastle_slurm"
+
+local:
+  prompt: "[you@laptop:~]$"
+  bash_shebang: "#!/usr/bin/env bash"
+
+remote:
+  name: "HPC Carpentry's Cloud Cluster"
+  login: "cluster.hpc-carpentry.org"
+  portal: "https://mokey.cluster.hpc-carpentry.org"
+  host: "login1"
+  node: "smnode1"
+  location: "cluster.hpc-carpentry.org"
+  homedir: "/home"
+  user: "yourUsername"
+  module_python3: "Python"
+  prompt: "[yourUsername@login1 ~]$"
+  bash_shebang: "#!/bin/bash"
+
+sched:
+  name: "Slurm"
+  submit:
+    name: "sbatch"
+    options: ""
+  queue:
+    debug: "smnode"
+    testing: "cpubase_bycore_b1"
+  status: "squeue"
+  flag:
+    user: "-u yourUsername"
+    interactive: ""
+    histdetail: "-l -j"
+    name: "-J"
+    time: "-t"
+    queue: "-p"
+  del: "scancel"
+  interactive: "srun"
+  info: "sinfo"
+  comment: "#SBATCH"
+  hist: "sacct -u yourUsername"
+
+episode_order:
+  - 10-hpc-intro
+  - 11-connecting
+  - 12-cluster
+  - 13-scheduler
+  - 14-modules
+  - 15-transferring-files
+  - 16-parallel
+  - 17-resources
+  - 18-responsibility
