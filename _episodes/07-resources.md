@@ -17,7 +17,57 @@ keypoints:
 <!--
 - scaling testing involves running jobs with increasing resources and measuring the efficiency in order to establish a pattern informed decisions about future job submissions.-->
 
-In previous episodes we covered *how* to request resources, but what you may not know is *what* resources you need to request. The solution to this problem is testing!
+## What Resources?
+
+Last time we submitted a job, we did not specify a number of CPUs, and therefore got the default of `2` (1 'core').
+
+As a reminder, our slurm script `example-job.sl` should currently look like this.
+
+```
+{% include example_scripts/example-job.sl.1 %}
+```
+{: .language-bash}
+
+Using the information we collected from the previous job (`nn_seff <job-id>`), we will submit the same job again with more CPUs and our best estimates of required resources.
+We ask for more CPUs using by adding `#SBATCH --cpus-per-task 4` to our script.
+
+Your script should now look like this:
+
+```
+{% include example_scripts/example-job.sl.2 %}
+```
+{: .language-bash}
+
+And then submit using `sbatch` as we did before.
+
+> ## acctg-freq
+>
+> We will also add the argument `--acctg-freq 1`.
+> By default SLURM records job data every 30 seconds. This means any job running for less than 30 
+> seconds will not have it's memory use recorded.
+> This is the same as specifying `#SBATCH --acctg-freq 1` inside the script.
+{: .callout}
+
+```
+{{ site.remote.prompt }} sbatch --acctg-freq 1 example-job.sl
+```
+{: .language-bash}
+
+{% include {{ site.snippets }}/scheduler/basic-job-script.snip %}
+
+> ## Watch
+>
+> We can prepend any command with `watch` in order to periodically (default 2 seconds) run a command. e.g. `watch 
+> squeue --me` will give us up to date information on our running jobs. 
+> Care should be used when using `watch` as repeatedly running a command can have adverse effects.  
+{: .callout}
+
+Checking on our job with `sacct`.
+Oh no!
+{% include {{ site.snippets }}/scaling/OOM.snip %}
+
+{: .language-bash}
+
 Understanding the resources you have available and how to use them most efficiently is a vital skill in high performance computing.
 
 Below is a table of common resources and issues you may face if you do not request the correct amount.

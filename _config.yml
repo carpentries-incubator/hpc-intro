@@ -49,14 +49,14 @@ sched:
 
 episode_order:
   - 01-cluster
-  # - 02-filedir
-  - 04-modules
+  - 02-filedir
   - 03-break1
+  - 04-moduless
   - 05-scheduler
-  # - 06-lunch
-  - 064-parallel
-  - 08-break2
+  - 06-lunch
   - 07-resources
+  - 08-break2
+  - 064-parallel
   - 09-scaling
   # - 095-writing-good-code
 
@@ -91,7 +91,7 @@ kind: "lesson"
 # Workshop working directory.
 working_dir:
 - /nesi/project/nesi99991
-- resbaz23
+- introhpc2309
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
 # 600 is 10am
