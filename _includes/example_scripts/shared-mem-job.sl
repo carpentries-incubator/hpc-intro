@@ -5,6 +5,6 @@
 #SBATCH --time          00:15:00
 #SBATCH --cpus-per-task 4
 
-module load R/4.1.0-gimkl-2020a
+module load R/4.3.1-gimkl-2022a
 Rscript array_sum.r
 echo "Done!"
