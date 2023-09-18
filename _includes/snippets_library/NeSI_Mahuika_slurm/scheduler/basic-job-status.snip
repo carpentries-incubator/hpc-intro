@@ -3,8 +3,3 @@ JOBID   USER         ACCOUNT   NAME           CPUS MIN_MEM PARTITI START_TIME  T
 231964  yourUsername {{site.sched.projectcode}} example-job.sl 1    512M     large   N/A        1:00     PENDING  (Priority)
 ```
 {: .output}
-
-We can see many details about our job, most importantly is it's _STATE_. Sometimes our jobs might need to wait in a queue, so it's state is `PENDING`, likely waiting for resources or 
-because other jobs have priority.  If we are lucky it will have a state of `RUNNING` which means the job has 
-been sent to a compute node and it is processing our commands.  If we are unlucky the job will have an `ERROR` state, menaing something has 
-gone wrong with our job submission.  In many cases this is caused by a typo in the submit script.
