@@ -52,7 +52,7 @@ example:
   lang: "R"
   shell: "Rscript"
   script: "array_sum.r"
-  module: "R/4.1.0-gimkl-2020a"
+  module: "R/4.3.1-gimkl-2022a"
 
 episode_order:
   - 01-cluster
