@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 library(doParallel)
 
 num_cpus <- 2 # Use this value to request num cpus.
