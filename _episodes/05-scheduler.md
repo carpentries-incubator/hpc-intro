@@ -175,7 +175,7 @@ Now, rather than running our script with `bash` we _submit_ it to the scheduler 
 And that's all we need to do to submit a job. Our work is done -- now the
 scheduler takes over and tries to run the job for us.
 
-## Checking on our Job
+## Checking on Running/Pending Jobs
 
 While the job is waiting
 to run, it goes into a list of jobs called the *queue*. To check on our job's
@@ -189,8 +189,57 @@ status, we check the queue using the command
 
 {% include {{ site.snippets }}/scheduler/basic-job-status.snip %}
 
+We can see many details about our job, most importantly is it's _STATE_, the most common states you might see are..
 
-If we were too slow, and the job has already finished (and therefore not in the queue) there is another command we can use `{{ site.sched.hist }}` (**s**lurm **acc**oun**t**). By default `{{ site.sched.hist }}` only includes jobs submitted by you, so no need to include additional commands at this point.
+- `PENDING`: The job is waiting in the queue, likely waiting for resources to free up or higher prioroty jobs to run.
+because other jobs have priority.  
+- `RUNNING`: The job has been sent to a compute node and it is processing our commands.  
+- `COMPLETED`: Your commands completed succesfully as far as Slurm can tell (e.g. exit 0).  
+- `FAILED`: (e.g. exit not 0).
+- `CANCELLED`:
+- `TIMEOUT`: Your job has running for longer than your `--time` and was killed.
+- `OUT_OF_MEMORY`: Your job tried to use more memory that it is allocated (`--mem`) and was killed.
+
+## Cancelling Jobs
+
+Sometimes we'll make a mistake and need to cancel a job. This can be done with
+the `{{ site.sched.del }}` command.
+
+<!-- ```
+{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sl
+{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.me }}
+```
+{: .language-bash} -->
+
+<!-- {% include {{ site.snippets }}/scheduler/terminate-job-begin.snip %} -->
+
+In order to cancel the job, we will first need its 'JobId', this can be found in the output of '{{ site.sched.status }} {{ site.sched.flag.me }}'.
+
+```
+{{ site.remote.prompt }} {{site.sched.del }} 231964
+```
+{: .language-bash}
+
+A clean return of your command prompt indicates that the request to cancel the job was
+successful.
+
+Now checking `{{ site.sched.status }}` again, the job should be gone.
+
+```
+{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.me }}
+```
+{: .language-bash}
+
+{% include {{ site.snippets }}/scheduler/terminate-job-cancel.snip %}
+
+(If it isn't wait a few seconds and try again).
+
+{% include {{ site.snippets }}/scheduler/terminate-multiple-jobs.snip %}
+
+## Checking Finished Jobs
+
+There is another command `{{ site.sched.hist }}` (**s**lurm **acc**oun**t**) that includes jobs that have finished.
+By default `{{ site.sched.hist }}` only includes jobs submitted by you, so no need to include additional commands at this point.
 
 ```
 {{ site.remote.prompt }} {{ site.sched.hist }}
@@ -207,10 +256,10 @@ This can be suppressed using the flag `-X`.
 > On the login node, when we ran the bash script, the output was printed to the terminal.
 > Slurm batch job output is typically redirected to a file, by default this will be a file named `slurm-<job-id>.out` in the directory where the job was submitted, this can be changed with the slurm parameter `--output`.
 {: .discussion}
-
+>
 > > ## Hint
 > >
-> > You can use the *manual pages* for {{ site.sched.name }} utilities to find
+> > You can use the _manual pages_ for {{ site.sched.name }} utilities to find
 > > more about their capabilities. On the command line, these are accessed
 > > through the `man` utility: run `man <program-name>`. You can find the same
 > > information online by searching > "man <program-name>".
@@ -270,37 +319,6 @@ restrain their job to the requested resources or kill the job outright. Other
 jobs on the node will be unaffected. This means that one user cannot mess up
 the experience of others, the only jobs affected by a mistake in scheduling
 will be their own. -->
-
-## Cancelling a Job
-
-Sometimes we'll make a mistake and need to cancel a job. This can be done with
-the `{{ site.sched.del }}` command. Let's submit a job and then cancel it using
-its job number (remember to change the walltime so that it runs long enough for
-you to cancel it before it is killed!).
-
-```
-{{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sl
-{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.me }}
-```
-{: .language-bash}
-
-{% include {{ site.snippets }}/scheduler/terminate-job-begin.snip %}
-
-Now cancel the job with its job number (printed in your terminal). A clean
-return of your command prompt indicates that the request to cancel the job was
-successful.
-
-```
-{{ site.remote.prompt }} {{site.sched.del }} 23229413
-# It might take a minute for the job to disappear from the queue...
-{{ site.remote.prompt }} {{ site.sched.status }} {{ site.sched.flag.me }}
-```
-{: .language-bash}
-
-{% include {{ site.snippets }}/scheduler/terminate-job-cancel.snip %}
-
-{% include {{ site.snippets }}/scheduler/terminate-multiple-jobs.snip %}
-
 <!-- ## Other Types of Jobs
 
 Up to this point, we've focused on running jobs in batch mode.
