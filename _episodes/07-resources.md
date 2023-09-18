@@ -19,16 +19,18 @@ keypoints:
 
 ## What Resources?
 
-Last time we submitted a job, we did not specify a number of CPUs, and therefore got the default of `2` (1 'core').
+Last time we submitted a job, we did not specify a number of CPUs, and therefore
+we were provided the default of `2` (1 _core_).
 
-As a reminder, our slurm script `example-job.sl` should currently look like this.
+As a reminder, our slurm script `example-job.sl` should currently looks like this.
 
 ```
 {% include example_scripts/example-job.sl.1 %}
 ```
+
 {: .language-bash}
 
-Using the information we collected from the previous job (`nn_seff <job-id>`), we will submit the same job again with more CPUs and our best estimates of required resources.
+We will now submit the same job again with more CPUs and our best estimates of required resources.
 We ask for more CPUs using by adding `#SBATCH --cpus-per-task 4` to our script.
 
 Your script should now look like this:
@@ -36,6 +38,7 @@ Your script should now look like this:
 ```
 {% include example_scripts/example-job.sl.2 %}
 ```
+
 {: .language-bash}
 
 And then submit using `sbatch` as we did before.
@@ -43,7 +46,7 @@ And then submit using `sbatch` as we did before.
 > ## acctg-freq
 >
 > We will also add the argument `--acctg-freq 1`.
-> By default SLURM records job data every 30 seconds. This means any job running for less than 30 
+> By default SLURM records job data every 30 seconds. This means any job running for less than 30
 > seconds will not have it's memory use recorded.
 > This is the same as specifying `#SBATCH --acctg-freq 1` inside the script.
 {: .callout}
@@ -51,15 +54,11 @@ And then submit using `sbatch` as we did before.
 ```
 {{ site.remote.prompt }} sbatch --acctg-freq 1 example-job.sl
 ```
+
 {: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/basic-job-script.snip %}
 
-> ## Watch
->
-> We can prepend any command with `watch` in order to periodically (default 2 seconds) run a command. e.g. `watch 
-> squeue --me` will give us up to date information on our running jobs. 
-> Care should be used when using `watch` as repeatedly running a command can have adverse effects.  
 {: .callout}
 
 Checking on our job with `sacct`.
@@ -92,7 +91,7 @@ Below is a table of common resources and issues you may face if you do not reque
         <tr>
             <td><b>   Memory   </b></td>
             <td>Your job will fail, probably with an 'OUT OF MEMORY' error, segmentation fault or bus error (may not happen immediately).</td>
-            <td>The job will wait in the queue for longer.<br> 
+            <td>The job will wait in the queue for longer.<br>
              You will be charged for memory regardless of whether it is used or not.<br>
              Your fair share score will fall more.</td>
         </tr>
@@ -128,7 +127,7 @@ Make sure outputs are going somewhere you can see them.
 
 > ## Serial Test
 >
-> Often a good first test to run, is to execute your job *serially* e.g. using only 1 CPU.
+> Often a good first test to run, is to execute your job _serially_ e.g. using only 1 CPU.
 > This not only saves you time by being fast to start, but serial jobs can often be easier to debug.
 > If you confirm your job works in its most simple state you can identify problems caused by
 > paralellistaion much more easily.
@@ -150,9 +149,9 @@ interpreter starts to process the batch script.
 NeSI has an easy way for you to test your job submission.  One can employ the debug
 QOS to get a short, high priority test job. Debug jobs have to run within 15
 minutes and cannot use more that 2 nodes. To use debug QOS, add or change the
-following in your batch submit script  
-`#SBATCH --qos=debug`  
-`#SBATCH --time=15:00`  
+following in your batch submit script
+`#SBATCH --qos=debug`
+`#SBATCH --time=15:00`
 
 Adding these SBATCH directives will provide your job with the highest priority
 possible, meaning it should start to run within a few minutes, provided
@@ -165,6 +164,7 @@ If we check the status of our finished job using the `sacct` command we learned 
 ```
 {{ site.remote.prompt }} sacct
 ```
+
 {: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/basic-job-status-sacct.snip %}
@@ -184,12 +184,12 @@ For the above example **33 seconds** of computation was done where the maximum p
 > ## Efficiency Exercise
 >
 > Calculate for the job shown below,
-> 
+>
 > ```
-> JobID           JobName          Alloc     Elapsed     TotalCPU  ReqMem   MaxRSS State      
-> --------------- ---------------- ----- ----------- ------------ ------- -------- ----------  
-> 37171050        Example-job          8    00:06:03     00:23:04     32G           FAILED     
-> 37171050.batch  batch                8    00:06:03    23:03.999         14082672k FAILED     
+> JobID           JobName          Alloc     Elapsed     TotalCPU  ReqMem   MaxRSS State
+> --------------- ---------------- ----- ----------- ------------ ------- -------- ----------
+> 37171050        Example-job          8    00:06:03     00:23:04     32G           FAILED
+> 37171050.batch  batch                8    00:06:03    23:03.999         14082672k FAILED
 > 37171050.extern extern               8    00:06:03    00:00.001                0  COMPLETED
 > ```
 >
@@ -205,11 +205,12 @@ For the above example **33 seconds** of computation was done where the maximum p
 > {: .solution}
 {: .challenge}
 
-
 For convenience, NeSI has provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA).
+
 ```
 {{ site.remote.prompt }} nn_seff <jobid>
 ```
+
 {: .language-bash}
 
 {% include {{ site.snippets }}/resources/seff.snip %}
@@ -220,7 +221,7 @@ If you were to submit this same job again what resources would you request?
 
 On Mahuika, we allow users to connect directly to compute nodes from the
 login node. This is useful to check on a running job and see how it's doing, however, we
-only allow you to connect to nodes on which you have running jobs. 
+only allow you to connect to nodes on which you have running jobs.
 
 ### Monitor System Processes With `htop`
 
@@ -230,6 +231,7 @@ output might look like the following (type `q` to exit `htop`):
 ```
 {{ site.remote.prompt }} htop -u <yourUsername>
 ```
+
 {: .language-bash}
 
 {% include {{ site.snippets }}/resources/monitor-processes-top.snip %}
@@ -256,8 +258,8 @@ Running the command `sacct` we can see where our currently located jobs are loca
 ```
 {{ site.remote.prompt }} squeue --me
 ```
-{: .language-bash}
 
+{: .language-bash}
 
 {% include  {{ site.snippets }}/resources/get-job-node.snip %}
 
@@ -266,15 +268,15 @@ Now that we know the location of the job (wbn189) we can use SSH to run htop the
 ```
 {{ site.remote.prompt }} ssh wbn189 -t htop -u $USER
 ```
-{: .language-bash}
 
+{: .language-bash}
 
 <!-- Now that you know the efficiency of your small test job what next? Throw 100 more CPUs at the problem for 100x speedup? -->
 
 > ## Next Steps
 >
 > You can use this knowledge to set up the
-> next job with a closer estimate of its load on the system. 
+> next job with a closer estimate of its load on the system.
 > A good general rule
 > is to ask the scheduler for **30%** more time and memory than you expect the
 > job to need.
