@@ -63,11 +63,7 @@ Lets try this now, create and open a new file in your current directory called `
 
 
 ```
-{{ site.remote.bash_shebang }}
-
-module load R/4.1.0-gimkl-2020a
-Rscript array_sum.r
-echo "Done!"
+{% include example_scripts/example-job.sh %}
 ```
 {: .language-bash}
 
@@ -76,7 +72,6 @@ echo "Done!"
 > _shebang_ or _shabang_, also referred to as _hashbang_ is the character sequence consisting of the number sign (aka: hash) and exclamation mark (aka: bang): `#!` at the beginning of a script.  It is used to describe the _interpreter_ that will be used to run the script.  In this case we will be using the Bash Shell, which can be found at the path `/bin/bash`. The job scheduler will give you an error if your script does not start with a shebang.
 >
 {: .callout}
-
 
 We can now run this script using
 ```
@@ -99,6 +94,13 @@ Done!
 {: .output}
 
 You will get the output printed to your terminal as if you had just run those commands one after another.
+
+> ## Cancelling Commands
+>
+> You can kill a currently running task by pressing the keys <kbd>ctrl</kbd> + <kbd>c</kbd>.
+> If you just want your terminal back, but want the task to continue running you can 'background' it by pressing <kbd>ctrl</kbd> + <kbd>v</kbd>.
+> Note, a backgrounded task is still attached to your terminal session, and will be killed when you close the terminal (if you need to keep running a task after you log out, have a look at [tmux](https://support.nesi.org.nz/hc/en-gb/articles/4563511601679-tmux-Reference-sheet)).
+{: .callout}
 
 ## Scheduled Batch Job
 
@@ -186,7 +188,6 @@ status, we check the queue using the command
 {: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/basic-job-status.snip %}
-
 
 
 If we were too slow, and the job has already finished (and therefore not in the queue) there is another command we can use `{{ site.sched.hist }}` (**s**lurm **acc**oun**t**). By default `{{ site.sched.hist }}` only includes jobs submitted by you, so no need to include additional commands at this point.
