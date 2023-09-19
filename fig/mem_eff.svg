@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="300mm"
+   height="40mm"
+   viewBox="0 0 300 40"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
+   sodipodi:docname="mem_eff.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showguides="true"
+     showgrid="true"
+     inkscape:zoom="0.91969511"
+     inkscape:cx="567.03574"
+     inkscape:cy="-11.416827"
+     inkscape:window-width="1920"
+     inkscape:window-height="1163"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <sodipodi:guide
+       position="175,54.999999"
+       orientation="1,0"
+       id="guide4"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="135,19.999999"
+       orientation="0,-1"
+       id="guide5"
+       inkscape:locked="false" />
+    <inkscape:grid
+       id="grid5"
+       units="mm"
+       originx="0"
+       originy="0"
+       spacingx="0.99999998"
+       spacingy="1"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-16.628455,-39.239801)">
+    <text
+       xml:space="preserve"
+       style="font-size:9.87778px;fill:#ff0000;stroke-width:0.264583"
+       x="26.099287"
+       y="62.652298"
+       id="text1"><tspan
+         sodipodi:role="line"
+         style="font-size:9.87778px;stroke-width:0.264583;fill:#ff0000"
+         x="26.099287"
+         y="62.652298"
+         id="tspan2">Memory Efficiency = </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:9.87778px;fill:#000000;stroke-width:0.264583"
+       x="250.79282"
+       y="62.723518"
+       id="text1-9"><tspan
+         sodipodi:role="line"
+         style="font-size:9.87778px;stroke-width:0.264583"
+         x="250.79282"
+         y="62.723518"
+         id="tspan2-36">100</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.76111px;fill:#00e400;fill-opacity:1;stroke-width:0.264583"
+       x="191.79134"
+       y="51.83897"
+       id="text1-5"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;fill:#00e400;fill-opacity:1;stroke-width:0.264583"
+         x="191.79134"
+         y="51.83897"
+         id="tspan4">MaxRSS</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.76111px;fill:#66cdaa;fill-opacity:1;stroke-width:0.264583"
+       x="190.85391"
+       y="71.838966"
+       id="text1-5-9"><tspan
+         sodipodi:role="line"
+         style="font-size:7.76111px;text-align:center;text-anchor:middle;fill:#66cdaa;fill-opacity:1;stroke-width:0.264583"
+         x="190.85391"
+         y="71.838966"
+         id="tspan3">ReqMem</tspan></text>
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:1.8928;stroke-dasharray:none;stroke-opacity:1"
+       d="m 146.62846,59.2398 90,3e-6"
+       id="path5" />
+    <g
+       id="g2"
+       transform="translate(4.2158915,-0.01905124)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87777px;line-height:0;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;fill:#000000;stroke:#000000;stroke-width:0.265;stroke-dasharray:none;stroke-opacity:1"
+         x="240.05664"
+         y="61.847874"
+         id="text11-4"><tspan
+           sodipodi:role="line"
+           id="tspan11-4"
+           style="line-height:0;stroke-width:0.265;stroke-dasharray:none"
+           x="240.05664"
+           y="61.847874">x</tspan></text>
+    </g>
+  </g>
+</svg>
