@@ -26,8 +26,10 @@ As a reminder, our slurm script `example-job.sl` currently looks like this.
 ```
 {% include example_scripts/example-job.sl.1 %}
 ```
-
 {: .language-bash}
+
+We will now submit the same job again with more CPUs.
+We ask for more CPUs using by adding `#SBATCH --cpus-per-task 4` to our script.
 Your script should now look like this:
 
 ```
@@ -56,9 +58,11 @@ Note in squeue, the number under cpus, should be '4'.
 
 Checking on our job with `sacct`.
 Oh no!
-{% include {{ site.snippets }}/scaling/OOM.snip %}
 
+{% include {{ site.snippets }}/scaling/OOM.snip %}
 {: .language-bash}
+
+To understand why our job failed, we need to talk about the resources involved.
 
 Understanding the resources you have available and how to use them most efficiently is a vital skill in high performance computing.
 
@@ -98,6 +102,7 @@ Below is a table of common resources and issues you may face if you do not reque
 
 ## Measuring Resource Usage of a Finished Job
 
+Since we have already run a job (succesful or otherwise), this is the best source of info we currently have.
 If we check the status of our finished job using the `sacct` command we learned earlier.
 
 ```
@@ -106,8 +111,6 @@ If we check the status of our finished job using the `sacct` command we learned 
 {: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/basic-job-status-sacct.snip %}
-
-<!-- Put big formulas here. -->
 
 With this information, we may determine a couple of things.
 
@@ -201,7 +204,7 @@ We can do this with the command `squeue --me`, and looking under the 'NODELIST' 
 
 {% include  {{ site.snippets }}/resources/get-job-node.snip %}
 
-Now that we know the location of the job (wbn189) we can use SSH to run htop there.
+Now that we know the location of the job (wbn189) we can use `ssh` to run `htop` _on that node_.
 
 ```
 {{ site.remote.prompt }} ssh wbn189 -t htop -u $USER
@@ -211,8 +214,8 @@ Now that we know the location of the job (wbn189) we can use SSH to run htop the
 You may get a message:
 
 ```
-ECDSA key fingerprint is SHA256:Se1WKeayCfi3lAxDzS7fBlS83kBaBEvBgxHoAz2HVkM.
-ECDSA key fingerprint is MD5:9d:03:fc:43:07:ac:ac:9b:78:85:45:52:ac:7a:ed:cd.
+ECDSA key fingerprint is SHA256:############################################
+ECDSA key fingerprint is MD5:9d:############################################
 Are you sure you want to continue connecting (yes/no)?
 ```
 {: .language-bash}
