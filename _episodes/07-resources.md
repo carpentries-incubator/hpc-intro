@@ -18,17 +18,16 @@ keypoints:
 
 ## What Resources?
 
-Last time we submitted a job, we did not specify a number of CPUs, and therefore got the default of `2` (1 'core').
+Last time we submitted a job, we did not specify a number of CPUs, and therefore
+we were provided the default of `2` (1 _core_).
 
-As a reminder, our slurm script `example-job.sl` should currently look like this.
+As a reminder, our slurm script `example-job.sl` currently looks like this.
 
 ```
 {% include example_scripts/example-job.sl.1 %}
 ```
+
 {: .language-bash}
-
-In order to request more CPUs we can add the line `#SBATCH --cpus-per-task 4` to our script.
-
 Your script should now look like this:
 
 ```
@@ -85,7 +84,7 @@ Below is a table of common resources and issues you may face if you do not reque
         <tr>
             <td><b>   Memory   </b></td>
             <td>Your job will fail, probably with an 'OUT OF MEMORY' error, segmentation fault or bus error (may not happen immediately).</td>
-            <td>The job will wait in the queue for longer.<br> 
+            <td>The job will wait in the queue for longer.<br>
              You will be charged for memory regardless of whether it is used or not.<br>
              Your fair share score will fall more.</td>
         </tr>
@@ -143,10 +142,10 @@ Time Efficiency is simply the <strong style="color:#0000ff">Elapsed Time</strong
 > Calculate for the job shown below,
 >
 > ```
-> JobID           JobName          Alloc     Elapsed     TotalCPU  ReqMem   MaxRSS State      
-> --------------- ---------------- ----- ----------- ------------ ------- -------- ----------  
-> 37171050        Example-job          8    00:06:03     00:23:04     32G           FAILED     
-> 37171050.batch  batch                8    00:06:03    23:03.999         14082672k FAILED     
+> JobID           JobName          Alloc     Elapsed     TotalCPU  ReqMem   MaxRSS State
+> --------------- ---------------- ----- ----------- ------------ ------- -------- ----------
+> 37171050        Example-job          8    00:06:03     00:23:04     32G           FAILED
+> 37171050.batch  batch                8    00:06:03    23:03.999         14082672k FAILED
 > 37171050.extern extern               8    00:06:03    00:00.001                0  COMPLETED
 > ```
 >
