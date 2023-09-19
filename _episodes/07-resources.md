@@ -102,7 +102,7 @@ Below is a table of common resources and issues you may face if you do not reque
 
 ## Measuring Resource Usage of a Finished Job
 
-Since we have already run a job (succesful or otherwise), this is the best source of info we currently have.
+Since we have already run a job (successful or otherwise), this is the best source of info we currently have.
 If we check the status of our finished job using the `sacct` command we learned earlier.
 
 ```
