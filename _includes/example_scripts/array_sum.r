@@ -9,6 +9,8 @@ registerDoParallel(num_cpus)
 
 sprintf("Using %i cpus to sum [ %e x %e ] matrix.",num_cpus,size_array,size_array)
 
+set.seed(num_cpus)
+
 results <- foreach(z=0:size_array) %dopar% {
     percent_complete= z*100/size_array
     if (percent_complete%%1==0){
