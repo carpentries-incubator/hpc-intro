@@ -194,7 +194,7 @@ We can see many details about our job, most importantly is it's _STATE_, the mos
 - `PENDING`: The job is waiting in the queue, likely waiting for resources to free up or higher prioroty jobs to run.
 because other jobs have priority.  
 - `RUNNING`: The job has been sent to a compute node and it is processing our commands.  
-- `COMPLETED`: Your commands completed succesfully as far as Slurm can tell (e.g. exit 0).  
+- `COMPLETED`: Your commands completed successfully as far as Slurm can tell (e.g. exit 0).  
 - `FAILED`: (e.g. exit not 0).
 - `CANCELLED`:
 - `TIMEOUT`: Your job has running for longer than your `--time` and was killed.
