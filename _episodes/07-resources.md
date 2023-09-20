@@ -26,6 +26,7 @@ As a reminder, our slurm script `example-job.sl` currently looks like this.
 ```
 {% include example_scripts/example-job.sl.1 %}
 ```
+
 {: .language-bash}
 
 We will now submit the same job again with more CPUs.
@@ -35,6 +36,7 @@ Your script should now look like this:
 ```
 {% include example_scripts/example-job.sl.2 %}
 ```
+
 {: .language-bash}
 
 And then submit using `sbatch` as we did before.
@@ -42,6 +44,7 @@ And then submit using `sbatch` as we did before.
 ```
 {{ site.remote.prompt }} sbatch example-job.sl
 ```
+
 {: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/basic-job-script.snip %}
@@ -108,6 +111,7 @@ If we check the status of our finished job using the `sacct` command we learned 
 ```
 {{ site.remote.prompt }} sacct
 ```
+
 {: .language-bash}
 
 {% include {{ site.snippets }}/scheduler/basic-job-status-sacct.snip %}
@@ -165,9 +169,11 @@ Time Efficiency is simply the <strong style="color:#0000ff">Elapsed Time</strong
 {: .challenge}
 
 For convenience, NeSI has provided the command `nn_seff <jobid>` to calculate **S**lurm **Eff**iciency (all NeSI commands start with `nn_`, for **N**eSI **N**IWA).
+
 ```
 {{ site.remote.prompt }} nn_seff <jobid>
 ```
+
 {: .language-bash}
 
 {% include {{ site.snippets }}/resources/seff.snip %}
@@ -179,9 +185,37 @@ Knowing what we do now about job efficiency, lets submit the previous job again 
 ```
 {{ site.remote.prompt }} sbatch example-job.sl
 ```
+
 {: .language-bash}
 
 Hopefully we will have better luck with this one!
+
+### A quick description of Simultaneous Multithreading - SMT (aka Hyperthreading)
+
+Modern CPU cores have 2 threads of operation that can execute independently of one
+another. SMT is the technology that allows the 2 threads within one physical core to present
+as multiple logical cores, sometimes referred to as virtual CPUS (vCPUS).
+
+Note:  _Hyperthreading_ is Intel's marketing name for SMT.  Both Intel and AMD
+CPUs have SMT technology.
+
+Some types of processes can take advantage of multiple threads, and can gain a
+performance boost.  Some software is
+specifically written as multi-threaded. You will need to check or test if your
+code can take advantage of threads (we can help with this).
+
+However, because each thread shares resources on the physical core,
+there can be conflicts for resources such as onboard cache.
+This is why not all processes get a performance boost from SMT and in fact can
+run slower.  These types of jobs should be run without multithreading.  There
+is a Slurm parameter for this:  `--hint=nomultithread`
+
+SMT is why you are provided 2 CPUs instead of 1 as we do not allow
+2 different jobs to share a core.  This also explains why you will sometimes
+see CPU efficiency above 100%, since CPU efficiency is based on core and not thread.
+
+For more details please see our documentation:
+<https://support.nesi.org.nz/hc/en-gb/articles/360000568236-Hyperthreading>
 
 ## Measuring the System Load From Currently Running Tasks
 
@@ -200,6 +234,7 @@ We can do this with the command `squeue --me`, and looking under the 'NODELIST' 
 ```
 {{ site.remote.prompt }} squeue --me
 ```
+
 {: .language-bash}
 
 {% include  {{ site.snippets }}/resources/get-job-node.snip %}
@@ -209,6 +244,7 @@ Now that we know the location of the job (wbn189) we can use `ssh` to run `htop`
 ```
 {{ site.remote.prompt }} ssh wbn189 -t htop -u $USER
 ```
+
 {: .language-bash}
 
 You may get a message:
@@ -218,6 +254,7 @@ ECDSA key fingerprint is SHA256:############################################
 ECDSA key fingerprint is MD5:9d:############################################
 Are you sure you want to continue connecting (yes/no)?
 ```
+
 {: .language-bash}
 
 If so, type `yes` and <kbd>Enter</kbd>
@@ -260,7 +297,7 @@ Make sure outputs are going somewhere you can see them.
 
 > ## Serial Test
 >
-> Often a good first test to run, is to execute your job *serially* e.g. using only 1 CPU.
+> Often a good first test to run, is to execute your job _serially_ e.g. using only 1 CPU.
 > This not only saves you time by being fast to start, but serial jobs can often be easier to debug.
 > If you confirm your job works in its most simple state you can identify problems caused by
 > paralellistaion much more easily.
@@ -285,9 +322,10 @@ Testing allows you to become more more precise with your resource requests. We w
 > following in your batch submit script
 >
 >```
->#SBATCH --qos=debug 
+>#SBATCH --qos=debug
 >#SBATCH --time=15:00
-> ``` 
+> ```
+>
 >{: .language-bash}
 >
 > Adding these SBATCH directives will provide your job with the highest priority
