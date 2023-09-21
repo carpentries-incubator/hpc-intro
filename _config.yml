@@ -67,6 +67,8 @@ sched:
     name: "-J"
     time: "-t"
     queue: "-p"
+    nodes: "-N"
+    tasks: "-n"
   del: "scancel"
   interactive: "srun"
   info: "sinfo"
