@@ -1,0 +1,9 @@
+```
+JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+    9 cpubase_b example-   user01  R       0:05      1 node1
+```
+{: .output}
+
+We can see all the details of our job, most importantly that it is in the `R`
+or `RUNNING` state. Sometimes our jobs might need to wait in a queue
+(`PENDING`) or have an error (`E`).

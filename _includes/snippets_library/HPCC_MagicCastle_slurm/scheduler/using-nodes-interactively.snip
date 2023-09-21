@@ -1,6 +1,6 @@
 `{{ site.sched.interactive }}` runs a single command on the cluster and then
-exits. Let's demonstrate this by running the `hostname` command with `{{
-site.sched.interactive }}`. (We can cancel an `{{ site.sched.interactive }}`
+exits. Let's demonstrate this by running the `hostname` command with
+`{{ site.sched.interactive }}`. (We can cancel an `{{ site.sched.interactive }}`
 job with `Ctrl-c`.)
 
 ```
@@ -13,8 +13,8 @@ job with `Ctrl-c`.)
 ```
 {: .output}
 
-`{{ site.sched.interactive }}` accepts all of the same options as `{{
-site.sched.submit.name }}`. However, instead of specifying these in a script,
+`{{ site.sched.interactive }}` accepts all of the same options as
+`{{ site.sched.submit.name }}`. However, instead of specifying these in a script,
 these options are specified on the command-line when starting a job. To submit
 a job that uses 2 CPUs for instance, we could use the following command:
 
@@ -52,7 +52,7 @@ logged on. You can also verify this with `hostname`.
 >
 > To see graphical output inside your jobs, you need to use X11 forwarding. To
 > connect with this feature enabled, use the `-Y` option when you login with
-> the `ssh` command, e.g., `ssh -Y yourUsername@{{ site.remote.login }}`.
+> the `ssh` command, e.g., `ssh -Y {{ site.remote.user }}@{{ site.remote.login }}`.
 >
 > To demonstrate what happens when you create a graphics window on the remote
 > node, use the `xeyes` command. A relatively adorable pair of eyes should pop

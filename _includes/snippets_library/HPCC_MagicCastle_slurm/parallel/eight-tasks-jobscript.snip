@@ -1,0 +1,16 @@
+```
+{{ site.remote.bash_shebang }}
+{{ site.sched.comment }} {{ site.sched.flag.name }} parallel-job
+{{ site.sched.comment }} {{ site.sched.flag.queue }} {{ site.sched.queue.testing }}
+{{ site.sched.comment }} -N 1
+{{ site.sched.comment }} -n 8
+
+# Load the computing environment we need
+# (mpi4py and numpy are in SciPy-bundle)
+module load {{ site.remote.module_python3 }}
+module load SciPy-bundle
+
+# Execute the task
+mpiexec amdahl
+```
+{: .language-bash}

@@ -1,0 +1,27 @@
+> ## Cancelling multiple jobs
+>
+> We can also cancel all of our jobs at once using the `-u` option. This will
+> delete all jobs for a specific user (in this case, yourself). Note that you
+> can only delete your own jobs.
+>
+> Try submitting multiple jobs and then cancelling them all.
+>
+> > ## Solution
+> >
+> > First, submit a trio of jobs:
+> >
+> > ```
+> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
+> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
+> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}example-job.sh
+> > ```
+> > {: .language-bash}
+> >
+> > Then, cancel them all:
+> >
+> > ```
+> > {{ site.remote.prompt }} {{ site.sched.del }} -u {{ site.remote.user }}
+> > ```
+> > {: .language-bash}
+> {: .solution}
+{: .challenge}

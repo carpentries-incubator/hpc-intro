@@ -1,0 +1,33 @@
+If the `python3` command was unavailable, we would see output like
+
+```
+/usr/bin/which: no python3 in (/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin:/opt/software/slurm/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:/home/{{site.remote.user}}/.local/bin:/home/{{site.remote.user}}/bin)
+```
+{: .output}
+
+Note that this wall of text is really a list, with values separated
+by the `:` character. The output is telling us that the `which` command
+searched the following directories for `python3`, without success:
+
+```
+/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin
+/opt/software/slurm/bin
+/usr/local/bin
+/usr/bin
+/usr/local/sbin
+/usr/sbin
+/opt/puppetlabs/bin
+/home/{{site.remote.user}}/.local/bin
+/home/{{site.remote.user}}/bin
+```
+{: .output}
+
+However, in our case we do have an existing `python3` available so we see
+
+```
+/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin/python3
+```
+{: .output}
+
+We need a different Python than the system provided one though, so let us load
+a module to access it.
