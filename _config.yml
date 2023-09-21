@@ -43,7 +43,7 @@ remote:
   login: "cluster.hpc-carpentry.org"
   portal: "https://mokey.cluster.hpc-carpentry.org"
   host: "login1"
-  node: "smnode1"
+  node: "node1"
   location: "cluster.hpc-carpentry.org"
   homedir: "/home"
   user: "yourUsername"
