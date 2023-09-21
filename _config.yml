@@ -6,8 +6,8 @@
 #------------------------------------------------------------
 
 # Cluster host and scheduler options: the defaults come from
-# Graham at Compute Canada, running Slurm. Other options can
-# be found in the library of snippets,
+# the HPC Carpentry tutorial cluster, running Slurm. Other
+# options can be found in the library of snippets,
 # `_includes/snippets_library`. To use one, replace options
 # below with those in `_config_options.yml` from the
 # library. E.g, to customise for Cirrus at EPCC, running
@@ -20,23 +20,36 @@
 # installation. Remember to keep the leading slash on the
 # `snippets` variable below!
 
-snippets: "/snippets_library/ComputeCanada_Graham_slurm"
+# ---------------------------------------------------------------
+# HPC Carpentries in the Cloud: Slurm + Software Stack from EESSI
+# ---------------------------------------------------------------
+#
+# The HPC Carpentry Cluster in the Cloud is provided as a public
+# service by volunteers. It is provisioned with Magic Castle
+# <https://github.com/ComputeCanada/magic_castle> using the EESSI
+# <https://eessi.github.io/docs/> software stack. If you need an
+# account, please visit <cluster.hpc-carpentry.org>.
+#
+# Compute responsibly.
+
+snippets: "/snippets_library/HPCC_MagicCastle_slurm"
 
 local:
-  prompt: "[user@laptop ~]$"
+  prompt: "[you@laptop:~]$"
   bash_shebang: "#!/usr/bin/env bash"
 
 remote:
-  name: "Graham"
-  login: "graham.computecanada.ca"
-  host: "gra-login1"
-  node: "aci-377"
-  location: "University of Waterloo"
+  name: "HPC Carpentry's Cloud Cluster"
+  login: "cluster.hpc-carpentry.org"
+  portal: "https://mokey.cluster.hpc-carpentry.org"
+  host: "login1"
+  node: "node1"
+  location: "cluster.hpc-carpentry.org"
   homedir: "/home"
   user: "yourUsername"
-  prompt: "[yourUsername@gra-login1 ~]$"
-  module_python3: "python3"
-  bash_shebang: "#!/usr/bin/env bash"
+  module_python3: "Python"
+  prompt: "[yourUsername@login1 ~]$"
+  bash_shebang: "#!/bin/bash"
 
 sched:
   name: "Slurm"
@@ -44,8 +57,8 @@ sched:
     name: "sbatch"
     options: ""
   queue:
-    debug: "debug"
-    testing: "testing"
+    debug: "smnode"
+    testing: "cpubase_bycore_b1"
   status: "squeue"
   flag:
     user: "-u yourUsername"
