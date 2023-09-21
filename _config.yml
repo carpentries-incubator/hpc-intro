@@ -31,7 +31,6 @@
 # account, please visit <cluster.hpc-carpentry.org>.
 #
 # Compute responsibly.
----
 
 snippets: "/snippets_library/HPCC_MagicCastle_slurm"
 
