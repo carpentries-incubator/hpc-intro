@@ -4,6 +4,21 @@
 # SITE specific configuration
 #------------------------------------------------------------
 
+# Cluster host and scheduler options: the defaults come from
+# the HPC Carpentry tutorial cluster, running Slurm. Other
+# options can be found in the library of snippets,
+# `_includes/snippets_library`. To use one, replace options
+# below with those in `_config_options.yml` from the
+# library. E.g, to customise for Cirrus at EPCC, running
+# PBS, we could replace the options below with those from
+# 
+# _includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
+# 
+# If your cluster is not represented in the library, please
+# copy an existing folder, rename it, and customize for your
+# installation. Remember to keep the leading slash on the
+# `snippets` variable below!
+
 # ---------------------------------------------------------------
 # HPC Carpentries in the Cloud: Slurm + Software Stack from EESSI
 # ---------------------------------------------------------------
