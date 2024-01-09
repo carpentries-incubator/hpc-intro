@@ -1,0 +1,18 @@
+```
+{{ site.remote.bash_shebang }}
+{{ site.sched.comment }} {{ site.sched.flag.name }} parallel-pi
+{{ site.sched.comment }} {{ site.sched.flag.partition }}
+{{ site.sched.comment }} {{ site.sched.flag.qos }}
+{{ site.sched.comment }} --exclusive
+{{ site.sched.comment }} --time=00:20:00
+{{ site.sched.comment }} --nodes=1
+{{ site.sched.comment }} --tasks-per-node=4
+{{ site.sched.comment }} --cpus-per-task=1
+
+# Load the computing environment we need
+module load mpi4py 
+
+# Execute the task
+srun --cpu-bind=cores python parallel-pi.py 100000000
+```
+{: .language-bash}

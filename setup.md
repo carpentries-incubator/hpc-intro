@@ -137,5 +137,5 @@ anything.
 [ms-wsl]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
 [ms-shell]: https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7
 [mobax-gen]: https://mobaxterm.mobatek.net/documentation.html
-[unix-emulator]: https://faculty.smu.edu/reynolds/unixtut/windows.html
+[unix-emulator]: https://www.cygwin.com/
 [wsl]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
