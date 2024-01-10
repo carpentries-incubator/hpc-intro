@@ -26,6 +26,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.0.4'
+          bundler-cache: true
       - name: Install basic requirements
         run: |
           # Need this library for nokogiri
@@ -65,6 +66,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.0.4'
+          bundler-cache: true
       - name: Install basic requirements
         run: |
           # Need this library for nokogiri
