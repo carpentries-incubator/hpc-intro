@@ -4,22 +4,22 @@
 ---
 config:
   MD001: false  # heading-increment
-  MD002: false
+  MD002: false  # mdl rule undefined
   MD003: true   # heading-style
   MD004: true   # ul-style
   MD005: true   # list-indent
-  MD006: true
+  MD006: false  # mdl rule undefined
   MD007: true   # ul-indent
-  MD008: true
+  MD008: false  # mdl rule undefined
   MD009: true   # no-trailing-spaces
   MD010: true   # no-hard-tabs
   MD011: true   # no-reversed-links
   MD012: true   # no-multiple-blanks
-  MD013: false
-  MD014: false
-  MD015: true
-  MD016: true
-  MD017: true
+  MD013: false  # line-length
+  MD014: false  # commands-show-output
+  MD015: false  # mdl rule undefined
+  MD016: false  # mdl rule undefined
+  MD017: false  # mdl rule undefined
   MD018: true   # no-missing-space-atx
   MD019: true   # no-multiple-space-atx
   MD020: true   # no-missing-space-closed-atx
