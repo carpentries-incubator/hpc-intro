@@ -6,7 +6,7 @@ export SHELL = /bin/bash
 
 # Settings
 MAKEFILES=Makefile $(wildcard *.mk)
-JEKYLL=bundle config --local set path .bundle && bundle install && bundle update && bundle exec jekyll
+JEKYLL=bundle config --local set path .vendor/bundle && bundle install && bundle update && bundle exec jekyll
 HPC_JEKYLL_CONFIG?=
 PARSER=bin/markdown_ast.rb
 DST=_site
@@ -154,7 +154,7 @@ lesson-fixme :
 
 ## spellcheck
 spellcheck:
-	codespell --skip="assets,*.svg,.vendor" --quiet-level=2 -I .codespell-ignore
+	codespell --skip=".bundle,.vendor,assets,*.svg" --quiet-level=2 --ignore-words=".codespell-ignore"
 
 ##
 ## IV. Auxililary (plumbing) commands
