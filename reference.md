@@ -9,11 +9,12 @@ title: Knowledge Base
 Search online for the one that fits you best, but here's some to start:
 
 * [Slurm summary](https://slurm.schedmd.com/pdfs/summary.pdf) from SchedMD
-* [Torque/PBS summary](
-  https://gif.biotech.iastate.edu/torque-pbs-job-management-cheat-sheet)
+* [Torque/PBS
+  summary](https://gif.biotech.iastate.edu/torque-pbs-job-management-cheat-sheet)
   from Iowa State
-* [Translating between Slurm and PBS](
-  https://www.msi.umn.edu/slurm/pbs-conversion) from University of Minnesota
+* [Translating between Slurm and
+  PBS](https://www.msi.umn.edu/slurm/pbs-conversion) from University of
+  Minnesota
 
 ### Units and Language
 
@@ -28,10 +29,10 @@ History and common language have however mixed this notation with a different
 meaning. When people say "Kilobyte", they mean 1024 Bytes instead. In that
 spirit, a Megabyte is 1024 Kilobytes.
 
-To address this ambiguity, the [International System of Quantities](
-https://en.wikipedia.org/wiki/International_System_of_Quantities) standardizes
-the *binary* prefixes (with base of 2<sup>10</sup>=1024) by the prefixes Kibi
-(ki), Mebi (Mi), Gibi (Gi), etc. For more details, see
+To address this ambiguity, the [International System of
+Quantities](https://en.wikipedia.org/wiki/International_System_of_Quantities)
+standardizes the *binary* prefixes (with base of 2<sup>10</sup>=1024) by the
+prefixes Kibi (ki), Mebi (Mi), Gibi (Gi), etc. For more details, see
 [here](https://en.wikipedia.org/wiki/Binary_prefix).
 
 ### "No such file or directory" or "symbol 0096" Errors
