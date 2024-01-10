@@ -82,7 +82,7 @@ individual to individual!
 >
 > - Vary the number of threads used per process
 > - Reduce the number of cores used per node
-> - Allow the calculation to use Symmetric Mutithreading (SMT) if enabled
+> - Allow the calculation to use Symmetric Multithreading (SMT) if enabled
 >
 > Please ask for more information on these options from a helper!
 {: .challenge}
@@ -95,7 +95,7 @@ https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Do
 > compares nucleotide or protein sequences to sequence databases and calculates
 > the statistical significance.
 >
-> In this exercise, you should use what you have learnt so far to set up a way
+> In this exercise, you should use what you have learned so far to set up a way
 > to run multiple serial BLAST+ analyses in parallel. There are many different
 > ways to do this that can be used on their own or in combination. Some ideas
 > include:

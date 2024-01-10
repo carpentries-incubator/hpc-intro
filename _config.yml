@@ -94,7 +94,7 @@ episode_order:
 # "swc": Software Carpentry
 # "dc":  Data Carpentry
 # "lc":  Library Carpentry
-# "cp":  Carpentries (e.g., instructor traning)
+# "cp":  Carpentries (e.g., instructor training)
 carpentry: "incubator"
 
 # Overall title for pages.
