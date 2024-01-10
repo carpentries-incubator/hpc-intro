@@ -89,8 +89,7 @@ individual to individual!
 
 > ## Running Many Serial BLAST+ Analyses in Parallel
 >
-> [BLAST+](
-https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+> [BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 > finds regions of similarity between biological sequences. The program
 > compares nucleotide or protein sequences to sequence databases and calculates
 > the statistical significance.
@@ -107,14 +106,12 @@ https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Do
 >
 > We have prepared an example dataset that has 100 sequences to analyse
 > (actually this is 10 sequences repeated 10 times). This set is based on the
-> [BLAST GNU Parallel example](
-https://github.com/LangilleLab/microbiome_helper/wiki/Quick-Introduction-to-GNU-Parallel)
+> [BLAST GNU Parallel example](https://github.com/LangilleLab/microbiome_helper/wiki/Quick-Introduction-to-GNU-Parallel)
 >
 > This exercise involves:
 >
 > - Downloading and expanding the dataset to the HPC system from:
->   [{{ site.url }}{{site.baseurl }}/files/parallel_example.tar.gz](
->   {{ site.url }}{{site.baseurl }}/files/parallel_example.tar.gz)
+>   [{{ site.url }}{{site.baseurl }}/files/parallel_example.tar.gz]({{ site.url }}{{site.baseurl}}/files/parallel_example.tar.gz)
 > - Writing a job submission script to run a single analysis using the `blast`
 >   module and the following command:
 >
