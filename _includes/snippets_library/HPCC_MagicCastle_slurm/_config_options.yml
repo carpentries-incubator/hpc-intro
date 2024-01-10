@@ -51,6 +51,7 @@ sched:
   info: "sinfo"
   comment: "#SBATCH"
   hist: "sacct -u yourUsername"
+  hist_filter: ""
 
 episode_order:
   - 10-hpc-intro
