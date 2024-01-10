@@ -29,7 +29,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.7.4'
+          ruby-version: '3.0.4'
+          bundler-cache: true
       - name: Install basic requirements
         run: |
           # Need this library for nokogiri
@@ -68,7 +69,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.7.4'
+          ruby-version: '3.0.4'
+          bundler-cache: true
       - name: Install basic requirements
         run: |
           # Need this library for nokogiri
