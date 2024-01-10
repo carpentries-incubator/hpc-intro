@@ -52,9 +52,9 @@ the Windows start menu.
 > you can run Bash commands on a remote computer or server that already has a
 > Unix Shell, from your Windows machine. This can usually be done through a
 > Secure Shell (SSH) client. One such client available for free for Windows
-> computers is PuTTY. See the reference below for information on installing and
-> using PuTTY, using the Windows 10 command-line tool, or installing and using
-> a Unix/Linux emulator.
+> computers is [PuTTY][putty]. See the reference below for information on
+> installing and using PuTTY, using the Windows 10 command-line tool, or
+> installing and using a Unix/Linux emulator.
 >
 > For advanced users, you may choose one of the following alternatives:
 >
@@ -137,5 +137,6 @@ anything.
 [ms-wsl]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
 [ms-shell]: https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7
 [mobax-gen]: https://mobaxterm.mobatek.net/documentation.html
-[unix-emulator]: https://faculty.smu.edu/reynolds/unixtut/windows.html
+[putty]: https://www.chiark.greenend.org.uk/~sgtatham/putty/
+[unix-emulator]: https://www.cygwin.com/
 [wsl]: https://docs.microsoft.com/en-us/windows/wsl/install-win10

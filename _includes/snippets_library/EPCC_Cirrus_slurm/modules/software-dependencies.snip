@@ -1,0 +1,35 @@
+To demonstrate, let's load the `namd` module and then use the `module list`
+command to show which modules we currently have loaded in our environment.
+([NAMD](https://www.ks.uiuc.edu/Research/namd/) is parallel molecular dynamics code
+designed for high-performance simulation of large biomolecular systems.)
+
+```
+{{ site.remote.prompt }} module load namd
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+```
+Currently Loaded Modulefiles:
+ 1) git/2.21.0(default)     2) epcc/utils          3) /lustre/sw/modulefiles/epcc/setup-env
+ 4) gcc/8.2.0               5) intel-license       6) intel-mpi-19/19.0.0.117
+ 7) fftw/3.3.9-impi19-gcc8  8) namd/2.14(default) 
+```
+{: .output}
+
+So in this case, loading the `namd` module also loaded a variety of other
+modules. Let's try unloading the `namd` package.
+
+```
+{{ site.remote.prompt }} module unload namd
+{{ site.remote.prompt }} module list
+```
+{: .language-bash}
+
+```
+Currently Loaded Modulefiles:
+ 1) git/2.21.0(default)   2) epcc/utils   3) /lustre/sw/modulefiles/epcc/setup-env
+```
+{: .output}
+
+So using `module unload` "un-loads" a module along with its dependencies.

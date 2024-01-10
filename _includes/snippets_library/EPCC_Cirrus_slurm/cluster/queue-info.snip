@@ -1,0 +1,17 @@
+```
+PARTITION   AVAIL  TIMELIMIT  NODES  STATE NODELIST 
+standard       up 4-00:00:00      4   resv r1i0n[0-1],r1i2n[18-19] 
+standard       up 4-00:00:00      6    mix r1i0n[31,33],r1i3n30,r1i4n5,r1i5n... 
+standard       up 4-00:00:00    187  alloc r1i0n[2,5,13,18-30,32,34-35],r1i1... 
+standard       up 4-00:00:00     83   idle r1i0n[3-4,6-12,14-17],r1i3n[4,9,1... 
+gpu-skylake    up      20:00      1    mix r2i3n0 
+gpu-skylake    up      20:00      1   idle r2i3n1 
+gpu-cascade    up      20:00      2  maint r2i7n[7-8] 
+gpu-cascade    up      20:00      1   resv r2i5n5 
+gpu-cascade    up      20:00      4    mix r2i4n[3,8],r2i5n[0,4] 
+gpu-cascade    up      20:00     10  alloc r2i4n[0,2,4,6-7],r2i5n[6-8],r2i6n... 
+gpu-cascade    up      20:00     19   idle r2i4n[1,5],r2i5n[1-3],r2i6n[0-2,4... 
+tds            up 4-00:00:00      4   idle r1i4n[8,17,26,35] 
+gpu-tds        up      10:00      2  maint r2i7n[7-8]
+```
+{: .output}

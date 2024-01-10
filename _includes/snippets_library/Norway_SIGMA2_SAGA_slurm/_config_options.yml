@@ -8,9 +8,9 @@
 # `_includes/snippets_library`. To use one, replace options
 # below with those in `_config_options.yml` from the
 # library. E.g, to customise for Cirrus at EPCC, running
-# PBS, we could replace the options below with those from
+# Slurm, we could replace the options below with those from
 # 
-# _includes/snippets_library/EPCC_Cirrus_pbs/_config_options.yml
+# _includes/snippets_library/EPCC_Cirrus_slurm/_config_options.yml
 # 
 # If your cluster is not represented in the library, please
 # copy an existing folder, rename it, and customize for your
@@ -55,6 +55,7 @@ sched:
   info: "sinfo"
   comment: "#SBATCH"
   hist: "sacct -u $USER"
+  hist_filter: ""
 
 episode_order:
   - 10-hpc-intro

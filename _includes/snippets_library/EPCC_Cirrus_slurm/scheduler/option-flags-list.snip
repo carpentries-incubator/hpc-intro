@@ -1,0 +1,17 @@
+* `-J, --job-name=<jobname>` &mdash; set a name for the job to help identify it in Slurm command output.
+
+* `-A, --account=<budgetID>` &mdash; your budget ID is usually something like tc01 or tc01-test.
+
+* `-p, --partition=<partition>` &mdash; the partition specifies the set of nodes you want to run on.
+
+* `-q, --qos=<QoS>` &mdash; the Quality of Service (QoS) specifies the limits of your job (e.g., maximum number of nodes, maximum walltime).
+
+* `-t, --time=<hh:mm:ss>` &mdash; the maximum walltime for your job, e.g. for a 6.5 hour walltime, you would use `--time=06:30:00`.
+
+* `--exclusive` &mdash; setting this flag ensures that you have exclusive access to a compute node.
+
+* `-N, --nodes=<nodes>` &mdash; the number of nodes to use for the job.
+
+* `--ntasks-per-node=<processes per node>` &mdash; the number of parallel processes (e.g. MPI ranks) per node.
+
+* `-c, --cpus-per-task=<threads per task>` &mdash; the number of threads per parallel process (e.g. the number of OpenMP threads per MPI task for hybrid MPI/OpenMP jobs).

@@ -27,16 +27,16 @@ understand the reasoning behind this approach. The three biggest factors are:
 
 Software incompatibility is a major headache for programmers. Sometimes the
 presence (or absence) of a software package will break others that depend on
-it. Two of the most famous examples are Python 2 and 3 and C compiler versions.
+it. Two well known examples are Python and C compiler versions.
 Python 3 famously provides a `python` command that conflicts with that provided
 by Python 2. Software compiled against a newer version of the C libraries and
-then used when they are not present will result in a nasty `'GLIBCXX_3.4.20'
-not found` error, for instance.
+then run on a machine that has older C libraries installed will result in a
+nasty `'GLIBCXX_3.4.20' not found` error.
 
 Software versioning is another common issue. A team might depend on a certain
 package version for their research project - if the software version was to
 change (for instance, if a package was updated), it might affect their results.
-Having access to multiple software versions allow a set of researchers to
+Having access to multiple software versions allows a set of researchers to
 prevent software versioning issues from affecting their results.
 
 Dependencies are where a particular software package (or even a particular
@@ -89,10 +89,7 @@ message telling you so
 ```
 {: .language-bash}
 
-```
-No Modulefiles Currently Loaded.
-```
-{: .output}
+{% include {{ site.snippets }}/modules/default-modules.snip %}
 
 ## Loading and Unloading Software
 
@@ -198,7 +195,10 @@ Let's examine the output of `module avail` more closely.
 > >
 > > ```
 > > {{ site.remote.bash_shebang }}
-> >
+> > {{ site.sched.comment }} {{ site.sched.flag.partition }}{% if site.sched.flag.qos %}
+> > {{ site.sched.comment }} {{ site.sched.flag.qos }}
+> > {% endif %}{{ site.sched.comment }} {{ site.sched.flag.time }} 00:00:30
+> > 
 > > module load {{ site.remote.module_python3 }}
 > >
 > > python3 --version
