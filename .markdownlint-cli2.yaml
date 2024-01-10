@@ -24,7 +24,7 @@ config:
   MD019: true   # no-multiple-space-atx
   MD020: true   # no-missing-space-closed-atx
   MD021: true   # no-multiple-space-closed-atx
-  MD022: true   # blanks-around-headings
+  MD022: false  # blanks-around-headings
   MD023: true   # heading-start-left
   MD024: false  # no-duplicate-heading
   MD025: true   # single-h1
