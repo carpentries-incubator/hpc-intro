@@ -130,4 +130,3 @@ which everyone is welcome to join. You can also [reach us by email][email].
 [swc-issues]: https://github.com/issues?q=user%3Aswcarpentry
 [swc-lessons]: https://software-carpentry.org/lessons/
 [swc-site]: https://software-carpentry.org/
-

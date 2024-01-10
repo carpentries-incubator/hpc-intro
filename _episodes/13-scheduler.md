@@ -181,7 +181,6 @@ Submit the job and monitor its status:
 
 Fantastic, we've successfully changed the name of our job!
 
-
 ### Resource Requests
 
 What about more important changes, such as the number of cores and memory for

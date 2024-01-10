@@ -28,5 +28,3 @@ If the naming seems counter-intuitive, please feel free to make
 changes locally, and file an issue of submit a pull request to fix it
 upstream. None of this is set in stone, and improvements are always
 welcome.
-
-

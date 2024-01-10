@@ -66,8 +66,7 @@ is a great way to contribute.
 :    *to be defined*
 
 [Supercomputer](https://en.wikipedia.org/wiki/Supercomputer)
-:    ["... a major scientific instrument ..."](
-https://www.hpcnotes.com/2015/10/essential-analogies-for-hpc-advocate.html)
+:    ["... a major scientific instrument ..."](https://www.hpcnotes.com/2015/10/essential-analogies-for-hpc-advocate.html)
 
 [Workstation](https://en.wikipedia.org/wiki/Workstation)
 :    *to be defined*

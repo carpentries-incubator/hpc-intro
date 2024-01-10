@@ -14,8 +14,7 @@ bring all prerequisites to the course.
 ## Pre-Workshop Survey
 
 For a motivation of this survey type, see Greg Wilson's template in [Teaching
-Tech Together](
-https://teachtogether.tech/en/index.html#s:checklists-preassess).
+Tech Together](https://teachtogether.tech/en/index.html#s:checklists-preassess).
 
 ### Shell
 

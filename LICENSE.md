@@ -1,8 +1,6 @@
 ---
-title: "Licenses"
+title: "License: CC BY 4.0"
 ---
-
-# CC BY 4.0
 
 ## Instructional Material
 

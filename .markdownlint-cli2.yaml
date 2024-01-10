@@ -1,0 +1,73 @@
+# markdownlint-cli2:
+# - Example: <https://github.com/DavidAnson/markdownlint-cli2/blob/main/test/markdownlint-cli2-yaml-example/.markdownlint-cli2.yaml>
+# - Rules:   <https://github.com/DavidAnson/markdownlint/blob/main/README.md#rules--aliases>
+---
+config:
+  MD001: false  # heading-increment
+  MD002: false  # mdl rule undefined
+  MD003: true   # heading-style
+  MD004: true   # ul-style
+  MD005: true   # list-indent
+  MD006: false  # mdl rule undefined
+  MD007: true   # ul-indent
+  MD008: false  # mdl rule undefined
+  MD009: true   # no-trailing-spaces
+  MD010: true   # no-hard-tabs
+  MD011: true   # no-reversed-links
+  MD012: true   # no-multiple-blanks
+  MD013: false  # line-length
+  MD014: false  # commands-show-output
+  MD015: false  # mdl rule undefined
+  MD016: false  # mdl rule undefined
+  MD017: false  # mdl rule undefined
+  MD018: true   # no-missing-space-atx
+  MD019: true   # no-multiple-space-atx
+  MD020: true   # no-missing-space-closed-atx
+  MD021: true   # no-multiple-space-closed-atx
+  MD022: true   # blanks-around-headings
+  MD023: true   # heading-start-left
+  MD024: false  # no-duplicate-heading
+  MD025: true   # single-h1
+  MD026: false  # no-trailing-punctuation
+  MD027: false  # no-multiple-space-blockquote
+  MD028: false  # no-blanks-blockquote
+  MD029: true   # ol-prefix
+  MD030: true   # list-marker-space
+  MD031: false  # blanks-around-fences
+  MD032: true   # blanks-around-lists
+  MD033: false  # no-inline-html
+  MD034: true   # no-bare-urls
+  MD035: true   # hr-style
+  MD036: true   # no-emphasis-as-heading
+  MD037: true   # no-space-in-emphasis
+  MD038: true   # no-space-in-code
+  MD039: true   # no-space-in-links
+  MD040: false  # fenced-code-language
+  MD041: false  # first-line-h1
+  MD042: true   # no-empty-links
+  MD043: false  # required-headings
+  MD044: true   # proper-names
+  MD045: true   # no-alt-text
+  MD046: true   # code-block-style
+  MD047: true   # single-trailing-newline
+  MD048: true   # code-fence-style
+  MD049: false  # emphasis-style
+  MD050: false  # strong-style
+  MD051: true   # link-fragments
+  MD052: true   # reference-links-images
+  MD053: false  # link-image-reference-definitions
+  MD054: false  # link-image-style
+  MD055: true   # table-pipe-style
+  MD056: true   # table-column-count
+
+ignores:
+  - .vendor
+  - .bundle
+  - _extras/figures.md  # really HTML
+  - _includes/links.md  # just a list of links
+  - "**/*.html"
+  - "**/*.sh"
+  - "**/*.yaml"
+  - "**/*.yml"
+
+# noProgress: true
