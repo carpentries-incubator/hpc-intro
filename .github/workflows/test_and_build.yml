@@ -12,19 +12,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: DavidAnson/markdownlint-cli2-action@v9
       - name: Install codespell
         run: |
           sudo apt-get install codespell
       - name: Check spelling
         run: |
           make spellcheck
+      - name: Check top-level Markdown syntax
+        uses: DavidAnson/markdownlint-cli2-action@v9
       - name: Check episode Markdown syntax
-        run: |
-          markdownlint-cli2 _episodes
+        uses: DavidAnson/markdownlint-cli2-action@v9
+        with:
+          globs: _episodes/*.md
       - name: Check extra Markdown syntax
-        run: |
-          markdownlint-cli2 _extra
+        uses: DavidAnson/markdownlint-cli2-action@v9
+        with:
+          globs: _extras/*.md
 
   check_lesson_and_build_default:
     runs-on: ubuntu-latest
@@ -34,7 +37,6 @@ jobs:
         with:
           ruby-version: '3.0.4'
           bundler-cache: true
-      - uses: DavidAnson/markdownlint-cli2-action@v9
       - name: Install basic requirements
         run: |
           # Need this library for nokogiri
@@ -43,9 +45,6 @@ jobs:
           bundle config set path '.vendor/bundle'
           bundle config build.nokogiri --use-system-libraries
           bundle install
-      - name: "Lint episode markdown"
-        run: |
-          bundle exec mdl _episodes {} \;
       - name: "Check lesson for warnings"
         run: |
           make lesson-check-all
@@ -75,7 +74,6 @@ jobs:
         with:
           ruby-version: '3.0.4'
           bundler-cache: true
-      - uses: DavidAnson/markdownlint-cli2-action@v9
       - name: Install basic requirements
         run: |
           # Need this library for nokogiri
@@ -88,5 +86,6 @@ jobs:
         run: |
           make --always-make site HPC_JEKYLL_CONFIG=_includes/snippets_library/${{matrix.HPC_JEKYLL_CONFIG}}/_config_options.yml
       - name: Lint snippet markdown
-        run: |
-          markdownlint-cli2 "_includes/snippets_library/${{matrix.HPC_JEKYLL_CONFIG}}/**/*.snip"
+        uses: DavidAnson/markdownlint-cli2-action@v9
+        with:
+          globs: _includes/snippets_library/${{matrix.HPC_JEKYLL_CONFIG}}/**/*.snip
