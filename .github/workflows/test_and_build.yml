@@ -62,7 +62,7 @@ jobs:
         HPC_JEKYLL_CONFIG:
           - Birmingham_Baskerville_slurm
           - ComputeCanada_Graham_slurm
-          - EPCC_Cirrus_pbs
+          - EPCC_Cirrus_slurm
           - HPCC_MagicCastle_slurm
           - Magic_Castle_EESSI_slurm
           - NIST_CTCMS_slurm
