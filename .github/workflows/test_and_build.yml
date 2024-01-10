@@ -12,13 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.9'
       - name: Install codespell
         run: |
-          python3 -m pip install codespell
+          sudo apt-get install codespell
       - name: Check spelling
         run: |
           make spellcheck
