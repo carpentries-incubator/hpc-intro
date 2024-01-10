@@ -8,16 +8,23 @@ on:
       - gh-pages
 
 jobs:
-  spellcheck:
+  lint_common_files:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: DavidAnson/markdownlint-cli2-action@v9
       - name: Install codespell
         run: |
           sudo apt-get install codespell
       - name: Check spelling
         run: |
           make spellcheck
+      - name: Check episode Markdown syntax
+        run: |
+          markdownlint-cli2 _episodes
+      - name: Check extra Markdown syntax
+        run: |
+          markdownlint-cli2 _extra
 
   check_lesson_and_build_default:
     runs-on: ubuntu-latest
@@ -27,6 +34,7 @@ jobs:
         with:
           ruby-version: '3.0.4'
           bundler-cache: true
+      - uses: DavidAnson/markdownlint-cli2-action@v9
       - name: Install basic requirements
         run: |
           # Need this library for nokogiri
@@ -37,7 +45,7 @@ jobs:
           bundle install
       - name: "Lint episode markdown"
         run: |
-          find _episodes -name \*.md -exec bundle exec mdl -r MD001,MD003,MD005,MD006,MD007,MD008,MD009,MD010,MD011,MD012,MD015,MD016,MD017,MD018,MD019,MD020,MD021,MD022,MD023,MD025,MD035,MD036,MD037,MD038,MD039,MD046 {} \;
+          bundle exec mdl _episodes {} \;
       - name: "Check lesson for warnings"
         run: |
           make lesson-check-all
@@ -67,6 +75,7 @@ jobs:
         with:
           ruby-version: '3.0.4'
           bundler-cache: true
+      - uses: DavidAnson/markdownlint-cli2-action@v9
       - name: Install basic requirements
         run: |
           # Need this library for nokogiri
@@ -78,6 +87,6 @@ jobs:
       - name: Check build ${{matrix.HPC_JEKYLL_CONFIG}}
         run: |
           make --always-make site HPC_JEKYLL_CONFIG=_includes/snippets_library/${{matrix.HPC_JEKYLL_CONFIG}}/_config_options.yml
-      - name: "Lint snippet markdown"
+      - name: Lint snippet markdown
         run: |
-          find _includes/snippets_library/${{matrix.HPC_JEKYLL_CONFIG}} -name \*.snip -exec bundle exec mdl -r MD001,MD003,MD005,MD006,MD007,MD008,MD009,MD010,MD011,MD012,MD015,MD016,MD017,MD018,MD019,MD020,MD021,MD022,MD023,MD025,MD035,MD036,MD037,MD038,MD039,MD046 {} \;
+          markdownlint-cli2 "_includes/snippets_library/${{matrix.HPC_JEKYLL_CONFIG}}/**/*.snip"

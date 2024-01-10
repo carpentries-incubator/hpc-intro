@@ -409,6 +409,7 @@ which you can edit with your preferences; and `.ssh` is a directory storing SSH
 keys and a record of authorized connections.
 
 {% unless site.remote.portal %}
+
 ### Install Your SSH Key
 
 > ## There May Be a Better Way
