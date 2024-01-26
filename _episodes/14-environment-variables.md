@@ -68,7 +68,6 @@ It's up to programs to convert these strings to other types when necessary.
 For example, if a program wanted to find out how many processors the computer had,
 it would convert the value of the `NUMBER_OF_PROCESSORS` variable from a string to an integer.
 
-
 ## Showing the Value of a Variable
 
 Let's show the value of the variable `HOME`:
@@ -153,7 +152,7 @@ $ export SECRET_IDENTITY
 >
 > Set a shell variable `TIME_STYLE` to have a value of `iso` and check this
 > value using the `echo` command.
-> 
+>
 > Now, run the command `ls` with the option `-l` (which gives a long format).
 >
 > `export` the variable and rerun the `ls -l` command. Do you notice any
@@ -163,7 +162,7 @@ $ export SECRET_IDENTITY
 > >
 > > The `TIME_STYLE` variable is not _seen_ by `ls` until is exported, at which
 > > point it is used by `ls` to decide what date format to use when presenting
-> > the timestamp of files. 
+> > the timestamp of files.
 > >
 > {: .solution}
 {: .challenge}
@@ -233,8 +232,8 @@ I remember that I need to to update my `PATH` so that my shell can find them.
 
 What if I want to run two different versions of the same program? If I add them
 both to my path the first one found wins. In the next episode we'll learn how
-to use helper tools to help us manage our runtime environment to make that 
+to use helper tools to help us manage our runtime environment to make that
 possible without us needing to do a lot of bookkeeping on what the value of
-`PATH` (or other important environment variables). 
+`PATH` (or other important environment variables).
 
 {% include links.md %}
