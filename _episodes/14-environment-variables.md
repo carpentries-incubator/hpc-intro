@@ -39,7 +39,7 @@ Let's start by running the command `set` and looking at some of the variables in
 ~~~
 $ set
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 COMPUTERNAME=TURING
@@ -75,7 +75,7 @@ Let's show the value of the variable `HOME`:
 ~~~
 $ echo HOME
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 HOME
@@ -89,7 +89,7 @@ Let's try this instead:
 ~~~
 $ echo $HOME
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 /home/vlad
@@ -111,7 +111,7 @@ Creating a variable is easy&mdash;we just assign a value to a name using "=":
 $ SECRET_IDENTITY=Dracula
 $ echo $SECRET_IDENTITY
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 Dracula
@@ -124,7 +124,7 @@ To change the value, just assign a new one:
 $ SECRET_IDENTITY=Camilla
 $ echo $SECRET_IDENTITY
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 Camilla
@@ -146,7 +146,7 @@ do:
 $ SECRET_IDENTITY=Camilla
 $ export SECRET_IDENTITY
 ~~~
-{: .bash}
+{: .language-bash}
 
 > ## Using environment variables to change program behaviour
 >
@@ -178,8 +178,8 @@ for example:
 
 ~~~
 $ unset SECRET_IDENTITY
-~~~
-{: .bash}
+~~~ 
+{: .language-bash}
 
 ## The `PATH` Environment Variable
 
