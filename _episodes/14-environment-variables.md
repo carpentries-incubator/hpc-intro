@@ -28,13 +28,17 @@ keypoints:
 The shell is just a program, and like other programs, it has variables.
 Those variables control its execution,
 so by changing their values
-you can change how the shell behaves (and with a little more effort how other programs behave). Variables
+you can change how the shell behaves (and with a little more effort how other
+programs behave).
+
+Variables
 are a great way of saving information under a name you can access later. In
 programming languages like Python and R, variables can store pretty much
 anything you can think of. In the shell, they usually just store text. The best
 way to understand how they work is to see them in action.
 
-Let's start by running the command `set` and looking at some of the variables in a typical shell session:
+Let's start by running the command `set` and looking at some of the variables
+in a typical shell session:
 
 ~~~
 $ set
@@ -139,14 +143,22 @@ When  we ran the `set` command we saw they were a lot of variables whose names
 were in upper case. That's because, by convention, variables that are also
 available to use by _other_ programs are given upper-case names. Such variables
 are called _environment variables_ as they are shell variables that are defined
-for the current shell and are inherited by any child shells or processes. To
-create an environment variable you need to `export` it. For example, to make our
-`SECRET_IDENTITY` available to other programs that we call from our shell we can
-do:
+for the current shell and are inherited by any child shells or processes.
+
+To create an environment variable you need to `export` a shell variable. For
+example, to make our `SECRET_IDENTITY` available to other programs that we call
+from our shell we can do:
 
 ~~~
 $ SECRET_IDENTITY=Camilla
 $ export SECRET_IDENTITY
+~~~
+{: .language-bash}
+
+You can also create and export the variable in a single step:
+
+~~~
+$ export SECRET_IDENTITY=Camilla
 ~~~
 {: .language-bash}
 
@@ -188,7 +200,8 @@ $ unset SECRET_IDENTITY
 Similarly, some environment variables (like `PATH`) store lists of values.
 In this case, the convention is to use a colon ':' as a separator.
 If a program wants the individual elements of such a list,
-it's the program's responsibility to split the variable's string value into pieces.
+it's the program's responsibility to split the variable's string value into
+pieces.
 
 Let's have a closer look at that `PATH` variable.
 Its value defines the shell's search path for executables,
