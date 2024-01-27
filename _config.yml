@@ -81,7 +81,7 @@ episode_order:
   - 11-connecting
   - 12-cluster
   - 13-scheduler
-  - 14-environment-modules
+  - 14-environment-variables
   - 15-modules
   - 16-transferring-files
   - 17-parallel

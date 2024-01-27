@@ -1,7 +1,7 @@
 ---
 title: Environment Variables
 teaching: 10
-exercises: 1
+exercises: 5
 questions:
 - "How are variables set and accessed in the Unix shell?"
 - "How can I use variables to change how a program runs?"
@@ -105,7 +105,9 @@ which displays the right thing.
 
 ## Creating and Changing Variables
 
-Creating a variable is easy&mdash;we just assign a value to a name using "=":
+Creating a variable is easy&mdash;we just assign a value to a name using "="
+(we just have to remember that the syntax requires that there are _no_ spaces
+around the `=`!):
 
 ~~~
 $ SECRET_IDENTITY=Dracula
@@ -133,12 +135,12 @@ Camilla
 
 ## Environment variables
 
-When  we ran the `set command` we saw they were a lot of variables whose names
-were in upper case. That's because, by convention, variables that are available
-to use by _other_ programs are given upper-case names. Such variables are called
-_environment variables_ as they are shell variables that are defined for the
-current shell and are inherited by any child shells or processes. To create an
-environment variable you need to `export` it. For example, to make our
+When  we ran the `set` command we saw they were a lot of variables whose names
+were in upper case. That's because, by convention, variables that are also
+available to use by _other_ programs are given upper-case names. Such variables
+are called _environment variables_ as they are shell variables that are defined
+for the current shell and are inherited by any child shells or processes. To
+create an environment variable you need to `export` it. For example, to make our
 `SECRET_IDENTITY` available to other programs that we call from our shell we can
 do:
 
@@ -169,9 +171,9 @@ $ export SECRET_IDENTITY
 
 You can see the  complete set of environment variables in your current shell
 session with the command `env` (which returns a subset of what the command
-`set` gave us). *The complete set of environment variables is called
+`set` gave us). **The complete set of environment variables is called
 your _runtime environment_ and can affect the behaviour of the programs you
-run*.
+run**.
 
 To remove a variable or environment variable you can use the `unset` command,
 for example:
@@ -231,9 +233,9 @@ This means that I can have executables in lots of different places as long as
 I remember that I need to to update my `PATH` so that my shell can find them.
 
 What if I want to run two different versions of the same program? If I add them
-both to my path the first one found wins. In the next episode we'll learn how
-to use helper tools to help us manage our runtime environment to make that
-possible without us needing to do a lot of bookkeeping on what the value of
-`PATH` (or other important environment variables).
+both to my `PATH` the first one found will always win. In the next episode we'll
+learn how to use helper tools to help us manage our runtime environment to make
+that possible without us needing to do a lot of bookkeeping on what the value of
+`PATH` (or other important environment variables) is or should be.
 
 {% include links.md %}
