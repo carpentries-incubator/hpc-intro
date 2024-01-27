@@ -178,7 +178,7 @@ for example:
 
 ~~~
 $ unset SECRET_IDENTITY
-~~~ 
+~~~
 {: .language-bash}
 
 ## The `PATH` Environment Variable
