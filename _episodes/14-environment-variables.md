@@ -187,6 +187,8 @@ session with the command `env` (which returns a subset of what the command
 your _runtime environment_ and can affect the behaviour of the programs you
 run**.
 
+{% include {{ site.snippets }}/scheduler/print-sched-variables.snip %}
+
 To remove a variable or environment variable you can use the `unset` command,
 for example:
 
@@ -245,10 +247,11 @@ since the directory `/users/vlad` isn't in `PATH`.
 This means that I can have executables in lots of different places as long as
 I remember that I need to to update my `PATH` so that my shell can find them.
 
-What if I want to run two different versions of the same program? If I add them
+What if I want to run two different versions of the same program? Since they
+share the same name, if I add them
 both to my `PATH` the first one found will always win. In the next episode we'll
 learn how to use helper tools to help us manage our runtime environment to make
 that possible without us needing to do a lot of bookkeeping on what the value of
-`PATH` (or other important environment variables) is or should be.
+`PATH` (and other important environment variables) is or should be.
 
 {% include links.md %}
