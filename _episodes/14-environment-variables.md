@@ -59,18 +59,19 @@ USERNAME=vlad
 ~~~
 {: .output}
 
-As you can see, there are quite a few&mdash;in fact, four or five times more than what's shown here.
-And yes,
-using `set` to *show* things might seem a little strange,
-even for Unix,
-but if you don't give it any arguments,
+As you can see, there are quite a few — in fact,
+four or five times more than what's shown here.
+And yes, using `set` to *show* things might seem a little strange,
+even for Unix, but if you don't give it any arguments,
 it might as well show you things you *could* set.
 
 Every variable has a name.
-All shell variables' values are strings, even those (like `UID`) that look like numbers.
+All shell variables' values are strings,
+even those (like `UID`) that look like numbers.
 It's up to programs to convert these strings to other types when necessary.
-For example, if a program wanted to find out how many processors the computer had,
-it would convert the value of the `NUMBER_OF_PROCESSORS` variable from a string to an integer.
+For example, if a program wanted to find out how many processors the computer
+had, it would convert the value of the `NUMBER_OF_PROCESSORS` variable from a
+string to an integer.
 
 ## Showing the Value of a Variable
 
@@ -109,7 +110,7 @@ which displays the right thing.
 
 ## Creating and Changing Variables
 
-Creating a variable is easy&mdash;we just assign a value to a name using "="
+Creating a variable is easy — we just assign a value to a name using "="
 (we just have to remember that the syntax requires that there are _no_ spaces
 around the `=`!):
 
@@ -139,7 +140,7 @@ Camilla
 
 ## Environment variables
 
-When  we ran the `set` command we saw they were a lot of variables whose names
+When  we ran the `set` command we saw there were a lot of variables whose names
 were in upper case. That's because, by convention, variables that are also
 available to use by _other_ programs are given upper-case names. Such variables
 are called _environment variables_ as they are shell variables that are defined
@@ -210,8 +211,7 @@ Its value defines the shell's search path for executables,
 i.e., the list of directories that the shell looks in for runnable programs
 when you type in a program name without specifying what directory it is in.
 
-For example,
-when we type a command like `analyze`,
+For example, when we type a command like `analyze`,
 the shell needs to decide whether to run `./analyze` or `/bin/analyze`.
 The rule it uses is simple:
 the shell checks each directory in the `PATH` variable in turn,
@@ -247,11 +247,12 @@ since the directory `/users/vlad` isn't in `PATH`.
 This means that I can have executables in lots of different places as long as
 I remember that I need to to update my `PATH` so that my shell can find them.
 
-What if I want to run two different versions of the same program? Since they
-share the same name, if I add them
-both to my `PATH` the first one found will always win. In the next episode we'll
-learn how to use helper tools to help us manage our runtime environment to make
-that possible without us needing to do a lot of bookkeeping on what the value of
-`PATH` (and other important environment variables) is or should be.
+What if I want to run two different versions of the same program?
+Since they share the same name, if I add them both to my `PATH` the first one
+found will always win.
+In the next episode we'll learn how to use helper tools to help us manage our
+runtime environment to make that possible without us needing to do a lot of
+bookkeeping on what the value of `PATH` (and other important environment
+variables) is or should be.
 
 {% include links.md %}
