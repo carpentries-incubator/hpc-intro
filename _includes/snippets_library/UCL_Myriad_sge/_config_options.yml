@@ -41,8 +41,9 @@ episode_order:
   - 11-connecting
   - 12-cluster
   - 13-scheduler
-  - 14-modules
-  - 15-transferring-files
-  - 16-parallel
-  - 17-resources
-  - 18-responsibility
+  - 14-environment-variables
+  - 15-modules
+  - 16-transferring-files
+  - 17-parallel
+  - 18-resources
+  - 19-responsibility
