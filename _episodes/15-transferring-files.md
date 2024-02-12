@@ -186,11 +186,11 @@ A trailing slash on the source directory is optional, and has no effect for
 > {: .language-bash}
 >
 > As written, this will place the local directory and its contents under the
-> specified directory on the remote system. If the trailing slash is omitted on
+> specified directory on the remote system. If a trailing slash is added to
 > the source, a new directory corresponding to the transferred directory
 > ('dir' in the example) will not be created, and the contents of the source
 > directory will be copied directly into the destination directory. Omitting
-> the trailing slash on the destination makes no difference.
+> or adding a trailing slash on the destination makes no difference.
 >
 > The `a` (archive) option implies recursion.
 >
