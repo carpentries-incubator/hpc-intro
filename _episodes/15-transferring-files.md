@@ -151,7 +151,7 @@ which is often the case -- then you don't need a leading `/`. After the
 location for the file or, as mentioned above, provide nothing if your home
 directory _is_ the destination.
 
-A trailing slash on the target directory is optional, and has no effect for
+A trailing slash on the source directory is optional, and has no effect for 
 `scp -r`, but is important in other commands, like `rsync`.
 
 > ## A Note on `rsync`
@@ -187,9 +187,10 @@ A trailing slash on the target directory is optional, and has no effect for
 >
 > As written, this will place the local directory and its contents under the
 > specified directory on the remote system. If the trailing slash is omitted on
-> the destination, a new directory corresponding to the transferred directory
+> the source, a new directory corresponding to the transferred directory
 > ('dir' in the example) will not be created, and the contents of the source
-> directory will be copied directly into the destination directory.
+> directory will be copied directly into the destination directory. Omitting
+> the trailing slash on the destination makes no difference.
 >
 > The `a` (archive) option implies recursion.
 >
@@ -248,12 +249,17 @@ of the screen:
 
 * Host: `sftp://{{ site.remote.login }}`
 * User: Your cluster username
-* Password: Your cluster password
+* Password: Your cluster password (leave blank to use your SSH keys)
 * Port: (leave blank to use the default port)
+
+Leave the password blank there and in any popups to have FileZilla use your 
+existing SSH keys that are loaded in your SSH agent.
 
 Hit "Quickconnect" to connect. You should see your remote files appear on the
 right hand side of the screen. You can drag-and-drop files between the left
 (local) and right (remote) sides of the screen to transfer files.
+
+{% include {{ site.snippets }}/filezilla-remote-instructions.snip %}
 
 Finally, if you need to move large files (typically larger than a gigabyte)
 from one remote computer to another remote computer, SSH in to the computer

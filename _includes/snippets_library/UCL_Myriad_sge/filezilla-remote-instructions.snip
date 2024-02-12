@@ -1,0 +1,21 @@
+> ## Connecting Remotely Via an SSH Tunnel
+>
+> If you are remote and not using a VPN, you will need to set up an SSH tunnel
+using your terminal.
+>
+> ```
+> {{ site.local.prompt }} ssh -L 3333:{{ site.remote.login }}:22 {{ site.remote.user }}@ssh-gateway.ucl.ac.uk -N
+> ```
+> {: .language-bash}
+> 
+> This connects the local port 3333 to the cluster's SSH port, via the
+> remote gateway. The `-N` option tells it not to execute any remote
+> commands. Leave this running in the terminal and in FileZilla, set
+>
+> * Host: `sftp://localhost`
+> * User: Your cluster username
+> * Password: Your cluster password (leave blank to use your SSH keys)
+> * Port: 3333
+>
+> Hit "Quickconnect" to connect.
+{: .callout}
