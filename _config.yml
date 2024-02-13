@@ -61,6 +61,7 @@ sched:
   del: "qdel"
   interactive: "qrsh"
   info: "nodetypes"
+  hosts: "qhost"
   comment: "#$"
   hist: "jobhist"
 
