@@ -232,12 +232,9 @@ here are the components of `PATH` listed one per line:
 ~~~
 {: .output}
 
-On our computer,
-there are actually three programs called `analyze`
+Consider a computer with three different programs, all called `analyze`,
 in three different directories:
-`/bin/analyze`,
-`/usr/local/bin/analyze`,
-and `/users/vlad/analyze`.
+`/bin/analyze`, `/usr/local/bin/analyze`, and `/users/vlad/analyze`.
 Since the shell searches the directories in the order they're listed in `PATH`,
 it finds `/bin/analyze` first and runs that.
 Notice that it will *never* find the program `/users/vlad/analyze`

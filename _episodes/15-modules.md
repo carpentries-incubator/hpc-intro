@@ -196,8 +196,8 @@ Let's examine the output of `module avail` more closely.
 > > ```
 > > {{ site.remote.bash_shebang }}
 > > {{ site.sched.comment }} {{ site.sched.flag.partition }}{% if site.sched.flag.qos %}
-> > {{ site.sched.comment }} {{ site.sched.flag.qos }}
-> > {% endif %}{{ site.sched.comment }} {{ site.sched.flag.time }} 00:00:30
+> > {{ site.sched.comment }} {{ site.sched.flag.qos }}{% endif %}
+> > {{ site.sched.comment }} {{ site.sched.flag.time }} 00:00:30
 > > 
 > > module load {{ site.remote.module_python3 }}
 > >
@@ -206,7 +206,8 @@ Let's examine the output of `module avail` more closely.
 > > {: .output}
 > >
 > > ```
-> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}{{ site.sched.submit.options }} {% endif %}python-module.sh
+> > {{ site.remote.prompt }} {{ site.sched.submit.name }} {% if site.sched.submit.options != '' %}
+{{ site.sched.submit.options }}{% endif %} python-module.sh
 > > ```
 > > {: .language-bash}
 > {: .solution}

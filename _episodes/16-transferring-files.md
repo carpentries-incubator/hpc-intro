@@ -9,7 +9,6 @@ objectives:
 keypoints:
 - "`wget` and `curl -O` download a file from the internet."
 - "`scp` and `rsync` transfer files to and from your computer."
-- "You can use an SFTP client like FileZilla to transfer files through a GUI."
 ---
 
 Performing work on a remote computer is not very useful if we cannot get files
@@ -422,41 +421,6 @@ you will have to specify it using the appropriate flag, often `-p`, `-P`, or
 > > default: 22.)
 > {: .solution}
 {: .challenge}
-
-## Transferring Files Interactively with FileZilla
-
-FileZilla is a cross-platform client for downloading and uploading files to and
-from a remote computer. It is absolutely fool-proof and always works quite
-well. It uses the `sftp` protocol. You can read more about using the `sftp`
-protocol in the command line in the
-[lesson discussion]({{ site.baseurl }}{% link _extras/discuss.md %}).
-
-Download and install the FileZilla client from <https://filezilla-project.org>.
-After installing and opening the program, you should end up with a window with
-a file browser of your local system on the left hand side of the screen. When
-you connect to the cluster, your cluster files will appear on the right hand
-side.
-
-To connect to the cluster, we'll just need to enter our credentials at the top
-of the screen:
-
-* Host: `sftp://{{ site.remote.login }}`
-* User: Your cluster username
-* Password: Your cluster password
-* Port: (leave blank to use the default port)
-
-Hit "Quickconnect" to connect. You should see your remote files appear on the
-right hand side of the screen. You can drag-and-drop files between the left
-(local) and right (remote) sides of the screen to transfer files.
-
-{% include {{ site.snippets }}/transferring-files/filezilla-ssh-tunnel-instructions.snip %}
-
-Finally, if you need to move large files (typically larger than a gigabyte)
-from one remote computer to another remote computer, SSH in to the computer
-hosting the files and use `scp` or `rsync` to transfer over to the other. This
-will be more efficient than using FileZilla (or related applications) that
-would copy from the source to your local machine, then to the destination
-machine.
 
 {% include links.md %}
 
