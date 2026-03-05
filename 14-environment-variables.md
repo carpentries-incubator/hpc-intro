@@ -286,6 +286,56 @@ runtime environment to make that possible without us needing to do a lot of
 bookkeeping on what the value of `PATH` (and other important environment
 variables) is or should be.
 
+:::::::::::::::::::::::::::::::::::::::  challenge
+## Modifying your PATH
+
+Create a directory called `bin` in your home directory (if it doesn't already
+exist) and add it to the front of your `PATH` variable. Verify that your
+change has been made by displaying the contents of your `PATH` variable.
+Create a script called `hello.sh` in your new `bin` directory that prints
+"Hello, World!" to the terminal. Make the script executable and run it
+from any location in your terminal.
+
+:::::::::::::::  solution
+
+## Solution
+
+```bash
+mkdir -p ~/bin
+echo '#!/bin/bash' > ~/bin/hello.sh
+echo 'echo "Hello, World!"' >> ~/bin/hello.sh
+chmod +x ~/bin/hello.sh
+```
+
+To update the `PATH` variable to include your new `bin` directory at the front,
+you can do:
+
+```bash
+export PATH=~/bin:$PATH
+```
+
+It is extremely important to retain the current content of `PATH` by appending
+`:$PATH` to the new value; otherwise, you will overwrite your existing `PATH`.
+This is especially important on HPC systems, where the `module load` command
+relies on modifying the `PATH` variable to make software available to you.
+
+Now, verify that your `PATH` variable has been updated:
+
+```bash
+echo $PATH
+```
+
+You should be able to run `hello.sh` from any location in your terminal.
+
+```bash
+cd /tmp
+hello.sh
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
 - Shell variables are by default treated as strings
