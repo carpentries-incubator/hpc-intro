@@ -415,7 +415,7 @@
         
 <section id="aio-10-hpc-intro"><p>Content from <a href="10-hpc-intro.html">Why use a Cluster?</a></p>
 <hr>
-<p>Last updated on 2026-03-03 |
+<p>Last updated on 2026-03-05 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/10-hpc-intro.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -564,7 +564,7 @@ command line interface.</li>
 </div>
 </section></section><section id="aio-11-connecting"><p>Content from <a href="11-connecting.html">Connecting to a remote HPC system</a></p>
 <hr>
-<p>Last updated on 2026-03-03 |
+<p>Last updated on 2026-03-05 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/11-connecting.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1115,7 +1115,7 @@ mounted filesystems, etc.).</li>
 </div>
 </section></section><section id="aio-12-cluster"><p>Content from <a href="12-cluster.html">Working on a remote HPC system</a></p>
 <hr>
-<p>Last updated on 2026-03-03 |
+<p>Last updated on 2026-03-05 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/12-cluster.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1586,7 +1586,7 @@ network mounted filesystems, etc.).”</li>
 </div>
 </section></section><section id="aio-13-scheduler"><p>Content from <a href="13-scheduler.html">Scheduler Fundamentals</a></p>
 <hr>
-<p>Last updated on 2026-03-03 |
+<p>Last updated on 2026-03-05 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/13-scheduler.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2135,7 +2135,7 @@ users.</li>
 </div>
 </section></section><section id="aio-14-environment-variables"><p>Content from <a href="14-environment-variables.html">Environment Variables</a></p>
 <hr>
-<p>Last updated on 2026-03-03 |
+<p>Last updated on 2026-03-05 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/14-environment-variables.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2454,6 +2454,71 @@ episode we’ll learn how to use helper tools to help us manage our
 runtime environment to make that possible without us needing to do a lot
 of bookkeeping on what the value of <code>PATH</code> (and other
 important environment variables) is or should be.</p>
+<div id="modifying-your-path" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="modifying-your-path" class="callout-inner">
+<h3 class="callout-title">Modifying your PATH</h3>
+<div class="callout-content">
+<p>Create a directory called <code>bin</code> in your home directory (if
+it doesn’t already exist) and add it to the front of your
+<code>PATH</code> variable. Verify that your change has been made by
+displaying the contents of your <code>PATH</code> variable. Create a
+script called <code>hello.sh</code> in your new <code>bin</code>
+directory that prints “Hello, World!” to the terminal. Make the script
+executable and run it from any location in your terminal.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/bin</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'#!/bin/bash'</span> <span class="op">&gt;</span> ~/bin/hello.sh</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'echo "Hello, World!"'</span> <span class="op">&gt;&gt;</span> ~/bin/hello.sh</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="fu">chmod</span> +x ~/bin/hello.sh</span></code></pre>
+</div>
+<p>To update the <code>PATH</code> variable to include your new
+<code>bin</code> directory at the front, you can do:</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span>~/bin:<span class="va">$PATH</span></span></code></pre>
+</div>
+<p>It is extremely important to retain the current content of
+<code>PATH</code> by appending <code>:$PATH</code> to the new value;
+otherwise, you will overwrite your existing <code>PATH</code>. This is
+especially important on HPC systems, where the <code>module load</code>
+command relies on modifying the <code>PATH</code> variable to make
+software available to you.</p>
+<p>Now, verify that your <code>PATH</code> variable has been
+updated:</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$PATH</span></span></code></pre>
+</div>
+<p>You should be able to run <code>hello.sh</code> from any location in
+your terminal.</p>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="bu">cd</span> /tmp</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="ex">hello.sh</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -2474,7 +2539,7 @@ programs</li>
 </div>
 </section></section><section id="aio-15-modules"><p>Content from <a href="15-modules.html">Accessing software via Modules</a></p>
 <hr>
-<p>Last updated on 2026-03-03 |
+<p>Last updated on 2026-03-05 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/15-modules.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2878,7 +2943,7 @@ login node is loaded on a compute node).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2925,7 +2990,7 @@ for you automatically.</li>
 </div>
 </section></section><section id="aio-16-transferring-files"><p>Content from <a href="16-transferring-files.html">Transferring files with remote computers</a></p>
 <hr>
-<p>Last updated on 2026-03-03 |
+<p>Last updated on 2026-03-05 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/16-transferring-files.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3009,7 +3074,7 @@ the above commands to save the tarball as
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> wget and curl Commands </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3276,7 +3341,7 @@ that’s OK!</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Commands </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3440,7 +3505,7 @@ page if you’re unsure.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3512,7 +3577,7 @@ a GUI.</li>
 </div>
 </section></section><section id="aio-17-parallel"><p>Content from <a href="17-parallel.html">Running a parallel job</a></p>
 <hr>
-<p>Last updated on 2026-03-03 |
+<p>Last updated on 2026-03-05 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/17-parallel.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3754,7 +3819,7 @@ output?</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Read the Job Output </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>The cluster output should be written to a file in the folder you
 launched the job from. For example,</p>
@@ -3931,7 +3996,7 @@ does that mean it finished in ¼ the time?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The parallel job did take <em>less</em> time: 11 seconds is better
 than 30! But it is only a 2.7× improvement, not 4×.</p>
@@ -4159,7 +4224,7 @@ linearly.</li>
 </div>
 </section></section><section id="aio-18-resources"><p>Content from <a href="18-resources.html">Using resources effectively</a></p>
 <hr>
-<p>Last updated on 2026-03-03 |
+<p>Last updated on 2026-03-05 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/18-resources.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -4325,7 +4390,7 @@ close can you get?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The following line tells Slurm that our job should finish within 2
 minutes:</p>
@@ -4354,7 +4419,7 @@ shared resources.</li>
 </div>
 </section></section><section id="aio-19-responsibility"><p>Content from <a href="19-responsibility.html">Using shared resources responsibly</a></p>
 <hr>
-<p>Last updated on 2026-03-03 |
+<p>Last updated on 2026-03-05 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/19-responsibility.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -4469,7 +4534,7 @@ node?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Building software, creating directories, and unpacking software are
 common and acceptable &gt; tasks for the login node: options #2
@@ -4679,7 +4744,7 @@ Cluster?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>
@@ -4773,8 +4838,8 @@ before transferring.</li>
   "url": "https://carpentries-incubator.github.io/hpc-intro/aio.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-intro/aio.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2026-03-03",
-  "datePublished": "2026-03-03"
+  "dateModified": "2026-03-05",
+  "datePublished": "2026-03-05"
 }
 
   </script><script>
