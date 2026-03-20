@@ -1,0 +1,67 @@
+---
+local:
+  prompt: "[you@laptop:~]$"
+  shebang: "#!/usr/bin/env bash"
+
+snippets: NCL_Comet_slurm
+baseurl: "https://NewcastleRSE-Training.github.io/probable-pancake/"
+
+remote:
+  name: "Introduction to HPC for Comet"
+  host_id: "NCL_Comet"
+  login: "comet.ncl.ac.uk"
+  host: "cometlogin01"
+  node: "compute030"
+  location: "comet.ncl.ac.uk"
+  homedir: "/mnt/nfs/home"
+  user: "user"
+  prompt: '[user@cometlogin01(comet) ~]'
+  prompt_work: #"userid@uan01:/work/ta114/ta114/userid>"
+  modules:
+    python: "Python"
+  shebang: "#!/bin/bash"
+
+sched:
+  name: "Slurm"
+  submit:
+    name: "sbatch"
+    options: "--partition=short_free --account=comet_training"
+  queue:
+    debug: "smnode"
+    testing: "short_free"
+  status: "squeue"
+  flag:
+    user: "-u user"
+    interactive: ""
+    histdetail: "-l -j"
+    name: "--job-name="
+    time: "-t"
+    queue: "--partition="
+    nodes: "--nodes="
+    tasks: "--tasks="
+    cpu: "--cpus-per-task="
+  del: "scancel"
+  interactive: "srun"
+  info: "sinfo"
+  comment: "#SBATCH"
+  hist: "sacct -u user"
+  hist_filter: ""
+  partition: "short_free"
+  reservation: "shortqos"
+  qos: "short"
+  budget: "comet_training"
+  project: ""
+
+episode_order:
+  - 10-hpc-intro
+  - 11-connecting
+  - 12-cluster
+  - 13-scheduler
+  - 14-environment-variables
+  - 15-modules
+  - 16-transferring-files
+  - 20-rdw
+  - 17-parallel
+  - 21-array
+  - 18-resources
+  - 19-responsibility

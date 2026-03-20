@@ -1,0 +1,4 @@
+This is a small file - it will be very useful for trying out our script.
+Some words are repeated in this file
+- we can look for repeated words
+and count them (to see which words are repeated most often).
