@@ -179,7 +179,7 @@ name of a job. Add an option to the script:
 
 ```bash
 #!/bin/bash
-#SBATCH -J hello-world
+#SBATCH -Jhello-world
 
 echo -n "This script is running on "
 hostname
@@ -282,7 +282,7 @@ wall time, and attempt to run a job for two minutes.
 
 ```bash
 #!/bin/bash
-#SBATCH -J long_job
+#SBATCH -Jlong_job
 #SBATCH -t 00:01 # timeout in HH:MM
 
 echo "This script is running on ... "
@@ -433,7 +433,7 @@ went wrong with a previous job. Fortunately, Slurm makes it
 easy to start an interactive job with `srun`:
 
 ```bash
-[yourUsername@login1 ~]$ srun --pty bash
+[yourUsername@login1 ~]$ srun  --pty bash
 ```
 
 You should be presented with a bash prompt. Note that the prompt will likely
