@@ -72,7 +72,8 @@ episodes:
   - 14-environment-variables.Rmd
   - 15-modules.Rmd
   - 16-transferring-files.Rmd
-  - 21-array.Rmd
+# Restore after issue #482 is addressed.
+#   - 21-array.Rmd
   - 17-parallel.Rmd
   - 18-resources.Rmd
   - 19-responsibility.Rmd
