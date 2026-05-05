@@ -361,7 +361,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Running a parallel job</h1>
-        <p>Last updated on 2026-04-28 |
+        <p>Last updated on 2026-05-05 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/17-parallel.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -600,7 +600,7 @@ output?</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Read the Job Output </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>The cluster output should be written to a file in the folder you
 launched the job from. For example,</p>
@@ -775,7 +775,7 @@ does that mean it finished in ¼ the time?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The parallel job did take <em>less</em> time: 11 seconds is better
 than 30! But it is only a 2.7× improvement, not 4×.</p>
@@ -903,13 +903,13 @@ write its output first, except that it will <em>not</em> be process
 </div>
 </div>
 <p>Now, let’s summarize the amount of time it took each job to run:</p>
-<table class="table"><thead><tr class="header"><th>Number of CPUs</th>
+<table class="table"><thead><tr><th>Number of CPUs</th>
 <th>Runtime (sec)</th>
-</tr></thead><tbody><tr class="odd"><td>1</td>
+</tr></thead><tbody><tr><td>1</td>
 <td>30.033</td>
-</tr><tr class="even"><td>4</td>
+</tr><tr><td>4</td>
 <td>10.888</td>
-</tr><tr class="odd"><td>8</td>
+</tr><tr><td>8</td>
 <td>7.697</td>
 </tr></tbody></table><p>Then, use the first row to compute speedups <span class="math inline">\(S\)</span>, using Python as a command-line
 calculator and the formula</p>
@@ -921,16 +921,16 @@ S(t_{n}) = \frac{t_{1}}{t_{n}}
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1" aria-label="code-block-33-1"></a><span class="ex">[yourUsername@login1</span> ~]$ for n in 30.033 10.888 7.697<span class="kw">;</span> <span class="cf">do</span> <span class="ex">python3</span> <span class="at">-c</span> <span class="st">"print(30.033 / </span><span class="va">$n</span><span class="st">)"</span><span class="kw">;</span> <span class="cf">done</span></span></code></pre>
 </div>
-<table class="table"><thead><tr class="header"><th>Number of CPUs</th>
+<table class="table"><thead><tr><th>Number of CPUs</th>
 <th>Speedup</th>
 <th>Ideal</th>
-</tr></thead><tbody><tr class="odd"><td>1</td>
+</tr></thead><tbody><tr><td>1</td>
 <td>1.0</td>
 <td>1</td>
-</tr><tr class="even"><td>4</td>
+</tr><tr><td>4</td>
 <td>2.75</td>
 <td>4</td>
-</tr><tr class="odd"><td>8</td>
+</tr><tr><td>8</td>
 <td>3.90</td>
 <td>8</td>
 </tr></tbody></table><p>The job output files have been telling us that this program is
@@ -1027,8 +1027,8 @@ linearly.</li>
   "url": "https://carpentries-incubator.github.io/hpc-intro/instructor/17-parallel.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-intro/instructor/17-parallel.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2026-04-28",
-  "datePublished": "2026-04-28"
+  "dateModified": "2026-05-05",
+  "datePublished": "2026-05-05"
 }
 
   </script><script>
