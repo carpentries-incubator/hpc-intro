@@ -359,7 +359,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Connecting to a remote HPC system</h1>
-        <p>Last updated on 2026-05-05 |
+        <p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/11-connecting.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -408,15 +408,16 @@ plain-text. If a command returns output, it is printed as plain text as
 well. The commands we run today will not open a window to show graphical
 results.</p>
 <p>If you have ever opened the Windows Command Prompt or macOS Terminal,
-you have seen a CLI. If you have already taken The Carpentries’ courses
+you have seen a CLI. If you have already taken “The Carpentries” courses
 on the UNIX Shell or Version Control, you have used the CLI on your
 <em>local machine</em> extensively. The only leap to be made here is to
 open a CLI on a <em>remote machine</em>, while taking some precautions
 so that other folks on the network can’t see (or change) the commands
 you’re running or the results the remote machine sends back. We will use
-the Secure SHell protocol (or SSH) to open an encrypted network
-connection between two machines, allowing you to send &amp; receive text
-and data without having to worry about prying eyes.</p>
+the <em><strong>S</strong>ecure <strong>Sh</strong>ell</em> protocol (or
+SSH) to open an encrypted network connection between two machines,
+allowing you to send &amp; receive text and data without having to worry
+about prying eyes.</p>
 <figure><img src="../fig/connect-to-remote.svg" max-width="50%" alt="Connect to cluster. " class="figure mx-auto d-block"><div class="figcaption">connect-to-remote.svg</div>
 </figure><p>SSH clients are usually command-line tools, where you provide the
 remote machine address as the only required argument. If your username
@@ -424,9 +425,13 @@ on the remote system differs from what you use locally, you must provide
 that as well. If your SSH client has a graphical front-end, such as
 PuTTY or MobaXterm, you will set these arguments before clicking
 “connect.” From the terminal, you’ll write something like
-<code>ssh userName@hostname</code>, where the argument is just like an
+<code>ssh username@hostname</code>, where the argument is just like an
 email address: the “@” symbol is used to separate the personal ID from
-the address of the remote machine.</p>
+the address of the remote machine. In this lesson, yourUsername
+represents the <code>username</code> on the remote system, and
+cluster.hpc-carpentry.org represents the cluster’s login address
+(<code>hostname</code>), i.e., how to find the cluster on the
+internet.</p>
 <p>When logging in to a laptop, tablet, or other personal device, a
 username, password, or pattern are normally required to prevent
 unauthorized access. In these situations, the likelihood of somebody
@@ -465,10 +470,10 @@ access.</li>
 passport</h3>
 <div class="callout-content">
 <p>A private key that is visible to anyone but you should be considered
-compromised, and must be destroyed. This includes having improper
-permissions on the directory it (or a copy) is stored in, traversing any
-network that is not secure (encrypted), attachment on unencrypted email,
-and even displaying the key on your terminal window.</p>
+compromised and must be destroyed. This includes cases where the key (or
+a copy) is stored in a directory with improper permissions, is
+transmitted over an unencrypted network, is sent as an attachment via
+unencrypted email, or is even displayed on your terminal window.</p>
 <p>Protect this key as if it unlocks your front door. In many ways, it
 does.</p>
 </div>
@@ -494,8 +499,8 @@ records attacks.</li>
 <li>Use a password manager and its built-in password generator with all
 character classes, 25 characters or longer. <a href="https://keepass.info" class="external-link">KeePass</a> and <a href="https://bitwarden.com" class="external-link">BitWarden</a> are two good options.</li>
 <li>Nothing is <em>less</em> secure than a private key with no password.
-If you skipped password entry by accident, go back and generate a new
-key pair <em>with</em> a strong password.</li>
+If you skip password entry by accident, go back and generate a new key
+pair <em>with</em> a strong password.</li>
 </ol></div>
 </div>
 </div>
@@ -870,9 +875,10 @@ for the password for your SSH key.</p>
 <li>HPC systems typically provide login nodes and a set of worker
 nodes.</li>
 <li>The resources found on independent (worker) nodes can vary in volume
-and type (amount of RAM, processor architecture, availability of network
-mounted filesystems, etc.).</li>
-<li>Files saved on one node are available on all nodes.</li>
+and type (amount of RAM, processor architecture, availability of
+network-mounted filesystems, etc.).</li>
+<li>Files saved on one node are typically accessible from all nodes via
+a shared filesystem.</li>
 </ul></div>
 </div>
 </div>
@@ -937,8 +943,8 @@ mounted filesystems, etc.).</li>
   "url": "https://carpentries-incubator.github.io/hpc-intro/instructor/11-connecting.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-intro/instructor/11-connecting.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2026-05-05",
-  "datePublished": "2026-05-05"
+  "dateModified": "2026-05-06",
+  "datePublished": "2026-05-06"
 }
 
   </script><script>

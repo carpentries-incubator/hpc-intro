@@ -362,7 +362,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Working on a remote HPC system</h1>
-        <p>Last updated on 2026-05-05 |
+        <p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/12-cluster.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -423,8 +423,8 @@ possible performance. For example, all of the machines on the <a href="https://w
 support these constraints, an HPC resource must exist in a specific,
 fixed location: networking cables can only stretch so far, and
 electrical and optical signals can travel only so fast.</p>
-<p>The word “cluster” is often used for small to moderate scale HPC
-resources less impressive than the <a href="https://www.top500.org" class="external-link">Top-500</a>. Clusters are often maintained
+<p>The word <em>cluster</em> is often used for small to moderate scale
+HPC resources less impressive than the <a href="https://www.top500.org" class="external-link">Top-500</a>. Clusters are often maintained
 in computing centers that support several such systems, all sharing
 common networking and storage to support common compute intensive
 tasks.</p>
@@ -440,15 +440,16 @@ a command-line interface, or CLI, in which commands and results are
 transmitted via text, only. Anything other than text (images, for
 example) must be written to disk and opened with a separate program.</p>
 <p>If you have ever opened the Windows Command Prompt or macOS Terminal,
-you have seen a CLI. If you have already taken The Carpentries’ courses
+you have seen a CLI. If you have already taken “The Carpentries” courses
 on the UNIX Shell or Version Control, you have used the CLI on your
 local machine somewhat extensively. The only leap to be made here is to
 open a CLI on a <em>remote</em> machine, while taking some precautions
 so that other folks on the network can’t see (or change) the commands
 you’re running or the results the remote machine sends back. We will use
-the Secure SHell protocol (or SSH) to open an encrypted network
-connection between two machines, allowing you to send &amp; receive text
-and data without having to worry about prying eyes.</p>
+the <em><strong>S</strong>ecure <strong>Sh</strong>ell</em> protocol (or
+SSH) to open an encrypted network connection between two machines,
+allowing you to send &amp; receive text and data without having to worry
+about prying eyes.</p>
 <figure><img src="fig/connect-to-remote.svg" alt="Connect to cluster" class="figure mx-auto d-block"><div class="figcaption">Connect to cluster</div>
 </figure><p>Make sure you have a SSH client installed on your laptop. Refer to
 the <a href="index.html">setup</a> section for more details. SSH clients
@@ -458,7 +459,7 @@ system differs from what you use locally, you must provide that as well.
 If your SSH client has a graphical front-end, such as PuTTY or
 MobaXterm, you will set these arguments before clicking “connect.” From
 the terminal, you’ll write something like
-<code>ssh userName@hostname</code>, where the “@” symbol is used to
+<code>ssh username@hostname</code>, where the “@” symbol is used to
 separate the two parts of a single argument.</p>
 <p>Go ahead and open your terminal or graphical SSH client, then log in
 to the cluster using your username and the remote computer you can reach
@@ -514,7 +515,7 @@ neighbors.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> It’s a Beautiful Day in the Neighborhood </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The deepest layer should differ: <code>yourUsername</code> is
 uniquely yours. Are there differences in the path at higher levels?</p>
@@ -613,7 +614,7 @@ own laptop or desktop: <em>CPUs</em> (sometimes also called
 <em>RAM</em>), and <em>disk</em> space. CPUs are a computer’s tool for
 actually running programs and calculations. Information about a current
 task is stored in the computer’s memory. Disk refers to all storage that
-can be accessed like a file system. This is generally storage that can
+can be accessed like a filesystem. This is generally storage that can
 hold data permanently, i.e. data is still there even if the computer has
 been restarted. While this storage can be local (a hard drive installed
 inside of it), it is more common for nodes to connect to a shared,
@@ -645,7 +646,7 @@ computer cluster, you need to log out first. To do so, type
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>There are several ways to do this. Most operating systems have a
 graphical system monitor, like the Windows Task Manager. More detailed
@@ -693,7 +694,7 @@ node.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -797,7 +798,7 @@ your research work on the different systems and nodes?</p>
 <div class="callout-content">
 <p>Many HPC clusters have a variety of nodes optimized for particular
 workloads. Some nodes may have larger amount of memory, or specialized
-resources such as Graphical Processing Units (GPUs).</p>
+resources such as <em>Graphics Processing Units</em> (GPUs).</p>
 </div>
 </div>
 </div>
@@ -811,13 +812,14 @@ programs!</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>“An HPC system is a set of networked machines.”</li>
-<li>“HPC systems typically provide login nodes and a set of worker
-nodes.”</li>
-<li>“The resources found on independent (worker) nodes can vary in
-volume and type (amount of RAM, processor architecture, availability of
-network mounted filesystems, etc.).”</li>
-<li>“Files saved on one node are available on all nodes.”</li>
+<ul><li>An HPC system is a set of networked machines.</li>
+<li>HPC systems typically provide login nodes and a set of worker
+nodes.</li>
+<li>The resources found on independent (worker) nodes can vary in volume
+and type (amount of RAM, processor architecture, availability of
+network-mounted filesystems, etc.).</li>
+<li>Files saved on one node are typically accessible from all nodes via
+a shared filesystem.</li>
 </ul></div>
 </div>
 </div>
@@ -881,8 +883,8 @@ network mounted filesystems, etc.).”</li>
   "url": "https://carpentries-incubator.github.io/hpc-intro/12-cluster.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-intro/12-cluster.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2026-05-05",
-  "datePublished": "2026-05-05"
+  "dateModified": "2026-05-06",
+  "datePublished": "2026-05-06"
 }
 
   </script><script>

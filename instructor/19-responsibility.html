@@ -360,7 +360,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Using shared resources responsibly</h1>
-        <p>Last updated on 2026-05-05 |
+        <p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/19-responsibility.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -520,10 +520,10 @@ wait times to help you avoid this issue.</p>
 <h3 class="callout-title">Test Job Submission Scripts That Use Large
 Amounts of Resources</h3>
 <div class="callout-content">
-<p>Before submitting a large run of jobs, submit one as a test first to
-make sure everything works as expected.</p>
-<p>Before submitting a very large or very long job submit a short
-truncated test to ensure that the job starts as expected.</p>
+<p>Before submitting a large run of jobs or a long-running job, first
+submit a smaller test to ensure everything functions as expected. A
+short, truncated test run helps verify that the job starts correctly and
+behaves as intended before scaling to full resource usage.</p>
 </div>
 </div>
 </div>
@@ -534,11 +534,12 @@ purposes (i.e. for restoring the whole file system if lost rather than
 an individual file or directory you have deleted by mistake). Protecting
 critical data from corruption or deletion is primarily your
 responsibility: keep your own backup copies.</p>
-<p>Version control systems (such as Git) often have free, cloud-based
-offerings (e.g., GitHub and GitLab) that are generally used for storing
-source code. Even if you are not writing your own programs, these can be
-very useful for storing job scripts, analysis scripts and small input
-files.</p>
+<p><em><strong>V</strong>ersion <strong>C</strong>ontrol
+<strong>S</strong>ystems</em> (VCS, such as Git) often have free,
+cloud-based offerings (e.g., GitHub and GitLab) that are generally used
+for storing source code. Even if you are not writing your own programs,
+these can be very useful for storing job scripts, analysis scripts and
+small input files.</p>
 <p>If you are building software, you may have a large amount of source
 code that you compile to build your executable. Since this data can
 generally be recovered by re-downloading the code, or re-running the
@@ -775,8 +776,8 @@ before transferring.</li>
   "url": "https://carpentries-incubator.github.io/hpc-intro/instructor/19-responsibility.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-intro/instructor/19-responsibility.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2026-05-05",
-  "datePublished": "2026-05-05"
+  "dateModified": "2026-05-06",
+  "datePublished": "2026-05-06"
 }
 
   </script><script>

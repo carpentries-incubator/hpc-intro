@@ -408,7 +408,7 @@
         
 <section id="aio-10-hpc-intro"><p>Content from <a href="10-hpc-intro.html">Why use a Cluster?</a></p>
 <hr>
-<p>Last updated on 2026-05-05 |
+<p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/10-hpc-intro.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -469,14 +469,14 @@ It’s possible to run each region’s calculations simultaneously (in
 <strong>parallel</strong>), communicate selected results to adjacent
 regions as needed, and repeat the calculations to converge on a final
 set of results. In moving from a 2D to a 3D model, <strong>both the
-amount of data and the amount of calculations increases
-greatly</strong>, and it’s theoretically possible to distribute the
-calculations across multiple computers communicating over a shared
-network.</li>
+amount of data and the amount of calculations (the number of
+computations) increases greatly</strong>, and it’s theoretically
+possible to distribute the calculations across multiple computers
+(nodes) communicating over a shared network.</li>
 </ul>
 <p>In all these cases, access to more (and larger) computers is needed.
 Those computers should be usable at the same time, <strong>solving many
-researchers’ problems in parallel</strong>.</p>
+researcher’s problems in parallel</strong>.</p>
 <section><h2 class="section-heading" id="jargon-busting-presentation">Jargon Busting Presentation<a class="anchor" aria-label="anchor" href="#jargon-busting-presentation"></a>
 </h2>
 <hr class="half-width">
@@ -505,7 +505,7 @@ results.</p>
   Some Ideas
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ul>
 <li>Checking email: your computer (possibly in your pocket) contacts a
@@ -544,7 +544,7 @@ collection of servers working together.</p>
 <div class="callout-inner">
 <div class="callout-content">
 <ul>
-<li>High Performance Computing (HPC) typically involves connecting to
+<li>High-Performance Computing (HPC) typically involves connecting to
 very large computing systems elsewhere in the world.</li>
 <li>These other systems can be used to do work that would either be
 impossible or much slower on smaller systems.</li>
@@ -557,7 +557,7 @@ command line interface.</li>
 </div>
 </section></section><section id="aio-11-connecting"><p>Content from <a href="11-connecting.html">Connecting to a remote HPC system</a></p>
 <hr>
-<p>Last updated on 2026-05-05 |
+<p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/11-connecting.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -604,15 +604,16 @@ plain-text. If a command returns output, it is printed as plain text as
 well. The commands we run today will not open a window to show graphical
 results.</p>
 <p>If you have ever opened the Windows Command Prompt or macOS Terminal,
-you have seen a CLI. If you have already taken The Carpentries’ courses
+you have seen a CLI. If you have already taken “The Carpentries” courses
 on the UNIX Shell or Version Control, you have used the CLI on your
 <em>local machine</em> extensively. The only leap to be made here is to
 open a CLI on a <em>remote machine</em>, while taking some precautions
 so that other folks on the network can’t see (or change) the commands
 you’re running or the results the remote machine sends back. We will use
-the Secure SHell protocol (or SSH) to open an encrypted network
-connection between two machines, allowing you to send &amp; receive text
-and data without having to worry about prying eyes.</p>
+the <em><strong>S</strong>ecure <strong>Sh</strong>ell</em> protocol (or
+SSH) to open an encrypted network connection between two machines,
+allowing you to send &amp; receive text and data without having to worry
+about prying eyes.</p>
 <figure><img src="fig/connect-to-remote.svg" max-width="50%" alt="Connect to cluster. " class="figure mx-auto d-block"><div class="figcaption">connect-to-remote.svg</div>
 </figure><p>SSH clients are usually command-line tools, where you provide the
 remote machine address as the only required argument. If your username
@@ -620,9 +621,13 @@ on the remote system differs from what you use locally, you must provide
 that as well. If your SSH client has a graphical front-end, such as
 PuTTY or MobaXterm, you will set these arguments before clicking
 “connect.” From the terminal, you’ll write something like
-<code>ssh userName@hostname</code>, where the argument is just like an
+<code>ssh username@hostname</code>, where the argument is just like an
 email address: the “@” symbol is used to separate the personal ID from
-the address of the remote machine.</p>
+the address of the remote machine. In this lesson, yourUsername
+represents the <code>username</code> on the remote system, and
+cluster.hpc-carpentry.org represents the cluster’s login address
+(<code>hostname</code>), i.e., how to find the cluster on the
+internet.</p>
 <p>When logging in to a laptop, tablet, or other personal device, a
 username, password, or pattern are normally required to prevent
 unauthorized access. In these situations, the likelihood of somebody
@@ -664,10 +669,10 @@ access.</li>
 passport</h3>
 <div class="callout-content">
 <p>A private key that is visible to anyone but you should be considered
-compromised, and must be destroyed. This includes having improper
-permissions on the directory it (or a copy) is stored in, traversing any
-network that is not secure (encrypted), attachment on unencrypted email,
-and even displaying the key on your terminal window.</p>
+compromised and must be destroyed. This includes cases where the key (or
+a copy) is stored in a directory with improper permissions, is
+transmitted over an unencrypted network, is sent as an attachment via
+unencrypted email, or is even displayed on your terminal window.</p>
 <p>Protect this key as if it unlocks your front door. In many ways, it
 does.</p>
 </div>
@@ -694,8 +699,8 @@ records attacks.</li>
 <li>Use a password manager and its built-in password generator with all
 character classes, 25 characters or longer. <a href="https://keepass.info" class="external-link">KeePass</a> and <a href="https://bitwarden.com" class="external-link">BitWarden</a> are two good options.</li>
 <li>Nothing is <em>less</em> secure than a private key with no password.
-If you skipped password entry by accident, go back and generate a new
-key pair <em>with</em> a strong password.</li>
+If you skip password entry by accident, go back and generate a new key
+pair <em>with</em> a strong password.</li>
 </ol>
 </div>
 </div>
@@ -1098,9 +1103,10 @@ for the password for your SSH key.</p>
 <li>HPC systems typically provide login nodes and a set of worker
 nodes.</li>
 <li>The resources found on independent (worker) nodes can vary in volume
-and type (amount of RAM, processor architecture, availability of network
-mounted filesystems, etc.).</li>
-<li>Files saved on one node are available on all nodes.</li>
+and type (amount of RAM, processor architecture, availability of
+network-mounted filesystems, etc.).</li>
+<li>Files saved on one node are typically accessible from all nodes via
+a shared filesystem.</li>
 </ul>
 </div>
 </div>
@@ -1108,7 +1114,7 @@ mounted filesystems, etc.).</li>
 </div>
 </section></section><section id="aio-12-cluster"><p>Content from <a href="12-cluster.html">Working on a remote HPC system</a></p>
 <hr>
-<p>Last updated on 2026-05-05 |
+<p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/12-cluster.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1169,8 +1175,8 @@ possible performance. For example, all of the machines on the <a href="https://w
 support these constraints, an HPC resource must exist in a specific,
 fixed location: networking cables can only stretch so far, and
 electrical and optical signals can travel only so fast.</p>
-<p>The word “cluster” is often used for small to moderate scale HPC
-resources less impressive than the <a href="https://www.top500.org" class="external-link">Top-500</a>. Clusters are often maintained
+<p>The word <em>cluster</em> is often used for small to moderate scale
+HPC resources less impressive than the <a href="https://www.top500.org" class="external-link">Top-500</a>. Clusters are often maintained
 in computing centers that support several such systems, all sharing
 common networking and storage to support common compute intensive
 tasks.</p>
@@ -1188,15 +1194,16 @@ a command-line interface, or CLI, in which commands and results are
 transmitted via text, only. Anything other than text (images, for
 example) must be written to disk and opened with a separate program.</p>
 <p>If you have ever opened the Windows Command Prompt or macOS Terminal,
-you have seen a CLI. If you have already taken The Carpentries’ courses
+you have seen a CLI. If you have already taken “The Carpentries” courses
 on the UNIX Shell or Version Control, you have used the CLI on your
 local machine somewhat extensively. The only leap to be made here is to
 open a CLI on a <em>remote</em> machine, while taking some precautions
 so that other folks on the network can’t see (or change) the commands
 you’re running or the results the remote machine sends back. We will use
-the Secure SHell protocol (or SSH) to open an encrypted network
-connection between two machines, allowing you to send &amp; receive text
-and data without having to worry about prying eyes.</p>
+the <em><strong>S</strong>ecure <strong>Sh</strong>ell</em> protocol (or
+SSH) to open an encrypted network connection between two machines,
+allowing you to send &amp; receive text and data without having to worry
+about prying eyes.</p>
 <figure><img src="fig/connect-to-remote.svg" alt="Connect to cluster" class="figure mx-auto d-block"><div class="figcaption">Connect to cluster</div>
 </figure><p>Make sure you have a SSH client installed on your laptop. Refer to
 the <a href="index.html">setup</a> section for more details. SSH clients
@@ -1206,7 +1213,7 @@ system differs from what you use locally, you must provide that as well.
 If your SSH client has a graphical front-end, such as PuTTY or
 MobaXterm, you will set these arguments before clicking “connect.” From
 the terminal, you’ll write something like
-<code>ssh userName@hostname</code>, where the “@” symbol is used to
+<code>ssh username@hostname</code>, where the “@” symbol is used to
 separate the two parts of a single argument.</p>
 <p>Go ahead and open your terminal or graphical SSH client, then log in
 to the cluster using your username and the remote computer you can reach
@@ -1264,7 +1271,7 @@ neighbors.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> It’s a Beautiful Day in the Neighborhood </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The deepest layer should differ: <code>yourUsername</code> is
 uniquely yours. Are there differences in the path at higher levels?</p>
@@ -1367,7 +1374,7 @@ own laptop or desktop: <em>CPUs</em> (sometimes also called
 <em>RAM</em>), and <em>disk</em> space. CPUs are a computer’s tool for
 actually running programs and calculations. Information about a current
 task is stored in the computer’s memory. Disk refers to all storage that
-can be accessed like a file system. This is generally storage that can
+can be accessed like a filesystem. This is generally storage that can
 hold data permanently, i.e. data is still there even if the computer has
 been restarted. While this storage can be local (a hard drive installed
 inside of it), it is more common for nodes to connect to a shared,
@@ -1399,7 +1406,7 @@ computer cluster, you need to log out first. To do so, type
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>There are several ways to do this. Most operating systems have a
 graphical system monitor, like the Windows Task Manager. More detailed
@@ -1447,7 +1454,7 @@ node.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1551,7 +1558,7 @@ your research work on the different systems and nodes?</p>
 <div class="callout-content">
 <p>Many HPC clusters have a variety of nodes optimized for particular
 workloads. Some nodes may have larger amount of memory, or specialized
-resources such as Graphical Processing Units (GPUs).</p>
+resources such as <em>Graphics Processing Units</em> (GPUs).</p>
 </div>
 </div>
 </div>
@@ -1566,20 +1573,21 @@ programs!</p>
 <div class="callout-inner">
 <div class="callout-content">
 <ul>
-<li>“An HPC system is a set of networked machines.”</li>
-<li>“HPC systems typically provide login nodes and a set of worker
-nodes.”</li>
-<li>“The resources found on independent (worker) nodes can vary in
-volume and type (amount of RAM, processor architecture, availability of
-network mounted filesystems, etc.).”</li>
-<li>“Files saved on one node are available on all nodes.”</li>
+<li>An HPC system is a set of networked machines.</li>
+<li>HPC systems typically provide login nodes and a set of worker
+nodes.</li>
+<li>The resources found on independent (worker) nodes can vary in volume
+and type (amount of RAM, processor architecture, availability of
+network-mounted filesystems, etc.).</li>
+<li>Files saved on one node are typically accessible from all nodes via
+a shared filesystem.</li>
 </ul>
 </div>
 </div>
 </div>
 </section></section><section id="aio-13-scheduler"><p>Content from <a href="13-scheduler.html">Scheduler Fundamentals</a></p>
 <hr>
-<p>Last updated on 2026-05-05 |
+<p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/13-scheduler.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1695,7 +1703,7 @@ node?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1867,7 +1875,7 @@ then submit a job for it on the cluster.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2002,7 +2010,7 @@ yourself). Note that you can only delete your own jobs.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>First, submit a trio of jobs:</p>
 <div class="codewrapper sourceCode" id="cb25">
@@ -2128,7 +2136,7 @@ users.</li>
 </div>
 </section></section><section id="aio-14-environment-variables"><p>Content from <a href="14-environment-variables.html">Environment Variables</a></p>
 <hr>
-<p>Last updated on 2026-05-05 |
+<p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/14-environment-variables.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2193,20 +2201,18 @@ some of the variables in a typical shell session:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="bu">set</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">[yourUsername@login1</span> ~]$ set</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>COMPUTERNAME=TURING
-HOME=/home/vlad
-HOSTNAME=TURING
-HOSTTYPE=i686
-NUMBER_OF_PROCESSORS=4
-PATH=/Users/vlad/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
-PWD=/home/vlad
+<pre class="output" tabindex="0"><code>HOME=/home/yourUsername
+HOSTNAME=login1
+HOSTTYPE=x86_64
+PATH=/home/yourUsername/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+PWD=/home/yourUsername
 UID=1000
-USERNAME=vlad
+USER=yourUsername
 ...</code></pre>
 </div>
 <p>As you can see, there are quite a few — in fact, four or five times
@@ -2228,7 +2234,7 @@ integer.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="bu">echo</span> HOME</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">[yourUsername@login1</span> ~]$ echo HOME</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2240,18 +2246,19 @@ what we actually asked for). Let’s try this instead:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="bu">echo</span> <span class="va">$HOME</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">[yourUsername@login1</span> ~]$ echo <span class="va">$HOME</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>/home/vlad</code></pre>
+<pre class="output" tabindex="0"><code>/home/yourUsername</code></pre>
 </div>
 <p>The dollar sign tells the shell that we want the <em>value</em> of
 the variable rather than its name. This works just like wildcards: the
 shell does the replacement <em>before</em> running the program we’ve
 asked for. Thanks to this expansion, what we actually run is
-<code>echo /home/vlad</code>, which displays the right thing.</p>
+<code>echo /home/yourUsername</code>, which displays the right
+thing.</p>
 </section><section><h2 class="section-heading" id="creating-and-changing-variables">Creating and Changing Variables<a class="anchor" aria-label="anchor" href="#creating-and-changing-variables"></a>
 </h2>
 <hr class="half-width">
@@ -2420,7 +2427,7 @@ listed one per line:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>/Users/vlad/bin
+<pre class="output" tabindex="0"><code>/home/yourUsername/bin
 /usr/local/git/bin
 /usr/bin
 /bin
@@ -2431,12 +2438,12 @@ listed one per line:</p>
 <p>On our computer, there are actually three programs called
 <code>analyze</code> in three different directories:
 <code>/bin/analyze</code>, <code>/usr/local/bin/analyze</code>, and
-<code>/users/vlad/analyze</code>. Since the shell searches the
+<code>/home/yourUsername/analyze</code>. Since the shell searches the
 directories in the order they’re listed in <code>PATH</code>, it finds
 <code>/bin/analyze</code> first and runs that. Notice that it will
-<em>never</em> find the program <code>/users/vlad/analyze</code> unless
-we type in the full path to the program, since the directory
-<code>/users/vlad</code> isn’t in <code>PATH</code>.</p>
+<em>never</em> find the program <code>/home/yourUsername/analyze</code>
+unless we type in the full path to the program, since the directory
+<code>/home/yourUsername</code> isn’t in <code>PATH</code>.</p>
 <p>This means that I can have executables in lots of different places as
 long as I remember that I need to update my <code>PATH</code> so that my
 shell can find them.</p>
@@ -2532,7 +2539,7 @@ programs</li>
 </div>
 </section></section><section id="aio-15-modules"><p>Content from <a href="15-modules.html">Accessing software via Modules</a></p>
 <hr>
-<p>Last updated on 2026-05-05 |
+<p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/15-modules.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2665,7 +2672,7 @@ loaded, you will see a message telling you so.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>No Modulefiles Currently Loaded.</code></pre>
+<pre class="output" tabindex="0"><code>No modules loaded</code></pre>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="loading-and-unloading-software">Loading and Unloading Software<a class="anchor" aria-label="anchor" href="#loading-and-unloading-software"></a>
@@ -2949,7 +2956,8 @@ login node is loaded on a compute node).</p>
 </h3>
 <pre class="output" tabindex="0"><code>#!/bin/bash
 #SBATCH
-r config$sched$comment` -t 00:00:30
+
+#SBATCH -t 00:00:30
 
 module load Python
 
@@ -2983,7 +2991,7 @@ for you automatically.</li>
 </div>
 </section></section><section id="aio-16-transferring-files"><p>Content from <a href="16-transferring-files.html">Transferring files with remote computers</a></p>
 <hr>
-<p>Last updated on 2026-05-05 |
+<p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/16-transferring-files.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3067,7 +3075,7 @@ the above commands to save the tarball as
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> wget and curl Commands </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3125,22 +3133,22 @@ with writing <code>-tf</code> together. However, the argument following
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">[you@laptop:~]$</span> tar <span class="at">-tf</span> amdahl.tar.gz</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/.github/</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/.github/workflows/</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/.github/workflows/python-publish.yml</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/.gitignore</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1" aria-label="code-block-3-7"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/LICENSE</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1" aria-label="code-block-3-8"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/README.md</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1" aria-label="code-block-3-9"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/amdahl/</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1" aria-label="code-block-3-10"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/amdahl/__init__.py</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1" aria-label="code-block-3-11"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/amdahl/__main__.py</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1" aria-label="code-block-3-12"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/amdahl/amdahl.py</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1" aria-label="code-block-3-13"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/requirements.txt</span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1" aria-label="code-block-3-14"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/setup.py</span></span></code></pre>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/.github/</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/.github/workflows/</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/.github/workflows/python-publish.yml</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/.github/workflows/test.yml</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1" aria-label="code-block-3-7"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/.gitignore</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1" aria-label="code-block-3-8"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/LICENSE</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1" aria-label="code-block-3-9"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/README.md</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1" aria-label="code-block-3-10"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/amdahl/</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1" aria-label="code-block-3-11"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/amdahl/__init__.py</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1" aria-label="code-block-3-12"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/amdahl/__main__.py</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1" aria-label="code-block-3-13"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/amdahl/amdahl.py</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1" aria-label="code-block-3-14"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/pyproject.toml</span></span></code></pre>
 </div>
 <p>This example output shows a folder which contains a few files, where
-<code>46c9b4b</code> is an 8-character <a href="https://swcarpentry.github.io/git-novice/" class="external-link">git</a> commit hash
+<code>d5a3bb9</code> is an 8-character <a href="https://swcarpentry.github.io/git-novice/" class="external-link">git</a> commit hash
 that will change when the source material is updated.</p>
 <p>Now let’s unpack the archive. We’ll run <code>tar</code> with a few
 common flags:</p>
@@ -3172,19 +3180,19 @@ directory named “amdahl” using <code>tar</code>.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>hpc-carpentry-amdahl-46c9b4b/
-hpc-carpentry-amdahl-46c9b4b/.github/
-hpc-carpentry-amdahl-46c9b4b/.github/workflows/
-hpc-carpentry-amdahl-46c9b4b/.github/workflows/python-publish.yml
-hpc-carpentry-amdahl-46c9b4b/.gitignore
-hpc-carpentry-amdahl-46c9b4b/LICENSE
-hpc-carpentry-amdahl-46c9b4b/README.md
-hpc-carpentry-amdahl-46c9b4b/amdahl/
-hpc-carpentry-amdahl-46c9b4b/amdahl/__init__.py
-hpc-carpentry-amdahl-46c9b4b/amdahl/__main__.py
-hpc-carpentry-amdahl-46c9b4b/amdahl/amdahl.py
-hpc-carpentry-amdahl-46c9b4b/requirements.txt
-hpc-carpentry-amdahl-46c9b4b/setup.py</code></pre>
+<pre class="output" tabindex="0"><code>hpc-carpentry-amdahl-d5a3bb9/
+hpc-carpentry-amdahl-d5a3bb9/.github/
+hpc-carpentry-amdahl-d5a3bb9/.github/workflows/
+hpc-carpentry-amdahl-d5a3bb9/.github/workflows/python-publish.yml
+hpc-carpentry-amdahl-d5a3bb9/.github/workflows/test.yml
+hpc-carpentry-amdahl-d5a3bb9/.gitignore
+hpc-carpentry-amdahl-d5a3bb9/LICENSE
+hpc-carpentry-amdahl-d5a3bb9/README.md
+hpc-carpentry-amdahl-d5a3bb9/amdahl/
+hpc-carpentry-amdahl-d5a3bb9/amdahl/__init__.py
+hpc-carpentry-amdahl-d5a3bb9/amdahl/__main__.py
+hpc-carpentry-amdahl-d5a3bb9/amdahl/amdahl.py
+hpc-carpentry-amdahl-d5a3bb9/pyproject.toml</code></pre>
 </div>
 <p>Note that we did not need to type out <code>-x -v -z -f</code>,
 thanks to flag concatenation, though the command works identically
@@ -3208,9 +3216,9 @@ compressed file size, using <code>du</code> for “<strong>d</strong>isk
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">[you@laptop:~]$</span> du <span class="at">-sh</span> amdahl.tar.gz</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a><span class="ex">8.0K</span>     amdahl.tar.gz</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a><span class="ex">8.0K</span>    amdahl.tar.gz</span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a><span class="ex">[you@laptop:~]$</span> du <span class="at">-sh</span> amdahl</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a><span class="ex">48K</span>    amdahl</span></code></pre>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a><span class="ex">26K</span>     amdahl</span></code></pre>
 </div>
 <p>Text files (including Python source code) compress nicely: the
 “tarball” is one-sixth the total size of the raw data!</p>
@@ -3229,6 +3237,7 @@ the archive filename, then provide a directory to compress:</p>
 amdahl/.github/
 amdahl/.github/workflows/
 amdahl/.github/workflows/python-publish.yml
+amdahl/.github/workflows/test.yml
 amdahl/.gitignore
 amdahl/LICENSE
 amdahl/README.md
@@ -3236,14 +3245,13 @@ amdahl/amdahl/
 amdahl/amdahl/__init__.py
 amdahl/amdahl/__main__.py
 amdahl/amdahl/amdahl.py
-amdahl/requirements.txt
-amdahl/setup.py</code></pre>
+amdahl/pyproject.toml</code></pre>
 </div>
 <p>If you give <code>amdahl.tar.gz</code> as the filename in the above
 command, <code>tar</code> will update the existing tarball with any
 changes you made to the files. That would mean adding the new
 <code>amdahl</code> folder to the <em>existing</em> folder
-(<code>hpc-carpentry-amdahl-46c9b4b</code>) inside the tarball, doubling
+(<code>hpc-carpentry-amdahl-d5a3bb9</code>) inside the tarball, doubling
 the size of the archive!</p>
 <div id="working-with-windows" class="callout">
 <div class="callout-square">
@@ -3280,10 +3288,12 @@ will have <code>$</code> at the end of a line.</p>
 </h2>
 <hr class="half-width">
 <p>To copy a single file to or from the cluster, we can use
-<code>scp</code> (“secure copy”). The syntax can be a little complex for
-new users, but we’ll break it down. The <code>scp</code> command is a
-relative of the <code>ssh</code> command we used to access the system,
-and can use the same public-key authentication mechanism.</p>
+<code>scp</code> (“<em><strong>s</strong>ecure
+<strong>c</strong>o<strong>p</strong>y</em>”). The syntax can be a
+little complex for new users, but we’ll break it down. The
+<code>scp</code> command is a relative of the <code>ssh</code> command
+we used to access the system, and can use the same public-key
+authentication mechanism.</p>
 <p>To <em>upload to</em> another computer, the template command is</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3334,7 +3344,7 @@ that’s OK!</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Commands </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3342,7 +3352,7 @@ that’s OK!</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">[you@laptop:~]$</span> ssh yourUsername@cluster.hpc-carpentry.org</span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a><span class="ex">[yourUsername@login1</span> ~]$ wget <span class="at">-O</span> amdahl.tar.gz https://github.com/hpc-carpentry/amdahl/tarball/main</span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1" aria-label="code-block-12-3"></a><span class="co"># or</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1" aria-label="code-block-12-4"></a><span class="ex">[yourUsername@login1</span> ~]$ curl <span class="at">-o</span> amdahl.tar.gz https://github.com/hpc-carpentry/amdahl/tarball/main</span></code></pre>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1" aria-label="code-block-12-4"></a><span class="ex">[yourUsername@login1</span> ~]$ curl <span class="at">-o</span> amdahl.tar.gz <span class="at">-L</span> https://github.com/hpc-carpentry/amdahl/tarball/main</span></code></pre>
 </div>
 </div>
 </div>
@@ -3498,7 +3508,7 @@ page if you’re unsure.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3557,8 +3567,8 @@ machine.</p>
 <div class="callout-content">
 <ul>
 <li>
-<code>wget</code> and <code>curl -O</code> download a file from the
-internet.</li>
+<code>wget -O</code> and <code>curl -o</code> download a file from
+the internet.</li>
 <li>
 <code>scp</code> and <code>rsync</code> transfer files to and from
 your computer.</li>
@@ -3570,7 +3580,7 @@ a GUI.</li>
 </div>
 </section></section><section id="aio-17-parallel"><p>Content from <a href="17-parallel.html">Running a parallel job</a></p>
 <hr>
-<p>Last updated on 2026-05-05 |
+<p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/17-parallel.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3752,15 +3762,15 @@ difficulties. If you had to load a Python module, load it again.</p>
 </h3>
 <pre class="output" tabindex="0"><code>usage: amdahl [-h] [-p [PARALLEL_PROPORTION]] [-w [WORK_SECONDS]] [-t] [-e] [-j [JITTER_PROPORTION]]
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
-  -p [PARALLEL_PROPORTION], --parallel-proportion [PARALLEL_PROPORTION]
+  -p, --parallel-proportion [PARALLEL_PROPORTION]
                         Parallel proportion: a float between 0 and 1
-  -w [WORK_SECONDS], --work-seconds [WORK_SECONDS]
+  -w, --work-seconds [WORK_SECONDS]
                         Total seconds of workload: an integer greater than 0
   -t, --terse           Format output as a machine-readable object for easier analysis
   -e, --exact           Exactly match requested timing by disabling random jitter
-  -j [JITTER_PROPORTION], --jitter-proportion [JITTER_PROPORTION]
+  -j, --jitter-proportion [JITTER_PROPORTION]
                         Random jitter: a float between -1 and +1</code></pre>
 </div>
 <p>This message doesn’t tell us much about what the program
@@ -3824,7 +3834,7 @@ launched the job from. For example,</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>slurm-347087.out  serial-job.sh  amdahl  README.md  LICENSE.txt</code></pre>
+<pre class="output" tabindex="0"><code>slurm-347087.out  serial-job.sh  amdahl  LICENSE  pyproject.toml  README.md</code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3834,13 +3844,13 @@ launched the job from. For example,</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>Doing 30.000 seconds of 'work' on 1 processor,
-which should take 30.000 seconds with 0.850 parallel proportion of the workload.
+<pre class="output" tabindex="0"><code>Doing 30.000000 seconds of 'work' on 1 processor,
+which should take 30.000000 seconds with 0.800000 parallel proportion of the workload.
 
-  Hello, World! I am process 0 of 1 on smnode1. I will do all the serial 'work' for 4.500 seconds.
-  Hello, World! I am process 0 of 1 on smnode1. I will do parallel 'work' for 25.500 seconds.
+  Hello, World! I am process 0 of 1 on smnode1. I will do all the serial 'work' for 7.021608 seconds.
+  Hello, World! I am process 0 of 1 on smnode1. I will do parallel 'work' for 26.302983 seconds.
 
-Total execution time (according to rank 0): 30.033 seconds</code></pre>
+Total execution time (according to rank 0): 33.326056 seconds</code></pre>
 </div>
 </div>
 </div>
@@ -3849,13 +3859,13 @@ Total execution time (according to rank 0): 30.033 seconds</code></pre>
 <p>As we saw before, two of the <code>amdahl</code> program flags set
 the amount of work and the proportion of that work that is parallel in
 nature. Based on the output, we can see that the code uses a default of
-30 seconds of work that is 85% parallel. The program ran for just over
-30 seconds in total, and if we run the numbers, it is true that 15% of
-it was marked ‘serial’ and 85% was ‘parallel’.</p>
+30 seconds of work that is 80% parallel. The program ran for just over
+30 seconds in total, and if we run the numbers, it is true that 20% of
+it was marked ‘serial’ and 80% was ‘parallel’.</p>
 <p>Since we only gave the job one CPU, this job wasn’t really parallel:
-the same processor performed the ‘serial’ work for 4.5 seconds, then the
-‘parallel’ part for 25.5 seconds, and no time was saved. The cluster can
-do better, if we ask.</p>
+the same processor performed the ‘serial’ work for 7.02 seconds, then
+the ‘parallel’ part for 26.30 seconds, and no time was saved. The
+cluster can do better, if we ask.</p>
 </section><section><h2 class="section-heading" id="running-the-parallel-job">Running the Parallel Job<a class="anchor" aria-label="anchor" href="#running-the-parallel-job"></a>
 </h2>
 <hr class="half-width">
@@ -3950,7 +3960,8 @@ are in the batch file rather than the command line.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>slurm-347178.out  parallel-job.sh  slurm-347087.out  serial-job.sh  amdahl  README.md  LICENSE.txt</code></pre>
+<pre class="output" tabindex="0"><code>slurm-347178.out  parallel-job.sh  amdahl   pyproject.toml
+slurm-347087.out  serial-job.sh    LICENSE  README.md</code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3960,16 +3971,16 @@ are in the batch file rather than the command line.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>Doing 30.000 seconds of 'work' on 4 processors,
-which should take 10.875 seconds with 0.850 parallel proportion of the workload.
+<pre class="output" tabindex="0"><code>Doing 30.000000 seconds of 'work' on 4 processors,
+ which should take 12.000000 seconds with 0.800000 parallel proportion of the workload.
 
-  Hello, World! I am process 0 of 4 on smnode1. I will do all the serial 'work' for 4.500 seconds.
-  Hello, World! I am process 2 of 4 on smnode1. I will do parallel 'work' for 6.375 seconds.
-  Hello, World! I am process 1 of 4 on smnode1. I will do parallel 'work' for 6.375 seconds.
-  Hello, World! I am process 3 of 4 on smnode1. I will do parallel 'work' for 6.375 seconds.
-  Hello, World! I am process 0 of 4 on smnode1. I will do parallel 'work' for 6.375 seconds.
+  Hello, World! I am process 0 of 4 on smnode1. I will do all the serial 'work' for 6.851971 seconds.
+  Hello, World! I am process 2 of 4 on smnode1. I will do parallel 'work' for 6.726753 seconds.
+  Hello, World! I am process 1 of 4 on smnode1. I will do parallel 'work' for 6.742398 seconds.
+  Hello, World! I am process 3 of 4 on smnode1. I will do parallel 'work' for 6.782674 seconds.
+  Hello, World! I am process 0 of 4 on smnode1. I will do parallel 'work' for 6.468167 seconds.
 
-Total execution time (according to rank 0): 10.888 seconds</code></pre>
+Total execution time (according to rank 0): 13.579746 seconds</code></pre>
 </div>
 <div id="is-it-4-faster" class="callout challenge">
 <div class="callout-square">
@@ -4080,7 +4091,8 @@ are in the batch file rather than the command line.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>slurm-347271.out  parallel-job.sh  slurm-347178.out  slurm-347087.out  serial-job.sh  amdahl  README.md  LICENSE.txt</code></pre>
+<pre class="output" tabindex="0"><code>slurm-347271.out     slurm-347178.out  serial-job.sh  LICENSE         README.md
+parallel-job.sh      slurm-347087.out  amdahl         pyproject.toml</code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4090,19 +4102,20 @@ are in the batch file rather than the command line.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>which should take 7.688 seconds with 0.850 parallel proportion of the workload.
+<pre class="output" tabindex="0"><code>Doing 30.000000 seconds of 'work' on 8 processors,
+ which should take 9.000000 seconds with 0.800000 parallel proportion of the workload.
 
-  Hello, World! I am process 4 of 8 on smnode1. I will do parallel 'work' for 3.188 seconds.
-  Hello, World! I am process 0 of 8 on smnode1. I will do all the serial 'work' for 4.500 seconds.
-  Hello, World! I am process 2 of 8 on smnode1. I will do parallel 'work' for 3.188 seconds.
-  Hello, World! I am process 1 of 8 on smnode1. I will do parallel 'work' for 3.188 seconds.
-  Hello, World! I am process 3 of 8 on smnode1. I will do parallel 'work' for 3.188 seconds.
-  Hello, World! I am process 5 of 8 on smnode1. I will do parallel 'work' for 3.188 seconds.
-  Hello, World! I am process 6 of 8 on smnode1. I will do parallel 'work' for 3.188 seconds.
-  Hello, World! I am process 7 of 8 on smnode1. I will do parallel 'work' for 3.188 seconds.
-  Hello, World! I am process 0 of 8 on smnode1. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 4 of 8 on smnode1. I will do parallel 'work' for 3.157831 seconds.
+  Hello, World! I am process 0 of 8 on smnode1. I will do all the serial 'work' for 6.031285 seconds.
+  Hello, World! I am process 2 of 8 on smnode1. I will do parallel 'work' for 3.215214 seconds.
+  Hello, World! I am process 1 of 8 on smnode1. I will do parallel 'work' for 3.524280 seconds.
+  Hello, World! I am process 3 of 8 on smnode1. I will do parallel 'work' for 3.589039 seconds.
+  Hello, World! I am process 5 of 8 on smnode1. I will do parallel 'work' for 3.501589 seconds.
+  Hello, World! I am process 6 of 8 on smnode1. I will do parallel 'work' for 3.207707 seconds.
+  Hello, World! I am process 7 of 8 on smnode1. I will do parallel 'work' for 3.071680 seconds.
+  Hello, World! I am process 0 of 8 on smnode1. I will do parallel 'work' for 3.482018 seconds.
 
-Total execution time (according to rank 0): 7.697 seconds</code></pre>
+Total execution time (according to rank 0): 9.514393 seconds</code></pre>
 </div>
 <div id="non-linear-output" class="callout discussion">
 <div class="callout-square">
@@ -4131,15 +4144,15 @@ write its output first, except that it will <em>not</em> be process
 <tbody>
 <tr>
 <td>1</td>
-<td>30.033</td>
+<td>33.326056</td>
 </tr>
 <tr>
 <td>4</td>
-<td>10.888</td>
+<td>13.579746</td>
 </tr>
 <tr>
 <td>8</td>
-<td>7.697</td>
+<td>9.514393</td>
 </tr>
 </tbody>
 </table>
@@ -4151,7 +4164,7 @@ S(t_{n}) = \frac{t_{1}}{t_{n}}
 <div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1" aria-label="code-block-33-1"></a><span class="ex">[yourUsername@login1</span> ~]$ for n in 30.033 10.888 7.697<span class="kw">;</span> <span class="cf">do</span> <span class="ex">python3</span> <span class="at">-c</span> <span class="st">"print(30.033 / </span><span class="va">$n</span><span class="st">)"</span><span class="kw">;</span> <span class="cf">done</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1" aria-label="code-block-33-1"></a><span class="ex">[yourUsername@login1</span> ~]$ for n in 33.326056 13.579746 9.514393<span class="kw">;</span> <span class="cf">do</span> <span class="ex">python3</span> <span class="at">-c</span> <span class="st">"print(33.326056 / </span><span class="va">$n</span><span class="st">)"</span><span class="kw">;</span> <span class="cf">done</span></span></code></pre>
 </div>
 <table class="table">
 <thead><tr>
@@ -4167,18 +4180,18 @@ S(t_{n}) = \frac{t_{1}}{t_{n}}
 </tr>
 <tr>
 <td>4</td>
-<td>2.75</td>
+<td>2.45</td>
 <td>4</td>
 </tr>
 <tr>
 <td>8</td>
-<td>3.90</td>
+<td>3.50</td>
 <td>8</td>
 </tr>
 </tbody>
 </table>
 <p>The job output files have been telling us that this program is
-performing 85% of its work in parallel, leaving 15% to run in serial.
+performing 80% of its work in parallel, leaving 20% to run in serial.
 This seems reasonably high, but our quick study of speedup shows that in
 order to get a 4× speedup, we have to use 8 or 9 processors in parallel.
 In real programs, the speedup factor is influenced by</p>
@@ -4217,7 +4230,7 @@ linearly.</li>
 </div>
 </section></section><section id="aio-18-resources"><p>Content from <a href="18-resources.html">Using resources effectively</a></p>
 <hr>
-<p>Last updated on 2026-05-05 |
+<p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/18-resources.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -4383,7 +4396,7 @@ close can you get?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The following line tells Slurm that our job should finish within 2
 minutes:</p>
@@ -4412,7 +4425,7 @@ shared resources.</li>
 </div>
 </section></section><section id="aio-19-responsibility"><p>Content from <a href="19-responsibility.html">Using shared resources responsibly</a></p>
 <hr>
-<p>Last updated on 2026-05-05 |
+<p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/19-responsibility.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -4574,10 +4587,10 @@ wait times to help you avoid this issue.</p>
 <h3 class="callout-title">Test Job Submission Scripts That Use Large
 Amounts of Resources</h3>
 <div class="callout-content">
-<p>Before submitting a large run of jobs, submit one as a test first to
-make sure everything works as expected.</p>
-<p>Before submitting a very large or very long job submit a short
-truncated test to ensure that the job starts as expected.</p>
+<p>Before submitting a large run of jobs or a long-running job, first
+submit a smaller test to ensure everything functions as expected. A
+short, truncated test run helps verify that the job starts correctly and
+behaves as intended before scaling to full resource usage.</p>
 </div>
 </div>
 </div>
@@ -4590,11 +4603,12 @@ purposes (i.e. for restoring the whole file system if lost rather than
 an individual file or directory you have deleted by mistake). Protecting
 critical data from corruption or deletion is primarily your
 responsibility: keep your own backup copies.</p>
-<p>Version control systems (such as Git) often have free, cloud-based
-offerings (e.g., GitHub and GitLab) that are generally used for storing
-source code. Even if you are not writing your own programs, these can be
-very useful for storing job scripts, analysis scripts and small input
-files.</p>
+<p><em><strong>V</strong>ersion <strong>C</strong>ontrol
+<strong>S</strong>ystems</em> (VCS, such as Git) often have free,
+cloud-based offerings (e.g., GitHub and GitLab) that are generally used
+for storing source code. Even if you are not writing your own programs,
+these can be very useful for storing job scripts, analysis scripts and
+small input files.</p>
 <p>If you are building software, you may have a large amount of source
 code that you compile to build your executable. Since this data can
 generally be recovered by re-downloading the code, or re-running the
@@ -4831,8 +4845,8 @@ before transferring.</li>
   "url": "https://carpentries-incubator.github.io/hpc-intro/aio.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-intro/aio.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2026-05-05",
-  "datePublished": "2026-05-05"
+  "dateModified": "2026-05-06",
+  "datePublished": "2026-05-06"
 }
 
   </script><script>

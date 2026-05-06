@@ -360,7 +360,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Accessing software via Modules</h1>
-        <p>Last updated on 2026-05-05 |
+        <p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/15-modules.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -489,7 +489,7 @@ loaded, you will see a message telling you so.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>No Modulefiles Currently Loaded.</code></pre>
+<pre class="output" tabindex="0"><code>No modules loaded</code></pre>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="loading-and-unloading-software">Loading and Unloading Software<a class="anchor" aria-label="anchor" href="#loading-and-unloading-software"></a></h2>
@@ -769,7 +769,8 @@ login node is loaded on a compute node).</p>
 </h3>
 <pre class="output" tabindex="0"><code>#!/bin/bash
 #SBATCH
-r config$sched$comment` -t 00:00:30
+
+#SBATCH -t 00:00:30
 
 module load Python
 
@@ -859,8 +860,8 @@ for you automatically.</li>
   "url": "https://carpentries-incubator.github.io/hpc-intro/15-modules.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-intro/15-modules.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2026-05-05",
-  "datePublished": "2026-05-05"
+  "dateModified": "2026-05-06",
+  "datePublished": "2026-05-06"
 }
 
   </script><script>

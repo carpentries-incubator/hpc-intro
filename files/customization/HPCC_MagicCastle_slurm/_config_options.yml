@@ -22,6 +22,7 @@ remote:
   login: "cluster.hpc-carpentry.org"
   portal: "https://mokey.cluster.hpc-carpentry.org"
   host: "login1"
+  hosttype: "x86_64" # architecture family example, output from `uname -m` on a login node
   node: "smnode1"
   location: "cluster.hpc-carpentry.org"
   homedir: "/home"

@@ -361,7 +361,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Transferring files with remote computers</h1>
-        <p>Last updated on 2026-05-05 |
+        <p>Last updated on 2026-05-06 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/16-transferring-files.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -445,7 +445,7 @@ the above commands to save the tarball as
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> wget and curl Commands </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -501,22 +501,22 @@ with writing <code>-tf</code> together. However, the argument following
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">[you@laptop:~]$</span> tar <span class="at">-tf</span> amdahl.tar.gz</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/.github/</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/.github/workflows/</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/.github/workflows/python-publish.yml</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/.gitignore</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1" aria-label="code-block-3-7"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/LICENSE</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1" aria-label="code-block-3-8"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/README.md</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1" aria-label="code-block-3-9"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/amdahl/</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1" aria-label="code-block-3-10"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/amdahl/__init__.py</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1" aria-label="code-block-3-11"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/amdahl/__main__.py</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1" aria-label="code-block-3-12"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/amdahl/amdahl.py</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1" aria-label="code-block-3-13"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/requirements.txt</span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1" aria-label="code-block-3-14"></a><span class="ex">hpc-carpentry-amdahl-46c9b4b/setup.py</span></span></code></pre>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/.github/</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/.github/workflows/</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/.github/workflows/python-publish.yml</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/.github/workflows/test.yml</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1" aria-label="code-block-3-7"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/.gitignore</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1" aria-label="code-block-3-8"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/LICENSE</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1" aria-label="code-block-3-9"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/README.md</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1" aria-label="code-block-3-10"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/amdahl/</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1" aria-label="code-block-3-11"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/amdahl/__init__.py</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1" aria-label="code-block-3-12"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/amdahl/__main__.py</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1" aria-label="code-block-3-13"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/amdahl/amdahl.py</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1" aria-label="code-block-3-14"></a><span class="ex">hpc-carpentry-amdahl-d5a3bb9/pyproject.toml</span></span></code></pre>
 </div>
 <p>This example output shows a folder which contains a few files, where
-<code>46c9b4b</code> is an 8-character <a href="https://swcarpentry.github.io/git-novice/" class="external-link">git</a> commit hash
+<code>d5a3bb9</code> is an 8-character <a href="https://swcarpentry.github.io/git-novice/" class="external-link">git</a> commit hash
 that will change when the source material is updated.</p>
 <p>Now let’s unpack the archive. We’ll run <code>tar</code> with a few
 common flags:</p>
@@ -546,19 +546,19 @@ directory named “amdahl” using <code>tar</code>.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>hpc-carpentry-amdahl-46c9b4b/
-hpc-carpentry-amdahl-46c9b4b/.github/
-hpc-carpentry-amdahl-46c9b4b/.github/workflows/
-hpc-carpentry-amdahl-46c9b4b/.github/workflows/python-publish.yml
-hpc-carpentry-amdahl-46c9b4b/.gitignore
-hpc-carpentry-amdahl-46c9b4b/LICENSE
-hpc-carpentry-amdahl-46c9b4b/README.md
-hpc-carpentry-amdahl-46c9b4b/amdahl/
-hpc-carpentry-amdahl-46c9b4b/amdahl/__init__.py
-hpc-carpentry-amdahl-46c9b4b/amdahl/__main__.py
-hpc-carpentry-amdahl-46c9b4b/amdahl/amdahl.py
-hpc-carpentry-amdahl-46c9b4b/requirements.txt
-hpc-carpentry-amdahl-46c9b4b/setup.py</code></pre>
+<pre class="output" tabindex="0"><code>hpc-carpentry-amdahl-d5a3bb9/
+hpc-carpentry-amdahl-d5a3bb9/.github/
+hpc-carpentry-amdahl-d5a3bb9/.github/workflows/
+hpc-carpentry-amdahl-d5a3bb9/.github/workflows/python-publish.yml
+hpc-carpentry-amdahl-d5a3bb9/.github/workflows/test.yml
+hpc-carpentry-amdahl-d5a3bb9/.gitignore
+hpc-carpentry-amdahl-d5a3bb9/LICENSE
+hpc-carpentry-amdahl-d5a3bb9/README.md
+hpc-carpentry-amdahl-d5a3bb9/amdahl/
+hpc-carpentry-amdahl-d5a3bb9/amdahl/__init__.py
+hpc-carpentry-amdahl-d5a3bb9/amdahl/__main__.py
+hpc-carpentry-amdahl-d5a3bb9/amdahl/amdahl.py
+hpc-carpentry-amdahl-d5a3bb9/pyproject.toml</code></pre>
 </div>
 <p>Note that we did not need to type out <code>-x -v -z -f</code>,
 thanks to flag concatenation, though the command works identically
@@ -582,9 +582,9 @@ compressed file size, using <code>du</code> for “<strong>d</strong>isk
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">[you@laptop:~]$</span> du <span class="at">-sh</span> amdahl.tar.gz</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a><span class="ex">8.0K</span>     amdahl.tar.gz</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a><span class="ex">8.0K</span>    amdahl.tar.gz</span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a><span class="ex">[you@laptop:~]$</span> du <span class="at">-sh</span> amdahl</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a><span class="ex">48K</span>    amdahl</span></code></pre>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a><span class="ex">26K</span>     amdahl</span></code></pre>
 </div>
 <p>Text files (including Python source code) compress nicely: the
 “tarball” is one-sixth the total size of the raw data!</p>
@@ -603,6 +603,7 @@ the archive filename, then provide a directory to compress:</p>
 amdahl/.github/
 amdahl/.github/workflows/
 amdahl/.github/workflows/python-publish.yml
+amdahl/.github/workflows/test.yml
 amdahl/.gitignore
 amdahl/LICENSE
 amdahl/README.md
@@ -610,14 +611,13 @@ amdahl/amdahl/
 amdahl/amdahl/__init__.py
 amdahl/amdahl/__main__.py
 amdahl/amdahl/amdahl.py
-amdahl/requirements.txt
-amdahl/setup.py</code></pre>
+amdahl/pyproject.toml</code></pre>
 </div>
 <p>If you give <code>amdahl.tar.gz</code> as the filename in the above
 command, <code>tar</code> will update the existing tarball with any
 changes you made to the files. That would mean adding the new
 <code>amdahl</code> folder to the <em>existing</em> folder
-(<code>hpc-carpentry-amdahl-46c9b4b</code>) inside the tarball, doubling
+(<code>hpc-carpentry-amdahl-d5a3bb9</code>) inside the tarball, doubling
 the size of the archive!</p>
 <div id="working-with-windows" class="callout">
 <div class="callout-square">
@@ -652,10 +652,12 @@ will have <code>$</code> at the end of a line.</p>
 </section><section><h2 class="section-heading" id="transferring-single-files-and-folders-with-scp">Transferring Single Files and Folders With <code>scp</code>
 <a class="anchor" aria-label="anchor" href="#transferring-single-files-and-folders-with-scp"></a></h2>
 <hr class="half-width"><p>To copy a single file to or from the cluster, we can use
-<code>scp</code> (“secure copy”). The syntax can be a little complex for
-new users, but we’ll break it down. The <code>scp</code> command is a
-relative of the <code>ssh</code> command we used to access the system,
-and can use the same public-key authentication mechanism.</p>
+<code>scp</code> (“<em><strong>s</strong>ecure
+<strong>c</strong>o<strong>p</strong>y</em>”). The syntax can be a
+little complex for new users, but we’ll break it down. The
+<code>scp</code> command is a relative of the <code>ssh</code> command
+we used to access the system, and can use the same public-key
+authentication mechanism.</p>
 <p>To <em>upload to</em> another computer, the template command is</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -706,7 +708,7 @@ that’s OK!</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Commands </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -714,7 +716,7 @@ that’s OK!</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">[you@laptop:~]$</span> ssh yourUsername@cluster.hpc-carpentry.org</span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a><span class="ex">[yourUsername@login1</span> ~]$ wget <span class="at">-O</span> amdahl.tar.gz https://github.com/hpc-carpentry/amdahl/tarball/main</span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1" aria-label="code-block-12-3"></a><span class="co"># or</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1" aria-label="code-block-12-4"></a><span class="ex">[yourUsername@login1</span> ~]$ curl <span class="at">-o</span> amdahl.tar.gz https://github.com/hpc-carpentry/amdahl/tarball/main</span></code></pre>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1" aria-label="code-block-12-4"></a><span class="ex">[yourUsername@login1</span> ~]$ curl <span class="at">-o</span> amdahl.tar.gz <span class="at">-L</span> https://github.com/hpc-carpentry/amdahl/tarball/main</span></code></pre>
 </div>
 </div>
 </div>
@@ -866,7 +868,7 @@ page if you’re unsure.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -920,8 +922,8 @@ machine.</p>
 <div class="callout-inner">
 <div class="callout-content">
 <ul><li>
-<code>wget</code> and <code>curl -O</code> download a file from the
-internet.</li>
+<code>wget -O</code> and <code>curl -o</code> download a file from
+the internet.</li>
 <li>
 <code>scp</code> and <code>rsync</code> transfer files to and from
 your computer.</li>
@@ -990,8 +992,8 @@ a GUI.</li>
   "url": "https://carpentries-incubator.github.io/hpc-intro/instructor/16-transferring-files.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-intro/instructor/16-transferring-files.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2026-05-05",
-  "datePublished": "2026-05-05"
+  "dateModified": "2026-05-06",
+  "datePublished": "2026-05-06"
 }
 
   </script><script>
