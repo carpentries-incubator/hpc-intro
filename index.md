@@ -32,7 +32,7 @@ By the end of this workshop, students will know how to:
 
 ## Getting Started
 
-To get started, please follow the "[Setup Instructions](learners/setup.md)
+To get started, please follow the [Setup Instructions](learners/setup.md)
 to ensure you have a terminal and SSH application.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::

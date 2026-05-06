@@ -130,12 +130,10 @@ to help you avoid this issue.
 
 ## Test Job Submission Scripts That Use Large Amounts of Resources
 
-Before submitting a large run of jobs, submit one as a test first to make
-sure everything works as expected.
-
-Before submitting a very large or very long job submit a short truncated test
-to ensure that the job starts as expected.
-
+Before submitting a large run of jobs or a long-running job, first submit a
+smaller test to ensure everything functions as expected. A short, truncated test run
+helps verify that the job starts correctly and behaves as intended before scaling to
+full resource usage.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -148,9 +146,9 @@ directory you have deleted by mistake). Protecting critical data from
 corruption or deletion is primarily your responsibility: keep your own backup
 copies.
 
-Version control systems (such as Git) often have free, cloud-based offerings
-(e.g., GitHub and GitLab) that are generally used for storing source code. Even
-if you are not writing your own programs, these can be very useful for storing
+_**V**ersion **C**ontrol **S**ystems_ (VCS, such as Git) often have free, cloud-based
+offerings (e.g., GitHub and GitLab) that are generally used for storing source code.
+Even if you are not writing your own programs, these can be very useful for storing
 job scripts, analysis scripts and small input files.
 
 If you are building software, you may have a large amount of source code

@@ -115,7 +115,7 @@ message telling you so.
 ```
 
 ```output
-No Modulefiles Currently Loaded.
+No modules loaded
 ```
 
 ## Loading and Unloading Software
@@ -381,7 +381,8 @@ compute node).
 ```output
 #!/bin/bash
 #SBATCH 
-r config$sched$comment` -t 00:00:30
+
+#SBATCH -t 00:00:30
 
 module load Python
 

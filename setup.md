@@ -115,7 +115,7 @@ to connect to and use a remote computer as our own.
 
 ### SSH for Windows
 
-Git for Windows comes with SSH preinstalled: you do not have to do anything.
+Git for Windows comes with SSH pre-installed: you do not have to do anything.
 
 ::::::::::::::::::::::::::::::::::::::  discussion
 
@@ -145,7 +145,7 @@ interface, please install [XQuartz](https://www.xquartz.org).
 
 ### SSH for Linux
 
-Linux comes with SSH and X window support preinstalled: you do not have to do
+Linux comes with SSH and X window support pre-installed: you do not have to do
 anything.
 
 <!-- links -->

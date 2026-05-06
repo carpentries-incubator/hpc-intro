@@ -48,19 +48,17 @@ Let's start by running the command `set` and looking at some of the variables
 in a typical shell session:
 
 ```bash
-set
+[yourUsername@login1 ~]$ set
 ```
 
 ```output
-COMPUTERNAME=TURING
-HOME=/home/vlad
-HOSTNAME=TURING
-HOSTTYPE=i686
-NUMBER_OF_PROCESSORS=4
-PATH=/Users/vlad/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
-PWD=/home/vlad
+HOME=/home/yourUsername
+HOSTNAME=login1
+HOSTTYPE=x86_64
+PATH=/home/yourUsername/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+PWD=/home/yourUsername
 UID=1000
-USERNAME=vlad
+USER=yourUsername
 ...
 ```
 
@@ -83,7 +81,7 @@ string to an integer.
 Let's show the value of the variable `HOME`:
 
 ```bash
-echo HOME
+[yourUsername@login1 ~]$ echo HOME
 ```
 
 ```output
@@ -95,18 +93,18 @@ That just prints "HOME", which isn't what we wanted
 Let's try this instead:
 
 ```bash
-echo $HOME
+[yourUsername@login1 ~]$ echo $HOME
 ```
 
 ```output
-/home/vlad
+/home/yourUsername
 ```
 
 The dollar sign tells the shell that we want the *value* of the variable
 rather than its name.
 This works just like wildcards:
 the shell does the replacement *before* running the program we've asked for.
-Thanks to this expansion, what we actually run is `echo /home/vlad`,
+Thanks to this expansion, what we actually run is ``echo /home/yourUsername ``,
 which displays the right thing.
 
 ## Creating and Changing Variables
@@ -254,7 +252,7 @@ To show how this works,
 here are the components of `PATH` listed one per line:
 
 ```output
-/Users/vlad/bin
+/home/yourUsername/bin
 /usr/local/git/bin
 /usr/bin
 /bin
@@ -268,12 +266,12 @@ there are actually three programs called `analyze`
 in three different directories:
 `/bin/analyze`,
 `/usr/local/bin/analyze`,
-and `/users/vlad/analyze`.
+and `` /home/yourUsername/analyze ``.
 Since the shell searches the directories in the order they're listed in `PATH`,
 it finds `/bin/analyze` first and runs that.
-Notice that it will *never* find the program `/users/vlad/analyze`
+Notice that it will *never* find the program `` /home/yourUsername/analyze ``
 unless we type in the full path to the program,
-since the directory `/users/vlad` isn't in `PATH`.
+since the directory `` /home/yourUsername `` isn't in `PATH`.
 
 This means that I can have executables in lots of different places as long as
 I remember that I need to update my `PATH` so that my shell can find them.
