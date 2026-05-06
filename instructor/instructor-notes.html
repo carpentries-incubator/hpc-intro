@@ -411,112 +411,330 @@
 <hr class="half-width">
 <p>The following list captures terms that need to be added to this
 glossary. This is a great way to contribute.</p>
-<p>{:auto_ids} <a href="https://en.wikipedia.org/wiki/Hardware_acceleration" class="external-link">Accelerator</a>
-: <em>to be defined</em></p>
-<dl>
-<dt><a href="https://en.wikipedia.org/wiki/Beowulf_cluster" class="external-link">Beowulf
-cluster</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/CPU" class="external-link">Central processing
-unit</a></dt>
-<dd>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<hr>
+<p><a href="#accelerator">Accelerator</a><br><a href="#cpu">Central Processing Unit</a><br><a href="#cloud-computing">Cloud Computing</a><br><a href="#cluster">Cluster</a><br><a href="#compute-node">Compute Node</a><br><a href="#coupling-loose-vs-tight">Coupling Loose vs. Tight</a><br><a href="#cuda">Compute Unified Device Architecture</a><br><a href="#distributed-memory">Distributed Memory</a><br><a href="#execution-node">Execution Node</a><br><a href="#flynns-taxonomy">Flynn’s Taxonomy</a><br><a href="#gpu">Graphics Processing Unit</a><br><a href="#grid-computing">Grid Computing</a><br><a href="#grid-engine">Grid Engine</a><br><a href="#hpc">High-Performance Computing</a><br><a href="#hyper-threading">Hyper-Threading</a><br><a href="#infiniband">InfiniBand</a><br><a href="#interconnect">Interconnect</a><br><a href="#massively-parallel">Massively Parallel</a><br><a href="#mpi">Message Passing Interface</a><br><a href="#node">Node</a><br><a href="#openmp">Open Multi-Processing</a><br><a href="#parallel">Parallel</a><br><a href="#serial">Serial</a><br><a href="#server">Server</a><br><a href="#shared-memory">Shared Memory</a><br><a href="#simd">Single Instruction, Multiple Data</a><br><a href="#simt">Single Instruction, Multiple Threads</a><br><a href="#slurm">Simple Linux Utility for Resource Management</a><br><a href="#smp">Symmetric Multiprocessing</a><br><a href="#smt">Simultaneous Multithreading</a><br><a href="#supercomputer">Supercomputer</a><br><a href="#worker-node">Worker Node</a><br><a href="#workstation">Workstation</a></p>
+<div class="section level3">
+<h3 id="accelerator">Accelerator<a class="anchor" aria-label="anchor" href="#accelerator"></a>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">or</span> simply <span class="pp">*</span>processor<span class="pp">*</span> is the <span class="er">(</span><span class="ex">hardware</span><span class="kw">)</span> <span class="ex">component</span> of a computer that</span></code></pre>
+<p>An <strong>accelerator</strong> in <a href="#hpc">high-performance
+computing (HPC)</a> is a specialized hardware component designed to
+offload compute-intensive and parallelizable tasks from the <a href="#cpu">central processing unit</a>, enabling higher performance,
+energy efficiency, and throughput, particularly for highly parallel
+workloads.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Hardware_acceleration" class="external-link">Hardware
+Acceleration</a></p>
+<p>See also: <a href="#gpu">Graphics Processing Unit</a></p>
 </div>
-executes the instructions supplied by a program (software). Most modern
-desktop computers have multi-core processors, e.g. devices with 2 CPUs
-are called dual-core, with 4 cores are called quad-core and so on. Each
-<strong>core</strong> is a separate physical implementation of the
-electronic circuitry required to execute instructions.
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Cloud_computing" class="external-link">Cloud
-computing</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Computer_cluster" class="external-link">Cluster</a></dt>
-<dd>
-<div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<div class="section level3">
+<h3 id="cpu">Central Processing Unit (CPU)<a class="anchor" aria-label="anchor" href="#cpu"></a>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">a</span> collection of computers configured to enable collaboration on a common</span></code></pre>
+<p>A <strong>central processing unit (CPU)</strong> or simply
+<em>processor</em> is the hardware component of a computer that executes
+the instructions provided by software.</p>
+<p>Most systems use multi-core processors (e.g., dual-core, quad-core,
+and so on), where each <strong>core</strong> is an independent execution
+unit. Systems may also have multiple CPUs (sockets), each containing
+multiple cores.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/CPU" class="external-link">CPU</a></p>
 </div>
-task by means of purposefully configured hardware (e.g., networking) and
-software (e.g. workload management).
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Distributed_memory" class="external-link">Distributed
-memory</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Grid_computing" class="external-link">Grid
-computing</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/High_availability" class="external-link">High
-availability computing</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Supercomputer" class="external-link">High
-performance computing</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Supercomputer_architecture" class="external-link">Interconnect</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Node_(computer_science)" class="external-link">Node</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Parallel_computing" class="external-link">Parallel</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Serial_computer" class="external-link">Serial</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Server_(computing)" class="external-link">Server</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Shared_memory" class="external-link">Shared
-memory</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Slurm_Workload_Manager" class="external-link">Slurm</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Supercomputer" class="external-link">Supercomputer</a></dt>
-<dd>
-<a href="https://www.hpcnotes.com/2015/10/essential-analogies-for-hpc-advocate.html" class="external-link">“…
-a major scientific instrument …”</a>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Workstation" class="external-link">Workstation</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Oracle_Grid_Engine" class="external-link">Grid
-Engine</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-<dt><a href="https://en.wikipedia.org/wiki/Distributed_file_systems" class="external-link">Parallel
-File System</a></dt>
-<dd>
-<em>to be defined</em>
-</dd>
-</dl></section><section id="aggregate-instructor-notes"><section id="10-hpc-intro"><h2 class="section-heading"><a href="10-hpc-intro.html">Why use a Cluster?</a></h2>
+<div class="section level3">
+<h3 id="cloud-computing">Cloud Computing<a class="anchor" aria-label="anchor" href="#cloud-computing"></a>
+</h3>
+<p><strong>Cloud computing</strong> is the on-demand delivery of
+computing resources such as physical or virtual servers, data storage,
+networking, software, and analytics over the internet, typically using a
+pay-per-use pricing model, enabling scalable and elastic workloads.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Cloud_computing" class="external-link">Cloud
+computing</a></p>
+</div>
+<div class="section level3">
+<h3 id="cluster">Cluster<a class="anchor" aria-label="anchor" href="#cluster"></a>
+</h3>
+<p>A <strong>cluster</strong> is a collection of computers (<a href="#node">nodes</a>) connected via a high-speed <a href="#interconnect">interconnect</a>, working together as a unified
+system to execute parallel workloads.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Computer_cluster" class="external-link">Cluster</a></p>
+</div>
+<div class="section level3">
+<h3 id="compute-node">Compute Node<a class="anchor" aria-label="anchor" href="#compute-node"></a>
+</h3>
+<p>A <strong>compute node</strong> is a <a href="#server">server</a>
+within a <a href="#cluster">cluster</a> that is dedicated to executing
+computational jobs. It provides processing power (CPU/GPU), memory, and
+other resources required to run user workloads, typically managed by a
+job scheduler (e.g., <a href="#slurm">Slurm</a>).</p>
+</div>
+<div class="section level3">
+<h3 id="coupling-loose-vs-tight">Coupling, Loose vs. Tight<a class="anchor" aria-label="anchor" href="#coupling-loose-vs-tight"></a>
+</h3>
+<ul>
+<li>
+<strong>Coupling</strong> refers to the degree of interdependence
+between components (e.g., processes or nodes) in a computing system,
+particularly in how frequently they communicate and synchronize.</li>
+<li>
+<strong>Tightly coupled systems</strong> have components that
+frequently communicate and share data, often with low-latency
+interconnects and shared memory or fast message passing.</li>
+<li>
+<strong>Loosely coupled systems</strong> have components that
+operate more independently, communicating less frequently, typically
+through higher-latency networks or asynchronous exchanges.</li>
+</ul>
+<p>More info: <a href="https://techdifferences.com/difference-between-loosely-coupled-and-tightly-coupled-multiprocessor-system.html" class="external-link">Loosely
+vs. Tightly Coupled Multiprocessor System</a></p>
+</div>
+<div class="section level3">
+<h3 id="cuda">Compute Unified Device Architecture (CUDA)<a class="anchor" aria-label="anchor" href="#cuda"></a>
+</h3>
+<p><strong>CUDA</strong> is a proprietary parallel computing platform
+and application programming interface that allows software to use
+certain types of <a href="#gpu">graphics processing units</a> for
+accelerated general-purpose processing, significantly broadening their
+utility in scientific and <a href="#hpc">high-performance
+computing</a>.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/CUDA" class="external-link">CUDA</a></p>
+</div>
+<div class="section level3">
+<h3 id="distributed-memory">Distributed Memory<a class="anchor" aria-label="anchor" href="#distributed-memory"></a>
+</h3>
+<p><strong>Distributed memory</strong> is a parallel computer
+architecture where each processor (<a href="#node">node</a>) has its own
+private, local memory, and nodes communicate (e.g., using <a href="#mpi">MPI</a>) by sending messages over a network <a href="#interconnect">interconnect</a>.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Distributed_memory" class="external-link">Distributed
+memory</a></p>
+</div>
+<div class="section level3">
+<h3 id="execution-node">Execution Node<a class="anchor" aria-label="anchor" href="#execution-node"></a>
+</h3>
+<p>An <strong>execution node</strong> is a node on which a job or task
+is actively running within a cluster environment. It is typically a <a href="#compute-node">compute node</a> allocated by the scheduler to
+execute a specific workload.</p>
+</div>
+<div class="section level3">
+<h3 id="flynns-taxonomy">Flynn’s Taxonomy<a class="anchor" aria-label="anchor" href="#flynns-taxonomy"></a>
+</h3>
+<p><strong>Flynn’s taxonomy</strong> classifies computing architectures
+into: - Single instruction stream, single data stream (SISD) - Single
+instruction stream, multiple data streams (<a href="#simd">SIMD</a>) -
+Multiple instruction streams, single data stream (MISD) - Multiple
+instruction streams, multiple data streams (MIMD)</p>
+<p>This taxonomy is a coarse model, as many parallel processors are
+hybrids of the SISD, SIMD, and MIMD classes.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Flynn%27s_taxonomy" class="external-link">Flynn’s
+Taxonomy</a> (<a href="#simd">SIMD</a>, <a href="#simt">SIMT</a>)</p>
+</div>
+<div class="section level3">
+<h3 id="gpu">Graphics Processing Unit (GPU)<a class="anchor" aria-label="anchor" href="#gpu"></a>
+</h3>
+<p>A <strong>graphics processing unit (GPU)</strong> is a specialized <a href="#accelerator">accelerator</a> optimized for high-throughput
+parallel computation using many lightweight parallel cores.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Graphics_processing_unit" class="external-link">Graphics
+processing unit</a></p>
+</div>
+<div class="section level3">
+<h3 id="grid-computing">Grid Computing<a class="anchor" aria-label="anchor" href="#grid-computing"></a>
+</h3>
+<p><strong>Grid computing</strong> is a distributed system that connects
+geographically dispersed computers, often aggregating heterogeneous and
+possibly idle resources to act as a virtual <a href="#supercomputer">supercomputer</a>.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Grid_computing" class="external-link">Grid
+computing</a></p>
+</div>
+<div class="section level3">
+<h3 id="grid-engine">Grid Engine<a class="anchor" aria-label="anchor" href="#grid-engine"></a>
+</h3>
+<p><strong>Grid engine</strong> is typically used on a compute cluster
+or <a href="#hpc">high-performance computing</a> system and is
+responsible for accepting, scheduling, dispatching, and managing the
+remote and distributed execution of large numbers of standalone,
+parallel or interactive user jobs.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Oracle_Grid_Engine" class="external-link">Grid
+Engine</a></p>
+</div>
+<div class="section level3">
+<h3 id="hpc">High-Performance Computing (HPC)<a class="anchor" aria-label="anchor" href="#hpc"></a>
+</h3>
+<p><strong>High-Performance Computing (HPC)</strong> uses clustered,
+interconnected computing nodes (<a href="#cluster">cluster</a>) to solve
+complex, data-intensive problems far beyond the capacity of standard
+desktop computers, often utilizing <a href="#parallel">parallel</a>
+processing.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/High-performance_computing" class="external-link">High-Performance
+Computing</a></p>
+</div>
+<div class="section level3">
+<h3 id="hyper-threading">Hyper-Threading<a class="anchor" aria-label="anchor" href="#hyper-threading"></a>
+</h3>
+<p><strong>Hyper-Threading</strong> technology is a form of <a href="#smt">simultaneous-multithreading</a> technology introduced by
+Intel.</p>
+<p>Architecturally, a processor with Hyper-Threading technology consists
+of two logical processors per core, each of which has its own processor
+architectural state.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Hyper-threading" class="external-link">Hyper-Threading</a>(<a href="#smt">SMT</a>)</p>
+</div>
+<div class="section level3">
+<h3 id="infiniband">InfiniBand<a class="anchor" aria-label="anchor" href="#infiniband"></a>
+</h3>
+<p><strong>InfiniBand</strong> is a computer networking standard used in
+<a href="#hpc">high-performance computing</a> that features very high
+throughput and very low latency. It provides high-speed <a href="#interconnect">interconnect</a> capabilities within and between
+computers (<a href="#node">nodes</a>).</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/InfiniBand" class="external-link">InfiniBand</a></p>
+</div>
+<div class="section level3">
+<h3 id="interconnect">Interconnect<a class="anchor" aria-label="anchor" href="#interconnect"></a>
+</h3>
+<p><strong>Interconnect</strong> components are specialized hardware and
+communication technologies designed to provide extremely fast,
+low-latency and high-bandwidth communication between compute nodes,
+storage, and accelerators in a <a href="#cluster">cluster</a> (e.g., <a href="#infiniband">InfiniBand</a>) particularly in <a href="#distributed-memory">distributed memory</a> systems.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Supercomputer_architecture" class="external-link">Interconnect</a></p>
+</div>
+<div class="section level3">
+<h3 id="massively-parallel">Massively Parallel<a class="anchor" aria-label="anchor" href="#massively-parallel"></a>
+</h3>
+<p>The term <strong>massively parallel</strong> means using a large
+number of processors to simultaneously perform a set of computations in
+parallel.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Massively_parallel" class="external-link">Massively
+Parallel</a></p>
+</div>
+<div class="section level3">
+<h3 id="mpi">Message Passing Interface (MPI)<a class="anchor" aria-label="anchor" href="#mpi"></a>
+</h3>
+<p><strong>MPI</strong> is a standardized and portable message-passing
+interface used for <a href="#parallel">parallel</a> computing. It
+provides explicit communication, synchronization, and data exchange
+between processes, typically in <a href="#distributed-memory">distributed memory</a> systems, often relying
+on high-performance <a href="#interconnect">interconnect</a>
+technologies.</p>
+<p>MPI is commonly used for communication between processes across nodes
+in distributed memory systems, but can also be used within a single
+node.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Message_Passing_Interface" class="external-link">Message
+passing interface</a></p>
+</div>
+<div class="section level3">
+<h3 id="node">Node<a class="anchor" aria-label="anchor" href="#node"></a>
+</h3>
+<p>An HPC <strong>node</strong> is an individual server (computer)
+within an <a href="#hpc">HPC</a> <a href="#cluster">cluster</a>.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Node_(computer_science)" class="external-link">Node</a></p>
+</div>
+<div class="section level3">
+<h3 id="openmp">Open Multi-Processing (OpenMP)<a class="anchor" aria-label="anchor" href="#openmp"></a>
+</h3>
+<p><strong>OpenMP</strong> is an application programming interface which
+provides a model for parallel programming in <a href="#shared-memory">shared memory</a> systems within a single node
+that is portable across architectures from different vendors.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/OpenMP" class="external-link">OpenMP</a></p>
+</div>
+<div class="section level3">
+<h3 id="parallel">Parallel<a class="anchor" aria-label="anchor" href="#parallel"></a>
+</h3>
+<p><strong>Parallel</strong> computing or <strong>parallel</strong>
+programming is a process where large compute problems are broken down
+into smaller problems that can be solved simultaneously by multiple
+processors.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Parallel_computing" class="external-link">Parallel</a></p>
+</div>
+<div class="section level3">
+<h3 id="serial">Serial<a class="anchor" aria-label="anchor" href="#serial"></a>
+</h3>
+<p><strong>Serial</strong> computing refers to a computational model
+where tasks are executed sequentially, one after another, on a single
+processing unit.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Serial_computer" class="external-link">Serial</a></p>
+</div>
+<div class="section level3">
+<h3 id="server">Server<a class="anchor" aria-label="anchor" href="#server"></a>
+</h3>
+<p>A <strong>server</strong> is a computer that provides resources,
+services, or functionality to other computers (clients) over a
+network.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Server_(computing)" class="external-link">Server</a></p>
+</div>
+<div class="section level3">
+<h3 id="shared-memory">Shared Memory<a class="anchor" aria-label="anchor" href="#shared-memory"></a>
+</h3>
+<p><strong>Shared memory</strong> is a high-performance inter-process
+communication mechanism that allows multiple processes to access a
+common memory segment directly.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Shared_memory" class="external-link">Shared Memory</a></p>
+</div>
+<div class="section level3">
+<h3 id="simd">Single Instruction, Multiple Data (SIMD)<a class="anchor" aria-label="anchor" href="#simd"></a>
+</h3>
+<p><strong>SIMD</strong> is a computer architecture technique that
+enhances performance by applying one instruction to multiple data points
+simultaneously using specialized vector registers.</p>
+<p>Examples: - <code>x86_64</code> architectures support “SSE”, “AVX”
+and “AVX-512” instructions and - <code>aarch64</code> architectures
+support “NEON”, “SVE” instructions.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_data" class="external-link">SIMD</a></p>
+</div>
+<div class="section level3">
+<h3 id="simt">Single Instruction, Multiple Threads (SIMT)<a class="anchor" aria-label="anchor" href="#simt"></a>
+</h3>
+<p><strong>SIMT</strong> is a parallel execution model used by <a href="#gpu">GPU</a>s where a single instruction is applied to multiple
+threads. Threads are grouped (e.g., warps) and execute the same
+instruction in lockstep, with divergence handled through control flow
+masking.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_threads" class="external-link">SIMT</a></p>
+</div>
+<div class="section level3">
+<h3 id="slurm">Simple Linux Utility for Resource Management (Slurm)<a class="anchor" aria-label="anchor" href="#slurm"></a>
+</h3>
+<p><strong>Slurm</strong> is an open-source, fault tolerant, and highly
+scalable cluster management and job scheduling system for Linux
+clusters.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Slurm_Workload_Manager" class="external-link">Slurm</a></p>
+</div>
+<div class="section level3">
+<h3 id="smp">Symmetric Multiprocessing (SMP)<a class="anchor" aria-label="anchor" href="#smp"></a>
+</h3>
+<p><strong>Symmetric Multiprocessing (SMP)</strong> involves a
+multiprocessor hardware and software architecture where two or more
+identical processors are connected to a single shared main memory with
+equal access to all memory and I/O devices. It is controlled by a single
+operating system and treats all processes equally with no single
+processor having privileged access.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Symmetric_multiprocessing" class="external-link">Symmetric
+Multiprocessing</a></p>
+</div>
+<div class="section level3">
+<h3 id="smt">Simultaneous Multithreading (SMT)<a class="anchor" aria-label="anchor" href="#smt"></a>
+</h3>
+<p><strong>Simultaneous Multithreading (SMT)</strong> is a technique for
+improving the overall efficiency of superscalar CPUs with hardware
+multithreading.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Simultaneous_multithreading" class="external-link">Simultaneous
+Multithreading</a></p>
+</div>
+<div class="section level3">
+<h3 id="supercomputer">Supercomputer<a class="anchor" aria-label="anchor" href="#supercomputer"></a>
+</h3>
+<p>A <strong>supercomputer</strong> is a type of computer with a high
+level of performance as compared to <a href="https://en.wikipedia.org/wiki/Computer" class="external-link">general-purpose
+computers</a>.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Supercomputer" class="external-link">Supercomputer</a></p>
+</div>
+<div class="section level3">
+<h3 id="worker-node">Worker Node<a class="anchor" aria-label="anchor" href="#worker-node"></a>
+</h3>
+<p>A <strong>worker node</strong> is a compute node in a cluster that
+executes assigned computational tasks as part of a distributed system,
+typically under the coordination of a scheduler or control node.</p>
+</div>
+<div class="section level3">
+<h3 id="workstation">Workstation<a class="anchor" aria-label="anchor" href="#workstation"></a>
+</h3>
+<p>A <strong>workstation</strong> is a special computer designed for
+technical or scientific applications intended to be used by a single
+user.</p>
+<p>More info: <a href="https://en.wikipedia.org/wiki/Workstation" class="external-link">Workstation</a></p>
+</div>
+</section><section id="aggregate-instructor-notes"><section id="10-hpc-intro"><h2 class="section-heading"><a href="10-hpc-intro.html">Why use a Cluster?</a></h2>
 <hr class="half-width"></section><section id="11-connecting"><h2 class="section-heading"><a href="11-connecting.html">Connecting to a remote HPC system</a></h2>
 <hr class="half-width"></section><section id="12-cluster"><h2 class="section-heading"><a href="12-cluster.html">Working on a remote HPC system</a></h2>
 <hr class="half-width"></section><section id="13-scheduler"><h2 class="section-heading"><a href="13-scheduler.html">Scheduler Fundamentals</a></h2>
