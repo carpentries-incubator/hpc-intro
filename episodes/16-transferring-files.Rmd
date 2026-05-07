@@ -121,22 +121,22 @@ However, the argument following `-f` must be a filename, so writing `-ft` will
 
 ```bash
 `r config$local$prompt` tar -tf amdahl.tar.gz
-hpc-carpentry-amdahl-46c9b4b/
-hpc-carpentry-amdahl-46c9b4b/.github/
-hpc-carpentry-amdahl-46c9b4b/.github/workflows/
-hpc-carpentry-amdahl-46c9b4b/.github/workflows/python-publish.yml
-hpc-carpentry-amdahl-46c9b4b/.gitignore
-hpc-carpentry-amdahl-46c9b4b/LICENSE
-hpc-carpentry-amdahl-46c9b4b/README.md
-hpc-carpentry-amdahl-46c9b4b/amdahl/
-hpc-carpentry-amdahl-46c9b4b/amdahl/__init__.py
-hpc-carpentry-amdahl-46c9b4b/amdahl/__main__.py
-hpc-carpentry-amdahl-46c9b4b/amdahl/amdahl.py
-hpc-carpentry-amdahl-46c9b4b/requirements.txt
-hpc-carpentry-amdahl-46c9b4b/setup.py
+hpc-carpentry-amdahl-d5a3bb9/
+hpc-carpentry-amdahl-d5a3bb9/.github/
+hpc-carpentry-amdahl-d5a3bb9/.github/workflows/
+hpc-carpentry-amdahl-d5a3bb9/.github/workflows/python-publish.yml
+hpc-carpentry-amdahl-d5a3bb9/.github/workflows/test.yml
+hpc-carpentry-amdahl-d5a3bb9/.gitignore
+hpc-carpentry-amdahl-d5a3bb9/LICENSE
+hpc-carpentry-amdahl-d5a3bb9/README.md
+hpc-carpentry-amdahl-d5a3bb9/amdahl/
+hpc-carpentry-amdahl-d5a3bb9/amdahl/__init__.py
+hpc-carpentry-amdahl-d5a3bb9/amdahl/__main__.py
+hpc-carpentry-amdahl-d5a3bb9/amdahl/amdahl.py
+hpc-carpentry-amdahl-d5a3bb9/pyproject.toml
 ```
 
-This example output shows a folder which contains a few files, where `46c9b4b`
+This example output shows a folder which contains a few files, where `d5a3bb9`
 is an 8-character [git][git-swc] commit hash that will change when the source
 material is updated.
 
@@ -159,19 +159,19 @@ directory named "amdahl" using `tar`.
 ```
 
 ```output
-hpc-carpentry-amdahl-46c9b4b/
-hpc-carpentry-amdahl-46c9b4b/.github/
-hpc-carpentry-amdahl-46c9b4b/.github/workflows/
-hpc-carpentry-amdahl-46c9b4b/.github/workflows/python-publish.yml
-hpc-carpentry-amdahl-46c9b4b/.gitignore
-hpc-carpentry-amdahl-46c9b4b/LICENSE
-hpc-carpentry-amdahl-46c9b4b/README.md
-hpc-carpentry-amdahl-46c9b4b/amdahl/
-hpc-carpentry-amdahl-46c9b4b/amdahl/__init__.py
-hpc-carpentry-amdahl-46c9b4b/amdahl/__main__.py
-hpc-carpentry-amdahl-46c9b4b/amdahl/amdahl.py
-hpc-carpentry-amdahl-46c9b4b/requirements.txt
-hpc-carpentry-amdahl-46c9b4b/setup.py
+hpc-carpentry-amdahl-d5a3bb9/
+hpc-carpentry-amdahl-d5a3bb9/.github/
+hpc-carpentry-amdahl-d5a3bb9/.github/workflows/
+hpc-carpentry-amdahl-d5a3bb9/.github/workflows/python-publish.yml
+hpc-carpentry-amdahl-d5a3bb9/.github/workflows/test.yml
+hpc-carpentry-amdahl-d5a3bb9/.gitignore
+hpc-carpentry-amdahl-d5a3bb9/LICENSE
+hpc-carpentry-amdahl-d5a3bb9/README.md
+hpc-carpentry-amdahl-d5a3bb9/amdahl/
+hpc-carpentry-amdahl-d5a3bb9/amdahl/__init__.py
+hpc-carpentry-amdahl-d5a3bb9/amdahl/__main__.py
+hpc-carpentry-amdahl-d5a3bb9/amdahl/amdahl.py
+hpc-carpentry-amdahl-d5a3bb9/pyproject.toml
 ```
 
 Note that we did not need to type out `-x -v -z -f`, thanks to flag
@@ -194,9 +194,9 @@ file size, using `du` for "**d**isk **u**sage".
 
 ```bash
 `r config$local$prompt` du -sh amdahl.tar.gz
-8.0K     amdahl.tar.gz
+8.0K    amdahl.tar.gz
 `r config$local$prompt` du -sh amdahl
-48K    amdahl
+26K     amdahl
 ```
 
 Text files (including Python source code) compress nicely:
@@ -215,6 +215,7 @@ amdahl/
 amdahl/.github/
 amdahl/.github/workflows/
 amdahl/.github/workflows/python-publish.yml
+amdahl/.github/workflows/test.yml
 amdahl/.gitignore
 amdahl/LICENSE
 amdahl/README.md
@@ -222,14 +223,13 @@ amdahl/amdahl/
 amdahl/amdahl/__init__.py
 amdahl/amdahl/__main__.py
 amdahl/amdahl/amdahl.py
-amdahl/requirements.txt
-amdahl/setup.py
+amdahl/pyproject.toml
 ```
 
 If you give `amdahl.tar.gz` as the filename in the above command, `tar` will
 update the existing tarball with any changes you made to the files.
 That would mean adding the new `amdahl` folder to the *existing* folder
-(`hpc-carpentry-amdahl-46c9b4b`) inside the tarball, doubling the size of the
+(`hpc-carpentry-amdahl-d5a3bb9`) inside the tarball, doubling the size of the
 archive!
 
 :::::::::::::::::::::::::::::::::::::::::  callout
@@ -260,7 +260,7 @@ back to Windows format, you can run `unix2dos filename`.)
 
 ## Transferring Single Files and Folders With `scp`
 
-To copy a single file to or from the cluster, we can use `scp` ("secure copy").
+To copy a single file to or from the cluster, we can use `scp` ("_**s**ecure **c**o**p**y_").
 The syntax can be a little complex for new users, but we'll break it down.
 The `scp` command is a relative of the `ssh` command we used to
 access the system, and can use the same public-key authentication
@@ -313,7 +313,7 @@ OK!
 `r config$local$prompt` ssh `r config$remote$user`@`r config$remote$login`
 `r config$remote$prompt` wget -O amdahl.tar.gz https://github.com/hpc-carpentry/amdahl/tarball/main
 # or
-`r config$remote$prompt` curl -o amdahl.tar.gz https://github.com/hpc-carpentry/amdahl/tarball/main
+`r config$remote$prompt` curl -o amdahl.tar.gz -L https://github.com/hpc-carpentry/amdahl/tarball/main
 ```
 
 :::::::::::::::::::::::::
@@ -492,7 +492,7 @@ machine.
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- `wget` and `curl -O` download a file from the internet.
+- `wget -O` and `curl -o` download a file from the internet.
 - `scp` and `rsync` transfer files to and from your computer.
 - You can use an SFTP client like FileZilla to transfer files through a GUI.
 

@@ -96,7 +96,7 @@ message telling you so.
 ```
 
 ```output
-No Modulefiles Currently Loaded.
+No modules loaded
 ```
 
 ## Loading and Unloading Software
@@ -212,7 +212,7 @@ compute node).
 ```output
 `r config$remote$shebang`
 `r config$sched$comment` `r config$sched$flag$partition`
-`r if (!is.null(config$sched$flag$qos)) {print(paste(config$sched$comment,config$sched$flag$qos))}
+`r if (!is.null(config$sched$flag$qos)) paste(config$sched$comment,config$sched$flag$qos) else ""`
 `r config$sched$comment` `r config$sched$flag$time` 00:00:30
 
 module load `r config$remote$modules$python`

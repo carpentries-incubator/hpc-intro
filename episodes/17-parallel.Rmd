@@ -148,15 +148,15 @@ Many command-line programs include a "help" message. Try it with `amdahl`:
 ```output
 usage: amdahl [-h] [-p [PARALLEL_PROPORTION]] [-w [WORK_SECONDS]] [-t] [-e] [-j [JITTER_PROPORTION]]
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
-  -p [PARALLEL_PROPORTION], --parallel-proportion [PARALLEL_PROPORTION]
+  -p, --parallel-proportion [PARALLEL_PROPORTION]
                         Parallel proportion: a float between 0 and 1
-  -w [WORK_SECONDS], --work-seconds [WORK_SECONDS]
+  -w, --work-seconds [WORK_SECONDS]
                         Total seconds of workload: an integer greater than 0
   -t, --terse           Format output as a machine-readable object for easier analysis
   -e, --exact           Exactly match requested timing by disabling random jitter
-  -j [JITTER_PROPORTION], --jitter-proportion [JITTER_PROPORTION]
+  -j, --jitter-proportion [JITTER_PROPORTION]
                         Random jitter: a float between -1 and +1
 ```
 
@@ -193,7 +193,7 @@ job from. For example,
 ```
 
 ```output
-slurm-347087.out  serial-job.sh  amdahl  README.md  LICENSE.txt
+slurm-347087.out  serial-job.sh  amdahl  LICENSE  pyproject.toml  README.md
 ```
 
 ```bash
@@ -201,26 +201,26 @@ slurm-347087.out  serial-job.sh  amdahl  README.md  LICENSE.txt
 ```
 
 ```output
-Doing 30.000 seconds of 'work' on 1 processor,
-which should take 30.000 seconds with 0.850 parallel proportion of the workload.
+Doing 30.000000 seconds of 'work' on 1 processor,
+which should take 30.000000 seconds with 0.800000 parallel proportion of the workload.
 
-  Hello, World! I am process 0 of 1 on `r config$remote$node`. I will do all the serial 'work' for 4.500 seconds.
-  Hello, World! I am process 0 of 1 on `r config$remote$node`. I will do parallel 'work' for 25.500 seconds.
+  Hello, World! I am process 0 of 1 on `r config$remote$node`. I will do all the serial 'work' for 7.021608 seconds.
+  Hello, World! I am process 0 of 1 on `r config$remote$node`. I will do parallel 'work' for 26.302983 seconds.
 
-Total execution time (according to rank 0): 30.033 seconds
+Total execution time (according to rank 0): 33.326056 seconds
 ```
 
 :::::::::::::::::::::::::
 
 As we saw before, two of the `amdahl` program flags set the amount of work and
 the proportion of that work that is parallel in nature. Based on the output, we
-can see that the code uses a default of 30 seconds of work that is 85%
+can see that the code uses a default of 30 seconds of work that is 80%
 parallel. The program ran for just over 30 seconds in total, and if we run the
-numbers, it is true that 15% of it was marked 'serial' and 85% was 'parallel'.
+numbers, it is true that 20% of it was marked 'serial' and 80% was 'parallel'.
 
 Since we only gave the job one CPU, this job wasn't really parallel: the same
-processor performed the 'serial' work for 4.5 seconds, then the 'parallel' part
-for 25.5 seconds, and no time was saved. The cluster can do better, if we ask.
+processor performed the 'serial' work for 7.02 seconds, then the 'parallel' part
+for 26.30 seconds, and no time was saved. The cluster can do better, if we ask.
 
 ## Running the Parallel Job
 
@@ -354,9 +354,9 @@ Now, let's summarize the amount of time it took each job to run:
 
 | Number of CPUs | Runtime (sec) |
 | -------------- | ------------- |
-| 1              | 30\.033        |
-| 4              | 10\.888        |
-| 8              | 7\.697         |
+| 1              | 33\.326056    |
+| 4              | 13\.579746    |
+| 8              | 9\.514393     |
 
 Then, use the first row to compute speedups $S$, using Python as a command-line
 calculator and the formula
@@ -366,17 +366,17 @@ S(t_{n}) = \frac{t_{1}}{t_{n}}
 $$
 
 ```bash
-`r config$remote$prompt` for n in 30.033 10.888 7.697; do python3 -c "print(30.033 / $n)"; done
+`r config$remote$prompt` for n in 33.326056 13.579746 9.514393; do python3 -c "print(33.326056 / $n)"; done
 ```
 
-| Number of CPUs | Speedup       | Ideal |
-| -------------- | ------------- | ----- |
+| Number of CPUs | Speedup        | Ideal |
+| -------------- | -------------- | ----- |
 | 1              | 1\.0           | 1     |
-| 4              | 2\.75          | 4     |
-| 8              | 3\.90          | 8     |
+| 4              | 2\.45          | 4     |
+| 8              | 3\.50          | 8     |
 
-The job output files have been telling us that this program is performing 85%
-of its work in parallel, leaving 15% to run in serial. This seems reasonably
+The job output files have been telling us that this program is performing 80%
+of its work in parallel, leaving 20% to run in serial. This seems reasonably
 high, but our quick study of speedup shows that in order to get a 4× speedup,
 we have to use 8 or 9 processors in parallel. In real programs, the speedup
 factor is influenced by

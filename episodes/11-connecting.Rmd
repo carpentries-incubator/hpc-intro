@@ -36,12 +36,12 @@ well. The commands we run today will not open a window to show graphical
 results.
 
 If you have ever opened the Windows Command Prompt or macOS Terminal, you have
-seen a CLI. If you have already taken The Carpentries' courses on the UNIX
+seen a CLI. If you have already taken "The Carpentries" courses on the UNIX
 Shell or Version Control, you have used the CLI on your *local machine*
 extensively. The only leap to be made here is to open a CLI on a *remote
 machine*, while taking some precautions so that other folks on the network
 can't see (or change) the commands you're running or the results the remote
-machine sends back. We will use the Secure SHell protocol (or SSH) to open an
+machine sends back. We will use the _**S**ecure **Sh**ell_ protocol (or SSH) to open an
 encrypted network connection between two machines, allowing you to send \&
 receive text and data without having to worry about prying eyes.
 
@@ -55,9 +55,12 @@ machine address as the only required argument. If your username on the remote
 system differs from what you use locally, you must provide that as well. If
 your SSH client has a graphical front-end, such as PuTTY or MobaXterm, you will
 set these arguments before clicking "connect." From the terminal, you'll write
-something like `ssh userName@hostname`, where the argument is just like an
+something like `ssh username@hostname`, where the argument is just like an
 email address: the "@" symbol is used to separate the personal ID from the
-address of the remote machine.
+address of the remote machine. In this lesson, `r config$remote$user` represents
+the `username` on the remote system, and `r config$remote$login` represents
+the cluster's login address (`hostname`), i.e., how to find the cluster on the
+internet.
 
 When logging in to a laptop, tablet, or other personal device, a username,
 password, or pattern are normally required to prevent unauthorized access. In
@@ -92,10 +95,10 @@ In this section you will create a pair of SSH keys:
 ## Private keys are your secure digital passport
 
 A private key that is visible to anyone but you should be considered
-compromised, and must be destroyed. This includes having improper permissions
-on the directory it (or a copy) is stored in, traversing any network that is
-not secure (encrypted), attachment on unencrypted email, and even displaying
-the key on your terminal window.
+compromised and must be destroyed. This includes cases where the key
+(or a copy) is stored in a directory with improper permissions,
+is transmitted over an unencrypted network, is sent as an attachment via
+unencrypted email, or is even displayed on your terminal window.
 
 Protect this key as if it unlocks your front door. In many ways, it does.
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -118,7 +121,7 @@ common approaches to this:
   character classes, 25 characters or longer. [KeePass][keepass] and
   [BitWarden][bitwarden] are two good options.
 3. Nothing is *less* secure than a private key with no password. If you
-  skipped password entry by accident, go back and generate a new key pair
+  skip password entry by accident, go back and generate a new key pair
   *with* a strong password.
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -480,7 +483,9 @@ password for your SSH key.
 - An HPC system is a set of networked machines.
 - HPC systems typically provide login nodes and a set of worker nodes.
 - The resources found on independent (worker) nodes can vary in volume and type
-  (amount of RAM, processor architecture, availability of network mounted
+  (amount of RAM, processor architecture, availability of network-mounted
   filesystems, etc.).
-- Files saved on one node are available on all nodes.
+- Files saved on one node are typically accessible from all nodes via a shared
+  filesystem.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::
