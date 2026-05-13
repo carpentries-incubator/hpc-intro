@@ -361,7 +361,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Environment Variables</h1>
-        <p>Last updated on 2026-05-12 |
+        <p>Last updated on 2026-05-13 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/14-environment-variables.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -433,10 +433,11 @@ some of the variables in a typical shell session:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>HOME=/home/yourUsername
+<pre class="output" tabindex="0"><code>...
+HOME=/home/yourUsername
 HOSTNAME=login1
 HOSTTYPE=x86_64
-PATH=/home/yourUsername/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+PATH=/home/yourUsername/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
 PWD=/home/yourUsername
 UID=1000
 USER=yourUsername
@@ -447,13 +448,15 @@ more than what’s shown here. And yes, using <code>set</code> to
 <em>show</em> things might seem a little strange, even for Unix, but if
 you don’t give it any arguments, it might as well show you things you
 <em>could</em> set.</p>
-<p>Every variable has a name. All shell variables’ values are strings,
-even those (like <code>UID</code>) that look like numbers. It’s up to
-programs to convert these strings to other types when necessary. For
-example, if a program wanted to find out how many processors the
-computer had, it would convert the value of the
-<code>NUMBER_OF_PROCESSORS</code> variable from a string to an
-integer.</p>
+<p>Every shell variable has a name and stores its value as text
+(strings), even variables like <code>UID</code>
+<em><strong>U</strong>ser <strong>ID</strong></em> that appear numeric.
+Programs that use these variables may convert the string value into
+another type when needed. For example, a program can read the value of
+<code>UID</code>, convert it from a string to an integer user ID, look
+up the corresponding username in the system user database, and return
+the username as a string. The command <code>id -un</code> performs this
+lookup automatically.</p>
 <section><h2 class="section-heading" id="showing-the-value-of-a-variable">Showing the Value of a Variable<a class="anchor" aria-label="anchor" href="#showing-the-value-of-a-variable"></a></h2>
 <hr class="half-width"><p>Let’s show the value of the variable <code>HOME</code>:</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -557,7 +560,7 @@ command. Do you notice any difference?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The <code>TIME_STYLE</code> variable is not <em>seen</em> by
 <code>ls</code> until is exported, at which point it is used by
@@ -594,7 +597,7 @@ prints out the location from which the job was submitted.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -628,51 +631,46 @@ echo ${SLURM_SUBMIT_DIR}</code></pre>
 </section><section><h2 class="section-heading" id="the-path-environment-variable">The <code>PATH</code> Environment Variable<a class="anchor" aria-label="anchor" href="#the-path-environment-variable"></a></h2>
 <hr class="half-width"><p>Similarly, some environment variables (like <code>PATH</code>) store
 lists of values. In this case, the convention is to use a colon ‘:’ as a
-separator. If a program wants the individual elements of such a list,
+separator. If a program needs the individual elements of such a list,
 it’s the program’s responsibility to split the variable’s string value
-into pieces.</p>
-<p>Let’s have a closer look at that <code>PATH</code> variable. Its
-value defines the shell’s search path for executables, i.e., the list of
-directories that the shell looks in for runnable programs when you type
-in a program name without specifying what directory it is in.</p>
-<p>For example, when we type a command like <code>analyze</code>, the
-shell needs to decide whether to run <code>./analyze</code> or
-<code>/bin/analyze</code>. The rule it uses is simple: the shell checks
-each directory in the <code>PATH</code> variable in turn, looking for a
-program with the requested name in that directory. As soon as it finds a
-match, it stops searching and runs the program.</p>
+into separate pieces.</p>
+<p>Let’s take a closer look at that <code>PATH</code> variable. Its
+value defines the shell’s search path for executables; i.e., the list of
+directories the shell searches for runnable programs after you type a
+command name without specifying its full path.</p>
+<p>For example, when we type a command like <code>bash</code>, the shell
+needs to decide which executable to run. The rule it follows is simple:
+the shell checks each directory listed in <code>PATH</code>, in order,
+looking for a program with the requested name. As soon as it finds a
+match, it stops searching and executes the program.</p>
 <p>To show how this works, here are the components of <code>PATH</code>
 listed one per line:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>/home/yourUsername/bin
-/usr/local/git/bin
+/usr/local/bin
 /usr/bin
-/bin
-/usr/sbin
-/sbin
-/usr/local/bin</code></pre>
+/usr/local/sbin
+/usr/sbin</code></pre>
 </div>
-<p>On our computer, there are actually three programs called
-<code>analyze</code> in three different directories:
-<code>/bin/analyze</code>, <code>/usr/local/bin/analyze</code>, and
-<code>/home/yourUsername/analyze</code>. Since the shell searches the
-directories in the order they’re listed in <code>PATH</code>, it finds
-<code>/bin/analyze</code> first and runs that. Notice that it will
-<em>never</em> find the program <code>/home/yourUsername/analyze</code>
-unless we type in the full path to the program, since the directory
-<code>/home/yourUsername</code> isn’t in <code>PATH</code>.</p>
-<p>This means that I can have executables in lots of different places as
-long as I remember that I need to update my <code>PATH</code> so that my
-shell can find them.</p>
-<p>What if I want to run two different versions of the same program?
-Since they share the same name, if I add them both to my
-<code>PATH</code> the first one found will always win. In the next
-episode we’ll learn how to use helper tools to help us manage our
-runtime environment to make that possible without us needing to do a lot
-of bookkeeping on what the value of <code>PATH</code> (and other
-important environment variables) is or should be.</p>
+<p>On our computer, there is a program called <code>bash</code> located
+at: <code>/usr/bin/bash</code>. Since the shell searches the directories
+in <code>PATH</code> in the order they are listed, it finds
+<code>/usr/bin/bash</code> and runs it. If a program is stored in a
+directory that is not listed in <code>PATH</code>, the shell will not
+find it unless we explicitly provide the program’s full path.</p>
+<p>This means that we can keep executables in many different locations,
+as long as we update <code>PATH</code> so that the shell knows where to
+search for them.</p>
+<p>What if we want to run two different versions of the same program?
+Since both executables share the same name, if we add both of their
+directories to <code>PATH</code>, the version found first will always
+take precedence. In the next episode, we’ll learn how to use helper
+tools to manage our runtime environment more effectively, allowing us to
+switch between different software versions without manually keeping
+track of the value of <code>PATH</code> and other important environment
+variables.</p>
 <div id="modifying-your-path" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -696,7 +694,7 @@ executable and run it from any location in your terminal.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -814,8 +812,8 @@ programs</li>
   "url": "https://carpentries-incubator.github.io/hpc-intro/14-environment-variables.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-intro/14-environment-variables.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2026-05-12",
-  "datePublished": "2026-05-12"
+  "dateModified": "2026-05-13",
+  "datePublished": "2026-05-13"
 }
 
   </script><script>
