@@ -7,6 +7,11 @@
 # chain-loader, per @tobyhodges' suggestion.
 #
 # Compute irresponsibly.
+#
+# Use the HPC_CARPENTRY_CUSTOMIZATION variable to invoke these:
+#
+# > HPC_CARPENTRY_CUSTOMIZATION=episodes/files/customization/Ghastly_Mistakes/_config_options.yml
+# > export HPC_CARPENTRY_CUSTOMIZATION
 ---
 
 snippets: "Ghastly_Mistakes"
@@ -22,7 +27,8 @@ remote:
   host: "castle"
   node: "turtle"
   location: "World 8-4"
-  homedir: "/darkland"
+  fs:
+    home: "/darkland"
   user: "luigi"
   module_python3: "Boa"
   prompt: "luigi@castle:~$"

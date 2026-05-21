@@ -170,7 +170,7 @@ following the `#SBATCH` comment is interpreted as an
 instruction to the scheduler.
 
 Let's illustrate this by example. By default, a job's name is the name of the
-script, but the `-J` option can be used to change the
+script, but the `--job-name` option can be used to change the
 name of a job. Add an option to the script:
 
 ```bash
@@ -179,7 +179,7 @@ name of a job. Add an option to the script:
 
 ```bash
 #!/bin/bash
-#SBATCH -Jhello-world
+#SBATCH --job-namehello-world
 
 echo -n "This script is running on "
 hostname
@@ -253,7 +253,7 @@ for it on the cluster.
 
 ```bash
 #!/bin/bash
-#SBATCH -t 00:01 # timeout in HH:MM
+#SBATCH --time 00:01 # timeout in HH:MM
 
 echo -n "This script is running on "
 sleep 20 # time in seconds
@@ -282,8 +282,8 @@ wall time, and attempt to run a job for two minutes.
 
 ```bash
 #!/bin/bash
-#SBATCH -Jlong_job
-#SBATCH -t 00:01 # timeout in HH:MM
+#SBATCH --job-namelong_job
+#SBATCH --time 00:01 # timeout in HH:MM
 
 echo "This script is running on ... "
 sleep 240 # time in seconds

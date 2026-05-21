@@ -53,11 +53,11 @@ in a typical shell session:
 
 ```output
 ...
-HOME=/home/yourUsername
+HOME=/yourUsername
 HOSTNAME=login1
 HOSTTYPE=x86_64
-PATH=/home/yourUsername/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
-PWD=/home/yourUsername
+PATH=/yourUsername/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+PWD=/yourUsername
 UID=1000
 USER=yourUsername
 ...
@@ -99,14 +99,14 @@ Let's try this instead:
 ```
 
 ```output
-/home/yourUsername
+/yourUsername
 ```
 
 The dollar sign tells the shell that we want the *value* of the variable
 rather than its name.
 This works just like wildcards:
 the shell does the replacement *before* running the program we've asked for.
-Thanks to this expansion, what we actually run is ``echo /home/yourUsername ``,
+Thanks to this expansion, what we actually run is ``echo /yourUsername ``,
 which displays the right thing.
 
 ## Creating and Changing Variables
@@ -210,7 +210,7 @@ job was submitted.
 
 ```output
 #!/bin/bash
-#SBATCH -t 00:00:30
+#SBATCH --time 00:00:30
 
 echo -n "This script is running on "
 hostname
@@ -252,7 +252,7 @@ as it finds a match, it stops searching and executes the program.
 To show how this works, here are the components of `PATH` listed one per line:
 
 ```output
-/home/yourUsername/bin
+/yourUsername/bin
 /usr/local/bin
 /usr/bin
 /usr/local/sbin

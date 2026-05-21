@@ -1,0 +1,22 @@
+```bash
+`r if (!is.null(config$sched$account)) {paste0(config$remote$shebang, "\n", config$sched$comment, " ", config$sched$flag$account, "=", config$sched$account)} else {paste0(config$remote$shebang)}`
+`r config$sched$comment` `r config$sched$flag$queue`=`r config$sched$queue$testing`
+`r config$sched$comment` `r config$sched$flag$name`=array-freq
+`r config$sched$comment` `r config$sched$flag$nodes`=1
+`r config$sched$comment` `r config$sched$flag$tasks`=1
+`r config$sched$comment` `r config$sched$flag$array`=1-4
+`r config$sched$comment` `r config$sched$flag$time`=00:05:00
+
+# Do a word frequency analysis of each of the following
+# datasets simultaneously: we should be able to process
+# all four in the same time it took for just the first.
+#
+# data.1 contains The collected works of Shakespeare
+# data.2 contains Canterbury Tales by Geoffrey Chaucer
+# data.3 contains Moby Dick by Herman Melville
+# data.4 contains The Odyssey by Homer
+
+echo "Starting word frequency script"
+bash word-freq.sh data.${SLURM_ARRAY_TASK_ID}
+echo "Finished word frequency script"
+```

@@ -87,7 +87,7 @@ To get info about a specific job (for example, 347087), we change command
 slightly.
 
 ```bash
-[yourUsername@login1 ~]$ sacct -u yourUsername -l -j 347087
+[yourUsername@login1 ~]$ sacct -u yourUsername --long --jobs 347087
 ```
 
 It will show a lot of info; in fact, every single piece of info collected on
@@ -96,7 +96,7 @@ information to `less` to make it easier to view (use the left and right arrow
 keys to scroll through fields).
 
 ```bash
-[yourUsername@login1 ~]$ sacct -u yourUsername -l -j 347087 | less -S
+[yourUsername@login1 ~]$ sacct -u yourUsername --long --jobs 347087 | less -S
 ```
 
 ::::::::::::::::::::::::::::::::::::::  discussion
@@ -132,7 +132,7 @@ get your job dispatched earlier.
 Edit `parallel_job.sh` to set a better time estimate. How close can
 you get?
 
-Hint: use `-t`.
+Hint: use `--time`.
 
 :::::::::::::::  solution
 
@@ -142,7 +142,7 @@ The following line tells Slurm that our job should
 finish within 2 minutes:
 
 ```bash
-#SBATCH -t 00:02:00
+#SBATCH --time 00:02:00
 ```
 
 :::::::::::::::::::::::::

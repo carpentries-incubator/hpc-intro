@@ -382,7 +382,7 @@ compute node).
 #!/bin/bash
 #SBATCH 
 
-#SBATCH -t 00:00:30
+#SBATCH --time 00:00:30
 
 module load Python
 

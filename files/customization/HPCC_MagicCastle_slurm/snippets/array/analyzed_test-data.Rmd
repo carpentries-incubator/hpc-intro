@@ -1,0 +1,33 @@
+```output
+      1 a
+      1 and
+      1 be
+      1 can
+      1 count
+      1 in
+      1 is
+      1 it
+      1 look
+      1 most
+      1 often
+      1 our
+      1 out
+      1 script
+      1 see
+      1 small
+      1 some
+      1 them
+      1 to
+      1 trying
+      1 useful
+      1 very
+      1 we
+      1 which
+      1 will
+      2 are
+      2 file
+      2 for
+      2 this
+      3 repeated
+      3 words
+```
