@@ -1,0 +1,38 @@
+name: Issue Template
+description: Report an issue and/or suggest an improvement
+body:
+  - type: input
+    id: problem
+    attributes:
+      label: 1. Describe the problem
+      description: Please describe the problem briefly.
+    validations:
+      required: true
+  - type: input
+    id: proposal
+    attributes:
+      label: 2. Propose a solution
+      description: If possible, summarise what change(s) you think would be required to resolve the issue.
+    validations:
+      required: false
+  - type: textarea
+    id: impact_instructors
+    attributes:
+      label: 3. Impact on Instructors
+      description: If relevant, please briefly summarise the impact of the issue/proposed solution on Instructors.
+    validations:
+      required: false
+  - type: textarea
+    id: impact_learners
+    attributes:
+      label: 4. Impact on Learners
+      description: If relevant, please briefly summarise the impact of the issue/proposed solution on Learners.
+    validations:
+      required: false
+  - type: textarea
+    id: references
+    attributes:
+      label: 5. References
+      description: Please add links here to other relevant issues, pull requests, discussions, documentation, etc.
+    validations:
+      required: false

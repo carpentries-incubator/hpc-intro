@@ -121,24 +121,24 @@ However, the argument following `-f` must be a filename, so writing `-ft` will
 
 ```bash
 `r config$local$prompt` tar -tf amdahl.tar.gz
-hpc-carpentry-amdahl-d5a3bb9/
-hpc-carpentry-amdahl-d5a3bb9/.github/
-hpc-carpentry-amdahl-d5a3bb9/.github/workflows/
-hpc-carpentry-amdahl-d5a3bb9/.github/workflows/python-publish.yml
-hpc-carpentry-amdahl-d5a3bb9/.github/workflows/test.yml
-hpc-carpentry-amdahl-d5a3bb9/.gitignore
-hpc-carpentry-amdahl-d5a3bb9/LICENSE
-hpc-carpentry-amdahl-d5a3bb9/README.md
-hpc-carpentry-amdahl-d5a3bb9/amdahl/
-hpc-carpentry-amdahl-d5a3bb9/amdahl/__init__.py
-hpc-carpentry-amdahl-d5a3bb9/amdahl/__main__.py
-hpc-carpentry-amdahl-d5a3bb9/amdahl/amdahl.py
-hpc-carpentry-amdahl-d5a3bb9/pyproject.toml
+hpc-carpentry-amdahl-710cf57/
+hpc-carpentry-amdahl-710cf57/.github/
+hpc-carpentry-amdahl-710cf57/.github/workflows/
+hpc-carpentry-amdahl-710cf57/.github/workflows/python-publish.yml
+hpc-carpentry-amdahl-710cf57/.github/workflows/test.yml
+hpc-carpentry-amdahl-710cf57/.gitignore
+hpc-carpentry-amdahl-710cf57/LICENSE
+hpc-carpentry-amdahl-710cf57/README.md
+hpc-carpentry-amdahl-710cf57/amdahl/
+hpc-carpentry-amdahl-710cf57/amdahl/__init__.py
+hpc-carpentry-amdahl-710cf57/amdahl/__main__.py
+hpc-carpentry-amdahl-710cf57/amdahl/amdahl.py
+hpc-carpentry-amdahl-710cf57/pyproject.toml
 ```
 
-This example output shows a folder which contains a few files, where `d5a3bb9`
-is an 8-character [git][git-swc] commit hash that will change when the source
-material is updated.
+This example output shows a folder that contains several files. Here, `710cf57`
+is an 8-character [git][git-swc] commit hash that changes whenever the source
+material [amdahl][amdahl-git-repo] is updated.
 
 Now let's unpack the archive. We'll run `tar` with a few common flags:
 
@@ -159,19 +159,19 @@ directory named "amdahl" using `tar`.
 ```
 
 ```output
-hpc-carpentry-amdahl-d5a3bb9/
-hpc-carpentry-amdahl-d5a3bb9/.github/
-hpc-carpentry-amdahl-d5a3bb9/.github/workflows/
-hpc-carpentry-amdahl-d5a3bb9/.github/workflows/python-publish.yml
-hpc-carpentry-amdahl-d5a3bb9/.github/workflows/test.yml
-hpc-carpentry-amdahl-d5a3bb9/.gitignore
-hpc-carpentry-amdahl-d5a3bb9/LICENSE
-hpc-carpentry-amdahl-d5a3bb9/README.md
-hpc-carpentry-amdahl-d5a3bb9/amdahl/
-hpc-carpentry-amdahl-d5a3bb9/amdahl/__init__.py
-hpc-carpentry-amdahl-d5a3bb9/amdahl/__main__.py
-hpc-carpentry-amdahl-d5a3bb9/amdahl/amdahl.py
-hpc-carpentry-amdahl-d5a3bb9/pyproject.toml
+hpc-carpentry-amdahl-710cf57/
+hpc-carpentry-amdahl-710cf57/.github/
+hpc-carpentry-amdahl-710cf57/.github/workflows/
+hpc-carpentry-amdahl-710cf57/.github/workflows/python-publish.yml
+hpc-carpentry-amdahl-710cf57/.github/workflows/test.yml
+hpc-carpentry-amdahl-710cf57/.gitignore
+hpc-carpentry-amdahl-710cf57/LICENSE
+hpc-carpentry-amdahl-710cf57/README.md
+hpc-carpentry-amdahl-710cf57/amdahl/
+hpc-carpentry-amdahl-710cf57/amdahl/__init__.py
+hpc-carpentry-amdahl-710cf57/amdahl/__main__.py
+hpc-carpentry-amdahl-710cf57/amdahl/amdahl.py
+hpc-carpentry-amdahl-710cf57/pyproject.toml
 ```
 
 Note that we did not need to type out `-x -v -z -f`, thanks to flag
@@ -186,7 +186,7 @@ The folder has an unfortunate name, so let's change that to something more
 convenient.
 
 ```bash
-`r config$local$prompt` mv hpc-carpentry-amdahl-46c9b4b amdahl
+`r config$local$prompt` mv hpc-carpentry-amdahl-710cf57 amdahl
 ```
 
 Check the size of the extracted directory and compare to the compressed
@@ -196,11 +196,11 @@ file size, using `du` for "**d**isk **u**sage".
 `r config$local$prompt` du -sh amdahl.tar.gz
 8.0K    amdahl.tar.gz
 `r config$local$prompt` du -sh amdahl
-26K     amdahl
+27K     amdahl
 ```
 
 Text files (including Python source code) compress nicely:
-the "tarball" is one-sixth the total size of the raw data!
+the "tarball" is approximately one-third of the total size of the raw data!
 
 If you want to reverse the process -- compressing raw data instead of
 extracting it -- set a `c` flag instead of `x`, set the archive filename,
@@ -229,7 +229,7 @@ amdahl/pyproject.toml
 If you give `amdahl.tar.gz` as the filename in the above command, `tar` will
 update the existing tarball with any changes you made to the files.
 That would mean adding the new `amdahl` folder to the *existing* folder
-(`hpc-carpentry-amdahl-d5a3bb9`) inside the tarball, doubling the size of the
+(`hpc-carpentry-amdahl-710cf57`) inside the tarball, doubling the size of the
 archive!
 
 :::::::::::::::::::::::::::::::::::::::::  callout
@@ -327,9 +327,9 @@ happened?
 ## Transferring a Directory
 
 To transfer an entire directory, we add the `-r` flag for "**r**ecursive":
-copy the item specified, and every item below it, and every item below those...
-until it reaches the bottom of the directory tree rooted at the folder name you
-provided.
+This copies the item specified, and every item below it, and every item below
+those, and so on, until it reaches the bottom of the directory tree rooted at
+the folder name you provided.
 
 ```bash
 `r config$local$prompt` scp -r amdahl `r config$remote$user`@`r config$remote$login`:
@@ -487,6 +487,7 @@ will be more efficient than using FileZilla (or related applications) that
 would copy from the source to your local machine, then to the destination
 machine.
 
+[amdahl-git-repo]: https://github.com/hpc-carpentry/amdahl
 [git-swc]: https://swcarpentry.github.io/git-novice/
 [rsync]: https://rsync.samba.org/
 

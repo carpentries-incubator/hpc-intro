@@ -1,5 +1,5 @@
 ---
-title: Parallelising with Job Arrays.
+title: Parallelising with Job Arrays
 teaching: 15
 exercises: 5
 ---
