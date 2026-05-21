@@ -9,6 +9,11 @@
 # account, please visit <cluster.hpc-carpentry.org>.
 #
 # Compute responsibly.
+#
+# Use the HPC_CARPENTRY_CUSTOMIZATION variable to invoke these:
+#
+# > HPC_CARPENTRY_CUSTOMIZATION=episodes/files/customization/HPCC_MagicCastle_slurm/_config_options.yml
+# > export HPC_CARPENTRY_CUSTOMIZATION
 ---
 
 snippets: "HPCC_MagicCastle_slurm"
@@ -25,11 +30,14 @@ remote:
   hosttype: "x86_64" # architecture family example, output from `uname -m` on a login node
   node: "smnode1"
   location: "cluster.hpc-carpentry.org"
-  homedir: "/home"
   user: "yourUsername"
   module_python3: "Python"
   prompt: "[yourUsername@login1 ~]$"
   shebang: "#!/bin/bash"
+
+  fs:
+    home: "/home"
+
   modules:
     python: "Python"
 
@@ -46,10 +54,15 @@ sched:
   flag:
     user: "-u yourUsername"
     interactive: ""
-    histdetail: "-l -j"
-    name: "-J"
-    time: "-t"
-    queue: "-p"
+    histdetail: "--long --jobs"
+    name:    "--job-name"
+    account: "--account"
+    array:   "--array"
+    time:    "--time"
+    queue:   "--partition"
+    nodes:   "--nodes"
+    tasks:   "--tasks"
+    threads: "--cpus-per-task"
   del: "scancel"
   interactive: "srun"
   info: "sinfo"
