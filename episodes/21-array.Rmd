@@ -39,16 +39,56 @@ of this in a later episode.
 
 Another, simpler form of parallel computing is an array job. This type of
 job is advantageous if the same software has to be run several times
-in a way where the separate runs do not share data. For instance,
+in a way where the separate runs do not share data, and do not need
+to run concurrently. For instance,
 you might need to run the same task on several independent input
 files, or you may have multiple serial tasks that take some parameter,
 and you need to explore several values of the parameter. These
 tasks are also sometimes called "high-throughput" computing.
 
-Array jobs are controlled by the Slurm scheduler. You will need only one set of
-scripts to which you supply a list of files. Slurm will automatically
-distribute the jobs across available nodes. If any of the jobs fail you can
-easily restart the jobs to execute only on the files that failed.
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+What is the important distinguishing feature between tasks
+that are appropriate for array jobs and task that are not?
+Name some examples.
+
+:::::::::::::::  solution
+
+Tasks appropriate for array jobs are "high-throughput", where
+the same thing needs to be done many times, possibly over a set
+of parameters, but where each task in dependent of the others.
+
+For example, running the same statistical analysis on a large
+number of independent input files is a good candidate for an
+array solution.
+
+Parallel tasks which have interactions between the various
+parallel threads need to communicate between tasks at
+run-time, and are not appropriate for job arrays.
+
+For example, most parallel scientific codes that run in
+parallel have a requirement to communicate between parallel
+elements at run-time, and are not appropriate for job arrays.
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+We have aleady seen how to submit a single serial job to the
+Slurm scheduler. Array jobs are specified in a similar manner.
+You describe the full array to the scheduler through the submission
+file, and submit it to the system with the same command
+we used before.
+
+The Slurm system will create all of the array elements. Within
+the execution envioronment of a job, a number of environment
+variables will be set, which can be used at run-time by the
+array elements to identify the size of the array, and their
+position within it, allowing them to select the correct input
+file. These jobs will be dispatched as their resource requirements
+and priorities are met, and they may or may not run concurrently.
+
 
 ```bash
 cd training directory
