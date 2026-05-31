@@ -34,21 +34,16 @@ One way of implementing parallel computing is to distribute a job across
 multiple processors. This is usually accomplished by using the Message Passage
 Interface (MPI) which is a standardised way for CPU cores to communicate with
 one another while working together on a task. Software has to be written
-specifically to utilize MPI to take advantage of this.
+specifically to utilize MPI to take advantage of this. We will see more
+of this in a later episode.
 
-Another form of parallel computing is an array job. This type of job is
-advantages if the same software has to be run across several files. An example
-of this would be in bioinformatics where the same workflow has to applied to a
-set of files that contain data for different samples. There is no need for the
-different jobs to "talk" to one another while they run. The advantage only lies
-in the fact that the jobs can run in parallel. One could potentially run such
-processes manually across different computers but imagine having a hundred
-files and each taking two hours to complete. You can run them in series which
-would take two hundred hours or you can manually start them across, say, four
-computers which would mean it would take 25 hours. But it would take you some
-time to start all these jobs if you do it manually. To complicate matters
-things will quite often go wrong and workflow won't complete in which case you
-have to first notice this, correct the problem and then restart it all.
+Another, simpler form of parallel computing is an array job. This type of
+job is advantageous if the same software has to be run several times
+in a way where the separate runs do not share data. For instance,
+you might need to run the same task on several independent input
+files, or you may have multiple serial tasks that take some parameter,
+and you need to explore several values of the parameter. These
+tasks are also sometimes called "high-throughput" computing.
 
 Array jobs are controlled by the Slurm scheduler. You will need only one set of
 scripts to which you supply a list of files. Slurm will automatically
