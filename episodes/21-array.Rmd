@@ -169,7 +169,7 @@ of the current array element, similarly to `SLURM_ARRAY_TASK_ID`.
 ::::: challenge
 
 
-Write a batch script to run the `amdhal` program as an array job with
+Write a batch script to run the `amdahl` program as an array job with
 4 independent jobs, to examine the effects of jitter.
 
 Use the directives discussed above to specify the array elements,
@@ -198,7 +198,7 @@ You can download the script from https://raw.githubusercontent.com/NewcastleRSE-
 - Parallel programming allows applications to take advantage of parallel hardware.
 - The queuing system facilitates executing parallel tasks.
 - Parallel computing allows applications to distribute the workload over several CPUs or nodes
-- Parallelising over CPUs uses MPI (Message Passing Interface) -- FIXME: MPI is not involved with this software
-- Parallelising over nodes can be accomplished using array jobs -- FIXME: conceptual non-sequitur, as the scripts only allocate one node
+- There are multiple parallelization strategies that are generally supported by resource managers.
+- Array parallel jobs are suitable for independent runs of the same executable with varying inputs or outputs. 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
