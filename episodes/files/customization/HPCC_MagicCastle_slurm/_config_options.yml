@@ -61,7 +61,7 @@ sched:
     time:    "--time"
     queue:   "--partition"
     nodes:   "--nodes"
-    tasks:   "--tasks"
+    tasks:   "--ntasks"
     threads: "--cpus-per-task"
   del: "scancel"
   interactive: "srun"
