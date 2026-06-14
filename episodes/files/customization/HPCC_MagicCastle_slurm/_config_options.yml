@@ -63,6 +63,7 @@ sched:
     nodes:   "--nodes"
     tasks:   "--ntasks"
     threads: "--cpus-per-task"
+    outputfile: "--output"
   del: "scancel"
   interactive: "srun"
   info: "sinfo"
