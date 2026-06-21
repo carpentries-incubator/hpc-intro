@@ -136,9 +136,9 @@ hpc-carpentry-amdahl-710cf57/amdahl/amdahl.py
 hpc-carpentry-amdahl-710cf57/pyproject.toml
 ```
 
-This example output shows a folder that contains several files. Here, `710cf57`
-is an 8-character [git][git-swc] commit hash that changes whenever the source
-material [amdahl][amdahl-git-repo] is updated.
+This example output shows a folder that contains several files.
+Here, `710cf57` is an 8-character [git][git-swc] commit hash that
+changes whenever the [amdahl][amdahl-git-repo] source code is updated.
 
 Now let's unpack the archive. We'll run `tar` with a few common flags:
 

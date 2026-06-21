@@ -310,8 +310,7 @@ each resource is.
 The local filesystems (ext, tmp, xfs, zfs) will depend on whether you're
 on the same login node (or compute node, later on). Networked filesystems
 (beegfs, cifs, gpfs, nfs, pvfs) will be similar --- but may include
-`r config$remote$user`, depending on how it is [mounted](
-https://en.wikipedia.org/wiki/Mount_(computing)).
+`/usr`, depending on how it is [mounted](https://en.wikipedia.org/wiki/Mount_(computing)).
 :::
 
 ::: callout
