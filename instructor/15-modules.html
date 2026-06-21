@@ -355,7 +355,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Accessing software via Modules</h1>
-        <p>Last updated on 2026-06-18 |
+        <p>Last updated on 2026-06-21 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/15-modules.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -491,56 +491,62 @@ loaded, you will see a message telling you so.</p>
 </div>
 </section><section><h2 class="section-heading" id="loading-and-unloading-software">Loading and Unloading Software<a class="anchor" aria-label="anchor" href="#loading-and-unloading-software"></a></h2>
 <hr class="half-width"><p>To load a software module, use <code>module load</code>.</p>
-<p>In this example we will use Python 3. Initially, it is not loaded. We
-can test this by using the <code>which</code> command.
-<code>which</code> looks for programs the same way that Bash does, so we
-can use it to tell us where a particular piece of software is
-stored.</p>
+<p>In this example we will use “Python 3”. Initially, it is not loaded.
+We can test this by using the <code>which</code> command.
+<code>which</code> searches for executables using directories listed in
+<code>$PATH</code>, similar to how Bash locates commands.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">[yourUsername@login1</span> ~]$ which python3</span></code></pre>
 </div>
-<p>If the <code>python3</code> command was unavailable, we would see
-output like</p>
+<p>If the <code>python3</code> command is available, <code>which</code>
+shows the path to the executable:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>/usr/bin/which: no python3 in (/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin:/opt/software/slurm/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:/home/yourUsername/.local/bin:/home/yourUsername/bin)</code></pre>
+<pre class="output" tabindex="0"><code>/usr/bin/python3</code></pre>
 </div>
-<p>Note that this wall of text is really a list, with values separated
-by the <code>:</code> character. The output is telling us that the
-<code>which</code> command searched the following directories for
-<code>python3</code>, without success:</p>
+<p>The shell finds executables by searching through the directories
+listed in the <code>$PATH</code> environment variable.</p>
+<p>If we accidentally make a typo for example:</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">[yourUsername@login1</span> ~]$ which pyython3</span></code></pre>
+</div>
+<p>we instead see something like:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin
-/opt/software/slurm/bin
+<pre class="output" tabindex="0"><code>/usr/bin/which: no pyython3 in (/yourUsername/.local/bin:/yourUsername/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin)</code></pre>
+</div>
+<p>This wall of text is actually a list of directories separated by the
+<code>:</code> character. The output tells us that the shell searched
+the following directories for <code>pyython3</code>, but could not find
+it:</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>/yourUsername/.local/bin
+/yourUsername/bin
 /usr/local/bin
 /usr/bin
 /usr/local/sbin
-/usr/sbin
-/opt/puppetlabs/bin
-/home/yourUsername/.local/bin
-/home/yourUsername/bin</code></pre>
+/usr/sbin</code></pre>
 </div>
-<p>However, in our case we do have an existing <code>python3</code>
-available so we see</p>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin/python3</code></pre>
-</div>
-<p>We need a different Python than the system provided one though, so
-let us load a module to access it.</p>
-<p>We can load the <code>python3</code> command with
+<p>The Python installation located in <code>/usr/bin</code> is the
+system-provided version. On HPC systems, we often need a different
+Python build that is compiled with specific compiler toolchains,
+libraries, or scientific software stacks. Environment Modules allow us
+to dynamically switch to these alternative software environments.</p>
+<p>We can load a different Python environment using
 <code>module load</code>:</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">[yourUsername@login1</span> ~]$ module load Python</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a><span class="ex">[yourUsername@login1</span> ~]$ which python3</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">[yourUsername@login1</span> ~]$ module load Python</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a><span class="ex">[yourUsername@login1</span> ~]$ which python3</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -550,15 +556,16 @@ let us load a module to access it.</p>
 <p>So, what just happened?</p>
 <p>To understand the output, first we need to understand the nature of
 the <code>$PATH</code> environment variable. <code>$PATH</code> is a
-special environment variable that controls where a UNIX system looks for
-software. Specifically <code>$PATH</code> is a list of directories
-(separated by <code>:</code>) that the OS searches through for a command
-before giving up and telling us it can’t find it. As with all
-environment variables we can print it out using <code>echo</code>.</p>
-<div class="codewrapper sourceCode" id="cb11">
+special environment variable that controls where a shell looks for
+executables. Specifically, <code>$PATH</code> is a list of directories
+(separated by <code>:</code>) that the shell searches through for a
+command before reporting that the command could not be found. As with
+all environment variables, we can print it out using
+<code>echo</code>.</p>
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="ex">[yourUsername@login1</span> ~]$ echo <span class="va">$PATH</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">[yourUsername@login1</span> ~]$ echo <span class="va">$PATH</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -566,43 +573,37 @@ environment variables we can print it out using <code>echo</code>.</p>
 <pre class="output" tabindex="0"><code>/cvmfs/pilot.eessi-hpc.org/2020.12/software/x86_64/amd/zen2/software/Python/3.x.y-GCCcore-x.y.z/bin:/cvmfs/pilot.eessi-hpc.org/2020.12/software/x86_64/amd/zen2/software/SQLite/3.31.1-GCCcore-x.y.z/bin:/cvmfs/pilot.eessi-hpc.org/2020.12/software/x86_64/amd/zen2/software/Tcl/8.6.10-GCCcore-x.y.z/bin:/cvmfs/pilot.eessi-hpc.org/2020.12/software/x86_64/amd/zen2/software/GCCcore/x.y.z/bin:/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin:/opt/software/slurm/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:/home/user01/.local/bin:/home/user01/bin</code></pre>
 </div>
 <p>You’ll notice a similarity to the output of the <code>which</code>
-command. In this case, there’s only one difference: the different
-directory at the beginning. When we ran the <code>module load</code>
-command, it added a directory to the beginning of our <code>$PATH</code>
-– or “prepended to PATH”. Let’s examine what’s there:</p>
-<div class="codewrapper sourceCode" id="cb13">
+command. In this case, there is one important difference: an additional
+directory appears at the beginning. When we ran the
+<code>module load</code> command, it added a directory to the front of
+our <code>$PATH</code> – or “prepended to PATH”. Because this directory
+appears before <code>/usr/bin</code> in <code>$PATH</code>, the shell
+now finds the module-provided <code>python3</code> executable before the
+system version. Let’s examine what’s located there:</p>
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="ex">[yourUsername@login1</span> ~]$ ls /cvmfs/pilot.eessi-hpc.org/2020.12/software/x86_64/amd/zen2/software/Python/3.x.y-GCCcore-x.y.z/bin</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">[yourUsername@login1</span> ~]$ ls /cvmfs/pilot.eessi-hpc.org/2020.12/software/x86_64/amd/zen2/software/Python/3.x.y-GCCcore-x.y.z/bin</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>2to3              nosetests-3.8  python                 rst2s5.py
-2to3-3.8          pasteurize     python3                rst2xetex.py
-chardetect        pbr            python3.8              rst2xml.py
-cygdb             pip            python3.8-config       rstpep2html.py
-cython            pip3           python3-config         runxlrd.py
-cythonize         pip3.8         rst2html4.py           sphinx-apidoc
-easy_install      pybabel        rst2html5.py           sphinx-autogen
-easy_install-3.8  __pycache__    rst2html.py            sphinx-build
-futurize          pydoc3         rst2latex.py           sphinx-quickstart
-idle3             pydoc3.8       rst2man.py             tabulate
-idle3.8           pygmentize     rst2odt_prepstyles.py  virtualenv
-netaddr           pytest         rst2odt.py             wheel
-nosetests         py.test        rst2pseudoxml.py</code></pre>
+<pre class="output" tabindex="0"><code>idle3     pip   pip3.13  pydoc3.13  python3     python3.13-config  python-config
+idle3.13  pip3  pydoc3   python     python3.13  python3-config     wheel</code></pre>
 </div>
-<p>Taking this to its conclusion, <code>module load</code> will add
-software to your <code>$PATH</code>. It “loads” software. A special note
-on this - depending on which version of the <code>module</code> program
-that is installed at your site, <code>module load</code> will also load
-required software dependencies.</p>
+<p>Note that the exact output may vary from cluster to cluster.</p>
+<p>Taking this to its conclusion, <code>module load</code> adds software
+locations to your <code>$PATH</code>. It effectively “loads” software
+into the current shell environment. A special note on this: depending on
+the <code>module</code> system configuration at your site,
+<code>module load</code> may also automatically load additional software
+dependencies required by the application.</p>
 <p>To demonstrate, let’s use <code>module list</code>.
 <code>module list</code> shows all loaded software modules.</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="ex">[yourUsername@login1</span> ~]$ module list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="ex">[yourUsername@login1</span> ~]$ module list</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -612,11 +613,11 @@ required software dependencies.</p>
   2) Tcl/8.6.10-GCCcore-x.y.z      5) libffi/3.3-GCCcore-x.y.z
   3) SQLite/3.31.1-GCCcore-x.y.z   6) Python/3.x.y-GCCcore-x.y.z</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="ex">[yourUsername@login1</span> ~]$ module load GROMACS</span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1" aria-label="code-block-17-2"></a><span class="ex">[yourUsername@login1</span> ~]$ module list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="ex">[yourUsername@login1</span> ~]$ module load GROMACS</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1" aria-label="code-block-18-2"></a><span class="ex">[yourUsername@login1</span> ~]$ module list</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -641,11 +642,11 @@ bioinformatics software package), also loaded
 <code>GMP/6.2.0-GCCcore-x.y.z</code> and
 <code>SciPy-bundle/2020.03-foss-2020a-Python-3.x.y</code> as well. Let’s
 try unloading the <code>GROMACS</code> package.</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="ex">[yourUsername@login1</span> ~]$ module unload GROMACS</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1" aria-label="code-block-19-2"></a><span class="ex">[yourUsername@login1</span> ~]$ module list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1" aria-label="code-block-20-1"></a><span class="ex">[yourUsername@login1</span> ~]$ module unload GROMACS</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1" aria-label="code-block-20-2"></a><span class="ex">[yourUsername@login1</span> ~]$ module list</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -669,11 +670,11 @@ depending on how a site is configured it may also unload all of the
 dependencies (in our case it does not). If we wanted to unload
 everything at once, we could run <code>module purge</code> (unloads
 everything).</p>
-<div class="codewrapper sourceCode" id="cb21">
+<div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="ex">[yourUsername@login1</span> ~]$ module purge</span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1" aria-label="code-block-21-2"></a><span class="ex">[yourUsername@login1</span> ~]$ module list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1" aria-label="code-block-22-1"></a><span class="ex">[yourUsername@login1</span> ~]$ module purge</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1" aria-label="code-block-22-2"></a><span class="ex">[yourUsername@login1</span> ~]$ module list</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -683,15 +684,27 @@ everything).</p>
 <p>Note that <code>module purge</code> is informative. It will also let
 us know if a default set of “sticky” packages cannot be unloaded (and
 how to actually unload these if we truly so desired).</p>
-<p>Note that this module loading process happens principally through the
+<p>Note that this module loading process happens primarily through the
 manipulation of environment variables like <code>$PATH</code>. There is
 usually little or no data transfer involved.</p>
-<p>The module loading process manipulates other special environment
-variables as well, including variables that influence where the system
-looks for software libraries, and sometimes variables which tell
-commercial software packages where to find license servers.</p>
-<p>The module command also restores these shell environment variables to
-their previous state when a module is unloaded.</p>
+<p>The module system modifies other environment variables as well,
+including variables that influence where the shell and runtime linker
+look for software libraries. Examples include variables such as:</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code><span><span class="va">LD_LIBRARY_PATH</span></span>
+<span><span class="va">LIBRARY_PATH</span></span>
+<span><span class="va">CPATH</span></span>
+<span><span class="va">MANPATH</span></span>
+<span><span class="va">PKG_CONFIG_PATH</span></span></code></pre>
+</div>
+<p>On some systems, modules may also configure environment variables
+that tell commercial software packages where to locate license servers.
+The <code>module</code> command restores these shell environment
+variables to their previous state when a module is unloaded. This allows
+users to switch between different software environments cleanly and
+reproducibly.</p>
 </section><section><h2 class="section-heading" id="software-versioning">Software Versioning<a class="anchor" aria-label="anchor" href="#software-versioning"></a></h2>
 <hr class="half-width"><p>So far, we’ve learned how to load and unload software packages. This
 is very useful. However, we have not yet addressed the issue of software
@@ -702,10 +715,10 @@ compatibility with a file format you use. In either of these example
 cases, it helps to be very specific about what software is loaded.</p>
 <p>Let’s examine the output of <code>module avail</code> more closely,
 using the pager since there may be reams of output:</p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="ex">[yourUsername@login1</span> ~]$ module avail <span class="kw">|</span> <span class="fu">less</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1" aria-label="code-block-25-1"></a><span class="ex">[yourUsername@login1</span> ~]$ module avail <span class="kw">|</span> <span class="fu">less</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -753,13 +766,13 @@ login node is loaded on a compute node).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1" aria-label="code-block-25-1"></a><span class="ex">[yourUsername@login1</span> ~]$ nano python-module.sh</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1" aria-label="code-block-25-2"></a><span class="ex">[yourUsername@login1</span> ~]$ cat python-module.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1" aria-label="code-block-27-1"></a><span class="ex">[yourUsername@login1</span> ~]$ nano python-module.sh</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1" aria-label="code-block-27-2"></a><span class="ex">[yourUsername@login1</span> ~]$ cat python-module.sh</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -773,10 +786,10 @@ module load Python
 
 python3 --version</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1" aria-label="code-block-27-1"></a><span class="ex">[yourUsername@login1</span> ~]$ sbatch  python-module.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1" aria-label="code-block-29-1"></a><span class="ex">[yourUsername@login1</span> ~]$ sbatch  python-module.sh</span></code></pre>
 </div>
 </div>
 </div>
@@ -857,8 +870,8 @@ for you automatically.</li>
   "url": "https://carpentries-incubator.github.io/hpc-intro/instructor/15-modules.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-intro/instructor/15-modules.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2026-06-18",
-  "datePublished": "2026-06-18"
+  "dateModified": "2026-06-21",
+  "datePublished": "2026-06-21"
 }
 
   </script><script>
