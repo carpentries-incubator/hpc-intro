@@ -1,0 +1,336 @@
+---
+title: Environment Variables
+teaching: 10
+exercises: 5
+---
+
+
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Understand how variables are implemented in the shell
+- Read the value of an existing variable
+- Create new variables and change their values
+- Change the behaviour of a program using an environment variable
+- Explain how the shell uses the `PATH` variable to search for executables
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- How are variables set and accessed in the Unix shell?
+- How can I use variables to change how a program runs?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Episode provenance
+
+This episode has been remixed from the
+[Shell Extras episode on Shell Variables](https://github.com/carpentries-incubator/shell-extras/blob/gh-pages/_episodes/08-environment-variables.md)
+and the [HPC Shell episode on scripts](https://github.com/hpc-carpentry/hpc-shell/blob/gh-pages/_episodes/05-scripts.md).
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+The shell is just a program, and like other programs, it has variables.
+Those variables control its execution,
+so by changing their values
+you can change how the shell behaves (and with a little more effort how other
+programs behave).
+
+Variables are a great way of saving information under a name you can access
+later. In programming languages like Python and R, variables can store pretty
+much anything you can think of. In the shell, they usually just store text. The
+best way to understand how they work is to see them in action.
+
+Let's start by running the command `set` and looking at some of the variables
+in a typical shell session:
+
+```bash
+[yourUsername@login1 ~]$ set
+```
+
+```output
+...
+HOME=/yourUsername
+HOSTNAME=login1
+HOSTTYPE=x86_64
+PATH=/yourUsername/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+PWD=/yourUsername
+UID=1000
+USER=yourUsername
+...
+```
+
+As you can see, there are quite a few — in fact,
+four or five times more than what's shown here.
+And yes, using `set` to *show* things might seem a little strange,
+even for Unix, but if you don't give it any arguments,
+it might as well show you things you *could* set.
+
+Every shell variable has a name and stores its value as text (strings),
+even variables like `UID` _**U**ser **ID**_ that appear numeric.
+Programs that use these variables may convert the string value into
+another type when needed.
+For example, a program can read the value of `UID`, convert it from a
+string to an integer user ID, look up the corresponding username in
+the system user database, and return the username as a string. The
+command `id -un` performs this lookup automatically.
+
+## Showing the Value of a Variable
+
+Let's show the value of the variable `HOME`:
+
+```bash
+[yourUsername@login1 ~]$ echo HOME
+```
+
+```output
+HOME
+```
+
+That just prints "HOME", which isn't what we wanted
+(though it is what we actually asked for).
+Let's try this instead:
+
+```bash
+[yourUsername@login1 ~]$ echo $HOME
+```
+
+```output
+/yourUsername
+```
+
+The dollar sign tells the shell that we want the *value* of the variable
+rather than its name.
+This works just like wildcards:
+the shell does the replacement *before* running the program we've asked for.
+Thanks to this expansion, what we actually run is ``echo /yourUsername ``,
+which displays the right thing.
+
+## Creating and Changing Variables
+
+Creating a variable is easy — we just assign a value to a name using "="
+(we just have to remember that the syntax requires that there are *no* spaces
+around the `=`!):
+
+```bash
+SECRET_IDENTITY=Dracula
+echo $SECRET_IDENTITY
+```
+
+```output
+Dracula
+```
+
+To change the value, just assign a new one:
+
+```bash
+SECRET_IDENTITY=Camilla
+echo $SECRET_IDENTITY
+```
+
+```output
+Camilla
+```
+
+## Environment variables
+
+When  we ran the `set` command we saw there were a lot of variables whose names
+were in upper case. That's because, by convention, variables that are also
+available to use by *other* programs are given upper-case names. Such variables
+are called *environment variables* as they are shell variables that are defined
+for the current shell and are inherited by any child shells or processes.
+
+To create an environment variable you need to `export` a shell variable. For
+example, to make our `SECRET_IDENTITY` available to other programs that we call
+from our shell we can do:
+
+```bash
+SECRET_IDENTITY=Camilla
+export SECRET_IDENTITY
+```
+
+You can also create and export the variable in a single step:
+
+```bash
+export SECRET_IDENTITY=Camilla
+```
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Using environment variables to change program behaviour
+
+Set a shell variable `TIME_STYLE` to have a value of `iso` and check this
+value using the `echo` command.
+
+Now, run the command `ls` with the option `-l` (which gives a long format).
+
+`export` the variable and rerun the `ls -l` command. Do you notice any
+difference?
+
+:::::::::::::::  solution
+
+## Solution
+
+The `TIME_STYLE` variable is not *seen* by `ls` until is exported, at which
+point it is used by `ls` to decide what date format to use when presenting
+the timestamp of files.
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+You can see the  complete set of environment variables in your current shell
+session with the command `env` (which returns a subset of what the command
+`set` gave us). **The complete set of environment variables is called
+your *runtime environment* and can affect the behaviour of the programs you
+run**.
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Job environment variables
+
+When `Slurm` runs a job, it sets a number of environment
+variables for the job. One of these will let us check what directory our job
+script was submitted from. The `SLURM_SUBMIT_DIR` variable is set to the
+directory from which our job was submitted. Using the `SLURM_SUBMIT_DIR`
+variable, modify your job so that it prints out the location from which the
+job was submitted.
+
+:::::::::::::::  solution
+
+## Solution
+
+```bash
+[yourUsername@login1 ~]$ nano example-job.sh
+[yourUsername@login1 ~]$ cat example-job.sh
+```
+
+```output
+#!/bin/bash
+#SBATCH --time 00:00:30
+
+echo -n "This script is running on "
+hostname
+
+echo "This job was launched in the following directory:"
+echo ${SLURM_SUBMIT_DIR}
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+To remove a variable or environment variable you can use the `unset` command,
+for example:
+
+```bash
+unset SECRET_IDENTITY
+```
+
+## The `PATH` Environment Variable
+
+Similarly, some environment variables (like `PATH`) store lists of values.
+In this case, the convention is to use a colon ':' as a separator.
+If a program needs the individual elements of such a list,
+it's the program's responsibility to split the variable's string value into
+separate pieces.
+
+Let's take a closer look at that `PATH` variable.
+Its value defines the shell's search path for executables;
+i.e., the list of directories the shell searches for runnable programs
+after you type a command name without specifying its full path.
+
+For example, when we type a command like `bash`, the shell needs to decide
+which executable to run.
+The rule it follows is simple: the shell checks each directory listed in
+`PATH`, in order, looking for a program with the requested name. As soon
+as it finds a match, it stops searching and executes the program.
+
+To show how this works, here are the components of `PATH` listed one per line:
+
+```output
+/yourUsername/bin
+/usr/local/bin
+/usr/bin
+/usr/local/sbin
+/usr/sbin
+```
+
+On our computer, there is a program called `bash` located at: `/usr/bin/bash`.
+Since the shell searches the directories in `PATH` in the order they are listed,
+it finds `/usr/bin/bash` and runs it.
+If a program is stored in a directory that is not listed in `PATH`, the shell
+will not find it unless we explicitly provide the program's full path.
+
+This means that we can keep executables in many different locations, as long as
+we update `PATH` so that the shell knows where to search for them.
+
+What if we want to run two different versions of the same program?
+Since both executables share the same name, if we add both of their directories
+to `PATH`, the version found first will always take precedence.
+In the next episode, we'll learn how to use helper tools to manage our
+runtime environment more effectively, allowing us to switch between different
+software versions without manually keeping track of the value of `PATH` and
+other important environment variables.
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+## Modifying your PATH
+
+Create a directory called `bin` in your home directory (if it doesn't already
+exist) and add it to the front of your `PATH` variable. Verify that your
+change has been made by displaying the contents of your `PATH` variable.
+Create a script called `hello.sh` in your new `bin` directory that prints
+"Hello, World!" to the terminal. Make the script executable and run it
+from any location in your terminal.
+
+:::::::::::::::  solution
+
+## Solution
+
+```bash
+mkdir -p ~/bin
+echo '#!/bin/bash' > ~/bin/hello.sh
+echo 'echo "Hello, World!"' >> ~/bin/hello.sh
+chmod +x ~/bin/hello.sh
+```
+
+To update the `PATH` variable to include your new `bin` directory at the front,
+you can do:
+
+```bash
+export PATH=~/bin:$PATH
+```
+
+It is extremely important to retain the current content of `PATH` by appending
+`:$PATH` to the new value; otherwise, you will overwrite your existing `PATH`.
+This is especially important on HPC systems, where the `module load` command
+relies on modifying the `PATH` variable to make software available to you.
+
+Now, verify that your `PATH` variable has been updated:
+
+```bash
+echo $PATH
+```
+
+You should be able to run `hello.sh` from any location in your terminal.
+
+```bash
+cd /tmp
+hello.sh
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- Shell variables are by default treated as strings
+- Variables are assigned using "`=`" and recalled using the variable's name prefixed by "`$`"
+- Use "`export`" to make an variable available to other programs
+- The `PATH` variable defines the shell's search path
+
+::::::::::::::::::::::::::::::::::::::::::::::::::

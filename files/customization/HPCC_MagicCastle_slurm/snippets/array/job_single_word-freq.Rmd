@@ -1,0 +1,12 @@
+```bash
+`r if (!is.null(config$sched$account)) {paste0(config$remote$shebang, "\n", config$sched$comment, " ", config$sched$flag$account, "=", config$sched$account)} else {paste0(config$remote$shebang)}`
+`r config$sched$comment` `r config$sched$flag$queue`=`r config$sched$queue$testing`
+`r config$sched$comment` `r config$sched$flag$name`=single-freq
+`r config$sched$comment` `r config$sched$flag$nodes`=1
+`r config$sched$comment` `r config$sched$flag$tasks`=1
+`r config$sched$comment` `r config$sched$flag$time`=00:05:00
+
+echo "Starting word frequency script"
+bash word-freq.sh test-data.txt
+echo "Finished word frequency script"
+```
