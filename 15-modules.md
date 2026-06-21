@@ -122,48 +122,58 @@ No modules loaded
 
 To load a software module, use `module load`.
 
-In this example we will use Python 3. Initially, it is not loaded.
-We can test this by using the `which` command. `which` looks for
-programs the same way that Bash does, so we can use it to tell us
-where a particular piece of software is stored.
+In this example we will use "Python 3". Initially, it is not loaded.
+We can test this by using the `which` command. `which` searches for
+executables using directories listed in `$PATH`, similar to how Bash
+locates commands.
 
 ```bash
 [yourUsername@login1 ~]$ which python3
 ```
 
 
-If the `python3` command was unavailable, we would see output like
+If the `python3` command is available, `which` shows the path to the
+executable:
 
 ```output
-/usr/bin/which: no python3 in (/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin:/opt/software/slurm/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:/home/yourUsername/.local/bin:/home/yourUsername/bin)
+/usr/bin/python3
 ```
 
-Note that this wall of text is really a list, with values separated
-by the `:` character. The output is telling us that the `which` command
-searched the following directories for `python3`, without success:
+The shell finds executables by searching through the directories listed in
+the `$PATH` environment variable.
+
+If we accidentally make a typo for example:
+
+```bash
+[yourUsername@login1 ~]$ which pyython3
+```
+
+we instead see something like:
 
 ```output
-/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin
-/opt/software/slurm/bin
+/usr/bin/which: no pyython3 in (/yourUsername/.local/bin:/yourUsername/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin)
+```
+
+This wall of text is actually a list of directories separated by the
+`:` character. The output tells us that the shell searched the following
+directories for `pyython3`, but could not find it:
+
+```output
+/yourUsername/.local/bin
+/yourUsername/bin
 /usr/local/bin
 /usr/bin
 /usr/local/sbin
 /usr/sbin
-/opt/puppetlabs/bin
-/home/yourUsername/.local/bin
-/home/yourUsername/bin
 ```
 
-However, in our case we do have an existing `python3` available so we see
+The Python installation located in `/usr/bin` is the system-provided version.
+On HPC systems, we often need a different Python build that is compiled with
+specific compiler toolchains, libraries, or scientific software stacks.
+Environment Modules allow us to dynamically switch to these alternative
+software environments.
 
-```output
-/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin/python3
-```
-
-We need a different Python than the system provided one though, so let us load
-a module to access it.
-
-We can load the `python3` command with `module load`:
+We can load a different Python environment using `module load`:
 
 
 ```bash
@@ -179,10 +189,10 @@ So, what just happened?
 
 To understand the output, first we need to understand the nature of the `$PATH`
 environment variable. `$PATH` is a special environment variable that controls
-where a UNIX system looks for software. Specifically `$PATH` is a list of
-directories (separated by `:`) that the OS searches through for a command
-before giving up and telling us it can't find it. As with all environment
-variables we can print it out using `echo`.
+where a shell looks for executables. Specifically, `$PATH` is a list of
+directories (separated by `:`) that the shell searches through for a command
+before reporting that the command could not be found. As with all environment
+variables, we can print it out using `echo`.
 
 ```bash
 [yourUsername@login1 ~]$ echo $PATH
@@ -193,9 +203,11 @@ variables we can print it out using `echo`.
 ```
 
 You'll notice a similarity to the output of the `which` command. In this case,
-there's only one difference: the different directory at the beginning. When we
-ran the `module load` command, it added a directory to the beginning of our
-`$PATH` -- or "prepended to PATH". Let's examine what's there:
+there is one important difference: an additional directory appears at the
+beginning. When we ran the `module load` command, it added a directory to the
+front of our `$PATH` -- or "prepended to PATH". Because this directory appears
+before `/usr/bin` in `$PATH`, the shell now finds the module-provided `python3`
+executable before the system version. Let's examine what's located there:
 
 
 ```bash
@@ -203,25 +215,17 @@ ran the `module load` command, it added a directory to the beginning of our
 ```
 
 ```output
-2to3              nosetests-3.8  python                 rst2s5.py
-2to3-3.8          pasteurize     python3                rst2xetex.py
-chardetect        pbr            python3.8              rst2xml.py
-cygdb             pip            python3.8-config       rstpep2html.py
-cython            pip3           python3-config         runxlrd.py
-cythonize         pip3.8         rst2html4.py           sphinx-apidoc
-easy_install      pybabel        rst2html5.py           sphinx-autogen
-easy_install-3.8  __pycache__    rst2html.py            sphinx-build
-futurize          pydoc3         rst2latex.py           sphinx-quickstart
-idle3             pydoc3.8       rst2man.py             tabulate
-idle3.8           pygmentize     rst2odt_prepstyles.py  virtualenv
-netaddr           pytest         rst2odt.py             wheel
-nosetests         py.test        rst2pseudoxml.py
+idle3     pip   pip3.13  pydoc3.13  python3     python3.13-config  python-config
+idle3.13  pip3  pydoc3   python     python3.13  python3-config     wheel
 ```
 
-Taking this to its conclusion, `module load` will add software to your `$PATH`.
-It "loads" software. A special note on this - depending on which version of the
-`module` program that is installed at your site, `module load` will also load
-required software dependencies.
+Note that the exact output may vary from cluster to cluster.
+
+Taking this to its conclusion, `module load` adds software locations to your
+`$PATH`. It effectively "loads" software into the current shell environment.
+A special note on this: depending on the `module` system configuration at
+your site, `module load` may also automatically load additional software
+dependencies required by the application.
 
 
 To demonstrate, let's use `module list`. `module list` shows all loaded
@@ -304,17 +308,27 @@ Note that `module purge` is informative. It will also let us know if a default
 set of "sticky" packages cannot be unloaded (and how to actually unload these
 if we truly so desired).
 
-Note that this module loading process happens principally through
-the manipulation of environment variables like `$PATH`. There
-is usually little or no data transfer involved.
+Note that this module loading process happens primarily through the
+manipulation of environment variables like `$PATH`. There is usually little
+or no data transfer involved.
 
-The module loading process manipulates other special environment
-variables as well, including variables that influence where the
-system looks for software libraries, and sometimes variables which
-tell commercial software packages where to find license servers.
+The module system modifies other environment variables as well, including
+variables that influence where the shell and runtime linker look for software
+libraries. Examples include variables such as:
 
-The module command also restores these shell environment variables
-to their previous state when a module is unloaded.
+```output
+LD_LIBRARY_PATH
+LIBRARY_PATH
+CPATH
+MANPATH
+PKG_CONFIG_PATH
+```
+
+On some systems, modules may also configure environment variables that tell
+commercial software packages where to locate license servers.
+The `module` command restores these shell environment variables to their
+previous state when a module is unloaded. This allows users to switch between
+different software environments cleanly and reproducibly.
 
 ## Software Versioning
 
