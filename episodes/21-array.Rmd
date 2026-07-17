@@ -27,13 +27,13 @@ source("load_config.R")
 Parallel computing allows multiple computational tasks to execute
 simultaneously in order to reduce execution time for a task, or
 increase throughput for multiple tasks. Depending on the application,
-the work may be divided into cooperating subtasks that communicate with
+the workload may be divided into cooperating subtasks that communicate with
 one another, or into independent tasks that execute separately.
 
 One common approach to parallel computing is to distribute computation across
-multiple processes, and having these processes cooperate by exchanging
-information during execution using the Message Passing Inteface. This
-is the "MPI" that we saw as a dependency of the `am
+multiple processes that cooperate by exchanging information during
+execution using the Message Passing Interface. This is the "MPI" that we
+saw as a dependency of the `amdahl` application.
 
 Not all workloads require processes to cooperate. Many scientific workflows
 are made up of independent serial jobs. For these cases, `r config$sched$name`
@@ -42,8 +42,9 @@ provides Job Arrays, allowing many similar jobs to be submitted and managed toge
 For instance,
 you might need to run the same task on several independent input
 files, or you may have multiple serial tasks that take some parameter,
-and you need to explore several values of the parameter. These
-tasks are also sometimes called "high-throughput" computing.
+and you need to explore several values of the parameter.
+Workflows made up of these independent elements are 
+also sometimes called "high-throughput" computing.
 
 Operationally speaking, a Job Array is a collection of related batch
 jobs submitted using a single job script.
@@ -65,7 +66,7 @@ number of independent input files is a good candidate for an
 array solution.
 
 Parallel tasks which have interactions between the various
-parallel threads need to communicate between tasks at
+parallel processes need to communicate between processes at
 run-time, and are not appropriate for job arrays.
 
 For example, most parallel scientific codes that run in
@@ -80,7 +81,7 @@ array merely for the sake of grouping does not make sense.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
-We have aleady seen how to submit a single seriial job to the
+We have already seen how to submit a single serial job to the
 Slurm scheduler.
 
 Array jobs differ in character, but are specified in a similar manner.
@@ -186,13 +187,6 @@ snippets('array/job_array_amdahl.Rmd')
 ::::
 
 :::::
-
-
-:::: instructor
-
-You can download the script from https://raw.githubusercontent.com/NewcastleRSE-Training/hpc-intro-comet/refs/heads/main/episodes/files/job_array_word-freq.sh
-
-::::
 
 
 :::::::::::::::::::::::::::::::::::::::: keypoints

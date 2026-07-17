@@ -461,7 +461,7 @@ default: 22.)
 
 Downloading the software is only part of the process, before we
 can run it, we need to install it. Advanced software, including
-simple exxamples like `amdahl`, have dependencies -- additional
+simple examples like `amdahl`, have dependencies -- additional
 software that the software uses when it runs, and which is
 not included as part of the software itself, because many
 pieces of software may have the same dependency.
@@ -606,7 +606,7 @@ tell us the important flags we might want to use when launching it.
 
 - `wget -O` and `curl -o` download a file from the internet.
 - `scp` and `rsync` transfer files to and from your computer.
-- Users can install custom software on their accounts
-- The system can help meet software dependencies
+- Users can install custom software on their accounts.
+- The system can help meet software dependencies.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
