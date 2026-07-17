@@ -17,7 +17,7 @@ carpentry: 'cp'
 # carpentry_description: "Custom Carpentry"
 
 # Overall title for pages.
-title: 'Introduction to High-Performance Computing'
+title: 'Using High-Performance Computing Systems'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
 created: 2017-03-24

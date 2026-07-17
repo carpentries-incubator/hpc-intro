@@ -1,30 +1,40 @@
-If the `python3` command was unavailable, we would see output like
+If the `python3` command is available, `which` shows the path to the
+executable:
 
 ```output
-/usr/bin/which: no python3 in (/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin:/opt/software/slurm/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:/home/`r config$remote$user`/.local/bin:/home/`r config$remote$user`/bin)
+/usr/bin/python3
 ```
 
-Note that this wall of text is really a list, with values separated
-by the `:` character. The output is telling us that the `which` command
-searched the following directories for `python3`, without success:
+The shell finds executables by searching through the directories listed in
+the `$PATH` environment variable.
+
+If we accidentally make a typo for example:
+
+```bash
+`r config$remote$prompt` which pyython3
+```
+
+we instead see something like:
 
 ```output
-/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin
-/opt/software/slurm/bin
+/usr/bin/which: no pyython3 in (`r config$remote$home`/`r config$remote$user`/.local/bin:`r config$remote$home`/`r config$remote$user`/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin)
+```
+
+This wall of text is actually a list of directories separated by the
+`:` character. The output tells us that the shell searched the following
+directories for `pyython3`, but could not find it:
+
+```output
+`r config$remote$home`/`r config$remote$user`/.local/bin
+`r config$remote$home`/`r config$remote$user`/bin
 /usr/local/bin
 /usr/bin
 /usr/local/sbin
 /usr/sbin
-/opt/puppetlabs/bin
-/home/`r config$remote$user`/.local/bin
-/home/`r config$remote$user`/bin
 ```
 
-However, in our case we do have an existing `python3` available so we see
-
-```output
-/cvmfs/pilot.eessi-hpc.org/2020.12/compat/linux/x86_64/usr/bin/python3
-```
-
-We need a different Python than the system provided one though, so let us load
-a module to access it.
+The Python installation located in `/usr/bin` is the system-provided version.
+On HPC systems, we often need a different Python build that is compiled with
+specific compiler toolchains, libraries, or scientific software stacks.
+Environment Modules allow us to dynamically switch to these alternative
+software environments.
