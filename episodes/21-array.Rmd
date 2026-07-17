@@ -59,7 +59,7 @@ Name some examples.
 
 Tasks appropriate for array jobs are "high-throughput", where
 the same thing needs to be done many times, possibly over a set
-of parameters, but where each task in dependent of the others.
+of parameters, but where each task is independent of the others.
 
 For example, running the same statistical analysis on a large
 number of independent input files is a good candidate for an
