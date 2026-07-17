@@ -12,5 +12,6 @@
 
 echo "Starting the Amdahl array script."
 amdahl 
-echo "Finished Amdahl array script.
+echo "Finished Amdahl array script."
+
 ```

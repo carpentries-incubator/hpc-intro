@@ -24,31 +24,34 @@ source("load_config.R")
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Parallel computing is a technique used to divide big tasks into smaller ones
-that can be solved simultaneously. Parallelism can be accomplished in different
-ways and it depends on the tasks that needs doing as well as the algorithms
-implemented to perform these tasks.
+Parallel computing allows multiple computational tasks to execute
+simultaneously in order to reduce execution time for a task, or
+increase throughput for multiple tasks. Depending on the application,
+the work may be divided into cooperating subtasks that communicate with
+one another, or into independent tasks that execute separately.
 
-One way of implementing parallel computing is to distribute a job across
-multiple processors. This is usually accomplished by using the Message Passage
-Interface (MPI) which is a standardised way for CPU cores to communicate with
-one another while working together on a task. Software has to be written
-specifically to utilize MPI to take advantage of this. We will see more
-of this in a later episode.
+One common approach to parallel computing is to distribute computation across
+multiple processes, and having these processes cooperate by exchanging
+information during execution using the Message Passing Inteface. This
+is the "MPI" that we saw as a dependency of the `am
 
-Another, simpler form of parallel computing is an array job. This type of
-job is advantageous if the same software has to be run several times
-in a way where the separate runs do not share data, and do not need
-to run concurrently. For instance,
+Not all workloads require processes to cooperate. Many scientific workflows
+are made up of independent serial jobs. For these cases, `r config$sched$name`
+provides Job Arrays, allowing many similar jobs to be submitted and managed together.
+
+For instance,
 you might need to run the same task on several independent input
 files, or you may have multiple serial tasks that take some parameter,
 and you need to explore several values of the parameter. These
 tasks are also sometimes called "high-throughput" computing.
 
+Operationally speaking, a Job Array is a collection of related batch
+jobs submitted using a single job script.
+
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-What is the important distinguishing feature between tasks
-that are appropriate for array jobs and task that are not?
+What distinguishes workloads that are suitable for job arrays from those
+that require traditional parallel programming?
 Name some examples.
 
 :::::::::::::::  solution
@@ -75,11 +78,10 @@ array merely for the sake of grouping does not make sense.
 
 :::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::
 
-
-We have aleady seen how to submit a single serial job to the
-Slurm scheduler, and also a single parallel jobs.
+We have aleady seen how to submit a single seriial job to the
+Slurm scheduler.
 
 Array jobs differ in character, but are specified in a similar manner.
 The batch file describes the array to the system, and at submission
@@ -87,7 +89,7 @@ time, all of the array elements are submitted together. They may
 dispatch at different times, and may or may not run concurrently.
 
 Within
-the execution envioronment of an array element, a number of environment
+the execution environment of an array element, a number of environment
 variables will be set, which can be used at run-time by the
 array elements to identify the size of the array, and their
 position within it, allowing them to select the correct input
