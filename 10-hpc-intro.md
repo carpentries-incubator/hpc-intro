@@ -15,7 +15,7 @@ exercises: 5
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- Why would I be interested in High Performance Computing (HPC)?
+- Why would I be interested in High-Performance Computing (HPC)?
 - What can I expect to learn from this course?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
