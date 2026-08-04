@@ -566,7 +566,7 @@ to change the name of a job. Add an option to the script:</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a><span class="co">#SBATCH --job-namehello-world</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a><span class="co">#SBATCH --job-name hello-world</span></span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a></span>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a><span class="bu">echo</span> <span class="at">-n</span> <span class="st">"This script is running on "</span></span>
 <span id="cb10-5"><a href="#cb10-5" tabindex="-1" aria-label="code-block-10-5"></a><span class="fu">hostname</span></span></code></pre>
@@ -587,30 +587,58 @@ to change the name of a job. Add an option to the script:</p>
 <p>Fantastic, we’ve successfully changed the name of our job!</p>
 <div class="section level3">
 <h3 id="resource-requests">Resource Requests<a class="anchor" aria-label="anchor" href="#resource-requests"></a></h3>
-<p>What about more important changes, such as the number of cores and
-memory for our jobs? One thing that is absolutely critical when working
-on an HPC system is specifying the resources required to run a job. This
-allows the scheduler to find the right time and place to schedule our
-job. If you do not specify requirements (such as the amount of time you
-need), you will likely be stuck with your site’s default resources,
-which is probably not what you want.</p>
+<p>What about more important changes, such as the number of CPUs and the
+amount of memory required for our jobs? One thing that is absolutely
+critical when working on an HPC system is specifying the resources
+required to run a job. This allows the scheduler to find suitable
+resources and schedule the job effectively. If you do not specify
+requirements (such as the amount of time you need), you will likely be
+assigned your site’s default resources, which is probably not what you
+want.</p>
 <p>The following are several key resource requests:</p>
-<ul><li><p><code>--ntasks=&lt;ntasks&gt;</code> or
-<code>-n &lt;ntasks&gt;</code>: How many CPU cores does your job need,
-in total?</p></li>
-<li><p><code>--time &lt;days-hours:minutes:seconds&gt;</code> or
+<ul><li><p><code>--ntasks=&lt;number&gt;</code> or
+<code>-n &lt;number&gt;</code>: How many parallel tasks (typically MPI
+ranks or processes) should Slurm launch?</p></li>
+<li><p><code>--ntasks-per-node=&lt;ntasks&gt;</code>: How many tasks
+should be launched on each compute node?</p></li>
+<li><p><code>--cpus-per-task=&lt;ncpus&gt;</code> or
+<code>-c &lt;ncpus&gt;</code>: How many CPUs should be allocated to each
+task/process?</p></li>
+<li><p><code>--partition=&lt;partition&gt;</code> or
+<code>-p &lt;partition&gt;</code>: Specify which scheduler
+partition/queue the job should run in.</p></li>
+<li><p><code>--time=&lt;days-hours:minutes:seconds&gt;</code> or
 <code>-t &lt;days-hours:minutes:seconds&gt;</code>: How much real-world
 time (walltime) will your job take to run? The <code>&lt;days&gt;</code>
 part can be omitted.</p></li>
-<li><p><code>--mem=&lt;megabytes&gt;</code>: How much memory on a node
-does your job need in megabytes? You can also specify gigabytes using by
-adding a little “g” afterwards (example: <code>--mem=5g</code>)</p></li>
+<li>
+<p><code>--mem=&lt;size&gt;[units]</code>: How much memory should be
+allocated per node for your job? Memory units may be specified using the
+following suffixes:</p>
+<ul><li>
+<code>K</code> or <code>k</code> for kilobytes</li>
+<li>
+<code>M</code> or <code>m</code> for megabytes</li>
+<li>
+<code>G</code> or <code>g</code> for gigabytes</li>
+<li>
+<code>T</code> or <code>t</code> for terabytes Example:
+<code>--mem=5G</code> or <code>--mem=5g</code>
+</li>
+</ul></li>
+<li><p><code>--mem-per-cpu=&lt;size&gt;[units]</code>: How much memory
+should be allocated per CPU? This is commonly used on shared-node
+systems where memory allocation is tied to CPU allocation.</p></li>
 <li><p><code>--nodes=&lt;nnodes&gt;</code> or
-<code>-N &lt;nnodes&gt;</code>: How many separate machines does your job
-need to run on? Note that if you set <code>ntasks</code> to a number
-greater than what one machine can offer, Slurm will set this value
-automatically.</p></li>
-</ul><p>Note that just <em>requesting</em> these resources does not make your
+<code>-N &lt;nnodes&gt;</code>: How many compute nodes should be
+allocated for your job? Note that if the requested <code>ntasks</code>
+count cannot fit within available resources of one node, Slurm may
+allocate multiple nodes automatically, subject to partition limits and
+scheduler policies.</p></li>
+</ul><p>For some resources, such as GPUs, the way to request them may be
+site-specific or specific to version of the resource scheduler. For this
+reason we do not include them in the list above.</p>
+<p>Note that just <em>requesting</em> these resources does not make your
 job run faster, nor does it necessarily mean that you will consume all
 of these resources. It only means that these are made available to you.
 Your job may end up using less memory, or less time, or fewer nodes than
@@ -676,7 +704,7 @@ minute of wall time, and attempt to run a job for two minutes.</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1" aria-label="code-block-17-2"></a><span class="co">#SBATCH --job-namelong_job</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1" aria-label="code-block-17-2"></a><span class="co">#SBATCH --job-name long_job</span></span>
 <span id="cb17-3"><a href="#cb17-3" tabindex="-1" aria-label="code-block-17-3"></a><span class="co">#SBATCH --time 00:01 # timeout in HH:MM</span></span>
 <span id="cb17-4"><a href="#cb17-4" tabindex="-1" aria-label="code-block-17-4"></a></span>
 <span id="cb17-5"><a href="#cb17-5" tabindex="-1" aria-label="code-block-17-5"></a><span class="bu">echo</span> <span class="st">"This script is running on ... "</span></span>
