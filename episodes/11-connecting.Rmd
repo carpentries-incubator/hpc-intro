@@ -54,11 +54,11 @@ SSH clients are usually command-line tools, where you provide the remote
 machine address as the only required argument. If your username on the remote
 system differs from what you use locally, you must provide that as well. If
 your SSH client has a graphical front-end, such as PuTTY or MobaXterm, you will
-set these arguments before clicking "connect." From the terminal, you'll write
+set these arguments before clicking "connect". From the terminal, you'll write
 something like `ssh username@hostname`, where the argument is just like an
 email address: the "@" symbol is used to separate the personal ID from the
-address of the remote machine. In this lesson, `r config$remote$user` represents
-the `username` on the remote system, and `r config$remote$login` represents
+address of the remote machine. In this lesson, ***`r config$remote$user`*** represents
+the `username` on the remote system, and ***`r config$remote$login`*** represents
 the cluster's login address (`hostname`), i.e., how to find the cluster on the
 internet.
 
@@ -73,7 +73,7 @@ clusters therefore forbid password-based login, requiring instead that you
 generate and configure a public-private key pair with a much stronger password.
 Even if your cluster does not require it, the next section will guide you
 through the use of SSH keys and an SSH agent to both strengthen your security
-*and* make it more convenient to log in to remote systems.
+and make it more convenient to log in to remote systems.
 
 ### Better Security With SSH Keys
 
@@ -103,7 +103,7 @@ unencrypted email, or is even displayed on your terminal window.
 Protect this key as if it unlocks your front door. In many ways, it does.
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Regardless of the software or operating system you use, *please* choose a
+Regardless of the software or operating system you use, please choose a
 strong password or passphrase to act as another layer of protection for your
 private SSH key.
 
@@ -120,9 +120,9 @@ common approaches to this:
 2. Use a password manager and its built-in password generator with all
   character classes, 25 characters or longer. [KeePass][keepass] and
   [BitWarden][bitwarden] are two good options.
-3. Nothing is *less* secure than a private key with no password. If you
+3. Nothing is less secure than a private key with no password. If you
   skip password entry by accident, go back and generate a new key pair
-  *with* a strong password.
+  with a strong password.
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 #### SSH Keys on Linux, Mac, MobaXterm, and Windows Subsystem for Linux
@@ -195,7 +195,7 @@ When prompted, enter a strong password with the
 
 Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
 
-- your private key (`~/.ssh/id_rsa`): *do not share with anyone!*
+- your private key (`~/.ssh/id_rsa`): ***do not share with anyone!***
 - the shareable public key (`~/.ssh/id_rsa.pub`): if a system administrator
   asks for a key, this is the one to send. It is also safe to upload to
   websites such as GitHub: it is meant to be seen.
