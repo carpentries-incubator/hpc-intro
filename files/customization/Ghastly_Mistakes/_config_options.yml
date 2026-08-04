@@ -1,0 +1,72 @@
+# ------------------------
+# Ghastly Mistakes Cluster
+# ------------------------
+#
+# This is not a real cluster, and its options are meant to
+# highlight configuration changes while we develop the config
+# chain-loader, per @tobyhodges' suggestion.
+#
+# Compute irresponsibly.
+#
+# Use the HPC_CARPENTRY_CUSTOMIZATION variable to invoke these:
+#
+# > HPC_CARPENTRY_CUSTOMIZATION=episodes/files/customization/Ghastly_Mistakes/_config_options.yml
+# > export HPC_CARPENTRY_CUSTOMIZATION
+---
+
+snippets: "Ghastly_Mistakes"
+
+local:
+  prompt: "luigi@mushroomkingdom:~$"
+  bash_shebang: "#!/bin/bash"
+
+remote:
+  name: "Bowser's Castle"
+  login: "castle.bowser.org"
+  portal: "https://pipe.bowser.org"
+  host: "castle"
+  node: "turtle"
+  location: "World 8-4"
+  fs:
+    home: "/darkland"
+  user: "luigi"
+  module_python3: "Boa"
+  prompt: "luigi@castle:~$"
+  bash_shebang: "#!/bin/no"
+
+sched:
+  name: "Slurp"
+  submit:
+    name: "smash"
+    options: ""
+  queue:
+    debug: "doom"
+    testing: "gloom"
+  status: "skew"
+  flag:
+    user: "-u luigi"
+    interactive: ""
+    histdetail: "-l -j"
+    name: "-J"
+    time: "-t"
+    queue: "-p"
+  del: "scandle"
+  interactive: "spun"
+  info: "sink"
+  comment: "#SMASH"
+  hist: "sacked -u luigi"
+  hist_filter: ""
+
+episode_order:
+  - 10-hpc-intro
+  - 11-connecting
+  - 12-cluster
+  - 13-scheduler
+  - 14-environment-variables
+  - 15-modules
+  - 16-transferring-files
+  - 17-parallel
+  - 18-resources
+  - 19-responsibility
+
+...
