@@ -57,8 +57,8 @@ your SSH client has a graphical front-end, such as PuTTY or MobaXterm, you will
 set these arguments before clicking "connect". From the terminal, you'll write
 something like `ssh username@hostname`, where the argument is just like an
 email address: the "@" symbol is used to separate the personal ID from the
-address of the remote machine. In this lesson, ***`r config$remote$user`*** represents
-the `username` on the remote system, and ***`r config$remote$login`*** represents
+address of the remote machine. In this lesson, *`r config$remote$user`* represents
+the `username` on the remote system, and *`r config$remote$login`* represents
 the cluster's login address (`hostname`), i.e., how to find the cluster on the
 internet.
 
@@ -195,7 +195,7 @@ When prompted, enter a strong password with the
 
 Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
 
-- your private key (`~/.ssh/id_rsa`): ***do not share with anyone!***
+- your private key (`~/.ssh/id_rsa`): *do not share with anyone!*
 - the shareable public key (`~/.ssh/id_rsa.pub`): if a system administrator
   asks for a key, this is the one to send. It is also safe to upload to
   websites such as GitHub: it is meant to be seen.
