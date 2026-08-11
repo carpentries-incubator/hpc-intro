@@ -338,25 +338,27 @@ See the [PuTTY documentation][putty-agent].
 
 ### Uploading Your Public Key
 
-```{r, eval=!is.null(config$remote$portal) && nzchar(trimws(config$remote$portal)), echo=FALSE, results="asis"}
-cat(
-    paste(
-        "Visit [",
-        config$remote$portal,
-        "](",
-        config$remote$portal,
-        ") to upload your SSH public key. (Remember, it's the one ending in `.pub`!)",
-        sep="")
-)
-```
+```{r, echo=FALSE, results="asis"}
 
-```{r, eval=is.null(config$remote$portal) || !nzchar(trimws(config$remote$portal)), echo=FALSE, results="asis"}
-cat(
-    paste(
-        "No SSH key upload portal is configured for this cluster.",
-        "If supported, `ssh-copy-id` or `scp` can be used for registering or transferring the public key."
+if (!is.null(config$remote$portal) && nzchar(trimws(config$remote$portal))) {
+        cat(
+            paste(
+                "Visit [",
+                config$remote$portal,
+                "](",
+                config$remote$portal,
+                ") to upload your SSH public key. (Remember, it's the one ending in `.pub`!)",
+                sep="")
         )
-)
+    } else {
+
+        cat(
+            paste(
+                "No SSH key upload portal is configured for this cluster. ",
+                "If supported, `ssh-copy-id` or `scp` can be used for registering or transferring the public key.",
+                sep="")
+        )
+    }
 ```
 
 ## Log In to the Cluster
