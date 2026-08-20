@@ -117,7 +117,7 @@
     <a id="search-button" class="btn btn-primary" href="aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
   </div><!--/div.container-fluid -->
 </nav><aside class="col-md-12 lesson-progress"><div class="progress carpentries">
-    <div class="progress-bar carpentries" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson Progress">65%</div>
+    <div class="progress-bar carpentries" role="progressbar" style="width: 61%" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson Progress">61%</div>
   </div>
 </aside><div class="container">
       <div class="row">
@@ -271,9 +271,7 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#install-the-amdahl-program">Install the Amdahl Program</a></li>
-<li><a href="#help">Help!</a></li>
-<li><a href="#running-the-job-on-a-compute-node">Running the Job on a Compute Node</a></li>
+        <ul><li><a href="#running-the-job-on-a-compute-node">Running the Job on a Compute Node</a></li>
 <li><a href="#running-the-parallel-job">Running the Parallel Job</a></li>
 <li><a href="#how-much-does-parallel-execution-improve-performance">How Much Does Parallel Execution Improve Performance?</a></li>
         </ul></div><!--/div.accordion-body-->
@@ -285,7 +283,7 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="18-resources.html">9. Using resources effectively</a>
+        <a href="21-array.html">9. Parallelising with Job Arrays</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -294,7 +292,16 @@
 <div class="accordion accordion-flush" id="accordionFlush11">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading11">
-        <a href="19-responsibility.html">10. Using shared resources responsibly</a>
+        <a href="18-resources.html">10. Using resources effectively</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush12">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading12">
+        <a href="19-responsibility.html">11. Using shared resources responsibly</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -343,7 +350,7 @@
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Previous and Next Chapter Top"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="16-transferring-files.html" rel="prev"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="18-resources.html" rel="next">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="21-array.html" rel="next">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
@@ -351,14 +358,14 @@
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
           Previous: Transferring files
         </a>
-        <a class="chapter-link float-end" href="18-resources.html" rel="next">
-          Next: Using resources...
+        <a class="chapter-link float-end" href="21-array.html" rel="next">
+          Next: Parallelising with...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Running a parallel job</h1>
-        <p>Last updated on 2026-08-11 |
+        <p>Last updated on 2026-08-20 |
 
         <a href="https://github.com/carpentries-incubator/hpc-intro/edit/main/episodes/17-parallel.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -387,9 +394,7 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Install a Python package using <code>pip</code>
-</li>
-<li>Prepare a job submission script for the parallel executable.</li>
+<ul><li>Prepare a job submission script for the parallel executable.</li>
 <li>Launch jobs with parallel execution.</li>
 <li>Record and summarize the timing and accuracy of jobs.</li>
 <li>Describe the relationship between job parallelism and
@@ -399,193 +404,43 @@ performance.</li>
 </div>
 </div>
 </div>
-<p>We now have the tools we need to run a multi-processor job. This is a
-very important aspect of HPC systems, as parallelism is one of the
-primary tools we have to improve the performance of computational
-tasks.</p>
-<p>If you disconnected, log back in to the cluster.</p>
+<section><h2 class="section-heading" id="running-the-job-on-a-compute-node">Running the Job on a Compute Node<a class="anchor" aria-label="anchor" href="#running-the-job-on-a-compute-node"></a></h2>
+<hr class="half-width"><p>At this point, we have installed the <code>amdahl</code> executable
+on the system, and can now run it on the cluster.</p>
+<p>Create a submission file, requesting one task on a single node, then
+launch it.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">[you@laptop:~]$</span> ssh yourUsername@cluster.hpc-carpentry.org</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">[yourUsername@login1</span> ~]$ nano serial-job.sh</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="ex">[yourUsername@login1</span> ~]$ cat serial-job.sh</span></code></pre>
 </div>
-<section><h2 class="section-heading" id="install-the-amdahl-program">Install the Amdahl Program<a class="anchor" aria-label="anchor" href="#install-the-amdahl-program"></a></h2>
-<hr class="half-width"><p>With the Amdahl source code on the cluster, we can install it, which
-will provide access to the <code>amdahl</code> executable. Move into the
-extracted directory, then use the Package Installer for Python, or
-<code>pip</code>, to install it in your (“user”) home directory:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">[yourUsername@login1</span> ~]$ cd amdahl</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="ex">[yourUsername@login1</span> ~]$ python3 <span class="at">-m</span> pip install <span class="at">--user</span> .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="co">#SBATCH --job-name solo-job</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="co">#SBATCH --partition cpubase_bycore_b1</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a><span class="co">#SBATCH -N 1</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a><span class="co">#SBATCH -n 1</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1" aria-label="code-block-2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1" aria-label="code-block-2-7"></a><span class="co"># Load the computing environment we need</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1" aria-label="code-block-2-8"></a><span class="ex">module</span> load Python</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1" aria-label="code-block-2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1" aria-label="code-block-2-10"></a><span class="co"># Execute the task</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1" aria-label="code-block-2-11"></a><span class="ex">amdahl</span></span></code></pre>
 </div>
-<div id="amdahl-is-python-code" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="amdahl-is-python-code" class="callout-inner">
-<h3 class="callout-title">Amdahl is Python Code</h3>
-<div class="callout-content">
-<p>The Amdahl program is written in Python, and installing or using it
-requires locating the <code>python3</code> executable on the login node.
-If it can’t be found, try listing available modules using
-<code>module avail</code>, load the appropriate one, and try the command
-again.</p>
-</div>
-</div>
-</div>
-<div class="section level3">
-<h3 id="mpi-for-python">MPI for Python<a class="anchor" aria-label="anchor" href="#mpi-for-python"></a></h3>
-<p>The Amdahl code has one dependency: <strong>mpi4py</strong>. If it
-hasn’t already been installed on the cluster, <code>pip</code> will
-attempt to collect mpi4py from the Internet and install it for you. If
-this fails due to a one-way firewall, you must retrieve mpi4py on your
-local machine and upload it, just as we did for Amdahl.</p>
-<div id="retrieve-and-upload-mpi4py" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="retrieve-and-upload-mpi4py" class="callout-inner">
-<h3 class="callout-title">Retrieve and Upload <code>mpi4py</code>
-</h3>
-<div class="callout-content">
-<p>If installing Amdahl failed because mpi4py could not be installed,
-retrieve the tarball from <a href="https://github.com/mpi4py/mpi4py/tarball/master" class="external-link uri">https://github.com/mpi4py/mpi4py/tarball/master</a> then
-<code>rsync</code> it to the cluster, extract, and install:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">[you@laptop:~]$</span> wget <span class="at">-O</span> mpi4py.tar.gz https://github.com/mpi4py/mpi4py/releases/download/3.1.4/mpi4py-3.1.4.tar.gz</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="ex">[you@laptop:~]$</span> scp mpi4py.tar.gz yourUsername@cluster.hpc-carpentry.org:</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="co"># or</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a><span class="ex">[you@laptop:~]$</span> rsync <span class="at">-avP</span> mpi4py.tar.gz yourUsername@cluster.hpc-carpentry.org:</span></code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">[you@laptop:~]$</span> ssh yourUsername@cluster.hpc-carpentry.org</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="ex">[yourUsername@login1</span> ~]$ tar <span class="at">-xvzf</span> mpi4py.tar.gz  <span class="co"># extract the archive</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="ex">[yourUsername@login1</span> ~]$ mv mpi4py<span class="pp">*</span> mpi4py        <span class="co"># rename the directory</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a><span class="ex">[yourUsername@login1</span> ~]$ cd mpi4py</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a><span class="ex">[yourUsername@login1</span> ~]$ python3 <span class="at">-m</span> pip install <span class="at">--user</span> .</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a><span class="ex">[yourUsername@login1</span> ~]$ cd ../amdahl</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a><span class="ex">[yourUsername@login1</span> ~]$ python3 <span class="at">-m</span> pip install <span class="at">--user</span> .</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="if-pip-raises-a-warning" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="if-pip-raises-a-warning" class="callout-inner">
-<h3 class="callout-title">If <code>pip</code> Raises a Warning…</h3>
-<div class="callout-content">
-<p><code>pip</code> may warn that your user package binaries are not in
-your PATH.</p>
-<div class="codewrapper">
-<h3 class="code-label">WARNING<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="warning" tabindex="0"><code>WARNING: The script amdahl is installed in "${HOME}/.local/bin" which is
-not on PATH. Consider adding this directory to PATH or, if you prefer to
-suppress this warning, use --no-warn-script-location.</code></pre>
-</div>
-<p>To check whether this warning is a problem, use <code>which</code> to
-search for the <code>amdahl</code> program:</p>
-<div class="codewrapper sourceCode" id="cb6">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">[yourUsername@login1</span> ~]$ which amdahl</span></code></pre>
-</div>
-<p>If the command returns no output, displaying a new prompt, it means
-the file <code>amdahl</code> has not been found. You must update the
-environment variable named <code>PATH</code> to include the missing
-folder. Edit your shell configuration file as follows, then log off the
-cluster and back on again so it takes effect.</p>
-<div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">[yourUsername@login1</span> ~]$ nano ~/.bashrc</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a><span class="ex">[yourUsername@login1</span> ~]$ tail ~/.bashrc</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>export PATH=${PATH}:${HOME}/.local/bin</code></pre>
-</div>
-<p>After logging back in to cluster.hpc-carpentry.org,
-<code>which</code> should be able to find <code>amdahl</code> without
-difficulties. If you had to load a Python module, load it again.</p>
-</div>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="help">Help!<a class="anchor" aria-label="anchor" href="#help"></a></h2>
-<hr class="half-width"><p>Many command-line programs include a “help” message. Try it with
-<code>amdahl</code>:</p>
-<div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">[yourUsername@login1</span> ~]$ amdahl <span class="at">--help</span></span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>usage: amdahl [-h] [-p [PARALLEL_PROPORTION]] [-w [WORK_SECONDS]] [-t] [-e] [-j [JITTER_PROPORTION]]
-
-options:
-  -h, --help            show this help message and exit
-  -p, --parallel-proportion [PARALLEL_PROPORTION]
-                        Parallel proportion: a float between 0 and 1
-  -w, --work-seconds [WORK_SECONDS]
-                        Total seconds of workload: an integer greater than 0
-  -t, --terse           Format output as a machine-readable object for easier analysis
-  -e, --exact           Exactly match requested timing by disabling random jitter
-  -j, --jitter-proportion [JITTER_PROPORTION]
-                        Random jitter: a float between -1 and +1</code></pre>
-</div>
-<p>This message doesn’t tell us much about what the program
-<em>does</em>, but it does tell us the important flags we might want to
-use when launching it.</p>
-</section><section><h2 class="section-heading" id="running-the-job-on-a-compute-node">Running the Job on a Compute Node<a class="anchor" aria-label="anchor" href="#running-the-job-on-a-compute-node"></a></h2>
-<hr class="half-width"><p>Create a submission file, requesting one task on a single node, then
-launch it.</p>
-<div class="codewrapper sourceCode" id="cb11">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="ex">[yourUsername@login1</span> ~]$ nano serial-job.sh</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a><span class="ex">[yourUsername@login1</span> ~]$ cat serial-job.sh</span></code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb12">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a><span class="co">#SBATCH --job-name solo-job</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1" aria-label="code-block-12-3"></a><span class="co">#SBATCH --partition cpubase_bycore_b1</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1" aria-label="code-block-12-4"></a><span class="co">#SBATCH -N 1</span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1" aria-label="code-block-12-5"></a><span class="co">#SBATCH -n 1</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1" aria-label="code-block-12-6"></a></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1" aria-label="code-block-12-7"></a><span class="co"># Load the computing environment we need</span></span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1" aria-label="code-block-12-8"></a><span class="ex">module</span> load Python</span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1" aria-label="code-block-12-9"></a></span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1" aria-label="code-block-12-10"></a><span class="co"># Execute the task</span></span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1" aria-label="code-block-12-11"></a><span class="ex">amdahl</span></span></code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb13">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="ex">[yourUsername@login1</span> ~]$ sbatch serial-job.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">[yourUsername@login1</span> ~]$ sbatch serial-job.sh</span></code></pre>
 </div>
 <p>As before, use the Slurm status commands to check whether your job is
 running and when it ends:</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">[yourUsername@login1</span> ~]$ squeue <span class="at">-u</span> yourUsername</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="ex">[yourUsername@login1</span> ~]$ squeue <span class="at">-u</span> yourUsername</span></code></pre>
 </div>
 <p>Use <code>ls</code> to locate the output file. The <code>-t</code>
 flag sorts in reverse-chronological order: newest first. What was the
@@ -599,20 +454,20 @@ output?</p>
 <div class="accordion-body">
 <p>The cluster output should be written to a file in the folder you
 launched the job from. For example,</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="ex">[yourUsername@login1</span> ~]$ ls <span class="at">-t</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">[yourUsername@login1</span> ~]$ ls <span class="at">-t</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>slurm-347087.out  serial-job.sh  amdahl  LICENSE  pyproject.toml  README.md</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="ex">[yourUsername@login1</span> ~]$ cat slurm-347087.out</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">[yourUsername@login1</span> ~]$ cat slurm-347087.out</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -690,43 +545,43 @@ examining the environment variables set when the job is launched.</p>
 </div>
 <p>Let’s modify the job script to request more cores and use the MPI
 run-time.</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="ex">[yourUsername@login1</span> ~]$ cp serial-job.sh parallel-job.sh</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1" aria-label="code-block-19-2"></a><span class="ex">[yourUsername@login1</span> ~]$ nano parallel-job.sh</span>
-<span id="cb19-3"><a href="#cb19-3" tabindex="-1" aria-label="code-block-19-3"></a><span class="ex">[yourUsername@login1</span> ~]$ cat parallel-job.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">[yourUsername@login1</span> ~]$ cp serial-job.sh parallel-job.sh</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a><span class="ex">[yourUsername@login1</span> ~]$ nano parallel-job.sh</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a><span class="ex">[yourUsername@login1</span> ~]$ cat parallel-job.sh</span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1" aria-label="code-block-20-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1" aria-label="code-block-20-2"></a><span class="co">#SBATCH --job-name parallel-job</span></span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1" aria-label="code-block-20-3"></a><span class="co">#SBATCH --partition cpubase_bycore_b1</span></span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1" aria-label="code-block-20-4"></a><span class="co">#SBATCH -N 1</span></span>
-<span id="cb20-5"><a href="#cb20-5" tabindex="-1" aria-label="code-block-20-5"></a><span class="co">#SBATCH -n 4</span></span>
-<span id="cb20-6"><a href="#cb20-6" tabindex="-1" aria-label="code-block-20-6"></a></span>
-<span id="cb20-7"><a href="#cb20-7" tabindex="-1" aria-label="code-block-20-7"></a><span class="co"># Load the computing environment we need</span></span>
-<span id="cb20-8"><a href="#cb20-8" tabindex="-1" aria-label="code-block-20-8"></a><span class="co"># (mpi4py and numpy are in SciPy-bundle)</span></span>
-<span id="cb20-9"><a href="#cb20-9" tabindex="-1" aria-label="code-block-20-9"></a><span class="ex">module</span> load Python</span>
-<span id="cb20-10"><a href="#cb20-10" tabindex="-1" aria-label="code-block-20-10"></a><span class="ex">module</span> load SciPy-bundle</span>
-<span id="cb20-11"><a href="#cb20-11" tabindex="-1" aria-label="code-block-20-11"></a></span>
-<span id="cb20-12"><a href="#cb20-12" tabindex="-1" aria-label="code-block-20-12"></a><span class="co"># Execute the task</span></span>
-<span id="cb20-13"><a href="#cb20-13" tabindex="-1" aria-label="code-block-20-13"></a><span class="ex">mpiexec</span> amdahl</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a><span class="co">#SBATCH --job-name parallel-job</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a><span class="co">#SBATCH --partition cpubase_bycore_b1</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a><span class="co">#SBATCH -N 1</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1" aria-label="code-block-10-5"></a><span class="co">#SBATCH -n 4</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1" aria-label="code-block-10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1" aria-label="code-block-10-7"></a><span class="co"># Load the computing environment we need</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1" aria-label="code-block-10-8"></a><span class="co"># (mpi4py and numpy are in SciPy-bundle)</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1" aria-label="code-block-10-9"></a><span class="ex">module</span> load Python</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1" aria-label="code-block-10-10"></a><span class="ex">module</span> load SciPy-bundle</span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1" aria-label="code-block-10-11"></a></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1" aria-label="code-block-10-12"></a><span class="co"># Execute the task</span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1" aria-label="code-block-10-13"></a><span class="ex">mpiexec</span> amdahl</span></code></pre>
 </div>
 <p>Then submit your job. Note that the submission command has not really
 changed from how we submitted the serial job: all the parallel settings
 are in the batch file rather than the command line.</p>
-<div class="codewrapper sourceCode" id="cb21">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="ex">[yourUsername@login1</span> ~]$ sbatch parallel-job.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="ex">[yourUsername@login1</span> ~]$ sbatch parallel-job.sh</span></code></pre>
 </div>
 <p>As before, use the status commands to check when your job runs.</p>
-<div class="codewrapper sourceCode" id="cb22">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1" aria-label="code-block-22-1"></a><span class="ex">[yourUsername@login1</span> ~]$ ls <span class="at">-t</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">[yourUsername@login1</span> ~]$ ls <span class="at">-t</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -734,10 +589,10 @@ are in the batch file rather than the command line.</p>
 <pre class="output" tabindex="0"><code>slurm-347178.out  parallel-job.sh  amdahl   pyproject.toml
 slurm-347087.out  serial-job.sh    LICENSE  README.md</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb24">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1" aria-label="code-block-24-1"></a><span class="ex">[yourUsername@login1</span> ~]$ cat slurm-347178.out</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="ex">[yourUsername@login1</span> ~]$ cat slurm-347178.out</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -816,42 +671,42 @@ parallel program, a plot of the speedup <em>S</em> versus the number of
 CPUs <em>n</em> would give a straight line, <em>S</em> = <em>n</em>.</p>
 <p>Let’s run one more job, so we can see how close to a straight line
 our <code>amdahl</code> code gets.</p>
-<div class="codewrapper sourceCode" id="cb26">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1" aria-label="code-block-26-1"></a><span class="ex">[yourUsername@login1</span> ~]$ nano parallel-job.sh</span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1" aria-label="code-block-26-2"></a><span class="ex">[yourUsername@login1</span> ~]$ cat parallel-job.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="ex">[yourUsername@login1</span> ~]$ nano parallel-job.sh</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1" aria-label="code-block-16-2"></a><span class="ex">[yourUsername@login1</span> ~]$ cat parallel-job.sh</span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1" aria-label="code-block-27-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1" aria-label="code-block-27-2"></a><span class="co">#SBATCH --job-name parallel-job</span></span>
-<span id="cb27-3"><a href="#cb27-3" tabindex="-1" aria-label="code-block-27-3"></a><span class="co">#SBATCH --partition cpubase_bycore_b1</span></span>
-<span id="cb27-4"><a href="#cb27-4" tabindex="-1" aria-label="code-block-27-4"></a><span class="co">#SBATCH -N 1</span></span>
-<span id="cb27-5"><a href="#cb27-5" tabindex="-1" aria-label="code-block-27-5"></a><span class="co">#SBATCH -n 8</span></span>
-<span id="cb27-6"><a href="#cb27-6" tabindex="-1" aria-label="code-block-27-6"></a></span>
-<span id="cb27-7"><a href="#cb27-7" tabindex="-1" aria-label="code-block-27-7"></a><span class="co"># Load the computing environment we need</span></span>
-<span id="cb27-8"><a href="#cb27-8" tabindex="-1" aria-label="code-block-27-8"></a><span class="co"># (mpi4py and numpy are in SciPy-bundle)</span></span>
-<span id="cb27-9"><a href="#cb27-9" tabindex="-1" aria-label="code-block-27-9"></a><span class="ex">module</span> load Python</span>
-<span id="cb27-10"><a href="#cb27-10" tabindex="-1" aria-label="code-block-27-10"></a><span class="ex">module</span> load SciPy-bundle</span>
-<span id="cb27-11"><a href="#cb27-11" tabindex="-1" aria-label="code-block-27-11"></a></span>
-<span id="cb27-12"><a href="#cb27-12" tabindex="-1" aria-label="code-block-27-12"></a><span class="co"># Execute the task</span></span>
-<span id="cb27-13"><a href="#cb27-13" tabindex="-1" aria-label="code-block-27-13"></a><span class="ex">mpiexec</span> amdahl</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1" aria-label="code-block-17-2"></a><span class="co">#SBATCH --job-name parallel-job</span></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1" aria-label="code-block-17-3"></a><span class="co">#SBATCH --partition cpubase_bycore_b1</span></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1" aria-label="code-block-17-4"></a><span class="co">#SBATCH -N 1</span></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1" aria-label="code-block-17-5"></a><span class="co">#SBATCH -n 8</span></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1" aria-label="code-block-17-6"></a></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1" aria-label="code-block-17-7"></a><span class="co"># Load the computing environment we need</span></span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1" aria-label="code-block-17-8"></a><span class="co"># (mpi4py and numpy are in SciPy-bundle)</span></span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1" aria-label="code-block-17-9"></a><span class="ex">module</span> load Python</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1" aria-label="code-block-17-10"></a><span class="ex">module</span> load SciPy-bundle</span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1" aria-label="code-block-17-11"></a></span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1" aria-label="code-block-17-12"></a><span class="co"># Execute the task</span></span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1" aria-label="code-block-17-13"></a><span class="ex">mpiexec</span> amdahl</span></code></pre>
 </div>
 <p>Then submit your job. Note that the submission command has not really
 changed from how we submitted the serial job: all the parallel settings
 are in the batch file rather than the command line.</p>
-<div class="codewrapper sourceCode" id="cb28">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1" aria-label="code-block-28-1"></a><span class="ex">[yourUsername@login1</span> ~]$ sbatch parallel-job.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="ex">[yourUsername@login1</span> ~]$ sbatch parallel-job.sh</span></code></pre>
 </div>
 <p>As before, use the status commands to check when your job runs.</p>
-<div class="codewrapper sourceCode" id="cb29">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1" aria-label="code-block-29-1"></a><span class="ex">[yourUsername@login1</span> ~]$ ls <span class="at">-t</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="ex">[yourUsername@login1</span> ~]$ ls <span class="at">-t</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -859,10 +714,10 @@ are in the batch file rather than the command line.</p>
 <pre class="output" tabindex="0"><code>slurm-347271.out     slurm-347178.out  serial-job.sh  LICENSE         README.md
 parallel-job.sh      slurm-347087.out  amdahl         pyproject.toml</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb31">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1" aria-label="code-block-31-1"></a><span class="ex">[yourUsername@login1</span> ~]$ cat slurm-347178.out</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="ex">[yourUsername@login1</span> ~]$ cat slurm-347178.out</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -914,10 +769,10 @@ calculator and the formula</p>
 <p><span class="math display">\[
 S(t_{n}) = \frac{t_{1}}{t_{n}}
 \]</span></p>
-<div class="codewrapper sourceCode" id="cb33">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1" aria-label="code-block-33-1"></a><span class="ex">[yourUsername@login1</span> ~]$ for n in 33.326056 13.579746 9.514393<span class="kw">;</span> <span class="cf">do</span> <span class="ex">python3</span> <span class="at">-c</span> <span class="st">"print(33.326056 / </span><span class="va">$n</span><span class="st">)"</span><span class="kw">;</span> <span class="cf">done</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="ex">[yourUsername@login1</span> ~]$ for n in 33.326056 13.579746 9.514393<span class="kw">;</span> <span class="cf">do</span> <span class="ex">python3</span> <span class="at">-c</span> <span class="st">"print(33.326056 / </span><span class="va">$n</span><span class="st">)"</span><span class="kw">;</span> <span class="cf">done</span></span></code></pre>
 </div>
 <table class="table"><thead><tr><th>Number of CPUs</th>
 <th>Speedup</th>
@@ -968,7 +823,7 @@ linearly.</li>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter Bottom"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="16-transferring-files.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="18-resources.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="21-array.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
@@ -976,8 +831,8 @@ linearly.</li>
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
           Previous: Transferring files
         </a>
-        <a class="chapter-link float-end" href="18-resources.html" rel="next">
-          Next: Using resources...
+        <a class="chapter-link float-end" href="21-array.html" rel="next">
+          Next: Parallelising with...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -1025,8 +880,8 @@ linearly.</li>
   "url": "https://carpentries-incubator.github.io/hpc-intro/17-parallel.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-intro/17-parallel.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2026-08-11",
-  "datePublished": "2026-08-11"
+  "dateModified": "2026-08-20",
+  "datePublished": "2026-08-20"
 }
 
   </script><script>
