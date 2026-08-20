@@ -20,7 +20,7 @@ source("load_config.R")
 :::::::::::::::::::::::::::::::::::::::: questions
 
 - How do I transfer files to (and from) the cluster?
-- What tools to HPC systems provide to manage software dependencies?
+- What tools do HPC systems provide to manage software dependencies?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -459,7 +459,7 @@ default: 22.)
 
 ## Install the `amdahl` executable
 
-Downloading the software is only part of the process, before we
+Downloading the software is only part of the process. Before we
 can run it, we need to install it. Advanced software, including
 simple examples like `amdahl`, have dependencies -- additional
 software that the software uses when it runs, and which is
@@ -467,7 +467,7 @@ not included as part of the software itself, because many
 pieces of software may have the same dependency.
 
 In our case, our software depends on both a compatible
-Python executable environment, and a set of communcations
+Python executable environment, and a set of communications
 libraries called `MPI`, and their corresponding Python
 implementation.
 

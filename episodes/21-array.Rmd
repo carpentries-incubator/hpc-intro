@@ -36,7 +36,7 @@ execution using the Message Passing Interface. This is the "MPI" that we
 saw as a dependency of the `amdahl` application.
 
 Not all workloads require processes to cooperate. Many scientific workflows
-are made up of independent serial jobs. For these cases, `r config$sched$name`
+are made up of independent jobs. For these cases, `r config$sched$name`
 provides Job Arrays, allowing many similar jobs to be submitted and managed together.
 
 For instance,
