@@ -53,7 +53,7 @@ jobs submitted using a single job script.
 
 What distinguishes workloads that are suitable for job arrays from those
 that require traditional parallel programming?
-Name some examples.
+Describe some examples.
 
 :::::::::::::::  solution
 
