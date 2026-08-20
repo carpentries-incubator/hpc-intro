@@ -155,7 +155,7 @@ anything.
 [putty]: https://www.chiark.greenend.org.uk/~sgtatham/putty/
 [ms-shell]: https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7
 [unix-emulator]: https://www.cygwin.com/
-[mac-terminal]: https://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608274/
+[mac-terminal]: https://support.apple.com/guide/terminal/welcome/mac
 
 
 
