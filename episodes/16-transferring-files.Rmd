@@ -12,7 +12,7 @@ source("load_config.R")
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Transfer files to and from a computing cluster.
-- Install an exectuable from source
+- Install an executable from source
 - Use modules to meet software dependencies
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
