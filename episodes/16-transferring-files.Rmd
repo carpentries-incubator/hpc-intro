@@ -492,7 +492,7 @@ the executable using the Python `pip` installation command:
 
 The Amdahl program is written in Python, and installing or using it requires
 locating the `python3` executable on the login node.
-If it can't be found, try listing available modules using `module avail`,/
+If it can't be found, try listing available modules using `module avail`,
 load the appropriate one, and try the command again.
 
 
@@ -515,7 +515,7 @@ retrieve the tarball from <https://github.com/mpi4py/mpi4py/tarball/master>
 then `rsync` it to the cluster, extract, and install:
 
 ```bash
-`r config$local$prompt` wget -O mpi4py.tar.gz https://github.com/mpi4py/mpi4py/releases/download/3.1.4/mpi4py-3.1.4.tar.gz
+`r config$local$prompt` wget -O mpi4py.tar.gz https://github.com/mpi4py/mpi4py/tarball/master
 `r config$local$prompt` scp mpi4py.tar.gz `r config$remote$user`@`r config$remote$login`:
 # or
 `r config$local$prompt` rsync -avP mpi4py.tar.gz `r config$remote$user`@`r config$remote$login`:
