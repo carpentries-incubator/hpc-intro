@@ -99,6 +99,10 @@ message telling you so.
 No modules loaded
 ```
 
+```{r, echo=FALSE, results='asis'}
+snippets('modules/default-modules.Rmd')
+```
+
 ## Loading and Unloading Software
 
 To load a software module, use `module load`.
