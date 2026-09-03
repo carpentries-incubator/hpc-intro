@@ -4,11 +4,6 @@ teaching: 30
 exercises: 15
 ---
 
-```{r, echo=FALSE}
-# Source the external configuration script
-source("load_config.R")
-```
-
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Load and use a software package.

@@ -4,11 +4,6 @@ teaching: 30
 exercises: 60
 ---
 
-```{r, echo=FALSE}
-# Source the external configuration script
-source("load_config.R")
-```
-
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Prepare a job submission script for the parallel executable.
