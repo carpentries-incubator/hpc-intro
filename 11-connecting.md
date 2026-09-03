@@ -1,74 +1,82 @@
 ---
-title: Connecting to a remote HPC system
-teaching: 25
-exercises: 10
+title: Connecting Securely to an HPC Cluster
+teaching: 35
+exercises: 0
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Configure secure access to a remote HPC system.
-- Connect to a remote HPC system.
+- Explain why secure remote access is required for HPC systems.
+- Configure SSH key-based authentication for an HPC cluster.
+- Connect securely to the login node of an HPC cluster.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How do I log in to a remote HPC system?
+- Why is SSH used to access HPC systems securely?
+- How do I authenticate and connect to an HPC login node?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+An HPC cluster is a collection of computers that users access remotely. Your laptop
+is not part of the cluster; it is the computer from which you connect. To begin
+working on the HPC cluster, you must first establish a secure connection to the
+system. Because HPC clusters are shared resources accessed over institutional or
+public networks, authentication and encrypted communication are fundamental
+components of every HPC workflow.
+
 ## Secure Connections
 
-The first step in using a cluster is to establish a connection from our laptop
-to the cluster. When we are sitting at a computer (or standing, or holding it
-in our hands or on our wrists), we have come to expect a visual display with
-icons, widgets, and perhaps some windows or applications: a *graphical user
-interface*, or GUI. Since computer clusters are remote resources that we
-connect to over slow or intermittent interfaces (WiFi and VPNs especially), it
-is more practical to use a *command-line interface*, or CLI, to send commands
-as plain-text. If a command returns output, it is printed as plain text as
-well. The commands we run today will not open a window to show graphical
-results.
+The first step in using an HPC cluster is to establish a secure connection from your
+local computer. When we interact with a computer, we often use *graphical user interface*,
+or GUI, with windows, icons, menus, and other visual elements.
+Because HPC systems are administered remotely, the *command-line interface* (CLI)
+remains the standard method for interacting with HPC environments. CLI-based workflows
+are lightweight, reproducible, and well suited to automation, allowing users to manage
+files, compile software, execute applications, and administer remote systems efficiently.
+Compared with graphical desktop environments, the CLI also consumes very little network
+bandwidth.
 
 If you have ever opened the Windows Command Prompt or macOS Terminal, you have
 seen a CLI. If you have already taken "The Carpentries" courses on the UNIX
 Shell or Version Control, you have used the CLI on your *local machine*
-extensively. The only leap to be made here is to open a CLI on a *remote
-machine*, while taking some precautions so that other folks on the network
-can't see (or change) the commands you're running or the results the remote
-machine sends back. We will use the _**S**ecure **Sh**ell_ protocol (or SSH) to open an
-encrypted network connection between two machines, allowing you to send \&
-receive text and data without having to worry about prying eyes.
+extensively. The main new concept is opening a CLI session on the remote HPC
+cluster while taking appropriate precautions so that other people on the network
+cannot see (or modify) the commands you run or the results returned by the remote
+HPC system. We will use the _**S**ecure **Sh**ell_ protocol (or SSH) to open an
+encrypted network connection between two machines, allowing commands, files, and
+other data to be exchanged securely.
 
 ![connect-to-remote.svg](fig/connect-to-remote.svg){
   max-width="50%"
   alt="Connect to cluster. "
 }
 
-SSH clients are usually command-line tools, where you provide the remote
-machine address as the only required argument. If your username on the remote
-system differs from what you use locally, you must provide that as well. If
-your SSH client has a graphical front-end, such as PuTTY or MobaXterm, you will
-set these arguments before clicking "connect." From the terminal, you'll write
-something like `ssh username@hostname`, where the argument is just like an
-email address: the "@" symbol is used to separate the personal ID from the
-address of the remote machine. In this lesson, yourUsername represents
-the `username` on the remote system, and cluster.hpc-carpentry.org represents
-the cluster's login address (`hostname`), i.e., how to find the cluster on the
-internet.
+SSH clients are usually command-line tools that require only the remote system address
+as a mandatory argument. If your username on the remote system differs from
+what you use locally, you must provide that as well. If your SSH client has a
+graphical front-end, such as PuTTY or MobaXterm, you will set these arguments
+before clicking "connect". From the terminal, you'll write something like
+`ssh username@hostname`, where the argument is similar to an email address:
+the `@` separates the remote username from the remote host.
+In this lesson, *yourUsername* represents the username on the remote
+system, and *cluster.hpc-carpentry.org* represents the cluster's login address
+(`hostname`), which identifies the cluster's login node on the network.
 
-When logging in to a laptop, tablet, or other personal device, a username,
-password, or pattern are normally required to prevent unauthorized access. In
-these situations, the likelihood of somebody else intercepting your password is
-low, since logging your keystrokes requires a malicious exploit or physical
-access. For systems like `login1` running an SSH server, anybody
-on the network can log in, or try to. Since usernames are often public or easy
-to guess, your password is often the weakest link in the security chain. Many
-clusters therefore forbid password-based login, requiring instead that you
-generate and configure a public-private key pair with a much stronger password.
-Even if your cluster does not require it, the next section will guide you
-through the use of SSH keys and an SSH agent to both strengthen your security
-*and* make it more convenient to log in to remote systems.
+When logging in to a laptop, tablet, or other personal device, a username, password,
+or pattern are normally required to prevent unauthorized access. In these situations,
+the likelihood of somebody else intercepting your password is low, since logging your
+keystrokes requires a malicious exploit or physical access. For systems like
+`login1` running an SSH server, anyone on the network can attempt
+to log in to the system. Since usernames are often public or easy to guess, your
+password is often the weakest link in the security chain. Many HPC centres disable
+password authentication for SSH and instead require or prefer public-key authentication.
+Authentication policies may vary between HPC centres, and some systems also
+use institutional identity services or multi-factor authentication. The private key
+should also be protected by a strong passphrase. Even if your cluster does not require
+it, the next section will guide you through the use of SSH keys and an SSH agent to
+both strengthen your security and make it more convenient to log in to remote systems.
 
 ### Better Security With SSH Keys
 
@@ -76,37 +84,50 @@ The [Lesson Setup](../learners/setup.md) provides instructions for installing
 a shell application with SSH. If you have not done so already, please open that
 shell application with a Unix-like command line interface to your system.
 
-SSH keys are an alternative method for authentication to obtain access to
-remote computing systems. They can also be used for authentication when
-transferring files or for accessing remote version control systems (such as
-[GitHub][gh-ssh]).
-In this section you will create a pair of SSH keys:
+SSH authenticates users using public-key cryptography. A public key is
+registered with the HPC centre's authentication system, while the corresponding
+private key remains securely stored on your local computer. SSH keys provide an
+alternative authentication mechanism for accessing remote computing systems.
+They can also be used for authentication when transferring files or for accessing
+remote version control systems (such as [GitHub][gh-ssh]). In this section you
+will create a pair of SSH keys:
 
 - a private key which you keep on your own computer, and
 - a public key which can be placed on any remote system you will access.
+
+SSH public-key authentication can replace password-based SSH authentication during login.
+Instead of proving your identity with your account password, SSH proves that you possess
+the private key corresponding to the public key stored on the cluster. However, your private
+key should itself be protected by a passphrase. The passphrase protects your private key
+while it is stored on your computer. After you enter the passphrase, the private-key
+identity can be loaded into the SSH agent. The agent can then use that identity for
+subsequent SSH authentication.
+
+An SSH agent is optional. It is a convenience mechanism that holds a private-key identity
+for authentication, so you do not need to enter the key's passphrase for every SSH connection.
 
 :::::::::::::::::::::::::::::::::::::::::  caution
 
 ## Private keys are your secure digital passport
 
-A private key that is visible to anyone but you should be considered
-compromised and must be destroyed. This includes cases where the key
-(or a copy) is stored in a directory with improper permissions,
-is transmitted over an unencrypted network, is sent as an attachment via
-unencrypted email, or is even displayed on your terminal window.
+If someone else obtains your private key, treat it as compromised. Stop using it,
+remove its corresponding public key from systems where it is authorized, and generate
+a new key pair. This includes cases where the key (or a copy) is stored in a directory
+with improper permissions, is transmitted over an unencrypted network, is sent as an
+attachment via unencrypted email, or is even displayed on your terminal window.
 
 Protect this key as if it unlocks your front door. In many ways, it does.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Regardless of the software or operating system you use, *please* choose a
-strong password or passphrase to act as another layer of protection for your
-private SSH key.
+Regardless of the software or operating system you use, please choose a strong
+passphrase to act as another layer of protection for your private SSH key.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Considerations for SSH Key Passwords
+## Considerations for SSH Key Passphrases
 
-When prompted, enter a strong password that you will remember. There are two
+When prompted, enter a strong passphrase that you will remember. There are two
 common approaches to this:
 
 1. Create a memorable passphrase with some punctuation and number-for-letter
@@ -115,31 +136,30 @@ common approaches to this:
 2. Use a password manager and its built-in password generator with all
   character classes, 25 characters or longer. [KeePass][keepass] and
   [BitWarden][bitwarden] are two good options.
-3. Nothing is *less* secure than a private key with no password. If you
-  skip password entry by accident, go back and generate a new key pair
-  *with* a strong password.
+3. Nothing is less secure than a private key with no passphrase. If you
+  skip passphrase entry by accident, go back and generate a new key pair
+  with a strong passphrase.
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 #### SSH Keys on Linux, Mac, MobaXterm, and Windows Subsystem for Linux
 
-Once you have opened a terminal, check for existing SSH keys and filenames
-since existing SSH keys are overwritten.
+Once you have opened a terminal, check for existing SSH keys before generating a
+new key pair, since files with the same name may be overwritten.
 
 ```bash
 [you@laptop:~]$ ls ~/.ssh/
 ```
 
 If `~/.ssh/id_ed25519` already exists, you will need to specify
-a different name for the new key-pair.
+a different name for the new key pair.
 
 Generate a new public-private key pair using the following command, which will
 produce a stronger key than the `ssh-keygen` default by invoking these flags:
 
 - `-a` (default is 16): number of rounds of passphrase derivation; increase to
   slow down brute force attacks.
-- `-t` (default is [rsa][wiki-rsa]): specify the "type" or cryptographic
-  algorithm. `ed25519` specifies [EdDSA][wiki-dsa] with a 256-bit key;
-  it is faster than RSA with a comparable strength.
+- `-t` (default is Ed25519): specifies the key "type" or cryptographic
+  algorithm. `ed25519` specifies the [EdDSA][wiki-dsa] public-key algorithm.
 - `-f` (default is /home/user/.ssh/id\_algorithm): filename to store your
   private key. The public key filename will be identical, with a `.pub`
   extension added.
@@ -148,9 +168,9 @@ produce a stronger key than the `ssh-keygen` default by invoking these flags:
 [you@laptop:~]$ ssh-keygen -a 100 -f ~/.ssh/id_ed25519 -t ed25519
 ```
 
-When prompted, enter a strong password with the
-[above considerations in mind](#considerations-for-ssh-key-passwords).
-Note that the terminal will not appear to change while you type the password:
+When prompted, enter a strong passphrase with the
+[above considerations in mind](#considerations-for-ssh-key-passphrases).
+Note that the terminal will not appear to change while you type the passphrase:
 this is deliberate, for your security. You will be prompted to type it again,
 so don't worry too much about typos.
 
@@ -163,7 +183,7 @@ Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Use RSA for Older Systems
+## If `ed25519` is not Supported on Your Local Computer (Use RSA for Older Systems)
 
 If key generation failed because ed25519 is not available, try using the older
 (but still strong and trustworthy) [RSA][wiki-rsa] cryptosystem. Again, first
@@ -173,11 +193,11 @@ check for an existing key:
 [you@laptop:~]$ ls ~/.ssh/
 ```
 
-If `~/.ssh/id_rsa` already exists, you will need to specify choose a different
-name for the new key-pair. Generate it as above, with the following extra flags:
+If `~/.ssh/id_rsa` already exists, you will need to specify a different filename
+for the new key pair. Generate it as above, with the following extra flags:
 
-- `-b` sets the number of bits in the key. The default is 2048.
-  EdDSA uses a fixed key length, so this flag would have no effect.
+- `-b` sets the number of bits in the key. For RSA keys, the default is 3072 bits.
+  Ed25519 uses a fixed key size, so the `-b` option does not apply to Ed25519 keys.
 - `-o` (no default): use the OpenSSH key format,
   rather than PEM.
 
@@ -185,8 +205,8 @@ name for the new key-pair. Generate it as above, with the following extra flags:
 [you@laptop:~]$ ssh-keygen -a 100 -b 4096 -f ~/.ssh/id_rsa -o -t rsa
 ```
 
-When prompted, enter a strong password with the
-[above considerations in mind](#considerations-for-ssh-key-passwords).
+When prompted, enter a strong passphrase with the
+[above considerations in mind](#considerations-for-ssh-key-passphrases).
 
 Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
 
@@ -203,12 +223,12 @@ Take a look in `~/.ssh` (use `ls ~/.ssh`). You should see two new files:
 If you are using PuTTY on Windows, download and use `puttygen` to generate the
 key pair. See the [PuTTY documentation][putty-gen] for details.
 
-- Select `EdDSA` as the key type.
-- Select `255` as the key size or strength.
+- Select `ed25519` as the key type.
+- If PuTTYgen asks for a key size, use `255` bits.
 - Click on the "Generate" button.
 - You do not need to enter a comment.
-- When prompted, enter a strong password with the
-  [above considerations in mind](#considerations-for-ssh-key-passwords).
+- When prompted, enter a strong passphrase with the
+  [above considerations in mind](#considerations-for-ssh-key-passphrases).
 - Save the keys in a folder no other users of the system can read.
 
 Take a look in the folder you specified. You should see two new files:
@@ -220,18 +240,23 @@ Take a look in the folder you specified. You should see two new files:
 
 ### SSH Agent for Easier Key Handling
 
-An SSH key is only as strong as the password used to unlock it, but on the
-other hand, typing out a complex password every time you connect to a machine
-is tedious and gets old very fast. This is where the [SSH Agent][ssh-agent]
-comes in.
+A private SSH key is only as secure as the passphrase used to protect or unlock it.
+Entering the passphrase every time you establish an SSH connection can become tedious.
+This is where the [SSH agent][ssh-agent] comes in.
 
-Using an SSH Agent, you can type your password for the private key once, then
-have the Agent remember it for some number of hours or until you log off.
-Unless some nefarious actor has physical access to your machine, this keeps the
-password safe, and removes the tedium of entering the password multiple times.
+Using an SSH agent, you can enter your private key's passphrase once. The agent keeps
+the loaded private-key identity available for subsequent SSH connections until the
+identity lifetime expires or the identity is removed from the agent. This removes the
+need to enter the passphrase for every new SSH connection.
 
-Just remember your password, because once it expires in the Agent, you have to
+::: caution
+
+### SSH Passphrase
+
+Just remember your passphrase, because once it expires in the agent, you have to
 type it in again.
+
+:::
 
 #### SSH Agents on Linux, macOS, and Windows
 
@@ -257,10 +282,11 @@ Open your terminal application and check if an agent is running:
   
   ## What's in a `$(...)`?
   
-  The syntax of this SSH Agent command is unusual, based on what we've seen
-  in the UNIX Shell lesson. This is because the `ssh-agent` command creates
-  opens a connection that only you have access to, and prints a series of
-  shell commands that can be used to reach it -- but *does not execute them!*
+  The syntax of this SSH agent command is unusual, based on what we've seen
+  in the UNIX Shell lesson. This is because the `ssh-agent` command starts
+  an authentication agent and prints a series of shell commands that allow
+  your current shell to communicate with it -- but *does not execute them*
+  automatically. 
   
   ```bash
   [you@laptop:~]$ ssh-agent
@@ -275,7 +301,7 @@ Open your terminal application and check if an agent is running:
   ```
   
   The `eval` command interprets this text output as commands and allows you
-  to access the SSH Agent connection you just created.
+  to access the SSH agent connection you just created.
   
   You could run each line of the `ssh-agent` output yourself, and
   achieve the same result. Using `eval` just makes this easier.
@@ -294,20 +320,18 @@ Add your key to the agent, with session expiration after 8 hours:
 ```output
 Enter passphrase for .ssh/id_ed25519: 
 Identity added: .ssh/id_ed25519
-Lifetime set to 86400 seconds
+Lifetime set to 28800 seconds
 ```
 
-For the duration (8 hours), whenever you use that key, the SSH Agent will
-provide the key on your behalf without you having to type a single keystroke.
+For the next eight hours, the SSH agent can use the loaded private-key identity whenever
+it is needed, so you don't have to enter its passphrase again.
 
 #### SSH Agent on PuTTY
 
 If you are using PuTTY on Windows, download and use `pageant` as the SSH agent.
 See the [PuTTY documentation][putty-agent].
 
-### Transfer Your Public Key
-
-
+### Uploading Your Public Key
 
 Visit [https://mokey.cluster.hpc-carpentry.org](https://mokey.cluster.hpc-carpentry.org) to upload your SSH public key. (Remember, it's the one ending in `.pub`!)
 
@@ -321,9 +345,9 @@ supplied by the instructors.
 [you@laptop:~]$ ssh yourUsername@cluster.hpc-carpentry.org
 ```
 
-You may be asked for your password. Watch out: the characters you type after
-the password prompt are not displayed on the screen. Normal output will resume
-once you press `Enter`.
+Depending on your cluster configuration, SSH may prompt you for either your account
+password or your private key's passphrase. Watch out: characters typed at either
+prompt are not displayed on the screen. Normal output will resume once you press `Enter`.
 
 You may have noticed that the prompt changed when you logged into the remote
 system using the terminal (if you logged in using PuTTY this will not apply
@@ -359,8 +383,32 @@ may also notice that the current hostname is also part of our prompt!)
 login1
 ```
 
-So, we're definitely on the remote machine. Next, let's find out where we are
-by running `pwd` to **p**rint the **w**orking **d**irectory.
+The `hostname` identifies the computer to which you are currently connected. In most HPC systems,
+this computer is known as the *login node*. The login node provides an interactive environment
+where users authenticate, manage files, compile applications (where permitted by local policy),
+and prepare computational work. Later in the course, you will learn how different types of jobs are
+submitted from the login node for execution.
+
+::: callout
+
+## Login Nodes
+
+A login node is typically one of the primary entry points to an HPC cluster. Use it to:
+
+- authenticate;
+- inspect and manage files;
+- configure your environment;
+- prepare your work;
+- submit jobs;
+- monitor jobs.
+
+It is not recommended to run long-running or resource-intensive scientific workloads directly
+on a login node unless the cluster documentation explicitly permits it.
+
+:::
+
+
+Next, let's find out where we are by running `pwd` to **p**rint the **w**orking **d**irectory.
 
 ```bash
 [yourUsername@login1 ~]$ pwd
@@ -370,20 +418,166 @@ by running `pwd` to **p**rint the **w**orking **d**irectory.
 /home/yourUsername
 ```
 
-Great, we know where we are! Let's see what's in our current directory:
+The output shows your current working directory on the HPC system. By default, your SSH session
+begins in your home directory, where your personal files, shell configuration files, and other
+user-specific configurations may be stored.
 
 ```bash
 [yourUsername@login1 ~]$ ls
 ```
 
 ```output
-id_ed25519.pub
+
 ```
 
-The system administrators may have configured your home directory with some
-helpful files, folders, and links (shortcuts) to space reserved for you on
-other filesystems. If they did not, your home directory may appear empty. To
-double-check, include hidden files in your directory listing:
+The system administrators may have configured your home directory with some helpful
+files, directories (or folders), and symbolic links (shortcuts) to space
+reserved for you on other filesystems. If they did not, your home directory may appear
+empty. To double-check, include hidden files in your directory listing:
+
+```bash
+[yourUsername@login1 ~]$ ls -a
+```
+
+```output
+  .            .bashrc
+  ..           .ssh
+```
+
+In the first column, `.` is a reference to the current directory and `..` a
+reference to its parent (`/home`). You may or may not see the
+other files, or files like them: `.bashrc` is a shell configuration file, which
+you can edit with your preferences; and `.ssh` is a directory containing user-specific
+SSH configurations and authentication-related files. Its contents differ between
+your local computer and your HPC account.
+
+### Verify Your SSH Key Registration
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## SSH Key Registration Depends on the HPC Centre
+
+Policies and practices for handling SSH keys vary between HPC clusters:
+follow any guidance provided by the cluster administrators or
+documentation. In particular, if there is an online portal for managing SSH
+keys, use that instead of the directions outlined here.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+If you uploaded your SSH public key through the [cluster's web portal](#uploading-your-public-key),
+the key has been registered with the authentication system used by the cluster. On systems that
+use a conventional `~/.ssh/authorized_keys` file, you may see the registered key there.
+
+```bash
+[yourUsername@login1 ~]$ ls ~/.ssh
+```
+
+```output
+authorized_keys
+```
+
+::: caution
+
+HPC centres may store and manage SSH public keys in different ways. Your centre
+may use a web portal, a local `authorized_keys` file, or another authentication
+service. Do not be surprised if your HPC account does not contain a `~/.ssh` directory
+or an `authorized_keys` file.
+
+:::
+
+The contents of `~/.ssh` vary between systems and can contain additional files such as
+`known_hosts` or `config`.
+
+If your HPC centre uses `~/.ssh/authorized_keys`, you can inspect the file with:
+
+```bash
+[yourUsername@login1 ~]$ cat ~/.ssh/authorized_keys
+```
+
+Each line in `authorized_keys` contains a public key that the SSH server may accept
+for public-key authentication to this account. If you access the cluster from multiple
+computers, this file may contain multiple entries.
+
+```output
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJC/bo0gZHk+8/kl8DNFd8hUrUqaGdL7o+TisQe/uQlp you@laptop
+```
+
+Note that the output shown above can vary from person to person and location to location.
+
+If your HPC centre does not provide a portal for registering SSH keys, follow the key-registration
+method documented by the centre. On systems that permit direct shell-based registration,
+`ssh-copy-id` or an `scp`-based workflow may be available. These are alternative bootstrap
+workflows for HPC centres that permit users to register SSH keys directly from the command
+line. Use them only when the centre's documentation permits this workflow.
+
+::: spoiler
+
+## Alternative: Registering a Key with `ssh-copy-id`
+
+`ssh-copy-id` is a bootstrap mechanism: it normally uses an authentication method
+that is already available to install the public key for future public-key authentication.
+
+`ssh-copy-id` uses `ssh` to connect to the remote system and, by default, attempts
+to authenticate using the available authentication mechanisms. In the usual case,
+this means using the remote account's login password, so password authentication
+must be enabled on the SSH server.
+
+The command examines the keys available to the local SSH client and determines
+which keys are already authorized on the remote system. When an SSH agent is available,
+its keys can be used during this process.
+
+With the `-i ~/.ssh/id_ed25519.pub` option, we explicitly select the public key that
+should be installed. This prevents `ssh-copy-id` from selecting other identities
+that may be available through the SSH agent or default identity files.
+
+`ssh-copy-id` normally installs the selected public key in the remote account's
+authorized-key configuration, commonly `~/.ssh/authorized_keys`.
+If the `~/.ssh` directory or `authorized_keys` file does not yet exist, `ssh-copy-id`
+can create them as necessary.
+
+```bash
+[you@laptop:~]$ ssh-copy-id -i ~/.ssh/id_ed25519.pub yourUsername@cluster.hpc-carpentry.org
+```
+
+Some SSH servers require restrictive permissions on the `.ssh` directory and
+the `authorized_keys` file before key-based authentication is accepted.
+
+```bash
+[yourUsername@login1 ~]$ chmod 700 ~/.ssh
+[yourUsername@login1 ~]$ chmod 640 ~/.ssh/authorized_keys
+```
+
+::: callout
+
+Depending on the SSH server configuration, overly permissive ownership or permissions
+on these files can cause the server to reject public-key authentication.
+
+:::
+
+::::
+
+::: spoiler
+
+## Alternative: Transfer a Key with `scp`
+
+If the `authorized_keys` file does not exist:
+You need to "register" the public-key: it must be listed in a file named `authorized_keys`,
+under the `.ssh` folder.
+
+If the `.ssh` folder was not listed on the remote cluster, then it does not yet exist: create it.
+
+```bash
+[yourUsername@login1 ~]$ mkdir ~/.ssh
+```
+
+From your local computer, transfer only the public key, whose filename ends in `.pub`,
+to your HPC home directory.
+
+```bash
+[you@laptop:~]$ scp ~/.ssh/id_ed25519.pub yourUsername@cluster.hpc-carpentry.org:~/
+```
+
+List the hidden files in the directory:
 
 ```bash
 [yourUsername@login1 ~]$ ls -a
@@ -394,35 +588,6 @@ double-check, include hidden files in your directory listing:
   ..           .ssh
 ```
 
-In the first column, `.` is a reference to the current directory and `..` a
-reference to its parent (`/home`). You may or may not see
-the other files, or files like them: `.bashrc` is a shell configuration file,
-which you can edit with your preferences; and `.ssh` is a directory storing SSH
-keys and a record of authorized connections.
-
-### Install Your SSH Key
-
-:::::::::::::::::::::::::::::::::::::::::  callout
-
-## There May Be a Better Way
-
-Policies and practices for handling SSH keys vary between HPC clusters:
-follow any guidance provided by the cluster administrators or
-documentation. In particular, if there is an online portal for managing SSH
-keys, use that instead of the directions outlined here.
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-If you transferred your SSH public key with `scp`, you should see
-`id_ed25519.pub` in your home directory. To "install" this key, it must be
-listed in a file named `authorized_keys` under the `.ssh` folder.
-
-If the `.ssh` folder was not listed above, then it does not yet
-exist: create it.
-
-```bash
-[yourUsername@login1 ~]$ mkdir ~/.ssh
-```
-
 Now, use `cat` to print your public key, but redirect the output, appending it
 to the `authorized_keys` file:
 
@@ -430,13 +595,32 @@ to the `authorized_keys` file:
 [yourUsername@login1 ~]$ cat ~/id_ed25519.pub >> ~/.ssh/authorized_keys
 ```
 
-That's all! Disconnect, then try to log back into the remote: if your key and
-agent have been configured correctly, you should not be prompted for the
-password for your SSH key.
+Some SSH servers require restrictive permissions on the `.ssh` directory and
+the `authorized_keys` file before key-based authentication is accepted.
+
+```bash
+[yourUsername@login1 ~]$ chmod 700 ~/.ssh
+[yourUsername@login1 ~]$ chmod 640 ~/.ssh/authorized_keys
+```
+
+::: callout
+
+Depending on the SSH server configuration, overly permissive ownership or permissions
+on these files can cause the server to reject public-key authentication.
+
+:::
+
+::::
+
+To verify that key-based authentication works for a new SSH session, disconnect from
+the cluster and connect again:
 
 ```bash
 [yourUsername@login1 ~]$ logout
 ```
+
+If your private key is loaded in the SSH agent, you normally will not need to enter
+its passphrase again while that identity remains available to the agent.
 
 ```bash
 [you@laptop:~]$ ssh yourUsername@cluster.hpc-carpentry.org
@@ -453,12 +637,16 @@ password for your SSH key.
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- An HPC system is a set of networked machines.
-- HPC systems typically provide login nodes and a set of worker nodes.
-- The resources found on independent (worker) nodes can vary in volume and type
-  (amount of RAM, processor architecture, availability of network-mounted
-  filesystems, etc.).
-- Files saved on one node are typically accessible from all nodes via a shared
-  filesystem.
+- HPC clusters are shared computational resources that users access remotely.
+- Secure Shell (SSH) provides encrypted communication between your local computer
+  and an HPC cluster.
+- SSH public-private key pairs provide a secure method for authenticating to
+  remote systems.
+- A private key remains on your local computer and should be protected with a strong
+  passphrase.
+- An SSH agent can temporarily retain a private-key identity so that its passphrase
+  does not need to be entered on every connection.
+- Users typically connect to an HPC system through a login node, where they authenticate,
+  manage files, configure their environment, and prepare their work.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
