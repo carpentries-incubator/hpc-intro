@@ -99,20 +99,24 @@ profiles:
 # For this lesson we use a default configuration which should have all
 # configuration and snippet items referenced in the lesson.
 # (snippets are in a subdirectory alongside the configuraton file)
-default_config: episodes/files/customization/HPCC_MagicCastle_slurm/_config_options.yml
+# The config option below shows the base name of the directory containing this configuration,
+# within episodes/files/customization/.
+workbench_base_customization: HPCC_MagicCastle_slurm
 
-# Optionally, you can then override this default with (a subset of) customized
+# Optionally, you can then overlay this default with (a subset of) customized
 # values that more closely match your system
 # (custom snippets should be in a subdirectory alongside the configuraton file, you can
-# also override none or as many of those as you like)
-
-# You could use the configuration option below but, rather than edit this file,
-# the build system listens to the environment variable
-# "HPC_CARPENTRY_CUSTOMIZATION" which you set to the path to your customisations
-
-# custom_config: episodes/files/customization/Ghastly_Mistakes/_config_options.yml
+# also overlay none or as many of those as you like)
+# Put your overlay customization in its own directory within episodes/files/customization
+# then specify the base name of that custom overlay directory, either as:
+# 1. (Preferred) the value of an environment variable called WORKBENCH_OVERLAY_CUSTOMIZATION
+#   (set this on your GitHub repository under
+#    Settings->Secrets and variables->Actions->Variables->New repository variable)
+# or
+# 2. a new workbench_overlay_customization config option in this file.
 
 carpentry_description: Lesson Description
 url: 'https://carpentries-incubator.github.io/hpc-intro/'
 analytics: carpentries
 lang: en
+
