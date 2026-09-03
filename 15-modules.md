@@ -4,8 +4,6 @@ teaching: 30
 exercises: 15
 ---
 
-
-
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Load and use a software package.

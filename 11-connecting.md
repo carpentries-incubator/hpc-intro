@@ -4,8 +4,6 @@ teaching: 25
 exercises: 10
 ---
 
-
-
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Configure secure access to a remote HPC system.

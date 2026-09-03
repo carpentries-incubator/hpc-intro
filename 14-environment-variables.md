@@ -4,8 +4,6 @@ teaching: 10
 exercises: 5
 ---
 
-
-
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Understand how variables are implemented in the shell

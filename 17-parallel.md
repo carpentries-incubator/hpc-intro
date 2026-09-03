@@ -4,8 +4,6 @@ teaching: 30
 exercises: 60
 ---
 
-
-
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Prepare a job submission script for the parallel executable.

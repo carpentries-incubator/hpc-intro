@@ -4,8 +4,6 @@ teaching: 10
 exercises: 20
 ---
 
-
-
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Look up job statistics.

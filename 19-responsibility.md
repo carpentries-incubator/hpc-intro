@@ -4,8 +4,6 @@ teaching: 15
 exercises: 5
 ---
 
-
-
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Describe how the actions of a single user can affect the experience of others on a shared system.

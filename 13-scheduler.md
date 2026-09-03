@@ -4,8 +4,6 @@ teaching: 45
 exercises: 30
 ---
 
-
-
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Submit a simple script to the cluster.

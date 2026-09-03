@@ -4,8 +4,6 @@ teaching: 15
 exercises: 15
 ---
 
-
-
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Transfer files to and from a computing cluster.

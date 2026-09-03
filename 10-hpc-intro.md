@@ -4,8 +4,6 @@ teaching: 15
 exercises: 5
 ---
 
-
-
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Describe what an HPC system is

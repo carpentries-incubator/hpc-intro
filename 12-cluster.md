@@ -4,8 +4,6 @@ teaching: 25
 exercises: 10
 ---
 
-
-
 ::: questions
 - "What is an HPC system?"
 - "How does an HPC system work?"

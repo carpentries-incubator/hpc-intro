@@ -4,8 +4,6 @@ teaching: 15
 exercises: 5
 ---
 
-
-
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Prepare a job submission script for an array job.
