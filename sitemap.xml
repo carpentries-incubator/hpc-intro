@@ -46,7 +46,13 @@
     <loc>https://carpentries-incubator.github.io/hpc-intro/MAINTENANCE.html</loc>
   </url>
   <url>
+    <loc>https://carpentries-incubator.github.io/hpc-intro/aio.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries-incubator.github.io/hpc-intro/files/jargon.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-intro/images.html</loc>
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/hpc-intro/index.html</loc>
@@ -97,10 +103,28 @@
     <loc>https://carpentries-incubator.github.io/hpc-intro/instructor/MAINTENANCE.html</loc>
   </url>
   <url>
+    <loc>https://carpentries-incubator.github.io/hpc-intro/instructor/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-intro/instructor/images.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries-incubator.github.io/hpc-intro/instructor/index.html</loc>
   </url>
   <url>
+    <loc>https://carpentries-incubator.github.io/hpc-intro/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-intro/instructor/key-points.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries-incubator.github.io/hpc-intro/instructor/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-intro/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries-incubator.github.io/hpc-intro/key-points.html</loc>
   </url>
   <url>
     <loc>https://carpentries-incubator.github.io/hpc-intro/profiles.html</loc>
