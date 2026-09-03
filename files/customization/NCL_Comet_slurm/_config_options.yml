@@ -1,0 +1,41 @@
+# Customization for Newcastle University's Comet Cluster
+# Use the HPC_CARPENTRY_CUSTOMIZATION variable to invoke these:
+#
+# > HPC_CARPENTRY_CUSTOMIZATION=episodes/files/customization/NCL_Comet_slurm/_config_options.yml
+# > export HPC_CARPENTRY_CUSTOMIZATION
+---
+snippets: episodes/files/customization/NCL_Comet_slurm/snippets
+
+local:
+  prompt: "[you@laptop:~]$"
+  shebang: "#!/usr/bin/env bash"
+
+remote:
+  name: "Comet"
+  host_id: "FIXME_Comet"
+  login: "comet.ncl.ac.uk"
+  host: "cometlogin01"
+  node: "compute030"
+  location: "comet.ncl.ac.uk"
+  user: "user"
+  prompt: '[user@cometlogin01(comet) ~]'
+  shebang: "#!/bin/bash"
+
+  fs:
+    home: "/mnt/nfs/home"
+
+  module_python3:
+    python: "N/A"
+
+sched:
+  name: "Slurm"
+  submit:
+    name: "sbatch"
+    options: "--account=comet_training"
+  queue:
+    debug: "N/A"
+    testing: "short_free"
+  reservation: "shortqos"
+  qos: "short"
+  account: "comet_training"
+  project: "FIXME_comet_training"

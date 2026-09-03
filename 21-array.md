@@ -1,0 +1,220 @@
+---
+title: Parallelising with Job Arrays
+teaching: 15
+exercises: 5
+---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Prepare a job submission script for an array job.
+- Launch a job to be executed in parallel over several nodes
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- What are job arrays?
+- What benefits do job arrays bring?
+- What type of jobs would benefit from job arrays?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Parallel computing allows multiple computational tasks to execute
+simultaneously in order to reduce execution time for a task, or
+increase throughput for multiple tasks. Depending on the application,
+the workload may be divided into cooperating subtasks that communicate with
+one another, or into independent tasks that execute separately.
+
+One common approach to parallel computing is to distribute computation across
+multiple processes that cooperate by exchanging information during
+execution using the Message Passing Interface. This is the "MPI" that we
+saw as a dependency of the `amdahl` application.
+
+Not all workloads require processes to cooperate. Many scientific workflows
+are made up of independent jobs. For these cases, Slurm
+provides Job Arrays, allowing many similar jobs to be submitted and managed together.
+
+For instance,
+you might need to run the same task on several independent input
+files, or you may have multiple serial tasks that take some parameter,
+and you need to explore several values of the parameter.
+Workflows made up of these independent elements are 
+also sometimes called "high-throughput" computing.
+
+Operationally speaking, a Job Array is a collection of related batch
+jobs submitted using a single job script.
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+What distinguishes workloads that are suitable for job arrays from those
+that require traditional parallel programming?
+Describe some examples.
+
+:::::::::::::::  solution
+
+Tasks appropriate for array jobs are "high-throughput", where
+the same thing needs to be done many times, possibly over a set
+of parameters, but where each task is independent of the others.
+
+For example, running the same statistical analysis on a large
+number of independent input files is a good candidate for an
+array solution.
+
+Parallel tasks which have interactions between the various
+parallel processes need to communicate between processes at
+run-time, and are not appropriate for job arrays.
+
+For example, most parallel scientific codes that run in
+parallel have a requirement to communicate between parallel
+elements at run-time, and are not appropriate for job arrays.
+
+Similarly, serial tasks which only need to be run once do not
+benefit from parallelism. Aggregating unrelated tasks into an
+array merely for the sake of grouping does not make sense.
+
+:::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
+We have already seen how to submit a single serial job to the
+Slurm scheduler.
+
+Array jobs differ in character, but are specified in a similar manner.
+The batch file describes the array to the system, and at submission
+time, all of the array elements are submitted together. They may
+dispatch at different times, and may or may not run concurrently.
+
+Within
+the execution environment of an array element, a number of environment
+variables will be set, which can be used at run-time by the
+array elements to identify the size of the array, and their
+position within it, allowing them to select the correct input
+file. These jobs will be dispatched as their resource requirements
+and priorities are met, and they may or may not run concurrently.
+
+By way of review, we will construct a job submission script that
+runs the `amdahl` executable with the default arguments.
+
+Using `nano`, create a script called
+`job_single_amdahl.sh` containing the following:
+
+
+```bash
+#!/bin/bash
+#SBATCH --partition=cpubase_bycore_b1
+#SBATCH --job-name=amdahl_defaults
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --time=00:05:00
+
+echo "Run the Amdahl executable with default arguments."
+amdahl
+echo "Finished Amdahl."
+```
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+How would you submit the script to Slurm for execution?
+
+:::::::::::::::  solution
+
+  
+```bash
+sbatch job_single_amdahl.sh
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Array Job Syntax
+
+
+To specify an array job, you only need to add a single
+directive to your batch file, and then adapt your run command
+to take advantage of the information provided by the environment
+variables.
+
+The relevant array directive has this format:
+
+```bash
+#SBATCH --array=<array-spec>
+```
+
+The `<array-spec>` above is a place-holder for specifying the
+size and extent of the array. The specification will resolve to
+set of integers, which will index the job array elements.
+
+For a simple example, an array specification of `1-4` means the
+system should create four array elements, numbered consecutively
+from one through four.
+
+You can also specify a comma-separated set of numbers, such
+as `1,3,5`, or you can specify a stride, for example by specifying
+`1-10:2` (which is equivalent to `1,3,5,7,9`).
+
+In addition to these, you can also specify a limit on the number
+of array elements that will run concurrently, using the `%` sign.
+An example of this, building on what we saw before, would be
+to specify `1-10:2%4`, which will create five array elements
+with indices 1, 3, 5, 7, and 9, and run at most four of them
+at a time until they are all complete.
+
+When an array element job is running, the run-time environment
+will include some special environment variables, the most important
+of which is `SLURM_ARRAY_TASK_ID`, which specifies the index
+of the current instance.  There are other environment variables
+which tell you the full size of the array, and the starting and
+ending indices. As we have seen, because there is a fairly rich
+syntax for specifying arrays, it is not straightforward to
+infer the size of the array from the high and low indices.
+
+There are also some file-name patterns you can use to control
+where your executable reads and writes data. The most important
+of these is the `%a` pattern, which corresponds to the index
+of the current array element, similarly to `SLURM_ARRAY_TASK_ID`.
+
+::::: challenge
+
+
+Write a batch script to run the `amdahl` program as an array job with
+4 independent jobs, to examine the effects of jitter.
+
+Use the directives discussed above to specify the array elements,
+and to direct the output of each array element to a separate file.
+
+:::: solution
+
+
+```bash
+#!/bin/bash
+#SBATCH --partition=cpubase_bycore_b1
+#SBATCH --job-name=amdahl-array
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --array=1-4
+#SBATCH --time=00:05:00
+#SBATCH --output=amdahl-%A-%a
+
+# Run the Amdahl executable several times independently.
+
+echo "Starting the Amdahl array script."
+amdahl 
+echo "Finished Amdahl array script."
+
+```
+
+::::
+
+:::::
+
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- Parallel programming allows applications to take advantage of parallel hardware.
+- The queuing system facilitates executing parallel tasks.
+- Parallel computing allows applications to distribute the workload over several CPUs or nodes
+- There are multiple parallelization strategies that are generally supported by resource managers.
+- Array parallel jobs are suitable for independent runs of the same executable with varying inputs or outputs. 
+
+::::::::::::::::::::::::::::::::::::::::::::::::::

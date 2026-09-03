@@ -1,0 +1,4 @@
+```output
+JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+   10 cpubase_b hello-wo   user01  R       0:02      1 node1
+```
