@@ -29,7 +29,7 @@ components of every HPC workflow.
 ## Secure Connections
 
 The first step in using an HPC cluster is to establish a secure connection from your
-local computer. When we interact with a computer, we often use *graphical user interface*,
+local computer. When we interact with a computer, we often use a *graphical user interface*,
 or GUI, with windows, icons, menus, and other visual elements.
 Because HPC systems are administered remotely, the *command-line interface* (CLI)
 remains the standard method for interacting with HPC environments. CLI-based workflows
