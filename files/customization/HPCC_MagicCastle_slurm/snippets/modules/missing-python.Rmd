@@ -1,0 +1,40 @@
+If the `python3` command is available, `which` shows the path to the
+executable:
+
+```output
+/usr/bin/python3
+```
+
+The shell finds executables by searching through the directories listed in
+the `$PATH` environment variable.
+
+If we accidentally make a typo for example:
+
+```bash
+`r config$remote$prompt` which pyython3
+```
+
+we instead see something like:
+
+```output
+/usr/bin/which: no pyython3 in (`r config$remote$home`/`r config$remote$user`/.local/bin:`r config$remote$home`/`r config$remote$user`/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin)
+```
+
+This wall of text is actually a list of directories separated by the
+`:` character. The output tells us that the shell searched the following
+directories for `pyython3`, but could not find it:
+
+```output
+`r config$remote$home`/`r config$remote$user`/.local/bin
+`r config$remote$home`/`r config$remote$user`/bin
+/usr/local/bin
+/usr/bin
+/usr/local/sbin
+/usr/sbin
+```
+
+The Python installation located in `/usr/bin` is the system-provided version.
+On HPC systems, we often need a different Python build that is compiled with
+specific compiler toolchains, libraries, or scientific software stacks.
+Environment Modules allow us to dynamically switch to these alternative
+software environments.

@@ -1,0 +1,10 @@
+```bash
+`r config$remote$prompt` ls /cvmfs/pilot.eessi-hpc.org/2020.12/software/x86_64/amd/zen2/software/Python/3.x.y-GCCcore-x.y.z/bin
+```
+
+```output
+idle3     pip   pip3.13  pydoc3.13  python3     python3.13-config  python-config
+idle3.13  pip3  pydoc3   python     python3.13  python3-config     wheel
+```
+
+Note that the exact output may vary from cluster to cluster.

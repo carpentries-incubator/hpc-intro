@@ -1,0 +1,58 @@
+```bash
+`r config$remote$prompt` nano parallel-job.sh
+`r config$remote$prompt` cat parallel-job.sh
+```
+
+```bash
+`r config$remote$shebang`
+`r config$sched$comment` `r config$sched$flag$name` parallel-job
+`r config$sched$comment` `r config$sched$flag$queue` `r config$sched$queue$testing`
+`r config$sched$comment` -N 1
+`r config$sched$comment` -n 8
+
+# Load the computing environment we need
+# (mpi4py and numpy are in SciPy-bundle)
+module load `r config$remote$modules$python`
+module load SciPy-bundle
+
+# Execute the task
+mpiexec amdahl
+```
+
+Then submit your job. Note that the submission command has not really changed
+from how we submitted the serial job: all the parallel settings are in the
+batch file rather than the command line.
+
+```bash
+`r config$remote$prompt` `r config$sched$submit$name` parallel-job.sh
+```
+
+As before, use the status commands to check when your job runs.
+
+```bash
+`r config$remote$prompt` ls -t
+```
+
+```output
+slurm-347271.out  parallel-job.sh  slurm-347178.out  slurm-347087.out  serial-job.sh  amdahl  README.md  LICENSE.txt
+```
+
+```bash
+`r config$remote$prompt` cat slurm-347178.out
+```
+
+```output
+which should take 7.688 seconds with 0.850 parallel proportion of the workload.
+
+  Hello, World! I am process 4 of 8 on `r config$remote$node`. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 0 of 8 on `r config$remote$node`. I will do all the serial 'work' for 4.500 seconds.
+  Hello, World! I am process 2 of 8 on `r config$remote$node`. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 1 of 8 on `r config$remote$node`. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 3 of 8 on `r config$remote$node`. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 5 of 8 on `r config$remote$node`. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 6 of 8 on `r config$remote$node`. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 7 of 8 on `r config$remote$node`. I will do parallel 'work' for 3.188 seconds.
+  Hello, World! I am process 0 of 8 on `r config$remote$node`. I will do parallel 'work' for 3.188 seconds.
+
+Total execution time (according to rank 0): 7.697 seconds
+```

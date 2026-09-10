@@ -1,0 +1,63 @@
+To demonstrate, let's use `module list`. `module list` shows all loaded
+software modules.
+
+```bash
+`r config$remote$prompt` module list
+```
+
+```output
+Currently Loaded Modules:
+  1) slurm/24.05.3 (S)   2) lmod (S)   3) Python/3.14.0
+
+  Where:
+   S:  Module is Sticky, requires --force to unload or purge
+```
+
+```bash
+`r config$remote$prompt` module load GROMACS
+`r config$remote$prompt` module list
+```
+
+```output
+Currently Loaded Modules:
+  1) slurm/24.05.3 (S)   3) Python/3.14.0   5) GROMACS/2025.2
+  2) lmod          (S)   4) GCC/14.3.0
+
+  Where:
+   S:  Module is Sticky, requires --force to unload or purge
+```
+
+So in this case, loading the `GROMACS` module (a bioinformatics software
+package), also loaded `GCC/14.3.0`.
+Let's try unloading the
+`GROMACS` package.
+
+```bash
+`r config$remote$prompt` module unload GROMACS
+`r config$remote$prompt` module list
+```
+
+```output
+Currently Loaded Modules:
+  1) slurm/24.05.3 (S)   2) lmod (S)   3) Python/3.14.0
+
+  Where:
+   S:  Module is Sticky, requires --force to unload or purge
+```
+So using `module unload` "un-loads" a module, and depending on how a site is
+configured it may also unload all of the dependencies (in our case it does
+not). If we wanted to unload everything at once, we could run `module purge`
+(unloads everything).
+
+```bash
+`r config$remote$prompt` module purge
+`r config$remote$prompt` module list
+```
+
+```output
+No modules loaded
+```
+
+Note that `module purge` is informative. It will also let us know if a default
+set of "sticky" packages cannot be unloaded (and how to actually unload these
+if we truly so desired).

@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:ns1="http://sozi.baierouge.fr"
+    id="svg2"
+    sodipodi:docname="servers.svg"
+    inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\servers.png"
+    viewBox="0 0 429.47 706.26"
+    sodipodi:version="0.32"
+    inkscape:export-xdpi="16.311277"
+    version="1.0"
+    inkscape:output_extension="org.inkscape.output.svg.inkscape"
+    inkscape:export-ydpi="16.311277"
+    inkscape:version="0.45+devel+devel"
+  >
+  <defs
+      id="defs4"
+    >
+    <linearGradient
+        id="linearGradient3706"
+      >
+      <stop
+          id="stop3708"
+          style="stop-color:#ffffff"
+          offset="0"
+      />
+      <stop
+          id="stop3710"
+          style="stop-color:#38a5ff"
+          offset=".26786"
+      />
+      <stop
+          id="stop3712"
+          style="stop-color:#ffffff;stop-opacity:0"
+          offset="1"
+      />
+    </linearGradient
+    >
+    <linearGradient
+        id="linearGradient3235"
+      >
+      <stop
+          id="stop3237"
+          style="stop-color:#ffffff"
+          offset="0"
+      />
+      <stop
+          id="stop3247"
+          style="stop-color:#43ff38"
+          offset=".26786"
+      />
+      <stop
+          id="stop3239"
+          style="stop-color:#ffffff;stop-opacity:0"
+          offset="1"
+      />
+    </linearGradient
+    >
+    <radialGradient
+        id="radialGradient3241"
+        xlink:href="#linearGradient3706"
+        gradientUnits="userSpaceOnUse"
+        cy="507.58"
+        cx="544.68"
+        gradientTransform="matrix(.64620 0 0 .37308 192.71 318.21)"
+        r="7.6715"
+        inkscape:collect="always"
+    />
+    <linearGradient
+        id="linearGradient3240"
+      >
+      <stop
+          id="stop3242"
+          style="stop-color:#7b7d8b"
+          offset="0"
+      />
+      <stop
+          id="stop3244"
+          style="stop-color:#0f0f19"
+          offset="1"
+      />
+    </linearGradient
+    >
+    <linearGradient
+        id="linearGradient3237"
+        y2="166.54"
+        gradientUnits="userSpaceOnUse"
+        x2="675.09"
+        y1="379.13"
+        x1="306.86"
+        inkscape:collect="always"
+      >
+      <stop
+          id="stop3283"
+          style="stop-color:#d4d2a8"
+          offset="0"
+      />
+      <stop
+          id="stop3285"
+          style="stop-color:#121212"
+          offset="1"
+      />
+    </linearGradient
+    >
+    <linearGradient
+        id="linearGradient3252"
+        y2="131.1"
+        gradientUnits="userSpaceOnUse"
+        x2="613.72"
+        y1="60.236"
+        x1="490.98"
+        inkscape:collect="always"
+      >
+      <stop
+          id="stop3248"
+          style="stop-color:#ffffc3"
+          offset="0"
+      />
+      <stop
+          id="stop3262"
+          style="stop-color:#ffffff"
+          offset=".48883"
+      />
+      <stop
+          id="stop3250"
+          style="stop-color:#ffffc3"
+          offset="1"
+      />
+    </linearGradient
+    >
+    <linearGradient
+        id="linearGradient3260"
+        y2="343.7"
+        gradientUnits="userSpaceOnUse"
+        x2="613.72"
+        y1="237.4"
+        x1="675.09"
+        inkscape:collect="always"
+      >
+      <stop
+          id="stop3266"
+          style="stop-color:#ffffc3"
+          offset="0"
+      />
+      <stop
+          id="stop3268"
+          style="stop-color:#ffffff"
+          offset=".52134"
+      />
+      <stop
+          id="stop3270"
+          style="stop-color:#ffffc3"
+          offset="1"
+      />
+    </linearGradient
+    >
+    <linearGradient
+        id="linearGradient3246"
+        y2="308.27"
+        xlink:href="#linearGradient3240"
+        gradientUnits="userSpaceOnUse"
+        x2="552.35"
+        y1="308.27"
+        x1="429.6"
+        inkscape:collect="always"
+    />
+    <linearGradient
+        id="linearGradient3255"
+        y2="509.76"
+        xlink:href="#linearGradient3240"
+        gradientUnits="userSpaceOnUse"
+        x2="551.78"
+        y1="509.76"
+        x1="344.25"
+        inkscape:collect="always"
+    />
+    <linearGradient
+        id="linearGradient3263"
+        y2="346.77"
+        xlink:href="#linearGradient3240"
+        gradientUnits="userSpaceOnUse"
+        x2="551.78"
+        y1="346.77"
+        x1="344.25"
+        inkscape:collect="always"
+    />
+    <linearGradient
+        id="linearGradient3271"
+        y2="350.79"
+        xlink:href="#linearGradient3240"
+        gradientUnits="userSpaceOnUse"
+        x2="466.43"
+        y1="329.53"
+        x1="478.7"
+        inkscape:collect="always"
+    />
+    <linearGradient
+        id="linearGradient3286"
+        y2="487.2"
+        xlink:href="#linearGradient3240"
+        gradientUnits="userSpaceOnUse"
+        x2="438.81"
+        y1="465.94"
+        x1="451.08"
+        inkscape:collect="always"
+    />
+    <linearGradient
+        id="linearGradient3294"
+        y2="460.63"
+        xlink:href="#linearGradient3240"
+        gradientUnits="userSpaceOnUse"
+        x2="448.01"
+        y1="439.37"
+        x1="460.29"
+        inkscape:collect="always"
+    />
+    <linearGradient
+        id="linearGradient3302"
+        y2="441.14"
+        xlink:href="#linearGradient3240"
+        gradientUnits="userSpaceOnUse"
+        x2="463.36"
+        y1="419.88"
+        x1="475.63"
+        inkscape:collect="always"
+    />
+    <linearGradient
+        id="linearGradient3310"
+        y2="595.28"
+        xlink:href="#linearGradient3240"
+        gradientUnits="userSpaceOnUse"
+        x2="448.01"
+        y1="574.02"
+        x1="460.29"
+        inkscape:collect="always"
+    />
+    <linearGradient
+        id="linearGradient3318"
+        y2="627.17"
+        xlink:href="#linearGradient3240"
+        gradientUnits="userSpaceOnUse"
+        x2="441.88"
+        y1="605.91"
+        x1="454.15"
+        inkscape:collect="always"
+    />
+    <radialGradient
+        id="radialGradient3664"
+        xlink:href="#linearGradient3235"
+        gradientUnits="userSpaceOnUse"
+        cy="507.58"
+        cx="544.68"
+        gradientTransform="matrix(.64620 0 0 .37308 192.71 318.21)"
+        r="7.6715"
+        inkscape:collect="always"
+    />
+  </defs
+  >
+  <sodipodi:namedview
+      id="base"
+      bordercolor="#666666"
+      inkscape:pageshadow="2"
+      inkscape:window-y="-4"
+      pagecolor="#ffffff"
+      gridtolerance="10"
+      inkscape:snap-global="false"
+      inkscape:zoom="0.19504736"
+      inkscape:window-x="-4"
+      inkscape:window-height="968"
+      showgrid="true"
+      borderopacity="1.0"
+      inkscape:current-layer="layer1"
+      inkscape:cx="-955.34784"
+      inkscape:cy="289.61768"
+      inkscape:object-nodes="false"
+      showguides="true"
+      inkscape:guide-bbox="true"
+      inkscape:window-width="1280"
+      inkscape:pageopacity="0.0"
+      inkscape:document-units="px"
+    >
+    <inkscape:grid
+        id="grid2388"
+        units="mm"
+        visible="true"
+        type="axonomgrid"
+        enabled="true"
+    />
+  </sodipodi:namedview
+  >
+  <g
+      id="layer1"
+      inkscape:label="Calque 1"
+      inkscape:groupmode="layer"
+      transform="translate(-304.36 -.31494)"
+    >
+    <path
+        id="path3284"
+        style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:10;fill:url(#linearGradient3237)"
+        d="m490.98 5.3149l-153.43 88.583v485.43l211.73 122.24 153.43-88.58v-488.97l-211.73-118.71z"
+    />
+    <path
+        id="path3232"
+        sodipodi:nodetypes="ccccc"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:none"
+        d="m337.55 579.33l211.73 122.24v-485.43l-211.73-122.24v485.43z"
+    />
+    <path
+        id="path3266"
+        sodipodi:rx="30.68594"
+        sodipodi:ry="88.58268"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:11.672;fill:none"
+        sodipodi:type="arc"
+        d="m1472.9 609.45a30.686 88.583 0 1 1 -61.3 0 30.686 88.583 0 1 1 61.3 0z"
+        transform="matrix(.85668 0 0 .85688 -546.14 -230.21)"
+        sodipodi:cy="609.44879"
+        sodipodi:cx="1442.2391"
+    />
+    <path
+        id="path3270"
+        sodipodi:rx="30.68594"
+        sodipodi:ry="88.58268"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:11.672;fill:none"
+        sodipodi:type="arc"
+        d="m1472.9 609.45a30.686 88.583 0 1 1 -61.3 0 30.686 88.583 0 1 1 61.3 0z"
+        transform="matrix(.85668 0 0 .85688 -546.14 -55.627)"
+        sodipodi:cy="609.44879"
+        sodipodi:cx="1442.2391"
+    />
+    <path
+        id="path3268"
+        sodipodi:rx="30.68594"
+        sodipodi:ry="88.58268"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:11.672;fill:none"
+        sodipodi:type="arc"
+        d="m1472.9 609.45a30.686 88.583 0 1 1 -61.3 0 30.686 88.583 0 1 1 61.3 0z"
+        transform="matrix(.85668 0 0 .85688 -532.99 -139.12)"
+        sodipodi:cy="609.44879"
+        sodipodi:cx="1442.2391"
+    />
+    <path
+        id="path3234"
+        sodipodi:nodetypes="ccccc"
+        style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:url(#linearGradient3260)"
+        d="m702.54 125.03l0.17 488.05-153.43 88.49v-485.43l153.26-91.11z"
+    />
+    <path
+        id="path3240"
+        sodipodi:nodetypes="ccccc"
+        style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:#7d7d7d"
+        d="m352.89 573.36l15.34-1.12v-464.17l-15.34-8.857v474.15z"
+    />
+    <path
+        id="path3244"
+        sodipodi:nodetypes="ccccc"
+        style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:url(#linearGradient3318)"
+        d="m346.75 574.02l202.53 116.92v-31.88l-202.53-116.93v31.89z"
+    />
+    <path
+        id="path3246"
+        sodipodi:nodetypes="ccccc"
+        style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:url(#linearGradient3310)"
+        d="m346.75 542.13l202.53 116.93v-35.44l-202.53-113.38v31.89z"
+    />
+    <path
+        id="path3286"
+        sodipodi:nodetypes="cccc"
+        style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:url(#linearGradient3255)"
+        d="m346.75 510.24l202.53-114.33v227.71l-202.53-113.38z"
+    />
+    <path
+        id="path3260"
+        sodipodi:nodetypes="ccccc"
+        style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:url(#linearGradient3294)"
+        d="m346.75 403.94l202.53 116.93v-31.89l-202.53-113.39v28.35z"
+    />
+    <path
+        id="path3252"
+        sodipodi:nodetypes="ccccc"
+        style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:url(#linearGradient3302)"
+        d="m346.75 375.59l202.53 113.39v-28.35l-202.53-116.93v31.89z"
+    />
+    <path
+        id="path3254"
+        sodipodi:nodetypes="cccc"
+        style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:url(#linearGradient3263)"
+        d="m346.75 343.7l202.53-110.78v227.71l-202.53-116.93z"
+    />
+    <path
+        id="path3256"
+        sodipodi:nodetypes="ccccc"
+        style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:url(#linearGradient3271)"
+        d="m346.75 283.46l202.53 116.93v-31.89l-202.53-116.93v31.89z"
+    />
+    <path
+        id="path3258"
+        sodipodi:nodetypes="ccccc"
+        style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:url(#linearGradient3246)"
+        d="m346.75 251.57l132.35-73.41 70.18 37.98v152.36l-202.53-116.93z"
+    />
+    <path
+        id="path3230"
+        sodipodi:nodetypes="ccccc"
+        style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:url(#linearGradient3252)"
+        d="m337.55 93.898l153.43-88.583 211.56 119.72-153.26 91.1-211.73-122.24z"
+    />
+    <path
+        id="path3264"
+        sodipodi:nodetypes="ccccc"
+        style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:url(#linearGradient3286)"
+        d="m346.75 435.83l202.53 114.26v-29.22l-202.53-116.93v31.89z"
+    />
+    <path
+        id="path3272"
+        sodipodi:nodetypes="cc"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:none"
+        d="m360.8 276.84l52.58 30.36"
+    />
+    <path
+        id="path3274"
+        sodipodi:nodetypes="cc"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:none"
+        d="m360.8 367.92l52.58 30.36"
+    />
+    <path
+        id="path3276"
+        sodipodi:nodetypes="cc"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:none"
+        d="m360.8 398.28l52.58 30.37"
+    />
+    <path
+        id="path3278"
+        sodipodi:nodetypes="cc"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:none"
+        d="m360.8 428.65l52.58 30.36"
+    />
+    <path
+        id="path3280"
+        sodipodi:nodetypes="cc"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:none"
+        d="m360.8 534.91l52.58 30.36"
+    />
+    <path
+        id="path3282"
+        sodipodi:nodetypes="cc"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:none"
+        d="m360.8 565.27l52.58 30.37"
+    />
+    <g
+        id="g3332"
+        transform="translate(-647.47 -235.38)"
+      >
+      <g
+          id="g3300"
+        >
+        <path
+            id="path3288"
+            sodipodi:rx="7.6714849"
+            sodipodi:ry="4.4291339"
+            style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4.2539;fill:#ffffff"
+            sodipodi:type="arc"
+            d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+            inkscape:export-ydpi="61.308788"
+            inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+            transform="matrix(0 -.96571 1.4306 0 363.2 1083.7)"
+            sodipodi:cy="507.5787"
+            sodipodi:cx="544.67542"
+            inkscape:export-xdpi="61.308788"
+        />
+        <path
+            id="path3290"
+            sodipodi:rx="7.6714849"
+            sodipodi:ry="4.4291339"
+            style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4.2539;fill:#ffffff"
+            sodipodi:type="arc"
+            d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+            inkscape:export-ydpi="61.308788"
+            inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+            transform="matrix(0 -.96571 1.4306 0 382.14 1094.7)"
+            sodipodi:cy="507.5787"
+            sodipodi:cx="544.67542"
+            inkscape:export-xdpi="61.308788"
+        />
+      </g
+      >
+    </g
+    >
+    <g
+        id="g3296"
+        transform="translate(-717.6 -209.48)"
+      >
+      <path
+          id="path3292"
+          sodipodi:rx="7.6714849"
+          sodipodi:ry="4.4291339"
+          style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4.2539;fill:#ffffff"
+          sodipodi:cy="507.5787"
+          sodipodi:type="arc"
+          d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+          inkscape:export-ydpi="61.308788"
+          inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+          transform="matrix(0 -.96571 1.4306 0 433.34 1148.6)"
+          inkscape:export-xdpi="61.308788"
+          sodipodi:cx="544.67542"
+      />
+      <path
+          id="path3294"
+          sodipodi:rx="7.6714849"
+          sodipodi:ry="4.4291339"
+          style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4.2539;fill:#ffffff"
+          sodipodi:cy="507.5787"
+          sodipodi:type="arc"
+          d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+          inkscape:export-ydpi="61.308788"
+          inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+          transform="matrix(0 -.96571 1.4306 0 452.27 1159.6)"
+          inkscape:export-xdpi="61.308788"
+          sodipodi:cx="544.67542"
+      />
+    </g
+    >
+    <g
+        id="g3308"
+        transform="translate(-717.6 -179.22)"
+      >
+      <path
+          id="path3310"
+          sodipodi:rx="7.6714849"
+          sodipodi:ry="4.4291339"
+          style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4.2539;fill:#ffffff"
+          sodipodi:cy="507.5787"
+          sodipodi:type="arc"
+          d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+          inkscape:export-ydpi="61.308788"
+          inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+          transform="matrix(0 -.96571 1.4306 0 433.34 1148.6)"
+          inkscape:export-xdpi="61.308788"
+          sodipodi:cx="544.67542"
+      />
+      <path
+          id="path3312"
+          sodipodi:rx="7.6714849"
+          sodipodi:ry="4.4291339"
+          style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4.2539;fill:#ffffff"
+          sodipodi:cy="507.5787"
+          sodipodi:type="arc"
+          d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+          inkscape:export-ydpi="61.308788"
+          inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+          transform="matrix(0 -.96571 1.4306 0 452.27 1159.6)"
+          inkscape:export-xdpi="61.308788"
+          sodipodi:cx="544.67542"
+      />
+    </g
+    >
+    <g
+        id="g3314"
+        transform="translate(-717.6 -148.46)"
+      >
+      <path
+          id="path3316"
+          sodipodi:rx="7.6714849"
+          sodipodi:ry="4.4291339"
+          style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4.2539;fill:#ffffff"
+          sodipodi:cy="507.5787"
+          sodipodi:type="arc"
+          d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+          inkscape:export-ydpi="61.308788"
+          inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+          transform="matrix(0 -.96571 1.4306 0 433.34 1148.6)"
+          inkscape:export-xdpi="61.308788"
+          sodipodi:cx="544.67542"
+      />
+      <path
+          id="path3318"
+          sodipodi:rx="7.6714849"
+          sodipodi:ry="4.4291339"
+          style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4.2539;fill:#ffffff"
+          sodipodi:cy="507.5787"
+          sodipodi:type="arc"
+          d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+          inkscape:export-ydpi="61.308788"
+          inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+          transform="matrix(0 -.96571 1.4306 0 452.27 1159.6)"
+          inkscape:export-xdpi="61.308788"
+          sodipodi:cx="544.67542"
+      />
+    </g
+    >
+    <g
+        id="g3320"
+        transform="translate(-717.6 -42.896)"
+      >
+      <path
+          id="path3322"
+          sodipodi:rx="7.6714849"
+          sodipodi:ry="4.4291339"
+          style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4.2539;fill:#ffffff"
+          sodipodi:cy="507.5787"
+          sodipodi:type="arc"
+          d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+          inkscape:export-ydpi="61.308788"
+          inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+          transform="matrix(0 -.96571 1.4306 0 433.34 1148.6)"
+          inkscape:export-xdpi="61.308788"
+          sodipodi:cx="544.67542"
+      />
+      <path
+          id="path3324"
+          sodipodi:rx="7.6714849"
+          sodipodi:ry="4.4291339"
+          style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4.2539;fill:#ffffff"
+          sodipodi:cy="507.5787"
+          sodipodi:type="arc"
+          d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+          inkscape:export-ydpi="61.308788"
+          inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+          transform="matrix(0 -.96571 1.4306 0 452.27 1159.6)"
+          inkscape:export-xdpi="61.308788"
+          sodipodi:cx="544.67542"
+      />
+    </g
+    >
+    <g
+        id="g3326"
+        transform="translate(-717.6 -9.8612)"
+      >
+      <path
+          id="path3328"
+          sodipodi:rx="7.6714849"
+          sodipodi:ry="4.4291339"
+          style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4.2539;fill:#ffffff"
+          sodipodi:cy="507.5787"
+          sodipodi:type="arc"
+          d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+          inkscape:export-ydpi="61.308788"
+          inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+          transform="matrix(0 -.96571 1.4306 0 433.34 1148.6)"
+          inkscape:export-xdpi="61.308788"
+          sodipodi:cx="544.67542"
+      />
+      <path
+          id="path3330"
+          sodipodi:rx="7.6714849"
+          sodipodi:ry="4.4291339"
+          style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4.2539;fill:#ffffff"
+          sodipodi:cy="507.5787"
+          sodipodi:type="arc"
+          d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+          inkscape:export-ydpi="61.308788"
+          inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+          transform="matrix(0 -.96571 1.4306 0 452.27 1159.6)"
+          inkscape:export-xdpi="61.308788"
+          sodipodi:cx="544.67542"
+      />
+    </g
+    >
+    <path
+        id="path3233"
+        sodipodi:rx="7.6714849"
+        sodipodi:ry="4.4291339"
+        style="fill:url(#radialGradient3241)"
+        sodipodi:type="arc"
+        d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+        inkscape:export-ydpi="61.308788"
+        inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+        transform="matrix(0 -2.4984 3.7011 0 -1436.7 1940.5)"
+        sodipodi:cy="507.5787"
+        sodipodi:cx="544.67542"
+        inkscape:export-xdpi="61.308788"
+    />
+    <path
+        id="path3666"
+        sodipodi:rx="7.6714849"
+        sodipodi:ry="4.4291339"
+        style="fill:url(#radialGradient3241)"
+        sodipodi:type="arc"
+        d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+        inkscape:export-ydpi="61.308788"
+        inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+        transform="matrix(0 -2.4984 3.7011 0 -1436.7 1973.4)"
+        sodipodi:cy="507.5787"
+        sodipodi:cx="544.67542"
+        inkscape:export-xdpi="61.308788"
+    />
+    <path
+        id="path3662"
+        sodipodi:rx="7.6714849"
+        sodipodi:ry="4.4291339"
+        style="fill:url(#radialGradient3664)"
+        sodipodi:type="arc"
+        d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+        inkscape:export-ydpi="61.308788"
+        inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+        transform="matrix(0 -2.4984 3.7011 0 -1417.9 1951.4)"
+        sodipodi:cy="507.5787"
+        sodipodi:cx="544.67542"
+        inkscape:export-xdpi="61.308788"
+    />
+    <path
+        id="path3670"
+        sodipodi:rx="7.6714849"
+        sodipodi:ry="4.4291339"
+        style="fill:url(#radialGradient3664)"
+        sodipodi:type="arc"
+        d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+        inkscape:export-ydpi="61.308788"
+        inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+        transform="matrix(0 -2.4984 3.7011 0 -1417.8 1984.6)"
+        sodipodi:cy="507.5787"
+        sodipodi:cx="544.67542"
+        inkscape:export-xdpi="61.308788"
+    />
+    <path
+        id="path3674"
+        sodipodi:rx="7.6714849"
+        sodipodi:ry="4.4291339"
+        style="fill:url(#radialGradient3664)"
+        sodipodi:type="arc"
+        d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+        inkscape:export-ydpi="61.308788"
+        inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+        transform="matrix(0 -2.4984 3.7011 0 -1417.8 1846.1)"
+        sodipodi:cy="507.5787"
+        sodipodi:cx="544.67542"
+        inkscape:export-xdpi="61.308788"
+    />
+    <path
+        id="path3678"
+        sodipodi:rx="7.6714849"
+        sodipodi:ry="4.4291339"
+        style="fill:url(#radialGradient3241)"
+        sodipodi:type="arc"
+        d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+        inkscape:export-ydpi="61.308788"
+        inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+        transform="matrix(0 -2.4984 3.7011 0 -1436.8 1835)"
+        sodipodi:cy="507.5787"
+        sodipodi:cx="544.67542"
+        inkscape:export-xdpi="61.308788"
+    />
+    <path
+        id="path3682"
+        sodipodi:rx="7.6714849"
+        sodipodi:ry="4.4291339"
+        style="fill:url(#radialGradient3664)"
+        sodipodi:type="arc"
+        d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+        inkscape:export-ydpi="61.308788"
+        inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+        transform="matrix(0 -2.4984 3.7011 0 -1417.8 1815.1)"
+        sodipodi:cy="507.5787"
+        sodipodi:cx="544.67542"
+        inkscape:export-xdpi="61.308788"
+    />
+    <path
+        id="path3686"
+        sodipodi:rx="7.6714849"
+        sodipodi:ry="4.4291339"
+        style="fill:url(#radialGradient3241)"
+        sodipodi:type="arc"
+        d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+        inkscape:export-ydpi="61.308788"
+        inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+        transform="matrix(0 -2.4984 3.7011 0 -1436.7 1804.3)"
+        sodipodi:cy="507.5787"
+        sodipodi:cx="544.67542"
+        inkscape:export-xdpi="61.308788"
+    />
+    <path
+        id="path3690"
+        sodipodi:rx="7.6714849"
+        sodipodi:ry="4.4291339"
+        style="fill:url(#radialGradient3241)"
+        sodipodi:type="arc"
+        d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+        inkscape:export-ydpi="61.308788"
+        inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+        transform="matrix(0 -2.4984 3.7011 0 -1436.7 1774.2)"
+        sodipodi:cy="507.5787"
+        sodipodi:cx="544.67542"
+        inkscape:export-xdpi="61.308788"
+    />
+    <path
+        id="path3694"
+        sodipodi:rx="7.6714849"
+        sodipodi:ry="4.4291339"
+        style="fill:url(#radialGradient3664)"
+        sodipodi:type="arc"
+        d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+        inkscape:export-ydpi="61.308788"
+        inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+        transform="matrix(0 -2.4984 3.7011 0 -1417.8 1784.9)"
+        sodipodi:cy="507.5787"
+        sodipodi:cx="544.67542"
+        inkscape:export-xdpi="61.308788"
+    />
+    <path
+        id="path3698"
+        sodipodi:rx="7.6714849"
+        sodipodi:ry="4.4291339"
+        style="fill:url(#radialGradient3664)"
+        sodipodi:type="arc"
+        d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+        inkscape:export-ydpi="61.308788"
+        inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+        transform="matrix(0 -2.4984 3.7011 0 -1417.9 1694.1)"
+        sodipodi:cy="507.5787"
+        sodipodi:cx="544.67542"
+        inkscape:export-xdpi="61.308788"
+    />
+    <path
+        id="path3702"
+        sodipodi:rx="7.6714849"
+        sodipodi:ry="4.4291339"
+        style="fill:url(#radialGradient3241)"
+        sodipodi:type="arc"
+        d="m552.35 507.58a7.6715 4.4291 0 1 1 -15.35 0 7.6715 4.4291 0 1 1 15.35 0z"
+        inkscape:export-ydpi="61.308788"
+        inkscape:export-filename="I:\Documents and Settings\Eric\Bureau\techicons.png"
+        transform="matrix(0 -2.4984 3.7011 0 -1436.7 1683.2)"
+        sodipodi:cy="507.5787"
+        sodipodi:cx="544.67542"
+        inkscape:export-xdpi="61.308788"
+    />
+    <path
+        id="path3347"
+        sodipodi:nodetypes="ccccc"
+        style="stroke-linejoin:round;fill-rule:evenodd;fill-opacity:.49020;stroke:#000000;stroke-linecap:round;stroke-width:5;fill:#ffffff"
+        d="m549.3 216.23l-242.44 3.7v478.34h241.8l0.64-482.04z"
+    />
+  </g
+  >
+  <metadata
+    >
+    <rdf:RDF
+      >
+      <cc:Work
+        >
+        <dc:format
+          >image/svg+xml</dc:format
+        >
+        <dc:type
+            rdf:resource="http://purl.org/dc/dcmitype/StillImage"
+        />
+        <cc:license
+            rdf:resource="http://creativecommons.org/licenses/publicdomain/"
+        />
+        <dc:publisher
+          >
+          <cc:Agent
+              rdf:about="http://openclipart.org/"
+            >
+            <dc:title
+              >Openclipart</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:publisher
+        >
+        <dc:title
+          >Servers</dc:title
+        >
+        <dc:date
+          >2008-02-11T22:48:48</dc:date
+        >
+        <dc:description
+        />
+        <dc:source
+          >https://openclipart.org/detail/13677/servers-by-ericlemerdy</dc:source
+        >
+        <dc:creator
+          >
+          <cc:Agent
+            >
+            <dc:title
+              >ericlemerdy</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:creator
+        >
+        <dc:subject
+          >
+          <rdf:Bag
+            >
+            <rdf:li
+              >diagram</rdf:li
+            >
+            <rdf:li
+              >icon</rdf:li
+            >
+            <rdf:li
+              >isometric</rdf:li
+            >
+            <rdf:li
+              >lame</rdf:li
+            >
+            <rdf:li
+              >server</rdf:li
+            >
+          </rdf:Bag
+          >
+        </dc:subject
+        >
+      </cc:Work
+      >
+      <cc:License
+          rdf:about="http://creativecommons.org/licenses/publicdomain/"
+        >
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Reproduction"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Distribution"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
+        />
+      </cc:License
+      >
+    </rdf:RDF
+    >
+  </metadata
+  >
+</svg
+>
