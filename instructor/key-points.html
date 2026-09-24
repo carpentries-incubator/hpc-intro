@@ -246,7 +246,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="11-connecting.html">2. Connecting to a remote HPC system</a>
+        <a href="11-connecting.html">2. Connecting Securely to an HPC Cluster</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -427,17 +427,22 @@ impossible or much slower on smaller systems.</li>
 <li>HPC resources are shared by multiple users.</li>
 <li>The standard method of interacting with such systems is via a
 command line interface.</li>
-</ul></section><section id="11-connecting"><h2 class="section-heading"><a href="11-connecting.html">Connecting to a remote HPC system</a></h2>
+</ul></section><section id="11-connecting"><h2 class="section-heading"><a href="11-connecting.html">Connecting Securely to an HPC Cluster</a></h2>
 <hr class="half-width">
 <ul>
-<li>An HPC system is a set of networked machines.</li>
-<li>HPC systems typically provide login nodes and a set of worker
-nodes.</li>
-<li>The resources found on independent (worker) nodes can vary in volume
-and type (amount of RAM, processor architecture, availability of
-network-mounted filesystems, etc.).</li>
-<li>Files saved on one node are typically accessible from all nodes via
-a shared filesystem.</li>
+<li>HPC clusters are shared computational resources that users access
+remotely.</li>
+<li>Secure Shell (SSH) provides encrypted communication between your
+local computer and an HPC cluster.</li>
+<li>SSH public-private key pairs provide a secure method for
+authenticating to remote systems.</li>
+<li>A private key remains on your local computer and should be protected
+with a strong passphrase.</li>
+<li>An SSH agent can temporarily retain a private-key identity so that
+its passphrase does not need to be entered on every connection.</li>
+<li>Users typically connect to an HPC system through a login node, where
+they authenticate, manage files, configure their environment, and
+prepare their work.</li>
 </ul></section><section id="12-cluster"><h2 class="section-heading"><a href="12-cluster.html">Working on a remote HPC system</a></h2>
 <hr class="half-width">
 <ul>
@@ -567,8 +572,8 @@ before transferring.</li>
   "url": "https://carpentries-incubator.github.io/hpc-intro/instructor/key-points.html",
   "identifier": "https://carpentries-incubator.github.io/hpc-intro/instructor/key-points.html",
   "dateCreated": "2017-03-24",
-  "dateModified": "2026-09-22",
-  "datePublished": "2026-09-22"
+  "dateModified": "2026-09-24",
+  "datePublished": "2026-09-24"
 }
 
   </script><script>
