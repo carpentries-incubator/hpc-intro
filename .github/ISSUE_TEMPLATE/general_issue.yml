@@ -1,4 +1,4 @@
-name: Issue Template
+name: Issue or Suggestion
 description: Report an issue and/or suggest an improvement
 body:
   - type: input
